@@ -159,7 +159,7 @@ def c3_pairs_person():
     _person(f, 320, 200, 100)
     # forces on Kym
     f.force(300, 150, 0, 60)
-    f.text(288, 215, 'pair 1: the Earth pulls Kym  392 N', 't p b', 'end', 12)
+    f.text(288, 182, 'pair 1: the Earth pulls Kym  392 N', 't p b', 'end', 12)
     f.force(340, 200, 0, -60)
     f.text(352, 136, 'pair 2: the floor pushes Kym  392 N', 't p b', 'start', 12)
     # their partners, on the floor and on the Earth
@@ -177,19 +177,20 @@ def c3_momentum_carts():
                       'moving left at 0.5 m/s. After: the light cart moves left at 0.94 m/s and the heavy cart right at '
                       '1.56 m/s. Velocity arrows are to scale. The total momentum, 0.45 kg·m/s, is the same in both rows.')
     scale = 30  # px per m/s
-    for y, title, v1, v2, note in ((78, 'before', 2.0, -0.5, 'total momentum 0.45 kg·m/s'),
-                                   (178, 'after', -0.94, 1.56, 'total momentum still 0.45 kg·m/s')):
+    for y, title, v1, v2, note in ((78, 'before', 2.0, -0.5, '0.45 kg·m/s'),
+                                   (178, 'after', -0.94, 1.56, 'still 0.45 kg·m/s')):
         f.text(30, y - 38, title, 't b', 'start', 13)
         f.ground(30, y + 24, 400)
         f.mass_block(150, y - 16, 56, 40, '0.350 kg', 12)
         f.circle(162, y + 31, 6, 'ln'); f.circle(194, y + 31, 6, 'ln')
         f.mass_block(300, y - 16, 70, 40, '0.500 kg', 12)
         f.circle(312, y + 31, 6, 'ln'); f.circle(358, y + 31, 6, 'ln')
-        x1 = 206 if v1 > 0 else 150
-        f.vector(x1, y - 24, v1 * scale, 0, f'{abs(v1):g} m/s', 12)
-        x2 = 370 if v2 > 0 else 300
-        f.vector(x2, y - 24, v2 * scale, 0, f'{abs(v2):g} m/s', 12)
-        f.text(455, y + 4, note, 't', 'start', 12)
+        # each cart's velocity arrow is centred above its own cart, label above the arrow
+        for cx, v in ((178, v1), (335, v2)):
+            f.vector(cx - v * scale / 2, y - 26, v * scale, 0)
+            f.text(cx, y - 34, f'{abs(v):g} m/s', 't e', 'middle', 12)
+        f.text(455, y - 2, 'total momentum', 't m', 'start', 12)
+        f.text(455, y + 14, note, 't', 'start', 12)
     return f.svg()
 
 
@@ -205,11 +206,11 @@ def c3_rocket_momentum():
     f.path('M240,110 L282,130 L240,150 Z', 'fill-ink')
     f.line(120, 110, 100, 94, 'ln'); f.line(120, 150, 100, 166, 'ln')
     f.path('M120,120 L62,116 L48,130 L62,144 L120,140 Z', 'wash-p')
-    f.text(84, 165, 'exhaust gas', 't m', 'middle', 12)
+    f.text(60, 104, 'exhaust gas', 't m', 'middle', 12)
     f.force(180, 92, 60, 0)
     f.text(180, 72, 'gas pushes rocket forward', 't p b', 'middle', 12)
-    f.force(90, 198, -56, 0)
-    f.text(96, 224, 'rocket pushes gas backward', 't p b', 'middle', 12)
+    f.force(84, 130, -56, 0)
+    f.text(96, 186, 'rocket pushes gas backward', 't p b', 'middle', 12)
     f.text(160, 258, 'one pair: equal and opposite', 't m', 'middle', 12)
     # momentum bookkeeping
     f.text(480, 62, 'before', 't b', 'middle', 13)
