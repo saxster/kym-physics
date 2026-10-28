@@ -8,28 +8,28 @@ from figs_core import Fig, figure
 @figure
 def c4_two_predictions():
     """Delft, 1586: Aristotle's prediction beside what Stevin and de Groot heard."""
-    f = Fig(640, 320, "Two lead balls, one ten times heavier, dropped about 9 m onto a board: Aristotle's prediction "
+    f = Fig(640, 332, "Two lead balls, one ten times heavier, dropped about 9 m onto a board: Aristotle's prediction "
                       "has the light ball a tenth of the way down when the heavy one lands; Stevin heard a single thud")
     for k, (x0, title) in enumerate(((16, "What Aristotle predicted"), (330, "What Stevin and de Groot heard"))):
         f.text(x0 + 150, 22, title, 't b', 'middle', 14)
         f.rect(x0, 40, 22, 232, 'plate', rx=0)               # the tower wall
         f.text(x0 + 11, 160, 'tower', 't m', 'middle', 12, extra=f'transform="rotate(-90 {x0 + 11} 160)"')
         f.ground(x0 + 22, 272, 272)
-        f.text(x0 + 294, 294, 'wooden board', 't m', 'end', 12)
-        xh, xl = x0 + 100, x0 + 210
+        f.text(x0 + 294, 292, 'wooden board', 't m', 'end', 12)
+        xh, xl = x0 + 80, x0 + 160
         f.line(xh, 52, xh, 262, 'ln dash')
         f.line(xl, 52, xl, 262, 'ln dash')
-        f.text(x0 + 160, 48, 'let go together', 't m', 'middle', 12)
+        f.text(x0 + 120, 48, 'let go together', 't m', 'middle', 12)
         if k == 0:
             f.circle(xh, 256, 15, 'fill-ink')
             f.text(xh, 236, 'heavy ball lands', 't', 'middle', 12)
             f.circle(xl, 74, 6, 'fill-ink')
             f.lines(xl + 14, 72, ['light ball: only a', 'tenth of the way down'], 't', 'start', 12)
-            f.text(x0 + 160, 300, 'the light ball should take ten times longer', 't m', 'middle', 12)
+            f.text(x0 + 150, 320, 'the light ball should take ten times longer', 't m', 'middle', 12)
         else:
             f.circle(xh, 256, 15, 'fill-ink')
             f.circle(xl, 265, 6, 'fill-ink')
-            f.text(x0 + 160, 236, 'both land together: one thud', 't', 'middle', 12)
+            f.text(x0 + 120, 236, 'both land together: one thud', 't', 'middle', 12)
             f.line(x0 + 290, 52, x0 + 290, 272, 'ln m')
             f.line(x0 + 284, 52, x0 + 296, 52, 'ln m')
             f.line(x0 + 284, 272, x0 + 296, 272, 'ln m')
@@ -94,30 +94,31 @@ def c4_moon_strobe():
         f.path(f'M{x},{y - 16} Q{x + 9},{y - 4} {x},{y + 16} Q{x - 9},{y - 4} {x},{y - 16} Z', 'ln')
         f.line(x, y - 16, x, y + 16, 'ln m')
 
+    def tlabel(x, y, t, lab):
+        f.text(x, y - 10 if t == 0 else y + 4, lab, 't m', 'start', 12)
+
     # Earth: flashes at 0, 0.2, 0.4 s and the landing at 0.57 s
     for t in (0.0, 0.2, 0.4, 0.571):
         y = min(top + 0.5 * 9.8 * t * t * scale, floor - 18)
-        hammer(130, y)
-        lab = f'{t:.1f} s' if t < 0.5 else '0.57 s: lands'
-        f.text(150, y + 4, lab, 't m', 'start', 12)
+        hammer(180, y)
+        tlabel(200, y, t, f'{t:.1f} s' if t < 0.5 else '0.57 s: lands')
     f.lines(40, 150, ['a feather dropped', 'here would lag far', 'behind: the air', 'holds it back'], 't m', 'start', 12)
     # Moon: flashes every 0.2 s to 1.2 s, then the landing at 1.38 s
     for t in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.38):
         y = min(top + 0.5 * 1.67 * t * t * scale, floor - 18)
         hammer(430, y)
         feather(470, y)
-        lab = f'{t:.1f} s' if t < 1.3 else '1.38 s: both land'
-        f.text(490, y + 4, lab, 't m', 'start', 12)
-    f.text(430, floor + 24, 'hammer', 't m', 'middle', 12)
-    f.text(470, floor + 24, 'feather', 't m', 'middle', 12)
-    f.text(130, floor + 24, 'hammer', 't m', 'middle', 12)
+        tlabel(490, y, t, f'{t:.1f} s' if t < 1.3 else '1.38 s: both land')
+    f.text(180, floor + 24, 'hammer', 't m', 'middle', 12)
+    f.text(440, floor + 24, 'hammer', 't m', 'end', 12)
+    f.text(462, floor + 24, 'feather', 't m', 'start', 12)
     return f.svg()
 
 
 @figure
 def c4_two_coins():
     """Two coins leave a 75 cm table edge together, one dropped and one flicked at 2 m/s; flashes every 0.1 s."""
-    f = Fig(640, 320, 'Two coins leaving a table edge at the same instant, one dropped and one flicked sideways at 2 m/s, '
+    f = Fig(640, 340, 'Two coins leaving a table edge at the same instant, one dropped and one flicked sideways at 2 m/s, '
                       'photographed every 0.1 s: at every flash they are at the same height; the flicked coin moves equal '
                       'steps sideways; both reach the floor after 0.39 s')
     scale = 240.0                        # px per metre
@@ -140,13 +141,13 @@ def c4_two_coins():
         f.circle(xd, y, 7, 'fill-ink')
         f.circle(xf, y, 7, 'fill-ink')
         path.append((xf, y))
-        lab = f'{t:.1f} s' if t < 0.35 else '0.39 s'
-        f.text(xf + 14, y + 4, lab, 't m', 'start', 12)
+        if t > 0:
+            f.text(xf + 14, y + 4, f'{t:.1f} s' if t < 0.35 else '0.39 s', 't m', 'start', 12)
     f.path('M' + ' L'.join(f'{px:.1f},{py:.1f}' for px, py in path), 'ln e')
     f.text(edge_x + 10, top_y - 10, 'dropped', 't', 'middle', 12)
     f.text(edge_x + 110, top_y - 10, 'flicked at 2 m/s', 't', 'middle', 12)
     f.vector(edge_x + 24, top_y - 30, 48, 0, '', 12)
-    f.bracket_label(edge_x + 10, edge_x + 10 + v * 0.3 * scale, floor_y + 34, 'equal steps sideways every 0.1 s', 12, up=False)
+    f.bracket_label(edge_x + 10, edge_x + 10 + v * 0.3 * scale, floor_y + 24, 'equal steps sideways every 0.1 s', 12, up=False)
     f.lines(430, 120, ['the dashed lines join', 'the two coins at each flash:', 'same height every time'], 't m', 'start', 12)
     return f.svg()
 
@@ -157,9 +158,8 @@ def c4_whirl():
     f = Fig(640, 330, 'A marble rolling round the inside of a paper plate: at each moment its velocity points along the rim '
                       'and the rim pushes it inward; where the rim is cut away the marble carries straight on along the '
                       'line it was moving on, not outward')
-    cx, cy, r = 230, 180, 118
-    gap_a = -math.radians(28)            # the gap sits up and to the right
-    # rim, drawn as an arc that leaves a gap of 40 degrees
+    cx, cy, r = 250, 180, 118
+    gap_a = -math.radians(40)            # the gap sits up and to the right
     a1, a2 = gap_a + math.radians(20), gap_a - math.radians(20) + 2 * math.pi
     def P(a, rr=r):
         return cx + rr * math.cos(a), cy + rr * math.sin(a)
@@ -171,13 +171,15 @@ def c4_whirl():
         mx, my = P(a, r - 12)
         f.circle(mx, my, 9, 'fill-ink')
         ux, uy = -math.cos(a), -math.sin(a)                 # inward
-        f.force(mx + 9 * (-ux), my + 9 * (-uy), ux * 38, uy * 38, '', 12)
+        f.force(mx + 9 * ux, my + 9 * uy, ux * 38, uy * 38, '', 12)
         tx, ty = -math.sin(a), math.cos(a)                  # clockwise tangent on screen
         f.vector(mx + tx * 12, my + ty * 12, tx * 46, ty * 46, '', 12)
-    f.text(78, 112, 'push of the rim', 't p b', 'end', 12)
-    f.text(58, 196, 'velocity', 't e', 'end', 12)
+    bx, by = P(math.radians(100), r - 12)
+    f.text(bx, by + 28, 'push of the rim', 't p b', 'middle', 12)
+    lx, ly = P(math.radians(170), r - 12)
+    f.text(lx - 14, ly - 34, 'velocity', 't e', 'end', 12)
     # the marble at the gap, carrying straight on along the tangent
-    ga = gap_a + math.radians(22)
+    ga = gap_a
     gx, gy = P(ga, r - 12)
     f.circle(gx, gy, 9, 'fill-ink')
     tx, ty = -math.sin(ga), math.cos(ga)
@@ -188,6 +190,6 @@ def c4_whirl():
     f.lines(gx + tx * L + 8, gy + ty * L - 4, ['straight on, along the', 'line it was moving on'], 't e', 'start', 12)
     # the tempting wrong answer: outward along the radius
     ox, oy = math.cos(ga), math.sin(ga)
-    f.path(f'M{gx:.1f},{gy:.1f} L{gx + ox * 150:.1f},{gy + oy * 150:.1f}', 'ln dash')
-    f.lines(gx + ox * 150 + 6, gy + oy * 150 - 2, ['not outward:', 'nothing pushes that way'], 't m', 'start', 12)
+    f.path(f'M{gx:.1f},{gy:.1f} L{gx + ox * 120:.1f},{gy + oy * 120:.1f}', 'ln dash')
+    f.lines(gx + ox * 120 + 6, gy + oy * 120 - 2, ['not outward:', 'nothing pushes that way'], 't m', 'start', 12)
     return f.svg()

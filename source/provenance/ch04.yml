@@ -1,0 +1,217 @@
+# Provenance ledger for Chapter 4, Falling. Course and book names are the keys in provenance/sources.yml.
+# "computed:" lists the python3 -I sums behind every number the chapter states (kept for the fact gate).
+"4.1":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 5 §5.2 (a_y = −g independent of mass; Galileo's law of free fall rests on the force law)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter5.pdf"
+      took: "idea: weight is proportional to mass, so mass cancels and the acceleration is the same for everything"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 2, Lesson 5.3 Gravity at the surface of the Earth: the value of g"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/5-3-gravity-at-the-surface-of-the-earth-the-value-of-g/"
+      took: "sequence"
+  openstax:
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects (free fall; g = 9.80 and its 9.78–9.83 range; y = ½gt², v = gt; the precise-g example 1.0000 m in 0.45173 s; the reaction-time ruler)"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "sequence, definitions, numbers, worked example, activity"
+    - book: "College Physics 2e"
+      section: "6.5 Newton's Universal Law of Gravitation (g = GM/r²; weight proportional to mass; take-home drop of marble, ball, spoon and paper)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "idea, demo"
+  research:
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md §4"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "82% of 478 students believed an object's intrinsic properties affect its free fall in a vacuum"
+    - source: "Hast & Howe, via source/research/misconceptions.md §4"
+      url: "https://research.stmarys.ac.uk/id/eprint/223/8/Hast-Howe-Understanding-the-Beliefs-Informing-Childrens-Commonsense-Theories.pdf"
+      what: "heavier-is-faster belief appears from age 5"
+    - source: "source/research/misconceptions.md §4"
+      url: "source/research/misconceptions.md"
+      what: "₹1 and ₹5 coins dropped onto a steel thali: one clink"
+  history:
+    - what: "Stevin and de Groot at the Nieuwe Kerk, Delft, 1586: two lead balls, one ten times heavier, about 30 ft, one thud; published 1586, three years before Galileo reached Pisa (TRUE)"
+      source: "source/research/history.md §1"
+      url: "https://en.wikipedia.org/wiki/Delft_tower_experiment"
+    - what: "Pisa drop rests on Viviani alone; most historians think it a thought experiment (LEGEND, told as a legend)"
+      source: "source/research/history.md §1"
+      url: "https://physicsworld.com/a/the-legend-of-the-leaning-tower/"
+    - what: "Philoponus, Alexandria, 6th c.: the difference in fall time between very different weights is tiny (TRUE)"
+      source: "source/research/history.md §1"
+      url: "https://www.vaticanobservatory.org/wp-content/uploads/2017/10/Impetus-Philoponus.pdf"
+    - what: "Aristotle: heavier falls faster in proportion to weight"
+      source: "source/research/history.md §1 (Philoponus entry)"
+      url: "https://www.encyclopedia.com/topic/John_Philoponus.aspx"
+  figures:
+    - {name: c4_two_predictions, origin: ours}
+  computed:
+    - "30 ft = 30*0.3048 = 9.14 m; fall time sqrt(2*9.144/9.8) = 1.37 s; on Aristotle's rule the light ball is 1/10 of the way down (0.91 m) when the heavy one lands, i.e. about 8 m up"
+    - "v = gt and y = ½gt²: 1 s → 9.8 m/s, 4.9 m; 2 s → 19.6 m/s, 19.6 m; 3 s → 29.4 m/s, 44.1 m"
+    - "precise g: 2*1.0000/0.4517**2 = 9.80 m/s²"
+    - "reaction ruler sqrt(2d/9.8): 0.10 m → 0.143 s; 0.20 m → 0.202 s; 0.30 m → 0.247 s"
+    - "check: 4 m balcony sqrt(2*4/9.8) = 0.904 s"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"4.2":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 8 §8.6 Drag Forces in Fluids; Table 8.1 drag coefficients; Example 8.12 Free Fall with Air Drag; Table 8.3 (raindrop 4e-6 kg, 3e-6 m², 6.5 m/s; hailstone 20 m/s)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf"
+      took: "sequence, equations (F = ½CρAv², v_t = sqrt(2mg/ρCA)), numbers"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 4, Lesson 14 Resistive Forces (14.1–14.3)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-4-drag-forces-constraints-and-continuous-systems/"
+      took: "sequence"
+  openstax:
+    - book: "College Physics 2e"
+      section: "5.2 Drag Forces (hand through water flat vs edge-on; drag ∝ v²; terminal velocity; skydiver head-down ≈ 350 km/h and spread-eagle ≈ 200 km/h; Haldane's small-animal point paraphrased; heavier skydiver question)"
+      url: "https://openstax.org/books/college-physics-2e/pages/5-2-drag-forces"
+      took: "sequence, definitions, worked examples, concept question"
+    - book: "Physics"
+      section: "7.2 lab: four sheets of paper (flat vs crumpled; one crumpled vs two crumpled together) and its check question"
+      url: "https://openstax.org/books/physics/pages/7-2-newtons-law-of-universal-gravitation-and-einsteins-theory-of-general-relativity"
+      took: "demo, concept question"
+  research:
+    - source: "NASA GPM FAQ: How fast do raindrops fall?"
+      url: "https://gpm.nasa.gov/resources/faq/how-fast-do-raindrops-fall"
+      what: "speed rises with drop size to a maximum of about 10 m/s; from 4000 m such a drop takes at least 400 s"
+    - source: "NASA GPM: Anatomy of a raindrop"
+      url: "https://gpm.nasa.gov/education/videos/anatomy-raindrop"
+      what: "drops are not tear-shaped; small drops round, 2–3 mm flattened like a bun, above 4.5 mm parachute shape and break-up"
+    - source: "source/research/school-wording.md §1"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+      what: "IGCSE: air resistance; constant speed unless a resultant force acts"
+  figures:
+    - {name: c4_drag_balance, origin: ours}
+  computed:
+    - "no-drag arrival from 4000 m: sqrt(2*9.8*4000) = 280 m/s = 1008 km/h"
+    - "6.5 m/s = 23.4 km/h; 10 m/s = 36 km/h; 4000/10 = 400 s = 6.7 min"
+    - "Table 8.3 raindrop recomputed: sqrt(2*4e-6*9.8/(0.5*3e-6*1.225)) = 6.53 m/s; diameter from 4 mg of water: 1.97 mm"
+    - "head-down skydiver (OS College inputs 75 kg, 0.18 m², C 0.70, ρ 1.21): 98.2 m/s = 353 km/h"
+    - "figure curve: v(t) = 6.5 tanh(9.8 t / 6.5)"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax); NASA text cited, not copied"
+
+"4.3":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data sheet (Moon mass 7.3477e22 kg, radius 1.7371e6 m) and Physical Constants (G)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "numbers (Moon's g = 1.625 m/s², quoted as 'about 1.6 to 1.7')"
+  openstax:
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects (Scott's hammer and feather on the Moon, 1971; g = 1.67 m/s²); 5.2 ('would this be different on the Moon?')"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "idea, number, concept question"
+    - book: "Physics"
+      section: "3.2 (g takes other values on the Moon)"
+      url: "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs"
+      took: "idea"
+  research:
+    - source: "Stead & Osborne 1980 via IOP Spark, via source/research/misconceptions.md §4"
+      url: "https://spark.iop.org/many-students-think-object-beyond-earths-atmosphere-space-does-not-experience-force-gravity"
+      what: "81% of 13-year-olds did not think there is gravity in space; 'gravity needs air'"
+  history:
+    - what: "Apollo 15 hammer (1.32 kg, aluminium) and falcon feather released together from about 1.6 m; no air, so they landed together; the 0.03 kg feather figure is flagged as a typo and not printed"
+      source: "NASA NSSDC: The Apollo 15 Hammer-Feather Drop"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html"
+    - what: "Hadley Rille, 2 August 1971; 'Mr Galileo was correct in his findings' quoted as the transcription's wording, hedged (TRUE; audio to be checked at the gate)"
+      source: "source/research/history.md §2"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html"
+  figures:
+    - {name: c4_moon_strobe, origin: ours}
+  computed:
+    - "fall from 1.6 m: sqrt(2*1.6/1.67) = 1.38 s on the Moon; sqrt(2*1.6/9.8) = 0.57 s on Earth; 9.8/1.67 = 5.9 ('roughly one sixth')"
+    - "strobe heights ½gt² at 0.2 s steps for the figure"
+    - "check: Stevin on the Moon, 9.14 m: sqrt(2*9.144/1.67) = 3.31 s"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax); NASA text cited"
+
+"4.4":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 1, Lesson 3.4 Projectile Motion; 3.5 Demos (Shooting an Apple); PS.1.2 Shooting the Apple"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/"
+      took: "sequence, demo (aim straight at the apple, released as the gun fires, hit at any speed)"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 5 §5.2 (independence of horizontal and vertical motion; Fig 5.1: with drag b = 0.01 N·s²/m², 30 m/s at 21°, range 71.7% of the no-air parabola; spin and shape can curve a path sideways)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter5.pdf"
+      took: "idea, number"
+  openstax:
+    - book: "Physics"
+      section: "5.3 Projectile Motion (independence; Fig 5.27 dropped vs launched ball, redrawn as two coins; 'double the horizontal velocity, flight time unchanged' CYU)"
+      url: "https://openstax.org/books/physics/pages/5-3-projectile-motion"
+      took: "sequence, definitions, concept question"
+  research:
+    - source: "McCloskey, Caramazza & Green 1980 (n = 47), via the Christian Science Monitor report and source/research/misconceptions.md §4"
+      url: "https://www.csmonitor.com/1980/1217/121733.html"
+      what: "33% drew a ball still curving after a C-shaped tube, 51% after a spiral tube"
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md §3"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "impetus belief recalled from Chapter 2"
+  figures:
+    - {name: c4_two_coins, origin: "ours; the idea of a dropped-vs-launched pair is OpenStax Physics Fig 5.27, redrawn as coins off a table"}
+  computed:
+    - "table height 0.75 m (ASSUMED): sqrt(2*0.75/9.8) = 0.391 s; at 2 m/s lands 0.78 m out, at 4 m/s 1.56 m"
+    - "figure strobe heights ½gt² at 0.1 s steps; sideways steps 0.2 m per 0.1 s at 2 m/s"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"4.5":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 3 Circular Motion, Lessons 9–11; 11.3 Demo: Rotating Bucket (ping-pong balls stay in a bucket swung in a vertical circle)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/"
+      took: "sequence, demo"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Lesson 4.4 Non-inertial Reference Frames (transcript): fictitious forces have no physical origin; the course keeps to inertial frames"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/931cf35a0f2fbf25b3f0c303ab020c5b_z0xyQKalezI.pdf"
+      took: "idea, wording of the honest note on 'centrifugal'"
+  openstax:
+    - book: "Physics"
+      section: "6.2 Uniform Circular Motion (velocity changes direction so there is acceleration; centripetal = centre-seeking, a role for a real force; 4× at double speed; the outward feeling in a turning car)"
+      url: "https://openstax.org/books/physics/pages/6-2-uniform-circular-motion"
+      took: "sequence, definitions, number"
+    - book: "College Physics 2e"
+      section: "6.4 Fictitious Forces and Non-inertial Frames (release goes along the tangent; inertial view 'simplest and truest'); Ch 6 Conceptual Questions (why thrown outward; washing-machine spin; merry-go-round release)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-4-fictitious-forces-and-non-inertial-frames-the-coriolis-force"
+      took: "idea, concept questions"
+  research:
+    - source: "McCloskey, Caramazza & Green 1980, via source/research/misconceptions.md §4"
+      url: "https://www.csmonitor.com/1980/1217/121733.html"
+      what: "30% drew a curved path for a ball released from a string"
+    - source: "source/research/misconceptions.md §4"
+      url: "source/research/misconceptions.md"
+      what: "marble in a paper plate with a gap leaves along the tangent (home demo)"
+    - source: "source/research/school-wording.md §1 and §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+      what: "IGCSE: 'motion in a circular path due to a force perpendicular to the motion'; 'centrifugal' appears 0 times; bridge sentence"
+  figures:
+    - {name: c4_whirl, origin: ours}
+  computed:
+    - "needed inward force at double speed: 100**2/50**2 = 4.0"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"case:ch4":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 5 §5.2 (independence of motions; air shortens a real throw)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter5.pdf"
+      took: "idea"
+  history:
+    - what: "Bandra–Worli Sea Link: 5.6 km cable-stayed bridge, 250 m main span (TRUE); deck height not sourced and not stated"
+      source: "source/research/history.md §9"
+      url: "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:falling":
+  history:
+    - {what: "Aristotle's rule; Philoponus; Stevin and de Groot at Delft 1586; Pisa as legend; Apollo 15 hammer and feather", source: "source/research/history.md §1–2", url: "https://en.wikipedia.org/wiki/Delft_tower_experiment"}
+  openstax:
+    - {book: "College Physics 2e", section: "2.7 Falling Objects; 5.2 Drag Forces", url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects", took: "free fall, terminal velocity"}
+  licence: "CC BY-NC-SA 4.0"
+"story:hammer-feather":
+  history:
+    - {what: "Apollo 15, Hadley Rille, 2 August 1971: masses, height, 'Mr Galileo was correct in his findings' (transcription, hedged)", source: "NASA NSSDC; source/research/history.md §2", url: "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html"}
+  licence: "NASA text cited; CC BY-NC-SA 4.0 for our prose"
+"story:pisa":
+  history:
+    - {what: "The Leaning Tower drop rests on Viviani alone; Galileo never describes it; Stevin's Delft drop is the real one", source: "source/research/history.md §1", url: "https://physicsworld.com/a/the-legend-of-the-leaning-tower/"}
+  licence: "CC BY-NC-SA 4.0"

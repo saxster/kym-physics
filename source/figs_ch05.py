@@ -14,8 +14,8 @@ def _kepler_E(M, e):
     return E
 
 
-def _integrate(v0, dt=0.003, tmax=16.0, far=4.0):
-    """Launch from (0, 1) moving +x in a field a = -r/|r|^3 (GM = 1). Returns points until the ground (r < 1) or far away."""
+def _integrate(v0, dt=0.003, tmax=16.0, far=4.0, ground=0.86):
+    """Launch from (0, 1) moving +x in a field a = -r/|r|^3 (GM = 1). Returns points until the ground or far away."""
     def acc(x, y):
         r3 = (x * x + y * y) ** 1.5
         return -x / r3, -y / r3
@@ -38,7 +38,7 @@ def _integrate(v0, dt=0.003, tmax=16.0, far=4.0):
         t += dt
         pts.append((x, y))
         r = math.hypot(x, y)
-        if (r < 0.985 and t > 0.05) or r > far:
+        if (r < ground and t > 0.05) or r > far:
             break
     return pts
 
@@ -49,10 +49,9 @@ def c5_moon_fall():
     f = Fig(640, 330, "The Moon moving along its orbit: a dashed line shows where it would go with no pull from Earth, "
                       "the curve shows where it really goes, and the gap between them is how far it has fallen. An apple "
                       "near Earth falls 4.9 m in its first second; the Moon falls 4.9 m below its straight line in a minute")
-    ex, ey, R = 150, 330, 230            # Earth's centre is below the frame; the orbit arc is centred on it
+    ex, ey, R = 230, 330, 230            # Earth's centre is below the frame; the orbit arc is centred on it
     f.circle(ex, ey, 56, 'plate')
     f.text(ex, ey - 64, 'Earth', 't m', 'middle', 13)
-    # the orbit: an arc centred on Earth, from the Moon at the top towards the right
     mx, my = ex, ey - R
     a_end = -math.radians(90) + math.radians(62)
     ox, oy = ex + R * math.cos(a_end), ey + R * math.sin(a_end)
@@ -60,20 +59,19 @@ def c5_moon_fall():
     f.path(f'M{mx},{my} L{ox:.1f},{my}', 'ln dash')
     f.circle(mx, my, 13, 'fill-ink')
     f.text(mx - 20, my + 5, 'Moon', 't', 'end', 13)
-    f.vector(mx + 16, my, 80, 0, 'about 1 km/s', 12)
-    f.text(mx + 150, my - 10, 'where it would go with no pull', 't m', 'middle', 12)
+    f.vector(mx + 16, my - 22, 80, 0, '', 12)
+    f.text(mx + 56, my - 30, 'about 1 km/s', 't e', 'middle', 12)
+    f.text(ox + 8, my + 4, 'where it would go with no pull', 't m', 'start', 12)
     f.text(ox - 60, oy + 18, 'where it really goes', 't e', 'middle', 12)
-    # the gap, marked at the arc's end
     f.line(ox, my, ox, oy, 'ln m')
     f.line(ox - 6, my, ox + 6, my, 'ln m'); f.line(ox - 6, oy, ox + 6, oy, 'ln m')
     f.lines(ox + 10, (my + oy) / 2 - 8, ['the gap is the fall:', '4.9 m after one minute'], 't', 'start', 12)
     f.force(mx + 30, my + 40, -22, 42, 'pull of Earth', 12)
-    # apple beside Earth
-    ax, ay = 60, 150
+    ax, ay = 50, 150
     f.circle(ax, ay, 8, 'fill-ink')
     f.line(ax, ay + 12, ax, ay + 92, 'ln dash')
     f.circle(ax, ay + 100, 8, 'ln')
-    f.lines(ax + 14, ay + 40, ['an apple falls 4.9 m', 'in its first second'], 't', 'start', 12)
+    f.lines(ax + 14, ay - 4, ['an apple falls 4.9 m', 'in its first second'], 't', 'start', 12)
     f.text(320, 318, 'the curve is hugely exaggerated: in one minute the Moon moves 61 km and falls 4.9 m', 't m', 'middle', 12)
     return f.svg()
 
@@ -84,31 +82,34 @@ def c5_cannon():
     f = Fig(640, 390, 'Newton’s cannon on a tall mountain: a slow shot curves down and lands, a faster one lands farther '
                       'round the Earth, at about 8 km/s the path is a circle that never meets the ground, a little faster '
                       'gives a long ellipse, and at about 11 km/s the shot leaves Earth for good')
-    cx, cy, S = 320, 168, 94.0
-    f.circle(cx, cy, 0.965 * S, 'plate')
+    cx, cy, S = 320, 165, 100.0
+    f.circle(cx, cy, 0.85 * S, 'plate')
     f.text(cx, cy + 6, 'Earth', 't m', 'middle', 14)
-    f.path(f'M{cx - 14},{cy - 0.962 * S:.1f} L{cx},{cy - S:.1f} L{cx + 14},{cy - 0.962 * S:.1f}', 'fill-ink')
+    f.path(f'M{cx - 14},{cy - 0.84 * S:.1f} L{cx},{cy - S:.1f} L{cx + 14},{cy - 0.84 * S:.1f}', 'fill-ink')
     f.text(cx - 20, cy - S - 6, 'the mountain (far too tall, to be seen)', 't m', 'end', 12)
     runs = (
         (0.55, 'ln m', 'too slow: it lands'),
         (0.82, 'ln m', 'faster: lands farther round'),
         (1.00, 'ln e', 'about 8 km/s: a circle, it never lands'),
-        (1.17, 'ln e', 'a little faster: a long loop'),
-        (1.46, 'ln vol', 'about 11 km/s: it leaves for good'),
+        (1.15, 'ln e', 'a little faster: a long loop'),
+        (1.46, 'ln vol', ''),
     )
     ends = []
     for v, cls, _ in runs:
         pts = _integrate(v, tmax=(6.6 if v == 1.0 else 16.0))
-        scr = [(cx + x * S, cy - y * S) for x, y in pts if -3.5 < x < 3.6 and -2.6 < y < 2.6]
+        scr = [(cx + x * S, cy - y * S) for x, y in pts if -3.1 < x < 3.1 and -2.2 < y < 1.6]
         thin = scr[::8] + [scr[-1]]          # the integrator steps are far finer than a screen pixel
         f.path('M' + ' L'.join(f'{px:.1f},{py:.1f}' for px, py in thin), cls, extra='stroke-width="2"')
         ends.append(scr[-1])
-    # labels, placed by hand around the drawing
-    f.text(ends[0][0] + 10, ends[0][1] + 4, runs[0][2], 't m', 'start', 12)
-    f.text(ends[1][0] + 10, ends[1][1] + 10, runs[1][2], 't m', 'start', 12)
-    f.text(cx + S + 12, cy - 30, runs[2][2], 't e', 'start', 12)
-    f.text(cx, cy + 0.95 * S * 2.0 + 14, runs[3][2], 't e', 'middle', 12)
-    f.text(cx + 118, cy - S - 30, runs[4][2], 't v', 'start', 12)
+    # the two landing shots: leader lines out to labels on the right
+    for k, (lx, ly) in enumerate(((cx + 150, cy - 118), (cx + 150, cy - 80))):
+        f.line(ends[k][0], ends[k][1], lx - 6, ly - 4, 'ln m')
+        f.text(lx, ly, runs[k][2], 't m', 'start', 12)
+    f.text(cx, cy + 122, runs[2][2], 't e', 'middle', 12)
+    f.text(cx, cy + 1.95 * S + 16, runs[3][2], 't e', 'middle', 12)
+    ex_, ey_ = min(ends[4][0], 628) - 22, ends[4][1]
+    f.text(ex_, ey_ - 22, 'about 11 km/s:', 't v', 'end', 12)
+    f.text(ex_, ey_ - 8, 'it leaves for good', 't v', 'end', 12)
     return f.svg()
 
 
@@ -140,7 +141,7 @@ def c5_phone_drop():
     f.path('M' + ' L'.join(f'{px:.1f},{py:.1f}' for px, py in pts), 'ln e', extra='stroke-width="2"')
     f.text(x0 + 0.15 * sx, y0 - 9.8 * sy - 10, 'held still: 9.8', 't', 'middle', 12)
     f.text(x0 + 0.443 * sx, y0 - 14, 'falling: about 0', 't e', 'middle', 12)
-    f.bracket_label(x0 + 0.30 * sx, x0 + 0.586 * sx, y0 - 52, '0.29 s, a 40 cm drop', 12)
+    f.bracket_label(x0 + 0.30 * sx, x0 + 0.586 * sx, y0 - 9.8 * sy - 16, '0.29 s, a 40 cm drop', 12)
     f.text(x0 + 0.64 * sx, y0 - 22 * sy - 6, 'the pillow stops it', 't m', 'start', 12)
     return f.svg()
 
@@ -169,7 +170,7 @@ def c5_ellipse():
     f.text(cx + 10, cy - 60, 'string', 't m', 'start', 12)
     f.text(cx, cy + b + 30, 'the two pins are the two foci', 't m', 'middle', 12)
     # panel 2: Mars to scale, e = 0.093
-    cx, cy, a = 500, 180, 112
+    cx, cy, a = 480, 180, 112
     e = 0.093
     b = a * math.sqrt(1 - e * e)
     f.text(cx, 26, "Mars's orbit, to scale", 't b', 'middle', 14)
@@ -180,11 +181,11 @@ def c5_ellipse():
     f.line(cx, cy - 5, cx, cy + 5, 'ln m'); f.line(cx - 5, cy, cx + 5, cy, 'ln m')
     f.text(cx + 8, cy + 16, 'centre', 't m', 'start', 12)
     f.circle(cx + a * e, cy, 3, 'ln m')
-    f.text(cx + a * e + 8, cy - 8, 'other focus (empty)', 't m', 'start', 12)
+    f.text(cx + a * e + 8, cy - 8, 'other focus, empty', 't m', 'start', 12)
     f.text(cx, cy + a + 22, 'dashed: a circle of the same size', 't m', 'middle', 12)
     f.text(cx, cy + a + 40, 'the Sun sits 9% of the way from the centre to the edge', 't m', 'middle', 12)
     # panel 3: equal areas, e = 0.6 (exaggerated)
-    fx, fy, a, e = 790, 180, 135, 0.6
+    fx, fy, a, e = 760, 180, 120, 0.6
     b = a * math.sqrt(1 - e * e)
     ccx = fx + a * e                   # ellipse centre; perihelion to the left of the Sun
     f.text(ccx, 26, 'equal areas in equal times', 't b', 'middle', 14)
@@ -198,9 +199,9 @@ def c5_ellipse():
     f.circle(fx, fy, 7, 'fill-vol')
     f.text(fx, fy - 14, 'Sun', 't v', 'middle', 12)
     p1 = pos(0.0); p2 = pos(math.pi)
-    f.text(p1[0] - 8, p1[1] - 40, 'fast, close in', 't m', 'end', 12)
-    f.text(p2[0] + 4, p2[1] - 40, 'slow, far out', 't m', 'start', 12)
-    f.text(ccx, fy + b + 30, 'the two shaded areas are equal (ellipse exaggerated)', 't m', 'middle', 12)
+    f.text(p1[0] - 8, p1[1] + 24, 'fast, close in', 't m', 'end', 12)
+    f.text(p2[0], fy + b + 14, 'slow, far out', 't m', 'middle', 12)
+    f.text(ccx, fy + b + 32, 'the two shaded areas are equal (ellipse exaggerated)', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -229,7 +230,6 @@ def c5_cavendish():
     f.text(cx + 100, cy + 44, 'pull (tiny)', 't p b', 'start', 12)
     f.curved_arrow(cx - 60, cy - 24, cx + 60, cy - 24, bend=14, kind='muted')
     f.text(cx, cy - 36, 'the rod twists a little', 't m', 'middle', 12)
-    # telescope through the wall
     f.rect(20, cy - 8, 52, 16, 'block', rx=3)
     f.line(72, cy, cx - 140, cy, 'ln dash')
     f.lines(14, 110, ['telescope through', 'a hole in the wall'], 't m', 'start', 12)
@@ -288,19 +288,18 @@ def c5_chandrayaan():
         f.add(f'<ellipse cx="{cx:.1f}" cy="{Ey}" rx="{a * s:.1f}" ry="{b * s:.1f}" class="{cls}" stroke-width="2"/>')
         ax = Ex + ra * s
         if k < 3:
-            ly = 70 + 26 * k
-            lx = 340
+            ly = 56 + 24 * k
+            lx = 360
             f.line(ax, Ey, lx - 8, ly, 'ln m')
             f.text(lx, ly + 4, lab, 't', 'start', 12)
         else:
-            f.text(cx, Ey - b * s - 12, lab, 't e', 'middle', 12)
+            f.text(790, Ey - b * s - 12, lab, 't e', 'middle', 12)
     f.circle(Ex, Ey, RE * s, 'fill-ink')
     f.text(Ex, Ey + 52, 'Earth', 't', 'middle', 13)
-    # the Moon at its average distance
     mx = Ex + 384000 * s
     f.circle(mx, Ey, 1737.1 * s, 'fill-ink')
-    f.text(mx, Ey + 24, 'Moon', 't', 'middle', 13)
-    f.text(mx, Ey + 42, '(average distance)', 't m', 'middle', 12)
+    f.text(996, Ey + 24, 'Moon', 't', 'end', 13)
+    f.text(996, Ey + 42, '(average distance)', 't m', 'end', 12)
     f.text(500, 370, 'burns at the low point speed the craft up along its path; each one lifts the far side of the loop',
            't m', 'middle', 12)
     f.text(500, 390, 'the 17 July orbit (226 × 41,603 km) lies almost on top of the 15 July one and is not drawn', 't m', 'middle', 12)

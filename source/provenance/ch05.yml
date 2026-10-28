@@ -1,0 +1,284 @@
+# Provenance ledger for Chapter 5, Gravity and orbits. Course and book names are the keys in provenance/sources.yml.
+# "computed:" lists the python3 -I sums behind every number the chapter states (kept for the fact gate).
+"5.1":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 9 §9.2 Universal Law of Gravitation and the Circular Orbit of the Moon (eq. 9.2.5–9.2.6: period predicted from the law, 27.2 days)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter9.pdf"
+      took: "idea, worked example, number"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data sheet (sidereal month 2.3605847e6 s; Earth radius 6.371009e6 m)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "numbers"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.3 Newton's Universal Law of Gravitation (first law needs a force to bend the Moon's path; 60 Earth radii; 1/3600; 0.00272 m/s²; the Moon falls around Earth, not to it)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation"
+      took: "sequence, numbers, concept question (radius doubled, weight quartered)"
+    - book: "College Physics 2e"
+      section: "6.5 Newton's Universal Law of Gravitation (worked example Moon's centripetal acceleration vs gravity's prediction, under 1% apart, 'pretty nearly'; Earth–Moon centre of mass about 1700 km below the surface; equal and opposite pulls)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "worked example, numbers, idea"
+  research:
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md §3"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "47% believe an object slows down with no net force (recalled from Chapter 2)"
+    - source: "source/research/school-wording.md §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+      what: "IGCSE: the Sun's gravitational attraction keeps objects in orbit"
+  history:
+    - what: "Woolsthorpe, 1666: Newton, 23, in the plague years; Stukeley's 1726 account 'occasion'd by the fall of an apple, as he sat in contemplative mood'; a real tree; it did not hit his head (HEDGE, told hedged)"
+      source: "source/research/history.md §1"
+      url: "https://www.nbcnews.com/id/wbna34944738"
+  figures:
+    - {name: c5_moon_fall, origin: ours}
+  computed:
+    - "9.8/60**2 = 0.00272 m/s²; r/R = 3.84e8/6.371009e6 = 60.3"
+    - "a = 4π²r/T² with r = 3.84e8 m, T = 2.3605847e6 s: 0.002721 m/s²; ½a(1 s)² = 1.36 mm; ½a(60 s)² = 4.9 m; ½·9.8·1² = 4.9 m"
+    - "orbital speed 2πr/T = 1022 m/s ≈ 1 km/s; in 60 s the Moon moves 61 km"
+    - "T/86400 = 27.32 d"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"5.2":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "PS.3.1 Worked Example: Orbital Circular Motion (speed and period from radius; mass cancels)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/ps-3-1-worked-example-orbital-circular-motion/"
+      took: "problem"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data and Physical Constants sheets (G, Earth mass and radius for the ISS numbers)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "numbers"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.5 Motions of Satellites and Spacecraft (Newton's cannon; about 8 km/s circular, about 11 km/s escape; no engine needed once in orbit; low orbits decay by drag)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft"
+      took: "sequence, numbers"
+    - book: "Astronomy 2e"
+      section: "3.3 (weightless = falling together, the lift whose cable snapped; Apollo 13 footnote); Ch 3 Thought Questions (ISS at 400 km; why doesn't it fall)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-thought-questions"
+      took: "idea, concept questions, ISS altitude"
+    - book: "College Physics 2e"
+      section: "6.5 (no 'zero gravity' in orbit; microgravity); 6.6 (mass cancels for orbital speed); Ch 6 Conceptual Questions (Anna and Tom on free fall)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "definitions, concept question"
+    - book: "Physics"
+      section: "3.2 (NASA's aircraft gives about 25 s of free fall)"
+      url: "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs"
+      took: "number"
+  research:
+    - source: "NASA: Space Station Facts and Figures"
+      url: "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/"
+      what: "about five miles per second; about every 90 minutes; 16 orbits a day; mass 419,725 kg"
+    - source: "Stead & Osborne 1980 via IOP Spark, via source/research/misconceptions.md §4"
+      url: "https://spark.iop.org/many-students-think-object-beyond-earths-atmosphere-space-does-not-experience-force-gravity"
+      what: "81% of 13-year-olds: no gravity in space"
+    - source: "source/research/misconceptions.md §4 (phyphox 'Acceleration (with g)'; 40 cm drop onto a pillow reads about zero)"
+      url: "https://phyphox.org/wiki/index.php/Category:Built-in_experiments"
+      what: "the phone free-fall lab"
+    - source: "source/research/school-wording.md §1 and §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+      what: "IGCSE weight wording; 'keeps falling and keeps missing' bridge; v = 2πr/T"
+  figures:
+    - {name: c5_cannon, origin: "ours, computed by integrating a 1/r² field; the idea is Newton's diagram as adapted in OpenStax Astronomy Fig 3.11"}
+    - {name: c5_phone_drop, origin: "ours, schematic trace; 9.8 and ≈0 from the phyphox lab, landing bump drawn schematically"}
+  computed:
+    - "(6371.009/6771.009)**2 = 0.8853 → 'about 89%'; g at 400 km = GM/r² = 8.69 m/s² against 9.82 at the surface"
+    - "v = sqrt(GM/r) at 400 km = 7.67 km/s; T = 2πr/v = 92.4 min; 86400/T = 15.6 orbits/day; NASA's 5 mi/s = 8.05 km/s and 24·60/16 = 90 min agree to a few per cent"
+    - "fall in 1 s at 8.69 m/s²: ½·8.694 = 4.35 m; Earth's surface curves away under 7.67 km by v²/(2r) = 4.35 m"
+    - "surface circular speed sqrt(GM/R) = 7.91 km/s; escape sqrt(2GM/R) = 11.19 km/s"
+    - "phone 40 cm (ASSUMED height): sqrt(2*0.40/9.81) = 0.286 s"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax); NASA facts cited"
+
+"5.3":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 Celestial Mechanics §25.1 and §25.6 (Kepler's laws I–III; third law 1619)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "definitions"
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      where: "Readings for Lectures 3–4 (Tycho, Kepler, Kepler's laws); PS3 Problem 1 Eccentric Orbits (Mars e = 0.093; Earth 147.2–152.1 million km)"
+      url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/0c2abfdb3d15998574e199d4294e5475_ps3.pdf"
+      took: "sequence, problem, numbers"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.1 The Laws of Planetary Motion (Tycho's 20 years at Hven; Kepler gets the data after 1601; no circle fits Mars; ellipse with the Sun at a focus, 'foci' Kepler's word; two pins and string; equal areas; 1609 and 1619; P² = a³; Mars 1.88 yr, 228 million km; 1 AU ≈ 1.5e8 km; 50 AU example)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-1-the-laws-of-planetary-motion"
+      took: "sequence, definitions, worked examples, demo"
+    - book: "Astronomy 2e"
+      section: "3.4 Orbits in the Solar System (Mars unusually eccentric among planets other than Mercury; otherwise naked-eye data would not have shown the ellipse)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "idea, numbers"
+  research:
+    - source: "source/research/misconceptions.md §12"
+      url: "https://arxiv.org/pdf/1308.3963"
+      what: "Earth's small eccentricity is not the cause of seasons (one-line forward reference to Chapter 14)"
+  history:
+    - what: "Hven 1576–97; Kepler to Prague February 1600; Tycho dies October 1601; the 8 minutes of arc; Astronomia Nova 1609 (TRUE)"
+      source: "source/research/history.md §2"
+      url: "https://www.astronomy.ohio-state.edu/thompson.1847/161/watershed.html"
+  figures:
+    - {name: c5_ellipse, origin: "ours; the pins-and-string and equal-areas ideas are OpenStax Astronomy Figs 3.4–3.5, redrawn with Mars to scale added"}
+  computed:
+    - "8 arcmin = 8/60 = 0.133° ('a little more than an eighth of a degree')"
+    - "Mars a = 1.88**(2/3) = 1.523 AU = 228 million km; nearest/farthest = (1−0.093)/(1+0.093) = 0.83 ('about 17% closer'); Sun offset ae = 9% of a"
+    - "Earth e = (152.1−147.1)/(152.1+147.1) = 0.0167 (8.01SC data sheet 0.01671123; the sheet's perihelion digits are transposed, see grounding)"
+    - "check: 50 AU → sqrt(50**3) = 353.6 yr"
+    - "home: a = 10 cm, c = 0.93 cm for e = 0.093"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"5.4":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data and Physical Constants (Earth mass 5.97219e24 kg, mean radius 6.371009e6 m, G = 6.67384e-11)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "numbers"
+  openstax:
+    - book: "College Physics 2e"
+      section: "6.5 (Cavendish 1798, torsion balance, more than 100 years after Newton; two 1 kg masses 1 m apart pull with 6.674e-11 N; G the least well determined constant; 'weighing the Earth'; within 1% of modern value; Eötvös 5 parts per billion; Fig 6.25 redrawn)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "sequence, idea, numbers"
+    - book: "Physics"
+      section: "7.2 (G vs g; mass vs weight; 60.0 kg person weighs 588 N); Ch 7 concept items (Titan: R = 2.58e6 m, M = 1.35e23 kg)"
+      url: "https://openstax.org/books/physics/pages/7-2-newtons-law-of-universal-gravitation-and-einsteins-theory-of-general-relativity"
+      took: "definitions, worked example, concept question"
+  research:
+    - source: "source/research/school-wording.md §1 and §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+      what: "IGCSE mass and weight wording; 'I weigh 40 kg' bridge"
+  history:
+    - what: "Clapham, 1798: Michell's torsion balance, lead spheres, a shed, telescopes through holes in the wall against body heat; result Earth's density 5.48 times water (modern 5.51) (TRUE); housekeeper-by-notes (HEDGE, told as 'the story goes')"
+      source: "source/research/history.md §2 and the tales list"
+      url: "https://en.wikipedia.org/wiki/Cavendish_experiment"
+  figures:
+    - {name: c5_cavendish, origin: "ours; schematic top view of the OpenStax Fig 6.25 / 7.9 apparatus, redrawn"}
+  computed:
+    - "F between two 1 kg masses 1 m apart = 6.67384e-11 N; weight/F = 9.8/6.67e-11 = 1.47e11 ('about 150 billion times less')"
+    - "Earth's mass from g, R, G: 9.80*6.371009e6**2/6.67384e-11 = 5.96e24 kg ('about 6e24')"
+    - "mean density M/(4/3 π R³) = 5.513 g/cm³ against Cavendish's 5.48 (0.6% apart)"
+    - "60 kg: 60*9.8 = 588 N on Earth; 60*1.67 = 100 N on the Moon"
+    - "Titan g = 6.674e-11*1.35e23/(2.58e6)**2 = 1.354 m/s²; 1.6 m takes sqrt(2*1.6/1.354) = 1.54 s"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"5.5":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 §25.1 (the Kepler problem; the three-body problem has no exact solution and drove 18th-century mathematics)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "idea"
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      where: "PS2 Problem 3 Mass of Jupiter from Io (weighing a planet from a moon's orbit)"
+      url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/ff556f5b15461c985c0c537ce51ebdef_ps2.pdf"
+      took: "problem (idea only)"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.3 (Newton's form of Kepler's third law includes the masses; planet at 1 AU with P = 0.71 yr → 2 solar masses); 3.4 (orbits are conic sections; once an orbit is known future positions can be calculated; comets e ≥ 0.8, slow far out, fast at perihelion); Ch 3 Review Questions (Neptune 'discovered through mathematics')"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "sequence, worked example, concept question"
+    - book: "College Physics 2e"
+      section: "6.6 Satellites and Kepler's Laws (perturbations by other bodies used to predict unseen planets and moons)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-6-satellites-and-keplers-laws-an-argument-for-simplicity"
+      took: "idea, definition of perturbation"
+  history:
+    - what: "Cambridge, August 1684: Halley's question, Newton's 'an ellipse', the lost paper; Principia 1687 paid for by Halley because the Royal Society's money went on the History of Fishes (TRUE)"
+      source: "source/research/history.md §1"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+    - what: "Halley died 1742 having predicted a return in 1758; Clairaut, Lalande and Lepaute spent months on Jupiter's and Saturn's pulls, perihelion predicted mid-April 1759; Palitzsch saw the comet 25 December 1758 near Dresden (TRUE)"
+      source: "source/research/history.md §2"
+      url: "https://en.wikipedia.org/wiki/Johann_Georg_Palitzsch"
+    - what: "Berlin, 23 September 1846: Uranus drifting; Le Verrier's calculation posted to Galle; Galle and d'Arrest find Neptune the same night within about 1°; Adams about 12° off and no part in the discovery; Challis saw it twice unrecognised (TRUE)"
+      source: "source/research/history.md §2"
+      url: "https://en.wikipedia.org/wiki/Discovery_of_Neptune"
+  figures:
+    - {name: c5_comet, origin: "ours, computed from Kepler's equation for a schematic e = 0.9 orbit; the idea of showing comet orbits is OpenStax Astronomy Fig 3.10, not copied"}
+  computed:
+    - "star mass from a planet at 1 AU, P = 0.71 yr: 1/0.71**2 = 1.98 solar masses"
+    - "figure dots: 24 equal mean-anomaly steps solved for eccentric anomaly by Newton iteration"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax)"
+
+"5.6":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 Example 25.4 Transfer Orbit; Astronomical Data (Earth and Moon mass and radius for the periods)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "idea, numbers"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.5 Motions of Satellites and Spacecraft (a craft coasts between burns; to be captured it must brake near its destination; landing needs more thrust)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft"
+      took: "idea, concept questions"
+  research:
+    - source: "ISRO: Chandrayaan-3 mission updates (launch 14 July 2023 14:35 IST, LVM3 M4; burns 15, 17, 22, 25 July with orbits; TLI 1 Aug 288 × 369,328 km; lunar orbits 6, 9, 14, 16 Aug; separation 17 Aug; lander orbits 19–20 Aug; landing 23 Aug; rover ramp-down 24 Aug). The list skips the third orbit-raising burn, so no date is given for it."
+      url: "https://www.isro.gov.in/Chandrayaan3.html"
+      what: "dates and perigee × apogee of each manoeuvre"
+    - source: "ISRO: Lunar Orbit Insertion press release, 5 Aug 2023"
+      url: "https://www.isro.gov.in/Ch3_Lunar_Orbit_Insertion_Press_Release.html"
+      what: "retro-burn at perilune for 1835 s from 19:12 IST; orbit 164 × 18,074 km"
+    - source: "ISRO: Chandrayaan-3 details; LVM3 M4 brochure"
+      url: "https://www.isro.gov.in/Chandrayaan3_Details.html"
+      what: "planned parking orbit ~170 × 36,500 km; masses 2148 + 1752 kg (26 kg rover) ≈ 3.9 t; landing site 69.37° S"
+  history:
+    - what: "Landing 23 August 2023, 18:04 IST, about 69.3° S; site named Shiv Shakti Point on 26 August (TRUE)"
+      source: "source/research/history.md §8 (UNOOSA presentation)"
+      url: "https://www.unoosa.org/documents/pdf/copuos/stsc/2024/ListTechnicalPresentations/2024_STSC_technical_presentations_slides/9_26_--_4_INDIA_Chandrayaan3.pdf"
+  figures:
+    - {name: c5_chandrayaan, origin: "ours, drawn to scale from ISRO's heights treated as heights above the surface (ASSUMED), Earth radius from the 8.01SC data sheet, the Moon at the OpenStax average distance"}
+  computed:
+    - "periods with a = (hp + ha)/2 + R, T = 2π sqrt(a³/GM), ISRO heights ASSUMED above the surface: 173 × 41,762 km → 12.5 h; 226 × 41,603 → 12.5 h; 233 × 71,351 → 23.9 h"
+    - "lunar: 164 × 18,074 km → 28.2 h; 153 × 163 km → 123 min ('about two hours') with GM of the Moon from the 8.01SC data"
+    - "1835 s = 30.6 min; 2148 + 1752 = 3900 kg; 14 July to 5 August = 22 days ('three weeks'); 1 to 5 August = 4 days"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW; OpenStax); ISRO material cited under ISRO's copyright policy, not copied"
+
+"case:ch5":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 §25.1 (no exact solution with three bodies; step-by-step calculation)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "idea"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.4 Orbits in the Solar System (comets spend most of their time far out, moving slowly)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "idea"
+  history:
+    - what: "Halley's 1758 prediction, death in 1742; Clairaut, Lalande and Lepaute's months of calculation; mid-April 1759 perihelion predicted; Palitzsch's sighting on 25 December 1758 near Dresden (TRUE)"
+      source: "source/research/history.md §2"
+      url: "https://ntrs.nasa.gov/api/citations/19800003728/downloads/19800003728.pdf"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:gravity":
+  history:
+    - {what: "Woolsthorpe 1666 (apple HEDGE, Stukeley 1726); Halley's 1684 question; the Moon falling towards us", source: "source/research/history.md §1", url: "https://www.nbcnews.com/id/wbna34944738"}
+  openstax:
+    - {book: "Astronomy 2e", section: "3.3 Newton's Universal Law of Gravitation", url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation", took: "60 Earth radii, 1/3600"}
+  licence: "CC BY-NC-SA 4.0"
+"story:orbits":
+  openstax:
+    - {book: "Astronomy 2e", section: "3.5 Motions of Satellites and Spacecraft; 3.3 weightlessness", url: "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft", took: "Newton's cannon, 8 and 11 km/s, falling around"}
+  research:
+    - {what: "ISS speed, period, mass; phone reads zero in free fall", source: "NASA Space Station Facts and Figures; source/research/misconceptions.md §4", url: "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/"}
+  licence: "CC BY-NC-SA 4.0; NASA facts cited"
+"story:kepler":
+  history:
+    - {what: "Hven and Prague; Tycho's death 1601; the 8 minutes of arc; Astronomia Nova 1609", source: "source/research/history.md §2", url: "https://www.astronomy.ohio-state.edu/thompson.1847/161/watershed.html"}
+  openstax:
+    - {book: "Astronomy 2e", section: "3.1 The Laws of Planetary Motion", url: "https://openstax.org/books/astronomy-2e/pages/3-1-the-laws-of-planetary-motion", took: "the three laws, Mars e ≈ 0.1"}
+  licence: "CC BY-NC-SA 4.0"
+"story:cavendish-shed":
+  history:
+    - {what: "Clapham 1798: shed, telescopes through the wall, density 5.48 (TRUE); housekeeper notes (HEDGE)", source: "source/research/history.md §2 and tales list", url: "https://claphamsociety.com/articles/31eccentric-scientist/"}
+  licence: "CC BY-NC-SA 4.0"
+"story:planet-from-a-pen":
+  history:
+    - {what: "Halley's comet 1758–59 with Clairaut, Lalande and Lepaute; Palitzsch; Neptune 1846, Le Verrier and Galle", source: "source/research/history.md §2", url: "https://en.wikipedia.org/wiki/Discovery_of_Neptune"}
+  licence: "CC BY-NC-SA 4.0"
+"story:fish-book":
+  history:
+    - {what: "Halley paid to print the Principia after the Royal Society's money went on the History of Fishes", source: "source/research/history.md §1", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
+  licence: "CC BY-NC-SA 4.0"
+"story:chandrayaan":
+  research:
+    - {what: "ISRO mission updates: every burn and orbit, 14 July to 23 August 2023; masses; landing site", source: "ISRO Chandrayaan-3 pages", url: "https://www.isro.gov.in/Chandrayaan3.html"}
+  history:
+    - {what: "18:04 IST landing; Shiv Shakti Point; sulphur confirmed; rover drove about 101 m", source: "source/research/history.md §8 (UNOOSA)", url: "https://www.unoosa.org/documents/pdf/copuos/stsc/2024/ListTechnicalPresentations/2024_STSC_technical_presentations_slides/9_26_--_4_INDIA_Chandrayaan3.pdf"}
+  licence: "ISRO material cited; CC BY-NC-SA 4.0 for our prose"
