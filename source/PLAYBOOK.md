@@ -147,6 +147,8 @@ Added during the physics book:
 - **Research agents repeat old falsehoods.** The physics misconception report re-suggested the sugar-in-a-brim-full-glass demo the chemistry book had already rejected. Keep the rejected list below and check new suggestions against it.
 - **Famous anecdotes are mostly legends.** Pisa, the cathedral lamp, Archimedes' bath, Pythagoras' hammers, the apple hitting Newton's head, "one day, sir, you may tax it", Joule's waterfall thermometer, the "Feynman Technique". Tell the true story beside each one.
 
+- **Fan out in waves, not all at once.** Fifteen top-model writers launched together hit the 5-hour usage limit within an hour and all stopped mid-sentence. Run about four writers at a time, commit a WIP snapshot before resuming, and resume stopped agents with a message (their work is saved) rather than starting new ones.
+
 **Rejected suggestions (don't reintroduce):** sugar barely raising a brim-full glass; Indian coins as copper; kitchen scrubbers rusting; a lemon cell lighting an LED alone; a home vacuum bag "proving" sound needs air; any figure for Leavitt's wages; "Brahmagupta discovered gravity".
 
 ## 7. The engine: starting a new book
