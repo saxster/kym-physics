@@ -16,7 +16,14 @@ export function explorerShell(name, { label } = {}) {
     const btn = el('button', { type: 'button', class: 'live-open explore-open', html: ICON + `<span>${btnLabel}</span>` });
     const msg = el('p', { class: 'live-note', role: 'status' });
     const stage = el('div', { class: 'explore-stage', hidden: true });
-    let preview;
+    let preview, dispose;
+    const close = () => {
+      if (typeof dispose === 'function') dispose();
+      dispose = null;
+      stage.replaceChildren(); stage.hidden = true; btn.hidden = false;
+      if (preview) preview.hidden = false;
+      btn.focus();
+    };
     if (name === 'scale') {
       preview = el('figure', { class: 'scale-preview' },
         el('img', { src: window.BOOK_SCALE_ART, width: 1536, height: 1024, loading: 'lazy', alt: 'An illustrated Mumbai neighbourhood with a room at its centre.' }),
@@ -26,21 +33,24 @@ export function explorerShell(name, { label } = {}) {
     mount.append(btn, msg, stage);
     btn.addEventListener('click', async () => {
       msg.classList.remove('live-warn');
+      mount.setAttribute('aria-busy', 'true');
       btn.disabled = true; btn.querySelector('span').textContent = 'Opening…'; msg.textContent = '';
       try {
         const impl = await App.loadExplorer(name, chunk);
         stage.hidden = false; btn.hidden = true;
         if (preview) preview.hidden = true;
-        await impl.mount(stage, { title, close: () => { stage.replaceChildren(); stage.hidden = true; btn.hidden = false; if(preview) preview.hidden = false; btn.focus(); } });
+        dispose = await impl.mount(stage, { title, close });
         App.emit('explore:open', { name });
       } catch (e) {
-        stage.replaceChildren(); stage.hidden = true; btn.hidden = false; if(preview) preview.hidden = false;
+        close();
         msg.textContent = location.protocol === 'file:'
           ? 'This explorer loads from the web. Open the book from its website (or a local server) to use it.'
           : 'This explorer could not load. Check the connection and try again.';
         msg.classList.add('live-warn');
       } finally {
+        mount.removeAttribute('aria-busy');
         btn.disabled = false; btn.querySelector('span').textContent = btnLabel;
+        if (msg.classList.contains('live-warn')) btn.focus();
       }
     });
   });

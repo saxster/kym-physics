@@ -89,6 +89,7 @@ function afterShow() {
   dispatchEvent(new Event('resize'));
   dispatchEvent(new Event('scroll'));
   App.emit('page:change', { id: cur.id, kind: cur.kind });
+  document.dispatchEvent(new CustomEvent('book:pagechange', { detail: { id: cur.id, kind: cur.kind } }));
 }
 
 const origScroll = Element.prototype.scrollIntoView;

@@ -87,12 +87,16 @@ function boot() { isReady = true; readyFns.splice(0).forEach(fn => { try { fn();
 // Explorers: in the single-file build their code is bundled in and registers at once; in the --site build each is a
 // lazy chunk (window.BOOK_CHUNKS['x_<name>']) fetched the first time the reader opens it.
 const explorers = {};
+const explorerRetries = {};
 function explorer(name, impl) { explorers[name] = impl; }
 async function loadExplorer(name, chunk = 'x_' + name) {
   if (explorers[name]) return explorers[name];
   const rel = (window.BOOK_CHUNKS || {})[chunk];
   if (!rel) throw new Error(`explorer ${name} is not in this build`);
-  await import(new URL(rel, document.baseURI).href);
+  const url = new URL(rel, document.baseURI);
+  if (explorerRetries[name]) url.searchParams.set('retry', explorerRetries[name]);
+  try { await import(url.href); }
+  catch (error) { explorerRetries[name] = (explorerRetries[name] || 0) + 1; throw error; }
   if (!explorers[name]) throw new Error(`chunk ${chunk} did not register explorer ${name}`);
   return explorers[name];
 }

@@ -2,7 +2,7 @@
 
 Every number drawn here was computed with python3 -I for the chapter text (see provenance/ch07.yml `computed:`).
 Energy stores use the theme washes with an ink outline (class "wash-x ln"): wash-e = gravitational (height),
-wash-p = kinetic (motion), wash-n = thermal and sound. Colour is never the only cue: every bar carries its label.
+wash-p = kinetic (motion), wash-n = energy spread to the surroundings. Colour is never the only cue: every bar carries its label.
 """
 from figs_core import Fig, figure, catmull
 
@@ -47,8 +47,8 @@ def c7_ledger():
         _stack(f, x, base, 60, parts, scale)
         f.text(x + 30, base + 18, l1, 't m', 'middle', 12)
         f.text(x + 30, base + 32, l2, 't m', 'middle', 12)
-    _legend(f, 470, 80, [(GRAV, 'gravitational (height)'), (KIN, 'kinetic (motion)'), (THERM, 'thermal + sound')])
-    f.lines(470, 150, ['Each column adds up', 'to 0.98 J. Nothing is', 'ever missing; it only', 'moves between stores.'], 't m', 'start', 12)
+    _legend(f, 470, 80, [(GRAV, 'gravitational (height)'), (KIN, 'kinetic (motion)'), (THERM, 'spread to surroundings')])
+    f.lines(470, 150, ['Each column accounts', 'for the initial 0.98 J.', 'Sound carries energy;', 'it is not a store.'], 't m', 'start', 12)
     return f.svg()
 
 
@@ -119,7 +119,7 @@ def c7_track():
 @figure
 def c7_bounce():
     f = Fig(640, 300, 'A bouncing ball drawn with each bounce keeping 64% of the height before it, and under each peak a '
-                      'bar showing the energy split between height and warmth-and-sound, all bars the same total height')
+                      'bar accounting for energy in height and energy spread into the surroundings, all bars the same total height')
     base = 220
     def y(h):
         return base - 150 * h
@@ -150,7 +150,7 @@ def c7_bounce():
         f.text(bx + 20, base + 16, lab, 't m', 'middle', 12)
         f.text(bx + 20, base + 30, f'{h:.2f} m', 't m', 'middle', 12)
     f.line(360, base, 615, base, 'ln m')
-    _legend(f, 370, 264, [(GRAV, 'still in the bounce (height)'), (THERM, 'spread out as warmth and sound')], size=12, gap=16)
+    _legend(f, 370, 264, [(GRAV, 'still in the bounce (height)'), (THERM, 'spread into surroundings')], size=12, gap=16)
     return f.svg()
 
 
