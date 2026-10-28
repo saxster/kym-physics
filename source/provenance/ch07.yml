@@ -1,0 +1,227 @@
+# Ledger for Chapter 7: Energy.
+# course:/book: names are the exact keys in provenance/sources.yml. `computed:` lists the python3 -I arithmetic
+# behind every number in the text and figures (inputs marked ASSUMED are model numbers the chapter labels as such).
+"7.1":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 13 §13.1 The Concept of Energy and Conservation of Energy (list of processes; ΣΔE = 0; if the sum is not zero a formula is wrong or a form is missing)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter13.pdf"
+      took: "idea, sequence, the missing-form argument"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 14 §14.1 (system and surroundings)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter14.pdf"
+      took: "idea"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.6 Conservation of Energy (law: total energy is constant in any process; forms of energy; Ch 7 Conceptual Questions)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy"
+      took: "definition; the 'other energy' bookkeeping"
+  research:
+    - what: "Feynman's blocks story (Dennis's blocks), retold in our own words with marbles; idea credited, no text reused (Feynman Lectures are © Caltech, ideas only)"
+      source: "research/sources.md §6; The Feynman Lectures on Physics, Vol. I, Ch. 4 'Conservation of Energy'"
+      url: "https://www.feynmanlectures.caltech.edu/I_04.html"
+    - what: "'knowing the name of a thing vs knowing the thing' and the movability test (swap the term for a made-up word)"
+      source: "BOOKPLAN §2 (Feynman, What Do You Care What Other People Think?, 1988; 'Judging Books by Their Covers')"
+      url: ""
+    - what: "'energy is a fuel / gets used up' misconception"
+      source: "research/misconceptions.md §6 (MOSART; Watts 1983)"
+      url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"
+    - what: "IGCSE 0625 stores and transfers wording (kinetic, gravitational potential, chemical, elastic (strain), nuclear, electrostatic, internal (thermal); transfers by forces, electrical currents, heating, waves)"
+      source: "research/school-wording.md §1, §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+  history:
+    - what: "conservation of energy first stated in the 1840s (Mayer 1842; Joule)"
+      source: "research/history.md §4"
+      url: "https://galileo.phys.virginia.edu/classes/152.mf1i.spring02/MayerJoule.htm"
+  computed:
+    - "ledger figure: 0.10 kg (ASSUMED) from 1.00 m: 0.10×9.8×1.00 = 0.98 J; at 0.50 m: 0.49 + 0.49; top of first bounce at 0.64 m (ASSUMED 64% kept): PE 0.627 J, thermal+sound 0.353 J"
+    - "check answer: v = √(2×9.8×1.0) = 4.43 m/s"
+  figures:
+    - {name: c7_ledger, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"7.2":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 7 Lesson 20.1 Kinetic Energy; 20.5 Work–Kinetic Energy Theorem; course notes Ch 13 §13.2–13.6"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/"
+      took: "sequence, definition"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.2 Kinetic Energy and the Work-Energy Theorem (KE = ½mv²; four times the energy at double speed; car at 100 vs 50 km/h; 30 kg package at 0.5 m/s = 3.75 J)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem"
+      took: "sequence, definitions, worked example"
+    - book: "College Physics 2e"
+      section: "7.3 Gravitational Potential Energy (v = √(2gh); four times the height gives twice the speed)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-3-gravitational-potential-energy"
+      took: "the falling link"
+    - book: "Physics"
+      section: "9.1 Work, Power, and the Work–Energy Theorem (1 J = 1 N·m)"
+      url: "https://openstax.org/books/physics/pages/9-1-work-power-and-the-work-energy-theorem"
+      took: "unit definition only (the page's 'energy is the ability to do work' and its Joule attribution were not used)"
+  history:
+    - what: "'s Gravesande's brass balls in clay, Leiden 1722 (twice the speed, four times the dent); du Châtelet's Institutions de physique, 1740, on Leibniz's side; Descartes as the mv side; 'proved' avoided"
+      source: "research/history.md §1 (TRUE)"
+      url: "https://spark.iop.org/history-concept-energy-and-work"
+  research:
+    - what: "marble-into-flour demo (BOOKPLAN's home version of the clay); the dent depth measures energy only if the flour resists with a roughly steady force, so the text says 'roughly four times'"
+      source: "grounding/ch07.md 7.2 (needs the will-it-work gate)"
+      url: ""
+  computed:
+    - "v = √(2×9.8×0.25) = 2.21 m/s; √(2×9.8×1.0) = 4.43 m/s; ratio 2.0"
+    - "marble 0.020 kg (ASSUMED) lifted 1.0 m: 0.196 J; ½×0.020×4.43² = 0.196 J"
+    - "½×30×0.5² = 3.75 J; (100/50)² = 4; (60/20)² = 9"
+  figures:
+    - {name: c7_dent, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"7.3":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 7 Lessons 20.2–20.5 and 22.1–22.4 (work; path independence of gravity's work; conservative vs non-conservative forces)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/"
+      took: "sequence"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 8 Lessons 23.2 Potential Energy of Gravity near the Surface of the Earth, 23.3 Reference State, 24.1 Mechanical Energy and Energy Conservation; notes Ch 14 §14.4"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-8-potential-energy-and-energy-conservation/"
+      took: "sequence, definitions (only changes in PE matter)"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.3 Gravitational Potential Energy (mgh; energy of the object–Earth system; path independence; v = √(2gh) independent of mass)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-3-gravitational-potential-energy"
+      took: "definitions, idea"
+    - book: "College Physics 2e"
+      section: "Ch 7 Conceptual Questions (work lifting a book: path, time, height, mass; zigzag mountain path)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-conceptual-questions"
+      took: "concept questions"
+    - book: "Physics"
+      section: "9.1 Work (holding a heavy object still does no work; homework is not work); 9.2 Mechanical Energy and Conservation of Energy (roller coaster; Energy Skate Park)"
+      url: "https://openstax.org/books/physics/pages/9-2-mechanical-energy-and-conservation-of-energy"
+      took: "sequence, examples"
+  research:
+    - what: "IGCSE 0625: conservation shown with flow diagrams (Core) and Sankey diagrams (Supplement); transfers 'by forces (mechanical work done)'"
+      source: "research/school-wording.md §1"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+    - what: "'heavier reaches the bottom faster because it has more energy' trap; 'heavier falls faster' (82%, Halloun & Hestenes) recalled in :::recall 4"
+      source: "grounding/ch07.md 7.3 fidelity traps; research/misconceptions.md §4"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+  computed:
+    - "Kym 40 kg (ASSUMED) × 9.8 = 392 N; × 3.0 m (ASSUMED one storey) = 1,176 J per floor; four floors 4,704 J"
+    - "track figure: v = √(2×9.8×0.5) = 3.13 m/s; √(2×9.8×1.0) = 4.43 m/s; arrow lengths 55 and 78 px (proportional)"
+    - "recall 4: 1 kg vs 0.1 kg from 2 m: KE ratio 10 (same v); PE ratio 10"
+  figures:
+    - {name: c7_track, origin: "ours; the hill-and-marble idea follows OpenStax Physics Fig 9.6 (roller coaster) and PhET's Energy Skate Park in outline"}
+  licence: "CC BY-NC-SA 4.0"
+"7.4":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 7 Lesson 22 (22.2 Path Dependence – Friction; 22.4 Non-Conservative Forces); course notes Ch 13 §13.1 (random motion of molecules) and Ch 14 §14.8 Dissipative Forces: Friction"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/"
+      took: "idea: friction turns ordered motion into random molecular motion"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.6 Conservation of Energy (efficiency definition; Table 7.2 representative efficiencies: coal plant ~40%, petrol engine 30%, electric motor 98%; coal-plant chain)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy"
+      took: "definition, numbers"
+    - book: "College Physics 2e"
+      section: "7.7 Power (60 W incandescent bulb gives about 5 W of light); 7.2 (lawn mower: energy removed by friction leaves as heating)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-7-power"
+      took: "numbers, example (the page's 'losing some of it' wording was rewritten as 'spread out')"
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects (free-fall equations behind h = gt²/8 for a bounce of flight time t)"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "equation"
+  research:
+    - what: "bouncing ball timed with phyphox's acoustic stopwatch; 'energy is used up' misconception; 'runs out of push' (Chapter 2) recalled in :::recall 2"
+      source: "research/misconceptions.md §6, §3"
+      url: "https://phyphox.org/wiki/index.php/Category:Built-in_experiments"
+    - what: "IGCSE 0625 never uses 'lost', 'wasted' or 'dissipate'; efficiency = useful energy output / total energy input; bridge 'spread out into the surroundings'"
+      source: "research/school-wording.md §1, §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+  computed:
+    - "h = g t²/8: t = 0.60 s (ASSUMED) → 9.8×0.36/8 = 0.441 m; t = 0.50 s → 0.306 m; ratio 0.694 ≈ 69%"
+    - "bounce figure: 64% kept per bounce (ASSUMED): 1.0, 0.64, 0.41, 0.26 m; arc widths ∝ √h (1 : 0.8 : 0.64 : 0.51)"
+    - "60 W bulb, 5 W light: 5/60 = 8.3%; 55 W thermal"
+    - "coal: 100 J → about 40 J electrical + 60 J thermal (OS College text 'about 40%'; Table 7.2 says 42%)"
+  figures:
+    - {name: c7_bounce, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"7.5":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 7 Lesson 20.6 Power (P = dW/dt; 1 W = 1 J/s); course notes Ch 13 §13.7"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/20-6-power/"
+      took: "definition"
+    - course: "8.21 The Physics of Energy, Fall 2009"
+      where: "Lecture 2 Units and scales of energy use (1 kWh = 3.6 MJ; calorie IT 4.1868 J and thermochemical 4.184 J; food Calorie = kcal; 1 hp = 746 W; a labourer averages about 100 W; 2000 kcal/day ≈ 3.1 GJ/year)"
+      url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/76bb428d6455f6769501ff959cc28fee_MIT8_21s09_lec02.pdf"
+      took: "numbers, hooks"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.7 Power (watt; kWh and why bills use it; Table 7.3: person at rest ~100 W, all to heat transfer; stair-climb take-home, no more than about 0.5 hp; high-power long-running devices decide bills)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-7-power"
+      took: "sequence, numbers, concept questions"
+    - book: "College Physics 2e"
+      section: "7.8 Work, Energy, and Power in Humans (food energy in kcal; basal metabolic rate)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-8-work-energy-and-power-in-humans"
+      took: "idea"
+    - book: "Physics"
+      section: "9.1 (TV hauled up by pulley in 2 minutes vs carried up the stairs in 5: same work, different power)"
+      url: "https://openstax.org/books/physics/pages/9-1-work-power-and-the-work-energy-theorem"
+      took: "example"
+  research:
+    - what: "read the wattage labels on the mixer-grinder and an LED and the kWh on the bill; 1 unit = 1 kWh; 'units consumed means destroyed' misconception and bridge; 1 kWh ≈ 860 kcal; Mumbai tariff not sourced (use the family's bill)"
+      source: "research/misconceptions.md §6"
+      url: ""
+  computed:
+    - "1 kWh = 1000 × 3600 = 3,600,000 J; 3.6e6/4184 = 860 kcal; 1 kcal ≈ 4,200 J"
+    - "one unit runs: 10 W × 100 h; 500 W × 2 h; 2,000 W × 0.5 h; 100 W × 10 h (wattages ASSUMED typical labels)"
+    - "Kym's climb: 1,176 J / 10 s (ASSUMED) = 118 W = 0.16 hp; mixer 500 W × 60 s = 30,000 J"
+    - "biscuit 30 kcal (ASSUMED) = 125,520 J = 34.9 Wh = 3.5 h of a 10 W LED; 3.6e6/125,520 = 28.7 biscuits per kWh"
+    - "2,000 kcal/day = 8.37 MJ / 86,400 s = 96.9 W"
+    - "320 units × 3.6e6 = 1.15×10⁹ J; geyser 2,000 W × 0.25 h = 500 Wh vs LED 10 W × 24 h = 240 Wh"
+    - "bill figure: logarithmic hours axis, 140 px per decade from 0.1 h"
+  figures:
+    - {name: c7_bill, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"7.6":
+  ocw:
+    - course: "8.21 The Physics of Energy, Fall 2009"
+      where: "Lecture 2 (world net electricity use 2005: 15.7 trillion kWh = 56.5 EJ)"
+      url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/76bb428d6455f6769501ff959cc28fee_MIT8_21s09_lec02.pdf"
+      took: "number"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 13 §13.1 (falling water spins turbines)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter13.pdf"
+      took: "idea"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.6 Conservation of Energy (coal → steam → turbine → generator chain; about 40%); 7.7 Power (large thermal energy must be given to the surroundings via cooling towers, unavoidable for fuel-burning plants); Ch 7 Conceptual Questions (energy conservation vs the law of conservation of energy; a 35% plant and conservation)"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy"
+      took: "idea, numbers, concept questions"
+  research:
+    - what: "Tata Power-G installed capacity 1,377 MW (930 MW thermal: Unit 5 500 MW coal/oil/gas, Unit 7 180 MW gas, Unit 8 250 MW coal and oil; 447 MW hydro: Bhira 300, Bhivpuri 75, Khopoli 72); all contracted to BEST and Tata Power-D; FY 2021-22 gross generation 5,512 MU thermal, 1,596 MU hydro; MU tables"
+      source: "MERC, Executive Summary – Tata Power-G, Case No. 221/MT/2022"
+      url: "https://merc.gov.in/wp-content/uploads/2022/12/Tata-Power-G-MTR-2023_Executive-Summary_English_Final.pdf"
+    - what: "AEML-D (Adani Electricity) is the distribution licensee for Mumbai suburbs and MBMC"
+      source: "MERC, Press Note: AEML-D MTR Order in Case No. 231 of 2022"
+      url: "https://merc.gov.in/wp-content/uploads/2023/03/Press-Release-AEML-English.pdf"
+    - what: "Mumbai's city-wide mix, purchases from outside, MSEDCL's role and the Dahanu PPA are UNSOURCED and deliberately left out; the text says so"
+      source: "grounding/ch07.md 7.6 gaps"
+      url: ""
+  computed:
+    - "447 + 930 = 1,377 MW; 447/1377 = 32.5%; 1596/(5512+1596) = 1596/7108 = 22.5%"
+    - "implied load factors: hydro 1596/(447×8.76) = 40.8%; thermal 5512/(930×8.76) = 67.7% (the text says only 'ran well below their maximum')"
+    - "1,377 MW × 1 h = 1,377,000 kWh; 1,596 MU = 1.596×10⁹ kWh = 5.75×10¹⁵ J"
+    - "flats estimate: 300 units/month (ASSUMED) = 3,600 kWh/yr; 1.596e9/3600 ≈ 443,000"
+    - "world 2005: 15.7e12 × 3.6e6 = 5.65×10¹⁹ J (56.5 EJ)"
+    - "Sankey: 100 J → 40 J + 60 J; band widths 120 : 48 : 72 px"
+  figures:
+    - {name: c7_city, origin: "ours; the coal-plant Sankey uses OpenStax College Physics 2e's ~40% figure"}
+  licence: "CC BY-NC-SA 4.0 (OCW, OpenStax); MERC public documents cited as data"
+"story:vis-viva":
+  history:
+    - {what: "'s Gravesande's balls in clay 1722; du Châtelet's Institutions 1740 (backed mv², did not 'prove' it)", source: "research/history.md §1", url: "https://spark.iop.org/history-concept-energy-and-work"}
+  licence: "CC BY-NC-SA 4.0"
+"story:conservation":
+  history:
+    - {what: "Mayer's bright-red blood in Batavia 1840 and conservation 1842; Joule's paddle wheel; Chamonix honeymoon 1847 (waterfall thermometer HEDGE/LEGEND); Feynman's blocks idea retold", source: "research/history.md §4; research/sources.md §6", url: "https://galileo.phys.virginia.edu/classes/152.mf1i.spring02/MayerJoule.htm"}
+  licence: "CC BY-NC-SA 4.0"
