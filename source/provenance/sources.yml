@@ -1,0 +1,38 @@
+# Who made each source, once, for the credits page "Where this book comes from".
+# Names and URLs from source/research/sources.md (checked 2026-10-28). Keys are the exact course:/book: names
+# that every chapter ledger must use.
+ocw:
+  "8.01SC Classical Mechanics, Fall 2016":
+    faculty: "Deepto Chakrabarty, Peter Dourmashkin, Michelle Tomasik, Anna Frebel, Vladan Vuletic"
+    url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+  "RES.8-003 Physics Demonstration Videos, Spring 2012":
+    faculty: "MIT Department of Physics Technical Services Group"
+    url: "https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/"
+  "8.02 Physics II: Electricity and Magnetism, Spring 2007":
+    faculty: "Peter Dourmashkin, Bruce Knuteson, Gunther Roland, Bolek Wyslouch, Brian Wecht, Eric Katsavounidis, Robert Simcoe, Joseph Formaggio; visualizations by John Belcher; course material by Peter Dourmashkin, Eric Hudson, Sen-Ben Liao"
+    url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/"
+  "8.02T Electricity and Magnetism, Spring 2005":
+    faculty: "Bruce Knuteson, Eric Hudson, George Stephans, John Belcher, John Joannopoulos, Michael Feld, Peter Dourmashkin"
+    url: "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/"
+  "8.03SC Physics III: Vibrations and Waves, Fall 2016":
+    faculty: "Yen-Jie Lee"
+    url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/"
+  "8.282J Introduction to Astronomy, Spring 2006":
+    faculty: "Saul Rappaport"
+    url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/"
+  "8.21 The Physics of Energy, Fall 2009":
+    faculty: "Robert Jaffe, Washington Taylor"
+    url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/"
+openstax:
+  "Physics":
+    authors: "Paul Peter Urone, Roger Hinrichs (OpenStax, Rice University)"
+    url: "https://openstax.org/books/physics/pages/1-introduction"
+  "College Physics 2e":
+    authors: "Paul Peter Urone, Roger Hinrichs (OpenStax, Rice University)"
+    url: "https://openstax.org/books/college-physics-2e/pages/1-introduction-to-science-and-the-realm-of-physics-physical-quantities-and-units"
+  "University Physics Volume 1":
+    authors: "Samuel J. Ling, Jeff Sanny, William Moebs (OpenStax, Rice University)"
+    url: "https://openstax.org/books/university-physics-volume-1/pages/1-introduction"
+  "Astronomy 2e":
+    authors: "Andrew Fraknoi, David Morrison, Sidney C. Wolff (OpenStax, Rice University)"
+    url: "https://openstax.org/books/astronomy-2e/pages/1-introduction"
