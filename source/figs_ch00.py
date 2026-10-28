@@ -207,3 +207,51 @@ def c0_eratosthenes():
     f.text(Cx + 8, Cy + 4, '1/50 of a full turn', 't e', 'start', 12)
     f.text(272, 176, '5,000 stadia', 't', 'middle', 13)
     return f.svg()
+
+
+@figure
+def cover_art():
+    """Sixteen physics milestone tiles (Chapters 0 to 15) arranged across four volumes."""
+    TILES = [
+        (0, '7.2°', 'Earth’s shadow', 1, 0),
+        (1, 't²', 'Galileo’s ramp', 1, 0),
+        (2, 'v = c', 'Inertia', 1, 0),
+        (3, 'F = ma', 'Pairs of force', 1, 0),
+        (4, '9.8', 'Free fall', 1, 0),
+        (5, 'GMm/r²', 'Orbits', 2, 1),
+        (6, 'ρgh', 'Ocean of air', 2, 0),
+        (7, '½mv²', 'Energy', 2, 0),
+        (8, 'ΔQ', 'Heat & monsoon', 2, 0),
+        (9, 'v = fλ', 'Waves & tabla', 3, 0),
+        (10, 'θᵢ = θᵣ', 'Light & sight', 3, 0),
+        (11, 'Δλ', 'Raman’s sea', 3, 1),
+        (12, 'V = IR', 'Circuits', 4, 0),
+        (13, '∇×B', 'Fields & trams', 4, 0),
+        (14, '23.4°', 'Earth, Moon, Sun', 4, 0),
+        (15, 'E = mc²', 'Starlight', 4, 1),
+    ]
+    W, H = 928, 224
+    cw, ch, gap = 108, 92, 8
+    f = Fig(W, H, 'Sixteen tiles for the sixteen chapters of this book, grouped into four volumes from falling stones to the stars.')
+    vols = [
+        (0, 5, 'I · Motion & force'),
+        (5, 9, 'II · Gravity, pressure & energy'),
+        (9, 12, 'III · Waves, sound & light'),
+        (12, 16, 'IV · Fields & the sky'),
+    ]
+    # 2 rows of 8 tiles
+    for n, sym, label, vol, hi in TILES:
+        col = n % 8
+        row = n // 8
+        x = 6 + col * (cw + gap)
+        y = 18 + row * (ch + gap + 6)
+        f.add(f'<g class="el on" style="--i:{n + 1}" data-ch="{n}">')
+        cls = 'fill-vol' if hi else 'fill-ink'
+        f.rect(x, y, cw, ch, cls, 6)
+        f.text(x + 9, y + 18, f'Ch {n} · Vol {["I","II","III","IV"][vol - 1]}', 't', 'start', 10.5, extra='style="fill:var(--sheet);opacity:.72"')
+        fsz = 18 if len(sym) > 4 else 22
+        f.text(x + cw / 2, y + 52, sym, 't s', 'middle', fsz, 600, 'style="fill:var(--sheet)"')
+        f.text(x + cw / 2, y + ch - 12, label, 't', 'middle', 11.5, 500, 'style="fill:var(--sheet);opacity:.88"')
+        f.add('</g>')
+    return f.svg()
+

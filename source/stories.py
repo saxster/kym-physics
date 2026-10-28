@@ -80,7 +80,10 @@ class Linker:
                 self.by_term.setdefault(t.lower(), s.id)
         terms = sorted(self.by_term, key=len, reverse=True)
         def pat(t):
-            return re.escape(t).replace("\\'", "['’‘]").replace('’', "['’‘]")
+            p = re.escape(t).replace("\\'", "['’‘]").replace('’', "['’‘]")
+            if t.lower() in ('prism', 'prisms'):
+                return r'(?<!Nicol\s)' + p
+            return p
         self.by_term = {re.sub("['’‘]", "'", k): v for k, v in self.by_term.items()}
         self.rx = re.compile(r"(?<![\w’'-])(" + '|'.join(pat(t) for t in terms) + r")(?![\w-])", re.I) if terms else None
 
@@ -165,18 +168,57 @@ def initials(name):
     return (parts[0][0] + (parts[-1][0] if len(parts) > 1 else '')) if parts else '?'
 
 
+CARD_ONLY_CAST = [
+    ('p-tycho', 'Tycho Brahe', '1546', '1601',
+     'Measured the positions of the stars and planets for twenty years before the telescope', 'kepler'),
+    ('p-kepler', 'Johannes Kepler', '1571', '1630',
+     'Worked out from Tycho\u2019s Mars observations that planetary orbits are ellipses, not circles', 'kepler'),
+    ('p-torricelli', 'Evangelista Torricelli', '1608', '1647',
+     'Built the mercury barometer and realised we live submerged at the bottom of an ocean of air', 'ocean-of-air'),
+    ('p-cavendish', 'Henry Cavendish', '1731', '1810',
+     'Measured the tiny pull between lead spheres inside a shed and weighed the Earth', 'cavendish-shed'),
+    ('p-rumford', 'Count Rumford', '1753', '1814',
+     'Boiled water by boring a cannon barrel with a blunt drill, challenging the caloric fluid theory', 'caloric'),
+    ('p-oersted', 'Hans Christian \u00d8rsted', '1777', '1851',
+     'Found during a lecture in 1820 that an electric current makes a nearby compass needle twitch', 'oersted'),
+    ('p-fresnel', 'Augustin Fresnel', '1788', '1827',
+     'Built the mathematical wave theory of light, vindicated by the bright spot at the centre of a shadow', 'light-wave'),
+    ('p-mayer', 'Julius Robert Mayer', '1814', '1878',
+     'Ship\u2019s doctor in Java who reasoned that heat and mechanical work are forms of one conserved energy', 'conservation'),
+    ('p-maxwell', 'James Clerk Maxwell', '1831', '1879',
+     'Unified electricity and magnetism and showed that their waves travel at the speed of light', 'maxwell'),
+    ('p-meitner', 'Lise Meitner', '1878', '1968',
+     'Worked out with Otto Frisch how the uranium nucleus splits in nuclear fission and releases energy', 'sun-fire'),
+    ('p-krishnan', 'K. S. Krishnan', '1898', '1961',
+     'Co-discovered the Raman effect in Calcutta and kept the laboratory diary of February 1928', 'raman'),
+]
+
+
+def _birth_year(born: str) -> int:
+    m = re.search(r'\d+', born or '')
+    return int(m.group(0)) if m else 9999
+
+
 def cast_section(stories, md_inline) -> str:
-    people = sorted([s for s in stories if s.born], key=lambda s: int(re.sub(r'\D', '', s.born)[:4] or 9999))
-    if not people:
+    have_ids = {s.id for s in stories}
+    entries = [(s.id, s.name, s.born, s.died, s.role, s.id) for s in stories if s.born]
+    for seed, name, born, died, role, target in CARD_ONLY_CAST:
+        if target in have_ids and seed not in have_ids:
+            entries.append((seed, name, born, died, role, target))
+    entries.sort(key=lambda item: _birth_year(item[2]))
+    if not entries:
         return ''
     cards = ''.join(
-        f'<li><a class="sl cast-card" href="#story-{s.id}" data-story="{s.id}"><span class="mono medal" data-seed="{escape(s.id)}" aria-hidden="true"><canvas></canvas><span>{escape(initials(s.name))}</span></span>'
-        f'<b>{escape(s.name)}</b><span class="yrs">{escape(" to ".join(x for x in (s.born, s.died) if x))}</span>'
-        f'<span class="role">{escape(s.role)}</span></a></li>' for s in people)
+        f'<li><a class="sl cast-card" href="#story-{escape(target)}" data-story="{escape(target)}">'
+        f'<span class="mono medal" data-seed="{escape(seed)}" aria-hidden="true"><canvas></canvas>'
+        f'<span>{escape(initials(name))}</span></span>'
+        f'<b>{escape(name)}</b><span class="yrs">{escape(" to ".join(x for x in (born, died) if x))}</span>'
+        f'<span class="role">{escape(role)}</span></a></li>'
+        for seed, name, born, died, role, target in entries)
     return ('<section class="front flow cast-page" id="cast"><h2>The cast</h2>'
             '<p>Every adventure has its characters. These are some of the people you will meet in this book: '
             'star-gazers and instrument-makers, a ship\u2019s doctor, a teacher in Dacca who wrote to a famous stranger, '
-            'and women who had to fight to be allowed to study. Tap anyone to read their life story.</p>'
+            'and women who had to fight to be allowed to study. Tap anyone to read their story.</p>'
             f'<ul class="cast full">{cards}</ul></section>')
 
 

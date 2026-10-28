@@ -1,9 +1,11 @@
 // Read aloud: any chapter section or story, sentence by sentence, with the sentence highlighted.
-// Uses the Web Speech API; adds nothing at all when it is missing.
+// Uses Isabella (Kokoro-82M neural TTS in the browser) or the Web Speech API; adds nothing when neither is supported.
 import App from './core.js';
 
 const synth = window.speechSynthesis;
-const supported = !!(synth && window.SpeechSynthesisUtterance);
+const sysSupported = !!(synth && window.SpeechSynthesisUtterance);
+// read-aloud works with the device's voices, or with the natural voice alone where those are missing
+const supported = sysSupported || !!(window.Worker && window.WebAssembly && (window.AudioContext || window.webkitAudioContext));
 
 const ICON = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 7.5h3l4-3.5v12l-4-3.5h-3z" fill="currentColor"/>' +
   '<path d="M13.2 7a4 4 0 0 1 0 6M15.4 5a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
@@ -77,7 +79,16 @@ const toPlain = (s, map) => [...s].map(c => map[c] || c).join('');
 
 export function speakable(t) {
   let s = t;
-  s = s.replace(/cm³/g, ' cubic centimetres').replace(/m³/g, ' cubic metres');
+  s = s.replace(/\bkg\/m³/g, ' kilograms per cubic metre')
+    .replace(/\bg\/cm³/g, ' grams per cubic centimetre')
+    .replace(/\bm\/s²/g, ' metres per second squared')
+    .replace(/\bm\/s\b/g, ' metres per second')
+    .replace(/\bkm\/s\b/g, ' kilometres per second')
+    .replace(/\bkm\/h\b/g, ' kilometres per hour')
+    .replace(/\bN\/kg\b/g, ' newtons per kilogram')
+    .replace(/\bN\/m²/g, ' newtons per square metre')
+    .replace(/\bcm²/g, ' square centimetres').replace(/\bm²/g, ' square metres')
+    .replace(/cm³/g, ' cubic centimetres').replace(/m³/g, ' cubic metres');
   // powers of ten: 6.022 × 10²³, 10⁻⁶
   s = s.replace(new RegExp('10(' + supRun + ')', 'g'), (_, e) => {
     const p = toPlain(e, SUP);
@@ -99,11 +110,15 @@ export function speakable(t) {
     .replace(/°C\b/g, ' degrees Celsius').replace(/°F\b/g, ' degrees Fahrenheit').replace(/°/g, ' degrees')
     .replace(/\bpH\b/g, 'P H').replace(/\bpKa\b/g, 'P K A')
     .replace(/\bmol\/L\b/g, 'moles per litre').replace(/\bg\/mol\b/g, 'grams per mole').replace(/\bg\/L\b/g, 'grams per litre')
+    .replace(/\bkWh\b/g, 'kilowatt-hours').replace(/\bkW\b/g, 'kilowatts')
     .replace(/\bkJ\b/g, 'kilojoules').replace(/\bkPa\b/g, 'kilopascals').replace(/\bmL\b/g, 'millilitres')
+    .replace(/\bGHz\b/g, 'gigahertz').replace(/\bMHz\b/g, 'megahertz').replace(/\bkHz\b/g, 'kilohertz').replace(/\bHz\b/g, 'hertz')
+    .replace(/\bnT\b/g, 'nanotesla').replace(/µT\b/g, 'microtesla').replace(/µg\b/g, 'micrograms').replace(/µm\b/g, 'micrometres').replace(/µs\b/g, 'microseconds')
     .replace(/\bmol\b/g, 'moles').replace(/\bkm\b/g, 'kilometres').replace(/\bnm\b/g, 'nanometres').replace(/\bppm\b/g, 'parts per million')
     .replace(/(\d)\s?kg\b/g, '$1 kilograms').replace(/(\d)\s?g\b/g, '$1 grams').replace(/(\d)\s?cm\b/g, '$1 centimetres')
     .replace(/(\d)\s?mm\b/g, '$1 millimetres').replace(/(\d)\s?m\b/g, '$1 metres').replace(/(\d)\s?K\b/g, '$1 kelvin')
-    .replace(/(\d)\s?V\b/g, '$1 volts').replace(/(\d)\s?L\b/g, '$1 litres').replace(/(\d)\s?s\b/g, '$1 seconds')
+    .replace(/(\d)\s?N\b/g, '$1 newtons').replace(/(\d)\s?J\b/g, '$1 joules').replace(/(\d)\s?W\b/g, '$1 watts')
+    .replace(/(\d)\s?V\b/g, '$1 volts').replace(/(\d)\s?A\b/g, '$1 amperes').replace(/(\d)\s?L\b/g, '$1 litres').replace(/(\d)\s?s\b/g, '$1 seconds')
     .replace(/(\d),(\d{3})/g, '$1$2')
     .replace(/\bBCE\b/g, 'B C E').replace(/\bCE\b/g, 'C E');
   return s.replace(/\s+/g, ' ').trim();
@@ -112,17 +127,158 @@ export function speakable(t) {
 // ------------------------------------------------------------------ voices and settings
 let voices = [];
 function loadVoices() {
-  try { voices = (synth.getVoices() || []).filter(v => /^en/i.test(v.lang)); } catch (e) { voices = []; }
-  const rank = v => (/en[-_]GB/i.test(v.lang) ? 0 : /en[-_]IN/i.test(v.lang) ? 1 : 2) + (v.localService ? 0 : 0.5);
-  voices.sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
+  try { voices = sysSupported ? (synth.getVoices() || []).filter(v => /^en/i.test(v.lang)) : []; } catch (e) { voices = []; }
+  // Warmest voice first. Quality matters far more than accent: a natural neural voice beats an old robotic one.
+  voices = voices.filter(v => !NOVELTY.test(v.name));
+  voices.sort((a, b) => quality(b) - quality(a) || a.name.localeCompare(b.name));
   fillVoices();
 }
+// Novelty and robotic voices that ship with some systems: never offer them to a reader.
+const NOVELTY = /\b(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Fred|Good News|Hysterical|Jester|Junior|Kathy|Organ|Pipe Organ|Princess|Ralph|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|eSpeak)\b/i;
+// The book's voice is warm, friendly, British and female (like Kokoro's bf_isabella). Among the device's own voices
+// prefer, in order: British female natural voices (Microsoft Sonia/Libby in Edge, Apple Serena/Kate/Stephanie/Martha,
+// Google UK English Female), then other high-quality British voices, then Indian English natural voices, then the rest.
+const BRIT_FEMALE = [/\bSonia\b/, /\bLibby\b/, /\bSerena\b/, /\bKate\b/, /\bStephanie\b/, /\bMartha\b/, /Google UK English Female/];
+const GOOD_NAMES = /\b(Isha|Rishi|Veena|Neerja|Prabhat|Serena|Kate|Daniel|Arthur|Martha|Moira|Fiona|Tessa|Karen|Samantha|Ava|Zoe|Allison|Susan|Evan|Nathan|Sonia|Libby|Ryan|Thomas|Stephanie)\b/i;
+function quality(v) {
+  const n = v.name || '';
+  const gb = /en[-_]GB/i.test(v.lang);
+  let q = 0;
+  if (/natural|neural/i.test(n)) q += 60;
+  if (/premium/i.test(n)) q += 50;
+  if (/enhanced/i.test(n)) q += 40;
+  if (/^Google\b/i.test(n) && !/UK English Female/.test(n)) q += 30;
+  if (GOOD_NAMES.test(n)) q += 20;
+  const bf = gb ? BRIT_FEMALE.findIndex(r => r.test(n)) : -1;
+  if (bf >= 0) q += 200 - 5 * bf;               // the British female voices, in the order above
+  if (gb && /natural|neural|premium|enhanced/i.test(n)) q += 20;   // a high-quality British voice beats an Indian one
+  if (/\bMaisie\b/i.test(n)) q -= 40;          // a child's voice
+  if (/compact/i.test(n)) q -= 20;
+  if (gb) q += 12; else if (/en[-_]IN/i.test(v.lang)) q += 6; else if (/en[-_](AU|IE|NZ|ZA)/i.test(v.lang)) q += 3;
+  return q;
+}
+const voicesAreBasic = () => !voices.length || quality(voices[0]) < 20;
 function chosenVoice() {
   const uri = App.store.get('readaloud:voice', null);
   return voices.find(v => v.voiceURI === uri) || voices[0] || null;
 }
-const RATES = [0.85, 1, 1.15];
-const rate = () => { const r = App.store.get('readaloud:rate', 1); return RATES.includes(r) ? r : 1; };
+
+// ------------------------------------------------------------------ Isabella: a natural neural voice, run in the browser
+// Kokoro-82M (Apache-2.0) through kokoro-js (Apache-2.0), loaded from jsDelivr only when it is first needed, running in
+// a Web Worker so the page stays smooth. The model comes from Hugging Face: on a graphics chip (WebGPU) the full-precision
+// model, about 300 MB, which reads faster than real time; elsewhere the quantised one, about 90 MB. Either is kept in the
+// browser's Cache Storage, so later visits start quickly. Text is read live, sentence by sentence: nothing is pre-recorded.
+const KOKORO_JS = 'https://cdn.jsdelivr.net/npm/' + 'kokoro-js@1.2.1/dist/kokoro.web.js';
+const KOKORO_MODEL = 'onnx-community/Kokoro-82M-v1.0-ONNX';
+const KOKORO_VOICE = 'bf_isabella';
+const ISABELLA = 'kokoro:' + KOKORO_VOICE;
+const kokoroPossible = !!(window.Worker && window.WebAssembly && (window.AudioContext || window.webkitAudioContext));
+const useGPU = !!navigator.gpu;
+let KOKORO_RUN = useGPU ? { dtype: 'fp32', device: 'webgpu' } : { dtype: 'q8', device: 'wasm' };
+let KOKORO_MB = useGPU ? 'about 300 MB' : 'about 90 MB';
+const saveData = !!(navigator.connection && navigator.connection.saveData);
+const K = { state: 'idle', worker: null, files: {}, pct: 0, lastProgress: 0, timer: 0, waiters: [], seq: 0, pending: new Map(),
+  cache: new Map(), fallback: false, slow: 0, offered: false, ctx: null, src: null };
+
+const WORKER_SRC = `
+let tts = null, chain = Promise.resolve();
+self.onmessage = (e) => {
+  const m = e.data;
+  if (m.type === 'load') {
+    (async () => {
+      try {
+        const mod = await import(m.url);
+        tts = await mod.KokoroTTS.from_pretrained(m.model, { dtype: m.dtype, device: m.device,
+          progress_callback: (p) => self.postMessage({ type: 'progress', status: p.status, file: p.file, loaded: p.loaded, total: p.total }) });
+        self.postMessage({ type: 'ready' });
+      } catch (err) { self.postMessage({ type: 'error', error: String((err && err.message) || err) }); }
+    })();
+  } else if (m.type === 'gen') {
+    chain = chain.then(async () => {
+      try {
+        const t0 = performance.now();
+        const a = await tts.generate(m.text, { voice: m.voice, speed: m.speed });
+        const audio = a.audio;
+        self.postMessage({ type: 'audio', id: m.id, audio, sr: a.sampling_rate, ms: performance.now() - t0 }, [audio.buffer]);
+      } catch (err) { self.postMessage({ type: 'generr', id: m.id, error: String((err && err.message) || err) }); }
+    });
+  }
+};`;
+
+function engine() {
+  const v = App.store.get('readaloud:voice', null);
+  if (!kokoroPossible || K.fallback || K.state === 'failed') return 'system';
+  if (v === ISABELLA) return 'kokoro';
+  if (v == null) return 'kokoro';   // Isabella by default (on a data-saving connection the reader is asked first)
+  return 'system';
+}
+function audioCtx() {
+  if (!K.ctx) { const C = window.AudioContext || window.webkitAudioContext; try { K.ctx = new C(); } catch (e) { K.ctx = null; } }
+  if (K.ctx && K.ctx.state === 'suspended') { try { K.ctx.resume(); } catch (e) {} }
+  return K.ctx;
+}
+function loadKokoro() {
+  if (K.state === 'ready') return Promise.resolve();
+  if (K.state === 'failed') return Promise.reject(new Error('failed'));
+  const p = new Promise((res, rej) => K.waiters.push({ res, rej }));
+  if (K.state === 'loading') return p;
+  K.state = 'loading'; K.files = {}; K.pct = 0; K.lastProgress = Date.now();
+  try {
+    const url = URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' }));
+    K.worker = new Worker(url, { type: 'module' });
+  } catch (e) { kokoroFailed('no worker'); return p; }
+  K.worker.onmessage = e => {
+    const m = e.data;
+    if (m.type === 'progress') {
+      K.lastProgress = Date.now();
+      if (m.file && m.total) { K.files[m.file] = { loaded: m.loaded || 0, total: m.total }; }
+      const f = Object.values(K.files), tot = f.reduce((a, x) => a + x.total, 0), got = f.reduce((a, x) => a + Math.min(x.loaded, x.total), 0);
+      if (tot) K.pct = Math.min(99, Math.round(got / tot * 100));
+      updateLoading();
+    } else if (m.type === 'ready') {
+      K.state = 'ready'; clearInterval(K.timer); App.store.set('readaloud:kokoro-ok', true);
+      K.waiters.splice(0).forEach(w => w.res());
+    } else if (m.type === 'error') {
+      if (KOKORO_RUN.device === 'webgpu') {   // the graphics-chip path failed: try the ordinary path once
+        try { K.worker.terminate(); } catch (e) {}
+        KOKORO_RUN = { dtype: 'q8', device: 'wasm' }; KOKORO_MB = 'about 90 MB';
+        K.state = 'idle'; const w = K.waiters.splice(0); clearInterval(K.timer);
+        loadKokoro().then(() => w.forEach(x => x.res()), err => w.forEach(x => x.rej(err)));
+      } else kokoroFailed(m.error);
+    }
+    else if (m.type === 'audio' || m.type === 'generr') {
+      const w = K.pending.get(m.id); if (!w) return;
+      K.pending.delete(m.id);
+      if (m.type === 'audio') w.res({ audio: m.audio, sr: m.sr, ms: m.ms }); else w.rej(new Error(m.error));
+    }
+  };
+  K.worker.onerror = () => kokoroFailed('worker error');
+  K.worker.postMessage({ type: 'load', url: KOKORO_JS, model: KOKORO_MODEL, dtype: KOKORO_RUN.dtype, device: KOKORO_RUN.device });
+  K.timer = setInterval(() => { if (K.state === 'loading' && Date.now() - K.lastProgress > 60000) kokoroFailed('timeout'); }, 5000);
+  return p;
+}
+function kokoroFailed(why) {
+  if (K.state === 'failed') return;
+  K.state = 'failed'; clearInterval(K.timer);
+  try { K.worker && K.worker.terminate(); } catch (e) {}
+  K.waiters.splice(0).forEach(w => w.rej(new Error(why)));
+  K.pending.forEach(w => w.rej(new Error(why))); K.pending.clear();
+  if (window.console) console.info('[read aloud] natural voice unavailable:', why);
+}
+// one generated sentence, cached by its text
+function synth1(text) {
+  const key = rate() + '|' + text;
+  if (K.cache.has(key)) return K.cache.get(key);
+  const pr = new Promise((res, rej) => { const id = ++K.seq; K.pending.set(id, { res, rej }); K.worker.postMessage({ type: 'gen', id, text, voice: KOKORO_VOICE, speed: rate() }); });
+  K.cache.set(key, pr);
+  pr.catch(() => K.cache.delete(key));
+  if (K.cache.size > 40) K.cache.delete(K.cache.keys().next().value);
+  return pr;
+}
+function stopAudio() { if (K.src) { try { K.src.onended = null; K.src.stop(); } catch (e) {} K.src = null; } }
+
+const RATES = [0.85, 0.95, 1.1];
+const rate = () => { const r = App.store.get('readaloud:rate', 0.95); return RATES.includes(r) ? r : 0.95; };
 
 // ------------------------------------------------------------------ the reader
 const st = { list: [], i: 0, playing: false, paused: false, token: 0, label: '', source: null };
@@ -146,19 +302,72 @@ function highlight(s) {
   }
 }
 
+// after a sentence: a natural breath, longer between paragraphs, then the next one
+function advance(token) {
+  if (token !== st.token || !st.playing) return;
+  const prev = st.list[st.i]; st.i++;
+  if (st.i >= st.list.length) { stop(); return; }
+  const gap = st.list[st.i].block !== prev.block ? 420 : 140;
+  setTimeout(() => { if (token === st.token && st.playing && !st.paused) speakCurrent(); }, gap);
+}
+
 function speakCurrent() {
   const s = st.list[st.i];
   if (!s) { stop(); return; }
   const token = ++st.token;
   highlight(s);
   updatePlayer();
+  if (engine() === 'kokoro') { speakKokoro(s, token); return; }
+  speakSystem(s, token);
+}
+
+function speakSystem(s, token) {
+  if (!synth) { stop(); return; }
   const u = new SpeechSynthesisUtterance(speakable(s.text));
   const v = chosenVoice();
   if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-GB';
   u.rate = rate();
-  u.onend = () => { if (token !== st.token || !st.playing) return; st.i++; if (st.i < st.list.length) speakCurrent(); else stop(); };
-  u.onerror = e => { if (token !== st.token) return; if (e && (e.error === 'interrupted' || e.error === 'canceled')) return; st.i++; if (st.playing && st.i < st.list.length) speakCurrent(); else stop(); };
+  u.pitch = 1;
+  u.onend = () => advance(token);
+  u.onerror = e => { if (token !== st.token) return; if (e && (e.error === 'interrupted' || e.error === 'canceled')) return; advance(token); };
   try { synth.speak(u); } catch (e) { stop(); }
+}
+
+function speakKokoro(s, token) {
+  if (K.state !== 'ready') {
+    // first use: fetch the voice (or ask first, on a data-saving connection), then start automatically
+    if (saveData && K.state === 'idle' && !App.store.get('readaloud:kokoro-ok', false) && !K.askedOk) { showAsk(); return; }
+    showLoading();
+    loadKokoro().then(() => { hideLoading(); if (token === st.token && st.playing && !st.paused && engine() === 'kokoro') speakCurrent(); })
+      .catch(() => { hideLoading(); fallBack('Isabella’s natural voice could not load here, so this device’s own voice is reading.'); });
+    return;
+  }
+  const ctx = audioCtx();
+  if (!ctx) { fallBack('This browser cannot play Isabella’s voice, so this device’s own voice is reading.'); return; }
+  const want = speakable(s.text);
+  const playStarted = performance.now();
+  synth1(want).then(r => {
+    if (token !== st.token || !st.playing || st.paused) return;
+    // keep one or two sentences ready ahead, so there are no gaps
+    for (let k = 1; k <= 2; k++) { const n = st.list[st.i + k]; if (n) synth1(speakable(n.text)).catch(() => {}); }
+    const buf = ctx.createBuffer(1, r.audio.length, r.sr);
+    buf.copyToChannel ? buf.copyToChannel(r.audio, 0) : buf.getChannelData(0).set(r.audio);
+    const src = ctx.createBufferSource(); src.buffer = buf; src.connect(ctx.destination);
+    stopAudio(); K.src = src;
+    src.onended = () => { if (K.src === src) K.src = null; advance(token); };
+    src.start();
+    // too slow on this device? (the next sentence takes longer to make than this one takes to say, three times running)
+    const dur = r.audio.length / r.sr * 1000;
+    const waited = performance.now() - playStarted;
+    if (waited > 100 && r.ms > dur) K.slow++; else if (waited < 50) K.slow = 0;
+    if (K.slow >= 3 && !K.offered) { K.offered = true; offerSwitch(); }
+  }).catch(() => { if (token === st.token) fallBack('Isabella’s voice stopped working, so this device’s own voice is reading.'); });
+}
+
+function fallBack(msg) {
+  K.fallback = true;
+  note(msg);
+  if (st.playing && !st.paused) { st.token++; speakCurrent(); }
 }
 
 function start(blocks, label, source, from = 0) {
@@ -167,16 +376,20 @@ function start(blocks, label, source, from = 0) {
   if (!st.list.length) return;
   st.i = Math.max(0, Math.min(from, st.list.length - 1));
   st.playing = true; st.paused = false; st.label = label; st.source = source;
+  if (engine() === 'kokoro') audioCtx();          // created inside the reader's tap, as browsers require
   showPlayer();
-  try { synth.cancel(); } catch (e) {}
+  try { synth && synth.cancel(); } catch (e) {}
   speakCurrent();
 }
+
+function haltAll() { try { synth && synth.cancel(); } catch (e) {} stopAudio(); }
 
 function stop(quiet) {
   st.token++;
   st.playing = false; st.paused = false;
-  try { synth.cancel(); } catch (e) {}
+  haltAll();
   clearHighlight();
+  hideLoading();
   if (!quiet) hidePlayer();
   document.querySelectorAll('.rl-btn[aria-pressed="true"]').forEach(b => b.setAttribute('aria-pressed', 'false'));
 }
@@ -185,30 +398,36 @@ function togglePause() {
   if (!st.playing) return;
   if (st.paused) {
     st.paused = false;
+    if (engine() === 'kokoro') audioCtx();
     // resume() is unreliable in some browsers after a long pause; re-speak the sentence instead
-    try { synth.cancel(); } catch (e) {}
+    haltAll();
     speakCurrent();
   } else {
     st.paused = true; st.token++;
-    try { synth.cancel(); } catch (e) {}
+    haltAll();
     updatePlayer();
   }
 }
 function step(d) {
   if (!st.list.length) return;
   st.i = Math.max(0, Math.min(st.list.length - 1, st.i + d));
-  try { synth.cancel(); } catch (e) {}
+  haltAll();
   if (st.paused) { st.token++; highlight(st.list[st.i]); updatePlayer(); } else speakCurrent();
 }
 
 // ------------------------------------------------------------------ the mini player
 let player = null, voiceSel = null;
+function restartWithNewVoice() { if (st.playing && !st.paused) { haltAll(); hideLoading(); speakCurrent(); } }
 function buildPlayer() {
   const { el } = App;
   const btn = (cls, label, icon, fn) => el('button', { type: 'button', class: 'rl-pb ' + cls, 'aria-label': label, title: label, html: icon, onclick: fn });
-  const speed = el('select', { class: 'rl-sel rl-speed', 'aria-label': 'Reading speed', onchange: e => { App.store.set('readaloud:rate', +e.target.value); if (st.playing && !st.paused) { try { synth.cancel(); } catch (x) {} speakCurrent(); } } },
+  const speed = el('select', { class: 'rl-sel rl-speed', 'aria-label': 'Reading speed', onchange: e => { App.store.set('readaloud:rate', +e.target.value); restartWithNewVoice(); } },
     RATES.map(r => el('option', { value: r, selected: r === rate() }, r + '×')));
-  voiceSel = el('select', { class: 'rl-sel rl-voice', 'aria-label': 'Voice', onchange: e => { App.store.set('readaloud:voice', e.target.value); if (st.playing && !st.paused) { try { synth.cancel(); } catch (x) {} speakCurrent(); } } });
+  voiceSel = el('select', { class: 'rl-sel rl-voice', 'aria-label': 'Voice', onchange: e => {
+    App.store.set('readaloud:voice', e.target.value);
+    if (e.target.value === ISABELLA) { K.fallback = false; if (K.state === 'failed') K.state = 'idle'; K.askedOk = true; audioCtx(); }
+    note(''); fillVoices(); restartWithNewVoice();
+  } });
   player = el('div', { class: 'rl-player', role: 'region', 'aria-label': 'Read aloud', hidden: true },
     el('p', { class: 'rl-what' }, el('span', { class: 'rl-i', html: ICON }), el('span', { class: 'rl-label' }), el('span', { class: 'rl-count', 'aria-live': 'off' })),
     el('div', { class: 'rl-ctrls' },
@@ -216,16 +435,67 @@ function buildPlayer() {
       btn('rl-play', 'Pause', I.pause, togglePause),
       btn('rl-next', 'Next sentence', I.next, () => step(1)),
       btn('rl-stop', 'Stop reading', I.stop, () => stop()),
-      speed, voiceSel));
+      speed, voiceSel),
+    el('div', { class: 'rl-load', hidden: true, role: 'status' },
+      el('p', { class: 'rl-load-t' }),
+      el('div', { class: 'rl-bar', 'aria-hidden': 'true' }, el('i')),
+      el('div', { class: 'rl-load-b' })),
+    el('p', { class: 'rl-note', hidden: true, role: 'status' }),
+    el('p', { class: 'rl-tip', hidden: true },
+      'For a warmer voice: on an iPad or iPhone, go to Settings → Accessibility → Spoken Content → Voices → English and download a “Premium” or “Enhanced” voice. On a computer, Microsoft Edge has natural-sounding voices built in.'));
   player.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); stop(); } });
   fillVoices();
 }
+function useDeviceVoice() {
+  App.store.set('readaloud:voice', (voices[0] && voices[0].voiceURI) || 'system');
+  hideLoading(); fillVoices();
+  if (st.playing && !st.paused) { st.token++; haltAll(); speakCurrent(); }
+}
+function loadBox() { return player && player.querySelector('.rl-load'); }
+function showLoading() {
+  if (!player) return;
+  const box = loadBox(); box.hidden = false;
+  box.querySelector('.rl-load-b').replaceChildren(App.el('button', { type: 'button', class: 'rl-alt', onclick: useDeviceVoice }, 'Read now with this device’s voice instead'));
+  updateLoading();
+}
+function updateLoading() {
+  const box = loadBox(); if (!box || box.hidden) return;
+  const fresh = !App.store.get('readaloud:kokoro-ok', false);
+  box.querySelector('.rl-load-t').textContent = (fresh
+    ? `Getting Isabella’s voice ready: a one-time download of ${KOKORO_MB}`
+    : 'Getting Isabella’s voice ready') + (K.pct ? ` … ${K.pct}%` : ' …');
+  box.querySelector('.rl-bar i').style.width = (K.pct || 2) + '%';
+}
+function hideLoading() { const box = loadBox(); if (box) box.hidden = true; }
+function showAsk() {
+  const box = loadBox(); if (!box) return;
+  box.hidden = false;
+  box.querySelector('.rl-load-t').textContent = `Isabella’s natural voice needs a one-time download of ${KOKORO_MB}.`;
+  box.querySelector('.rl-bar i').style.width = '0%';
+  box.querySelector('.rl-load-b').replaceChildren(
+    App.el('button', { type: 'button', class: 'rl-alt rl-go', onclick: () => { K.askedOk = true; audioCtx(); st.token++; speakCurrent(); } }, 'Download Isabella'),
+    App.el('button', { type: 'button', class: 'rl-alt', onclick: useDeviceVoice }, 'Use this device’s voice'));
+}
+function note(msg) {
+  const n = player && player.querySelector('.rl-note'); if (!n) return;
+  n.replaceChildren(msg || ''); n.hidden = !msg;
+}
+function offerSwitch() {
+  const n = player && player.querySelector('.rl-note'); if (!n) return;
+  n.replaceChildren('Isabella is slow on this device. ',
+    App.el('button', { type: 'button', class: 'rl-alt', onclick: () => { note(''); useDeviceVoice(); } }, 'Switch to the device voice?'));
+  n.hidden = false;
+}
 function fillVoices() {
   if (!voiceSel) return;
+  const eng = engine();
   const cur = chosenVoice();
   voiceSel.innerHTML = '';
-  voices.forEach(v => voiceSel.append(App.el('option', { value: v.voiceURI, selected: cur && v.voiceURI === cur.voiceURI }, v.name.replace(/^(Microsoft|Google)\s+/, '') + ' (' + v.lang + ')')));
-  voiceSel.hidden = voices.length < 2;
+  if (kokoroPossible) voiceSel.append(App.el('option', { value: ISABELLA, selected: eng === 'kokoro' }, 'Isabella (natural voice)'));
+  voices.forEach(v => voiceSel.append(App.el('option', { value: v.voiceURI, selected: eng !== 'kokoro' && cur && v.voiceURI === cur.voiceURI }, v.name.replace(/^(Microsoft|Google)\s+/, '') + ' (' + v.lang + ')')));
+  voiceSel.hidden = voiceSel.options.length < 2;
+  const tip = player && player.querySelector('.rl-tip');
+  if (tip) tip.hidden = !(eng === 'system' && voicesAreBasic());
 }
 function playerHost() {
   const dlg = document.getElementById('storydlg');
@@ -319,13 +589,13 @@ function addStoryButton() {
 if (supported) {
   App.ready(() => {
     loadVoices();
-    try { synth.addEventListener ? synth.addEventListener('voiceschanged', loadVoices) : (synth.onvoiceschanged = loadVoices); } catch (e) {}
+    if (sysSupported) { try { synth.addEventListener ? synth.addEventListener('voiceschanged', loadVoices) : (synth.onvoiceschanged = loadVoices); } catch (e) {} }
     addSectionButtons();
     addStoryButton();
     App.tool({ id: 'listen', label: 'Listen', icon: ICON, order: 40, title: 'Read aloud from here', onClick: readOnScreen });
     App.on('story:open', () => { if (st.playing) stop(); addStoryButton(); });
     App.on('story:close', () => { if (st.playing && st.source && st.source.matches('article.story')) stop(); else if (player && player.parentNode !== document.body && !st.playing) document.body.append(player); });
-    window.addEventListener('pagehide', () => { try { synth.cancel(); } catch (e) {} });
+    window.addEventListener('pagehide', haltAll);
     document.addEventListener('keydown', e => {
       if (!st.playing || e.target.closest('input, textarea, select, [contenteditable]')) return;
       if (e.key === 'Escape' && !document.getElementById('storydlg')?.open) stop();

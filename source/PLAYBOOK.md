@@ -2,7 +2,7 @@
 
 How the series is made: *The Invisible World* (chemistry, https://saxster.github.io/kym-chem/) first, then *The Moving World* (physics, https://saxster.github.io/kym-physics/), written down so every next book can be made the same way, only better. Read this before you start a new book.
 
-**Version 2 (2026-10-28, during the physics book).** New: grounding-first research (§3a), teaching like Feynman (§9), the visual layer (§10), a provenance ledger the build enforces, the `:::predict`, `:::recall` and `:::school` blocks, and new lessons in §6.
+**Version 2.1 (2026-10-28, completed with the physics book).** New: grounding-first research (§3a), teaching like Feynman (§9), the `:::five` "Understand it" cards (§9a), the Honest Note opening in the letter, Isabella's in-browser neural voice (`Kokoro-82M` WebGPU `fp32` / WASM `q8`), interactive cover tiles (`m_cover`), the visual layer (§10), a provenance ledger the build enforces, the `:::predict`, `:::recall` and `:::school` blocks, and new lessons in §6.
 
 The series: free, non-commercial books for one reader (Kym, 12, Mumbai), shared publicly on GitHub Pages under CC BY-NC-SA 4.0.
 
@@ -23,7 +23,7 @@ The series: free, non-commercial books for one reader (Kym, 12, Mumbai), shared 
 11. **Ground first, then adapt.** Before any prose, every section gets a grounding note built from the MIT OCW and OpenStax sources (§3a). A fact may appear in the book only if it traces to a grounding note, a Python computation, or a cited research file.
 12. **Make it beautiful with everything the web can do** (§10): canvas, three.js, WebGL shaders, Web Audio, the phone's own sensors. Every moving thing teaches; nothing moves until she asks.
 
-**The letter to Kym is in Amar's own voice, and Amar is not a subject expert.** He is making the book he would have loved to read as a child. The letter never presents him as the authority: it says the explanations were built from MIT OCW and OpenStax and checked, and that if something doesn't make sense it is the book's fault, not hers. Don't invent memories or a childhood for him.
+**The letter to Kym is in Amar's own voice, and Amar is not a subject expert.** Every book's letter opens, right after `"Dear Kym,"`, with an **Honest Note**: that he is not a chemist/physicist, that he made the book he would have loved to read at her age with the help of AI (without naming a specific AI product), that the explanations draw on MIT OCW, OpenStax and misconception research, that independent checkers verified every fact, date and number from scratch, and that if something disagrees with what she finds elsewhere they will check it together. Don't invent memories or a childhood for him.
 
 ## 2. Subject archetypes
 
@@ -88,14 +88,15 @@ Ideas aren't copyrightable. Re-teach the content in our voice; never paste sourc
   - `:::fig` and `:::figwide` (Python SVG figure functions), with `:::live name {params}` under a figure to make it live
   - `:::story id` story callout cards
   - `:::predict` (v2): a question with `- option` lines and a hidden reveal; she must choose before the reveal shows, and the notebook keeps her choice
+  - `:::five Term` (v2): Feynman-style "Understand it" card placed right after the text has taught a central concept, with five core `?` questions (`What is it?`, `Why is it called this?`, `What problem did it solve?`, `Why does it work?`, `How does it help?`), three folded `??` go-deeper questions (`How do we know?`, `What it isn't`, `Where does it stop working?`), and a `Your turn` one-sentence explain-back saved in her notebook
   - `:::recall N` (v2): a misconception from Chapter N coming back in a new setting (spaced retrieval, because corrections fade within months)
   - `:::school` (v2): one kind sentence on how her school's syllabus words the same thing
 - **Stories:** `src/stories/<id>.md` with front matter (id, title, year, sort, people, group, terms, blurb; people also get name, born, died, role). The build auto-links the first mention of each story's `terms` per chapter. Stories open in a side panel with their own URL (`#story-id`). The groups are: table, people, tales, atoms, matter, change, quantity, electrons, carbon and tools. Give each new book its own groups.
 - **Back matter:** stories index, a timeline ("The adventure in time"), answers, glossary, notes on models and numbers, Further adventures, licence.
 - **App layer** (`app/`, bundled with esbuild; each module is optional and degrades gracefully):
   - **Reading:** one page at a time (`m_pages`), reading settings defaulting to sepia and the smallest size (`m_settings`), progress and resume and share links (`m_progress`), search with ⌘K (`m_search`).
-  - **Learning:** answer-first checks and experiment journals (`m_checks`), highlights, notes and an exportable notebook (`m_notebook`), read-aloud with sentence highlighting (`m_readaloud`).
-  - **Explorers:** the periodic table with Discovered, Explore, Build it and Practise tabs (`m_ptable`, `m_atlas`), and the adventure map with lifelines (`m_map`). These are subject-specific; replace them per book.
+  - **Learning:** answer-first checks and experiment journals (`m_checks`), highlights, notes and an exportable notebook (`m_notebook`), read-aloud with sentence highlighting and Isabella's in-browser neural voice (`Kokoro-82M` via `kokoro-js`, WebGPU `fp32` where available and WASM `q8` fallback, plus ranked system voices and unit pronunciation in `m_readaloud`).
+  - **Cover and explorers:** interactive cover tiles that open a profile card for each element or chapter milestone (`m_cover`, `k_cover.css`), full-page explorers with a guided 5-question explanation alongside the interactive view (`x_scale`, `x_sky`, `x_spectrum` in physics; `m_ptable`, `m_atlas`, `m_ptguide` in chemistry), and the adventure map with lifelines (`m_map`).
   - **Design and layout:** the dotted-engraving art, volume motifs and chapter spine (`m_beauty`), and margin-note reordering on narrow screens (`m_layout`).
 - **Site:** `python3 build.py --site build/site` writes `index.html`, a manifest, a service worker (offline and installable), icons, a link-preview image, README, NOTICES and LICENSE.
 

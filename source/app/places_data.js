@@ -57,17 +57,23 @@ export const PLACES = {
   karlsruhe: ['Karlsruhe', 49.01, 8.40],
   bern: ['Bern', 46.95, 7.45],
   mediterranean: ['The Mediterranean Sea', 36.00, 18.50],
+  arabiansea: ['The Arabian Sea', 15.00, 65.00],
   // Asia, Africa and the rest of the world
   alexandria: ['Alexandria, Egypt', 31.20, 29.92],
   syene: ['Syene (Aswan), Egypt', 24.09, 32.90],
   cairo: ['Cairo', 30.04, 31.24],
+  principe: ['Príncipe, off West Africa', 1.65, 7.40],
+  magamba: ['Magamba, Tanzania', -4.76, 38.25],
   bukhara: ['Bukhara', 39.77, 64.42],
   batavia: ['Batavia (Jakarta), Java', -6.21, 106.85],
   kapustinyar: ['Kapustin Yar, Russia', 48.57, 45.74],
   harvard: ['Harvard, Cambridge, Mass.', 42.37, -71.12],
   newyork: ['New York', 40.71, -74.01],
+  princeton: ['Princeton, New Jersey', 40.35, -74.66],
   washington: ['Washington, DC', 38.91, -77.04],
   philadelphia: ['Philadelphia', 39.95, -75.17],
+  capecanaveral: ['Cape Canaveral, Florida', 28.39, -80.60],
+  mtwilson: ['Mount Wilson, California', 34.22, -118.06],
   signalhill: ['Signal Hill, Newfoundland', 47.57, -52.68],
   tacoma: ['Tacoma Narrows, Washington', 47.27, -122.55],
 };
@@ -80,7 +86,7 @@ const RULES = [
   [/Peddar Road|Kenilworth|TIFR|Tata Institute of Fundamental Research/, 'tifr'],
   [/Worli|Nehru Planetarium|Sea Link/, 'worli'], [/Haji Ali/, 'hajiali'], [/Marine Drive/, 'marinedrive'],
   [/Bandra/, 'bandra'], [/Bombay|Mumbai|Crawford Market/, 'mumbai'],
-  [/Khodad|Narayangaon|GMRT|Giant Metrewave/, 'gmrt'], [/^Pune|Poona/, 'pune'],
+  [/Khodad|Narayangaon|GMRT|Giant Metrewave/, 'gmrt'], [/^Pune|Poona|Pune,/, 'pune'],
   [/Thumba/, 'thumba'], [/Sriharikota/, 'sriharikota'], [/Bangalore|Bengaluru/, 'bangalore'],
   [/Darjeeling|Sandakphu/, 'darjeeling'], [/Calcutta|Kolkata/, 'calcutta'], [/Dacca|Dhaka/, 'dacca'],
   [/Kusumapura|Patna|Pataliputra/, 'patna'], [/Ujjain/, 'ujjain'], [/Jaipur|Jantar Mantar/, 'jaipur'], [/Karnal/, 'karnal'],
@@ -90,15 +96,19 @@ const RULES = [
   [/Clapham/, 'clapham'], [/Cambridge,? (Mass|MA)|Harvard/, 'harvard'], [/Cambridge|Trinity College/, 'cambridge'],
   [/Royal Institution|London|Greenwich|Millennium Bridge/, 'london'], [/Manchester/, 'manchester'], [/Glasgow/, 'glasgow'],
   [/Cirey/, 'cirey'], [/Puy de Dôme|Puy-de-Dôme|Clermont/, 'puydedome'], [/Chamonix|Mont Blanc/, 'chamonix'],
-  [/Paris|Suresnes|Montmartre|Panthéon/, 'paris'],
+  [/Paris|Suresnes|Montmartre|Panthéon|Sèvres/, 'paris'],
   [/Hven|Uraniborg/, 'hven'], [/Copenhagen/, 'copenhagen'], [/Kungälv/, 'kungalv'],
   [/Prague/, 'prague'], [/Dresden/, 'dresden'], [/Berlin/, 'berlin'],
   [/Regensburg/, 'regensburg'], [/Magdeburg/, 'magdeburg'], [/Munich/, 'munich'], [/Karlsruhe/, 'karlsruhe'], [/Bern\b/, 'bern'],
-  [/Mediterranean|Narkunda/, 'mediterranean'],
-  [/Alexandria/, 'alexandria'], [/Syene|Aswan/, 'syene'], [/Cairo/, 'cairo'], [/Bukhara/, 'bukhara'],
+  [/Mediterranean|Narkunda/, 'mediterranean'], [/Arabian Sea|Pilsna/, 'arabiansea'],
+  [/Alexandria/, 'alexandria'], [/Syene|Aswan/, 'syene'], [/Cairo/, 'cairo'],
+  [/Príncipe|Principe/, 'principe'], [/Magamba|Iringa|Tanzania/, 'magamba'],
+  [/Bukhara/, 'bukhara'],
   [/Batavia|Jakarta|Java/, 'batavia'], [/Kapustin Yar/, 'kapustinyar'],
-  [/Washington, DC|Washington, D\.C\.|^Washington\b(?! state)/, 'washington'], [/New York/, 'newyork'],
-  [/Philadelphia/, 'philadelphia'], [/Signal Hill|Newfoundland/, 'signalhill'], [/Tacoma/, 'tacoma'],
+  [/Princeton/, 'princeton'],
+  [/Washington, DC|Washington, D\.C\.|^Washington\b(?! [Ss]tate)/, 'washington'], [/New York/, 'newyork'],
+  [/Philadelphia/, 'philadelphia'], [/Cape Canaveral|Kennedy Space Center/, 'capecanaveral'],
+  [/Mount Wilson|Pasadena/, 'mtwilson'], [/Signal Hill|Newfoundland/, 'signalhill'], [/Tacoma/, 'tacoma'],
 ];
 
 // A sortable year from the scene text: "about 250 BCE" -> -250, "499 CE" -> 499, "the 1780s" -> 1780,
@@ -112,6 +122,10 @@ export function yearOf(text) {
   if (m) return parseInt(m[1], 10);
   m = /\b(1[0-9]{3}|20[0-9]{2})s?\b/.exec(text);
   if (m) return parseInt(m[1], 10);
+  m = /(?:about|c\.|,)\s*([3-9]\d{2})\b/i.exec(text);
+  if (m) return parseInt(m[1], 10);
+  m = /\b(\d+)(?:st|nd|rd|th)\s*(?:century|c\.)/i.exec(text);
+  if (m) return (parseInt(m[1], 10) - 1) * 100 + 50;
   m = /the year (\d{1,4})/.exec(text);
   if (m) return parseInt(m[1], 10);
   return null;

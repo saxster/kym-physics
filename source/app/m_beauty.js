@@ -100,119 +100,229 @@ function cover() {
 
 // ------------------------------------------------------------------ volume motifs
 const MOTIFS = {
-  // Volume I: an electron cloud. Dots are sampled from where an electron is likely to be found
-  // (a dense spherical cloud with two lobes along a tilted axis); a few are re-sampled each frame, so it shimmers.
+  // Volume I (Motion and force): Galileo's parabolic trajectories. Four projectile arcs launched from the left at
+  // 28°, 45°, 62° and 74°, drawn in stipple with vertical drop lines at equal horizontal intervals, while bright
+  // stones trace the parabolas with steady horizontal speed and uniformly accelerating vertical speed.
   cloud(ctx, w, h, col, r) {
-    const cx = w * .5, cy = h * .5, R = Math.min(w, h) * .62;
-    const ang = -0.5, ax = Math.cos(ang), ay = Math.sin(ang);
-    const sample = () => {
-      const u = r();
-      if (u < .42) {                       // 1s: radius ~ Gamma(3)
-        const rr = -Math.log(r() * r() * r() + 1e-9) * R * .085;
-        const th = r() * 6.2832;
-        return [cx + rr * Math.cos(th), cy + rr * Math.sin(th) * .96];
-      }
-      const lobe = r() < .5 ? -1 : 1;      // 2p lobes
-      const along = (Math.abs(gauss(r)) * .22 + .36) * R * lobe;
-      const across = gauss(r) * R * .16 * (1 - Math.min(.6, Math.abs(along) / R * .5));
-      return [cx + ax * along - ay * across, cy + ay * along + ax * across];
+    const x0 = w * .10, y0 = h * .84, span = w * .80, g = 1.0;
+    const v0 = Math.sqrt(span * g);                   // 45° lands at x0 + span
+    const angles = [28, 45, 62, 74].map(d => d * Math.PI / 180);
+    const fade = (x, y) => {
+      const u = (x - w * .5) / (w * .5), v = (y - h * .5) / (h * .5);
+      return Math.max(0, 1 - (u * u * .85 + v * v * 1.05));
     };
-    const n = Math.round(Math.min(3400, w * h / 70));
-    const pts = Array.from({ length: n }, () => { const [x, y] = sample(); return { x, y, a: .35 + r() * .5 }; });
-    const proton = col.proton;
-    return (t, dt) => {
-      if (dt) for (let i = 0; i < n * .025; i++) { const p = pts[(r() * n) | 0]; const [x, y] = sample(); p.x = x; p.y = y; p.a = .1; }
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = col.vol;
-      for (const p of pts) {
-        if (p.a < .8) p.a = Math.min(.8, p.a + (dt ? .02 : 1));
-        ctx.globalAlpha = p.a * .8;
-        ctx.fillRect(p.x, p.y, 1.35, 1.35);
+    const arcs = angles.map(th => {
+      const vx = v0 * Math.cos(th), vy = v0 * Math.sin(th);
+      const tFlight = (2 * vy) / g;
+      const pts = [];
+      for (let i = 0; i <= 180; i++) {
+        const t = (i / 180) * tFlight;
+        const x = x0 + vx * t;
+        const y = y0 - (vy * t - 0.5 * g * t * t) * (h / span) * 1.35;
+        pts.push([x, y]);
       }
-      ctx.globalAlpha = 1; ctx.fillStyle = proton;
-      ctx.beginPath(); ctx.arc(cx, cy, Math.max(2.2, R * .012), 0, 6.2832); ctx.fill();
-    };
-  },
-
-  // Volume II: change, seen up close. Two crowds of particles trade members at equal rates (a dynamic equilibrium):
-  // every particle that leaves one side is matched, on average, by one arriving from the other.
-  balance(ctx, w, h, col, r) {
-    const R = Math.min(w * .22, h * .32);
-    const A = { x: w * .3, y: h * .52 }, B = { x: w * .7, y: h * .48 };
-    const n = Math.round(Math.min(900, w * h / 260));
-    const home = c => { const rr = Math.sqrt(r()) * R, th = r() * 6.2832; return { x: c.x + rr * Math.cos(th), y: c.y + rr * Math.sin(th) }; };
-    const pts = Array.from({ length: n }, (_, i) => { const side = i % 2 ? A : B; const p = home(side); return { ...p, side, tx: 0, ty: 0, k: 1, sx: 0, sy: 0, s: .9 + r() * .9 }; });
-    return (t, dt) => {
-      ctx.clearRect(0, 0, w, h);
-      for (const p of pts) {
-        if (dt) {
-          if (p.k >= 1 && r() < .0016 * (dt / 16)) {           // start a crossing
-            const to = p.side === A ? B : A; const q = home(to);
-            p.sx = p.x; p.sy = p.y; p.tx = q.x; p.ty = q.y; p.k = 0; p.side = to;
-          }
-          if (p.k < 1) {
-            p.k = Math.min(1, p.k + dt / 2600);
-            const e = p.k < .5 ? 2 * p.k * p.k : 1 - Math.pow(-2 * p.k + 2, 2) / 2;
-            const lift = Math.sin(Math.PI * p.k) * h * .16 * (p.side === B ? -1 : 1);
-            p.x = p.sx + (p.tx - p.sx) * e; p.y = p.sy + (p.ty - p.sy) * e + lift;
-          } else {
-            p.x += gauss(r) * .18; p.y += gauss(r) * .18;
+      return { pts, vx, vy, tFlight };
+    });
+    const dots = [];
+    // Stippled ground baseline and equal horizontal stroboscopic columns
+    for (let x = w * .06; x < w * .94; x += 2.2) {
+      dots.push([x + gauss(r) * .4, y0 + gauss(r) * .6, fade(x, y0) * .65]);
+    }
+    arcs.forEach(a => {
+      a.pts.forEach(([x, y]) => {
+        for (let k = 0; k < 2; k++) {
+          dots.push([x + gauss(r) * .9, y + gauss(r) * .9, fade(x, y)]);
+        }
+      });
+      // Vertical drop guides on the 45° arc showing equal Δx steps
+      if (Math.abs(a.vx - a.vy) < 1e-2) {
+        for (let step = 1; step <= 7; step++) {
+          const idx = Math.round((step / 8) * (a.pts.length - 1));
+          const [gx, gy] = a.pts[idx];
+          for (let y = gy; y < y0; y += 4.5) {
+            dots.push([gx + gauss(r) * .35, y + gauss(r) * .35, fade(gx, y) * .5]);
           }
         }
-        ctx.globalAlpha = p.k < 1 ? .95 : .55;
-        ctx.fillStyle = p.k < 1 ? col.vol : col.ink;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.k < 1 ? p.s + .5 : p.s, 0, 6.2832); ctx.fill();
+      }
+    });
+    const flyers = arcs.map((a, i) => ({ arc: a, k: (i * .27) % 1, trail: [] }));
+    return (t, dt) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = col.ink;
+      for (const [x, y, f] of dots) {
+        if (f <= 0) continue;
+        ctx.globalAlpha = f * .36;
+        ctx.fillRect(x, y, 1.2, 1.2);
+      }
+      // Launch origin dot
+      ctx.globalAlpha = .75;
+      ctx.fillStyle = col.proton;
+      ctx.beginPath(); ctx.arc(x0, y0, 3.2, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = col.vol;
+      for (const fl of flyers) {
+        if (dt) {
+          fl.k += dt / 4200;
+          if (fl.k >= 1) { fl.k -= 1; fl.trail.length = 0; }
+        }
+        const idx = Math.min(fl.arc.pts.length - 1, Math.floor(fl.k * (fl.arc.pts.length - 1)));
+        const p = fl.arc.pts[idx];
+        fl.trail.push(p);
+        if (fl.trail.length > 24) fl.trail.shift();
+        fl.trail.forEach(([tx, ty], i) => {
+          ctx.globalAlpha = (i / fl.trail.length) * .45 * fade(tx, ty);
+          ctx.beginPath(); ctx.arc(tx, ty, 1.6, 0, 6.2832); ctx.fill();
+        });
+        ctx.globalAlpha = .92 * fade(p[0], p[1]);
+        ctx.beginPath(); ctx.arc(p[0], p[1], 3.1, 0, 6.2832); ctx.fill();
       }
       ctx.globalAlpha = 1;
     };
   },
 
-  // Volume III: chemistry at work. A sheet of carbon (graphene) drawn in stipple, with charges hopping along its bonds.
-  lattice(ctx, w, h, col, r) {
-    const a = Math.max(26, Math.min(w, h) / 9);         // bond length
-    const dx = a * Math.sqrt(3), dy = a * 1.5;
-    const nodes = [], key = (x, y) => Math.round(x) + ',' + Math.round(y), index = new Map();
-    for (let row = -1; row * dy < h + a * 2; row++) {
-      for (let c = -1; c * dx < w + dx; c++) {
-        const x0 = c * dx + (row % 2 ? dx / 2 : 0), y0 = row * dy;
-        for (const [x, y] of [[x0, y0], [x0, y0 + a]]) {
-          const k = key(x, y);
-          if (!index.has(k)) { index.set(k, nodes.length); nodes.push({ x, y, nb: [] }); }
+  // Volume II (Gravity, pressure and energy): Keplerian elliptical orbits around a central star at one focus, with
+  // equal-area radial spokes drawn in stipple and planets sweeping faster near perihelion and slower near aphelion.
+  balance(ctx, w, h, col, r) {
+    const cx = w * .52, cy = h * .50;
+    const S = Math.min(w * .44, h * .44);
+    const fade = (x, y) => {
+      const u = (x - w * .5) / (w * .5), v = (y - h * .5) / (h * .5);
+      return Math.max(0, 1 - (u * u * .85 + v * v * .95));
+    };
+    const orbits = [
+      { a: S * .42, e: 0.20, rot: -0.18, period: 3600, phase: 0.1 },
+      { a: S * .72, e: 0.32, rot:  0.12, period: 6200, phase: 0.55 },
+      { a: S * 1.02, e: 0.24, rot: -0.08, period: 9400, phase: 0.82 },
+    ];
+    // Central Sun sits at the focus of the middle ellipse
+    const focusShift = orbits[1].a * orbits[1].e;
+    const fx = cx - focusShift * Math.cos(orbits[1].rot);
+    const fy = cy - focusShift * Math.sin(orbits[1].rot);
+    const posOn = (orb, th) => {
+      const b = orb.a * Math.sqrt(1 - orb.e * orb.e);
+      const ex = orb.a * Math.cos(th) - orb.a * orb.e;
+      const ey = b * Math.sin(th);
+      const c = Math.cos(orb.rot), s = Math.sin(orb.rot);
+      return [fx + ex * c - ey * s, fy + ex * s + ey * c];
+    };
+    const dots = [];
+    // Stippled Sun disc at the focus
+    for (let i = 0; i < 240; i++) {
+      const rr = Math.sqrt(r()) * 9.5, th = r() * 6.2832;
+      dots.push([fx + rr * Math.cos(th), fy + rr * Math.sin(th), 0.9]);
+    }
+    // Stippled elliptical tracks + Kepler equal-area spokes on the middle orbit
+    orbits.forEach((orb, idx) => {
+      for (let i = 0; i < 260; i++) {
+        const th = (i / 260) * 6.2832;
+        const [x, y] = posOn(orb, th);
+        dots.push([x + gauss(r) * .6, y + gauss(r) * .6, fade(x, y)]);
+      }
+      if (idx === 1) {
+        for (const th of [-0.35, 0.35, Math.PI - 0.22, Math.PI + 0.22]) {
+          const [ox, oy] = posOn(orb, th);
+          for (let s = 0.08; s < 1; s += 0.03) {
+            const sx = fx + (ox - fx) * s, sy = fy + (oy - fy) * s;
+            dots.push([sx + gauss(r) * .35, sy + gauss(r) * .35, fade(sx, sy) * .55]);
+          }
         }
       }
-    }
-    const link = (i, j) => { if (!nodes[i].nb.includes(j)) { nodes[i].nb.push(j); nodes[j].nb.push(i); } };
-    nodes.forEach((n, i) => {
-      for (const [ox, oy] of [[0, a], [dx / 2, -a / 2], [-dx / 2, -a / 2]]) {
-        const j = index.get(key(n.x + ox, n.y + oy)); if (j != null) link(i, j);
-      }
     });
-    // fade the sheet towards the edges so it sits on the page like an engraving
-    const fade = (x, y) => { const u = x / w - .5, v = y / h - .5; return Math.max(0, 1 - (u * u * 2.6 + v * v * 3.2)); };
-    const dots = [];
-    nodes.forEach((n, i) => n.nb.forEach(j => { if (j > i) { const m = nodes[j]; const steps = Math.round(a / 4.2);
-      for (let s = 1; s < steps; s++) { const x = n.x + (m.x - n.x) * s / steps + gauss(r) * .45, y = n.y + (m.y - n.y) * s / steps + gauss(r) * .45; dots.push([x, y, fade(x, y)]); } } }));
-    const atoms = nodes.map(n => [n.x, n.y, fade(n.x, n.y)]);
-    const live = nodes.map((n, i) => i).filter(i => fade(nodes[i].x, nodes[i].y) > .35);
-    const sparks = Array.from({ length: Math.min(9, Math.max(4, live.length / 18 | 0)) }, () => {
-      const i = live[(r() * live.length) | 0]; return { i, j: nodes[i].nb[0] ?? i, k: r(), trail: [] };
-    });
+    const bodies = orbits.map(orb => ({ orb, th: orb.phase * 6.2832, moonTh: r() * 6.2832, trail: [] }));
     return (t, dt) => {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = col.ink;
-      for (const [x, y, f] of dots) { if (f <= 0) continue; ctx.globalAlpha = f * .34; ctx.fillRect(x, y, 1.1, 1.1); }
-      for (const [x, y, f] of atoms) { if (f <= 0) continue; ctx.globalAlpha = f * .5; ctx.beginPath(); ctx.arc(x, y, 2.1, 0, 6.2832); ctx.fill(); }
-      for (const s of sparks) {
+      for (const [x, y, f] of dots) {
+        if (f <= 0) continue;
+        ctx.globalAlpha = f * .36;
+        ctx.fillRect(x, y, 1.15, 1.15);
+      }
+      ctx.globalAlpha = .85;
+      ctx.fillStyle = col.proton;
+      ctx.beginPath(); ctx.arc(fx, fy, 4.2, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = col.vol;
+      bodies.forEach((b, idx) => {
+        const [px, py] = posOn(b.orb, b.th);
         if (dt) {
-          s.k += dt / 900;
-          if (s.k >= 1) { s.k = 0; const nb = nodes[s.j].nb.filter(q => q !== s.i && fade(nodes[q].x, nodes[q].y) > .15); s.i = s.j; s.j = nb.length ? nb[(r() * nb.length) | 0] : s.i; }
+          // Kepler's 2nd law: angular rate faster when closer to focus
+          const dist = Math.hypot(px - fx, py - fy) / b.orb.a;
+          const dth = (6.2832 * dt / b.orb.period) / Math.max(0.45, dist * dist);
+          b.th = (b.th + dth) % 6.2832;
+          b.moonTh = (b.moonTh + dt / 480) % 6.2832;
         }
-        const p = nodes[s.i], q = nodes[s.j];
-        const x = p.x + (q.x - p.x) * s.k, y = p.y + (q.y - p.y) * s.k;
-        s.trail.push([x, y]); if (s.trail.length > 26) s.trail.shift();
+        const [nx, ny] = posOn(b.orb, b.th);
+        b.trail.push([nx, ny]);
+        if (b.trail.length > 26) b.trail.shift();
+        b.trail.forEach(([tx, ty], i) => {
+          ctx.globalAlpha = (i / b.trail.length) * .45 * fade(tx, ty);
+          ctx.beginPath(); ctx.arc(tx, ty, 1.5, 0, 6.2832); ctx.fill();
+        });
+        ctx.globalAlpha = .92 * fade(nx, ny);
+        ctx.beginPath(); ctx.arc(nx, ny, idx === 1 ? 3.3 : 2.6, 0, 6.2832); ctx.fill();
+        if (idx === 1) {
+          const mx = nx + 11 * Math.cos(b.moonTh), my = ny + 11 * Math.sin(b.moonTh);
+          ctx.globalAlpha = .75 * fade(mx, my);
+          ctx.beginPath(); ctx.arc(mx, my, 1.6, 0, 6.2832); ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1;
+    };
+  },
+
+  // Volume III (Waves, sound and light): Two coherent wave sources sending circular ripples across a pond, with
+  // stippled interference fringes and expanding wavefront rings.
+  lattice(ctx, w, h, col, r) {
+    const sep = Math.min(w, h) * .28;
+    const S1 = { x: w * .5 - sep * .5, y: h * .52 };
+    const S2 = { x: w * .5 + sep * .5, y: h * .52 };
+    const wl = Math.max(24, Math.min(w, h) * .13);
+    const maxR = Math.hypot(w, h) * .52;
+    const fade = (x, y) => {
+      const u = (x - w * .5) / (w * .5), v = (y - h * .5) / (h * .5);
+      return Math.max(0, 1 - (u * u * .95 + v * v * 1.1));
+    };
+    // Static background stipple sampled along constructive interference crests
+    const n = Math.round(Math.min(2800, w * h / 85));
+    const bg = [];
+    for (let i = 0; i < n * 2 && bg.length < n; i++) {
+      const x = r() * w, y = r() * h;
+      const d1 = Math.hypot(x - S1.x, y - S1.y);
+      const d2 = Math.hypot(x - S2.x, y - S2.y);
+      const amp = 0.5 * (Math.cos(6.2832 * d1 / wl) + Math.cos(6.2832 * d2 / wl));
+      if (r() < amp * amp * .85) {
+        bg.push([x, y, fade(x, y) * (.25 + .55 * Math.abs(amp))]);
+      }
+    }
+    let phase = 0;
+    return (t, dt) => {
+      if (dt) phase = (phase + dt / 1800) % 1;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = col.ink;
+      for (const [x, y, f] of bg) {
+        if (f <= 0) continue;
+        ctx.globalAlpha = f * .42;
+        ctx.fillRect(x, y, 1.15, 1.15);
+      }
+      // Expanding stippled wavefront circles from S1 and S2
+      ctx.fillStyle = col.vol;
+      for (const src of [S1, S2]) {
+        for (let k = 0; k < 7; k++) {
+          const rad = (k + phase) * wl;
+          if (rad > maxR) continue;
+          const steps = Math.max(24, Math.round(rad * 1.1));
+          const ringFade = Math.max(0, 1 - rad / maxR);
+          for (let s = 0; s < steps; s++) {
+            const th = (s / steps) * 6.2832;
+            const x = src.x + rad * Math.cos(th), y = src.y + rad * Math.sin(th);
+            const f = fade(x, y) * ringFade;
+            if (f <= 0.04) continue;
+            ctx.globalAlpha = f * .62;
+            ctx.fillRect(x, y, 1.35, 1.35);
+          }
+        }
+        ctx.globalAlpha = .9;
+        ctx.fillStyle = col.proton;
+        ctx.beginPath(); ctx.arc(src.x, src.y, 3.2, 0, 6.2832); ctx.fill();
         ctx.fillStyle = col.vol;
-        s.trail.forEach(([tx, ty], idx) => { ctx.globalAlpha = (idx / s.trail.length) * .5; ctx.beginPath(); ctx.arc(tx, ty, 1.6, 0, 6.2832); ctx.fill(); });
-        ctx.globalAlpha = .95; ctx.beginPath(); ctx.arc(x, y, 3, 0, 6.2832); ctx.fill();
       }
       ctx.globalAlpha = 1;
     };

@@ -1,0 +1,272 @@
+# Provenance for the cast life stories, part 1 (group: people): one entry per story ("story:<id>").
+# Every number in these stories was recomputed with python3 -I from the inputs named here; the one-liners are listed
+# under `computed:` (the build ignores that key). Claims outside grounding/ and research/ are flagged in the writer's report.
+
+"story:p-aryabhata":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.1 Earth and Sky; 4.7 Eclipses of the Sun and Moon"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky"
+      took: "apparent turning of the sky vs turning Earth; Foucault pendulum 1851; lunar and solar eclipses as shadows"
+  history:
+    - what: "Kusumapura (Patna), 499 CE (some scholars date nearer 510); boat analogy; eclipses as shadows, not Rahu; caution against heliocentric and '99.4% accurate' online claims; dates 476–c.550"
+      source: "research/history.md §2 and Cast list"
+      url: "https://en.wikipedia.org/wiki/Aryabhatiya"
+    - what: "Aryabhata biography and boat analogy"
+      source: "research/history.md §2"
+      url: "https://www.schoolsobservatory.org/learn/history/biographies/aryabhata"
+    - what: "Foucault pendulum, Panthéon, Paris, 1851"
+      source: "research/history.md true-stories list"
+      url: "https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/j.crhy.2017.11.003.pdf"
+  computed:
+    - "python3 -I -c 'print(499 - 476)' -> 23 years old in 499 CE"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-brahmagupta":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.3 Newton's Universal Law of Gravitation"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation"
+      took: "Moon at 60 Earth radii, 1/3600 inverse-square test, 0.00272 m/s² linking fall to orbit"
+  history:
+    - what: "Ujjain region, 628 CE; Al-Biruni (c. 1030) report that heavy things fall to the Earth by a law of nature because it is the Earth's nature to attract them as it is water's nature to flow; qualitative idea with no inverse-square law or orbital link (HEDGE); dates 598–668"
+      source: "research/history.md §2 and Cast list"
+      url: "https://arxiv.org/pdf/2510.17600"
+    - what: "Al-Biruni's India (c. 1030)"
+      source: "research/history.md §2"
+      url: "https://en.wikipedia.org/wiki/India_(Al-Biruni)"
+  computed:
+    - "python3 -I -c 'print(628 - 598, 60**2, round(9.8/60**2, 5))' -> age 30 in 628 CE; 3600; 0.00272 m/s²"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-ibn-al-haytham":
+  openstax:
+    - book: "College Physics 2e"
+      section: "26.1 Physics of the Eye; 25.1 The Ray Aspect of Light; 25.2 The Law of Reflection"
+      url: "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye"
+      took: "Euclid and Ptolemy extramission vs Ibn al-Haytham; light reflected from objects enters the eye through the lens to the optic nerve; straight-line rays"
+  research:
+    - what: "Extramission held by most children and a majority of adults on drawing tasks (Winer et al. 2002)"
+      source: "research/misconceptions.md §9"
+      url: "https://Www.Gwern.net/doc/psychology/cognitive-bias/illusion-of-depth/extramission/2002-winer.pdf"
+  history:
+    - what: "Cairo, c. 1011–21; Book of Optics (Kitab al-Manazir); bright light hurts the eyes; every point sends out rays; dark-room (camera obscura) images; feigned madness before Caliph al-Hakim over the Nile (HEDGE); dates c.965–c.1040"
+      source: "research/history.md §5 and Cast list"
+      url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"
+    - what: "Ibn al-Haytham optical experiments in Cairo"
+      source: "research/history.md §5"
+      url: "https://www.bibalex.org/SCIplanet/en/Article/Details.aspx?id=5200"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-bhaskara":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.1 Earth and Sky"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky"
+      took: "spherical Earth, meridians and latitude from shadow altitude"
+  history:
+    - what: "Ujjain, c. 1150; head of the Ujjain observatory; Siddhanta Shiromani and Goladhyaya (sphere, Earth, instruments); caution on unverified internet gravity verses (HEDGE); dates c.1114–1185"
+      source: "research/history.md §2 and Cast list"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Bhaskara_II"
+  computed:
+    - "python3 -I -c 'print(1150 - 1114)' -> age 36 in 1150"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-stevin":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 5 §5.2 Free Fall (mass independence when air drag is negligible)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter5.pdf"
+      took: "equal free-fall acceleration independent of mass"
+  openstax:
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects; 5.2 Drag Forces"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "why dense balls minimise air resistance relative to weight; Pisa drop framed as legend"
+  history:
+    - what: "Delft, 1586: Simon Stevin and Jan Cornets de Groot dropped two lead balls, one 10× heavier, 30 ft from the Nieuwe Kerk tower onto a wooden board and heard a single thud; published 1586, three years before Galileo reached Pisa; dates 1548–1620"
+      source: "research/history.md §1 and Cast list"
+      url: "https://en.wikipedia.org/wiki/Delft_tower_experiment"
+    - what: "Pisa Leaning Tower story comes only from Viviani (LEGEND/HEDGE)"
+      source: "research/history.md §1"
+      url: "https://physicsworld.com/a/the-legend-of-the-leaning-tower/"
+  computed:
+    - "python3 -I -c 'print(round(30*0.3048, 1), 1589 - 1586)' -> 9.1 m; 3 years before 1589"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-galileo":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 4 §4.5 Constant Acceleration (x = ½at²)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf"
+      took: "distance proportional to time squared under constant acceleration"
+  openstax:
+    - book: "Physics"
+      section: "3.2 Representing Acceleration with Equations and Graphs"
+      url: "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs"
+      took: "constant acceleration kinematics on an incline"
+  history:
+    - what: "La Bilancetta (1586, age 22) debunking Vitruvius's bathtub overflow story with a hydrostatic balance; dates 1564–1642"
+      source: "research/history.md §3 and Cast list"
+      url: "https://math.nyu.edu/Archimedes/Crown/bilancetta.html"
+    - what: "Vincenzo Galilei (Florence, c. 1589): octave on a lute string needs 4× the weight, not 2× (Pythagoras hammers LEGEND)"
+      source: "research/history.md §5"
+      url: "https://aps.org/apsnews/2015/07/death-vincenzo-galilei"
+    - what: "Pisa tower story from Viviani only (LEGEND/HEDGE)"
+      source: "research/history.md §1"
+      url: "https://physicsworld.com/a/the-legend-of-the-leaning-tower/"
+    - what: "Padua c. 1604 inclined planes (TRUE) and Stillman Drake's singing/lute-fret reconstruction (HEDGE)"
+      source: "research/history.md §1"
+      url: "https://www.teacherplus.org/?p=16841"
+    - what: "Venice and Padua 1609–10: heard of Dutch spyglass May 1609, 8–9× telescope shown 25 Aug 1609 from San Marco campanile, Jupiter's moons 7–15 Jan 1610, Sidereus Nuncius March 1610"
+      source: "research/history.md §1"
+      url: "https://www.astronomy.com/today-in-the-history-of-astronomy/jan-7-1610-galileo-sees-four-moons-of-jupiter"
+  computed:
+    - "python3 -I -c 'print(1586 - 1564, [n**2 - (n-1)**2 for n in range(1, 5)], [n**2 for n in range(1, 5)])' -> age 22; [1, 3, 5, 7]; [1, 4, 9, 16]"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-newton":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 9 §9.2 Universal Law of Gravitation and the Circular Orbit of the Moon"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter9.pdf"
+      took: "Moon's centripetal acceleration and orbital period comparison"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.3 Newton's Universal Law of Gravitation"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation"
+      took: "first law straight-line path vs curved orbit; 60 Earth radii, 1/3600, 0.00272 m/s²"
+    - book: "College Physics 2e"
+      section: "6.5 Newton's Universal Law of Gravitation; 25.5 Dispersion: The Rainbow and Prisms"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "'pretty nearly' agreement; 27.3 d orbit; violet refracts more than red in glass"
+  history:
+    - what: "Woolsthorpe/Cambridge 1666 and 6 Feb 1672 letter: shutter hole, prism spectrum, experimentum crucis with second prism showing white light is a mixture; dates 1643–1727"
+      source: "research/history.md §5 and Cast list"
+      url: "https://en.wikisource.org/wiki/New_Theory_About_Light_and_Colour"
+    - what: "Woolsthorpe 1666 apple account told to Stukeley in 1726 ('occasion'd by the fall of an apple, as he sat in contemplative mood'); did not hit his head; 'an 18th-century sound bite' (HEDGE)"
+      source: "research/history.md §1"
+      url: "https://www.nbcnews.com/id/wbna34944738"
+    - what: "Halley's August 1684 visit and the 1687 Principia"
+      source: "research/history.md §1"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+  computed:
+    - "python3 -I -c 'import math; r=3.84e8; T=2.3605847e6; a=4*math.pi**2*r/T**2; print(round(9.8/3600, 5), round(0.5*a*1000, 2), round(0.5*a*3600, 2), round(0.5*9.8, 1))' -> 0.00272 m/s²; 1.36 mm in 1 s; 4.9 m in 60 s; 4.9 m apple in 1 s"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-halley":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.4 Orbits in the Solar System"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "highly eccentric elliptical orbits of comets; Halley's comet"
+    - book: "College Physics 2e"
+      section: "6.6 Satellites and Kepler's Laws; 14.6 Convection"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-6-satellites-and-keplers-laws-an-argument-for-simplicity"
+      took: "gravitational perturbations on orbits; convection and land-sea heating"
+  history:
+    - what: "Cambridge August 1684 visit to Newton; Royal Society drained by Willughby's History of Fishes (De Historia Piscium), used partly to pay Halley's salary; Halley paid to print the Principia (1687); dates 1656–1742"
+      source: "research/history.md §1 and Cast list"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+    - what: "Prediction of 1758 comet return; Clairaut, Lalande and Nicole-Reine Lepaute computed Jupiter and Saturn pulls (mid-April 1759 perihelion); Palitzsch sighted it on 25 December 1758 near Dresden"
+      source: "research/history.md §2"
+      url: "https://ntrs.nasa.gov/api/citations/19800003728/downloads/19800003728.pdf"
+    - what: "1686 giant-sea-breeze theory of the monsoon and Gadgil et al. (2021) ITCZ revision"
+      source: "research/history.md §9"
+      url: "https://eprints.iisc.ac.in/69617/"
+  computed:
+    - "python3 -I -c 'print(1684 - 1656, 1742 - 1656, 1607 - 1531, 1682 - 1607, 1758 - 1682)' -> age 27/28 in Aug 1684; age 85 at death; intervals 76, 75, 76 yr"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-du-chatelet":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 13 §13.2 Kinetic Energy; Week 5 Lesson 15.1 Momentum and Impulse"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter13.pdf"
+      took: "kinetic energy ½mv² and work over distance vs momentum mv and impulse over time"
+  openstax:
+    - book: "College Physics 2e"
+      section: "7.2 Kinetic Energy and the Work-Energy Theorem; 7.3 Gravitational Potential Energy"
+      url: "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem"
+      took: "doubling speed quadruples kinetic energy; v = √(2gh) so 4× drop height gives 2× speed"
+  history:
+    - what: "Leiden 1722 ('s Gravesande brass balls in soft clay: 2× speed gives 4× dent depth) and Cirey 1740 (du Châtelet's Institutions de physique backing Leibniz's vis viva mv²; translated Newton's Principia into French); dates 1706–1749"
+      source: "research/history.md §1 and Cast list"
+      url: "https://blogs.otago.ac.nz/emxphi/tag/du-chatelet/"
+    - what: "Willem 's Gravesande clay experiments and the vis viva controversy"
+      source: "research/history.md §1"
+      url: "https://en.wikipedia.org/wiki/Willem_%27s_Gravesande"
+  computed:
+    - "python3 -I -c 'print(2**2, 3**2, 1748 - 1706)' -> 4× dent for 2× speed (4× height); 9× dent for 3× speed (9× height); age 42 in 1748"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-faraday":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      where: "Class 20 slides (Faraday's law and changing magnetic flux)"
+      url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/presentati_w09d1/"
+      took: "changing magnetic field induces current"
+  openstax:
+    - book: "Physics"
+      section: "20.2 Motors, Generators, and Transformers; 20.3 Electromagnetic Induction"
+      url: "https://openstax.org/books/physics/pages/20-2-motors-generators-and-transformers"
+      took: "motor force on current-carrying wire; induction only when magnetic field changes; generators and transformers"
+    - book: "College Physics 2e"
+      section: "23.1 Induced Emf and Magnetic Flux"
+      url: "https://openstax.org/books/college-physics-2e/pages/23-1-induced-emf-and-magnetic-flux"
+      took: "Faraday's two-coil iron ring apparatus"
+  history:
+    - what: "Royal Institution, 3–4 September 1821 spinning wire around magnet in mercury (first motor); 29 August 1831 iron ring with two coils (first transformer and induction); biography and dates 1791–1867"
+      source: "research/history.md §6 and Cast list"
+      url: "https://www.theiet.org/resources/library/archives/biographies/faraday.cfm"
+    - what: "Faraday's 1821 and 1831 electromagnetic discoveries"
+      source: "research/history.md §6"
+      url: "https://www.aps.org/apsnews/2001/08/faraday-electromagnetism"
+    - what: "Royal Institution, 1836: 12 ft foil-covered cube (Faraday cage), 'not the least influence'"
+      source: "research/history.md §6"
+      url: "https://en.wikipedia.org/wiki/Faraday_cage"
+  computed:
+    - "python3 -I -c 'print(1812 - 1791, 1831 - 1821)' -> age 20/21 in 1812; 10 years from 1821 motor to 1831 ring"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-jc-bose":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      where: "Course notes Ch 13 §13.3 Electromagnetic Waves (Hertz 1887–88)"
+      url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapte13em_waves/"
+      took: "Hertz generation and detection of electromagnetic waves"
+  openstax:
+    - book: "College Physics 2e"
+      section: "24.1 Maxwell's Equations: Electromagnetic Waves Predicted and Observed; 24.3 The Electromagnetic Spectrum"
+      url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum"
+      took: "c = fλ relation for microwaves and millimetre waves"
+  history:
+    - what: "Calcutta, 1895 public demonstration chaired by Lt-Governor Sir Alexander Mackenzie (~75 ft through walls, bell and gunpowder, details HEDGE); 5 mm (~60 GHz) millimetre waves, horn antennas, polarisers, coherer; January 1897 Royal Institution lecture at Rayleigh's invitation; dates 1858–1937"
+      source: "research/history.md §6 and Cast list"
+      url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"
+    - what: "IEEE Milestone proposal for Bose's 1894–96 Presidency College experiments"
+      source: "research/history.md §6"
+      url: "https://ieeemilestones.ethw.org/Milestone-Proposal:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"
+    - what: "US Patent 755,840 (galena crystal detector, filed 1901, granted 1904) filed by Sara Bull and Sister Nivedita, allowed to lapse (HEDGE nuance)"
+      source: "research/history.md §6"
+      url: "https://www.computerhistory.org/siliconengine/semiconductor-rectifiers-patented-as-cats-whisker-detectors/"
+  computed:
+    - "python3 -I -c 'print(round(2.998e8 / 5e-3 / 1e9, 1))' -> 60.0 GHz for 5 mm waves"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:p-leavitt":
+  ocw:
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      where: "Problem Set 10, Problem 5 Cepheid Variables as Distance Indicators (Leavitt's 1912 SMC data of 25 Cepheids)"
+      url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps10/"
+      took: "25 Cepheids in the Small Magellanic Cloud; brightness vs log period"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "17.3 The Spectra of Stars (Pickering's women computers paid 1/3 to 1/4 of men's salary); 19.2 Surveying the Stars (parallax limit); 19.3 Variable Stars: One Key to Cosmic Distances (1,777 variables in 1908; SMC same-distance argument; Hubble link)"
+      url: "https://openstax.org/books/astronomy-2e/pages/19-3-variable-stars-one-key-to-cosmic-distances"
+      took: "Pickering salary ratio; 1,777 variable stars; SMC Cepheids at same distance; period-luminosity law; calibration and Hubble's use"
+  history:
+    - what: "Harvard, 1912: Henrietta Leavitt and SMC Cepheids; cosmic measuring tape (unverified $0.30/hr wage omitted per history.md); dates 1868–1921"
+      source: "research/history.md §8 and Cast list"
+      url: "https://astrobites.org/2019/03/08/leavitt-variable-stars/"
+  licence: "CC BY-NC-SA 4.0"

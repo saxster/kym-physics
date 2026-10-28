@@ -372,6 +372,35 @@ class Builder:
             yr = f' <span class="yr">{yr.strip()}</span>' if yr.strip() else ''
             return (f'<div class="box evidence"><p class="bh">{ICONS["evidence"]}<span>How do we know? '
                     f'{md_inline(t.strip())}{yr}</span></p>{md(inner)}</div>')
+        if kind == 'five':
+            # Understand it (Feynman-style). Lines "? Question" are the core questions (always shown);
+            # "?? Question" are go-deeper questions (folded away). Each is followed by its answer.
+            # The card ends with a "Your turn" check: explain it in one sentence, compared with the first answer.
+            title, _, opts = arg.partition('|')
+            parts = re.split(r'^(\?\??)\s*(.+)$', inner.strip(), flags=re.M)
+            core, deep = [], []
+            for k in range(1, len(parts) - 2, 3):
+                lvl, q, a = parts[k], parts[k + 1].strip(), parts[k + 2].strip()
+                row = f'<div class="fq"><dt>{md_inline(q)}</dt><dd>{md(a)}</dd></div>'
+                (deep if lvl == '??' else core).append((row, q, a))
+            if not core:
+                raise SystemExit(f':::five {arg} has no "? question" lines (chapter {ch.n})')
+            plain_t = html.escape(re.sub(r'<[^>]+>', '', md_inline(title.strip())), quote=True)
+            slug = re.sub(r'[^a-z0-9]+', '-', re.sub(r'<[^>]+>', '', title).lower()).strip('-')
+            out = (f'<section class="box five" id="five-{slug}" aria-label="Understand it: {plain_t}">'
+                   f'<p class="bh"><span class="five-k">Understand it</span><span class="five-t">{md_inline(title.strip())}</span></p>'
+                   f'<dl class="fqs">{"".join(r for r, _, _ in core)}</dl>')
+            if deep:
+                names = ', '.join(html.unescape(re.sub(r'<[^>]+>', '', md_inline(q))).rstrip('?').lower() for _, q, _ in deep)
+                out += (f'<details class="five-more"><summary>Go deeper <span>{html.escape(names)}</span></summary>'
+                        f'<dl class="fqs">{"".join(r for r, _, _ in deep)}</dl></details>')
+            if 'noturn' not in opts:
+                anchor = f'chk-five-{slug}'
+                one = md(core[0][2])
+                out += (f'<div class="box check five-turn" id="{anchor}"><p class="bh">{ICONS["check"]}<span>Your turn</span></p>'
+                        f'<p>Explain <b>{md_inline(title.strip())}</b> to a friend in one sentence, in your own words. '
+                        f'Then compare it with the book’s.</p><template class="chk-a">{one}</template></div>')
+            return out + '</section>'
         if kind == 'careful':
             head = md_inline(arg) if arg else 'Careful'
             return f'<div class="box careful"><p class="bh">{ICONS["careful"]}<span>{head}</span></p>{md(inner)}</div>'
@@ -892,10 +921,9 @@ def build_chunks(site_dir, widget_names):
 
 
 def explore_html():
-    soon = '<p class="explore-soon">Coming soon.</p>'
     parts = []
     for name, title, chunk, blurb in EXPLORERS:
-        parts.append(f'<section class="front flow explore" id="explore-{name}"><h2>{title}</h2><p>{blurb}</p>{soon}'
+        parts.append(f'<section class="front flow explore" id="explore-{name}"><h2>{title}</h2><p>{blurb}</p>'
                      f'<div class="explore-mount" data-mount="{name}" data-chunk="{chunk}" data-title="{html.escape(title, quote=True)}">'
                      '<p class="noscript">This explorer needs JavaScript. The rest of the book works without it.</p></div></section>')
     parts.append('<section class="front flow explore" id="explore-map"><h2>The adventure map</h2>'
@@ -1051,11 +1079,12 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     dummy = type('C', (), {'n': 0, 'fig_no': 0})()
 
     cover = FIGS['cover_art']() if 'cover_art' in FIGS else ''
+    legend = '<figcaption class="legend">Every tile is a chapter of this book: tap any tile to see its puzzle, the people who cracked it, and where to jump in.</figcaption>'
     parts = [f'''<header class="cover" id="top"><canvas class="field" aria-hidden="true"></canvas><div class="title"><h1>{TITLE}</h1>
 <p class="sub">{SUBTITLE}. {COVER_LINE}</p>
 <p class="for">Written for Kym</p>
 <p class="begin"><a href="#letter">Start reading</a></p></div>
-{f'<figure class="art">{cover}</figure>' if cover else ''}</header>''']
+{f'<figure class="art">{cover}{legend}</figure>' if cover else ''}</header>''']
     front_titles = []
     for k, cls, default in (('letter', 'letter', 'A letter to Kym'), ('howto', 'howto', 'How this book works'),
                             ('ideas', 'ideas-page', 'Five big ideas')):

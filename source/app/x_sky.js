@@ -1,3 +1,1557 @@
-// The Sky explorer (placeholder until step 8 builds the three.js orrery).
-import { placeholder } from './explore_placeholder.js';
-placeholder('sky', 'The model of the Sun, the Earth and the Moon is being built. When it is ready, it will open here, with a date and time slider and a view from a Mumbai rooftop.');
+// The Sky explorer: Sun, Earth, Moon, Mumbai's 19.08° N rooftop, Haji Ali tides, Chandrayaan-3 & Aditya-L1.
+import App from './core.js';
+
+const { el } = App;
+
+const MUMBAI_LAT = 19.08;
+const OBLIQUITY = 23.44;
+const MOON_TILT = 5.145;
+const SYNODIC_DAYS = 29.5306;
+const SIDEREAL_DAYS = 27.3217;
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MDAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function dayToDateStr(doy) {
+  let d = Math.max(1, Math.min(365, Math.round(doy)));
+  for (let m = 0; m < 12; m++) {
+    if (d <= MDAYS[m]) return `${d} ${MONTHS[m]}`;
+    d -= MDAYS[m];
+  }
+  return '31 Dec';
+}
+
+// Solar declination (degrees) from day of year (1..365), accurate to ~0.5 deg
+function solarDeclination(doy) {
+  const angle = (2 * Math.PI / 365) * (doy + 10);
+  return -OBLIQUITY * Math.cos(angle);
+}
+
+// Earth-Sun distance in million km (perihelion 147.095 on ~3 Jan, aphelion 152.100 on ~4 Jul)
+function earthSunDistMkm(doy) {
+  const a = 149.598;
+  const e = 0.0167;
+  const theta = (2 * Math.PI / 365) * (doy - 3);
+  return a * (1 - e * Math.cos(theta));
+}
+
+// Geometric day length in hours at latitude phiDeg for declination decDeg
+function dayLengthHours(phiDeg, decDeg) {
+  const phi = phiDeg * Math.PI / 180;
+  const dec = decDeg * Math.PI / 180;
+  const cosH = -Math.tan(phi) * Math.tan(dec);
+  if (cosH <= -1) return 24;
+  if (cosH >= 1) return 0;
+  return (2 * Math.acos(cosH) * 180 / Math.PI) / 15;
+}
+
+// Instantaneous solar altitude and azimuth-sign at hour (0..24 solar time)
+function sunPositionAtHour(phiDeg, decDeg, hour) {
+  const phi = phiDeg * Math.PI / 180;
+  const dec = decDeg * Math.PI / 180;
+  const H = (hour - 12) * 15 * Math.PI / 180;
+  const sinAlt = Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H);
+  const alt = Math.asin(Math.max(-1, Math.min(1, sinAlt))) * 180 / Math.PI;
+  return { alt, H };
+}
+
+function fmtHours(h) {
+  const hrs = Math.floor(h);
+  const mins = Math.round((h - hrs) * 60);
+  const hh = mins === 60 ? hrs + 1 : hrs;
+  const mm = mins === 60 ? 0 : mins;
+  return `${String(hh % 24).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+}
+
+// ISRO Chandrayaan-3 documented manoeuvres (from grounding/ch05.md §5.6)
+const CH3_STEPS = [
+  {
+    date: '14 Jul 2023',
+    name: '1. Launch (EPO)',
+    body: 'Earth',
+    peri: 170,
+    apo: 36500,
+    period: '10.8 h',
+    note: 'LVM3-M4 launches Chandrayaan-3 from Sriharikota into an Elliptic Parking Orbit (170 × 36,500 km). After engine cut-off, the craft coasts under Earth’s gravity alone.',
+  },
+  {
+    date: '15 Jul 2023',
+    name: '2. Earth burn 1',
+    body: 'Earth',
+    peri: 173,
+    apo: 41762,
+    period: '12.5 h',
+    note: 'First Earth-bound perigee firing from ISTRAC Bengaluru speeds the craft up at its closest point, raising apogee to 41,762 km and lengthening the orbital period to 12.5 hours.',
+  },
+  {
+    date: '17 Jul 2023',
+    name: '3. Earth burn 2',
+    body: 'Earth',
+    peri: 226,
+    apo: 41603,
+    period: '12.5 h',
+    note: 'Second orbit-raising manoeuvre raises perigee to 226 km above Earth.',
+  },
+  {
+    date: '22 Jul 2023',
+    name: '4. Earth burn 4',
+    body: 'Earth',
+    peri: 233,
+    apo: 71351,
+    period: '23.9 h',
+    note: 'Fourth Earth-bound perigee firing boosts apogee to 71,351 km. By Kepler’s third law (T² ∝ a³), the orbital period nearly doubles to 23.9 hours.',
+  },
+  {
+    date: '1 Aug 2023',
+    name: '5. Translunar Injection (TLI)',
+    body: 'Earth',
+    peri: 288,
+    apo: 369328,
+    period: '~109 h',
+    note: 'Perigee burn sends Chandrayaan-3 onto a 288 × 369,328 km translunar transfer ellipse reaching out to the Moon’s neighbourhood.',
+  },
+  {
+    date: '5 Aug 2023',
+    name: '6. Lunar Orbit Insertion (LOI)',
+    body: 'Moon',
+    peri: 164,
+    apo: 18074,
+    period: '28.2 h',
+    note: 'A retro-burn at perilune for 1,835 seconds slows the craft down so the Moon’s gravity captures it into a 164 × 18,074 km lunar ellipse.',
+  },
+  {
+    date: '6–9 Aug 2023',
+    name: '7. Lunar burns 2 & 3',
+    body: 'Moon',
+    peri: 174,
+    apo: 1437,
+    period: '3.5 h',
+    note: 'Retro-burns at perilune lower apolune first to 4,313 km (6 Aug) and then to 1,437 km (9 Aug), shrinking the orbit step by step.',
+  },
+  {
+    date: '16 Aug 2023',
+    name: '8. Circularisation',
+    body: 'Moon',
+    peri: 153,
+    apo: 163,
+    period: '2.0 h (123 min)',
+    note: 'Fourth and fifth lunar burns round the path into a 153 × 163 km near-circular polar orbit before the Vikram lander separates on 17 August.',
+  },
+  {
+    date: '23 Aug 2023',
+    name: '9. Polar Landing (69.37° S)',
+    body: 'Moon',
+    peri: 0,
+    apo: 134,
+    period: 'Landed 18:04 IST',
+    note: 'From a 25 × 134 km descent orbit, Vikram performs powered braking and soft-lands near the lunar south pole at 69.37° S, 32.35° E (Shiv Shakti Point).',
+  },
+];
+
+const SKY_TOUR = [
+  {
+    q: '1. What is it?',
+    tab: 'seasons',
+    setup: s => { s.doy = 172; s.hour = 12; s.lat = 19.08; },
+    syncText: 'Synced to 21 June (June solstice) at 12:00 noon on a Mumbai rooftop (19.08° N)',
+    body: [
+      'The Sky explorer is a working model of the Sun, Earth, and Moon paired with the view from a rooftop in Mumbai (19.08° N) and the causeway at Haji Ali.',
+      'On the left you look from space at Earth’s tilted axis and orbit; on the right you stand on the ground and watch how that tilt changes the Sun’s noon height, the length of the day, the Moon’s phases, and the ocean tides.',
+    ],
+  },
+  {
+    q: '2. Why is it called an orrery?',
+    tab: 'seasons',
+    setup: s => { s.doy = 135; s.hour = 12; s.lat = 19.08; },
+    syncText: 'Synced to mid-May (Mumbai’s first zero-shadow day: noon Sun 90.0° straight overhead)',
+    body: [
+      'Clockwork models of the Solar System were named after Charles Boyle, 4th Earl of Orrery, after George Graham and John Rowley built one in London around 1712.',
+      'A mechanical brass orrery has to exaggerate sizes so the gears fit. A digital orrery lets us keep the true geometry: at Mumbai’s latitude (19.08° N), the noon Sun passes straight overhead (90.0°) twice a year, in mid-May and late July, when shadows vanish at noon.',
+    ],
+  },
+  {
+    q: '3. What problem did it solve?',
+    tab: 'seasons',
+    setup: s => { s.doy = 3; s.hour = 12; s.lat = 19.08; },
+    syncText: 'Synced to 3 January (Perihelion: Earth is closest to the Sun at 147.1 million km, yet noon Sun is only 48° high)',
+    body: [
+      'Most people (including 21 of 23 Harvard graduates and faculty filmed in A Private Universe) guess that summer happens when Earth is closer to the Sun.',
+      'Look at 3 January on the left panel: Earth is at perihelion (147.1 million km), 5 million km closer to the Sun than in July! Yet in Mumbai and across the Northern Hemisphere it is the coolest time of year, because the northern axis leans away from the Sun, lowering the noon Sun to 47.5° and spreading the same beam over 1.35× more ground.',
+    ],
+  },
+  {
+    q: '4. Why is the sky shaped by two tilts (23.4° and 5°)?',
+    tab: 'moon',
+    setup: s => { s.lunarDay = 14.8; s.nodeAligned = false; s.includeSunTide = true; },
+    syncText: 'Synced to Day 14.8 (Full Moon) with the Moon’s 5.14° orbital tilt visible',
+    body: [
+      'Earth’s spin axis is tilted 23.44° to its orbit around the Sun, which gives us the seasons and shifts the noon Sun north and south over the year.',
+      'Meanwhile, the Moon’s orbit around Earth is tilted by 5.145° to Earth’s orbital plane. Because of that 5.14° tilt, at most New and Full Moons the Moon passes up to 34,470 km above or below Earth’s shadow line. Eclipses happen only twice a year when the Moon crosses the line of nodes.',
+    ],
+  },
+  {
+    q: '5. How does it help?',
+    tab: 'missions',
+    setup: s => { s.mission = 'ch3'; s.ch3Idx = 5; },
+    syncText: 'Synced to Chandrayaan-3 Lunar Orbit Insertion (5 August 2023) & ISRO trajectory',
+    body: [
+      'One law of gravity (F = GMm/r²) explains both the rhythm of the sea at Haji Ali and how ISRO navigates spacecraft across space.',
+      'The difference in the Moon’s pull across Earth’s width heaps ocean water into two tidal bulges (with the Sun adding 46% as much). And by firing thrusters at perigee and braking at perilune, Chandrayaan-3 rode Kepler ellipses to the Moon, while Aditya-L1 loops around the Sun–Earth L1 balance point 1.5 million km away.',
+    ],
+  },
+];
+
+App.explorer('sky', {
+  mount(stage, { title, close }) {
+    const state = {
+      tab: 'seasons', // 'seasons' | 'moon' | 'missions' | 'tour'
+      doy: 172,       // 21 June default
+      hour: 12.0,     // 12:00 noon
+      lat: 19.08,     // Mumbai default
+      playing: false,
+      lunarDay: 3.0,  // waxing crescent default
+      nodeAligned: false,
+      includeSunTide: true,
+      mission: 'ch3', // 'ch3' | 'l1'
+      ch3Idx: 0,
+      l1Day: 45,
+      tourIdx: 0,
+    };
+
+    let rafId = 0;
+    let lastTick = 0;
+
+    const canvasL = el('canvas', { class: 'xp-canvas', width: 460, height: 340 });
+    const canvasR = el('canvas', { class: 'xp-canvas', width: 460, height: 340 });
+    const headL = el('p', { class: 'xp-pane-head' });
+    const headR = el('p', { class: 'xp-pane-head' });
+
+    const controlsMount = el('div', { class: 'xp-controls' });
+    const presetsMount = el('div', { class: 'xp-rungs' });
+    const statsMount = el('div', { class: 'xp-stats' });
+    const readoutMount = el('div', { class: 'xp-readout', 'aria-live': 'polite' });
+    const tourMount = el('div', { class: 'xp-tour', hidden: true });
+
+    const TABS = [
+      { id: 'seasons', label: 'From space & Mumbai rooftop' },
+      { id: 'moon', label: 'Moon phases, Eclipses & Haji Ali Tides' },
+      { id: 'missions', label: 'Missions (Chandrayaan-3 & Aditya-L1)' },
+      { id: 'tour', label: 'Explain it step by step (5 questions)' },
+    ];
+
+    const tabBtns = TABS.map(t =>
+      el('button', {
+        type: 'button',
+        class: 'xp-tab',
+        'data-tab': t.id,
+        'aria-pressed': t.id === state.tab ? 'true' : 'false',
+        onclick: () => switchTab(t.id),
+      }, t.label)
+    );
+
+    function stopPlay() {
+      state.playing = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      const pb = controlsMount.querySelector('[data-role="play"]');
+      if (pb) pb.textContent = 'Play';
+    }
+
+    function startPlay() {
+      if (state.playing) { stopPlay(); return; }
+      state.playing = true;
+      const pb = controlsMount.querySelector('[data-role="play"]');
+      if (pb) pb.textContent = 'Pause';
+      lastTick = performance.now();
+      const step = now => {
+        if (!state.playing) return;
+        const dt = Math.min(0.1, (now - lastTick) / 1000);
+        lastTick = now;
+        const activeMode = state.tab === 'tour' ? SKY_TOUR[state.tourIdx].tab : state.tab;
+        if (activeMode === 'seasons') {
+          state.hour = (state.hour + dt * 2.4) % 24;
+          const hSlider = controlsMount.querySelector('[data-slider="hour"]');
+          if (hSlider) hSlider.value = state.hour.toFixed(2);
+        } else if (activeMode === 'moon') {
+          state.lunarDay = (state.lunarDay + dt * 1.2) % SYNODIC_DAYS;
+          const mSlider = controlsMount.querySelector('[data-slider="lunar"]');
+          if (mSlider) mSlider.value = state.lunarDay.toFixed(2);
+        } else if (activeMode === 'missions' && state.mission === 'l1') {
+          state.l1Day = (state.l1Day + dt * 25) % 365;
+          const lSlider = controlsMount.querySelector('[data-slider="l1"]');
+          if (lSlider) lSlider.value = Math.round(state.l1Day);
+        }
+        updateView(false);
+        rafId = requestAnimationFrame(step);
+      };
+      rafId = requestAnimationFrame(step);
+    }
+
+    function switchTab(id) {
+      stopPlay();
+      state.tab = id;
+      tabBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
+      if (id === 'tour') {
+        tourMount.hidden = false;
+        setTourStep(state.tourIdx);
+      } else {
+        tourMount.hidden = true;
+        rebuildControls();
+        updateView(true);
+      }
+    }
+
+    function setTourStep(idx) {
+      stopPlay();
+      state.tourIdx = idx;
+      const st = SKY_TOUR[idx];
+      st.setup(state);
+      rebuildControls();
+      updateView(true);
+
+      const stepPills = TOUR_STEPS_UI();
+      tourMount.replaceChildren(
+        el('div', { class: 'xp-tour-head' },
+          el('p', { class: 'xp-tour-kicker' }, 'Understand the sky · 5-question guided tour')
+        ),
+        el('div', { class: 'xp-tour-steps' }, stepPills),
+        el('h4', { class: 'xp-tour-q' }, st.q),
+        el('div', { class: 'xp-tour-a' }, ...st.body.map(p => el('p', {}, p))),
+        el('div', { class: 'xp-tour-sync' },
+          el('span', {}, st.syncText),
+          el('button', {
+            type: 'button',
+            class: 'xp-btn',
+            onclick: () => { st.setup(state); rebuildControls(); updateView(true); },
+          }, 'Re-sync view')
+        ),
+        el('div', { class: 'xp-tour-nav' },
+          el('button', {
+            type: 'button',
+            class: 'xp-btn',
+            disabled: idx === 0,
+            onclick: () => setTourStep(Math.max(0, idx - 1)),
+          }, '← Previous question'),
+          el('button', {
+            type: 'button',
+            class: 'xp-btn',
+            disabled: idx === SKY_TOUR.length - 1,
+            onclick: () => setTourStep(Math.min(SKY_TOUR.length - 1, idx + 1)),
+          }, 'Next question →')
+        )
+      );
+    }
+
+    function TOUR_STEPS_UI() {
+      return SKY_TOUR.map((s, i) =>
+        el('button', {
+          type: 'button',
+          class: 'xp-step-pill',
+          'aria-current': i === state.tourIdx ? 'step' : 'false',
+          onclick: () => setTourStep(i),
+        }, s.q)
+      );
+    }
+
+    function activeMode() {
+      return state.tab === 'tour' ? SKY_TOUR[state.tourIdx].tab : state.tab;
+    }
+
+    function rebuildControls() {
+      const mode = activeMode();
+      presetsMount.replaceChildren();
+      controlsMount.replaceChildren();
+
+      if (mode === 'seasons') {
+        const datePresets = [
+          { label: 'Perihelion (3 Jan)', doy: 3 },
+          { label: 'March Equinox (20 Mar)', doy: 79 },
+          { label: 'Zero-shadow (~15 May)', doy: 135 },
+          { label: 'June Solstice (21 Jun)', doy: 172 },
+          { label: 'Zero-shadow (~28 Jul)', doy: 209 },
+          { label: 'Sept Equinox (22 Sep)', doy: 265 },
+          { label: 'Dec Solstice (21 Dec)', doy: 355 },
+        ];
+        datePresets.forEach(p => {
+          presetsMount.append(el('button', {
+            type: 'button',
+            class: 'xp-rung',
+            'data-doy': p.doy,
+            'aria-pressed': Math.abs(state.doy - p.doy) <= 2 ? 'true' : 'false',
+            onclick: () => { stopPlay(); state.doy = p.doy; rebuildControls(); updateView(true); },
+          }, p.label));
+        });
+
+        const doyOut = el('output', { 'data-out': 'doy' }, dayToDateStr(state.doy));
+        const doySlider = el('input', {
+          type: 'range', min: 1, max: 365, step: 1, value: state.doy, 'data-slider': 'doy',
+          'aria-label': 'Day of the year',
+          oninput: e => { state.doy = +e.target.value; updateView(false); },
+        });
+
+        const hrOut = el('output', { 'data-out': 'hour' }, fmtHours(state.hour));
+        const hrSlider = el('input', {
+          type: 'range', min: 0, max: 24, step: 0.1, value: state.hour, 'data-slider': 'hour',
+          'aria-label': 'Solar time of day in hours',
+          oninput: e => { stopPlay(); state.hour = +e.target.value; updateView(false); },
+        });
+
+        const playBtn = el('button', {
+          type: 'button', class: 'xp-btn', 'data-role': 'play', onclick: startPlay,
+        }, state.playing ? 'Pause' : 'Play day');
+
+        controlsMount.append(
+          el('div', { class: 'xp-slider' }, el('label', {}, 'Date'), doySlider, doyOut),
+          el('div', { class: 'xp-slider' }, el('label', {}, 'Mumbai time'), hrSlider, hrOut),
+          playBtn
+        );
+      } else if (mode === 'moon') {
+        const phasePresets = [
+          { label: 'New Moon (Day 0)', day: 0 },
+          { label: 'Waxing Crescent (Day 3.5)', day: 3.5 },
+          { label: 'First Quarter (Day 7.4)', day: 7.4 },
+          { label: 'Full Moon (Day 14.8)', day: 14.8 },
+          { label: 'Third Quarter (Day 22.1)', day: 22.1 },
+        ];
+        phasePresets.forEach(p => {
+          presetsMount.append(el('button', {
+            type: 'button',
+            class: 'xp-rung',
+            'data-lday': p.day,
+            'aria-pressed': Math.abs(state.lunarDay - p.day) < 0.8 ? 'true' : 'false',
+            onclick: () => { stopPlay(); state.lunarDay = p.day; rebuildControls(); updateView(true); },
+          }, p.label));
+        });
+
+        const lOut = el('output', { 'data-out': 'lunar' }, `Day ${state.lunarDay.toFixed(1)}`);
+        const lSlider = el('input', {
+          type: 'range', min: 0, max: 29.5, step: 0.1, value: state.lunarDay, 'data-slider': 'lunar',
+          'aria-label': 'Day of the lunar month (0 to 29.5)',
+          oninput: e => { stopPlay(); state.lunarDay = +e.target.value; updateView(false); },
+        });
+
+        const nodeBtn = el('button', {
+          type: 'button',
+          class: 'xp-btn',
+          'aria-pressed': String(state.nodeAligned),
+          onclick: () => { state.nodeAligned = !state.nodeAligned; rebuildControls(); updateView(true); },
+        }, state.nodeAligned ? 'Node line-up: ON (eclipse season)' : '5.14° tilt: typical month (no eclipse)');
+
+        const sunTideBtn = el('button', {
+          type: 'button',
+          class: 'xp-btn',
+          'aria-pressed': String(state.includeSunTide),
+          onclick: () => { state.includeSunTide = !state.includeSunTide; rebuildControls(); updateView(true); },
+        }, state.includeSunTide ? 'Sun tide (0.46×): ON' : 'Sun tide (0.46×): OFF');
+
+        const playBtn = el('button', {
+          type: 'button', class: 'xp-btn', 'data-role': 'play', onclick: startPlay,
+        }, state.playing ? 'Pause' : 'Play month');
+
+        controlsMount.append(
+          el('div', { class: 'xp-slider' }, el('label', {}, 'Lunar month'), lSlider, lOut),
+          el('div', { class: 'xp-btn-group' }, playBtn, nodeBtn, sunTideBtn)
+        );
+      } else if (mode === 'missions') {
+        const btnCh3 = el('button', {
+          type: 'button',
+          class: 'xp-btn',
+          'aria-pressed': String(state.mission === 'ch3'),
+          onclick: () => { stopPlay(); state.mission = 'ch3'; rebuildControls(); updateView(true); },
+        }, 'Chandrayaan-3 (July–Aug 2023)');
+        const btnL1 = el('button', {
+          type: 'button',
+          class: 'xp-btn',
+          'aria-pressed': String(state.mission === 'l1'),
+          onclick: () => { stopPlay(); state.mission = 'l1'; rebuildControls(); updateView(true); },
+        }, 'Aditya-L1 (Sun–Earth L1 halo orbit)');
+
+        presetsMount.append(btnCh3, btnL1);
+
+        if (state.mission === 'ch3') {
+          CH3_STEPS.forEach((st, idx) => {
+            presetsMount.append(el('button', {
+              type: 'button',
+              class: 'xp-rung',
+              'aria-pressed': String(state.ch3Idx === idx),
+              onclick: () => { state.ch3Idx = idx; rebuildControls(); updateView(true); },
+            }, st.name));
+          });
+
+          const stepOut = el('output', { 'data-out': 'ch3' }, `${state.ch3Idx + 1} / ${CH3_STEPS.length}`);
+          const stepSlider = el('input', {
+            type: 'range', min: 0, max: CH3_STEPS.length - 1, step: 1, value: state.ch3Idx,
+            'aria-label': 'Chandrayaan-3 mission burn step',
+            oninput: e => { state.ch3Idx = +e.target.value; rebuildControls(); updateView(true); },
+          });
+
+          controlsMount.append(
+            el('div', { class: 'xp-slider' }, el('label', {}, 'Mission step'), stepSlider, stepOut),
+            el('div', { class: 'xp-btn-group' },
+              el('button', {
+                type: 'button', class: 'xp-btn',
+                disabled: state.ch3Idx === 0,
+                onclick: () => { state.ch3Idx = Math.max(0, state.ch3Idx - 1); rebuildControls(); updateView(true); },
+              }, '← Previous burn'),
+              el('button', {
+                type: 'button', class: 'xp-btn',
+                disabled: state.ch3Idx === CH3_STEPS.length - 1,
+                onclick: () => { state.ch3Idx = Math.min(CH3_STEPS.length - 1, state.ch3Idx + 1); rebuildControls(); updateView(true); },
+              }, 'Next burn →')
+            )
+          );
+        } else {
+          const l1Out = el('output', { 'data-out': 'l1' }, `Day ${Math.round(state.l1Day)}`);
+          const l1Slider = el('input', {
+            type: 'range', min: 0, max: 365, step: 1, value: Math.round(state.l1Day), 'data-slider': 'l1',
+            'aria-label': 'Days since Aditya-L1 halo orbit insertion',
+            oninput: e => { stopPlay(); state.l1Day = +e.target.value; updateView(false); },
+          });
+          const playBtn = el('button', {
+            type: 'button', class: 'xp-btn', 'data-role': 'play', onclick: startPlay,
+          }, state.playing ? 'Pause' : 'Play orbit');
+
+          controlsMount.append(
+            el('div', { class: 'xp-slider' }, el('label', {}, 'Mission day'), l1Slider, l1Out),
+            playBtn
+          );
+        }
+      }
+    }
+
+    function readPalette() {
+      const cs = getComputedStyle(stage);
+      const g = k => cs.getPropertyValue(k).trim();
+      return {
+        ink: g('--ink') || '#1d332d',
+        ink2: g('--ink-2') || '#33483f',
+        muted: g('--muted') || '#5d6c66',
+        plate: g('--plate') || '#fdfcf8',
+        sheet: g('--sheet') || '#fbfaf5',
+        paper: g('--paper') || '#f6f4ec',
+        rule: g('--rule') || '#d5d3c6',
+        proton: g('--proton') || '#a94730',
+        neutron: g('--neutron') || '#936022',
+        electron: g('--electron') || '#356d83',
+        green: g('--green') || '#2e604a',
+        vol: g('--vol') || '#356d83',
+      };
+    }
+
+    function prepCanvas(cv) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const cssW = cv.clientWidth || 440;
+      const cssH = Math.max(270, Math.min(350, Math.round(cssW * 0.72)));
+      if (cv.width !== Math.round(cssW * dpr) || cv.height !== Math.round(cssH * dpr)) {
+        cv.width = Math.round(cssW * dpr);
+        cv.height = Math.round(cssH * dpr);
+      }
+      const ctx = cv.getContext('2d');
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      return { ctx, W: cssW, H: cssH };
+    }
+
+    function drawSeasonsMode(col) {
+      const dec = solarDeclination(state.doy);
+      const dist = earthSunDistMkm(state.doy);
+      const noonAlt = 90 - Math.abs(MUMBAI_LAT - dec);
+      const leansNorth = dec > MUMBAI_LAT;
+      const dayLen = dayLengthHours(MUMBAI_LAT, dec);
+      const { alt: curAlt } = sunPositionAtHour(MUMBAI_LAT, dec, state.hour);
+
+      headL.replaceChildren(el('b', {}, 'From space: Earth’s orbit & 23.44° tilt'), el('span', {}, `Distance: ${dist.toFixed(1)} million km`));
+      headR.replaceChildren(el('b', {}, 'From a Mumbai rooftop (19.08° N)'), el('span', {}, `Noon Sun: ${noonAlt.toFixed(1)}°`));
+
+      // LEFT CANVAS: Orbit + Tilted Earth closeup
+      {
+        const { ctx, W, H } = prepCanvas(canvasL);
+        ctx.fillStyle = col.plate;
+        ctx.fillRect(0, 0, W, H);
+
+        // Top-left: Orbit around Sun
+        const ox = W * 0.36, oy = H * 0.44;
+        const rx = Math.min(W, H) * 0.28, ry = rx * 0.56;
+
+        ctx.strokeStyle = col.rule;
+        ctx.lineWidth = 1.4;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.ellipse(ox, oy, rx, ry, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Sun at focus
+        ctx.fillStyle = col.neutron;
+        ctx.beginPath();
+        ctx.arc(ox + 4, oy, 11, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = `600 10.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.textAlign = 'center';
+        ctx.fillText('Sun', ox + 4, oy + 23);
+
+        // Season labels around orbit
+        ctx.fillStyle = col.muted;
+        ctx.font = `500 10px "Lexend", system-ui, sans-serif`;
+        ctx.fillText('Jun (152.1M km)', ox - rx - 4, oy - ry * 0.65);
+        ctx.fillText('Dec (147.1M km)', ox + rx + 4, oy - ry * 0.65);
+        ctx.fillText('Mar', ox, oy - ry - 7);
+        ctx.fillText('Sep', ox, oy + ry + 13);
+
+        // Earth position on orbit (Jun at left: angle = pi, Dec at right: angle = 0)
+        const orbAngle = ((state.doy - 355) / 365) * Math.PI * 2;
+        const ex = ox + Math.cos(orbAngle) * rx;
+        const ey = oy - Math.sin(orbAngle) * ry;
+
+        // Earth tilted axis in orbit (always leaning up-right by 23.44 deg ->Towards Sun in June when Earth is at left!)
+        const tiltRad = OBLIQUITY * Math.PI / 180;
+        const axLen = 18;
+        ctx.strokeStyle = col.proton;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(ex - Math.sin(tiltRad) * axLen, ey + Math.cos(tiltRad) * axLen);
+        ctx.lineTo(ex + Math.sin(tiltRad) * axLen, ey - Math.cos(tiltRad) * axLen);
+        ctx.stroke();
+
+        ctx.fillStyle = col.electron;
+        ctx.beginPath();
+        ctx.arc(ex, ey, 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inset on right of Left Canvas: Tilted Earth cross-section in sunlight
+        const ix = W * 0.81, iy = H * 0.45, ir = Math.min(W, H) * 0.17;
+        ctx.strokeStyle = col.rule;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(W * 0.65, 14, W * 0.32, H - 52);
+
+        ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.fillText('23.44° Tilt Closeup', ix, 29);
+
+        // Parallel sunbeams from left of inset
+        ctx.strokeStyle = col.neutron;
+        ctx.lineWidth = 1.2;
+        for (let dy = -ir * 0.8; dy <= ir * 0.8; dy += ir * 0.4) {
+          ctx.beginPath();
+          ctx.moveTo(W * 0.67, iy + dy);
+          ctx.lineTo(ix - ir - 4, iy + dy);
+          ctx.stroke();
+        }
+
+        // Earth globe in inset, with effective tilt relative to sunbeam = dec
+        const effTilt = (dec * Math.PI) / 180;
+        ctx.fillStyle = col.electron;
+        ctx.globalAlpha = 0.18;
+        ctx.beginPath();
+        ctx.arc(ix, iy, ir, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = col.electron;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        // Night half (right half in this sun-from-left diagram)
+        ctx.fillStyle = col.ink;
+        ctx.globalAlpha = 0.22;
+        ctx.beginPath();
+        ctx.arc(ix, iy, ir, -Math.PI / 2, Math.PI / 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Spin axis tilted by effTilt toward/away from Sun
+        ctx.strokeStyle = col.proton;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(ix + Math.sin(effTilt) * (ir + 12), iy + Math.cos(effTilt) * (ir + 12));
+        ctx.lineTo(ix - Math.sin(effTilt) * (ir + 12), iy - Math.cos(effTilt) * (ir + 12));
+        ctx.stroke();
+        ctx.fillStyle = col.proton;
+        ctx.font = `700 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillText('N', ix - Math.sin(effTilt) * (ir + 19), iy - Math.cos(effTilt) * (ir + 16));
+
+        // Equator & Mumbai 19.08 N line
+        ctx.strokeStyle = col.green;
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(ix - Math.cos(effTilt) * ir, iy + Math.sin(effTilt) * ir);
+        ctx.lineTo(ix + Math.cos(effTilt) * ir, iy - Math.sin(effTilt) * ir);
+        ctx.stroke();
+
+        ctx.fillStyle = col.ink2;
+        ctx.font = `500 10.5px "Lexend", system-ui, sans-serif`;
+        ctx.textAlign = 'left';
+        const sunPct = ((149.598 / dist) ** 2 - 1) * 100;
+        ctx.fillText(
+          `Sunlight at Earth: ${sunPct >= 0 ? '+' : ''}${sunPct.toFixed(1)}% vs average (distance changes only ~3.4%)`,
+          12, H - 14
+        );
+
+        ctx.restore();
+      }
+
+      // RIGHT CANVAS: Mumbai 19.08 N Sky Dome + Torch/Beam patch
+      {
+        const { ctx, W, H } = prepCanvas(canvasR);
+        ctx.fillStyle = col.plate;
+        ctx.fillRect(0, 0, W, H);
+
+        const horizonY = H * 0.72;
+        const cx = W * 0.44;
+        const domeR = Math.min(W * 0.39, horizonY - 26);
+
+        // Night sky wash if Sun is below horizon
+        if (curAlt < 0) {
+          ctx.fillStyle = col.ink;
+          ctx.globalAlpha = 0.14;
+          ctx.beginPath();
+          ctx.arc(cx, horizonY, domeR, Math.PI, 0);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+
+          // Star trails around North Celestial Pole (19.08 deg above N horizon!)
+          const ncpAngle = Math.PI - (MUMBAI_LAT * Math.PI / 180);
+          const ncpX = cx + Math.cos(ncpAngle) * domeR * 0.65;
+          const ncpY = horizonY - Math.sin(Math.PI - ncpAngle) * domeR * 0.65;
+          ctx.strokeStyle = col.electron;
+          ctx.lineWidth = 1;
+          const arcSpan = (15 * Math.PI / 180) * 2.5;
+          const rotOff = (state.hour / 24) * Math.PI * 2;
+          [14, 26, 40].forEach((sr, idx) => {
+            ctx.beginPath();
+            ctx.arc(ncpX, ncpY, sr, rotOff + idx, rotOff + idx + arcSpan);
+            ctx.stroke();
+          });
+          ctx.fillStyle = col.electron;
+          ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.fillText('Pole star (19.1° N, trails 15°/h)', ncpX - 20, ncpY - 18);
+        }
+
+        // Sky dome arc (South on left, Zenith at top, North on right)
+        ctx.strokeStyle = col.rule;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, horizonY, domeR, Math.PI, 0);
+        ctx.stroke();
+
+        // Ground line
+        ctx.strokeStyle = col.ink;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cx - domeR - 14, horizonY);
+        ctx.lineTo(cx + domeR + 14, horizonY);
+        ctx.stroke();
+
+        // Zenith tick
+        ctx.strokeStyle = col.muted;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(cx, horizonY);
+        ctx.lineTo(cx, horizonY - domeR);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.font = `700 10.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.textAlign = 'center';
+        ctx.fillText('South', cx - domeR, horizonY + 16);
+        ctx.fillText('North', cx + domeR, horizonY + 16);
+        ctx.fillText('Zenith (90°)', cx, horizonY - domeR - 7);
+
+        // Noon Sun position on the N-Z-S meridian arc
+        // Angle from South horizon (left): if leaning South, angle is noonAlt; if leaning North, 180 - noonAlt
+        const meridianDeg = leansNorth ? (180 - noonAlt) : noonAlt;
+        const mRad = meridianDeg * Math.PI / 180;
+        const noonX = cx - Math.cos(mRad) * domeR;
+        const noonY = horizonY - Math.sin(mRad) * domeR;
+
+        // Noon sunbeam hitting Mumbai rooftop
+        ctx.strokeStyle = col.neutron;
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(noonX, noonY);
+        ctx.lineTo(cx, horizonY);
+        ctx.stroke();
+
+        // Current time-of-day Sun marker along path
+        const curShownAlt = Math.max(0, curAlt);
+        const curDeg = leansNorth ? (180 - curShownAlt) : curShownAlt;
+        const curRad = curDeg * Math.PI / 180;
+        const sunX = cx - Math.cos(curRad) * domeR * (curAlt >= 0 ? 1 : 0.85);
+        const sunY = curAlt >= 0 ? horizonY - Math.sin(curRad) * domeR : horizonY + 18;
+
+        // Noon Sun ghost ring
+        ctx.strokeStyle = col.neutron;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(noonX, noonY, 7, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Live Sun disc
+        ctx.fillStyle = curAlt >= 0 ? col.neutron : col.muted;
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 8.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Stick at cx, horizonY casting a noon shadow
+        const stickH = 28;
+        ctx.strokeStyle = col.ink;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cx, horizonY);
+        ctx.lineTo(cx, horizonY - stickH);
+        ctx.stroke();
+
+        const shadowLen = stickH / Math.tan(noonAlt * Math.PI / 180);
+        const shadowDir = leansNorth ? -1 : 1; // Sun in North -> shadow points South (left)
+        ctx.strokeStyle = col.proton;
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(cx, horizonY + 2);
+        ctx.lineTo(cx + shadowDir * shadowLen, horizonY + 2);
+        ctx.stroke();
+
+        // Beam spread box on right side
+        const patchW = 1 / Math.sin(noonAlt * Math.PI / 180);
+        ctx.fillStyle = col.ink;
+        ctx.font = `700 11px "Lexend", system-ui, sans-serif`;
+        ctx.textAlign = 'left';
+        ctx.fillText(`1.00 m beam spreads over ${patchW.toFixed(2)} m`, 14, H - 30);
+        ctx.font = `400 10.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.muted;
+        ctx.fillText(
+          noonAlt > 89.2
+            ? 'Zero-shadow day! The noon Sun stands straight overhead (90°).'
+            : `Noon shadow points ${leansNorth ? 'South (Sun 4° N of zenith)' : 'North'} · Day length ${dayLen.toFixed(1)} h`,
+          14, H - 13
+        );
+
+        ctx.restore();
+      }
+
+      // Stats & Readout
+      const patchW = 1 / Math.sin(noonAlt * Math.PI / 180);
+      statsMount.replaceChildren(
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, 'Mumbai noon Sun height'),
+          el('span', { class: 'xp-stat-v' }, `${noonAlt.toFixed(1)}° (${leansNorth ? 'north' : 'south'} of zenith)`),
+          el('span', { class: 'xp-stat-sub' }, `1.00 m beam lights ${patchW.toFixed(2)} m of ground`)
+        ),
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, 'Day length & star trails'),
+          el('span', { class: 'xp-stat-v' }, `${dayLen.toFixed(2)} hours of daylight`),
+          el('span', { class: 'xp-stat-sub' }, `Sky turns 15°/hour (${fmtHours(state.hour)} local solar time)`)
+        ),
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, 'Earth–Sun distance'),
+          el('span', { class: 'xp-stat-v' }, `${dist.toFixed(1)} million km`),
+          el('span', { class: 'xp-stat-sub' }, state.doy < 30 || state.doy > 345 ? 'Near perihelion (closest in Jan!)' : state.doy > 160 && state.doy < 200 ? 'Near aphelion (farthest in Jul!)' : 'Elliptical orbit (e = 0.0167)')
+        )
+      );
+
+      readoutMount.replaceChildren(
+        el('p', {},
+          el('b', {}, `${dayToDateStr(state.doy)} at ${fmtHours(state.hour)} in Mumbai (19.08° N): `),
+          `The Sun’s declination is ${dec >= 0 ? '+' : ''}${dec.toFixed(1)}°, so at noon the Sun reaches `,
+          el('b', {}, `${noonAlt.toFixed(1)}° above the ${leansNorth ? 'northern' : 'southern'} horizon`),
+          noonAlt > 89.2
+            ? ' (a Mumbai zero-shadow day: vertical posts cast no shadow at local noon!).'
+            : `. A 1.00 m wide sunbeam spreads over ${patchW.toFixed(2)} m of flat ground, and daylight lasts ${dayLen.toFixed(1)} hours.`
+        ),
+        el('p', {},
+          `Earth is `,
+          el('b', {}, `${dist.toFixed(1)} million km`),
+          ` from the Sun today. Remember Chapter 14.2: Earth is closest to the Sun (147.1 million km) around 3 January and farthest (152.1 million km) in early July, so distance does not cause the seasons. The 23.44° axial tilt changes both the noon beam angle and the hours of daylight.`
+        ),
+        el('p', { class: 'xp-honest' },
+          'Model note: The orbit’s 1.7% eccentricity looks almost circular at true scale, so the exact distance in million km is printed in the readout. Slide the time into night to see Mumbai’s star trails turning at 15° per hour around the North Celestial Pole (19.08° up).'
+        )
+      );
+    }
+
+    function drawMoonTidesMode(col) {
+      const phaseAngle = (state.lunarDay / SYNODIC_DAYS) * Math.PI * 2;
+      const litFrac = (1 - Math.cos(phaseAngle)) / 2;
+      const degPerDay = 360 / SYNODIC_DAYS; // 12.19 deg/day
+
+      // Phase name
+      const d = state.lunarDay % SYNODIC_DAYS;
+      let phaseName = 'Waxing Crescent';
+      if (d < 1.0 || d > 28.5) phaseName = 'New Moon';
+      else if (Math.abs(d - 7.4) < 1.1) phaseName = 'First Quarter';
+      else if (d > 7.4 && d < 13.7) phaseName = 'Waxing Gibbous';
+      else if (Math.abs(d - 14.8) < 1.1) phaseName = 'Full Moon';
+      else if (d > 15.8 && d < 21.0) phaseName = 'Waning Gibbous';
+      else if (Math.abs(d - 22.1) < 1.1) phaseName = 'Third Quarter';
+      else if (d > 22.1) phaseName = 'Waning Crescent';
+
+      // Height of Moon above/below ecliptic plane (km): 384,400 * sin(5.145 deg) * sin(angle from node)
+      const maxZ = 384400 * Math.sin(MOON_TILT * Math.PI / 180); // ~34,472 km
+      const zKm = state.nodeAligned ? 0 : Math.round(maxZ * Math.cos(phaseAngle));
+      const isNew = d < 1.1 || d > 28.4;
+      const isFull = Math.abs(d - 14.8) < 1.1;
+      const eclipseState = state.nodeAligned && isNew
+        ? 'Solar eclipse! (Moon’s shadow hits Earth)'
+        : state.nodeAligned && isFull
+          ? 'Lunar eclipse! (Moon enters Earth’s umbra)'
+          : (isNew || isFull)
+            ? `No eclipse: 5.14° tilt places Moon ~${Math.abs(zKm).toLocaleString('en-GB')} km off the shadow line`
+            : 'Not aligned with Sun–Earth line';
+
+      headL.replaceChildren(
+        el('b', {}, `Moon phase (${phaseName}) & 5.14° tilt`),
+        el('span', {}, `${Math.round(litFrac * 100)}% lit from Mumbai`)
+      );
+      headR.replaceChildren(
+        el('b', {}, 'Haji Ali tides (Moon 1 : Sun 0.46)'),
+        el('span', {}, 'Lunar day: 24 h 50 min')
+      );
+
+      // LEFT CANVAS: Moon orbit, phase disc, tidal bulges, and 5.14° tilt side-view
+      {
+        const { ctx, W, H } = prepCanvas(canvasL);
+        ctx.fillStyle = col.plate;
+        ctx.fillRect(0, 0, W, H);
+
+        const cx = W * 0.42, cy = H * 0.42;
+        const orbR = Math.min(W, H) * 0.27;
+
+        // Sunlight arrows from left
+        ctx.strokeStyle = col.neutron;
+        ctx.lineWidth = 1.3;
+        for (let y = cy - orbR * 0.8; y <= cy + orbR * 0.8; y += orbR * 0.4) {
+          ctx.beginPath();
+          ctx.moveTo(10, y);
+          ctx.lineTo(28, y);
+          ctx.stroke();
+        }
+        ctx.fillStyle = col.neutron;
+        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.textAlign = 'left';
+        ctx.fillText('Sunlight', 8, cy - orbR * 0.92);
+
+        // Schematic tidal bulges around Earth (Moon 1 : Sun 0.46)
+        const sunAmp = state.includeSunTide ? 0.46 : 0;
+        ctx.fillStyle = col.electron;
+        ctx.globalAlpha = 0.22;
+        ctx.beginPath();
+        for (let a = 0; a <= Math.PI * 2; a += 0.06) {
+          const mTerm = Math.cos(2 * (a - (Math.PI - phaseAngle)));
+          const sTerm = sunAmp * Math.cos(2 * (a - Math.PI));
+          const r = 18 + 7 * (mTerm + sTerm);
+          const x = cx + Math.cos(a) * r;
+          const y = cy - Math.sin(a) * r;
+          if (a === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Earth at centre
+        ctx.fillStyle = col.electron;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = col.ink;
+        ctx.globalAlpha = 0.28;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 14, -Math.PI / 2, Math.PI / 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Earth's shadow cone extending right (away from Sun)
+        ctx.fillStyle = col.ink;
+        ctx.globalAlpha = 0.12;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - 14);
+        ctx.lineTo(cx + orbR + 28, cy - 5);
+        ctx.lineTo(cx + orbR + 28, cy + 5);
+        ctx.lineTo(cx, cy + 14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Moon orbit
+        ctx.strokeStyle = col.rule;
+        ctx.lineWidth = 1.3;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, orbR, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Moon position (New Moon at left = angle pi, facing Sun)
+        const mAngle = Math.PI - phaseAngle;
+        const mx = cx + Math.cos(mAngle) * orbR;
+        const my = cy - Math.sin(mAngle) * orbR;
+
+        // Half-lit Moon in space (left half always lit by Sun!)
+        ctx.fillStyle = col.neutron;
+        ctx.beginPath();
+        ctx.arc(mx, my, 9, Math.PI / 2, (3 * Math.PI) / 2);
+        ctx.fill();
+        ctx.fillStyle = col.ink;
+        ctx.beginPath();
+        ctx.arc(mx, my, 9, -Math.PI / 2, Math.PI / 2);
+        ctx.fill();
+
+        // Top-right inset: How the Moon looks from Mumbai
+        const px = W * 0.84, py = 58, pr = 26;
+        ctx.strokeStyle = col.rule;
+        ctx.strokeRect(W * 0.7, 12, W * 0.27, 96);
+        ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.textAlign = 'center';
+        ctx.fillText('From Mumbai', px, 26);
+
+        // Draw Moon phase disc accurately
+        ctx.fillStyle = col.ink;
+        ctx.beginPath();
+        ctx.arc(px, py, pr, 0, Math.PI * 2);
+        ctx.fill();
+
+        const isWaxing = (phaseAngle % (Math.PI * 2)) <= Math.PI;
+        const k = Math.cos(phaseAngle); // +1 at New, 0 at Quarter, -1 at Full
+        ctx.fillStyle = state.nodeAligned && isFull ? col.proton : col.neutron;
+        ctx.beginPath();
+        ctx.arc(px, py, pr, -Math.PI / 2, Math.PI / 2, !isWaxing);
+        ctx.ellipse(px, py, Math.abs(k) * pr, pr, 0, Math.PI / 2, -Math.PI / 2, isWaxing ? k > 0 : k < 0);
+        ctx.closePath();
+        ctx.fill();
+
+        // Bottom strip: Side view of the 5.14° orbital tilt vs Earth–Sun plane
+        const sy = H - 38;
+        ctx.strokeStyle = col.rule;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(16, sy);
+        ctx.lineTo(W - 16, sy);
+        ctx.stroke();
+
+        const tiltSlope = state.nodeAligned ? 0 : Math.sin(MOON_TILT * Math.PI / 180) * 180;
+        ctx.strokeStyle = col.proton;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(cx - orbR, sy - tiltSlope);
+        ctx.lineTo(cx + orbR, sy + tiltSlope);
+        ctx.stroke();
+
+        const sideMoonX = cx + Math.cos(mAngle) * orbR;
+        const sideMoonY = sy - Math.cos(mAngle) * tiltSlope;
+        ctx.fillStyle = col.proton;
+        ctx.beginPath();
+        ctx.arc(sideMoonX, sideMoonY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.textAlign = 'left';
+        ctx.fillText(`Side view (5.14° tilt): ${eclipseState}`, 16, H - 10);
+
+        ctx.restore();
+      }
+
+      // RIGHT CANVAS: Haji Ali 29.5-day tide strip chart + current day detail
+      {
+        const { ctx, W, H } = prepCanvas(canvasR);
+        ctx.fillStyle = col.plate;
+        ctx.fillRect(0, 0, W, H);
+
+        const padL = 38, padR = 16, topY = 34, midY = H * 0.36, botY = H - 36;
+        const plotW = W - padL - padR;
+
+        // Top half: 29.5-day Spring-Neap envelope strip chart
+        ctx.font = `700 10.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.ink2;
+        ctx.textAlign = 'left';
+        ctx.fillText('29.5-day Haji Ali Tide Envelope (2 highs & 2 lows each 24 h 50 min lunar day)', padL, 20);
+
+        const envMid = (topY + midY) * 0.52;
+        const envAmp = (midY - topY) * 0.38;
+        const sunR = state.includeSunTide ? 0.46 : 0;
+
+        ctx.strokeStyle = col.rule;
+        ctx.beginPath();
+        ctx.moveTo(padL, envMid);
+        ctx.lineTo(padL + plotW, envMid);
+        ctx.stroke();
+
+        ctx.strokeStyle = col.electron;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        const samples = 240;
+        for (let i = 0; i <= samples; i++) {
+          const day = (i / samples) * SYNODIC_DAYS;
+          const x = padL + (i / samples) * plotW;
+          const env = (1 + sunR * Math.cos((2 * Math.PI * 2 * day) / SYNODIC_DAYS)) / 1.46;
+          const carrier = Math.cos((2 * Math.PI * 2 * day) / 1.035);
+          const y = envMid - carrier * env * envAmp;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Marker for current lunarDay
+        const curX = padL + (state.lunarDay / SYNODIC_DAYS) * plotW;
+        ctx.strokeStyle = col.proton;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(curX, topY - 4);
+        ctx.lineTo(curX, midY + 4);
+        ctx.stroke();
+
+        // Labels for Spring / Neap
+        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.fillStyle = col.muted;
+        ctx.textAlign = 'center';
+        ctx.fillText('New (Spring)', padL + 24, midY + 14);
+        ctx.fillText('1st Q (Neap)', padL + plotW * 0.25, midY + 14);
+        ctx.fillText('Full (Spring)', padL + plotW * 0.5, midY + 14);
+        ctx.fillText('3rd Q (Neap)', padL + plotW * 0.75, midY + 14);
+
+        // Bottom half: 24 h 50 min single-day water level at Haji Ali causeway
+        const dTop = midY + 34;
+        const dMid = (dTop + botY) * 0.5;
+        const dAmp = (botY - dTop) * 0.42;
+        const curEnv = (1 + sunR * Math.cos(2 * phaseAngle)) / 1.46;
+        const shiftHrs = (state.lunarDay * (50 / 60)) % 12.42;
+
+        // Causeway threshold line
+        ctx.strokeStyle = col.neutron;
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.moveTo(padL, dMid);
+        ctx.lineTo(padL + plotW, dMid);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = col.neutron;
+        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.textAlign = 'right';
+        ctx.fillText('Causeway height', padL + plotW - 4, dMid - 4);
+
+        // Today's 24h curve (2 highs, 12 h 25 min apart)
+        ctx.strokeStyle = col.green;
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        for (let h = 0; h <= 24.84; h += 0.2) {
+          const x = padL + (h / 24.84) * plotW;
+          const y = dMid - Math.cos(((h - shiftHrs) / 12.42) * Math.PI * 2) * curEnv * dAmp;
+          if (h === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctx.fillStyle = col.ink2;
+        ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
+        ctx.textAlign = 'left';
+        ctx.fillText(
+          `High tides today are ~12 h 25 min apart (next day’s high shifts ~50 min later)`,
+          padL, H - 12
+        );
+
+        ctx.restore();
+      }
+
+      const tideStrength = state.includeSunTide
+        ? (1 + 0.46 * Math.cos(2 * phaseAngle))
+        : 1.0;
+      const tideKind = !state.includeSunTide
+        ? 'Moon bulge only (1.00×)'
+        : tideStrength > 1.25
+          ? `Spring tide (${tideStrength.toFixed(2)}× Moon alone: Sun & Moon add)`
+          : tideStrength < 0.75
+            ? `Neap tide (${tideStrength.toFixed(2)}× Moon alone: Sun & Moon partly cancel)`
+            : `Intermediate tide (${tideStrength.toFixed(2)}× Moon alone)`;
+
+      const riseDelayHrs = (state.lunarDay * (49 / 60)) % 24;
+
+      statsMount.replaceChildren(
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, 'Moon phase & lit fraction'),
+          el('span', { class: 'xp-stat-v' }, `${phaseName} (${Math.round(litFrac * 100)}% lit)`),
+          el('span', { class: 'xp-stat-sub' }, `Rises ~${riseDelayHrs.toFixed(1)} h after sunrise (49 min later/day)`)
+        ),
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, '5.14° orbital tilt & eclipses'),
+          el('span', { class: 'xp-stat-v' }, state.nodeAligned ? 'At node (0 km off plane)' : `${zKm >= 0 ? '+' : ''}${zKm.toLocaleString('en-GB')} km from plane`),
+          el('span', { class: 'xp-stat-sub' }, eclipseState)
+        ),
+        el('div', { class: 'xp-stat' },
+          el('span', { class: 'xp-stat-k' }, 'Haji Ali tidal bulges'),
+          el('span', { class: 'xp-stat-v' }, tideKind),
+          el('span', { class: 'xp-stat-sub' }, 'Two highs per 24 h 50 min lunar day')
+        )
+      );
+
+      readoutMount.replaceChildren(
+        el('p', {},
+          el('b', {}, `Day ${state.lunarDay.toFixed(1)} of 29.5 (${phaseName}, ${Math.round(litFrac * 100)}% lit): `),
+          `Half of the Moon is always lit by the Sun. Phases are never caused by Earth’s shadow; they are simply how much of the Moon’s sunlit hemisphere faces us as the Moon orbits Earth.`
+        ),
+        el('p', {},
+          el('b', {}, 'Why isn’t there an eclipse every month? '),
+          `Because the Moon’s orbit is tilted by `,
+          el('b', {}, '5.145°'),
+          ` to Earth’s orbit. At 384,400 km distance, that tilt carries the Moon up to 34,470 km above or below Earth’s 1.4-million-km shadow cone. Toggle `,
+          el('b', {}, 'Node line-up'),
+          ` above to see what happens during an eclipse season.`
+        ),
+        el('p', { class: 'xp-honest' },
+          'Model note: The tidal bulges are drawn thousands of times taller than life (on an all-water Earth they would be under 1 metre high) and result from water flowing sideways under the difference in gravitational pull (Moon 1 : Sun 0.46). Real tides at Mumbai are mixed semi-diurnal and lag the Moon because of coastlines and ocean depth; always check a published INCOIS tide table before visiting the Haji Ali causeway.'
+        )
+      );
+    }
+
+    function drawMissionsMode(col) {
+      if (state.mission === 'ch3') {
+        const st = CH3_STEPS[state.ch3Idx];
+        headL.replaceChildren(el('b', {}, 'Chandrayaan-3 Earth-bound & Translunar burns'), el('span', {}, '14 Jul – 1 Aug 2023'));
+        headR.replaceChildren(el('b', {}, 'Lunar capture & polar landing (69.37° S)'), el('span', {}, `Step: ${st.date}`));
+
+        // LEFT CANVAS: Earth-bound ellipses + TLI
+        {
+          const { ctx, W, H } = prepCanvas(canvasL);
+          ctx.fillStyle = col.plate;
+          ctx.fillRect(0, 0, W, H);
+
+          const ex = W * 0.24, ey = H * 0.52;
+          ctx.fillStyle = col.electron;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 14, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+          ctx.fillStyle = col.ink;
+          ctx.textAlign = 'center';
+          ctx.fillText('Earth', ex, ey + 26);
+
+          // Draw nested Earth ellipses
+          const earthOrbits = [
+            { apo: 36500, idx: 0 },
+            { apo: 41762, idx: 1 },
+            { apo: 41603, idx: 2 },
+            { apo: 71351, idx: 3 },
+            { apo: 369328, idx: 4 },
+          ];
+          earthOrbits.forEach((o, i) => {
+            const active = state.ch3Idx === o.idx;
+            const passed = state.ch3Idx > o.idx;
+            const aPx = 28 + i * (W * 0.125);
+            const bPx = aPx * 0.52;
+            const cx = ex + aPx - 18;
+            ctx.strokeStyle = active ? col.proton : passed ? col.electron : col.rule;
+            ctx.lineWidth = active ? 2.4 : 1.3;
+            ctx.setLineDash(active ? [] : [4, 3]);
+            ctx.beginPath();
+            ctx.ellipse(cx, ey, aPx, bPx, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          });
+
+          // Perigee burn arrow
+          ctx.fillStyle = col.proton;
+          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.fillText('Perigee burns (speed up here → raises apogee)', 14, 24);
+
+          // Moon target at right of TLI
+          const mx = ex + 28 + 4 * (W * 0.125) * 2 - 18;
+          ctx.fillStyle = col.neutron;
+          ctx.beginPath();
+          ctx.arc(mx, ey, 7, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText('Moon', mx - 14, ey - 12);
+
+          ctx.restore();
+        }
+
+        // RIGHT CANVAS: Lunar Orbit Insertion & Polar Descent
+        {
+          const { ctx, W, H } = prepCanvas(canvasR);
+          ctx.fillStyle = col.plate;
+          ctx.fillRect(0, 0, W, H);
+
+          const mx = W * 0.36, my = H * 0.52, mr = 24;
+          ctx.fillStyle = col.neutron;
+          ctx.globalAlpha = 0.25;
+          ctx.beginPath();
+          ctx.arc(mx, my, mr, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = col.neutron;
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
+
+          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+          ctx.fillStyle = col.ink;
+          ctx.textAlign = 'center';
+          ctx.fillText('Moon', mx, my + 4);
+
+          const lunarOrbits = [
+            { aPx: W * 0.28, bPx: H * 0.34, idx: 5, label: '164 × 18,074 km (28.2 h)' },
+            { aPx: W * 0.17, bPx: H * 0.23, idx: 6, label: '174 × 1,437 km (3.5 h)' },
+            { aPx: mr + 14, bPx: mr + 14, idx: 7, label: '153 × 163 km (2.0 h)' },
+          ];
+          lunarOrbits.forEach(lo => {
+            const active = state.ch3Idx === lo.idx;
+            const passed = state.ch3Idx > lo.idx;
+            const cx = mx + lo.aPx - (mr + 10);
+            ctx.strokeStyle = active ? col.proton : passed ? col.green : col.rule;
+            ctx.lineWidth = active ? 2.4 : 1.3;
+            ctx.beginPath();
+            ctx.ellipse(cx, my, lo.aPx, lo.bPx, 0, 0, Math.PI * 2);
+            ctx.stroke();
+          });
+
+          // South polar landing marker at 69.37° S
+          const latRad = (69.37 * Math.PI) / 180;
+          const lx = mx + Math.cos(latRad) * mr;
+          const ly = my + Math.sin(latRad) * mr;
+          ctx.fillStyle = state.ch3Idx === 8 ? col.proton : col.green;
+          ctx.beginPath();
+          ctx.arc(lx, ly, state.ch3Idx === 8 ? 5.5 : 3.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.fillText('69.37° S (Shiv Shakti Point)', lx + 8, ly + 10);
+          ctx.fillStyle = col.ink2;
+          ctx.fillText('Retro-burn at perilune brakes into lunar capture', 14, 24);
+
+          ctx.restore();
+        }
+
+        statsMount.replaceChildren(
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Manoeuvre & date'),
+            el('span', { class: 'xp-stat-v' }, st.name),
+            el('span', { class: 'xp-stat-sub' }, `${st.date} · Central body: ${st.body}`)
+          ),
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Orbit size (peri × apo)'),
+            el('span', { class: 'xp-stat-v' }, `${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km`),
+            el('span', { class: 'xp-stat-sub' }, st.body === 'Earth' ? 'Heights above Earth' : 'Heights above the Moon')
+          ),
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Kepler orbital period'),
+            el('span', { class: 'xp-stat-v' }, st.period),
+            el('span', { class: 'xp-stat-sub' }, 'T = 2π √(a³ / GM)')
+          )
+        );
+
+        readoutMount.replaceChildren(
+          el('p', {}, el('b', {}, `${st.name} (${st.date}, orbit ${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km, period ${st.period}): `), st.note),
+          el('p', { class: 'xp-honest' },
+            'Model note: Orbits and periods come from ISRO’s Chandrayaan-3 mission updates and MIT 8.01SC Earth/Moon constants (Chapter 5.6). Because the 369,328 km translunar apogee is over 2,000 times higher than the 170 km perigee, the spacing between the inner rings on the left diagram is schematic so all five Earth-bound ellipses remain visible.'
+          )
+        );
+      } else {
+        // Aditya-L1 mode
+        headL.replaceChildren(el('b', {}, 'Sun–Earth L1 point (1.5 million km sunward)'), el('span', {}, '1% of the way to the Sun'));
+        headR.replaceChildren(el('b', {}, 'Aditya-L1 178-day 3D Halo Orbit'), el('span', {}, 'Arrived 6 Jan 2024'));
+
+        const earthAngle = (state.l1Day / 365.25) * Math.PI * 2;
+        const haloAngle = (state.l1Day / 177.86) * Math.PI * 2;
+
+        // LEFT CANVAS: Sun-Earth system showing L1 keeping pace with Earth
+        {
+          const { ctx, W, H } = prepCanvas(canvasL);
+          ctx.fillStyle = col.plate;
+          ctx.fillRect(0, 0, W, H);
+
+          const sx = W * 0.22, sy = H * 0.52;
+          const orbR = Math.min(W * 0.58, H * 0.4);
+
+          ctx.fillStyle = col.neutron;
+          ctx.beginPath();
+          ctx.arc(sx, sy, 18, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `700 10.5px "Lexend", system-ui, sans-serif`;
+          ctx.fillStyle = col.ink;
+          ctx.textAlign = 'center';
+          ctx.fillText('Sun', sx, sy + 30);
+
+          ctx.strokeStyle = col.rule;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.arc(sx, sy, orbR, -0.65, 0.65);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          const a = (earthAngle % 0.9) - 0.45;
+          const ex = sx + Math.cos(a) * orbR;
+          const ey = sy + Math.sin(a) * orbR;
+          const l1x = sx + Math.cos(a) * (orbR - 36);
+          const l1y = sy + Math.sin(a) * (orbR - 36);
+
+          // Sun-Earth line
+          ctx.strokeStyle = col.muted;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(sx, sy);
+          ctx.lineTo(ex, ey);
+          ctx.stroke();
+
+          ctx.fillStyle = col.electron;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 9, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText('Earth (149.6M km)', ex - 10, ey + 22);
+
+          ctx.fillStyle = col.proton;
+          ctx.beginPath();
+          ctx.arc(l1x, l1y, 4.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText('L1 (1.5M km)', l1x - 8, l1y - 11);
+
+          ctx.font = `500 10px "Lexend", system-ui, sans-serif`;
+          ctx.fillStyle = col.ink2;
+          ctx.textAlign = 'left';
+          ctx.fillText('Earth’s inward pull partly cancels the Sun’s pull at L1', 14, 24);
+
+          ctx.restore();
+        }
+
+        // RIGHT CANVAS: 3D Halo orbit around L1
+        {
+          const { ctx, W, H } = prepCanvas(canvasR);
+          ctx.fillStyle = col.plate;
+          ctx.fillRect(0, 0, W, H);
+
+          const cx = W * 0.5, cy = H * 0.52;
+          const rx = W * 0.28, ry = H * 0.24;
+
+          // Sun rays from left, Earth on right
+          ctx.strokeStyle = col.rule;
+          ctx.beginPath();
+          ctx.moveTo(20, cy);
+          ctx.lineTo(W - 20, cy);
+          ctx.stroke();
+
+          ctx.fillStyle = col.electron;
+          ctx.beginPath();
+          ctx.arc(W - 34, cy, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillText('Earth', W - 34, cy + 22);
+
+          // L1 point
+          ctx.fillStyle = col.muted;
+          ctx.beginPath();
+          ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText('L1 point', cx, cy + 15);
+
+          // Halo loop around L1
+          ctx.strokeStyle = col.proton;
+          ctx.lineWidth = 2.2;
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, rx, ry, -0.18, 0, Math.PI * 2);
+          ctx.stroke();
+
+          const ax = cx + Math.cos(haloAngle) * rx * Math.cos(-0.18) - Math.sin(haloAngle) * ry * Math.sin(-0.18);
+          const ay = cy + Math.cos(haloAngle) * rx * Math.sin(-0.18) + Math.sin(haloAngle) * ry * Math.cos(-0.18);
+
+          ctx.fillStyle = col.proton;
+          ctx.beginPath();
+          ctx.arc(ax, ay, 6.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = col.ink;
+          ctx.fillText('Aditya-L1', ax, ay - 11);
+
+          ctx.textAlign = 'left';
+          ctx.fillStyle = col.ink2;
+          ctx.fillText('177.86-day halo loop keeps the craft out of Earth’s shadow all year', 14, 24);
+
+          ctx.restore();
+        }
+
+        statsMount.replaceChildren(
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Distance from Earth'),
+            el('span', { class: 'xp-stat-v' }, '1.5 million km (1% to Sun)'),
+            el('span', { class: 'xp-stat-sub' }, 'About 4× farther than the Moon')
+          ),
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Halo orbit period'),
+            el('span', { class: 'xp-stat-v' }, '177.86 days (~178 days)'),
+            el('span', { class: 'xp-stat-sub' }, 'Inserted 6 January 2024 by ISRO')
+          ),
+          el('div', { class: 'xp-stat' },
+            el('span', { class: 'xp-stat-k' }, 'Sun–Earth line period'),
+            el('span', { class: 'xp-stat-v' }, '365.25 days (with Earth)'),
+            el('span', { class: 'xp-stat-sub' }, 'Zero eclipses: uninterrupted view of Sun')
+          )
+        );
+
+        readoutMount.replaceChildren(
+          el('p', {},
+            el('b', {}, 'Aditya-L1 at the Sun–Earth L1 Lagrange point (Chapter 15.3): '),
+            'Normally a spacecraft closer to the Sun than Earth would have a shorter year and overtake us. At L1 (roughly 1.5 million km from Earth, 1% of the way to the Sun), Earth’s backward gravitational pull cancels just enough of the Sun’s forward pull that a craft orbits the Sun in exactly one Earth year.'
+          ),
+          el('p', { class: 'xp-honest' },
+            'Model note: Aditya-L1 does not sit still at L1; it travels around L1 on a three-dimensional halo orbit every 177.86 days so that its radio dish never lines up directly with the noisy disc of the Sun. The 1% L1 distance is widened on the left diagram so L1 and Earth do not overlap.'
+          )
+        );
+      }
+    }
+
+    function updateView(syncPresets) {
+      const mode = activeMode();
+      const col = readPalette();
+
+      if (mode === 'seasons') {
+        const doyOut = controlsMount.querySelector('[data-out="doy"]');
+        if (doyOut) doyOut.textContent = dayToDateStr(state.doy);
+        const hrOut = controlsMount.querySelector('[data-out="hour"]');
+        if (hrOut) hrOut.textContent = fmtHours(state.hour);
+        if (syncPresets) {
+          presetsMount.querySelectorAll('[data-doy]').forEach(b => {
+            b.setAttribute('aria-pressed', String(Math.abs(+b.dataset.doy - state.doy) <= 2));
+          });
+        }
+        drawSeasonsMode(col);
+      } else if (mode === 'moon') {
+        const lOut = controlsMount.querySelector('[data-out="lunar"]');
+        if (lOut) lOut.textContent = `Day ${state.lunarDay.toFixed(1)}`;
+        if (syncPresets) {
+          presetsMount.querySelectorAll('[data-lday]').forEach(b => {
+            b.setAttribute('aria-pressed', String(Math.abs(+b.dataset.lday - state.lunarDay) < 0.8));
+          });
+        }
+        drawMoonTidesMode(col);
+      } else if (mode === 'missions') {
+        const l1Out = controlsMount.querySelector('[data-out="l1"]');
+        if (l1Out) l1Out.textContent = `Day ${Math.round(state.l1Day)}`;
+        drawMissionsMode(col);
+      }
+    }
+
+    const wrap = el('div', { class: 'xp-wrap' },
+      el('div', { class: 'xp-top' },
+        el('div', { class: 'xp-title-group' },
+          el('p', { class: 'xp-kicker' }, 'Explorer · Chapters 5.6, 14 & 15.3'),
+          el('h3', { class: 'xp-heading' }, 'The Sky: Sun, Earth, Moon, and Mumbai’s Rooftop (19.08° N)')
+        ),
+        el('button', { type: 'button', class: 'xp-btn xp-close', onclick: () => { stopPlay(); close(); } }, 'Close explorer')
+      ),
+      el('div', { class: 'xp-tabs', role: 'tablist', 'aria-label': 'Sky explorer modes' }, tabBtns),
+      presetsMount,
+      el('div', { class: 'xp-split' },
+        el('div', { class: 'xp-pane' }, headL, el('div', { class: 'xp-canvas-wrap' }, canvasL)),
+        el('div', { class: 'xp-pane' }, headR, el('div', { class: 'xp-canvas-wrap' }, canvasR))
+      ),
+      controlsMount,
+      statsMount,
+      readoutMount,
+      tourMount
+    );
+
+    stage.replaceChildren(wrap);
+    rebuildControls();
+    updateView(true);
+
+    let rTimer;
+    window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(() => updateView(false), 80); });
+  },
+});

@@ -130,7 +130,7 @@
     - what: "IGCSE 0625 wording Δp = ρgΔh; bridge 'the Δ means change in'"
       source: "research/school-wording.md §1, §6"
       url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
-    - what: "holes-in-a-bottle demo (our suggestion; compare jet speed, not landing spot) — needs the will-it-work gate"
+    - what: "holes-in-a-bottle demo (our suggestion; compare jet speed, not landing spot), needs the will-it-work gate"
       source: "grounding/ch06.md 6.4 Demonstrations"
       url: ""
   computed:

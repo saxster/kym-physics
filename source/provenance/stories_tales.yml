@@ -1,0 +1,210 @@
+# Provenance for the true tales (group: tales) and their figures in figs_stories_tales.py.
+# Every number in these stories was recomputed with python3 -I from the inputs named here.
+
+"story:cavendish-shed":
+  openstax:
+    - book: "College Physics 2e"
+      section: "6.5 Newton's Universal Law of Gravitation"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "torsion balance geometry; pull between two 1 kg masses at 1 m is ~6.67e-11 N"
+  history:
+    - what: "Clapham 1798; Michell's torsion balance rebuilt by Cavendish; 6 ft wooden rod, 0.73 kg small balls, 158 kg large balls; read by telescope through holes in the shed wall; Earth density 5.448 (printed 5.48 vs modern 5.51)"
+      source: "research/history.md §2 & §True stories 1"
+      url: "https://en.wikipedia.org/wiki/Cavendish_experiment"
+    - what: "Cavendish's shyness and notes to his housekeeper (HEDGE, told as 'the story goes')"
+      source: "research/history.md §True stories 1"
+      url: "https://claphamsociety.com/articles/31eccentric-scientist/"
+  computed:
+    - "python3 -I -c 'm=0.73; g=9.8; F=1.74e-7; print(round(m*g,2), round(m*g/F,-6))' -> 7.15 N weight; ~41,000,000 ratio"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:eclipse-1919":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "24.2 Spacetime and Gravity"
+      url: "https://openstax.org/books/astronomy-2e/pages/24-2-spacetime-and-gravity"
+      took: "starlight grazing the Sun bent by 1.75 arcseconds in general relativity vs half that in Newtonian calculation; 29 May 1919 eclipse expeditions to Príncipe and Sobral"
+  history:
+    - what: "Príncipe (Eddington & Cottingham) 1.61 arcsec, Sobral 4-inch backup (Crommelin & Davidson) 1.98 arcsec, Sobral astrographic blurred mirror 0.93 arcsec; 1978–79 RGO reanalysis 1.55 ± 0.34 arcsec; Kennefick showing Dyson made the exclusion decision"
+      source: "research/history.md §True stories 9"
+      url: "https://www.nature.com/news/2007/070910/full/news070903-20.html"
+    - what: "Earman & Glymour (1980) critique and Clifford Will's assessment"
+      source: "research/history.md §True stories 9"
+      url: "https://www.scientificamerican.com/article/did-researchers-cook-data-from-first-general-relativity-test"
+  computed:
+    - "python3 -I -c 'import math; rad=1.75/3600*math.pi/180; print(round(rad,8), round(0.022/rad))' -> 8.48e-6 rad; 22 mm coin at ~2,600 m"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:einstein-brain":
+  history:
+    - what: "Einstein died 18 April 1955 in Princeton (aged 76); Thomas Harvey removed the 1,230 g brain without permission, cut it into ~240 blocks stored in two jars in a cider box, and returned the remainder to Princeton Hospital in 1998; Terence Hines's methodological critique of single-brain studies"
+      source: "research/history.md §True stories 12"
+      url: "https://www.npr.org/2005/04/18/4602913/the-long-strange-journey-of-einsteins-brain"
+    - what: "1905 Annus Mirabilis papers in Bern (light quanta, Brownian motion, special relativity, E=mc²)"
+      source: "research/history.md §7"
+      url: "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:faraday-cage":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      where: "Course notes Ch 2 §2.5 Conductors in Electrostatic Equilibrium"
+      url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/"
+      took: "free charges reside on outer surface of a conductor and rearrange until the interior electric field is zero"
+  openstax:
+    - book: "College Physics 2e"
+      section: "18.7 Conductors and Electric Fields in Static Equilibrium"
+      url: "https://openstax.org/books/college-physics-2e/pages/18-7-conductors-and-electric-fields-in-static-equilibrium"
+      took: "Faraday cage shielding in cars, aircraft and foil enclosures"
+  history:
+    - what: "Royal Institution, 1836: Faraday built a 12 ft (3.7 m) foil-covered cube, charged the outside to spark-point, went inside with a gold-leaf electroscope and found 'not the least influence'"
+      source: "research/history.md §6 & §True stories 7"
+      url: "https://en.wikipedia.org/wiki/Faraday_cage"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:fish-book":
+  history:
+    - what: "January 1684 London meeting (Halley, Wren's 40-shilling book prize, Hooke); August 1684 Halley visits Newton in Cambridge; De Motu (Nov 1684); Royal Society funds exhausted by 500 copies of Willughby & Ray's De Historia Piscium (£400); Halley paid to print the 1687 Principia and received copies of the fish book Toward his clerk's salary"
+      source: "research/history.md §1 & §True stories 15"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+  computed:
+    - "python3 -I -c 'print(400/500, 400*20/500, 40/16)' -> £0.80 = 16 shillings per copy; 40s prize = 2.5 fish books"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:fizeau-wheel":
+  openstax:
+    - book: "University Physics Volume 1"
+      section: "35.1 The Propagation of Light (Fizeau's toothed-wheel method)"
+      url: "https://openstax.org/books/university-physics-volume-1/pages/1-introduction"
+      took: "cogwheel geometry: 720 teeth, 8,633 m path, first eclipse at 12.6 rev/s when wheel turns by 1/1440 revolution"
+  history:
+    - what: "Suresnes to Montmartre, July 1849: Fizeau's 720-tooth wheel across 8,633 m gave ~315,000 km/s (~5% above 299,792.458 km/s)"
+      source: "research/history.md §5 & §True stories 5"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Fizeau/"
+  computed:
+    - "python3 -I -c 'dt=1/(1440*12.6); d=2*8633; print(round(dt*1e6,1), round(d/dt/1e3))' -> 55.1 µs; 313,261 km/s"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:foucault":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 31 Non-Inertial Reference Frames and Ch 24 Simple Pendulum"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+      took: "pendulum period T = 2π√(L/g) and Foucault rotation rate Ω sin(φ)"
+  history:
+    - what: "Panthéon, Paris, 1851: 67 m wire, 28 kg brass-and-lead bob (17 cm diameter); 'Avez-vous vu tourner la Terre?'; 2 m cellar test and 11 m Paris Observatory test"
+      source: "research/history.md §True stories 8"
+      url: "https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/j.crhy.2017.11.003.pdf"
+  computed:
+    - "python3 -I -c 'import math; print(round(2*math.pi*(67/9.81)**0.5,1), round(15*math.sin(math.radians(48.85)),1), round(15*math.sin(math.radians(19.08)),1))' -> 16.4 s period; 11.3 deg/h Paris; 4.9 deg/h Mumbai"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:galileo-fingers":
+  history:
+    - what: "12 March 1737 reburial at Santa Croce, Florence: Targioni Tozzetti and others removed three fingers, a tooth and a vertebra; two fingers and the tooth disappeared after 1905 and surfaced at auction in 2009, now displayed at the Museo Galileo"
+      source: "research/history.md §True stories 6"
+      url: "https://astronomy2009.org/news/updates/622/index.html"
+    - what: "25 August 1609 Venice telescope demonstration; 7–15 January 1610 Jupiter's moons and Sidereus Nuncius (13 March 1610); Padua ramps and La Bilancetta (1586)"
+      source: "research/history.md §1 & §3"
+      url: "https://early-astronomy.web.itd.umich.edu/western_telescope.php"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:hammer-feather":
+  openstax:
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "free fall without air resistance on the Moon: hammer and feather accelerate at the same rate (~1.62–1.67 m/s²)"
+  history:
+    - what: "Hadley Rille, 2 August 1971 (Apollo 15): David Scott dropped a 1.32 kg aluminium geological hammer and a falcon feather from ~1.2 m (36 frames at 30 fps ≈ 1.2 s); Joe Allen in Houston"
+      source: "research/history.md §2"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html"
+  computed:
+    - "python3 -I -c 'print(round((2*1.2/1.62)**0.5,2), round((2*1.2/9.8)**0.5,2))' -> 1.22 s on Moon, 0.49 s on Earth"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:kilogram":
+  openstax:
+    - book: "University Physics Volume 1"
+      section: "1.2 Units and Standards"
+      url: "https://openstax.org/books/university-physics-volume-1/pages/1-2-units-and-standards"
+      took: "International Prototype Kilogram (Le Grand K) at Sèvres, ~50 µg century drift, and the 20 May 2019 SI redefinition fixing Planck's constant h = 6.62607015e-34 J·s via the Kibble balance"
+  history:
+    - what: "20 May 2019 redefinition of the kilogram; Ian Robinson (NPL) quotes; 39 mm × 39 mm 90% Pt / 10% Ir cylinder made in 1879 by Johnson Matthey"
+      source: "research/history.md §True stories 13"
+      url: "https://physicsworld.com/a/new-definition-of-the-kilogram-comes-into-force/"
+  computed:
+    - "python3 -I -c 'print(50e-6/1000, round(1/50e-6))' -> 5e-8 fractional drift; 20,000 drifts per gram"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:mpemba":
+  history:
+    - what: "Magamba Secondary School (1963) and Mkwawa Secondary School; Mpemba & Osborne (1969) 'Cool?' in Physics Education; Burridge & Linden (2016) critique; Kumar & Bechhoefer (2020) colloidal bead test; status remains disputed for water"
+      source: "research/history.md §True stories 14"
+      url: "https://www.quantamagazine.org/does-hot-water-freeze-faster-than-cold-physicists-keep-asking-20220629/"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:pisa":
+  history:
+    - what: "Leaning Tower story comes solely from Vincenzo Viviani (written 1654, published 1717); Galileo's own account notes a slight lead for the heavier ball due to air; tied-balls reductio ad absurdum; Simon Stevin and Jan Cornets de Groot's documented 1586 drop of two lead balls (10:1 mass) 30 ft at Delft"
+      source: "research/history.md §1"
+      url: "https://physicsworld.com/a/the-legend-of-the-leaning-tower/"
+    - what: "Delft tower experiment (1586)"
+      source: "research/history.md §1"
+      url: "https://en.wikipedia.org/wiki/Delft_tower_experiment"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:tacoma":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Course notes on driven oscillations vs aeroelastic self-excitation"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/"
+      took: "distinction between externally timed resonance and self-excited torsional flutter"
+  history:
+    - what: "7 November 1940 Tacoma Narrows collapse in a steady 42 mph (68 km/h) wind; Billah & Scanlan (1991) showing aeroelastic torsional flutter (negative damping) rather than forced resonance; Leonard Coatsworth, Prof. F. B. Farquharson, and Tubby the cocker spaniel"
+      source: "research/history.md §True stories 11"
+      url: "https://ketchum.org/wind.html"
+    - what: "Farquharson and Tubby the dog"
+      source: "research/history.md §True stories 11"
+      url: "https://www.asce.org/publications-and-news/civil-engineering-source/article/2023/06/13/professor-farquharsons-dog"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:tax-it":
+  history:
+    - what: "'One day, sir, you may tax it' traced to W. E. H. Lecky's Democracy and Liberty (1899), 32 years after Faraday's death; Gladstone became PM in 1868; no contemporary record"
+      source: "research/history.md §6"
+      url: "https://www.snopes.com/fact-check/long-ago-and-faraday/"
+    - what: "Faraday's documented 3–4 September 1821 mercury-cup motor and 29 August 1831 iron-ring induction coil"
+      source: "research/history.md §6"
+      url: "https://www.aps.org/apsnews/2001/08/faraday-electromagnetism"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:trams":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      where: "Course notes Ch 9 §9.1 Biot-Savart and Ampère's Law: B = μ₀I / (2πr) for a long straight wire"
+      url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/"
+      took: "magnetic field B = μ₀I / (2πr) around a long straight current"
+  history:
+    - what: "Colaba Observatory (1841–1906), Charles Chambers, Nanabhoy Moos; magnetometers moved to Alibag (overlapping 1904–1906) before Bombay's first electric tram ran on 7 May 1907"
+      source: "research/history.md §6 & §True stories 16"
+      url: "https://hgss.copernicus.org/articles/6/107/2015/"
+  computed:
+    - "python3 -I -c 'I=500; r=200; B=2e-7*I/r; print(B*1e9, round(B*1e9/38400*100,2))' -> 500 nT; 1.3% of Mumbai horizontal field (38,400 nT)"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:wobbly-bridge":
+  history:
+    - what: "London Millennium Bridge opened 10 June 2000 (325 m long, 4 m wide, up to 7 cm lateral sway), closed 12 June 2000, fitted with 37 viscous dampers and 52 tuned mass dampers (£5m), reopened 22 February 2002; Arup synchronous lateral excitation model vs Belykh et al. (2021) negative-damping without synchronisation model"
+      source: "research/history.md §True stories 10"
+      url: "https://enr.com/articles/53233-new-explanation-given-for-londons-wobbling-millennium-bridge-after-two-decades"
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_eclipse_bend": {origin: "ours", note: "deflection angle exaggerated for clarity; 1.75 arcsec vs 0.87 arcsec from story:eclipse-1919"}
+"fig:s_faraday_cube": {origin: "ours", note: "12 ft (3.7 m) foil cube from story:faraday-cage"}
+"fig:s_fizeau_wheel": {origin: "ours", note: "720 teeth, 8,633 m path, 12.6 rev/s first blackout from story:fizeau-wheel"}
+"fig:s_foucault_turn": {origin: "ours", note: "hourly rotation rates 15° sin(lat) computed in story:foucault"}
+"fig:s_kilogram_rule": {origin: "ours", note: "Le Grand K 39 mm cylinder vs h = 6.62607015e-34 J·s Kibble balance from story:kilogram"}
+"fig:s_mpemba_curves": {origin: "ours", note: "schematic cooling curves illustrating the crossing argument in story:mpemba"}
+"fig:s_tram_field": {origin: "ours", note: "B = 500 nT at r = 200 m for I = 500 A computed in story:trams"}
+"fig:s_wobble_loop": {origin: "ours", note: "feedback loop and damper cure from story:wobbly-bridge"}

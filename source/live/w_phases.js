@@ -1,0 +1,213 @@
+// 14.3 Moon phases in 3D: half the Moon is always lit; synchronous rotation; view from above vs from Mumbai; true-distance scale with Earth's shadow cone.
+import {
+  Group, Mesh, SphereGeometry, ConeGeometry, MeshBasicMaterial, MeshStandardMaterial,
+  Color, Vector3,
+} from 'three';
+import { Live } from './core.js';
+import { makeStage, addArrow, addAtom, webglOK } from './three_kit.js';
+
+function phaseNameForDay(day) {
+  const f = ((day % 29.5) + 29.5) % 29.5;
+  if (f < 1.0 || f > 28.5) return 'New Moon';
+  if (f < 6.4) return 'waxing crescent';
+  if (f < 8.4) return 'First Quarter';
+  if (f < 13.8) return 'waxing gibbous';
+  if (f < 15.8) return 'Full Moon';
+  if (f < 21.1) return 'waning gibbous';
+  if (f < 23.1) return 'Third Quarter';
+  return 'waning crescent';
+}
+
+Live.register('phases', (stage, params, api) => {
+  const c = api.colors();
+  const say = api.readout();
+
+  let day = 3.0;         // 0 to 29.5, default 3.0 (waxing crescent, ~10% lit)
+  let viewMode = 0;      // 0 = From above the orbit, 1 = From Mumbai
+  let trueScale = false; // false = drawn close (not to scale), true = true distance (~30 Earth diameters)
+
+  function computePhase() {
+    const theta = (day / 29.5) * Math.PI * 2; // 0 = New Moon (towards Sun at +x), pi = Full Moon (-x)
+    const litFrac = (1 - Math.cos(theta)) / 2;
+    const pct = Math.round(litFrac * 100);
+    const delayMin = Math.round(49 * day);
+    const hrs = Math.floor(delayMin / 60);
+    const mins = delayMin % 60;
+    const delayStr = hrs === 0 ? `${mins} min` : mins === 0 ? `${hrs} h` : `${hrs} h ${mins} min`;
+    return { theta, litFrac, pct, delayStr, name: phaseNameForDay(day) };
+  }
+
+  function updateReadout() {
+    const p = computePhase();
+    const scaleNote = trueScale
+      ? 'drawn at the true distance of about 30 Earth-diameters, with the Earth’s narrow shadow cone shown'
+      : 'orbit drawn close, not to scale';
+    say(
+      `Day ${day.toFixed(1)}: ${p.name}, about ${p.pct}% lit. ` +
+      `The lit half always faces the Sun; from the Earth we see ${p.pct}% of it, and the dark part is the Moon's own night side (never the Earth's shadow). ` +
+      `Rises about ${p.delayStr} after the Sun; the Moon turns once per orbit so the same face always looks at the Earth (${scaleNote}).`
+    );
+  }
+
+  // Control 1: Day of the month slider (0 to 29.5, default 3)
+  const daySlider = api.slider('Day of the month', {
+    min: 0, max: 29.5, step: 0.5, value: day,
+    fmt: (v) => `Day ${v.toFixed(1)}`,
+    onInput: (v) => {
+      day = v;
+      rebuild();
+    },
+  });
+
+  // Control 2: View tabs ("From above the orbit" / "From Mumbai")
+  api.tabs(['From above the orbit', 'From Mumbai'], (i) => {
+    viewMode = i;
+    rebuild();
+  });
+
+  // Control 3: Scale toggle ("Drawn close" / "True distance")
+  const scaleBtn = api.button('Scale: drawn close', () => {
+    trueScale = !trueScale;
+    scaleBtn.textContent = trueScale ? 'Scale: true distance (30× Earth)' : 'Scale: drawn close';
+    scaleBtn.setAttribute('aria-pressed', String(trueScale));
+    rebuild();
+  }, { pressed: false });
+
+  if (!webglOK()) {
+    const k2 = api.canvas(640, 300, 'Earth and Moon lit by parallel sunlight showing the lunar phase');
+    function drawFallback() {
+      const ctx = k2.ctx;
+      k2.clear(c.plate);
+      const p = computePhase();
+      ctx.beginPath();
+      ctx.arc(320, 150, 26, 0, Math.PI * 2);
+      ctx.fillStyle = c.electron;
+      ctx.fill();
+      const mx = 320 + 100 * Math.cos(p.theta);
+      const my = 150 - 100 * Math.sin(p.theta);
+      ctx.beginPath();
+      ctx.arc(mx, my, 14, 0, Math.PI * 2);
+      ctx.fillStyle = c.sheet;
+      ctx.fill();
+      ctx.stroke();
+      updateReadout();
+    }
+    var rebuild = drawFallback;
+    api.loop(() => drawFallback());
+    drawFallback();
+    return { destroy() {} };
+  }
+
+  const kit = makeStage(stage, api, {
+    height: 350,
+    distance: 7.6,
+    label: '3D view of the Moon orbiting the Earth in parallel sunlight, showing its lit half and the phase seen from Mumbai',
+  });
+  kit.spinSpeed = 0; // Advance orbit on Play instead of spinning the camera root
+
+  // Advance day of month gently while playing
+  kit.onFrame = (dt) => {
+    if (dt > 0) {
+      day = (day + dt * 1.4) % 29.5;
+      daySlider.set(+day.toFixed(1));
+      rebuild();
+    }
+  };
+
+  const dynGroup = new Group();
+  kit.root.add(dynGroup);
+
+  // Build a sphere whose +x hemisphere (facing the Sun at +x) is bright and whose -x hemisphere is dark night,
+  // independent of scene ambient lighting so the 50/50 day-night terminator is always crystal clear!
+  function makeDayNightSphere(radius, dayHex, nightHex) {
+    const g = new Group();
+    const dayGeo = new SphereGeometry(radius, 32, 24, -Math.PI / 2, Math.PI);
+    const nightGeo = new SphereGeometry(radius, 32, 24, Math.PI / 2, Math.PI);
+    const dayMat = new MeshBasicMaterial({ color: new Color(dayHex) });
+    const nightMat = new MeshBasicMaterial({ color: new Color(nightHex) });
+    g.add(new Mesh(dayGeo, dayMat), new Mesh(nightGeo, nightMat));
+    return g;
+  }
+
+  function rebuild() {
+    while (dynGroup.children.length) {
+      const ch = dynGroup.children.pop();
+      ch.traverse?.((m) => m.geometry?.dispose?.());
+    }
+    const p = computePhase();
+
+    if (viewMode === 1) {
+      // View "From Mumbai": show the Moon large at the origin, rotated by p.theta so the camera at +z sees
+      // the exact lit fraction (1 - cos theta)/2 with the waxing lit sliver on the right (west for a northern observer)!
+      kit.root.quaternion.identity();
+      const moonR = 1.45;
+      const moon = makeDayNightSphere(moonR, '#f5efe0', '#232b28');
+      // At theta = 0 (New Moon), the dark half faces camera (+z) -> rotate +90 deg around y; then rotate by -theta
+      moon.rotation.y = Math.PI / 2 - p.theta;
+      dynGroup.add(moon);
+
+      // Subtle near-side maria spots that stay fixed facing the Earth (synchronous rotation!)
+      const mareMat = new MeshBasicMaterial({ color: new Color('#8c887b'), transparent: true, opacity: 0.45 });
+      for (const [mx, my, mz, mr] of [[-0.35, 0.32, 1.36, 0.24], [0.22, 0.18, 1.41, 0.20], [-0.15, -0.25, 1.42, 0.18]]) {
+        const spot = new Mesh(new SphereGeometry(mr, 16, 12), mareMat);
+        spot.scale.set(1, 1, 0.2);
+        spot.position.set(mx, my, mz);
+        dynGroup.add(spot);
+      }
+    } else {
+      // View "From above the orbit": look down on the orbital plane (x-z plane) with slight tilt
+      kit.root.quaternion.identity();
+      kit.root.rotation.x = 1.18;
+
+      const earthR = trueScale ? 0.09 : 0.62;
+      const orbitR = trueScale ? 2.65 : 2.15; // In trueScale, orbitR / (2 * earthR) ≈ 15, i.e. diameter = 30 Earths!
+      const moonR = trueScale ? 0.045 : 0.34;
+
+      // Earth at origin (lit side facing Sun at +x)
+      const earth = makeDayNightSphere(earthR, '#3b7a94', '#16262e');
+      dynGroup.add(earth);
+
+      // In true-distance mode, draw Earth's narrow umbra shadow cone extending towards -x
+      if (trueScale) {
+        const shadowMat = new MeshBasicMaterial({
+          color: new Color(c.ink),
+          transparent: true,
+          opacity: 0.22,
+        });
+        const coneLen = 2.8;
+        const shadow = new Mesh(new ConeGeometry(earthR, coneLen, 20), shadowMat);
+        shadow.rotation.z = Math.PI / 2;
+        shadow.position.set(-coneLen / 2, 0, 0);
+        dynGroup.add(shadow);
+      }
+
+      // Moon at orbital angle theta (counterclockwise in x-z plane from +x New Moon)
+      const mx = orbitR * Math.cos(p.theta);
+      const mz = -orbitR * Math.sin(p.theta);
+      const moon = makeDayNightSphere(moonR, '#f5efe0', '#232b28');
+      moon.position.set(mx, 0, mz);
+      dynGroup.add(moon);
+
+      // Synchronous rotation marker: a small red dot on the Moon's surface that ALWAYS faces the Earth at (0,0,0)
+      if (!trueScale) {
+        const dirToEarth = new Vector3(-mx, 0, -mz).normalize();
+        const nearDotPos = new Vector3(mx, 0, mz).addScaledVector(dirToEarth, moonR * 1.08);
+        addAtom(dynGroup, 'X', [nearDotPos.x, nearDotPos.y, nearDotPos.z], {
+          r: 0.075, label: false, color: c.proton,
+        });
+      }
+
+      // Parallel sunlight arrows arriving from the right (+x)
+      for (const zOff of [-1.4, 0, 1.4]) {
+        addArrow(dynGroup, [3.25, 0, zOff], [2.55, 0, zOff], c.neutron, 0.035);
+      }
+    }
+
+    updateReadout();
+    kit.dirty = true;
+    kit.render();
+  }
+
+  rebuild();
+  return { destroy() {} };
+}, { label: 'Orbit the Moon in 3D', three: true });

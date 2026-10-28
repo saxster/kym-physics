@@ -10,6 +10,7 @@ The fonts are subset and embedded in the page.
 - **three.js**, MIT License. Copyright 2010-2025 three.js authors.
 - **d3-geo** and **topojson-client**, ISC License. Copyright Mike Bostock.
 - **world-atlas**, ISC License. Map data from Natural Earth (public domain).
+- **The optional natural read-aloud voice (Isabella)** loads **kokoro-js** (Apache License 2.0) from jsDelivr and the **Kokoro-82M** voice model (Apache License 2.0) from Hugging Face, in the reader's own browser. Nothing from either is stored in this repository.
 
 ## Teaching material
 The book re-teaches ideas, sequences, demonstrations and problems from these sources, in its own words. Its page "Where this book comes from" lists, section by section, what came from where:

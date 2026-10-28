@@ -1,0 +1,325 @@
+# Provenance for the sky stories (group: sky): one entry per story ("story:<id>") and per figure ("fig:<name>").
+# Every number in these stories was recomputed with python3 -I from the inputs named here; the one-liners are listed
+# under `computed:` (the build ignores that key). Claims the writer could not source are listed in the writer's report.
+
+"story:gravity":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 9 §9.2 Universal Law of Gravitation and the Circular Orbit of the Moon; Astronomical Data sheet (sidereal month 2.3605847e6 s)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter9.pdf"
+      took: "the Moon's acceleration from its orbit; orbital speed about 1 km/s"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.3 Newton's Universal Law of Gravitation"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation"
+      took: "60 Earth radii, 1/3600, 0.00272 m/s²; the Moon falls around Earth, not to it; every mass pulls every other"
+    - book: "College Physics 2e"
+      section: "6.5 Newton's Universal Law of Gravitation"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "Newton's 'pretty nearly'; the under-1% leftover (elliptical orbit, Earth moving); equal and opposite pulls; Earth–Moon centre of mass 1,700 km below the surface; G and the force between two 1 kg masses"
+  research:
+    - what: "'no gravity in space': 81% of 13-year-olds (Stead & Osborne 1980)"
+      source: "research/misconceptions.md §4"
+      url: "https://spark.iop.org/many-students-think-object-beyond-earths-atmosphere-space-does-not-experience-force-gravity"
+  history:
+    - what: "Woolsthorpe 1666; Stukeley 1726: 'occasion'd by the fall of an apple, as he sat in contemplative mood'; the apple did not hit his head; 'an 18th-century sound bite' (HEDGE, told as the story goes)"
+      source: "research/history.md"
+      url: "https://www.nbcnews.com/id/wbna34944738"
+    - what: "Halley's question, Cambridge, August 1684; the lost paper; Principia 1687, printed at Halley's expense"
+      source: "research/history.md"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+    - what: "Cavendish, Clapham 1798, inside a shed"
+      source: "research/history.md"
+      url: "https://en.wikipedia.org/wiki/Cavendish_experiment"
+  computed:
+    - "python3 -I -c 'import math; r=3.84e8; T=2.3605847e6; a=4*math.pi**2*r/T**2; print(round(a,6), round(0.5*a*1000,2), round(0.5*a*3600,2), round(2*math.pi*r/T))' -> 0.002721 m/s²; 1.36 mm in 1 s; 4.9 m in 60 s; 1022 m/s"
+    - "python3 -I -c 'print(round(9.8/3600,5), round(3.84e8/6.371009e6,1), round(0.5*9.8,2))' -> 0.00272; 60.3 Earth radii; an apple falls 4.9 m in 1 s"
+    - "1684 - 1609 = 75 years from Astronomia Nova to Halley's question"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:orbits":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data and Physical Constants sheets (G, Earth mass 5.97219e24 kg, mean radius 6.371009e6 m); PS.3.1 Orbital Circular Motion"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "inputs for g at 400 km, orbital speed and period, circular and escape speeds"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.5 Motions of Satellites and Spacecraft; 3.3 (weightless = falling around); Ch 3 Thought Questions (ISS at 400 km)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft"
+      took: "Newton's cannon and the De Mundi Systemate (1731) diagram; about 8 and 11 km/s; no engine needed above the air; low orbits decay; the snapped-cable lift; ISS 400 km"
+    - book: "College Physics 2e"
+      section: "6.5 (no zero gravity in orbit); 6.6 (mass cancels: same height, same speed)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+      took: "weightlessness is free fall at the local g; satellite mass cancels"
+  research:
+    - what: "ISS: about 90 minutes an orbit, 16 orbits a day, mass 419,725 kg"
+      source: "NASA: Space Station Facts and Figures"
+      url: "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/"
+    - what: "'no gravity in space' 81%; phyphox 'Acceleration (with g)' reads about 9.81 at rest and near zero in a 40 cm drop (about 0.3 s)"
+      source: "research/misconceptions.md §4"
+      url: "https://phyphox.org/wiki/index.php/Category:Built-in_experiments"
+    - what: "IGCSE 0625: weight is the gravitational force on a mass (so an orbiting astronaut still has weight)"
+      source: "research/school-wording.md §1"
+    - what: "Bandra–Worli Sea Link 5.6 km (for the 0.7 s crossing)"
+      source: "research/history.md §9"
+      url: "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"
+  history:
+    - what: "Principia 1687; Newton 1643–1727 (so 1731 is four years after his death)"
+      source: "research/history.md"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+  computed:
+    - "python3 -I -c 'R=6.371009e6; print(round((R/(R+400e3))**2,4))' -> 0.8853 (89%)"
+    - "python3 -I -c 'import math; G=6.67384e-11; M=5.97219e24; r=6.371009e6+400e3; v=(G*M/r)**0.5; print(round(v/1e3,2), round(2*math.pi*r/v/60,1), round(86400/(2*math.pi*r/v),1))' -> 7.67 km/s, 92.4 min, 15.6 orbits/day"
+    - "python3 -I -c 'G=6.67384e-11; M=5.97219e24; R=6.371009e6; print(round((G*M/R)**0.5/1e3,2), round((2*G*M/R)**0.5/1e3,2))' -> 7.91 and 11.19 km/s"
+    - "python3 -I -c 'print(round(5.6/7.9,2), round((2*0.40/9.81)**0.5,3), round(419725/1000))' -> 0.71 s across the Sea Link; 0.286 s drop; 420 t"
+  licence: "CC BY-NC-SA 4.0; NASA facts cited"
+
+"story:kepler":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 Celestial Mechanics §25.1 and §25.6 (Kepler's laws I–III; 1619)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "statement of the three laws; third law 1619"
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      where: "Problem Set 3, Problem 1 Eccentric Orbits (Mars e = 0.093)"
+      url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/0c2abfdb3d15998574e199d4294e5475_ps3.pdf"
+      took: "Mars eccentricity; nearest/farthest ratio"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.1 The Laws of Planetary Motion"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-1-the-laws-of-planetary-motion"
+      took: "Tycho's twenty years without a telescope and the tables; Kepler first assumed circles; ellipse, foci (Kepler's word), Sun at one focus; equal areas; P² = a³ with Mars P = 1.88 yr; 1609 and 1619; laws describe, Newton explained; pins-and-string demo"
+    - book: "Astronomy 2e"
+      section: "3.4 Orbits in the Solar System"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "Mars unusually eccentric (only Mercury more so); naked-eye data would not have shown the ellipse for other planets"
+  research:
+    - what: "Moon's angular size 0.518° (for 'eight minutes is a quarter of the Moon's width')"
+      source: "NASA NSSDC Moon Fact Sheet"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+  history:
+    - what: "Hven 1576–97, Uraniborg; Prague, Kepler arrives February 1600; Tycho dies October 1601; 8 minutes of arc; Astronomia Nova 1609; poisoning speculation, 2010 exhumation inconclusive; Galileo's telescope 1609"
+      source: "research/history.md"
+      url: "https://www.astronomy.ohio-state.edu/thompson.1847/161/watershed.html"
+  computed:
+    - "python3 -I -c 'print(round(8/(0.518*60),2), round((1-0.093)/(1+0.093),3), round((1-0.093**2)**0.5,4))' -> 0.26 of the Moon's width; 0.83; b/a = 0.9957"
+    - "python3 -I -c 'print(round(1.88**(2/3),3), round(1.88**(2/3)*1.5e8/1e6))' -> 1.523 AU; 228 million km"
+    - "home box: pins 2 cm apart (c = 1 cm), loop 22 cm (a = 10 cm): b = sqrt(100-1) = 9.95 cm, 0.5 mm short of a circle; 1609 - 1576 = 33; 1684 - 1609 = 75"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:earth-turns":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.1 Earth and Sky"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky"
+      took: "seeing alone cannot tell whether the sky or Earth turns; accepted from the 17th century; Foucault 1851 as the unambiguous demonstration (a pendulum keeps its plane); Mumbai at 19.08° N"
+  research:
+    - what: "Earth volumetric mean radius 6371 km (Mumbai's speed round the axis)"
+      source: "NASA NSSDC Earth Fact Sheet"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+    - what: "IGCSE 0625 6.1.1: Earth rotates on its tilted axis once in approximately 24 hours"
+      source: "research/school-wording.md"
+  history:
+    - what: "Kusumapura (Patna) 499 CE; Aryabhata 476–c.550; stars seem to move westward because Earth turns, like a person in a boat seeing the shore slide back; eclipses as shadows, not demons; some scholars date the text nearer 510; avoid 'heliocentric' and '99.4% accurate'"
+      source: "research/history.md"
+      url: "https://en.wikipedia.org/wiki/Aryabhatiya"
+    - what: "Foucault, Panthéon 1851: 67 m wire, 28 kg bob (AS 4.1 gives 60 m, 25 kg; told as 'about'); newspapers asked 'Avez-vous vu tourner la Terre?'"
+      source: "research/history.md"
+      url: "https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/j.crhy.2017.11.003.pdf"
+  computed:
+    - "python3 -I -c 'import math; print(round(2*math.pi*6371*math.cos(math.radians(19.08))), round(2*math.pi*6371*math.cos(math.radians(19.08))/24), 360/24)' -> 37,833 km a day; 1,576 km/h; 15°/h"
+    - "python3 -I -c 'import math; v=2*math.pi*6.371e6*math.cos(math.radians(19.08))/86400; a=v**2/(6.371e6*math.cos(math.radians(19.08))); print(round(v), round(a,4), round(a/9.8*100,2))' -> 438 m/s; 0.0318 m/s²; 0.32% of g (about 1/300)"
+    - "499 - 476 = 23; 1851 - 499 = 1352"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:seasons":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.2 The Seasons"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons"
+      took: "distance idea refuted (3% distance change, closest in January, opposite hemispheres); tilt fixed in space; the two effects (angle, day length); flashlight demo; solstices and equinoxes; noon-altitude method; near the equator seasons are wet and dry; warmest weeks come after the solstice"
+  research:
+    - what: "obliquity 23.44°; perihelion 147.095 and aphelion 152.100 million km"
+      source: "NASA NSSDC Earth Fact Sheet"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+    - what: "A Private Universe: 21 of 23 Harvard graduates and faculty wrong (count from secondary write-ups); distance idea 'by far the most common explanation'; Mumbai's January its coolest month; Australia's summer in December"
+      source: "research/misconceptions.md §12"
+      url: "https://www.tieonline.com/article/307/student-misconceptions-where-do-they-come-from-"
+    - what: "A Private Universe dated 1987 in most sources (one library record says 1989)"
+      source: "research/sources.md"
+      url: "https://serc.carleton.edu/resources/34251.html"
+    - what: "IGCSE 0625 6.1.1 links the yearly orbit to the periodic nature of the seasons; tilt not explicitly linked (bridge sentence)"
+      source: "research/school-wording.md"
+    - what: "IMD normal monsoon onset for Mumbai, 11 June"
+      source: "research/history.md §9"
+      url: "https://mausam.imd.gov.in/backend/assets/press_release_pdf/IMD_Press_release_new_onset_and_withdrawal_dates%28Final%29.pdf"
+  computed:
+    - "python3 -I -c 'print(round(152.100/147.095,4), round((152.100/147.095)**2,4))' -> 1.034 (3.4% farther); 1.069 (6.9% more sunlight in January)"
+    - "python3 -I -c 'p=19.08;e=23.44;print(round(90-abs(p-e),2),round(90-p,2),round(90-(p+e),2))' -> 85.64, 70.92, 47.48"
+    - "python3 -I -c 'import math;print(round(math.sin(math.radians(85.64))/math.sin(math.radians(47.48)),3))' -> 1.353"
+    - "python3 -I -c 'import math;p=math.radians(19.08);d=math.radians(23.44);print(round(2*math.degrees(math.acos(-math.tan(p)*math.tan(d)))/15,2),round(2*math.degrees(math.acos(math.tan(p)*math.tan(d)))/15,2))' -> 13.15 h, 10.85 h (geometric; 2.3 h apart)"
+    - "python3 -I -c 'print(round(6371/149.6e6*100,4))' -> 0.0043% (the 'leaning half is closer' effect)"
+    - "zero-shadow days around mid-May and late July: grounding/ch14.md's approximate declination formula (ASSUMED; needs an almanac check), stated in the story only as 'in May' and 'in July'"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:moon-phases":
+  ocw:
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      where: "Problem Set 1, Problems 1–2 (Aristarchus: both the Sun and the Moon about ½° across; quarter-Moon right angle)"
+      url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps1/"
+      took: "½° angular sizes; the right angle at first quarter"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.5 Phases and Motions of the Moon"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-5-phases-and-motions-of-the-moon"
+      took: "reflected sunlight; half lit always; ball-and-lamp demo; phase names; 27.3 and 29.5 days; full Moon rises at sunset and is highest at midnight, first quarter rises around noon; same face towards Earth; 'dark side' warning; shadow misconception; 30 Earth-diameters"
+    - book: "Astronomy 2e"
+      section: "4.7 Eclipses of the Sun and Moon"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-7-eclipses-of-the-sun-and-moon"
+      took: "solar eclipse at new Moon, lunar at full; orbit tilted about 5° so most months the shadow misses; eclipse seasons twice a year; 400 times wider and farther; coppery red Moon; pinhole safety and the warning against sunglasses and brief looks"
+  research:
+    - what: "phases = Earth's shadow: 41–44% of students"
+      source: "research/misconceptions.md §12"
+      url: "https://tused.org/index.php/tused/article/download/101/59/125"
+    - what: "Moon inclination 5.145°, radius 1737.4 km, semimajor axis 384,400 km, synodic 29.53 d, sidereal 27.32 d; Sun radius 695,700 km"
+      source: "NASA NSSDC Moon and Sun Fact Sheets"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+  history:
+    - what: "Aryabhata, 499: eclipses are shadows"
+      source: "research/history.md"
+      url: "https://en.wikipedia.org/wiki/Aryabhatiya"
+  computed:
+    - "python3 -I -c 'print(round(360/29.5306,2), round(24*60*(360/29.5306)/360))' -> 12.19°/day; 49 min later each day"
+    - "python3 -I -c 'import math;print(round(384400*math.sin(math.radians(5.145))), round(384400/(2*6371),1))' -> 34,472 km off the line; 30.2 Earth-diameters"
+    - "python3 -I -c 'import math;print(round(695700/1737.4,1), round(149.598e6/384400,1), round(2*math.degrees(math.atan(1737.4/384400)),3), round(2*math.degrees(math.atan(695700/149.598e6)),3))' -> 400.4; 389.2; 0.518°; 0.533°"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:tides":
+  openstax:
+    - book: "Astronomy 2e"
+      section: "4.6 Ocean Tides and the Moon"
+      url: "https://openstax.org/books/astronomy-2e/pages/4-6-ocean-tides-and-the-moon"
+      took: "daily delay matches moonrise; tides from differences in the Moon's pull; water flows into two bulges, not lifted or stretched; two highs a day; Sun less than half as effective; spring ('spring up') and neap; land, friction, depth, wind mean tide tables per place; an all-water Earth would distort by nearly 1 m; Earth's spin slows 0.002 s per century; the Moon recedes 3.8 cm a year (Apollo mirrors)"
+  research:
+    - what: "Sun and Moon masses and distances (tidal ratio 0.46; Moon's pull per kg on near side, centre and far side)"
+      source: "NASA NSSDC Sun and Moon Fact Sheets"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    - what: "tides = only the Moon (Corrochano 2017); Mumbai tide range in metres UNVERIFIED, so no metre figure is given"
+      source: "research/misconceptions.md §12"
+      url: "https://produccioncientifica.usal.es/documentos/5e4fc3e629995245c6b2e9c0"
+  history:
+    - what: "Haji Ali causeway submerged at high tide; Mumbai's tide mixed semi-diurnal, two unequal highs (HEDGE: 'usually'); use INCOIS or Survey of India tables, not news figures"
+      source: "research/history.md §9"
+      url: "https://en.wikipedia.org/wiki/Haji_Ali_Dargah"
+    - what: "Newton 1687 (the Principia) as the first explanation of tides by the Moon's pull: standard history, NOT in research/history.md; flagged in the writer's report"
+      source: "research/history.md"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+  computed:
+    - "python3 -I -c 'L=24*29.5306/28.5306;print(round(L,3), round(L/2,2), round((L-24)*60), round(29.5306/2,1))' -> 24.841 h; 12.42 h; 50 min; 14.8 d"
+    - "python3 -I -c 'print(round((1.9884e30/1.49598e11**3)/(7.3477e22/3.844e8**3),3))' -> 0.458"
+    - "python3 -I -c 'G=6.67384e-11;M=7.3477e22;d=3.844e8;R=6.371009e6;print(G*M/(d-R)**2, G*M/d**2, G*M/(d+R)**2)' -> 3.43e-5, 3.32e-5, 3.21e-5 m/s² (near 3.4% above centre, far 3.2% below; difference 1.1e-6 = 1.15e-7 of g; Moon's pull 3.4e-6 of g)"
+    - "2 x 6371 = 12,742 km"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:chandrayaan":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 Example 25.4 Transfer Orbit; Astronomical Data (Earth and Moon mass and radius)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "coasting on Kepler orbits between burns; inputs for the periods and the vis-viva speeds"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.5 Motions of Satellites and Spacecraft"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft"
+      took: "capture requires braking near the destination; no engine needed to stay in orbit"
+  research:
+    - what: "launch 14 July 2023 14:35 IST, Second Launch Pad, Sriharikota; orbits after the firings of 15, 17 and 22 July (the list skips the third; 25 July has no orbit); TLI 1 August 288 x 369,328 km; 5 August LOI; lunar orbits of 6, 9, 14, 16 August; separation 17 August; lander orbits 19–20 August; soft landing 23 August; rover ramp-down 24 August; sleep mode 4 September; contact attempts 22 September"
+      source: "ISRO: Chandrayaan-3 mission updates"
+      url: "https://www.isro.gov.in/Chandrayaan3.html"
+    - what: "LOI retro-burn at perilune for 1835 s from 19:12 IST; 164 x 18,074 km 'as intended'"
+      source: "ISRO: Lunar Orbit Insertion press release, 5 Aug 2023"
+      url: "https://www.isro.gov.in/Ch3_Lunar_Orbit_Insertion_Press_Release.html"
+    - what: "planned parking orbit ~170 x 36,500 km; masses 2148 + 1752 kg (26 kg rover) = 3900 kg; prime site 69.367621 S; mission life one lunar day (~14 Earth days)"
+      source: "ISRO: Chandrayaan-3 details; LVM3 M4 brochure"
+      url: "https://www.isro.gov.in/Chandrayaan3_Details.html"
+  history:
+    - what: "landing 18:04 IST 23 August 2023 at about 69.3° S; Shiv Shakti Point named 26 August; Pragyan's LIBS confirmed sulphur; rover drove about 101 m (UNOOSA presentation)"
+      source: "research/history.md §8"
+      url: "https://www.unoosa.org/documents/pdf/copuos/stsc/2024/ListTechnicalPresentations/2024_STSC_technical_presentations_slides/9_26_--_4_INDIA_Chandrayaan3.pdf"
+    - what: "Chandrayaan-1 (2008–09): NASA's M3 found water and hydroxyl, announced 24 September 2009; the CHACE water claim is HEDGE/disputed"
+      source: "research/history.md §8"
+      url: "https://science.nasa.gov/mission/chandrayaan-1/"
+  computed:
+    - "ISRO heights taken as heights above the surface (ASSUMED, as in grounding/ch05.md); python3 -I -c 'import math; GM=6.67384e-11*5.97219e24; f=lambda rp,ra: 2*math.pi*((((rp+ra)/2+6371.009)*1e3)**3/GM)**0.5/3600; print(round(f(173,41762),1), round(f(233,71351),1))' -> 12.5 h, 23.9 h"
+    - "python3 -I -c 'import math; GM=6.67384e-11*7.3477e22; f=lambda rp,ra: 2*math.pi*((((rp+ra)/2+1737.10)*1e3)**3/GM)**0.5/3600; print(round(f(164,18074),1), round(f(153,163)*60))' -> 28.2 h; 123 min"
+    - "python3 -I -c 'GM=6.67384e-11*5.97219e24; rp=(233+6371)*1e3; ra=(71351+6371)*1e3; a=(rp+ra)/2; print(round((GM*(2/rp-1/a))**0.5/1e3,2), round((GM*(2/ra-1/a))**0.5/1e3,2))' -> 10.55 and 0.90 km/s"
+    - "1835 s = 30.6 min; 14 July to 23 August = 40 days; 5 to 23 August = 18 days; 29.53 / 2 = 14.8 days of lunar daylight"
+  licence: "CC BY-NC-SA 4.0 (OCW/OpenStax); ISRO material cited under ISRO's copyright policy"
+
+"story:planet-from-a-pen":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 25 §25.1 (the three-body problem has no exact solution; the Moon–Earth–Sun problem drove 18th-century mathematics)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf"
+      took: "idea: step-by-step computation for three or more bodies"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.4 Orbits in the Solar System; Ch 3 Review Questions (Neptune, the first planet discovered through mathematics)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+      took: "comets' long eccentric orbits: slow far out, fast through perihelion; Neptune by mathematics"
+    - book: "College Physics 2e"
+      section: "6.6 Satellites and Kepler's Laws (perturbations by other bodies used to predict unseen planets)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-6-satellites-and-keplers-laws-an-argument-for-simplicity"
+      took: "definition and use of perturbations"
+  research:
+    - what: "Moon's angular size 0.518° (one degree is about two Moon-widths)"
+      source: "NASA NSSDC Moon Fact Sheet"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+  history:
+    - what: "Halley died 1742 having predicted a return in 1758; Clairaut, Lalande and Nicole-Reine Lepaute spent months on Jupiter's and Saturn's pulls, predicting perihelion around mid-April 1759; Palitzsch saw it first on 25 December 1758"
+      source: "research/history.md"
+      url: "https://en.wikipedia.org/wiki/Johann_Georg_Palitzsch"
+    - what: "Berlin, 23 September 1846: Uranus drifting; Le Verrier's letter to Galle; Galle and d'Arrest found Neptune the same night within about 1°; Adams about 12° off and no part in the discovery; Challis saw it twice unrecognised"
+      source: "research/history.md"
+      url: "https://en.wikipedia.org/wiki/Discovery_of_Neptune"
+  computed:
+    - "1758 - 1742 = 16 years; 25 December to mid-April is about 3.5 months; python3 -I -c 'print(round(60/31.1,1), round(12*60/31.1))' -> 1.9 and 23 Moon-widths"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:sun-watcher":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Astronomical Data and Physical Constants sheets (Sun and Earth masses, AU, year); Course notes Ch 25 (Kepler's third law)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+      took: "inputs for the free-orbit period at the L1 radius and the Hill-sphere estimate of L1"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "3.1 The Laws of Planetary Motion (third law: smaller orbit, shorter period)"
+      url: "https://openstax.org/books/astronomy-2e/pages/3-1-the-laws-of-planetary-motion"
+      took: "Kepler's third law as the objection L1 answers"
+  research:
+    - what: "halo orbit insertion 6 January 2024; L1 roughly 1.5 million km from Earth on the moving Sun–Earth line; period about 177.86 days"
+      source: "ISRO: Aditya-L1 halo orbit insertion"
+      url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"
+    - what: "L1 at 1.497 million km by the Hill-sphere approximation r = a(M_E/3M_S)^(1/3), matching ISRO's 1.5 million km; Aditya-L1 is in a halo orbit, not sitting still"
+      source: "grounding/ch15.md §15.3"
+  computed:
+    - "python3 -I -c 'import math; AU=1.49598e11; G=6.67384e-11; Ms=1.9884e30; Me=5.97219e24; l1=AU*(Me/(3*Ms))**(1/3); r=AU-l1; T=2*math.pi*(r**3/(G*Ms))**0.5/86400; print(round(l1/1e9,3), round(T,1), round(365.3-T,1), round(G*Ms/r**2/(G*Me/l1**2)))' -> 1.497 million km; 359.8 d; 5.5 d a year; Sun's pull 34 times Earth's"
+    - "python3 -I -c 'AU=1.49598e11; print(round(AU/(1+(1.9884e30/5.97219e24)**0.5)/1e3,-3), round(1.5e6/384400,1), round(177.86/30.44,1), round(183/5.5))' -> pulls equal at 259,000 km from Earth; 3.9 Moon distances; 5.8 months; 33 years to reach the far side"
+  licence: "CC BY-NC-SA 4.0; ISRO material cited under ISRO's copyright policy"
+
+# Figures: all drawn by us from the numbers above. Exaggerations are stated in each caption.
+"fig:s_moon_falls": {origin: "ours", note: "orbit radius and the 4.9 m gap not to scale; numbers from story:gravity"}
+"fig:s_newton_cannon": {origin: "ours", note: "true Kepler paths for 0.6, 0.85, 1.0 and 1.12 of circular speed from a 0.1 R mountain; redrawn in our own geometry, not copied from OpenStax Fig 3.11 or Newton's 1731 diagram"}
+"fig:s_ellipse_pins": {origin: "ours", note: "left e = 0.5 for visibility; right Mars e = 0.093 to scale (8.282J PS3)"}
+"fig:s_aryabhata_boat": {origin: "ours", note: "schematic"}
+"fig:s_tilt_year": {origin: "ours", note: "orbit drawn as a slanted circle; axis 23.44° (NASA); Mumbai noon-Sun heights computed in story:seasons"}
+"fig:s_slant_light": {origin: "ours", note: "footprint 1/sin(85.64°) vs 1/sin(47.48°) = 1.35"}
+"fig:s_phases_ring": {origin: "ours", note: "not to scale (the Moon is 30 Earth-diameters away); night side hatched so the figure reads correctly in the dark theme"}
+"fig:s_eclipse_tilt": {origin: "ours", note: "tilt drawn as 15°, really 5.145° (NASA Moon Fact Sheet)"}
+"fig:s_tide_bulges": {origin: "ours", note: "heaps and pull differences exaggerated; Sun-to-Moon tidal ratio 0.46 informs the spring/neap shapes only qualitatively"}
+"fig:s_orbit_raising": {origin: "ours", note: "ISRO orbit heights + 6,371 km, 0.0062 px per km"}
+"fig:s_lunar_capture": {origin: "ours", note: "ISRO orbit heights + 1,737 km, 0.026 px per km"}
+"fig:s_neptune_tug": {origin: "ours", note: "schematic, not to scale"}
+"fig:s_l1_balance": {origin: "ours", note: "not to scale; L1 is 1% of the way to the Sun"}

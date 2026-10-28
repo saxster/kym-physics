@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------------ the five questions (:::five) */
+.box.five { border: 1px solid var(--rule); border-top: 3px solid var(--vol); border-radius: 12px; background: var(--sheet);
+  padding: 1.1rem 1.25rem 1.2rem; margin: 1.8rem 0 2rem; }
+.box.five > .bh { display: flex; flex-direction: column; gap: .15rem; margin: 0 0 .8rem; }
+.box.five > .bh .five-k { font: 600 .72rem/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--vol); }
+.box.five > .bh .five-t { font: 400 1.45rem/1.2 var(--serif); color: var(--ink); }
+.box.five .fqs { margin: 0; display: grid; gap: .1rem; }
+.box.five .fq { display: grid; grid-template-columns: 1fr; gap: .25rem; padding: .75rem 0;
+  border-top: 1px solid var(--rule); }
+.box.five .fq:first-child { border-top: 0; padding-top: .2rem; }
+.box.five dt { font: 600 .9rem/1.35 var(--sans); color: var(--vol); }
+.box.five dd { margin: 0; }
+.box.five dd p { margin: 0 0 .5em; }
+.box.five dd p:last-child { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .box.five { padding: 1rem 1rem 1.05rem; }
+  .box.five .fq { grid-template-columns: 1fr; gap: .25rem; }
+  .box.five dt { color: var(--vol); }
+}
+@media print { .box.five { break-inside: avoid; } }
+.box.five .five-more { margin-top: .6rem; border-top: 1px dashed var(--rule); padding-top: .5rem; }
+.box.five .five-more summary { cursor: pointer; font: 600 .86rem/1.4 var(--sans); color: var(--vol); list-style: none; padding: .35rem 0; }
+.box.five .five-more summary::-webkit-details-marker { display: none; }
+.box.five .five-more summary::before { content: "+"; display: inline-block; width: 1.1em; font-weight: 700; }
+.box.five .five-more[open] summary::before { content: "−"; }
+.box.five .five-more summary span { font-weight: 400; color: var(--muted); margin-left: .35em; }
+.box.five .five-turn { margin: 1rem 0 0; background: transparent; border: 0; border-top: 1px solid var(--rule); border-radius: 0; padding: .9rem 0 0; }
+@media print { .box.five .five-more > dl { display: grid; } }

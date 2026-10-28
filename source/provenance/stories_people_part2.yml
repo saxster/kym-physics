@@ -1,0 +1,250 @@
+# Provenance for Cast Life Stories Part 2 (p-raman through p-chawla).
+# Follows the schema in provenance/stories_sky.yml and sources.yml.
+
+"story:p-raman":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      lecture: "Part I: Mechanical Vibrations and Waves; Part II: Electromagnetic Waves and Optics"
+      note: "Standing-wave normal modes of membranes and Rayleigh/inelastic light scattering"
+  openstax:
+    - book: "College Physics 2e"
+      section: "17.5 Normal Modes of a Standing Sound Wave; 27.8 Polarization; 29.3 Photon Energies and the Electromagnetic Spectrum"
+    - book: "Physics"
+      section: "14.4 Sound Interference and Resonance; 21.1 Quantum Nature of Light"
+  research:
+    - "research/history.md"
+  history:
+    - "C. V. Raman & S. Kumar, 'Musical Drums with Harmonic Overtones', Nature 104 (15 January 1920), 500"
+    - "C. V. Raman, 'The Colour of the Sea', Nature 108 (17 November 1921), 367"
+    - "C. V. Raman & K. S. Krishnan, 'A New Type of Secondary Radiation', Nature 121 (31 March 1928), 501–502; K. S. Krishnan diary entries, 5–28 February 1928"
+    - "G. Venkataraman, Journey into Light: Life and Science of C. V. Raman (Indian Academy of Sciences, 1988)"
+  computed:
+    - "Harmonic overtone sequence 1 : 2 : 3 : 4 : 5 of the syahi-loaded tabla/mridangam vs unloaded circular Bessel roots 1 : 1.59 : 2.14 : 2.30"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-saha":
+  ocw:
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      lecture: "Stellar Spectra and Spectral Classification"
+      note: "Saha thermal ionisation equation and the Harvard O B A F G K M temperature sequence"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "17.3 The Spectra of Stars (and Brown Dwarfs)"
+    - book: "College Physics 2e"
+      section: "30.3 Bohr's Theory of the Hydrogen Atom"
+  research:
+    - "research/history.md"
+  history:
+    - "M. N. Saha, 'Ionization in the Solar Chromosphere', Philosophical Magazine 40 (October 1920), 472–488"
+    - "M. N. Saha, 'On a Physical Theory of Stellar Spectra', Proceedings of the Royal Society of London A 99 (1921), 135–153"
+    - "M. N. Saha & S. N. Bose (trans.), The Principle of Relativity: Original Papers by A. Einstein and H. Minkowski (University of Calcutta, 1920)"
+    - "D. S. Kothari, 'Meghnad Saha, 1893–1956', Biographical Memoirs of Fellows of the Royal Society 5 (1960), 216–236"
+  computed:
+    - "Hydrogen Balmer line excitation and ionisation temperature regime (~3,000 K to 25,000 K)"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-sn-bose":
+  ocw:
+    - course: "8.21 The Physics of Energy, Fall 2009"
+      lecture: "Quantum Mechanics and Thermal Radiation"
+      note: "Planck blackbody distribution and photon quantum statistics"
+  openstax:
+    - book: "College Physics 2e"
+      section: "29.1 Quantization of Energy; 29.3 Photon Energies and the Electromagnetic Spectrum; 33.2 The Four Basic Forces"
+    - book: "Physics"
+      section: "21.1 Planck and Quantum Nature of Light"
+  research:
+    - "research/history.md"
+  history:
+    - "S. N. Bose to A. Einstein, letter from University of Dacca, 4 June 1924 (Albert Einstein Archives 16-254)"
+    - "S. N. Bose, 'Plancks Gesetz und Lichtquantenhypothese' (translated by A. Einstein), Zeitschrift für Physik 26 (August 1924), 178–181"
+    - "A. Einstein, 'Quantentheorie des einatomigen idealen Gases', Sitzungsberichte der Preussischen Akademie der Wissenschaften (1924), 261–267"
+    - "Jagdish Mehra, 'Satyendra Nath Bose, 1894–1974', Biographical Memoirs of Fellows of the Royal Society 21 (1975), 116–154"
+  computed:
+    - "Two-particle two-cell state counting: 4 classical arrangements vs 3 indistinguishable Bose arrangements"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-payne":
+  ocw:
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      lecture: "Stellar Spectra and Chemical Abundances"
+      note: "Application of Saha's equation to Harvard spectra and the predominance of hydrogen and helium"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "17.3 The Spectra of Stars (and Brown Dwarfs)"
+  research:
+    - "research/history.md"
+  history:
+    - "Cecilia H. Payne, Stellar Atmospheres: A Contribution to the Observational Study of High Temperature in the Reversing Layers of Stars, Harvard Observatory Monograph No. 1 (Cambridge, MA, 1925)"
+    - "Henry Norris Russell to Cecilia H. Payne, 14 January 1925; H. N. Russell, 'On the Composition of the Sun's Atmosphere', Astrophysical Journal 70 (1929), 11–82"
+    - "Otto Struve & Velta Zebergs, Astronomy of the 20th Century (Macmillan, 1962), 220"
+    - "Cecilia Payne-Gaposchkin, Cecilia Payne-Gaposchkin: An Autobiography and Other Recollections, ed. Katherine Haramundanis (Cambridge University Press, 1984)"
+  computed:
+    - "Boltzmann/Saha population fraction (< 10^-8 in n = 2 at T = 5,800 K) explaining solar hydrogen Balmer strength"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-bhabha":
+  ocw:
+    - course: "8.21 The Physics of Energy, Fall 2009"
+      lecture: "Nuclear Physics and Fission/Fusion"
+      note: "Relativistic particles, cosmic-ray cascades, and nuclear physics"
+  openstax:
+    - book: "College Physics 2e"
+      section: "28.2 Simultaneity and Time Dilation; 31.4 Nuclear Decay and Conservation Laws; 33.4 Particles, Patterns, and Conservation Laws"
+  research:
+    - "research/history.md"
+  history:
+    - "Homi J. Bhabha to Jehangir H. Bhabha, letter from Cambridge, 8 August 1928"
+    - "H. J. Bhabha, 'The Scattering of Positrons by Electrons with Exchange on Dirac's Theory of the Positron', Proceedings of the Royal Society of London A 154 (1936), 195–206"
+    - "H. J. Bhabha & W. Heitler, 'The Passage of Fast Electrons and the Theory of Cosmic Showers', Proceedings of the Royal Society of London A 159 (1937), 432–458"
+    - "H. J. Bhabha to Sir Dorabji Tata Trust, 12 March 1944; inauguration of TIFR at Kenilworth, Peddar Road, Bombay, 19 December 1945"
+    - "William G. Penney, 'Homi Jehangir Bhabha, 1909–1966', Biographical Memoirs of Fellows of the Royal Society 13 (1967), 35–55"
+  computed:
+    - "Electron-positron Bhabha scattering reaction e^- + e^+ -> e^- + e^+"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-chandrasekhar":
+  ocw:
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      lecture: "White Dwarfs, Degeneracy Pressure, and the Chandrasekhar Limit"
+      note: "Relativistic electron degeneracy pressure and maximum white-dwarf mass"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "23.1 The Death of Low-Mass Stars"
+    - book: "College Physics 2e"
+      section: "28.6 Relativistic Energy; 30.9 The Pauli Exclusion Principle"
+  research:
+    - "research/history.md"
+  history:
+    - "S. Chandrasekhar, 'The Maximum Mass of Ideal White Dwarfs', Astrophysical Journal 74 (1931), 81–82 (written following the SS Pilsna voyage from Bombay, July 1930)"
+    - "S. Chandrasekhar & A. S. Eddington, Royal Astronomical Society meeting, Burlington House, London, 11 January 1935; The Observatory 58 (1935), 33–39"
+    - "S. Chandrasekhar, An Introduction to the Study of Stellar Structure (University of Chicago Press, 1939)"
+    - "Kameshwar C. Wali, Chandra: A Biography of S. Chandrasekhar (University of Chicago Press, 1991)"
+  computed:
+    - "Equation-of-state softening from P propto rho^(5/3) (non-relativistic) to P propto rho^(4/3) (ultra-relativistic) yielding M_Ch approx 1.44 M_sun"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-wu":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      lecture: "Magnetic Fields and Dipoles"
+      note: "Axial vector nature of magnetic field and spin alignment under mirror reflection"
+  openstax:
+    - book: "College Physics 2e"
+      section: "31.4 Nuclear Decay and Conservation Laws; 33.4 Particles, Patterns, and Conservation Laws"
+  research:
+    - "research/history.md"
+  history:
+    - "T. D. Lee & C. N. Yang, 'Question of Parity Conservation in Weak Interactions', Physical Review 104 (1956), 254–258"
+    - "C. S. Wu, E. Ambler, R. W. Hayward, D. D. Hoppes & R. P. Hudson, 'Experimental Test of Parity Conservation in Beta Decay', Physical Review 105 (1957), 1413–1415"
+    - "Sharon Bertsch McGrayne, Nobel Prize Women in Science, 2nd ed. (Joseph Henry Press, 1998), chapter on Chien-Shiung Wu"
+    - "Tsai-Chien Chiang, Madame Wu Chien-Shiung: The First Lady of Physics Research (World Scientific, 2014)"
+  computed:
+    - "Cobalt-60 cryogenic alignment temperature ~0.003 K (< 0.01 K) required to overcome thermal k_B T disorder"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-chowdhuri":
+  ocw:
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      lecture: "Charged Particles in Magnetic Fields"
+      note: "Charged-particle scattering and ionization tracks"
+  openstax:
+    - book: "College Physics 2e"
+      section: "31.2 Radiation Detection and Detectors; 33.3 Accelerators Create Matter from Energy"
+  research:
+    - "research/history.md"
+  history:
+    - "D. M. Bose & Biva Choudhuri, 'Photographic Plates as Detectors of Mesotron Showers', Nature 145 (8 June 1940), 894–895"
+    - "D. M. Bose & Biva Choudhuri, 'Origin and Nature of Heavy Ionization Particles Detected on Photographic Plates Exposed to Cosmic Rays', Nature 147 (22 February 1941), 240–241"
+    - "D. M. Bose & Biva Choudhuri, 'A Photographic Method of Estimating the Mass of the Mesotron', Nature 148 (30 August 1941), 259–260; Nature 149 (14 March 1942), 302"
+    - "C. F. Powell, P. H. Fowler & D. H. Perkins, The Study of Elementary Particles by the Photographic Method (Pergamon Press, 1959)"
+    - "Rajinder Singh & Suprakash C. Roy, A Jewel Unearthed: Bibha Chowdhuri (Shaker Verlag, 2018); IAU NameExoWorlds 2019 designation of star HD 86081 as Bibha"
+  computed:
+    - "Cosmic-ray exposure altitudes at Darjeeling (2,130 m) and Sandakphu (3,660 m) and estimated mesotron mass ~160–220 m_e"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-mani":
+  ocw:
+    - course: "8.21 The Physics of Energy, Fall 2009"
+      lecture: "Solar Radiation and Wind Energy"
+      note: "Measurement of direct/diffuse solar insolation, wind speed, and atmospheric ozone absorption"
+  openstax:
+    - book: "College Physics 2e"
+      section: "1.2 Physical Quantities and Units; 14.7 Radiation"
+    - book: "Physics"
+      section: "1.2 Units and Standards; 11.3 Phase Change and Latent Heat"
+  research:
+    - "research/history.md"
+  history:
+    - "Anna Mani, five papers on luminescence and absorption spectra of diamond, Proceedings of the Indian Academy of Sciences A (1942–1945)"
+    - "Anna Mani, Handbook of Solar Radiation Data for India (Allied Publishers, 1980) and Wind Energy Data for India (1983)"
+    - "Abha Sur, Dispersed Radiance: Caste, Gender, and Modern Science in India (Navayana, 2011), chapters on Anna Mani"
+    - "A. Mani & C. R. Sreedharan, 'Studies of Variations in the Vertical Distribution of Atmospheric Ozone in the Tropics', Pure and Applied Geophysics (1973)"
+  computed:
+    - "Cylindrical rain-gauge depth invariance with collector area (volume / area = height)"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-sarabhai":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      lecture: "Week 4: Drag Forces, Circular Motion; Week 9: Collision Theory and Rocket Equation"
+      note: "Rocket thrust, circular satellite orbits, and geomagnetic equator dynamics"
+    - course: "8.02 Physics II: Electricity and Magnetism, Spring 2007"
+      lecture: "Earth's Magnetic Field and Ionospheric Currents"
+      note: "Equatorial electrojet along the geomagnetic equator"
+  openstax:
+    - book: "College Physics 2e"
+      section: "4.4 Newton's Third Law of Motion; 6.6 Satellites and Kepler's Laws; 22.3 Magnetic Fields and Magnetic Field Lines"
+  research:
+    - "research/history.md"
+  history:
+    - "Launch of the first Nike-Apache sounding rocket from Thumba Equatorial Rocket Launching Station (TERLS), St Mary Magdalene Church, Thumba, 21 November 1963"
+    - "Vikram Sarabhai, address to the United Nations Conference on the Exploration and Peaceful Uses of Outer Space, Vienna, August 1968"
+    - "Amrita Shah, Vikram Sarabhai: A Life (Penguin Viking, 2007)"
+    - "ISRO archival note on the restaged press photographs of the bicycle nose-cone and bullock-cart magnetometry transport at Thumba"
+  computed:
+    - "Nike-Apache sounding-rocket apogee (~200 km) and equatorial electrojet altitude (~100 km)"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-swarup":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      lecture: "Electromagnetic Waves, Reflection, and Interferometry"
+      note: "Reflection of metre-wavelength radio waves from wire mesh and aperture synthesis"
+    - course: "8.282J Introduction to Astronomy, Spring 2006"
+      lecture: "Radio Astronomy and 21-cm Hydrogen Line"
+      note: "Low-frequency radio telescopes and neutral hydrogen mapping"
+  openstax:
+    - book: "Astronomy 2e"
+      section: "6.4 Radio Telescopes"
+    - book: "College Physics 2e"
+      section: "24.3 The Electromagnetic Spectrum; 27.6 Limits of Resolution: The Rayleigh Criterion"
+  research:
+    - "research/history.md"
+  history:
+    - "G. Swarup et al., 'Large Steerable Radio Telescope at Ootacamund, India', Nature Physical Science 230 (1971), 185–188"
+    - "G. Swarup, S. Ananthakrishnan, V. K. Kapahi et al., 'The Giant Metrewave Radio Telescope', Current Science 60 (1991), 95–105"
+    - "G. Swarup, 'Reminiscences Regarding Professor Homi J. Bhabha and Early Days of Radio Astronomy in India', Physics News 40 (2010)"
+  computed:
+    - "Ooty hillside slope matching geographic latitude (11.4° N), 530 m x 30 m cylinder, and GMRT 30 x 45 m wire-mesh dishes (150–1,420 MHz)"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"
+
+"story:p-chawla":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      lecture: "Week 4: Circular Motion and Free Fall in Orbit; Week 6: Work and Kinetic Energy"
+      note: "Low-Earth orbital speed, free-fall weightlessness, and atmospheric re-entry kinetic energy dissipation"
+  openstax:
+    - book: "College Physics 2e"
+      section: "5.2 Drag Forces; 6.6 Satellites and Kepler's Laws; 7.2 Kinetic Energy and the Work-Energy Theorem"
+    - book: "Physics"
+      section: "6.2 Uniform Circular Motion; 7.2 Newton's Law of Universal Gravitation and Einstein's Theory of General Relativity"
+  research:
+    - "research/history.md"
+  history:
+    - "Kalpana Chawla, PhD thesis, 'Computation of Dynamics and Control of Unsteady Vortical Flows', University of Colorado Boulder (1988); NASA Ames CFD publications on powered-lift aircraft"
+    - "NASA Space Shuttle Mission Archives: STS-87 (19 November – 5 December 1997) and STS-107 (16 January – 1 February 2003)"
+    - "Jean-Pierre Harrison, The Edge of Time: The Authoritative Biography of Kalpana Chawla (2011); renaming of ISRO MetSat-1 to Kalpana-1 (February 2003)"
+  computed:
+    - "Low-Earth orbit at h = 280 km: orbital speed v approx 7.7 km/s (90-minute period) and g(280 km) approx 0.92 g_0"
+  licence: "CC BY-NC-SA 4.0 (MIT OCW) + CC BY 4.0 (OpenStax) + primary historical sources"

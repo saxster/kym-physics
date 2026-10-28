@@ -357,7 +357,7 @@ Each chapter below shows its big question, then its sections, each with its misc
 - Case: *The causeway timetable.*
 
 **Ch 15: Atoms, stars and the universe**
-*The Sun has burned for 4.6 billion years. What could possibly keep a fire going that long?*
+*The Sun has burned for four and a half billion years. What could possibly keep a fire going that long?*
 - 15.1 Light comes in packets. Einstein, 1905; S. N. Bose's letter from Dacca, 1924; seeing TV-remote infrared on a phone camera.
 - 15.2 The nucleus and radiation myths. "Radiation makes things radioactive" (63–75% think so); Bhabha and TIFR, Bombay, 1945. Links to *The Invisible World*, Ch 1.
 - 15.3 E = mc² and the Sun's fire. Meitner, 1938; fusion; Aditya-L1 watching the Sun.
