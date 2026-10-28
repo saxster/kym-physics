@@ -64,7 +64,7 @@ Use the true minus sign (−) for negatives, a space between number and unit, an
 
 One YAML file per chapter (`ch00.yml` … `ch15.yml`). **Every numbered section needs an entry**, or the build stops and
 lists what is missing. Stories (`story:<id>`) and figures (`fig:<name>`, or a `figures:` item in a section) only warn
-for now. Quote every key. Story and figure entries may also live in `provenance/stories.yml` / `figures.yml`.
+for now. Quote every key. Story and figure entries may also live in `provenance/stories*.yml` / `figures*.yml` (e.g. one `stories_<group>.yml` per story writer).
 
 ```yaml
 "1.2":

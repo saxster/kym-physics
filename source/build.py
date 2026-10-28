@@ -12,7 +12,7 @@ Source layout (under --src, default src/)
   chNN.md               one file per chapter (see FORMAT.md)
   stories/<id>.md       stories behind the ideas (see stories.py)
 Figures: figs_*.py in the folder that holds the src folder (source/ for the book, tests/fixture/ for the fixture).
-Provenance: <--provenance>/chNN.yml, one per chapter, plus an optional sources.yml (see FORMAT.md).
+Provenance: <--provenance>/chNN.yml, one per chapter, plus optional stories*.yml, figures*.yml and sources.yml (see FORMAT.md).
 The build fails if a numbered section of a built chapter has no provenance entry (--allow-missing-provenance warns instead).
 """
 from __future__ import annotations
@@ -166,9 +166,8 @@ class Ledger:
             mm = re.match(r'ch(\d+)\.yml$', os.path.basename(p))
             if mm:
                 self.by_ch[int(mm.group(1))] = load(p)
-        for name in ('stories.yml', 'figures.yml'):
-            p = os.path.join(folder, name)
-            if os.path.exists(p):
+        for pat in ('stories*.yml', 'figures*.yml'):      # stories_<group>.yml lets story writers work in parallel
+            for p in sorted(glob.glob(os.path.join(folder, pat))):
                 self.extra.update(load(p))
         p = os.path.join(folder, 'sources.yml')
         if os.path.exists(p):
