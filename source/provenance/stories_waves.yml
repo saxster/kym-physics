@@ -1,0 +1,402 @@
+# Ledger for the stories in the waves group (resonance, tabla, doppler, seeing, speed-of-light, refraction, prism,
+# blue-sky, raman, light-wave) and their s_ figures. Course and book names are the keys in provenance/sources.yml
+# (18.03 and University Physics Volume 3 follow the chapter ledgers' spelling). Every number in the stories was
+# recomputed with python3 -I (the script is in the writer's report); inputs called "a guess" or "suppose" in the text
+# are ASSUMED. Reused chapter figures are listed under figures: with origin "reused from Chapter N".
+
+"story:resonance":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 3 notes (driven oscillator; amplitude at resonance; damping and peak width) and Lecture 3 demos (wine glass, Ball on String Pendulum, Breaking Glass with Sound)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec3/"
+      took: "resonance peak and damping; the wine-glass and singer examples; the ball-on-string home version"
+    - course: "18.03 Differential Equations, Spring 2010"
+      where: "Appendix B: The Tacoma Narrows Bridge, resonance vs flutter (the wind was not gusting)"
+      url: "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/63b26053bec64e7c32b93900b15d7fad_MIT18_03S10_Appendix_B.pdf"
+      took: "flutter, not resonance; the flag comparison"
+  openstax:
+    - book: "College Physics 2e"
+      section: "16.4 The Simple Pendulum (T = 2π√(L/g); mass does not matter; take-home with a string and a key)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-4-the-simple-pendulum"
+      took: "period rule; the 1 m and 2.5 m swing times (computed); home experiment"
+    - book: "College Physics 2e"
+      section: "16.8 Forced Oscillations and Resonance (natural frequency; pushing a swing; paddle ball; damping; singer and glass check)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-8-forced-oscillations-and-resonance"
+      took: "definitions; pushing in time; the right note, not loudness alone (the Tacoma and Millennium captions were rejected)"
+    - book: "College Physics 2e"
+      section: "Ch 16 Conceptual Questions, Q13 (soldiers break step on a bridge)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-conceptual-questions"
+      took: "the soldiers"
+  research:
+    - source: "source/grounding/ch09.md §9.1 (exact pendulum period vs small-angle period: +7.3% at 60°) and §9.2 (Millennium Bridge: synchronous lateral excitation; 'resonance makes energy from nothing' is false)"
+      what: "the 7% figure; the bridge mechanism; the careful box"
+  history:
+    - source: "source/research/history.md §1 (Pisa Cathedral lamp: LEGEND, Viviani only, no date, the present lamp installed after Galileo left; the pendulum work itself is real)"
+      url: "https://brunelleschi.imss.fi.it/itineraries/place/CathedralOfSantaMaria.html"
+      what: "the legend, told as a legend"
+    - source: "source/research/history.md tales 10–11 (Millennium Bridge opened June 2000, closed two days later, dampers, reopened 2002; Tacoma 1940 was flutter, Billah & Scanlan 1991)"
+      url: "https://enr.com/articles/53233-new-explanation-given-for-londons-wobbling-millennium-bridge-after-two-decades"
+      what: "the two bridges"
+  figures:
+    - {name: s_push_timing, origin: ours}
+    - {name: c9_resonance, origin: "reused from Chapter 9"}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_push_timing":
+  origin: ours
+  research:
+    - source: "computed: a damped oscillator of natural period 3.2 s (2.5 m swing, ASSUMED) kicked by equal impulses every 3.2 s and every 1.9 s, integrated in figs_stories_waves.py"
+      what: "both curves"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:tabla":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 9 (standing waves on a string; any shape as a sum of modes)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-9/"
+      took: "the string's patterns and their frequencies"
+  openstax:
+    - book: "College Physics 2e"
+      section: "17.6 Hearing (pitch is the perception of frequency; 20 Hz to 20,000 Hz)"
+      url: "https://openstax.org/books/college-physics-2e/pages/17-6-hearing"
+      took: "definition of pitch; hearing range"
+    - book: "College Physics 2e"
+      section: "17.5 Sound Interference and Resonance (fundamental, overtone, harmonic; timbre; blowing across a bottle)"
+      url: "https://openstax.org/books/college-physics-2e/pages/17-5-sound-interference-and-resonance-standing-waves-in-air-columns"
+      took: "definitions; violin vs piano; bottle home experiment ('all resonant frequencies are integral multiples' rejected for drums)"
+    - book: "College Physics 2e"
+      section: "16.10 Superposition and Interference (string modes fn = n·v/2L)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-10-superposition-and-interference"
+      took: "the string ladder 1, 2, 3, 4"
+  research:
+    - source: "computed: first zeros of the Bessel functions J0..J4 (series + bisection, python3 -I) give the ideal flat drumhead's overtone ratios 1 : 1.593 : 2.136 : 2.295 : 2.653"
+      what: "the drumhead ladder"
+    - source: "source/research/misconceptions.md §8 (pitch vs loudness confusion; loudness is amplitude, pitch is frequency)"
+      what: "the careful box"
+  history:
+    - source: "source/research/history.md §5 (Pythagoras' hammers: LEGEND, Nicomachus ~600 years later, weights do not set pitch; Vincenzo Galilei, Florence c. 1589: an octave needs four times the weight)"
+      url: "https://aps.org/apsnews/2015/07/death-vincenzo-galilei"
+      what: "the legend and the true experiment"
+    - source: "source/research/history.md §5 (Raman & Sivakali Kumar, Nature 104, p. 500, 15 January 1920: tabla and mridangam give harmonic overtones because the syahi tunes the head)"
+      url: "https://repository.ias.ac.in/52555"
+      what: "the 1920 paper"
+  figures:
+    - {name: c9_harmonics, origin: "reused from Chapter 9"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:doppler":
+  openstax:
+    - book: "College Physics 2e"
+      section: "17.4 Doppler Effect and Sonic Booms (definition; wavefronts bunch ahead and spread behind; Example 17.4: 150 Hz horn at 35 m/s gives 167 and 136 Hz; the driver hears the true note; no shift between driver and passenger)"
+      url: "https://openstax.org/books/college-physics-2e/pages/17-4-doppler-effect-and-sonic-booms"
+      took: "mechanism; worked example; what the driver hears (the attribution of the train experiment to Doppler was rejected)"
+    - book: "College Physics 2e"
+      section: "17.2 Speed of Sound, Frequency, and Wavelength (v = 331 m/s × √(T/273 K); 348.7 m/s at 30 °C)"
+      url: "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength"
+      took: "speed of sound in warm air"
+    - book: "College Physics 2e"
+      section: "16.11 Energy in Waves: Intensity (I = P/A)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-11-energy-in-waves-intensity"
+      took: "why the horn gets louder as it nears"
+  research:
+    - source: "source/grounding/ch09.md §9.7 (Mumbai local, ASSUMED 300 Hz horn at 80 km/h in 30 °C air: 320.4 Hz approaching, 282.0 Hz receding, 2.2 semitones; the pitch sits steady then drops fast; platform-safety wording required)"
+      what: "the local-train numbers (recomputed); the shape of the drop; the safety line"
+    - source: "computed: a star at 30 km/s shifts its light by 1 part in 10,000 (30 / 299,792), invisible to the eye"
+      what: "why Doppler's double-star example could not work"
+  history:
+    - source: "source/research/history.md §5 (Doppler, Prague, 25 May 1842, a handful of members of the Royal Bohemian Society; double-star example wrong; Buys Ballot, Utrecht–Maarssen line, 1845, horn players on an open wagon, musicians with perfect pitch, note rose on approach and fell after)"
+      url: "https://muurformules.sitestest.hum.uu.nl/mural-paintings/christophorus-buys-ballot/?lang=en"
+      what: "both scenes"
+  figures:
+    - {name: c9_doppler, origin: "reused from Chapter 9"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:seeing":
+  openstax:
+    - book: "College Physics 2e"
+      section: "26.1 Physics of the Eye (Euclid and Ptolemy: the eye sends out rays; Ibn al-Haytham: light reflected from objects enters the eye; the eye copes with a 10^10 range of intensity)"
+      url: "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye"
+      took: "the two camps; the eye's range"
+    - book: "College Physics 2e"
+      section: "25.2 The Law of Reflection (diffuse reflection from rough surfaces in every direction)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection"
+      took: "the middle link of the chain"
+    - book: "College Physics 2e"
+      section: "25.1 The Ray Aspect of Light (light travels in straight lines)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-1-the-ray-aspect-of-light"
+      took: "why the camera obscura image is upside down"
+    - book: "Physics"
+      section: "16.3 Lenses (Snap Lab eye-safety line: never point at the Sun)"
+      url: "https://openstax.org/books/physics/pages/16-3-lenses"
+      took: "the safety sentence in the home experiment"
+  research:
+    - source: "Winer et al. 2002, via source/research/misconceptions.md §9 (86% of students drew outward arrows; 69% of adults asked directly; 33% even for a lit bulb; refutation faded in 3–5 months)"
+      url: "https://Www.Gwern.net/doc/psychology/cognitive-bias/illusion-of-depth/extramission/2002-winer.pdf"
+      what: "the prevalence numbers"
+    - source: "source/research/misconceptions.md §9 and source/grounding/ch10.md §10.1–10.2 (windowless bathroom test, wait a minute first; torch through plant-sprayer mist; pinhole image 12 cm from a 2 m doorway at 5 m with a 30 cm box, ASSUMED)"
+      what: "the two home demonstrations and the worked number"
+  history:
+    - source: "source/research/history.md §5 (Ibn al-Haytham, Cairo c. 1011–21: light enters the eye, bright light hurts, every point sends its own ray, camera obscura in the Book of Optics; the feigned-madness story is HEDGE)"
+      url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"
+      what: "the scene, told with the madness story hedged"
+  figures:
+    - {name: c10_seeing, origin: "reused from Chapter 10"}
+    - {name: c10_pinhole, origin: "reused from Chapter 10"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:speed-of-light":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 12 notes (1638 Galileo: speed of light is large; 1676 Rømer; 1729 Bradley)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec12/"
+      took: "the historical sequence"
+  openstax:
+    - book: "University Physics Volume 3"
+      section: "1.1 The Propagation of Light (Rømer's method; Fizeau 1849, 3.15 × 10^8 m/s, 5% high; Foucault 1862 within 0.6%; Michelson to 1926; c exact)"
+      url: "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"
+      took: "the measurements after Rømer"
+    - book: "College Physics 2e"
+      section: "25.3 The Law of Refraction (Galileo: extremely fast, perhaps instantaneous; Rømer's data give 2.26 × 10^8 m/s, 25% low)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction"
+      took: "Galileo's conclusion; the size of the error"
+    - book: "College Physics 2e"
+      section: "Ch 25 Conceptual Questions, Q4 (does lightning before thunder prove light is extremely fast, or only faster than sound?)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions"
+      took: "the careful box and the storm home experiment"
+  research:
+    - source: "BIPM, CGPM 1983 Resolution 1 (the metre defined from c); NIST CODATA c = 299 792 458 m/s exact"
+      url: "https://www.bipm.org/en/committees/cg/cgpm/17-1983/resolution-1"
+      what: "c fixed by definition since 1983"
+    - source: "IAU 2012 Resolution B2 (1 au = 149 597 870 700 m) and NASA Moon Fact Sheet (384,400 km); computed: Sun 499.0 s = 8 min 19 s; across the orbit 998.0 s = 16.63 min; Moon 1.282 s one way; Fizeau round trip over 2 × 8,633 m = 57.6 µs, first eclipse at 12.1 turns/s (8,633 m ASSUMED from '8.6 km')"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+      what: "every light-time in the story and the figure"
+    - source: "source/grounding/ch10.md §10.6 (Rømer said about 22 minutes, in the 1677 letter to Huygens; the true value is 16.6; the 9 vs 16 November prediction date is flagged for the gate)"
+      what: "the 22 vs 16.6 contrast; the November wording kept to the month"
+  history:
+    - source: "source/research/history.md §5 (Rømer, Paris Observatory, September 1676: predicted an Io eclipse in November would be about 10 minutes late, and it was; Rømer gave a time, Huygens the speed, about 30% low)"
+      url: "https://www.amnh.org/learn-teach/curriculum-collections/cosmic-horizons-book/ole-roemer-speed-of-light"
+      what: "the opening scene; time not speed"
+    - source: "source/research/history.md §5 (Fizeau 1849: 720-tooth wheel, mirror 8.6 km away at Montmartre from Suresnes, about 315,000 km/s, 5% high)"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Fizeau/"
+      what: "the cogwheel scene"
+  figures:
+    - {name: c10_romer, origin: "reused from Chapter 10"}
+    - {name: s_light_delays, origin: ours}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); NASA and BIPM material public"
+
+"fig:s_light_delays":
+  origin: ours
+  research:
+    - source: "computed from c = 299 792 458 m/s, 1 au = 149 597 870 700 m (IAU 2012), the Moon's mean distance 384,400 km (NASA) and Fizeau's 8.6 km (history.md): 0.00006 s, 1.3 s, 8 min 19 s, 16.6 min"
+      what: "the four times"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:prism":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 19 notes (n depends on wavelength, usually decreasing with wavelength)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec19/"
+      took: "why glass sorts"
+  openstax:
+    - book: "College Physics 2e"
+      section: "25.5 Dispersion: The Rainbow and Prisms (definition; Table 25.2 water red 1.331 to violet 1.342, crown glass 1.512–1.530; rainbow path; look away from the Sun; the rainbow is continuous; al-Farisi and Theodoric of Freiberg's giant water drops after Ibn al-Haytham)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms"
+      took: "dispersion; the indices (45° into water: red 32.09°, violet 31.80°, computed); the rainbow; the earlier rainbow studies"
+    - book: "College Physics 2e"
+      section: "25.3 The Law of Refraction (light bends because it changes speed)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction"
+      took: "bending as slowing"
+    - book: "Physics"
+      section: "17.2 Applications of Diffraction, Interference, and Coherence (CDs as diffraction gratings)"
+      url: "https://openstax.org/books/physics/pages/17-2-applications-of-diffraction-interference-and-coherence"
+      took: "the CD rainbow is diffraction, not dispersion"
+  research:
+    - source: "source/research/misconceptions.md §9 ('white light is pure')"
+      what: "the careful box"
+    - source: "source/grounding/ch11.md §11.1 (glass of water on a sunny windowsill as a prism substitute: standard but unsourced; sprayer-mist rainbow with the Sun behind you)"
+      what: "the home experiments"
+  history:
+    - source: "source/research/history.md §5 (Newton's prism: darkened room, hole in the shutter, experimentum crucis, letter of 6 February 1672; 1666 dating is Newton's own), with the quoted phrases checked against the Wikisource text of the letter on 2026-10-28"
+      url: "https://en.wikisource.org/wiki/New_Theory_About_Light_and_Colour"
+      what: "the scene and every quotation ('phœnomena of Colours'; 'darkened my chamber… window-shuts'; 13¼ by 2⅝ inches, 'about five times'; 'two boards'; 'Light it self is a Heterogeneous mixture of differently refrangible Rays'; dated from Cambridge)"
+  figures:
+    - {name: c11_prism, origin: "reused from Chapter 11"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:blue-sky":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 18 (radiation from an oscillating charge) and Lecture 20 opening review (skylight polarised by scattering)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/lecture-18/"
+      took: "the tiny-antenna picture; sky polarised about 90° from the Sun"
+  openstax:
+    - book: "College Physics 2e"
+      section: "27.8 Polarization (definition; polarisation by scattering, electrons radiate like small antennae; rotate Polaroid sunglasses at the blue sky; only partly polarised because of multiple scattering; LCDs are based on polarisation)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-8-polarization"
+      took: "scattering mechanism; polarisation; the sunglasses test and the screen check"
+    - book: "College Physics 2e"
+      section: "Ch 27 Conceptual Questions, Q34–35 (scattering ∝ 1/λ⁴ for small particles; blue sky; red sunsets)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions"
+      took: "the fourth-power rule; (700/450)⁴ = 5.86 computed"
+  research:
+    - source: "NASA Space Place, Why is the sky blue? (blue scattered more because its waves are shorter; sunset light crosses more air)"
+      url: "https://spaceplace.nasa.gov/blue-sky/en/"
+      what: "the sunset explanation"
+    - source: "source/grounding/ch11.md §11.3 (air-path factors 1/sin(elevation): 5.8× at 10°, 11.5× at 5°, flat-layer approximation, labelled rough; milk-in-water is a model, droplets bigger than molecules; all colours scatter; pollution left out)"
+      what: "the path-length figures; the home experiment's caveat"
+    - source: "source/research/misconceptions.md §9 (sea reflects sky / sky reflects sea misconception; milk-in-water demo, amount UNVERIFIED; test sunglasses on a phone screen first)"
+      what: "the careful box and the home experiment"
+  history:
+    - source: "UNSOURCED in the repo, flagged for the gate: Tyndall's 1869 Royal Institution tube experiment (blue from the side, orange end-on, polarised); Rayleigh's 1871 paper on the light from the sky; his later (1899) argument that air molecules alone suffice"
+      what: "the London scene (the physics in it is sourced above; the dates and the tube are not)"
+  figures:
+    - {name: s_scatter_bars, origin: ours}
+    - {name: c11_sky, origin: "reused from Chapter 11"}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); NASA public domain"
+
+"fig:s_scatter_bars":
+  origin: ours
+  openstax:
+    - book: "College Physics 2e"
+      section: "Ch 27 Conceptual Questions, Q34 (scattering ∝ 1/λ⁴)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions"
+      took: "the rule; bars computed as (700/λ)⁴ for 400–700 nm"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:raman":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 19 notes and Brewster's Angle demo (reflection polarised; R = 0 for one polarisation at Brewster's angle); Lecture 17 notes (polariser passes I = I0 cos²θ, half of unpolarised light)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy_of_lecture-19-video/"
+      took: "why a polariser removes the reflection and halves the rest"
+  openstax:
+    - book: "College Physics 2e"
+      section: "27.8 Polarization (polarisation by reflection; Brewster's angle for water 53.1°, Example 27.9; Polaroid sunglasses pass vertical and cut glare; LCD screens)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-8-polarization"
+      took: "53° from the vertical, 37° below the horizon (computed); the sunglasses test; the screen check"
+  research:
+    - source: "ETHW, Milestones: Raman Effect (plaque text: a fraction of the scattered light was of a different colour, dependent on material property; 28 February 1928)"
+      url: "https://ethw.org/Milestones:Raman_Effect"
+      what: "what was found, and the date"
+    - source: "source/research/misconceptions.md §9 (Rayleigh: the sea reflects the sky; Raman's Nicol prism; letter 'The Colour of the Sea' posted at Bombay; Kym's version with polarised sunglasses at Marine Drive)"
+      url: "https://www.optica-opn.org/home/articles/volume_20/issue_3/features/c_v_raman_and_the_raman_effect/"
+      what: "the letter's title; the home experiment"
+    - source: "computed: 2.0% of light reflects straight back from water ((1−1.333)/(1+1.333))²; Raman 32 in 1921, Krishnan 29 in 1928 from the cast table's birth years"
+      what: "the 2% and the ages"
+    - source: "UNSOURCED in the repo, flagged for the gate: the mechanism paragraph (light hands energy to a molecular vibration and comes out redder; an already-vibrating molecule can hand energy back) and the use of Raman shifts as a fingerprint to identify materials"
+      what: "Step 3's why"
+  history:
+    - source: "source/research/history.md §5 (Raman on the SS Narkunda, September 1921: Nicol prism to block reflected skylight, sea still blue, water itself scatters; letter to Nature written on board and posted at Bombay)"
+      url: "https://publicdomainreview.org/collection/raman-sea/"
+      what: "the opening scene"
+    - source: "source/research/history.md §5 (Calcutta, IACS, February 1928: Krishnan's diary 5–28 February; 9 February 'Raman-Krishnan effect'; diary torn off mid-sentence after 28 February; National Science Day; 1930 Nobel citation wording)"
+      url: "https://collections.archives.ncbs.res.in/handle/42412/4108"
+      what: "the Calcutta scene, the diary, the citation"
+  figures:
+    - {name: c11_brewster, origin: "reused from Chapter 11"}
+    - {name: s_narkunda_rail, origin: ours}
+    - {name: c11_raman, origin: "reused from Chapter 11"}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); ETHW cite only"
+
+"fig:s_narkunda_rail":
+  origin: ours
+  openstax:
+    - book: "College Physics 2e"
+      section: "27.8 Polarization (reflection polarised parallel to the surface; Brewster's angle 53.1° for water)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-8-polarization"
+      took: "the geometry of the reflected ray (53° from the normal)"
+  history:
+    - source: "source/research/history.md §5 (Raman's Nicol prism at the rail of the Narkunda)"
+      what: "the scene drawn"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:light-wave":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 22 (Huygens principle, diffraction) and Lecture 20 notes (interference; soap-bubble colours; a very thin film goes dark)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/lecture-22/"
+      took: "Huygens's little waves; why the bubble goes black before it pops"
+  openstax:
+    - book: "College Physics 2e"
+      section: "27.1 The Wave Aspect of Light: Interference ('the most certain indication of a wave is interference'; visible 380–760 nm)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-1-the-wave-aspect-of-light-interference"
+      took: "interference as the test of a wave"
+    - book: "College Physics 2e"
+      section: "27.3 Young's Double Slit Experiment (Newton's authority kept the particle view; d sinθ = mλ, wavelength from the fringe spacing)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-3-youngs-double-slit-experiment"
+      took: "Newton's weight; the wavelength from the stripes (the 1801 double-slit framing was rejected for the 1803 card)"
+    - book: "College Physics 2e"
+      section: "27.2 Huygens's Principle: Diffraction; 27.7 Thin Film Interference; Ch 27 Conceptual Q3 (sound bends round corners, light does not) and Q27 (soap bubble)"
+      url: "https://openstax.org/books/college-physics-2e/pages/27-2-huygenss-principle-diffraction"
+      took: "diffraction; thin films; the sound-versus-light comparison"
+    - book: "College Physics 2e"
+      section: "16.10 Superposition and Interference (two ripples: crest+crest, crest+trough)"
+      url: "https://openstax.org/books/college-physics-2e/pages/16-10-superposition-and-interference"
+      took: "the two-stones picture"
+    - book: "Physics"
+      section: "17.2 Applications of Diffraction, Interference, and Coherence (CD tracks as a diffraction grating)"
+      url: "https://openstax.org/books/physics/pages/17-2-applications-of-diffraction-interference-and-coherence"
+      took: "the CD in the home experiment"
+  research:
+    - source: "Physics World, The spot in the shadow (Poisson's prediction, Arago's test, Fresnel's 1819 prize, Poisson never convinced; cite only)"
+      url: "https://physicsworld.com/a/the-spot-in-the-shadow/"
+      what: "the Paris scene"
+    - source: "computed: 1/30 inch = 0.85 mm; fringe spacing λL/d = 1.1 mm for 550 nm, 0.5 mm and 1 m (ASSUMED); 1,818 waves per mm at 550 nm; sound wavelengths 1.7 cm to 17 m at 30 °C (College Physics 2e Ex 17.1)"
+      what: "the sizes in Steps 2 and 3"
+  history:
+    - source: "source/research/history.md §5 (Young, London, 24 November 1803: a card about 1/30 inch wide edge-on in a sunbeam, fringes inside its shadow; the double slit is a later tidy-up)"
+      url: "https://en.wikipedia.org/wiki/Young%27s_interference_experiment"
+      what: "the opening scene"
+    - source: "source/research/history.md §5 (Paris 1818–19: Fresnel, Poisson's absurd spot, Arago looks, Fresnel wins, Poisson never convinced, Maraldi had seen it decades earlier)"
+      url: "https://www.britannica.com/science/Poissons-spot"
+      what: "the Paris scene; Maraldi"
+  figures:
+    - {name: c11_young, origin: "reused from Chapter 11"}
+    - {name: s_arago_spot, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_arago_spot":
+  origin: ours
+  research:
+    - source: "Physics World, The spot in the shadow (cite only); geometry: every point of a round rim is equidistant from the point behind the disc's centre"
+      url: "https://physicsworld.com/a/the-spot-in-the-shadow/"
+      what: "the construction drawn"
+  licence: "CC BY-NC-SA 4.0"
+
+"story:refraction":
+  ocw:
+    - course: "8.03SC Physics III: Vibrations and Waves, Fall 2016"
+      where: "Lecture 16 notes (Snell's law from waves; works for water waves, sound and light)"
+      url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec16/"
+      took: "the rule holds for any wave that changes speed"
+  openstax:
+    - book: "College Physics 2e"
+      section: "25.3 The Law of Refraction (bending because of a change of speed; n = c/v; Table 25.1 water 1.333, crown glass 1.52, diamond 2.419; the lawnmower; Snell's law; Ibn Sahl 984)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction"
+      took: "mechanism; indices; 45°→32.0° and 30°→22.0° (computed); 0.75 c in water (computed); Ibn Sahl"
+    - book: "College Physics 2e"
+      section: "Ch 25 Conceptual Questions, Q6 (objects in water look shallower; diving injuries) and Q7 (short legs in a pool)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions"
+      took: "the two everyday examples"
+    - book: "College Physics 2e"
+      section: "25.6 Image Formation by Lenses (converging lens and focal point; magnifier focusing sunlight; half a lens gives the same, fainter image)"
+      url: "https://openstax.org/books/college-physics-2e/pages/25-6-image-formation-by-lenses"
+      took: "what a lens is; the half-lens point; the scorching warning"
+    - book: "College Physics 2e"
+      section: "26.1 Physics of the Eye (cornea does about two-thirds; Table 26.1 cornea 1.38, water 1.33; accommodation; near point 25 cm) and 26.2 Vision Correction (myopia/hyperopia; glasses do not change the eye)"
+      url: "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye"
+      took: "Step 5; the underwater blur (index jump 0.38 → 0.05, computed)"
+    - book: "Physics"
+      section: "16.2 Refraction (Snap Lab: the bent pencil)"
+      url: "https://openstax.org/books/physics/pages/16-2-refraction"
+      took: "the pencil in the home experiment"
+  research:
+    - source: "source/grounding/ch10.md §10.4 (apparent depth d/n looking straight down: 10 cm → 7.5 cm, 8 cm → 6.0 cm; a small-angle result not stated in the sources; 'the coin moves up' is false; refraction is about speed, not density) and §10.5 (water-drop lens: physically sound, unsourced)"
+      what: "the worked numbers and their caveat; the careful box; the drop lens"
+  history:
+    - source: "UNSOURCED in the repo beyond College Physics 2e's 'Ibn Sahl, 984' and Chapter 10's 'about six centuries later', flagged for the gate: Snell in Leiden, around 1621 (the sort year from STORIES.md)"
+      what: "the Snell sentence"
+  figures:
+    - {name: c10_refraction, origin: "reused from Chapter 10"}
+    - {name: c10_eye, origin: "reused from Chapter 10"}
+  licence: "CC BY-NC-SA 4.0"
