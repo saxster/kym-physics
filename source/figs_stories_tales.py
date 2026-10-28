@@ -10,10 +10,15 @@ from figs_core import Fig, catmull, figure, r_
 @figure
 def s_eclipse_bend():
     """29 May 1919 eclipse test: starlight grazing the Sun's limb bends inwards, shifting the apparent star outwards."""
-    f = Fig(640, 290, "A star at the left sends a light ray past the darkened Sun in the middle to a telescope on Earth "
+    f = Fig(640, 330, "A star at the left sends a light ray past the darkened Sun in the middle to a telescope on Earth "
                       "at the right. The Sun's gravity bends the ray towards the Sun, so looking back along the arriving "
                       "ray makes the star appear shifted outwards from its true place. Einstein predicted 1.75 arcseconds "
                       "at the Sun's edge; the older Newtonian reckoning gave 0.87 arcseconds (angles exaggerated)")
+    # All four points share one explicit back-projection geometry.
+    sun_x, sun_y, sun_r = 310, 178, 42
+    ex, ey = 566, 172
+    gx, gy = sun_x, sun_y - sun_r - 12
+    tx, ty = ex - 20, ey - 8
     # True star at far left
     sx, sy = 62, 148
     f.circle(sx, sy, 5.5, 'fill-ink')
@@ -21,15 +26,15 @@ def s_eclipse_bend():
     f.text(sx, sy + 38, '(Hyades cluster)', 't m', 'start', 12)
 
     # Apparent star position (shifted upwards/outwards away from the Sun)
-    ax, ay = 62, 54
+    ax = sx
+    ay = gy + (ty - gy) * (ax - gx) / (tx - gx)
     f.circle(ax, ay, 5.5, 'plate')
     f.circle(ax, ay, 5.5, 'ln dash')
-    f.text(ax + 14, ay - 4, 'apparent position seen from Earth', 't p b', 'start', 13)
-    f.text(ax + 14, ay + 13, 'shifted outwards from the Sun', 't m', 'start', 12)
+    f.text(ax + 14, ay - 24, 'apparent position seen from Earth', 't p b', 'start', 13)
+    f.text(ax + 14, ay - 7, 'shifted outwards from the Sun', 't m', 'start', 12)
     f.arrow(sx, sy - 10, ax, ay + 10, 'proton', dash=True)
 
     # Eclipsed Sun in the middle
-    sun_x, sun_y, sun_r = 310, 178, 42
     # Corona rays
     for k in range(16):
         ang = math.radians(k * 22.5)
@@ -39,31 +44,27 @@ def s_eclipse_bend():
                sun_x + r2 * math.cos(ang), sun_y + r2 * math.sin(ang), 'ln m')
     f.circle(sun_x, sun_y, sun_r, 'fill-ink')
     f.circle(sun_x, sun_y, sun_r, 'ln')
-    f.text(sun_x, sun_y + 4, 'eclipsed Sun', 't b', 'middle', 12, extra='fill="#fbfaf5"')
+    f.text(sun_x, sun_y + 4, 'eclipsed Sun', 't b', 'middle', 12, extra='style="fill:var(--paper)"')
     f.text(sun_x, sun_y + sun_r + 28, 'Moon blots out glare so nearby stars show', 't m', 'middle', 12)
 
     # Earth / telescope at right
-    ex, ey = 566, 172
     f.circle(ex, ey, 22, 'plate')
     f.circle(ex, ey, 22, 'ln')
     f.text(ex, ey + 5, 'Earth', 't b', 'middle', 12)
     f.text(ex, ey + 38, 'Príncipe & Sobral', 't m', 'middle', 12)
 
-    # Grazing point above the Sun's upper limb
-    gx, gy = sun_x, sun_y - sun_r - 12
-    # Actual bent light path: from true star (sx, sy) to (gx, gy), then bending down to Earth telescope (ex - 20, ey - 8)
-    tx, ty = ex - 20, ey - 8
+    # Actual bent light path: the true star, grazing point, then the telescope.
     f.ray(sx, sy, gx, gy, chevrons=1)
     f.ray(gx, gy, tx, ty, chevrons=1)
     # Sight line projected straight back from telescope through grazing point to apparent star
     f.line(ax, ay, gx, gy, 'ln dash')
 
     # Callout box comparing the two predictions at bottom left
-    f.rect(24, 212, 214, 62, 'plate', rx=5)
-    f.text(36, 232, 'Shift right at the Sun’s edge:', 't b', 'start', 12)
-    f.text(36, 250, 'Einstein (1915): 1.75 arcseconds', 't p b', 'start', 12)
-    f.text(36, 266, 'Old reckoning:  0.87 arcseconds', 't m', 'start', 12)
-    f.text(618, 280, 'angles exaggerated for clarity', 't m', 'end', 11)
+    f.rect(24, 258, 242, 62, 'plate', rx=5)
+    f.text(36, 278, 'Shift right at the Sun’s edge:', 't b', 'start', 12)
+    f.text(36, 296, 'Einstein (1915): 1.75 arcseconds', 't p b', 'start', 12)
+    f.text(36, 312, 'Old reckoning:  0.87 arcseconds', 't m', 'start', 12)
+    f.text(618, 318, 'angles exaggerated for clarity', 't m', 'end', 12)
     return f.svg()
 
 
@@ -84,7 +85,7 @@ def s_faraday_cube():
     # Charging wire to cube with spark
     f.line(gx + 28, gy - 26, 178, gy - 26, 'ln')
     f.path('M148,149 L156,139 L160,153 L169,141 L176,149', 'ln p')
-    f.text(158, 131, 'sparks', 't p b', 'middle', 12)
+    f.text(144, 124, 'sparks', 't p b', 'end', 12)
 
     # Outer foil cube (12 ft = 3.7 m)
     bx, by, bw, bh = 182, 46, 276, 206
@@ -146,7 +147,7 @@ def s_fizeau_wheel():
                       "so the returning beam hits a tooth and the eyepiece goes dark")
 
     def draw_row(y0, tag, wheel_note, eye_label, blocked):
-        f.text(20, y0 - 38, tag, 't b', 'start', 13)
+        f.text(20, y0 - 66, tag, 't b', 'start', 13)
         # Eyepiece at far left
         f.rect(20, y0 - 12, 46, 24, 'plate', rx=4)
         f.text(43, y0 + 4, 'eye', 't m', 'middle', 12)
@@ -201,7 +202,7 @@ def s_fizeau_wheel():
 @figure
 def s_foucault_turn():
     """Foucault pendulum floor rotation rate across four latitudes: North Pole, Paris, Mumbai, Equator."""
-    f = Fig(640, 290, "Four dials comparing how fast the floor turns beneath a Foucault pendulum in one hour: at the North "
+    f = Fig(640, 290, "Four dials comparing Foucault pendulum turning rates. The red tracks show 4.2 hours elapsed: at the North "
                       "Pole (90 degrees N) 15 degrees per hour, a full circle in 24 hours; in Paris (48.9 degrees N) 11.3 "
                       "degrees per hour, 32 hours; in Mumbai (19.1 degrees N) 4.9 degrees per hour, about 73 hours; and on "
                       "the Equator (0 degrees) 0 degrees per hour, no turning at all")
@@ -224,8 +225,10 @@ def s_foucault_turn():
                    cx + r * math.cos(rad), cy + r * math.sin(rad), 'ln m')
         # Initial swing plane (vertical dashed line)
         f.line(cx, cy - r + 10, cx, cy + r - 10, 'ln dash')
-        # Apparent swing line after 3 hours (exaggerated 2.5x so the angle is easy to read visually)
-        vis_deg = deg * 3.0 * 1.4
+        # The red track is the stated rate times an explicit elapsed 4.2 h.
+        # Recompute the rate from latitude before drawing, avoiding rounded-angle drift.
+        deg = 15 * math.sin(math.radians(float(lat.split('°')[0])))
+        vis_deg = deg * 4.2
         if deg > 0:
             ang = math.radians(-90 + vis_deg)
             dx, dy = (r - 10) * math.cos(ang), (r - 10) * math.sin(ang)
@@ -244,7 +247,8 @@ def s_foucault_turn():
         f.text(cx, 218, rate_lbl, 't p b' if deg > 0 else 't m', 'middle', 13)
         f.text(cx, 236, period_lbl, 't m', 'middle', 12)
 
-    f.text(320, 272, 'Rule: hourly turn = 15° × sin(latitude). Red line shows the track after several hours.', 't m', 'middle', 12)
+    f.lines(320, 270, ['Hourly turn = 15° × sin(latitude).',
+                       'Red track: after 4.2 hours, drawn to the stated angle.'], 't m', 'middle', 12)
     return f.svg()
 
 
@@ -252,12 +256,12 @@ def s_foucault_turn():
 @figure
 def s_kilogram_rule():
     """Old kilogram (Le Grand K artifact in Sèvres) vs new kilogram (20 May 2019 Planck constant + Kibble balance)."""
-    f = Fig(640, 290, "Left: from 1889 to 2019, the kilogram was defined by Le Grand K, a 39 mm by 39 mm platinum-iridium "
+    f = Fig(640, 330, "Left: from 1889 to 2019, the kilogram was defined by Le Grand K, a 39 mm by 39 mm platinum-iridium "
                       "cylinder under three glass bell jars in Sèvres, which drifted by about 50 micrograms over a century "
                       "relative to its copies. Right: since 20 May 2019, the kilogram is fixed by the Planck constant h = "
                       "6.626 070 15 × 10^-34 kg m^2/s and realised anywhere on a Kibble balance against an electric force")
     # Left panel: 1889–2019 Artifact
-    f.rect(18, 20, 290, 248, 'plate', rx=8)
+    f.rect(18, 20, 290, 288, 'plate', rx=8)
     f.text(163, 46, '1889 to 2019: one metal object', 't b', 'middle', 14)
     f.text(163, 64, 'Le Grand K in a vault at Sèvres', 't m', 'middle', 12)
 
@@ -269,16 +273,16 @@ def s_kilogram_rule():
                f'A{jr} {jr * 0.6:.1f} 0 0 1 {cx + jr},{by - jh + jr * 0.6:.1f} L{cx + jr},{by}', 'ln m')
     # 39 mm x 39 mm cylinder inside
     f.rect(cx - 18, by - 38, 36, 38, 'fill-ink', rx=2)
-    f.text(cx, by - 15, '1 kg', 't b', 'middle', 11, extra='fill="#fbfaf5"')
+    f.text(cx, by - 15, '1 kg', 't b', 'middle', 11, extra='style="fill:var(--paper)"')
     f.text(cx + 46, by - 22, '39 mm', 't m', 'start', 11)
-    f.lines(163, 218, [
+    f.lines(163, 264, [
         'Drifted ~50 µg in 100 years',
         'against its sister copies;',
         'only one vault had the original.',
     ], 't p', 'middle', 12)
 
     # Right panel: 2019–present Constant of nature
-    f.rect(332, 20, 290, 248, 'plate', rx=8)
+    f.rect(332, 20, 290, 288, 'plate', rx=8)
     f.text(477, 46, 'Since 20 May 2019: a rule of nature', 't b', 'middle', 14)
     f.text(477, 64, 'Planck constant fixed for all laboratories', 't m', 'middle', 12)
 
@@ -296,17 +300,17 @@ def s_kilogram_rule():
     lx = bx - 64
     f.line(lx, py, lx, py + 32, 'ln')
     f.rect(lx - 14, py + 32, 28, 22, 'fill-ink', rx=2)
-    f.text(lx, py + 47, 'm', 't b', 'middle', 12, extra='fill="#fbfaf5"')
-    f.force(lx, py + 54, 0, 26, 'weight mg', 11)
+    f.text(lx, py + 47, 'm', 't b', 'middle', 12, extra='style="fill:var(--paper)"')
+    f.force(lx, py + 54, 0, 26, 'weight mg', 12)
     # Right pan: coil in magnet pulled by electric current measured via h
     rx = bx + 64
     f.line(rx, py, rx, py + 32, 'ln')
     f.rect(rx - 18, py + 32, 36, 22, 'plate', rx=3)
     f.rect(rx - 18, py + 32, 36, 22, 'ln e', rx=3)
     f.text(rx, py + 47, 'coil', 't e b', 'middle', 11)
-    f.vector(rx, py + 32, 0, -24, 'electric pull', 11)
+    f.vector(rx, py + 32, 0, -24, 'electric pull', 12)
 
-    f.lines(477, 218, [
+    f.lines(477, 264, [
         'Never wears out or drifts;',
         'any national lab can build',
         '1 kg from the fixed number h.',
@@ -318,11 +322,11 @@ def s_kilogram_rule():
 @figure
 def s_mpemba_curves():
     """Schematic cooling curves for hot vs cold water in a freezer, illustrating why identical states at 35 °C cannot cross."""
-    f = Fig(640, 290, "Graph of water temperature (degrees C) against time in a freezer. A cold cup starting at 35 degrees C "
+    f = Fig(640, 330, "Graph of water temperature (degrees C) against time in a freezer. A cold cup starting at 35 degrees C "
                       "cools along a solid curve to 0 degrees C. A hot cup starting at 90 degrees C must pass through 35 "
                       "degrees C on the way down: if the two cups are identical then, the hot cup stays behind by the head "
                       "start (solid curve). For the Mpemba effect to happen, the hot cup must follow the steeper dashed curve "
-                      "and cross ahead")
+                      "and cross ahead. The curves end at 0 degrees C; they do not show complete freezing")
     x0, y0, w, h = 76, 238, 510, 196
     f.axis(x0, y0, w, h, 'time in freezer', 'temperature (°C)',
            ticks={'y': [(0, '0°'), (68, '35°'), (175, '90°')]})
@@ -367,7 +371,7 @@ def s_mpemba_curves():
     f.circle(x0 + 430, y0, 4, 'pt-p')
     f.lines(x0 + 336, y0 - 54, [
         'if identical at 35 °C:',
-        'always finishes later',
+        'reaches 0 °C later',
     ], 't m', 'start', 12)
 
     # Branch B (dashed): Mpemba crossover if hot cup arrives at 35 °C changed (less mass, convection, frost contact)
@@ -379,75 +383,75 @@ def s_mpemba_curves():
     f.path(catmull(mpemba_branch), 'ln p', extra='stroke-dasharray="6 4"')
     f.circle(x0 + 235, y0, 4, 'pt-p')
     f.lines(x0 + 150, y0 - 122, [
-        'to win (dashed): the hot cup must',
+        'to reach 0 °C first (dashed), it must',
         'arrive at 35 °C changed (evaporation,',
         'convection, less gas, melted frost)',
     ], 't p', 'start', 12)
     f.arrow(x0 + 215, y0 - 82, x0 + 182, y0 - 38, 'proton')
+    f.text(320, 314, 'Reaching 0 °C is not freezing solid: latent heat must still leave.', 't m', 'middle', 12)
     return f.svg()
 
 
 # ------------------------------------------------------------------ trams
 @figure
 def s_tram_field():
-    """Bombay electric tram current (500 A) creating a 500 nT magnetic field 200 m away at Colaba Observatory."""
-    f = Fig(640, 280, "On the left, a Bombay electric tram draws 500 A from an overhead wire and returns it through the rails, "
-                      "surrounded by concentric circular magnetic field lines. Two hundred metres away on the right stands "
-                      "Colaba Observatory: the tram's 500 nanotesla field swings the magnetometer needle by 1.3% of Mumbai's "
-                      "38,400 nT horizontal Earth field, drowning out natural variations and forcing the move to Alibag")
-    # Ground line
-    gy = 204
-    f.ground(24, gy, 592)
-
-    # Tram and overhead wire at left (x = 120)
-    tx = 120
-    # Overhead wire pole and wire
+    """Tram side view plus a perpendicular wire cross-section and an explicitly enlarged compass deflection."""
+    field_nt, earth_nt = 500, 38400
+    actual_angle = math.atan(field_nt / earth_nt)
+    angle_enlargement = 30
+    f = Fig(640, 380, "A side view of a Bombay tram taking current from an overhead wire and returning it through rails. "
+                      "A separate end-on cross-section shows circular field lines in the plane perpendicular to the wire. "
+                      "The ideal single-wire field estimate at 200 metres is 500 nanotesla, 1.3 percent of the horizontal "
+                      "Earth field of 38,400 nanotesla. A perpendicular field this size deflects a compass about 0.75 degrees; "
+                      "the needle angle is enlarged thirty times to make that small change visible.")
+    gy, tx, ox = 204, 120, 300
+    f.text(24, 24, 'Side view: the tram and its current path', 't b', size=13)
+    f.ground(24, gy, 346)
     f.line(54, gy, 54, 48, 'ln m')
-    f.line(48, 52, 180, 52, 'ln p')
-    f.text(186, 56, 'overhead wire (I ≈ 500 A)', 't p b', 'start', 12)
-    # Concentric magnetic field circles around the wire / track
-    for rad in (28, 56, 92, 136):
-        f.circle(tx, 124, rad, 'ln e', extra='stroke-dasharray="5 4" opacity="0.65"')
-    # Direction arrow on outer field circle
-    f.arrow(tx + 136, 118, tx + 136, 134, 'vector')
-
-    # Tram car body
+    f.line(48, 52, 232, 52, 'ln p')
+    f.arrow(180, 52, 228, 52, 'proton')
+    f.text(120, 42, 'overhead current ≈ 500 A', 't p', 'middle', 12)
     f.rect(tx - 44, gy - 68, 88, 54, 'plate', rx=6)
     f.rect(tx - 44, gy - 68, 88, 54, 'ln', rx=6)
     for wx in (-28, 0, 28):
         f.rect(tx + wx - 10, gy - 56, 20, 18, 'wash-n', rx=2)
     f.circle(tx - 24, gy - 7, 7, 'fill-ink')
     f.circle(tx + 24, gy - 7, 7, 'fill-ink')
-    # Pantograph up to wire
     f.path(f'M{tx},{gy - 68} L{tx - 14},92 L{tx},52 L{tx + 14},92 Z', 'ln')
     f.text(tx, gy - 24, 'Bombay tram', 't b', 'middle', 12)
+    f.arrow(156, 217, 90, 217, 'proton')
+    f.text(24, 236, 'rail return', 't p', size=12)
 
-    # Distance bracket 200 m between tram track and Colaba Observatory
-    ox = 472
-    f.bracket_label(tx, ox, gy + 26, 'r = 200 m across Colaba', 12, up=False)
-
-    # Colaba Observatory dome and magnetometer on right
-    f.rect(ox - 68, gy - 84, 136, 84, 'plate', rx=4)
-    f.path(f'M{ox - 68},{gy - 84} A68 48 0 0 1 {ox + 68},{gy - 84}', 'plate')
-    f.path(f'M{ox - 68},{gy - 84} A68 48 0 0 1 {ox + 68},{gy - 84}', 'ln')
-    f.rect(ox - 68, gy - 84, 136, 84, 'ln', rx=4)
-    f.text(ox, gy - 96, 'Colaba Observatory', 't b', 'middle', 13)
-
-    # Compass / magnetometer dial inside observatory
+    # Observatory in the same side view; the magnetometer inset is explicitly magnified.
+    f.rect(ox - 56, gy - 84, 112, 84, 'plate', rx=4)
+    f.path(f'M{ox - 56},{gy - 84} A56 40 0 0 1 {ox + 56},{gy - 84}', 'plate')
+    f.path(f'M{ox - 56},{gy - 84} A56 40 0 0 1 {ox + 56},{gy - 84}', 'ln')
+    f.rect(ox - 56, gy - 84, 112, 84, 'ln', rx=4)
+    f.lines(ox, 78, ['Colaba', 'Observatory'], 't b', 'middle', 12)
     cy = gy - 42
-    f.circle(ox, cy, 26, 'wash-n')
-    f.circle(ox, cy, 26, 'ln')
-    f.line(ox, cy - 22, ox, cy + 22, 'ln dash')               # true Earth field direction
-    f.line(ox - 10, cy + 19, ox + 10, cy - 19, 'ln p')        # needle swung by tram
+    f.circle(ox, cy, 26, 'wash-n'); f.circle(ox, cy, 26, 'ln')
+    f.line(ox, cy - 22, ox, cy + 22, 'ln dash')
+    dx = 22 * math.sin(actual_angle * angle_enlargement)
+    dy = 22 * math.cos(actual_angle * angle_enlargement)
+    f.line(ox - dx, cy + dy, ox + dx, cy - dy, 'ln p')
     f.circle(ox, cy, 3, 'fill-ink')
+    f.text(ox, 222, 'needle angle ×30', 't m', 'middle', 12)
+    f.bracket_label(tx, ox, 246, '200 m · scene not to scale', 12, up=False)
 
-    # Field comparison readout
-    f.lines(306, 98, [
-        'B = μ₀I ÷ (2πr) ≈ 500 nT',
-        'Mumbai horizontal field ≈ 38,400 nT',
-        '→ 1.3% swing every passing tram',
-        '→ moved 30 km south to Alibag (1904)',
-    ], 't', 'start', 12)
+    # This is a different view, perpendicular to the wire, not a field drawn
+    # in the tram's side-view plane. Out of the page means anticlockwise field.
+    cx, cy = 500, 116
+    f.lines(cx, 26, ['End-on view of one wire', 'plane perpendicular to the wire'], 't b', 'middle', 12)
+    for rad in (24, 43, 62):
+        f.circle(cx, cy, rad, 'ln e')
+    f.circle(cx, cy, 7, 'block'); f.circle(cx, cy, 2.5, 'fill-ink')
+    f.arrow(cx + 62, cy + 12, cx + 62, cy - 12, 'vector')
+    f.lines(cx, 204, ['• current towards you', 'circles wrap around the wire'], 't m', 'middle', 12)
+    f.lines(24, 294, ['One-wire estimate: B = μ₀I ÷ (2πr) ≈ 500 nT at 200 m.',
+                       '500 ÷ 38,400 = 1.3% of Earth’s horizontal field.',
+                       'If perpendicular, the compass turns arctan(500 ÷ 38,400) ≈ 0.75°.',
+                       'Colaba Observatory moved to Alibag in 1904.'], 't', size=12)
+    f.text(24, 368, 'Actual return currents and routes change the field; the estimate treats one long straight wire.', 't m', size=12)
     return f.svg()
 
 
@@ -504,5 +508,6 @@ def s_wobble_loop():
     ], 't', 'middle', 11)
 
     # Energy drain arrow from top box into damper box
-    f.vector(368, 49, 134, 0, 'energy drained out', 12)
+    f.vector(368, 49, 134, 0)
+    f.lines(434, 72, ['energy drained', 'out of the bridge'], 't e', 'middle', 12)
     return f.svg()

@@ -169,6 +169,9 @@ def c13_wire_field():
     f.text(cx, cy - r - 8, 'N', 't m', 'middle', 12)
     f.text(cx + r + 10, cy + 4, 'E', 't m', 'start', 12)
     f.line(cx, cy - r - 24, cx, cy + r + 24, 'ln', 'stroke-width="3"')
+    # With the compass below the wire, southward current gives an eastward field.
+    f.vector(cx, cy + 8, 0, 42, '', 12)
+    f.text(cx - 8, cy + 42, 'I south', 't e', 'end', 12)
     f.text(cx, cy + r + 36, 'the wire, 1 cm above, 1 A', 't', 'middle', 12)
     a = math.radians(27.5)
     f.line(cx, cy, cx + 46 * math.sin(a), cy - 46 * math.cos(a), 'ln p', 'stroke-width="3.5"')
@@ -190,49 +193,40 @@ def c13_wire_field():
 # ---------------------------------------------------------------- 13.4
 @figure
 def c13_motor_force():
-    f = Fig(640, 300, 'Left: field arrows run left to right, a wire carries current up the page, and the force on it is '
-                      'out of the page, marked by a dot in a circle. Right: a rectangular loop between a north pole on '
-                      'the left and a south pole on the right. Current runs up one long side and down the other, one side '
-                      'is pushed up and the other down, and the loop turns; two brushes at the bottom reverse the current '
-                      'every half turn.')
-    f.text(150, 26, 'A current in a field', 't b', 'middle', 14)
-    for yy in (90, 130, 170, 210):
-        f.vector(50, yy, 200, 0, '', 12)
-    f.text(255, 215, 'field B →', 't e', 'start', 12)
-    f.line(150, 60, 150, 240, 'ln', 'stroke-width="4"')
-    f.vector(150, 244, 0, -52, '', 12)
-    f.text(158, 236, 'current I, up', 't e', 'start', 12)
-    f.circle(150, 150, 11, 'fill-sheet')
-    f.circle(150, 150, 11, 'ln p')
-    f.circle(150, 150, 3, 'fill-ink')
-    f.text(150, 266, 'force: out of the page, towards you', 't p b', 'middle', 12)
-    f.text(150, 284, 'at right angles to both I and B', 't m', 'middle', 12)
-    f.line(320, 20, 320, 290, 'ln r')
-    # ---- right: a loop between poles
-    f.text(480, 26, 'A loop between the poles', 't b', 'middle', 14)
-    f.rect(352, 70, 40, 130, 'wash-p', rx=3)
-    f.rect(352, 70, 40, 130, 'ln', rx=3)
-    f.text(372, 140, 'N', 't b', 'middle', 15)
-    f.rect(568, 70, 40, 130, 'wash-e', rx=3)
-    f.rect(568, 70, 40, 130, 'ln', rx=3)
-    f.text(588, 140, 'S', 't b', 'middle', 15)
-    for yy in (100, 170):
-        f.vector(396, yy, 168, 0, '', 12, kind='muted')
-    # loop in perspective
-    lx1, lx2, ly1, ly2 = 430, 530, 90, 180
-    f.path(f'M{lx1},{ly1} L{lx2},{ly1 + 14} L{lx2},{ly2 + 14} L{lx1},{ly2} Z', 'ln', 'stroke-width="2.5"')
-    f.vector(lx1 - 14, ly2 - 10, 0, -50, 'I up', 12)
-    f.vector(lx2 + 14, ly1 + 24, 0, 50, 'I down', 12)
-    f.force(lx1, ly1 - 4, 0, -36, 'push up', 12)
-    f.force(lx2, ly2 + 18, 0, 36, 'push down', 12)
-    f.text(486, ly1 - 26, 'the loop turns', 't b', 'middle', 12)
-    # brushes
-    f.rect(446, 236, 12, 16, 'block', rx=2)
-    f.rect(466, 236, 12, 16, 'block', rx=2)
-    f.line(lx1, ly2, 452, 236, 'ln m')
-    f.line(lx2, ly2 + 14, 472, 236, 'ln m')
-    f.text(482, 272, 'brushes: reverse the current every half turn', 't', 'middle', 12)
-    f.text(482, 288, 'so that the turning never stalls', 't m', 'middle', 12)
+    f = Fig(640, 350, 'Left: current up the page crossed with a magnetic field to the right gives a force into the page, shown by a cross in a circle. Right: a loop seen end-on between north and south poles carries current out of the page on the left and into the page on the right, giving upward and downward forces and clockwise torque. A dot means towards you; a cross means away.')
+    f.text(158,28,'One wire: three directions','t b','middle',16)
+    f.text(480,28,'A loop, seen from the end','t b','middle',16)
+    f.line(320,18,320,321,'ln r')
+    for yy in (104,150,196): f.vector(28,yy,260,0)
+    f.text(285,85,'field B →','t e','end',13)
+    f.line(156,76,156,244,'ln', 'stroke-width="4"')
+    f.vector(156,239,0,-55)
+    f.text(171,233,'current I ↑','t e b',size=13)
+    f.circle(156,150,15,'block')
+    for d in (-1,1): f.line(149,150+d*7,163,150-d*7,'ln p')
+    f.text(158,278,'force goes INTO the page','t p b','middle',13)
+    f.text(158,300,'perpendicular to both I and B','t m','middle',12)
+    for xx,lab,cls in ((344,'N','wash-p'),(580,'S','wash-e')):
+        f.rect(xx,104,36,112,cls,rx=3)
+        f.rect(xx,104,36,112,'ln',rx=3)
+        f.text(xx+18,164,lab,'t b','middle',18)
+    for yy in (128,166,204): f.vector(388,yy,183,0,kind='muted')
+    f.line(412,166,548,166,'ln', 'stroke-width="3"')
+    f.line(480,83,480,252,'ln m dash')
+    f.text(480,77,'axle','t m','middle',12)
+    for xx,out in ((412,True),(548,False)):
+        f.circle(xx,166,12,'block')
+        if out: f.circle(xx,166,4,'fill-ink')
+        else:
+            f.line(xx-5,161,xx+5,171,'ln')
+            f.line(xx-5,171,xx+5,161,'ln')
+        f.force(xx,151 if out else 181,0,-56 if out else 56)
+    f.text(404,89,'push up','t p b','middle',12)
+    f.text(550,255,'push down','t p b','middle',12)
+    f.curved_arrow(447,112,514,112,bend=-27,kind='proton')
+    f.text(480,283,'opposite forces turn the loop','t b','middle',13)
+    f.text(480,304,'current reverses every half-turn','t m','middle',12)
+    f.text(320,338,'⊙ current towards you     ⊗ current away from you','t','middle',14)
     return f.svg()
 
 
@@ -265,7 +259,7 @@ def c13_induction():
                       'needle reads zero. Right: the magnet moves out and the needle kicks to the left.')
 
     def panel(x0, title, mag_x, vel, needle, note):
-        f.text(x0 + 100, 26, title, 't b', 'middle', 14)
+        f.text(x0 + 100, 18, title, 't b', 'middle', 14)
         cy = 150
         _coil(f, x0 + 70, cy - 22, 6, 90, 44)
         _magnet(f, mag_x, cy - 11, 70, 22, horizontal=True, n_first=True, size=12)
@@ -295,7 +289,7 @@ def c13_em_wave():
     f = Fig(640, 340, 'Left: an electromagnetic wave travelling to the right, with the electric field drawn as a '
                       'vertical sine wave and the magnetic field as a sine wave in the horizontal plane, at right angles '
                       'to it. Right: the ladder of light, a vertical scale of wavelength in powers of ten from six '
-                      'thousand kilometres at the bottom to X-rays at the top, with rungs for 50 hertz mains, metre '
+                      'thousand kilometres at the top to X-rays at the bottom, with rungs for 50 hertz mains, metre '
                       'radio waves, Bose''s 5 millimetre waves, a remote''s 940 nanometre infrared, visible light, '
                       'ultraviolet and X-rays.')
     # ---- left: the wave

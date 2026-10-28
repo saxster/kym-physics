@@ -463,12 +463,12 @@ export const ENHANCEMENTS = {
       const vKmh = s.num('Train speed', 60);
       const vS = vKmh / 3.6;
       const f0 = s.num('Horn note', 330);
-      const c = 343;
+      const c = 348.7;
       const fAhead = (f0 * c) / (c - vS);
       const fBehind = (f0 * c) / (c + vS);
       return `f_obs = f₀ × c ÷ (c ∓ v_s)  |  v_s = ${vS.toFixed(1)} m/s  →  ahead ${fAhead.toFixed(0)} Hz, behind ${fBehind.toFixed(0)} Hz (Δf = ${(fAhead - fBehind).toFixed(0)} Hz)`;
     },
-    cutaway: 'Inside the wavefront bunching: each sound crest leaves the horn and expands at 343 m/s in the air, but the moving horn emits the next crest closer to the previous one.',
+    cutaway: 'Inside the wavefront bunching: each sound crest leaves the horn and expands at 348.7 m/s in 30 °C air, but the moving horn emits the next crest closer to the previous one.',
     watch: [
       { title: '1. Wide view', caption: '1/5 Wide shot: When the train stands still (0 km/h), sound circles are concentric and everyone hears the same pitch.', act: (s) => { s.setSlider('Train speed', 0); s.setSlider('Horn note', 330); } },
       { title: '2. Close-up', caption: '2/5 Close-up: At 60 km/h, crests bunch up ahead of the engine and stretch out behind it.', act: (s) => s.setSlider('Train speed', 60) },

@@ -1,4 +1,4 @@
-// Ch 7.3 c7_track -> w_energytrack: Marble on a smooth hill track with height, motion, and warmth bars.
+// Ch 7.3 c7_track -> w_energytrack: Ideal sliding bead (no spin), with height, motion, and warmth bars.
 // Speed computed directly from energy: v = sqrt(2*g*(h0 - h) - 2*thermal/m). Conserves PE + KE + thermal = m*g*h0 every frame.
 import { Live } from './core.js';
 
@@ -60,7 +60,7 @@ function findReleaseX(h0) {
 
 Live.register('energytrack', (stage, params, api) => {
   const c = api.colors();
-  const k = api.canvas(640, 310, 'A marble rolling on a smooth hill track beside height, motion, and warmth energy bars');
+  const k = api.canvas(640, 310, 'An ideal bead sliding without spin on a hill track beside height, motion, and warmth energy bars');
   let mu = 0.0;
   let h0 = 1.0;
   let marbleIdx = 0;
@@ -176,11 +176,11 @@ Live.register('energytrack', (stage, params, api) => {
       : '';
 
     if (mu > 0 && eTherm > 0.002) {
-      say(`Friction has moved ${eTherm.toFixed(3)} J into warmth so far; height (${pe.toFixed(3)} J) + motion (${ke.toFixed(3)} J) + warmth (${eTherm.toFixed(3)} J) = ${eTot.toFixed(3)} J.${bumpNote}${massNote} Half speed; marble drawn larger than true size.`);
+      say(`Friction has moved ${eTherm.toFixed(3)} J into warmth so far; height (${pe.toFixed(3)} J) + motion (${ke.toFixed(3)} J) + warmth (${eTherm.toFixed(3)} J) = ${eTot.toFixed(3)} J.${bumpNote}${massNote} Half speed; bead drawn larger than true size; spin omitted.`);
     } else if (h < 0.05) {
       say(`Bottom of the dip (${h.toFixed(2)} m): ${v.toFixed(1)} m/s, nearly all ${eTot.toFixed(3)} J is motion.${bumpNote}${massNote} Half speed.`);
     } else {
-      say(`At ${h.toFixed(2)} m the marble moves at ${v.toFixed(1)} m/s (height ${pe.toFixed(3)} J, motion ${ke.toFixed(3)} J; total ${eTot.toFixed(3)} J, unchanged).${bumpNote}${massNote} Half speed.`);
+      say(`At ${h.toFixed(2)} m the bead slides at ${v.toFixed(1)} m/s (height ${pe.toFixed(3)} J, motion ${ke.toFixed(3)} J; total ${eTot.toFixed(3)} J, unchanged).${bumpNote}${massNote} Half speed; spin omitted.`);
     }
   }
 

@@ -26,34 +26,44 @@ def _driven(push_period, n_steps=2400, dt=0.01, w0=2 * math.pi / 3.2, gamma=0.25
 
 @figure
 def s_push_timing():
-    f = Fig(640, 350, 'Two graphs of a swing driven by equal small pushes. Above: pushes once per swing, in time with it, '
-                      'and the swing grows steadily. Below: pushes at an unrelated rhythm, and the swing stays small.')
-    panels = [(84, 'Pushes in time: one every 3.2 s, as the seat moves away', 3.2),
-              (236, 'Pushes at the wrong rhythm: one every 1.9 s', 1.9)]
-    x0, w = 62, 500
-    scale = 44 / 4.2          # the in-time curve reaches about 4 units at the end: 44 px
-    for yc, title, per in panels:
-        pts, pushes = _driven(per)
-        tmax = pts[-1][0]
-        f.text(x0, yc - 56, title, 't b', 'start', 13)
+    f = Fig(640, 450, 'Two computed graphs of a swing driven by equal small pushes, drawn with the same displacement '
+                      'and time scales. Above, pushes once per natural swing build a much larger motion. Below, pushes '
+                      'at an unrelated rhythm keep the swing small. An arrow below each graph marks each equal push.')
+    runs = [(104, 'In time: one push every 3.2 s', 3.2),
+            (284, 'Wrong rhythm: one push every 1.9 s', 1.9)]
+    computed = [(yc, title, *_driven(period)) for yc, title, period in runs]
+    # One shared scale makes the response difference visible without exaggerating
+    # one trace independently of the other. The oscillator model has arbitrary
+    # displacement units, so the comparison carries no invented metre readings.
+    max_displacement = max(abs(x) for _, _, pts, _ in computed for _, x in pts)
+    scale = 42 / max_displacement
+    x0, w, duration = 64, 514, 24
+    f.text(x0, 22, 'Seat displacement · same scale in both graphs', 't m', 'start', 13)
+    for yc, title, pts, pushes in computed:
+        f.text(x0, yc - 58, title, 't b', 'start', 14)
+        f.line(x0, yc - 44, x0, yc + 44, 'ax')
         f.line(x0, yc, x0 + w, yc, 'ln m')
-        d = 'M' + ' L'.join(f'{x0 + w * t / tmax:.1f},{yc - x * scale:.1f}' for t, x in pts[::4])
-        f.path(d, 'ln e')
-        for tp in pushes:
-            px = x0 + w * tp / tmax
-            f.arrow(px, yc + 66, px, yc + 50, 'force', width=1.6)
-        f.text(x0 + w + 8, yc + 4, 'time →', 't m', 'start', 12)
-    f.text(x0 + w / 2, 336, 'Each arrow is one push. Every push is the same size; only the timing differs.', 't m', 'middle', 13)
-    f.text(24, 160, 'how far the seat swings', 't m', 'middle', 12, extra='transform="rotate(-90 24 160)"')
+        for t in (0, 8, 16, 24):
+            xx = x0 + w * t / duration
+            f.line(xx, yc + 45, xx, yc + 49, 'ln m')
+            f.text(xx, yc + 63, str(t), 't m', 'middle', 12)
+        path = 'M' + ' L'.join(f'{x0 + w * t / duration:.1f},{yc - x * scale:.1f}' for t, x in pts[::4])
+        f.path(path, 'ln e')
+        for t in pushes:
+            xx = x0 + w * t / duration
+            f.arrow(xx, yc + 92, xx, yc + 76, 'force', width=1.6)
+        f.text(x0 + w, yc + 108, 'time (s)', 't m', 'end', 12)
+    f.lines(320, 426, ['Each red arrow is the same push.',
+                       'Only the timing changes; the motion above grows much larger.'], 't m', 'middle', 13)
     return f.svg()
 
 
 @figure
 def s_light_delays():
     f = Fig(640, 250, 'Four distances and the time light takes to cross each: Fizeau\'s mirror and back in Paris, '
-                      '0.00006 s; the Moon to Earth, 1.3 s; the Sun to Earth, 8 min 19 s; across Earth\'s orbit, 16.6 min.')
+                      'about 0.000058 s; the Moon to Earth, 1.3 s; the Sun to Earth, 8 min 19 s; across Earth\'s orbit, 16.6 min.')
     rows = [
-        ('Fizeau\'s mirror and back', '17 km', '0.00006 s'),
+        ('Fizeau\'s mirror and back', '17.3 km', '≈ 0.000058 s (58 µs)'),
         ('The Moon to Earth', '384,400 km', '1.3 s'),
         ('The Sun to Earth', '150 million km', '8 min 19 s'),
         ('Across Earth\'s orbit', '300 million km', '16.6 min (Rømer said about 22)'),

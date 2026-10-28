@@ -6,8 +6,9 @@ from figs_core import Fig, figure
 
 @figure
 def c9_pendulum():
-    f = Fig(640, 320, 'Two pendulums side by side, one four times as long as the other, each drawn displaced to one side; '
-                      'on the long one, gravity’s pull is split into a part along the string and a part back along the arc')
+    f = Fig(640, 350, 'Two pendulums, one four times as long as the other: their periods are about 2 and 4 seconds. '
+                      'The longer pendulum shows weight downward and the part of that weight acting back along the arc. '
+                      'The blue component is not an extra force; string tension is omitted.')
     def pend(px, py, L, ang_deg, label, period, forces=False, centre_line=True):
         a = math.radians(ang_deg)                      # negative angle: bob displaced to the left
         bx, by = px + L * math.sin(a), py + L * math.cos(a)
@@ -28,10 +29,11 @@ def c9_pendulum():
         f.text(px, py + L + 34, period, 't', 'middle', 13)
         if forces:
             # weight straight down; its part along the arc, back towards the middle (to the right here)
-            f.force(bx, by + 11, 0, 80, 'weight')
+            f.force(bx, by, 0, 80, 'weight')
             tx, ty = math.cos(a), -math.sin(a)         # unit vector along the arc, towards the middle
             comp = 80 * math.sin(abs(a))
-            f.vector(bx + 11 * tx, by + 11 * ty, tx * comp, ty * comp, 'pull back along the arc', 12)
+            f.vector(bx, by, tx * comp, ty * comp, 'part along the arc', 12)
+            f.line(bx + tx * comp, by + ty * comp, bx, by + 80, 'ln m dash')
     pend(110, 30, 47.5, 22, '1 m long', '2.0 s per swing')
     pend(300, 30, 190, -22, '4 m long', '4.0 s per swing', forces=True, centre_line=False)
     f.text(530, 120, 'four times the', 't', 'middle', 13)
@@ -39,6 +41,7 @@ def c9_pendulum():
     f.text(530, 156, 'the period', 't', 'middle', 13)
     f.text(530, 196, 'the mass of the bob', 't m', 'middle', 12)
     f.text(530, 212, 'makes no difference', 't m', 'middle', 12)
+    f.text(320, 338, 'Blue: a part of weight, not another force. The string’s tension is not shown.', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -182,9 +185,13 @@ def c9_compressions():
     # pressure graph
     x0, y0, w, h = 100, 300, 500, 70
     f.axis(x0, y0, w, h, 'distance along the line', 'air pressure')
+    for xc in (175, 325, 475):
+        f.line(xc, 216, xc, y0, 'ln r dash')
     f.line(x0, y0 - h / 2, x0 + w, y0 - h / 2, 'ln r')
     f.text(x0 + w - 4, y0 - h / 2 - 6, 'normal pressure', 't m', 'end', 12)
-    f.wave(x0, y0 - h / 2, w - 20, 24, lam, phase=math.pi, cls='ln e')
+    # Pressure is proportional to minus the displacement gradient, -cos(kx).
+    # Its crests must sit directly below the crowded particle regions.
+    f.wave(x0, y0 - h / 2, w - 20, 24, lam, phase=-math.pi / 2, cls='ln e')
     return f.svg()
 
 
@@ -214,7 +221,7 @@ def c9_loud_high():
 
 @figure
 def c9_harmonics():
-    f = Fig(640, 340, 'Left: the first three vibration patterns of a string, at f, 2f and 3f. Middle: ladders of '
+    f = Fig(640, 360, 'Left: the first three vibration patterns of a string, at f, 2f and 3f. Middle: ladders of '
                       'overtone frequencies for a string (1, 2, 3, 4) and for an ideal flat drumhead (1, 1.59, 2.14, 2.30, '
                       '2.65). Right: a tabla head with its black patch, and its overtones pulled onto whole-number rungs')
     # string modes
@@ -228,28 +235,32 @@ def c9_harmonics():
         f.text(258, y + 5, lab, 't b', 'start', 13)
     f.text(140, 262, 'the ends are held, so only', 't m', 'middle', 12)
     f.text(140, 278, 'whole numbers of bumps fit', 't m', 'middle', 12)
-    # ladders (60 px per unit of overtone ÷ fundamental, from y = 310 for 1)
-    def ladder(x, rungs, title, cls_rung='ln e', top=60):
+    # A common frequency scale; nearby flat-drum labels use separated leaders.
+    def ladder(x, rungs, title, cls_rung='ln e', top=60, label_y=None):
         f.line(x, 310, x, top, 'ln')
         if title:
             f.text(x, 46, title, 't b', 'middle', 12)
         for r in rungs:
-            y = 310 - (r - 1) * 60
+            y = 310 - (r - 1) * 76
             if y < top:
                 continue
             f.line(x - 16, y, x + 16, y, cls_rung)
-            f.text(x + 22, y + 4, f'{r:g}', 't', 'start', 12)
-    ladder(320, [1, 2, 3, 4], 'string')
-    ladder(410, [1, 1.59, 2.14, 2.30, 2.65], 'flat drum', 'ln nn')
-    f.text(365, 330, 'overtone ÷ fundamental', 't m', 'middle', 12)
+            ly = (label_y or {}).get(r, y + 4)
+            if abs(ly - (y + 4)) > 1:
+                f.line(x + 16, y, x + 24, ly - 4, 'ln m')
+            f.text(x + 28, ly, f'{r:g}', 't', 'start', 12)
+    ladder(305, [1, 2, 3, 4], 'string')
+    ladder(408, [1, 1.59, 2.14, 2.30, 2.65], 'flat drum', 'ln nn',
+           label_y={2.14: 240, 2.30: 217})
+    f.text(438, 348, 'relative frequency: f ÷ fundamental', 't m', 'middle', 12)
     # tabla: the drum at the top of its column, its ladder below
     f.text(555, 46, 'tabla', 't b', 'middle', 12)
-    f.circle(555, 92, 34, 'glass')
-    f.circle(555, 92, 30, 'plate')
-    f.circle(552, 95, 11, 'fill-ink')
-    f.text(555, 142, 'the syahi: a loaded', 't m', 'middle', 12)
-    f.text(555, 156, 'patch on the drumhead', 't m', 'middle', 12)
-    ladder(555, [1, 2, 3], '', 'ln g', top=176)
+    f.circle(555, 82, 25, 'glass')
+    f.circle(555, 82, 22, 'plate')
+    f.circle(553, 84, 8, 'fill-ink')
+    f.text(555, 124, 'syahi: a loaded', 't m', 'middle', 12)
+    f.text(555, 139, 'patch on the head', 't m', 'middle', 12)
+    ladder(555, [1, 2, 3], '', 'ln g', top=152)
     f.text(555, 330, 'in tune', 't g', 'middle', 12)
     return f.svg()
 

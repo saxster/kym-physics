@@ -2,11 +2,12 @@
 // One idea runs through all of it: everything decorative is made of dots, like an engraving.
 //   - the cover: a faint field of particles in Brownian motion
 //   - volume pages: a stippled motif per volume (MOTIFS below; build.py MOTIFS picks one per volume:
-//     I cloud, II balance, III lattice, IV field: the field lines of a magnet, with charge running along them)
+//     I cloud, II balance, III lattice, IV field: the field lines of a magnet, with stationary direction marks)
 //   - medallions for the people in the book, stippled like an engraving
 //   - a chapter spine in the left margin on wide screens, showing where you are
 // Every animation runs only while on screen, and not at all when the reader prefers reduced motion.
 import App from './core.js';
+import { eccentricAnomaly } from './orbit_model.mjs';
 
 const motionOK = () => !App.reduceMotion();
 
@@ -191,8 +192,8 @@ const MOTIFS = {
     };
     const orbits = [
       { a: S * .42, e: 0.20, rot: -0.18, period: 3600, phase: 0.1 },
-      { a: S * .72, e: 0.32, rot:  0.12, period: 6200, phase: 0.55 },
-      { a: S * 1.02, e: 0.24, rot: -0.08, period: 9400, phase: 0.82 },
+      { a: S * .72, e: 0.32, rot:  0.12, period: 3600 * (.72 / .42) ** 1.5, phase: 0.55 },
+      { a: S * 1.02, e: 0.24, rot: -0.08, period: 3600 * (1.02 / .42) ** 1.5, phase: 0.82 },
     ];
     // Central Sun sits at the focus of the middle ellipse
     const focusShift = orbits[1].a * orbits[1].e;
@@ -219,7 +220,8 @@ const MOTIFS = {
         dots.push([x + gauss(r) * .6, y + gauss(r) * .6, fade(x, y)]);
       }
       if (idx === 1) {
-        for (const th of [-0.35, 0.35, Math.PI - 0.22, Math.PI + 0.22]) {
+        for (const M of [-0.35, 0.35, Math.PI - 0.35, Math.PI + 0.35]) {
+          const th = eccentricAnomaly(M, orb.e);
           const [ox, oy] = posOn(orb, th);
           for (let s = 0.08; s < 1; s += 0.03) {
             const sx = fx + (ox - fx) * s, sy = fy + (oy - fy) * s;
@@ -228,7 +230,7 @@ const MOTIFS = {
         }
       }
     });
-    const bodies = orbits.map(orb => ({ orb, th: orb.phase * 6.2832, moonTh: r() * 6.2832, trail: [] }));
+    const bodies = orbits.map(orb => ({ orb, mean: orb.phase * 6.2832, moonTh: r() * 6.2832, trail: [] }));
     return (t, dt) => {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = col.ink;
@@ -242,15 +244,11 @@ const MOTIFS = {
       ctx.beginPath(); ctx.arc(fx, fy, 4.2, 0, 6.2832); ctx.fill();
       ctx.fillStyle = col.vol;
       bodies.forEach((b, idx) => {
-        const [px, py] = posOn(b.orb, b.th);
         if (dt) {
-          // Kepler's 2nd law: angular rate faster when closer to focus
-          const dist = Math.hypot(px - fx, py - fy) / b.orb.a;
-          const dth = (6.2832 * dt / b.orb.period) / Math.max(0.45, dist * dist);
-          b.th = (b.th + dth) % 6.2832;
-          b.moonTh = (b.moonTh + dt / 480) % 6.2832;
+          b.mean = (b.mean + 2 * Math.PI * dt / b.orb.period) % (2 * Math.PI);
+          b.moonTh = (b.moonTh + dt / 480) % (2 * Math.PI);
         }
-        const [nx, ny] = posOn(b.orb, b.th);
+        const [nx, ny] = posOn(b.orb, eccentricAnomaly(b.mean, b.orb.e));
         b.trail.push([nx, ny]);
         if (b.trail.length > 26) b.trail.shift();
         b.trail.forEach(([tx, ty], i) => {
@@ -330,7 +328,7 @@ const MOTIFS = {
   },
 
   // Volume IV: electricity and magnetism. The field lines of a magnet (a dipole), drawn in stipple: each line
-  // follows r = L·sin²θ, the shape iron filings make around a bar magnet. A few bright points run along the lines.
+  // follows r = L·sin²θ, the shape iron filings make around a bar magnet. Fixed chevrons show direction; the lines are not tracks for charges.
   field(ctx, w, h, col, r) {
     const cx = w * .5, cy = h * .5, S = Math.min(w * .46, h * 1.15);   // magnet upright, loops spread sideways
     const Ls = [.12, .19, .28, .4, .55, .74, 1.0];
@@ -348,19 +346,24 @@ const MOTIFS = {
     lines.forEach(pts => pts.forEach(([x, y], i) => { if (i % 2 === 0) dots.push([x + gauss(r) * .5, y + gauss(r) * .5, fade(x, y)]); }));
     const mag = [];                                    // the magnet itself: a small stippled bar
     for (let i = 0; i < 260; i++) mag.push([cx + (r() - .5) * S * .05, cy + (r() - .5) * S * .2]);
-    const sparks = Array.from({ length: 7 }, (_, i) => ({ line: lines[(i * 5 + 3) % lines.length], k: r(), trail: [] }));
+    const directions = lines.map(pts => { const mid = Math.floor(pts.length / 2); return [pts[mid - 2], pts[mid + 2]]; });
     return (t, dt) => {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = col.ink;
       for (const [x, y, f] of dots) { if (f <= 0) continue; ctx.globalAlpha = f * .38; ctx.fillRect(x, y, 1.15, 1.15); }
       ctx.globalAlpha = .55; for (const [x, y] of mag) ctx.fillRect(x, y, 1.2, 1.2);
       ctx.fillStyle = col.vol;
-      for (const s of sparks) {
-        if (dt) s.k = (s.k + dt / 5200) % 1;
-        const p = s.line[Math.floor(s.k * (s.line.length - 1))];
-        s.trail.push(p); if (s.trail.length > 22) s.trail.shift();
-        s.trail.forEach(([tx, ty], i) => { ctx.globalAlpha = (i / s.trail.length) * .45 * fade(tx, ty); ctx.beginPath(); ctx.arc(tx, ty, 1.5, 0, 6.2832); ctx.fill(); });
-        ctx.globalAlpha = .9 * fade(p[0], p[1]); ctx.beginPath(); ctx.arc(p[0], p[1], 2.8, 0, 6.2832); ctx.fill();
+      ctx.strokeStyle = col.vol;
+      ctx.lineWidth = 1.4;
+      for (const [[x1, y1], [x2, y2]] of directions) {
+        const angle = Math.atan2(y2-y1, x2-x1);
+        const x = (x1+x2)/2, y = (y1+y2)/2;
+        ctx.globalAlpha = .85 * fade(x, y);
+        ctx.beginPath();
+        ctx.moveTo(x-5*Math.cos(angle-.55), y-5*Math.sin(angle-.55));
+        ctx.lineTo(x, y);
+        ctx.lineTo(x-5*Math.cos(angle+.55), y-5*Math.sin(angle+.55));
+        ctx.stroke();
       }
       ctx.globalAlpha = 1;
     };

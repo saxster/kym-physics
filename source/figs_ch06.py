@@ -4,6 +4,7 @@ All numbers drawn here are the ones computed for the chapter text (python3 -I; s
 Pressure pushes from a fluid are drawn as thin blue arrows (kind 'electron'); net forces as the bold red force arrow.
 Colour is never the only cue: every arrow group carries a label.
 """
+import math
 from figs_core import Fig, figure
 
 
@@ -139,31 +140,45 @@ def c6_card():
 
 @figure
 def c6_tank():
-    f = Fig(640, 320, 'A tank of water 1.5 m deep with pressure arrows on its left wall growing with depth and three '
-                      'holes in its right wall whose jets get faster with depth')
-    L, R, top, bot = 150, 400, 70, 280
+    f = Fig(640, 350, 'A tank of water 1.5 m deep, raised 0.5 m above the ground. Pressure and exit speed increase '
+                      'with hole depth. Computed parabolic jets from depths 0.5, 1.0 and 1.5 m land 1.73, 2.00 '
+                      'and 1.73 m from the wall: the middle jet travels farthest, though the deepest leaves fastest.')
+    L, R, top, bot, floor, scale = 150, 360, 70, 220, 270, 100
     f.text(320, 26, 'Deeper means more pressure', 't b', 'middle', 14)
-    f.ground(60, bot, 560)
+    f.ground(60, floor, 560)
     f.rect(L, top, R - L, bot - top, 'water', rx=0)
     f.path(f'M{L},{top - 14} L{L},{bot} L{R},{bot} L{R},{top - 14}', 'glass')
-    f.text(275, 60, 'air above: 101 kPa', 't m', 'middle', 12)
+    f.text((L + R) / 2, 60, 'air above: 101 kPa', 't m', 'middle', 12)
+    for x in (L + 12, R - 12):
+        f.line(x, bot + 2, x, floor, 'ln')
+    f.text(136, 247, 'raised 0.5 m', 't m', 'end', 12)
+    f.line(140, 243, L + 12, 243, 'ln m')
     # pressure arrows pushing on the left wall, length proportional to depth
     for depth, label in ((0.5, '0.5 m · 4.9 kPa'), (1.0, '1.0 m · 9.8 kPa'), (1.5, '1.5 m · 14.7 kPa')):
-        y = top + depth * 140 - (10 if depth == 1.5 else 0)
+        y = top + depth * scale
         f.arrow(L + 3 + 50 * depth, y, L + 3, y, 'electron')
         f.line(L - 6, y, L, y, 'ln m')
         f.text(L - 10, y + 4, label, 't', 'end', 12)
-    f.text(L + 60, top + 140 * 0.5 - 12, 'the water’s push on the wall', 't e', 'start', 12)
-    # holes and jets (schematic shapes; relative speeds go with the square root of depth)
-    for depth, k in ((0.5, 0.71), (1.0, 1.0), (1.5, 1.22)):
-        y = top + depth * 140 - (15 if depth == 1.5 else 0)
+    f.text(255, 98, 'water’s push', 't e', 'middle', 12)
+    f.text(255, 113, 'on the wall', 't e', 'middle', 12)
+    # Torricelli exit speed and gravity-driven flight, at the same x/y scale.
+    # Surface is H = 2 m above the ground; range = 2 sqrt(depth * (H - depth)).
+    H, g = (floor - top) / scale, 9.8
+    f.text(494, 60, 'speed at each hole', 't b', 'middle', 13)
+    for depth in (0.5, 1.0, 1.5):
+        y = top + depth * scale
+        speed = math.sqrt(2 * g * depth)
+        flight = math.sqrt(2 * (H - depth) / g)
+        pts = [(R + speed * (flight * k / 40) * scale,
+                y + 0.5 * g * (flight * k / 40) ** 2 * scale) for k in range(41)]
+        f.path('M' + ' L'.join(f'{px:.2f},{py:.2f}' for px, py in pts), 'ln e water-jet',
+               extra=f'data-depth="{depth}"')
         f.circle(R, y, 3, 'fill-ink')
-        f.path(f'M{R + 3},{y} Q{R + 3 + 70 * k},{y} {R + 3 + 110 * k},{bot}', 'ln e')
-    f.text(548, 110, 'the deepest jet', 't', 'middle', 13)
-    f.text(548, 126, 'spurts fastest', 't', 'middle', 13)
-    f.text(548, 150, 'pressure pushes sideways', 't m', 'middle', 12)
-    f.text(548, 164, 'as hard as it pushes down', 't m', 'middle', 12)
-    f.text(320, 306, 'fresh water, 1,000 kg/m³: pressure from the water = depth × 1,000 × 9.8', 't m', 'middle', 12)
+        f.vector(R + 7, y, speed * 10, 0)
+        f.text(R + 68, y - 8, f'{speed:.1f} m/s', 't e b', 'start', 13)
+    f.text(565, 288, 'ground', 't m', 'start', 12)
+    f.text(320, 310, 'The deepest jet leaves fastest; the middle one has more time to fly.', 't b', 'middle', 13)
+    f.text(320, 332, 'Pressure labels are the water’s extra push, above the air’s 101 kPa.', 't m', 'middle', 12)
     return f.svg()
 
 

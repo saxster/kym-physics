@@ -63,20 +63,23 @@ def c3_tug_cart():
 
 @figure
 def c3_f_ma():
-    f = Fig(640, 262, "Newton's second law in three rows. A push F on a cart of mass m gives acceleration a; double the "
-                      "push gives double the acceleration; the original push on double the mass gives half the "
-                      "acceleration. Force arrows and acceleration arrows are each to scale.")
-    rows = [(70, 60, 60, 'm', 50, 'a', ['a push F on mass m:', 'acceleration a']),
-            (145, 120, 60, 'm', 100, '2a', ['double the push:', 'double the acceleration']),
-            (220, 60, 120, '2m', 25, 'a/2', ['double the mass:', 'half the acceleration'])]
-    for y, fl, bw, bl, al, alab, cap in rows:
-        f.force(200 - fl, y, fl, 0)
-        f.text(200 - fl / 2, y - 10, 'F' if fl == 60 else '2F', 't p b', 'middle', 13)
-        f.mass_block(200, y - 20, bw, 40, bl, 14)
-        f.vector(200 + bw + 10, y, al, 0)
-        f.text(200 + bw + 10 + al + 10, y + 5, alab, 't e', 'start', 13)
-        f.text(440, y - 3, cap[0], 't', 'start', 12)
-        f.text(440, y + 13, cap[1], 't m', 'start', 12)
+    f = Fig(640, 355, 'Three controlled comparisons use identical trolleys. One mass m pushed by F accelerates at a; the same mass pushed by 2F accelerates at 2a; two identical masses pushed by F accelerate at a/2. Force and acceleration arrows each use a consistent scale; trolley mass is idealised as negligible.')
+    f.text(24,26,'Change one thing. Watch what changes.', 't b',size=17)
+    f.text(135,53,'push', 't p b','middle',13)
+    f.text(291,53,'mass', 't b','middle',13)
+    f.text(430,53,'acceleration', 't e b','middle',13)
+    for y,force,loads,acc,flab,alab in ((112,58,1,48,'F','a'),(211,116,1,96,'2F','2a'),(310,58,2,24,'F','a/2')):
+        f.ground(230,y+26,340)
+        f.cart(244,y-16,96,24,loads=loads)
+        f.force(238-force,y,force,0)
+        f.text(238-force/2,y-14,flab,'t p b','middle',16)
+        f.vector(370,y,acc,0)
+        f.text(370+acc+13,y+5,alab,'t e b',size=16)
+        if y==112: note=['Start here:','one load, one push']
+        elif y==211: note=['Double the push.','Keep the same mass.']
+        else: note=['Double the mass.','Keep the same push.']
+        f.lines(24,y-34,note,'t',size=13,lh=1.5)
+    f.text(320,352,'Identical loads represent m; trolley mass is left out of this model.','t m','middle',12)
     return f.svg()
 
 
@@ -112,16 +115,16 @@ def c3_bridging_chain():
     f.text(425, 114, 'pushes up', 't p b', 'middle', 12)
     f.text(400, 232, 'steel ruler, coins', 't b', 'middle', 13)
     # 4 table
-    f.rect(490, 170, 130, 10, 'plate', rx=2)
+    f.path('M490,170 Q555,180 620,170 L620,180 Q555,190 490,180 Z', 'plate')
     f.line(500, 180, 500, 205, 'ln')
     f.line(610, 180, 610, 205, 'ln')
-    f.rect(532, 148, 46, 22, 'block', rx=3)
+    f.rect(532, 148, 46, 27, 'block', rx=3)
     f.force(548, 159, 0, 40)
     f.text(548, 214, 'weight', 't p b', 'middle', 12)
     f.force(588, 170, 0, -46)
     f.text(588, 112, 'pushes up', 't p b', 'middle', 12)
     f.text(555, 232, 'table', 't b', 'middle', 13)
-    f.text(320, 260, 'in every case the push grows until it matches the weight', 't m', 'middle', 12)
+    f.text(320, 260, 'in every case the upward push grows to match the downward load', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -209,7 +212,7 @@ def c3_rocket_momentum():
     f.text(60, 104, 'exhaust gas', 't m', 'middle', 12)
     f.force(180, 92, 60, 0)
     f.text(180, 72, 'gas pushes rocket forward', 't p b', 'middle', 12)
-    f.force(84, 130, -56, 0)
+    f.force(84, 130, -60, 0)
     f.text(96, 186, 'rocket pushes gas backward', 't p b', 'middle', 12)
     f.text(160, 258, 'one pair: equal and opposite', 't m', 'middle', 12)
     # momentum bookkeeping

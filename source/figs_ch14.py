@@ -29,7 +29,7 @@ def _lit_ball(f, x, y, r, sun_dx, sun_dy, lit='fill-vol', night='plate'):
     f.circle(x, y, r, 'ln')
 
 
-def _phase_disc(f, x, y, r, theta_deg, lit='fill-vol', night='plate'):
+def _phase_disc(f, x, y, r, theta_deg, lit='moon-day', night='moon-night'):
     """The Moon as seen from Earth at orbital angle theta from the Sun's direction (0 = new, 90 = first quarter,
     180 = full, 270 = third quarter). Waxing phases are lit on the right, waning on the left (northern sky)."""
     th = theta_deg % 360
@@ -215,7 +215,7 @@ def c14_phases():
         th = 45 * k                                   # orbital angle from the Sun direction, anticlockwise on the page
         mx = ex + Ro * math.cos(math.radians(th))
         my = ey - Ro * math.sin(math.radians(th))
-        _lit_ball(f, mx, my, 12, 1, 0)
+        _lit_ball(f, mx, my, 12, 1, 0, lit='moon-day', night='moon-night')
         order.append((k, th))
     f.text(ex + Ro + 26, ey + 4, 'new', 't m', 'start', 12)
     f.text(ex - Ro - 26, ey + 4, 'full', 't m', 'end', 12)
@@ -241,12 +241,12 @@ def c14_eclipse_tilt():
                       'plane of the Earth’s orbit, the new Moon sits above that plane and its shadow passes above the Earth. '
                       'Right, twice a year: the Sun lies along the line where the two planes cross, the new Moon is in the '
                       'plane, and its shadow reaches the Earth.')
-    panels = [(0, 'Most months: the shadow misses', True), (320, 'Twice a year: an eclipse', False)]
+    panels = [(0, 'Most months: the shadow misses', True), (320, 'Near a node: an eclipse', False)]
     for x0, title, tilted in panels:
         f.text(x0 + 160, 26, title, 't b', 'middle', 14)
         plane = 160
         f.line(x0 + 14, plane, x0 + 306, plane, 'ln m dash')
-        f.text(x0 + 306, plane + 16, 'plane of the Earth’s orbit', 't m', 'end', 11)
+        f.text(x0 + 306, plane + 52, 'plane of the Earth’s orbit', 't m', 'end', 11)
         for yy in (plane - 24, plane, plane + 24):
             f.ray(x0 + 14, yy, x0 + 64, yy, chevrons=1)
         f.text(x0 + 16, plane - 36, 'sunlight', 't nn', 'start', 11)

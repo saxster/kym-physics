@@ -16,7 +16,7 @@
     - {what: "Einstein, Bern 1905, four papers in Annalen der Physik; Nobel for the photoelectric effect", source: "research/history.md §7", url: "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"}
     - {what: "S. N. Bose, Dacca, 4 June 1924: 'Respected Sir'; Philosophical Magazine silent; Einstein's translation, postcard of 2 July, printed August; bosons", source: "research/history.md §7", url: "https://physicstoday.aip.org/features/the-man-behind-bose-statistics"}
   computed:
-    - "hc/λ in eV: 940 nm -> 1.32; 420 nm -> 2.95 (minus 2.71 = 0.24); 760 nm -> 1.63; 380 nm -> 3.26"
+    - "hc/λ in eV: 940 nm -> 1.32; 420 nm -> 2.95 (separate reference example); 380 nm -> 3.26 (minus 2.71 = 0.55); 760 nm -> 1.63; 380 nm -> 3.26"
     - "10 W of 580 nm light = 2.92e19 photons/s (PH 21.1's assumptions)"
     - "check: 3.26 − 2.3 = 0.96 eV (the 2.3 eV metal is made up for the question and says so)"
   figures:
@@ -51,6 +51,8 @@
     - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "E = mc²; 0.71% of mass converted; 600 million tons of hydrogen and 4 million tons of mass per second; most protons not yet fused; the Sun about 4.5 billion years old; protons repel so the core must be hot"}
     - {book: "Astronomy 2e", section: "16.3 The Solar Interior: Theory", url: "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory", took: "fusion in the centre, above 12 million K; centre about 15 million K; photons take 100,000–1,000,000 years to get out (PH 22.4's 'boundary of the helium core' and 'splitting of an atomic bond' lines rejected)"}
   research:
+    - {what: "net pp-chain accounting consumes four protons and two electrons, producing helium-4, two neutrinos and energy", source: "CERN-hosted solar-neutrino review, equation 148", url: "https://cds.cern.ch/record/677618/files/p115.pdf"}
+    - {what: "hydrogen-1 and helium-4 atomic masses used for the 0.71 percent comparison", source: "NIST Atomic Weights and Isotopic Compositions", url: "https://pml.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=H"}
     - {what: "L = 382.8e24 W; mass conversion 4260e6 kg/s; Sun mass 1.9884e30 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
     - {what: "Aditya-L1 halo orbit about L1, roughly 1.5 million km on the Sun–Earth line, period 177.86 days, insertion 6 January 2024", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}
     - {what: "E = mc² 'is only about bombs' misconception", source: "research/misconceptions.md §13", url: ""}
@@ -58,6 +60,7 @@
   history:
     - {what: "Meitner and Frisch, Kungälv, Christmas 1938: Hahn's letter, barium, the walk in the snow (skis and tree trunk HEDGE: told as 'the story goes'), about 200 MeV, Nature February 1939", source: "research/history.md §7", url: "https://inference-review.com/article/the-discovery-of-nuclear-fission"}
   computed:
+    - "1 - 4.00260325413/(4*1.00782503223) = 0.0071185, or 0.71 percent; neutral-atom masses include the full electron account"
     - "c² = 8.99e16 J/kg; 1 g -> 8.99e13 J = 2.50e7 kWh"
     - "0.0071 × (2.998e8)² = 6.38e14 J per kg of hydrogen"
     - "3.828e26 / c² = 4.259e9 kg/s (4.26 million tonnes); / 0.0071 = 6.00e11 kg/s (600 million tonnes)"
@@ -78,8 +81,10 @@
     - {what: "Saha, Calcutta → London 1920: ionisation equation; Fowler at Imperial College. Payne 1925: Russell 'clearly impossible', thesis labelled 'spurious', Russell 1929; Struve's 'most brilliant PhD thesis' line", source: "research/history.md §7", url: "https://www.aps.org/apsnews/2015/01/cecilia-payne-gaposchkin-universe-changed"}
   computed:
     - "100 − 73 − 25 = 2% for everything else"
+  research:
+    - {what: "Balmer wavelengths 410.174, 434.0462, 486.13 and 656.28 nm, rounded on our normalised spectra", source: "NIST Strong Lines of Hydrogen", url: "https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable2.htm"}
   figures:
-    - {name: c15_spectra, origin: "ours; schematic line positions, said in the caption"}
+    - {name: c15_spectra, origin: "ours; NIST wavelengths on a linear axis, normalised schematic colour strips and qualitative line strengths"}
   unsourced:
     - "'the Sun is a G star' and 'Star B is a little hotter than the Sun' in the case: standard classification, not stated in the grounding note; flagged"
   licence: "CC BY-NC-SA 4.0"

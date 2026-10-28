@@ -2,6 +2,8 @@
 import { Live } from './core.js';
 
 const TURNS_CHOICES = [1, 10, 50, 200];
+const METRES_PER_PX = 0.001; // Drawing scale: 100 px = 0.10 m.
+const NUDGE_SPEED_PX = 360; // 180 px (0.18 m) in a half-second stroke.
 
 Live.register('induction', (stage, params, api) => {
   const c = api.colors();
@@ -14,7 +16,7 @@ Live.register('induction', (stage, params, api) => {
   let turnsIdx = 2; // default 50 turns
   let flipped = false; // false: N on right (facing coil); true: S on right
 
-  // Nudge stroke animation state (0.5 s in at 0.20 m/s, pause, 0.5 s out)
+  // Nudge stroke animation state (0.5 s in at 0.36 m/s, pause, 0.5 s out)
   let nudgeDir = 0; // +1 = nudging in, -1 = nudging out, 0 = idle
   let nudgeTimer = 0;
   let nextNudgeIn = true;
@@ -47,7 +49,8 @@ Live.register('induction', (stage, params, api) => {
 
   function fluxAt(xPx, N, isFlipped) {
     // Dipole on axis: Phi(x) = Phi0 * (1 + ((x - COIL_X)/a)^2)^(-3/2)
-    // Scaled so at v = 0.20 m/s (200 px/s) and N = 50, peak emf is ~15 mV
+    // Illustrative flux model, in milliwebers per turn; its time derivative is in mV.
+    // At the 0.36 m/s nudge speed and N = 50, peak emf is about 3.3 mV.
     const u = (xPx - COIL_X) / COIL_A;
     const sign = isFlipped ? -1 : 1;
     const phiSingle = 0.012 * sign * Math.pow(1 + u * u, -1.5);
@@ -140,13 +143,13 @@ Live.register('induction', (stage, params, api) => {
       simT += dt;
       if (nudgeTimer > 0) {
         const step = Math.min(dt, nudgeTimer);
-        // 360 px/s = 0.20 m/s so 0.5 s covers 180 px (between x = 210 and x = 390)
-        magX = Math.max(95, Math.min(520, magX + nudgeDir * 360 * step));
+        // At the drawing scale, 360 px/s = 0.36 m/s; 0.5 s covers 0.18 m.
+        magX = Math.max(95, Math.min(520, magX + nudgeDir * NUDGE_SPEED_PX * step));
         nudgeTimer -= step;
         if (nudgeTimer <= 0) nudgeDir = 0;
       }
       const dxPx = magX - prevMagX;
-      curVelMs = (dxPx / dt) * (0.20 / 360);
+      curVelMs = (dxPx / dt) * METRES_PER_PX;
       // Finite-difference Faraday's law: e = -N dPhi/dt
       const phiNow = fluxAt(magX, N, flipped);
       const phiPrev = fluxAt(prevMagX, N, flipped);

@@ -1,5 +1,5 @@
 // Ch 5.2 c5_phone_drop -> w_freefall: Accelerometer sensor lab showing |a| = 9.8 m/s^2 at rest and ~0 in free fall.
-// Uses api.motion() for live device readings, plus a Replay the recorded drop button for readers without a sensor.
+// Uses api.motion() for live device readings, plus a Replay the simulated drop button for readers without a sensor.
 import { Live } from './core.js';
 
 const G = 9.8;
@@ -66,7 +66,7 @@ Live.register('freefall', (stage, params, api) => {
   function updateReadout() {
     const cur = samples[samples.length - 1];
     const gNow = cur ? cur.g : 9.8;
-    const tag = !motion.active ? ' (recorded example, not your phone)' : '';
+    const tag = !motion.active ? ' (simulated example, not your phone)' : '';
 
     if (lastDropDuration !== null) {
       const cm = Math.round(0.5 * G * lastDropDuration * lastDropDuration * 100);
@@ -110,11 +110,11 @@ Live.register('freefall', (stage, params, api) => {
     lowStartT = null;
     lastLowT = null;
     lastDropDuration = null;
-    say('Trace cleared. Press "Use the motion sensor" or "Replay the recorded drop".');
+    say('Trace cleared. Press "Use the motion sensor" or "Replay the simulated drop".');
   });
 
-  // Control 3: Replay the recorded drop button
-  api.button('Replay the recorded drop', () => {
+  // Control 3: Replay the simulated drop button
+  api.button('Replay the simulated drop', () => {
     if (motion.active) motion.stop();
     samples = [];
     lowStartT = null;
@@ -128,7 +128,7 @@ Live.register('freefall', (stage, params, api) => {
     updateReadout();
   });
 
-  // Start with the recorded trace visible so the initial frame is complete and informative
+  // Start with the simulated trace visible so the initial frame is complete and informative
   seedInitialReplay();
   updateReadout();
 
@@ -151,7 +151,7 @@ Live.register('freefall', (stage, params, api) => {
       size: 12, color: c.proton, weight: 600,
     });
     if (!motion.active) {
-      api.draw.text(ctx, 'recorded example, not your phone', 610, 22, {
+      api.draw.text(ctx, 'simulated example, not your phone', 610, 22, {
         size: 11.5, color: c.muted, align: 'right',
       });
     }

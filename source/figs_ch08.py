@@ -284,7 +284,7 @@ def c8_matka():
 
 @figure
 def c8_sea_breeze():
-    f = Fig(640, 280, 'The sea breeze by day: the Sun warms land and sea equally, the land gets hotter, warm air over the '
+    f = Fig(640, 304, 'The sea breeze by day: the Sun warms land and sea equally, the land gets hotter, warm air over the '
                       'land is pushed up by denser air, cooler air flows in from the sea along the ground, and the loop '
                       'closes high up')
     # sun, with short rays, and no long rays crossing the labels
@@ -297,10 +297,10 @@ def c8_sea_breeze():
     f.rect(20, 200, 300, 60, 'wash-n', rx=0)
     f.ground(20, 200, 300)
     f.rect(320, 200, 300, 60, 'water', rx=0)
-    f.text(170, 232, 'land (Marine Drive): warms fast', 't b', 'middle', 13)
-    f.text(170, 250, 'sand needs about 800 J per kg per °C', 't m', 'middle', 12)
-    f.text(470, 232, 'Arabian Sea: warms slowly', 't b', 'middle', 13)
-    f.text(470, 250, 'water needs 4186 J per kg per °C', 't m', 'middle', 12)
+    f.text(170, 240, 'land (Marine Drive): warms fast', 't b', 'middle', 13)
+    f.text(170, 258, 'sand needs about 800 J per kg per °C', 't m', 'middle', 12)
+    f.text(470, 240, 'Arabian Sea: warms slowly', 't b', 'middle', 13)
+    f.text(470, 258, 'water needs 4186 J per kg per °C', 't m', 'middle', 12)
     # the loop
     f.arrow(110, 190, 110, 112, 'ink', width=2)
     f.text(122, 146, 'warm air, less dense,', 't', 'start', 12)
@@ -311,6 +311,6 @@ def c8_sea_breeze():
     f.arrow(520, 112, 520, 184, 'muted', dash=True)
     f.text(532, 150, 'cooler air sinks', 't m', 'start', 12)
     f.arrow(500, 192, 140, 192, 'vector')
-    f.text(330, 186, 'sea breeze: cooler sea air flows in along the ground', 't e b', 'middle', 12)
-    f.text(320, 274, 'at night the land cools faster than the sea, and the whole loop runs the other way', 't m', 'middle', 12)
+    f.text(320, 215, 'cooler sea air flows in along the ground', 't e b', 'middle', 12)
+    f.text(320, 291, 'at night the land cools faster than the sea, and the whole loop runs the other way', 't m', 'middle', 12)
     return f.svg()

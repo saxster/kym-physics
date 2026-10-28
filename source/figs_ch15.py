@@ -27,21 +27,22 @@ def c15_photoelectric():
     # left panel: two lamps over two plates
     for x0, title, nrays, out in ((30, 'bright red lamp', 7, False), (210, 'dim violet lamp', 2, True)):
         lx, ly = x0 + 70, 60
-        f.circle(lx, ly, 14, 'fill-vol')
+        f.circle(lx, ly, 14, 'sample-violet' if out else 'sample-red')
         f.circle(lx, ly, 14, 'ln')
         f.text(lx, 34, title, 't b', 'middle', 13)
         px, py = x0 + 10, 210
         f.rect(px, py, 120, 16, 'block', rx=2)
         f.text(px + 60, py + 34, 'calcium plate', 't m', 'middle', 12)
         for k in range(nrays):
-            tx = px + 14 + (92 * k / max(1, nrays - 1) if nrays > 1 else 46) + (20 if nrays == 2 else 0)
-            f.ray(lx + (tx - lx) * 0.2, ly + 14 + (py - ly - 14) * 0.2, tx, py, chevrons=1)
+            tx = px + 14 + (92 * k / max(1, nrays - 1) if nrays > 1 else 46)
+            f.ray(lx + (tx - lx) * 0.2, ly + 14 + (py - ly - 14) * 0.2, tx, py,
+                  chevrons=1, cls='ray light-violet' if out else 'ray light-red')
         if out:
             for k, (ex, ey, dx, dy) in enumerate(((px + 38, py - 6, -16, -34), (px + 86, py - 6, 20, -30))):
                 f.nucleon(ex, ey, 'e', r=6)
                 f.arrow(ex + dx * .35, ey + dy * .35, ex + dx, ey + dy, 'electron')
             f.text(px + 60, 262, 'electrons out at once', 't e b', 'middle', 12)
-            f.text(px + 60, 278, 'each photon 2.95 eV', 't m', 'middle', 12)
+            f.text(px + 60, 278, 'each photon 3.26 eV', 't m', 'middle', 12)
         else:
             f.text(px + 60, 262, 'no electrons, however bright', 't p b', 'middle', 12)
             f.text(px + 60, 278, 'each photon 1.63 eV', 't m', 'middle', 12)
@@ -79,8 +80,8 @@ def c15_exposure():
         f.ray(86, yy, 246, yy, chevrons=1)
     f.rect(250, 84, 10, 130, 'fill-ink', rx=1)
     f.text(255, 232, 'film', 't m', 'middle', 12)
-    f.text(160, 262, 'switch the source off: nothing is left', 't', 'middle', 12)
-    f.text(160, 278, 'in the hand, and the hand gives off nothing', 't', 'middle', 12)
+    f.text(160, 262, 'switch the source off: the beam stops', 't', 'middle', 12)
+    f.text(160, 278, 'no radioactive material is left in the hand', 't', 'middle', 12)
     # right: hand with dust specks emitting
     hand2 = [(x + 310, y) for x, y in hand]
     _poly(f, hand2, 'wash-n')
@@ -99,69 +100,60 @@ def c15_exposure():
 
 @figure
 def c15_fusion():
-    f = Fig(640, 320, 'Four protons on the left, an arrow labelled several steps at 15 million degrees, and a helium '
-                      'nucleus of two protons and two neutrons on the right, plus energy. Below, two bars: the mass of '
-                      'four protons and the mass of the helium nucleus, 0.71% shorter.')
+    # Neutral-atom masses include the electron/positron accounting of the full chain.
+    hydrogen_u, helium_u = 1.00782503223, 4.00260325413
+    kept = helium_u / (4 * hydrogen_u)
+    f = Fig(640, 416, 'The Sun fuses four protons, with two electrons consumed in the net reaction, into a helium nucleus, two neutrinos and energy. Atomic-mass bookkeeping compares four hydrogen atoms with one helium atom: 99.29 percent of the starting mass remains, and 0.71 percent becomes energy. Mass bars are to scale; their tiny difference is magnified in an inset.')
+    f.text(24,28,'Fusion: keep the particles and the mass in the account','t b',size=16)
     for k in range(4):
-        f.nucleon(70 + k * 44, 90, 'p', r=13)
-        if k < 3:
-            f.text(92 + k * 44, 95, '+', 't b', 'middle', 16)
-    f.text(136, 130, 'four hydrogen nuclei (protons)', 't', 'middle', 13)
-    f.arrow(250, 90, 370, 90, 'ink', width=2)
-    f.text(310, 70, 'several steps,', 't m', 'middle', 12)
-    f.text(310, 112, 'about 15 million degrees', 't m', 'middle', 12)
-    # helium nucleus: 2 p + 2 n packed
-    hx, hy = 430, 90
-    for (dx, dy, kind) in ((-11, -8, 'p'), (11, -8, 'n'), (-11, 9, 'n'), (11, 9, 'p')):
-        f.nucleon(hx + dx, hy + dy, kind, r=13)
-    f.text(hx, 130, 'one helium nucleus', 't', 'middle', 13)
-    f.text(495, 95, '+', 't b', 'middle', 16)
-    f.text(560, 86, 'energy', 't b', 'middle', 14)
-    f.text(560, 104, '0.71% of the mass', 't m', 'middle', 12)
-    f.text(560, 119, 'E = mc²', 't s', 'middle', 13)
-    # mass bars to scale
-    bx, bw = 100, 440
-    f.text(bx, 182, 'mass before: four protons', 't', 'start', 12)
-    f.rect(bx, 188, bw, 14, 'wash-p', rx=2)
-    f.rect(bx, 188, bw, 14, 'glass', rx=2)
-    f.text(bx + bw + 8, 199, '1.0000', 't m', 'start', 12)
-    f.text(bx, 228, 'mass after: helium nucleus', 't', 'start', 12)
-    f.rect(bx, 234, bw * (1 - 0.0071), 14, 'wash-e', rx=2)
-    f.rect(bx, 234, bw * (1 - 0.0071), 14, 'glass', rx=2)
-    f.text(bx + bw + 8, 245, '0.9929', 't m', 'start', 12)
-    f.line(bx + bw, 186, bx + bw, 252, 'ln dash')
-    f.text(bx + bw - 6, 268, 'the missing 0.71% has become energy', 't p', 'end', 12)
-    f.text(320, 302, 'In the Sun: 600 million tonnes of hydrogen a second become helium; 4 million tonnes of mass become light',
-           't m', 'middle', 12)
+        f.nucleon(48+k*42,92,'p',r=12)
+    f.text(110,126,'4 protons','t b','middle',14)
+    for xx in (88,130): f.nucleon(xx,155,'e',r=8)
+    f.text(110,184,'+ 2 electrons','t e','middle',12)
+    f.arrow(216,110,337,110,'ink',width=2)
+    f.text(277,79,'several steps','t','middle',13)
+    f.text(277,143,'about 15 million °C','t m','middle',12)
+    for dx,dy,kind in ((-10,-9,'p'),(10,-9,'n'),(-10,9,'n'),(10,9,'p')):
+        f.nucleon(389+dx,106+dy,kind,r=12)
+    f.text(389,152,'helium nucleus','t b','middle',13)
+    f.text(507,93,'+ 2 neutrinos','t',size=13)
+    f.text(507,119,'+ energy','t p b',size=15)
+    f.text(507,143,'E = mc²','t s',size=16)
+    bx,bw=76,450
+    for y,lab,frac,value in ((238,'Before: mass of 4 hydrogen atoms',1,'100.00%'),(296,'After: mass of 1 helium atom',kept,'99.29%')):
+        f.text(bx,y-12,lab,'t',size=13)
+        f.rect(bx,y,bw*frac,18,'wash-e' if frac<1 else 'wash-p',rx=1)
+        f.rect(bx,y,bw*frac,18,'glass',rx=1)
+        f.text(542,y+14,value,'t b',size=13)
+    f.line(bx+bw,234,bx+bw,321,'ln m dash')
+    f.text(76,343,'Atomic masses include the electrons in the full account.','t m',size=12)
+    # The missing mass is only 3.2 viewBox units on the actual bar.
+    f.path(f'M{bx+bw*kept:.2f},316 L444,369 L500,369','ln m')
+    f.rect(500,358,72,20,'wash-p',rx=2)
+    f.rect(500,358,72,20,'ln p',rx=2)
+    f.text(486,373,'0.71% becomes energy','t p b','end',13)
+    f.text(578,373,'×22','t m',size=12)
+    f.text(320,403,'In the Sun, the matter is a hot plasma; the atom masses are bookkeeping.','t m','middle',12)
     return f.svg()
 
 
 @figure
 def c15_spectra():
-    f = Fig(640, 320, 'Three horizontal spectrum strips from violet to red, one for a hot star, one for a star of middling '
-                      'temperature and one for a cool star. Four hydrogen lines cross each strip: faint in the hot star, '
-                      'strong in the middle one, faint in the cool one.')
-    x0, w = 170, 430
-    rows = [(70, 'Hot blue star', 'hydrogen ionised:', 'the lines fade', 'ln m'),
-            (150, 'Middling star', 'hydrogen lines', 'at their strongest', 'ln'),
-            (230, 'Cool red star', 'electrons in the lowest level:', 'the lines fade', 'ln m')]
-    lines = (0.08, 0.17, 0.32, 0.80)          # schematic positions, violet end to red end
-    for y, name, n1, n2, cls in rows:
-        f.rect(x0, y - 18, w, 36, 'plate', rx=3)
-        f.text(x0 - 12, y - 4, name, 't b', 'end', 13)
-        f.text(x0 - 12, y + 12, 'mostly hydrogen', 't m', 'end', 11)
-        for p in lines:
-            xx = x0 + w * p
-            if cls == 'ln':
-                f.line(xx, y - 18, xx, y + 18, 'ln', 'stroke-width="4"')
-            else:
-                f.line(xx, y - 18, xx, y + 18, 'ln m', 'stroke-width="1.6" stroke-opacity="0.6"')
-        f.text(x0 + w * 0.45, y - 4, n1, 't', 'start', 12)
-        f.text(x0 + w * 0.45, y + 11, n2, 't', 'start', 12)
-    f.axis(x0, 270, w, 0, '', '', ticks={'x': [(0, 'violet'), (w * 0.5, 'green'), (w, 'red')]})
-    f.text(x0 + w / 2, 300, 'colour, from short wavelength to long (positions schematic)', 't m', 'middle', 12)
-    f.text(x0 + w * 0.17, 42, 'hydrogen lines', 't', 'middle', 12)
-    f.line(x0 + w * 0.17, 46, x0 + w * 0.17, 50, 'ln m')
+    f = Fig(640, 362, 'Three normalised visible spectra from 400 to 700 nanometres have hydrogen absorption lines at 410, 434, 486 and 656 nanometres. They are faint for a hot ionised star, strongest for a middling-temperature star, and faint for a cool star with few electrons in the required excited level. Colours are a schematic guide; line positions use wavelength.')
+    f.add('<defs><linearGradient id="c15-visible"><stop offset="0" stop-color="#9d70c7"/><stop offset=".18" stop-color="#5e89d5"/><stop offset=".38" stop-color="#59a7a0"/><stop offset=".53" stop-color="#9ab765"/><stop offset=".68" stop-color="#e3c65a"/><stop offset=".84" stop-color="#df9957"/><stop offset="1" stop-color="#d16c5e"/></linearGradient></defs>')
+    f.text(24,28,'Same hydrogen. Different line strengths.','t b',size=17)
+    x0,w=174,426
+    for y,title,why,strength in ((81,'Hot star','Hydrogen is ionised: its visible lines fade.',.22),
+                               (163,'Middling star','More electrons are in the required level: strong lines.',1),
+                               (245,'Cool star','Few electrons reach that level: its visible lines fade.',.22)):
+        f.text(x0-14,y+5,title,'t b','end',14)
+        f.rect(x0,y-18,w,30,'glass',rx=2,extra='style="fill:url(#c15-visible)"')
+        for wavelength in (410.2,434.0,486.1,656.3):
+            xx=x0+w*(wavelength-400)/300
+            f.line(xx,y-17,xx,y+11,'spectrum-absorption',f'stroke-width="3" opacity="{strength}"')
+        f.text(x0,y+35,why,'t m',size=12)
+    f.axis(x0,300,w,0,'wavelength (nm)','',ticks={'x':[(w*k/3,str(400+100*k)) for k in range(4)]})
+    f.text(320,354,'Normalised colour strips compare line strength; they do not compare brightness.','t m','middle',12)
     return f.svg()
 
 
@@ -244,8 +236,8 @@ def c15_white_dwarf():
     ys = y0 - h * 0.42 * rs / 1.9
     f.circle(xs, ys, 5, 'fill-vol')
     f.circle(xs, ys, 5, 'ln')
-    f.text(xs + 10, ys - 10, 'the Sun’s mass: ends', 't', 'start', 12)
-    f.text(xs + 10, ys + 4, 'as a white dwarf', 't', 'start', 12)
+    f.text(xs + 10, ys - 10, 'a white dwarf with', 't', 'start', 12)
+    f.text(xs + 10, ys + 4, 'the Sun’s present mass', 't', 'start', 12)
     f.text(x0 + 20, y0 - h + 24, 'more mass, smaller star', 't e b', 'start', 13)
     f.text(x0, 294, 'schematic shape; the end point at 1.4 Suns is the real one', 't m', 'start', 12)
     return f.svg()

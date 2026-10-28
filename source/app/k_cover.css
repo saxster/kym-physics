@@ -1,11 +1,11 @@
 /* ------------------------------------------------------------------ the cover's chapter tiles, made tappable */
 header.cover figure { position: relative; }
 .cover-live g.el { cursor: pointer; outline: none; }
-.cover-live g.el rect { transition: transform .15s ease, stroke-width .15s ease; transform-box: fill-box; transform-origin: center; }
-.cover-live g.el:hover rect, .cover-live g.el:focus-visible rect, .cover-live g.el.cv-sel rect {
+.cover-live g.el > rect { transition: transform .15s ease, stroke-width .15s ease; transform-box: fill-box; transform-origin: center; }
+.cover-live g.el:hover > rect, .cover-live g.el:focus-visible > rect, .cover-live g.el.cv-sel > rect {
   stroke: var(--vol); stroke-width: 2.5; transform: scale(1.06); }
-.cover-live g.el:focus-visible rect { stroke-width: 3.5; }
-@media (prefers-reduced-motion: reduce) { .cover-live g.el rect { transition: none; transform: none !important; } }
+.cover-live g.el:focus-visible > rect { stroke-width: 3.5; }
+@media (prefers-reduced-motion: reduce) { .cover-live g.el > rect { transition: none; transform: none !important; } }
 
 .cv-card { position: absolute; z-index: 20; background: var(--sheet); color: var(--ink); border: 1px solid var(--rule);
   border-top: 3px solid var(--vol); border-radius: 12px; padding: .9rem 1rem 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.14);

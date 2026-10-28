@@ -6,31 +6,36 @@ from figs_core import Fig, figure, r_
 
 @figure
 def c11_prism():
-    f = Fig(640, 300, 'Newton’s decisive experiment: a prism fans white light into a spectrum, a board with a hole passes only the red, and a second prism bends the red without adding any colour')
-    f.ray(30, 150, 226, 150, chevrons=2)
-    f.text(120, 140, 'white light', 't', 'middle', 12)
-    f.path('M260,60 L200,230 L320,230 Z', 'glass')
-    f.text(260, 250, 'first prism', 't m', 'middle', 12)
-    f.line(228, 150, 299, 170, 'ray')
-    # the fan: red bent least, violet most; all but red stop at the board
-    ends = [('red', 150), ('yellow', 166), ('green', 182), ('blue', 198), ('violet', 214)]
-    for name, y in ends:
-        f.line(299, 170, 396, y, 'ray')
-        if name != 'red':
-            f.text(408, y + 4, name, 't m', 'start', 12)
-    f.rect(396, 96, 8, 46, 'block', rx=1)
-    f.rect(396, 158, 8, 100, 'block', rx=1)
-    f.text(400, 276, 'board with a hole', 't m', 'middle', 12)
-    # the red passes through the hole and a second prism, and stays red
-    f.line(396, 150, 452, 138.4, 'ray')
-    f.text(420, 132, 'red', 't', 'start', 12)
-    f.path('M470,110 L440,190 L500,190 Z', 'glass')
-    f.text(470, 100, 'second prism', 't m', 'middle', 12)
-    f.line(452, 138.4, 488, 150, 'ray')
-    f.ray(488, 150, 556, 166, chevrons=1)
-    f.rect(556, 120, 8, 80, 'plate', rx=0)
-    f.text(560, 110, 'wall', 't m', 'middle', 12)
-    f.text(570, 170, 'still red', 't b', 'start', 12)
+    f = Fig(640, 340, 'White light enters a prism and separates: red bends least and violet most, all towards the base. A slit selects the red beam. A second prism bends that red beam again, towards its base, without making new colours. Angles and colour separation are schematic.')
+    for x,n,title in ((20,'1','Separate'),(287,'2','Select red'),(449,'3','Bend again')):
+        f.text(x,28,n,'t e b',size=15)
+        f.text(x+23,28,title,'t b',size=15)
+    f.ray(24,100,130,100,chevrons=1)
+    f.text(26,80,'white light','t',size=13)
+    f.path('M150,42 L85,230 L215,230 Z','water')
+    f.line(130,100,175,110,'ray')
+    for name,yy in (('red',158),('yellow',175),('green',192),('blue',209),('violet',226)):
+        f.ray(175,110,318,yy,chevrons=1,cls='ray light-'+name)
+        if name!='red': f.text(326,yy+4,name,'t m',size=12)
+    f.text(150,254,'first prism','t m','middle',13)
+    f.text(203,81,'red bends least','t p',size=12)
+    f.line(252,86,270,137,'ln m')
+    f.text(200,287,'violet bends most','t',size=12)
+    f.line(248,271,278,209,'ln m')
+    # Red continues along one straight ray until it enters the second prism.
+    f.rect(318,62,7,88,'block',rx=1)
+    f.rect(318,166,7,78,'block',rx=1)
+    f.ray(318,158,415.3,190.7,chevrons=1,cls='ray light-red')
+    f.text(354,148,'red only','t p b','middle',13)
+    f.path('M431,146 L391,260 L471,260 Z','water')
+    f.ray(415.3,190.7,450.9,202.8,cls='ray light-red')
+    f.ray(450.9,202.8,520,281.4,cls='ray light-red')
+    f.text(435,282,'second prism','t m','middle',12)
+    f.rect(520,230,7,76,'plate',rx=0)
+    f.rect(520,275,7,14,'sample-red',rx=0)
+    f.text(541,267,'still','t b',size=14)
+    f.text(541,285,'red','t p b',size=14)
+    f.text(320,326,'Colour separation and angles enlarged; the prisms do not add colours.','t m','middle',12)
     return f.svg()
 
 
@@ -40,27 +45,26 @@ def _banana(f, cx, cy):
 
 @figure
 def c11_banana():
-    f = Fig(640, 300, 'The same banana under white, red and blue light: it sends back red and green and absorbs blue, so it looks yellow, red, or black depending on the light that arrives')
-    panels = [
-        (110, 'Under white light', 'in: R + G + B', 'back: R + G', 'absorbs B', 'looks yellow'),
-        (320, 'Under red light', 'in: R', 'back: R', 'absorbs little', 'looks red'),
-        (530, 'Under blue light', 'in: B', 'back: nothing', 'absorbs B', 'looks black'),
-    ]
-    cy = 172
-    for cx, title, inn, back, absorbed, looks in panels:
-        f.text(cx, 26, title, 't b', 'middle', 13)
-        _banana(f, cx, cy)
-        f.ray(cx - 86, cy - 78, cx - 34, cy - 24, chevrons=1)
-        f.text(cx - 98, cy - 92, inn, 't', 'start', 12)
-        if back != 'back: nothing':
-            f.ray(cx + 34, cy - 24, cx + 86, cy - 78, chevrons=1)
-        else:
-            f.line(cx + 34, cy - 24, cx + 86, cy - 78, 'ln dash')
-        f.text(cx + 30, cy - 104, back, 't', 'start', 12)
-        f.text(cx, cy + 46, absorbed, 't m', 'middle', 12)
-        f.text(cx, cy + 66, looks, 't b', 'middle', 13)
-    f.line(215, 40, 215, 280, 'ln r')
-    f.line(425, 40, 425, 280, 'ln r')
+    f = Fig(640, 350, 'A yellow banana under white, red and blue illumination. In this idealised model it reflects red and green and absorbs blue. Its appearance is yellow, red, and nearly black respectively. Each incoming and reflected colour is named; the blue-lit banana has no reflected-light arrow.')
+    for i,(cx,title,col,inn,back,look) in enumerate(((107,'White light','sample-yellow','R + G + B','R + G','looks yellow'),(320,'Red light','sample-red','R','R','looks red'),(533,'Blue light','sample-dark','B','none','looks nearly black'))):
+        if i: f.line(cx-106,18,cx-106,324,'ln r')
+        f.text(cx,31,title,'t b','middle',16)
+        f.text(cx,60,'arriving: '+inn,'t','middle',13)
+        # Broad curved fruit with a stem, ridge and blossom tip.
+        f.path(f'M{cx-49},164 Q{cx-12},217 {cx+49},159 Q{cx+21},239 {cx-34},202 Q{cx-50},187 {cx-49},164 Z',col)
+        f.path(f'M{cx-45},174 Q{cx-4},223 {cx+43},174','ln thin')
+        f.line(cx-49,164,cx-53,151,'ln', 'stroke-width="4"')
+        f.line(cx+49,159,cx+53,153,'ln')
+        incoming = [('red',-6),('green',0),('blue',6)] if i==0 else [('red' if i==1 else 'blue',0)]
+        for colour,off in incoming:
+            f.ray(cx-68+off,83,cx-28+off,150,cls='ray light-'+colour)
+        if i<2:
+            for colour,off in ([('red',-4),('green',4)] if i==0 else [('red',0)]):
+                f.ray(cx+29+off,153,cx+70+off,86,cls='ray light-'+colour)
+        f.text(cx,258,'back to your eye: '+back,'t','middle',12)
+        f.text(cx,286,look,'t b','middle',15)
+        f.text(cx,310,'blue is absorbed' if i!=1 else 'red is reflected','t m','middle',12)
+    f.text(320,342,'The light reaching your eye depends on the light that arrived.','t','middle',14)
     return f.svg()
 
 

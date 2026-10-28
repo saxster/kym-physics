@@ -57,7 +57,7 @@ def s_moon_falls():
     """The Moon's straight-line path against its real path: 1.36 mm per second, 4.9 m per minute (a = 4π²r/T²)."""
     f = Fig(640, 300, "Earth at the left; the Moon at the right moving up along its orbit. A dashed straight line shows "
                       "where the Moon would go with no pull; the orbit bends towards Earth, and after one minute the Moon "
-                      "is 4.9 m below the straight line, the distance an apple falls in its first second")
+                      "is 4.9 m below the straight line, the distance an apple falls in its first second. The departure gap is enlarged; the acceleration at the Moon is about one thirty-six-hundredth of gravity near Earth")
     ex, ey, R = 70, 168, 400
     f.circle(ex, ey, 46, 'plate')
     f.text(ex, ey + 5, 'Earth', 't b', 'middle', 14)
@@ -70,6 +70,7 @@ def s_moon_falls():
     f.circle(mx, gy, 9, 'ln dash')          # where it would be with no pull
     f.circle(gx, gy, 9, 'plate')            # where it really is
     f.circle(gx, gy, 9, 'ln')
+    f.bracket_label(gx, mx, gy - 16, 'gap enlarged', 12)
     f.lines(mx + 20, 40, ['one minute later:', '4.9 m below the', 'straight line'], 't', 'start', 12)
     f.circle(mx, my, 11, 'plate')
     f.circle(mx, my, 11, 'ln')
@@ -77,7 +78,7 @@ def s_moon_falls():
     f.force(mx, my, -70, 0, 'pull towards Earth', 12)
     f.vector(mx + 30, my - 8, 0, -60, '1 km/s', 12)
     f.text(24, 262, 'an apple falls 4.9 m in its first second', 't m', 'start', 12)
-    f.text(24, 280, 'the Moon falls 4.9 m in a minute: 3,600 times more slowly', 't m', 'start', 12)
+    f.text(24, 280, 'At the Moon: about 1/3,600 of the acceleration near Earth.', 't m', 'start', 12)
     return f.svg()
 
 
@@ -227,7 +228,7 @@ def s_tilt_year():
     f.text(555, 100, 'December solstice', 't b', 'middle', 12)
     f.text(555, 214, 'noon Sun 47° over Mumbai', 't', 'middle', 12)
     f.text(555, 229, 'north leans away', 't m', 'middle', 12)
-    f.text(320, 58, 'equinox: noon Sun 71°', 't m', 'middle', 12)
+    f.text(320, 42, 'equinox: noon Sun 71°', 't m', 'middle', 12)
     f.text(320, 252, 'equinox', 't m', 'middle', 12)
     f.text(8, 288, 'early July: farthest from the Sun, 152.1 million km', 't m', 'start', 12)
     f.text(632, 288, 'early January: nearest, 147.1 million km', 't m', 'end', 12)

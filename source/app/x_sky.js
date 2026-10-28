@@ -1,5 +1,6 @@
-// The Sky explorer: Sun, Earth, Moon, Mumbai's 19.08° N rooftop, Haji Ali tides, Chandrayaan-3 & Aditya-L1.
+// The Sky explorer: Sun, Earth, Moon, Mumbai's 19.08° N rooftop, ideal tides, Chandrayaan-3 & Aditya-L1.
 import App from './core.js';
+import { fitMissionOrbit, missionPeriodHours } from './mission_orbit.mjs';
 
 const { el } = App;
 
@@ -71,7 +72,6 @@ const CH3_STEPS = [
     body: 'Earth',
     peri: 170,
     apo: 36500,
-    period: '10.8 h',
     note: 'LVM3-M4 launches Chandrayaan-3 from Sriharikota into an Elliptic Parking Orbit (170 × 36,500 km). After engine cut-off, the craft coasts under Earth’s gravity alone.',
   },
   {
@@ -80,7 +80,6 @@ const CH3_STEPS = [
     body: 'Earth',
     peri: 173,
     apo: 41762,
-    period: '12.5 h',
     note: 'First Earth-bound perigee firing from ISTRAC Bengaluru speeds the craft up at its closest point, raising apogee to 41,762 km and lengthening the orbital period to 12.5 hours.',
   },
   {
@@ -89,7 +88,6 @@ const CH3_STEPS = [
     body: 'Earth',
     peri: 226,
     apo: 41603,
-    period: '12.5 h',
     note: 'Second orbit-raising manoeuvre raises perigee to 226 km above Earth.',
   },
   {
@@ -98,7 +96,6 @@ const CH3_STEPS = [
     body: 'Earth',
     peri: 233,
     apo: 71351,
-    period: '23.9 h',
     note: 'Fourth Earth-bound perigee firing boosts apogee to 71,351 km. By Kepler’s third law (T² ∝ a³), the orbital period nearly doubles to 23.9 hours.',
   },
   {
@@ -107,7 +104,6 @@ const CH3_STEPS = [
     body: 'Earth',
     peri: 288,
     apo: 369328,
-    period: '~109 h',
     note: 'Perigee burn sends Chandrayaan-3 onto a 288 × 369,328 km translunar transfer ellipse reaching out to the Moon’s neighbourhood.',
   },
   {
@@ -116,7 +112,6 @@ const CH3_STEPS = [
     body: 'Moon',
     peri: 164,
     apo: 18074,
-    period: '28.2 h',
     note: 'A retro-burn at perilune for 1,835 seconds slows the craft down so the Moon’s gravity captures it into a 164 × 18,074 km lunar ellipse.',
   },
   {
@@ -125,7 +120,6 @@ const CH3_STEPS = [
     body: 'Moon',
     peri: 174,
     apo: 1437,
-    period: '3.5 h',
     note: 'Retro-burns at perilune lower apolune first to 4,313 km (6 Aug) and then to 1,437 km (9 Aug), shrinking the orbit step by step.',
   },
   {
@@ -134,7 +128,6 @@ const CH3_STEPS = [
     body: 'Moon',
     peri: 153,
     apo: 163,
-    period: '2.0 h (123 min)',
     note: 'Fourth and fifth lunar burns round the path into a 153 × 163 km near-circular polar orbit before the Vikram lander separates on 17 August.',
   },
   {
@@ -146,7 +139,12 @@ const CH3_STEPS = [
     period: 'Landed 18:04 IST',
     note: 'From a 25 × 134 km descent orbit, Vikram performs powered braking and soft-lands near the lunar south pole at 69.37° S, 32.35° E (Shiv Shakti Point).',
   },
-];
+].map(step => {
+  if (step.peri === 0) return step; // Landing has a time, not a Kepler period.
+  const earth = step.body === 'Earth';
+  const hours = missionPeriodHours(step.peri, step.apo, earth ? 6371 : 1737.1, earth ? 398600 : 4902.8);
+  return { ...step, period: `${hours.toFixed(1)} h` };
+});
 
 const SKY_TOUR = [
   {
@@ -155,7 +153,7 @@ const SKY_TOUR = [
     setup: s => { s.doy = 172; s.hour = 12; s.lat = 19.08; },
     syncText: 'Synced to 21 June (June solstice) at 12:00 noon on a Mumbai rooftop (19.08° N)',
     body: [
-      'The Sky explorer is a working model of the Sun, Earth, and Moon paired with the view from a rooftop in Mumbai (19.08° N) and the causeway at Haji Ali.',
+      'The Sky explorer is a working model of the Sun, Earth, and Moon paired with the view from a rooftop in Mumbai (19.08° N) and an ideal model of ocean tides.',
       'On the left you look from space at Earth’s tilted axis and orbit; on the right you stand on the ground and watch how that tilt changes the Sun’s noon height, the length of the day, the Moon’s phases, and the ocean tides.',
     ],
   },
@@ -186,7 +184,7 @@ const SKY_TOUR = [
     syncText: 'Synced to Day 14.8 (Full Moon) with the Moon’s 5.14° orbital tilt visible',
     body: [
       'Earth’s spin axis is tilted 23.44° to its orbit around the Sun, which gives us the seasons and shifts the noon Sun north and south over the year.',
-      'Meanwhile, the Moon’s orbit around Earth is tilted by 5.145° to Earth’s orbital plane. Because of that 5.14° tilt, at most New and Full Moons the Moon passes up to 34,470 km above or below Earth’s shadow line. Eclipses happen only twice a year when the Moon crosses the line of nodes.',
+      'Meanwhile, the Moon’s orbit around Earth is tilted by 5.145° to Earth’s orbital plane. Because of that 5.14° tilt, at most New and Full Moons the Moon passes up to 34,470 km above or below Earth’s shadow line. There are roughly two eclipse seasons each year, when the Sun is near the line of nodes. A New or Full Moon near a node can then produce an eclipse.',
     ],
   },
   {
@@ -234,7 +232,7 @@ App.explorer('sky', {
 
     const TABS = [
       { id: 'seasons', label: 'From space & Mumbai rooftop' },
-      { id: 'moon', label: 'Moon phases, Eclipses & Haji Ali Tides' },
+      { id: 'moon', label: 'Moon phases, eclipses & ideal tides' },
       { id: 'missions', label: 'Missions (Chandrayaan-3 & Aditya-L1)' },
       { id: 'tour', label: 'Explain it step by step (5 questions)' },
     ];
@@ -903,8 +901,8 @@ App.explorer('sky', {
         el('span', {}, `${Math.round(litFrac * 100)}% lit from Mumbai`)
       );
       headR.replaceChildren(
-        el('b', {}, 'Haji Ali tides (Moon 1 : Sun 0.46)'),
-        el('span', {}, 'Lunar day: 24 h 50 min')
+        el('b', {}, 'Ideal tides (Moon 1 : Sun 0.46)'),
+        el('span', {}, 'A teaching model, not a Haji Ali tide forecast')
       );
 
       // LEFT CANVAS: Moon orbit, phase disc, tidal bulges, and 5.14° tilt side-view
@@ -1052,7 +1050,7 @@ App.explorer('sky', {
         ctx.restore();
       }
 
-      // RIGHT CANVAS: Haji Ali 29.5-day tide strip chart + current day detail
+      // RIGHT CANVAS: ideal 29.5-day tide strip chart + selected model-day detail
       {
         const { ctx, W, H } = prepCanvas(canvasR);
         ctx.fillStyle = col.plate;
@@ -1065,7 +1063,7 @@ App.explorer('sky', {
         ctx.font = `700 10.5px "Lexend", system-ui, sans-serif`;
         ctx.fillStyle = col.ink2;
         ctx.textAlign = 'left';
-        ctx.fillText('29.5-day Haji Ali Tide Envelope (2 highs & 2 lows each 24 h 50 min lunar day)', padL, 20);
+        ctx.fillText('Ideal 29.5-day spring–neap cycle', padL, 20);
 
         const envMid = (topY + midY) * 0.52;
         const envAmp = (midY - topY) * 0.38;
@@ -1110,14 +1108,14 @@ App.explorer('sky', {
         ctx.fillText('Full (Spring)', padL + plotW * 0.5, midY + 14);
         ctx.fillText('3rd Q (Neap)', padL + plotW * 0.75, midY + 14);
 
-        // Bottom half: 24 h 50 min single-day water level at Haji Ali causeway
+        // Bottom half: relative water level over one ideal lunar day
         const dTop = midY + 34;
         const dMid = (dTop + botY) * 0.5;
         const dAmp = (botY - dTop) * 0.42;
         const curEnv = (1 + sunR * Math.cos(2 * phaseAngle)) / 1.46;
         const shiftHrs = (state.lunarDay * (50 / 60)) % 12.42;
 
-        // Causeway threshold line
+        // Relative mean level, not a measured causeway threshold
         ctx.strokeStyle = col.neutron;
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
@@ -1128,7 +1126,7 @@ App.explorer('sky', {
         ctx.fillStyle = col.neutron;
         ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
         ctx.textAlign = 'right';
-        ctx.fillText('Causeway height', padL + plotW - 4, dMid - 4);
+        ctx.fillText('Mean water level', padL + plotW - 4, dMid - 4);
 
         // Today's 24h curve (2 highs, 12 h 25 min apart)
         ctx.strokeStyle = col.green;
@@ -1146,7 +1144,7 @@ App.explorer('sky', {
         ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
         ctx.textAlign = 'left';
         ctx.fillText(
-          `High tides today are ~12 h 25 min apart (next day’s high shifts ~50 min later)`,
+          `Model highs: ~12 h 25 min apart`,
           padL, H - 12
         );
 
@@ -1178,9 +1176,9 @@ App.explorer('sky', {
           el('span', { class: 'xp-stat-sub' }, eclipseState)
         ),
         el('div', { class: 'xp-stat' },
-          el('span', { class: 'xp-stat-k' }, 'Haji Ali tidal bulges'),
+          el('span', { class: 'xp-stat-k' }, 'Ideal tidal bulges'),
           el('span', { class: 'xp-stat-v' }, tideKind),
-          el('span', { class: 'xp-stat-sub' }, 'Two highs per 24 h 50 min lunar day')
+          el('span', { class: 'xp-stat-sub' }, 'Two highs per lunar day in this model')
         )
       );
 
@@ -1198,7 +1196,7 @@ App.explorer('sky', {
           ` above to see what happens during an eclipse season.`
         ),
         el('p', { class: 'xp-honest' },
-          'Model note: The tidal bulges are drawn thousands of times taller than life (on an all-water Earth they would be under 1 metre high) and result from water flowing sideways under the difference in gravitational pull (Moon 1 : Sun 0.46). Real tides at Mumbai are mixed semi-diurnal and lag the Moon because of coastlines and ocean depth; always check a published INCOIS tide table before visiting the Haji Ali causeway.'
+          'Model note: This is an ideal equilibrium-tide model, not a forecast of water height or causeway access at Haji Ali. The tidal bulges are drawn thousands of times taller than life (on an all-water Earth they would be under 1 metre high) and result from water flowing sideways under the difference in gravitational pull (Moon 1 : Sun 0.46). Real tides at Mumbai are mixed semi-diurnal and lag the Moon because of coastlines and ocean depth; always check a published INCOIS tide table before visiting the Haji Ali causeway.'
         )
       );
     }
@@ -1206,119 +1204,89 @@ App.explorer('sky', {
     function drawMissionsMode(col) {
       if (state.mission === 'ch3') {
         const st = CH3_STEPS[state.ch3Idx];
-        headL.replaceChildren(el('b', {}, 'Chandrayaan-3 Earth-bound & Translunar burns'), el('span', {}, '14 Jul – 1 Aug 2023'));
-        headR.replaceChildren(el('b', {}, 'Lunar capture & polar landing (69.37° S)'), el('span', {}, `Step: ${st.date}`));
+        const earthStep = CH3_STEPS[Math.min(state.ch3Idx, 4)];
+        const moonStep = state.ch3Idx === 8
+          ? { body: 'Moon', peri: 25, apo: 134, date: '23 Aug 2023' }
+          : CH3_STEPS[Math.max(5, state.ch3Idx)];
+        headL.replaceChildren(
+          el('b', {}, `Earth orbit · ${earthStep.date}`),
+          el('span', {}, `${earthStep.peri.toLocaleString('en-GB')} × ${earthStep.apo.toLocaleString('en-GB')} km above Earth`)
+        );
+        headR.replaceChildren(
+          el('b', {}, `${state.ch3Idx < 5 ? 'Later: lunar capture' : state.ch3Idx === 8 ? 'Before landing: descent orbit' : 'Moon orbit'} · ${moonStep.date}`),
+          el('span', {}, `${moonStep.peri.toLocaleString('en-GB')} × ${moonStep.apo.toLocaleString('en-GB')} km above the Moon`)
+        );
 
-        // LEFT CANVAS: Earth-bound ellipses + TLI
-        {
-          const { ctx, W, H } = prepCanvas(canvasL);
+        function drawMissionOrbit(canvas, orbitStep, bodyRadiusKm, bodyColour, landing = false) {
+          const { ctx, W, H } = prepCanvas(canvas);
+          const o = fitMissionOrbit(orbitStep.peri, orbitStep.apo, bodyRadiusKm, W, H);
+          canvas.setAttribute('aria-label', `${orbitStep.body} at a focus of the ${orbitStep.peri} by ${orbitStep.apo} kilometre orbit. True shape and body size; each selected orbit is resized to fit.`);
           ctx.fillStyle = col.plate;
           ctx.fillRect(0, 0, W, H);
-
-          const ex = W * 0.24, ey = H * 0.52;
-          ctx.fillStyle = col.electron;
+          ctx.strokeStyle = orbitStep.body === st.body ? col.proton : col.electron;
+          ctx.lineWidth = 2;
           ctx.beginPath();
-          ctx.arc(ex, ey, 14, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.fillStyle = col.ink;
-          ctx.textAlign = 'center';
-          ctx.fillText('Earth', ex, ey + 26);
-
-          // Draw nested Earth ellipses
-          const earthOrbits = [
-            { apo: 36500, idx: 0 },
-            { apo: 41762, idx: 1 },
-            { apo: 41603, idx: 2 },
-            { apo: 71351, idx: 3 },
-            { apo: 369328, idx: 4 },
-          ];
-          earthOrbits.forEach((o, i) => {
-            const active = state.ch3Idx === o.idx;
-            const passed = state.ch3Idx > o.idx;
-            const aPx = 28 + i * (W * 0.125);
-            const bPx = aPx * 0.52;
-            const cx = ex + aPx - 18;
-            ctx.strokeStyle = active ? col.proton : passed ? col.electron : col.rule;
-            ctx.lineWidth = active ? 2.4 : 1.3;
-            ctx.setLineDash(active ? [] : [4, 3]);
-            ctx.beginPath();
-            ctx.ellipse(cx, ey, aPx, bPx, 0, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-          });
-
-          // Perigee burn arrow
-          ctx.fillStyle = col.proton;
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.fillText('Perigee burns (speed up here → raises apogee)', 14, 24);
-
-          // Moon target at right of TLI
-          const mx = ex + 28 + 4 * (W * 0.125) * 2 - 18;
-          ctx.fillStyle = col.neutron;
-          ctx.beginPath();
-          ctx.arc(mx, ey, 7, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.fillText('Moon', mx - 14, ey - 12);
-
-          ctx.restore();
-        }
-
-        // RIGHT CANVAS: Lunar Orbit Insertion & Polar Descent
-        {
-          const { ctx, W, H } = prepCanvas(canvasR);
-          ctx.fillStyle = col.plate;
-          ctx.fillRect(0, 0, W, H);
-
-          const mx = W * 0.36, my = H * 0.52, mr = 24;
-          ctx.fillStyle = col.neutron;
-          ctx.globalAlpha = 0.25;
-          ctx.beginPath();
-          ctx.arc(mx, my, mr, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-          ctx.strokeStyle = col.neutron;
-          ctx.lineWidth = 1.8;
+          ctx.ellipse(o.cx, o.cy, o.a, o.b, 0, 0, Math.PI * 2);
           ctx.stroke();
 
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.fillStyle = col.ink;
-          ctx.textAlign = 'center';
-          ctx.fillText('Moon', mx, my + 4);
-
-          const lunarOrbits = [
-            { aPx: W * 0.28, bPx: H * 0.34, idx: 5, label: '164 × 18,074 km (28.2 h)' },
-            { aPx: W * 0.17, bPx: H * 0.23, idx: 6, label: '174 × 1,437 km (3.5 h)' },
-            { aPx: mr + 14, bPx: mr + 14, idx: 7, label: '153 × 163 km (2.0 h)' },
-          ];
-          lunarOrbits.forEach(lo => {
-            const active = state.ch3Idx === lo.idx;
-            const passed = state.ch3Idx > lo.idx;
-            const cx = mx + lo.aPx - (mr + 10);
-            ctx.strokeStyle = active ? col.proton : passed ? col.green : col.rule;
-            ctx.lineWidth = active ? 2.4 : 1.3;
-            ctx.beginPath();
-            ctx.ellipse(cx, my, lo.aPx, lo.bPx, 0, 0, Math.PI * 2);
-            ctx.stroke();
-          });
-
-          // South polar landing marker at 69.37° S
-          const latRad = (69.37 * Math.PI) / 180;
-          const lx = mx + Math.cos(latRad) * mr;
-          const ly = my + Math.sin(latRad) * mr;
-          ctx.fillStyle = state.ch3Idx === 8 ? col.proton : col.green;
+          // One common scale for the central body and every point on this orbit.
+          ctx.fillStyle = bodyColour;
+          ctx.globalAlpha = 0.23;
           ctx.beginPath();
-          ctx.arc(lx, ly, state.ch3Idx === 8 ? 5.5 : 3.5, 0, Math.PI * 2);
+          ctx.arc(o.focusX, o.focusY, o.bodyRadius, 0, Math.PI * 2);
           ctx.fill();
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.fillText('69.37° S (Shiv Shakti Point)', lx + 8, ly + 10);
-          ctx.fillStyle = col.ink2;
-          ctx.fillText('Retro-burn at perilune brakes into lunar capture', 14, 24);
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = bodyColour;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+          ctx.fillStyle = col.ink;
+          ctx.beginPath();
+          ctx.arc(o.focusX, o.focusY, 2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `600 12px "Lexend", system-ui, sans-serif`;
+          ctx.textAlign = o.focusX < 80 ? 'left' : 'center';
+          ctx.fillText(`${orbitStep.body} at a focus`, Math.max(14, o.focusX), o.focusY + o.bodyRadius + 18);
 
+          // Orbit direction at the top is tangent to the ellipse. The nearest
+          // point is marked separately; the body is not at the ellipse centre.
+          const topY = o.cy - o.b;
+          ctx.strokeStyle = col.ink2;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(o.cx - 12, topY); ctx.lineTo(o.cx + 12, topY); ctx.stroke();
+          ctx.fillStyle = col.ink2;
+          ctx.beginPath(); ctx.moveTo(o.cx + 12, topY); ctx.lineTo(o.cx + 5, topY - 4); ctx.lineTo(o.cx + 5, topY + 4); ctx.fill();
+          ctx.fillStyle = col.proton;
+          ctx.beginPath(); ctx.arc(o.cx - o.a, o.cy, 3, 0, Math.PI * 2); ctx.fill();
+          ctx.textAlign = 'left';
+          ctx.fillText('nearest point', Math.max(14, o.cx - o.a), o.cy - 14);
+
+          if (landing) {
+            const lat = 69.37 * Math.PI / 180;
+            const lx = o.focusX + Math.cos(lat) * o.bodyRadius;
+            const ly = o.focusY + Math.sin(lat) * o.bodyRadius;
+            ctx.fillStyle = col.green;
+            ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI * 2); ctx.fill();
+            ctx.textAlign = 'center';
+            ctx.fillText('Landing: 69.37° S', W / 2, 24);
+          }
+
+          // A physical scale bar makes the changing panel magnification explicit.
+          const maxKm = W * 0.24 / o.pxPerKm;
+          const power = Math.pow(10, Math.floor(Math.log10(maxKm)));
+          const km = [1, 2, 5].map(n => n * power).filter(n => n <= maxKm).pop();
+          const bar = km * o.pxPerKm, by = H - 32, bx = 24;
+          ctx.strokeStyle = col.ink2;
+          ctx.beginPath(); ctx.moveTo(bx, by - 4); ctx.lineTo(bx, by); ctx.lineTo(bx + bar, by); ctx.lineTo(bx + bar, by - 4); ctx.stroke();
+          ctx.fillStyle = col.ink2;
+          ctx.textAlign = 'left';
+          ctx.font = `500 11px "Lexend", system-ui, sans-serif`;
+          ctx.fillText(`${km.toLocaleString('en-GB')} km`, bx, H - 13);
+          ctx.textAlign = 'right';
+          ctx.fillText('Resized for this orbit', W - 16, H - 13);
           ctx.restore();
         }
+        drawMissionOrbit(canvasL, earthStep, 6371, col.electron);
+        drawMissionOrbit(canvasR, moonStep, 1737.1, col.neutron, state.ch3Idx === 8);
 
         statsMount.replaceChildren(
           el('div', { class: 'xp-stat' },
@@ -1327,21 +1295,21 @@ App.explorer('sky', {
             el('span', { class: 'xp-stat-sub' }, `${st.date} · Central body: ${st.body}`)
           ),
           el('div', { class: 'xp-stat' },
-            el('span', { class: 'xp-stat-k' }, 'Orbit size (peri × apo)'),
-            el('span', { class: 'xp-stat-v' }, `${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km`),
-            el('span', { class: 'xp-stat-sub' }, st.body === 'Earth' ? 'Heights above Earth' : 'Heights above the Moon')
+            el('span', { class: 'xp-stat-k' }, state.ch3Idx === 8 ? 'Landing site' : 'Orbit size (peri × apo)'),
+            el('span', { class: 'xp-stat-v' }, state.ch3Idx === 8 ? '69.37° S, 32.35° E' : `${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km`),
+            el('span', { class: 'xp-stat-sub' }, state.ch3Idx === 8 ? 'Shiv Shakti Point, on the Moon’s surface' : st.body === 'Earth' ? 'Heights above Earth' : 'Heights above the Moon')
           ),
           el('div', { class: 'xp-stat' },
-            el('span', { class: 'xp-stat-k' }, 'Kepler orbital period'),
+            el('span', { class: 'xp-stat-k' }, state.ch3Idx === 8 ? 'Landing time' : 'Kepler orbital period'),
             el('span', { class: 'xp-stat-v' }, st.period),
-            el('span', { class: 'xp-stat-sub' }, 'T = 2π √(a³ / GM)')
+            el('span', { class: 'xp-stat-sub' }, state.ch3Idx === 8 ? 'Powered descent; the panel shows the 25 × 134 km approach orbit' : 'T = 2π √(a³ / GM)')
           )
         );
 
         readoutMount.replaceChildren(
-          el('p', {}, el('b', {}, `${st.name} (${st.date}, orbit ${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km, period ${st.period}): `), st.note),
+          el('p', {}, el('b', {}, state.ch3Idx === 8 ? `${st.name} (${st.date}, ${st.period}): ` : `${st.name} (${st.date}, orbit ${st.peri.toLocaleString('en-GB')} × ${st.apo.toLocaleString('en-GB')} km, period ${st.period}): `), st.note),
           el('p', { class: 'xp-honest' },
-            'Model note: Orbits and periods come from ISRO’s Chandrayaan-3 mission updates and MIT 8.01SC Earth/Moon constants (Chapter 5.6). Because the 369,328 km translunar apogee is over 2,000 times higher than the 170 km perigee, the spacing between the inner rings on the left diagram is schematic so all five Earth-bound ellipses remain visible.'
+            'Model note: Each panel shows one orbit, resized independently to fit. Its shape is computed from the stated heights plus the central body’s radius, and the body sits at a focus. Within each panel, the body and orbit share one scale; the scale bar changes between steps. Compare the numbers and scale bars, rather than the apparent sizes of different panels. The translunar period describes a complete unperturbed Earth-centred ellipse; the spacecraft reached the Moon before completing it. The Earth panel holds the translunar orbit during lunar steps; the Moon panel previews capture during Earth steps and shows the lander’s 25 × 134 km approach orbit during powered landing. Orbits and periods come from ISRO’s Chandrayaan-3 mission updates and the Chapter 5.6 grounding notes.'
           )
         );
       } else {

@@ -90,8 +90,8 @@ def c7_dent():
 
 @figure
 def c7_track():
-    f = Fig(640, 300, 'A marble on a smooth track released from 1.0 m, shown at four points with its speed: 3.1 m/s half '
-                      'a metre down, 4.4 m/s at the bottom, 3.1 m/s on top of a 0.5 m bump')
+    f = Fig(640, 322, 'An ideal bead sliding without spinning or friction on a track, released from 1.0 m. '
+                      'Its speed is 3.1 m/s half a metre down, 4.4 m/s at the bottom and 3.1 m/s on a 0.5 m bump.')
     def y(h):
         return 230 - 160 * h
     pts = [(60, y(1.0)), (110, y(0.86)), (185, y(0.5)), (250, y(0.12)), (300, y(0.0)), (360, y(0.06)),
@@ -101,7 +101,7 @@ def c7_track():
         f.line(30, y(h), 612, y(h), 'ln dash r')
         f.text(636, y(h) + 4, lab, 't m', 'end', 12)
     f.path(catmull(pts), 'ln', extra='stroke-width="2.4"')
-    # marbles and speeds (arrow length proportional to speed: 4.43 m/s = 78 px)
+    # Sliding beads and speeds (no rotational kinetic energy in this model).
     f.circle(60, y(1.0) - 8, 8, 'block')
     f.text(60, y(1.0) - 24, 'released, v = 0', 't', 'middle', 12)
     f.circle(185, y(0.5) - 8, 8, 'block')
@@ -112,7 +112,8 @@ def c7_track():
     f.vector(510, y(0.5) - 8, 55, 0, '')
     f.text(538, y(0.5) - 24, 'v = 3.1 m/s', 't e', 'middle', 13)
     f.text(320, 262, 'mgh = ½mv², so v = √(2gh): the mass cancels, and the speed depends only on how far', 't m', 'middle', 12)
-    f.text(320, 278, 'the marble is below its start. With no friction, height and motion always add to the same total.', 't m', 'middle', 12)
+    f.text(320, 278, 'the bead is below its start. Height and motion always add to the same total.', 't m', 'middle', 12)
+    f.text(320, 308, 'Model: sliding, no spin, no friction. A rolling marble also stores energy in its spin.', 't b', 'middle', 12)
     return f.svg()
 
 
@@ -156,7 +157,7 @@ def c7_bounce():
 
 @figure
 def c7_bill():
-    f = Fig(640, 300, 'Horizontal bars on a logarithmic hours axis showing how long one kilowatt-hour runs a 10 W LED '
+    f = Fig(640, 300, 'Dots on a logarithmic hours axis showing how long one kilowatt-hour runs a 10 W LED '
                       '(100 h), a 100 W person (10 h), a 500 W mixer-grinder (2 h) and a 2 kW geyser (half an hour)')
     f.text(320, 24, 'What one unit (1 kWh = 3.6 million joules) will run', 't b', 'middle', 14)
     x0, dec = 160, 128          # axis starts at 0.1 h; 128 px per factor of ten
@@ -168,7 +169,9 @@ def c7_bill():
     for i, (lab, h, txt) in enumerate(rows):
         yy = 62 + i * 44
         f.text(x0 - 10, yy + 14, lab, 't', 'end', 13)
-        f.rect(x0, yy, xh(h) - x0, 22, 'wash-e ln', rx=2)
+        f.line(x0, yy + 11, xh(100), yy + 11, 'ln r')
+        f.circle(xh(h), yy + 11, 6, 'fill-vol')
+        f.circle(xh(h), yy + 11, 6, 'ln')
         f.text(xh(h) + 8, yy + 15, txt, 't b', 'start', 12)
     ay = 62 + 4 * 44 - 10
     f.line(x0, ay, xh(100) + 30, ay, 'ax')

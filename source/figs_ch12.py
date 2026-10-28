@@ -150,7 +150,7 @@ def c12_loop():
     f.text(xr - 8, 196, '21 mA', 't p b', 'end', 12)
     f.arrow(500, 236, 476, 236, 'force', 2.2)
     f.text(488, 256, '21 mA', 't p b', 'middle', 12)
-    f.arrow(378, 170, 378, 146, 'force', 2.2)
+    f.arrow(433, 164, 433, 145, 'force', 1.4)
     f.text(372, 190, '21 mA, inside', 't p b', 'end', 12)
     f.text(372, 204, 'the battery too', 't p b', 'end', 12)
     f.text(480, 282, 'the same current at every point of the loop', 't', 'middle', 12)
@@ -165,7 +165,7 @@ def c12_potential_hill():
                       'the start. Below, the current is drawn with the same arrow at every point: 21 milliamps.')
     x0, y0 = 60, 212
     pv = 16                       # px per volt
-    f.axis(x0, y0, 560, 170, 'position round the loop', 'height = volts',
+    f.axis(x0, y0, 560, 170, 'position round the loop', 'volts',
            ticks={'y': [(0, '0'), (2 * pv, '2'), (9 * pv, '9')]})
     yv = lambda v: y0 - v * pv
     prof = [(80, 0), (80, 9), (112, 9), (230, 9), (390, 2), (450, 2), (470, 0), (600, 0)]

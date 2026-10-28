@@ -13,36 +13,48 @@ def _charges(f, pts, kind):
 
 @figure
 def s_rub_moves_charge():
-    """Before and after rubbing: four electrons move from the hair to the balloon; the total charge stays zero."""
-    f = Fig(640, 270, 'Two panels. Before rubbing, the balloon and the hair each hold four positive and four negative '
-                      'charges. After rubbing, four electrons have moved to the balloon, which is now negative by four, '
-                      'while the hair is positive by four. The total is zero in both panels.')
-    for k, title in enumerate(('before rubbing', 'after rubbing')):
+    """The same positive charges stay put; four electrons visibly change owners."""
+    f = Fig(640, 394, 'Before and after rubbing a balloon against hair. Each starts with four positive and '
+                      'four negative charge symbols. Afterwards the balloon still has its four positive symbols '
+                      'but has eight electrons; the hair keeps its four positive symbols and has lost its four '
+                      'electrons. A leftward arrow shows the electron transfer. The total remains eight positive '
+                      'and eight negative symbols. Symbols count units of charge, not whole atoms.')
+    for k, title in enumerate(('Before rubbing', 'After rubbing')):
         x0 = 16 + k * 320
-        f.text(x0 + 150, 24, title, 't b', 'middle', 14)
-        f.circle(x0 + 80, 130, 54, 'wash')
-        f.text(x0 + 80, 202, 'balloon', 't m', 'middle', 12)
-        f.rect(x0 + 170, 86, 124, 88, 'plate', rx=8)
-        f.text(x0 + 232, 202, 'hair', 't m', 'middle', 12)
-        bp = [(x0 + 56, 106), (x0 + 80, 106), (x0 + 104, 106), (x0 + 68, 130)]
-        be = [(x0 + 92, 130), (x0 + 56, 154), (x0 + 80, 154), (x0 + 104, 154)]
-        hp = [(x0 + 192, 112), (x0 + 218, 112), (x0 + 244, 112), (x0 + 270, 112)]
-        he = [(x0 + 192, 148), (x0 + 218, 148), (x0 + 244, 148), (x0 + 270, 148)]
-        _charges(f, bp, 'p')
-        _charges(f, hp, 'p')
-        if k == 0:
-            _charges(f, be, 'e')
-            _charges(f, he, 'e')
-            f.text(x0 + 80, 232, 'balloon: 0', 't', 'middle', 13)
-            f.text(x0 + 232, 232, 'hair: 0', 't', 'middle', 13)
-            f.text(x0 + 150, 256, 'total: 0', 't b', 'middle', 13)
+        bx, hx, cy = x0 + 70, x0 + 232, 154
+        f.text(x0 + 144, 25, title, 't b', 'middle', 17)
+        if k:
+            f.text(x0 + 144, 51, '4 electrons move from hair to balloon', 't e', 'middle', 13)
         else:
-            _charges(f, be + [(x0 + 44, 130), (x0 + 116, 130), (x0 + 68, 178), (x0 + 92, 178)], 'e')
-            f.arrow(x0 + 168, 160, x0 + 124, 170, 'electron')
-            f.text(x0 + 150, 76, '4 electrons move', 't e', 'middle', 12)
-            f.text(x0 + 80, 232, 'balloon: −4', 't', 'middle', 13)
-            f.text(x0 + 232, 232, 'hair: +4', 't', 'middle', 13)
-            f.text(x0 + 150, 256, 'total: still 0', 't b', 'middle', 13)
+            f.text(x0 + 144, 51, 'Equal positive and negative charges', 't m', 'middle', 13)
+        # Recognisable objects, with a deliberately schematic charge cut-away.
+        f.add(f'<ellipse cx="{bx}" cy="{cy}" rx="60" ry="79" class="plate"/>')
+        f.path(f'M{bx},233 l-6,8 h12 Z', 'block')
+        f.path(f'M{bx},242 q-8,8 0,16', 'ln m')
+        f.rect(hx - 50, 78, 100, 164, 'plate', rx=22)
+        for dx in (-40, -20, 0, 20, 40):
+            f.path(f'M{hx + dx},84 q-9,-14 0,-19 q9,-5 2,-13', 'ln m')
+        positive = [(x, y) for y in (115, 139) for x in (-16, 16)]
+        electrons = [(x, y) for y in (166, 190) for x in (-16, 16)]
+        _charges(f, [(bx + x, y) for x, y in positive], 'p')
+        _charges(f, [(hx + x, y) for x, y in positive], 'p')
+        _charges(f, [(bx + x, y) for x, y in electrons], 'e')
+        if k == 0:
+            _charges(f, [(hx + x, y) for x, y in electrons], 'e')
+        else:
+            _charges(f, [(bx + x, y) for x, y in ((-40, 166), (40, 166), (-16, 214), (16, 214))], 'e')
+            for x, y in electrons:
+                f.circle(hx + x, y, 10, 'ln m dash')
+            f.arrow(hx - 54, 215, bx + 64, 215, 'electron', width=2.4)
+            f.text((hx + bx) / 2, 204, 'electrons', 't e', 'middle', 12)
+        f.text(bx, 278, 'balloon', 't b', 'middle', 15)
+        f.text(hx, 278, 'hair', 't b', 'middle', 15)
+        f.text(bx, 302, '4+ and 4−: neutral' if k == 0 else '4+ and 8−: charge −4', 't e' if k else 't m', 'middle', 13)
+        f.text(hx, 302, '4+ and 4−: neutral' if k == 0 else '4+ and 0−: charge +4', 't p' if k else 't m', 'middle', 13)
+    f.line(320, 65, 320, 312, 'ln r')
+    f.rect(24, 326, 592, 44, 'wash', rx=8)
+    f.text(320, 354, 'Total before: 8+ and 8−.   Total after: 8+ and 8−.', 't b', 'middle', 15)
+    f.text(320, 388, 'Rubbing moves electrons; it does not create charge. Symbols show units of charge.', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -95,35 +107,61 @@ def s_ohm_line():
 
 @figure
 def s_terrella():
-    """Gilbert's terrella with its field, and three needles: level at the equator, dipping at Mumbai's latitude, on end at the pole."""
-    f = Fig(640, 320, 'A spherical lodestone with field lines looping from pole to pole. A needle over its equator lies '
-                      'level, a needle over a mid-latitude dips about 28 degrees, and a needle over the pole stands on end.')
-    cx, cy, r = 200, 178, 88
-    for k in (1.3, 1.75, 2.3):
-        rx, ry = 52 * k, max(90, 76 * k)
-        f.path(f'M{cx},{cy - r} A{rx},{ry} 0 0 1 {cx},{cy + r}', 'ln m dash')
-        f.path(f'M{cx},{cy - r} A{rx},{ry} 0 0 0 {cx},{cy + r}', 'ln m dash')
+    """Dipole loops outside the stone, with 'level' measured against the local ground."""
+    f = Fig(640, 354, 'Left: a spherical lodestone, with its magnetic south pole at the top and north at the '
+                      'bottom, like Earth in outline. Magnetic field lines form loops outside the stone. '
+                      'A free needle points into the top pole and parallel to the local ground at the equator. '
+                      'Right: a separate local view in Mumbai shows the north end of a needle dipping 28 degrees '
+                      'below the horizontal ground. The stone is a model of the shape of the field.')
+    cx, cy, r = 174, 184, 77
+    f.text(cx, 26, 'A magnet with Earth’s field shape', 't b', 'middle', 15)
+    # Dipole field lines: r = L sin²(theta). Begin and end on the
+    # surface; unlike ellipse minor arcs, these loops stay outside it.
+    for L in (108, 139, 166):
+        theta0 = math.asin(math.sqrt(r / L))
+        for side in (-1, 1):
+            pts = []
+            for k in range(81):
+                theta = theta0 + (math.pi - 2 * theta0) * k / 80
+                rr = L * math.sin(theta) ** 2
+                pts.append((cx + side * rr * math.sin(theta), cy - rr * math.cos(theta)))
+            f.path('M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in pts), 'ln e')
+            # At the equator the external field points toward the top S pole.
+            f.arrow(cx + side * L, cy + 11, cx + side * L, cy - 11, 'electron', width=1.3)
     f.circle(cx, cy, r, 'plate')
-    f.text(cx, cy + 5, 'terrella', 't b', 'middle', 14)
-    f.text(cx, cy + 24, 'a lodestone ball', 't m', 'middle', 12)
-    f.text(cx - 14, cy - r + 2, 'pole', 't m', 'end', 12)
-    f.text(cx, cy + r + 18, 'pole', 't m', 'middle', 12)
+    f.circle(cx, cy, r, 'ln')
+    f.text(cx, cy - 44, 'S', 't e b', 'middle', 16)
+    f.text(cx, cy + 55, 'N', 't p b', 'middle', 16)
+    f.text(cx, cy - 5, 'terrella', 't b', 'middle', 16)
+    f.text(cx, cy + 16, 'a lodestone ball', 't m', 'middle', 13)
     f.line(cx - r, cy, cx + r, cy, 'ln m dash')
-    # equator needle: level
-    f.arrow(cx + r + 14, cy, cx + r + 58, cy, 'ink', width=3)
-    f.text(cx + r + 66, cy + 5, 'over the equator: level', 't', 'start', 13)
-    # polar needle: on end, straight above the pole
-    f.arrow(cx, 26, cx, 72, 'ink', width=3)
-    f.text(cx + 14, 44, 'over the pole: stands on end', 't', 'start', 13)
-    # mid-latitude needle: dips 28 degrees towards the stone
-    a = math.radians(28)
-    px, py = cx + 88, cy - 92
-    L = 44
-    f.arrow(px + L * math.cos(a), py - L * math.sin(a), px, py, 'ink', width=3)
-    f.line(px, py, px + L * math.cos(a), py, 'ln m dash')
-    f.text(px + L + 10, py - 26, "over Mumbai's latitude: dips 28°", 't', 'start', 13)
-    f.text(px + L + 4, py + 4, '28°', 't m', 'start', 12)
-    f.text(320, 306, 'dashed lines: the direction a free needle points at each place', 't m', 'middle', 12)
+    # Needle above the pole, pointing inward; local ground is horizontal here.
+    f.arrow(cx, 57, cx, 98, 'ink', width=3)
+    f.text(cx + 14, 65, 'at a pole:', 't', 'start', 12)
+    f.text(cx + 14, 81, 'straight into the ground', 't m', 'start', 12)
+    # At the right-hand equator, 'level' is vertical on the page:
+    # the needle follows the tangent, not the radius of the ball.
+    ex = cx + r + 14
+    f.line(ex, cy - 36, ex, cy + 36, 'ln m dash')
+    f.arrow(ex + 9, cy + 28, ex + 9, cy - 28, 'ink', width=3)
+    f.line(ex + 15, cy + 30, 280, 286, 'ln m')
+    f.lines(192, 307, ['at the equator: along the local ground', '(level does not mean sideways on the page)'], 't m', 'middle', 12)
+    # The right inset uses a local horizontal, as a real observer sees it.
+    f.line(354, 48, 354, 325, 'ln r')
+    f.text(492, 57, 'Mumbai: a view at ground level', 't b', 'middle', 14)
+    f.text(492, 78, 'a free needle can tilt as well as turn', 't m', 'middle', 12)
+    ox, oy, L = 413, 150, 136
+    f.line(386, oy, 607, oy, 'ln m dash')
+    f.text(605, oy - 12, 'horizontal', 't m', 'end', 13)
+    angle = math.radians(28)
+    nx, ny = ox + L * math.cos(angle), oy + L * math.sin(angle)
+    f.arrow(ox, oy, nx, ny, 'ink', width=3)
+    f.path(f'M{ox + 44},{oy} A44,44 0 0 1 {ox + 44 * math.cos(angle):.1f},{oy + 44 * math.sin(angle):.1f}', 'ln e')
+    f.text(ox + 53, oy + 17, '28°', 't e b', 'start', 14)
+    f.text(nx + 8, ny + 4, 'N', 't p b', 'start', 15)
+    f.ground(382, 252, 226)
+    f.lines(492, 282, ['the north end dips into the ground;', 'a flat compass hides this part of the field'], 't', 'middle', 13)
+    f.text(320, 344, 'Field lines show the direction a needle points. They are not paths for moving objects.', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -153,9 +191,9 @@ def s_oersted_compass():
             f.text(cx - 8, 72, '1 cm above the compass', 't e', 'end', 12)
             th = math.radians(27.5)
             dx, dy = 40 * math.sin(th), 40 * math.cos(th)
-            f.arrow(cx - dx, cy + dy, cx + dx, cy - dy, 'force')
-            f.path(f'M{cx},{cy - 30} A30,30 0 0 1 {cx + 30 * math.sin(th):.1f},{cy - 30 * math.cos(th):.1f}', 'ln m')
-            f.text(cx + 20, cy - 34, '27°', 't', 'start', 13)
+            f.arrow(cx + dx, cy + dy, cx - dx, cy - dy, 'force')
+            f.path(f'M{cx},{cy - 30} A30,30 0 0 0 {cx - 30 * math.sin(th):.1f},{cy - 30 * math.cos(th):.1f}', 'ln m')
+            f.text(cx - 22, cy - 34, '27°', 't', 'start', 13)
             f.text(cx, 36, 'current on', 't b', 'middle', 14)
             f.text(cx, 262, "the wire's 20 μT at right angles swings the needle", 't m', 'middle', 12)
             f.text(cx, 278, 'reverse the current and it swings the other way', 't m', 'middle', 12)
@@ -261,7 +299,7 @@ def s_bose_scale():
     f.bracket_label(cx - 2.5 * s, cx + 2.5 * s, cy + 26, 'one wave: 5 mm', 12, up=False)
     f.lines(300, 70, ["Bose's shortest waves were 5 mm long:", 'about four and a half of them across the coin.',
                       'They swing 60,000 million times a second.'], 't', 'start', 14)
-    f.lines(300, 150, ['A 1 m radio wave would be 200 times the width', 'of this coin, and swing 200 times more slowly.'],
+    f.lines(300, 150, ['A 1 m radio wave is 200 times this 5 mm wavelength', 'and swings 200 times more slowly.'],
             't m', 'start', 13)
     return f.svg()
 
@@ -299,7 +337,7 @@ def _person(f, cx, top):
 @figure
 def s_exposure_vs_contamination():
     """Exposure (an X-ray beam passes through and is gone) beside contamination (radioactive dust stays on a sleeve)."""
-    f = Fig(640, 270, 'Left: an X-ray beam passes through a standing figure and continues beyond; nothing stays behind. '
+    f = Fig(640, 270, 'Left: an X-ray beam passes through a standing figure and continues beyond; no radioactive material stays behind. '
                       'Right: a figure with specks of radioactive dust on one sleeve, each speck emitting; the dust stays '
                       'and can be carried off.')
     f.text(160, 28, 'exposure', 't b', 'middle', 15)
@@ -307,7 +345,7 @@ def s_exposure_vs_contamination():
     f.ray(30, 120, 290, 120, chevrons=3)
     f.text(30, 106, 'X-ray beam', 't', 'start', 12)
     f.text(160, 232, 'the beam passes through and is gone;', 't', 'middle', 13)
-    f.text(160, 250, 'afterwards nothing stays behind', 't', 'middle', 13)
+    f.text(160, 250, 'no radioactive material is left behind', 't', 'middle', 13)
     f.text(480, 28, 'contamination', 't b', 'middle', 15)
     _person(f, 480, 50)
     for x, y in ((452, 100), (447, 118), (455, 134)):
@@ -364,11 +402,9 @@ def s_hydrogen_lines_temperature():
                       'a hump, weak in the coolest stars where electrons sit on the bottom rung, strong in between, and '
                       'weak again in the hottest stars where hydrogen is ionised.')
     x0, y0, w, h = 70, 212, 500, 160
-    f.axis(x0, y0, w, h, 'surface temperature', "strength of hydrogen's visible lines")
+    f.axis(x0, y0, w, h, 'surface temperature: cooler → hotter', "strength of hydrogen's visible lines")
     pts = [(x0 + t, y0 - 140 * math.exp(-((t - 250) / 110) ** 2)) for t in range(0, 501, 10)]
     f.path(catmull(pts), 'ln e')
-    f.text(x0 + 10, y0 + 18, 'cooler', 't m', 'start', 12)
-    f.text(x0 + w - 10, y0 + 18, 'hotter', 't m', 'end', 12)
     f.lines(x0 + 30, 96, ['too cool: electrons', 'sit on the bottom rung,', 'few visible lines'], 't', 'start', 12)
     f.lines(x0 + w - 30, 96, ['too hot: hydrogen', 'is ionised, and a bare', 'proton has no lines'], 't', 'end', 12)
     f.text(x0 + 250, 30, 'strong lines, though hydrogen is abundant everywhere', 't b', 'middle', 13)

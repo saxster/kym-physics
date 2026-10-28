@@ -291,6 +291,25 @@ figure figcaption b { color: var(--vol); font-weight: 700; margin-right: .4em; f
 .fig .bar-p { fill: var(--proton); } .fig .bar-e { fill: var(--electron); } .fig .bar-n { fill: var(--neutron); } .fig .bar-g { fill: var(--green); } .fig .bar-ink { fill: var(--ink); } .fig .bar-m { fill: var(--rule); }
 .fig .hi { fill: var(--mark-soft); }
 
+/* Wavelength colours are literal teaching content, always paired with words.
+   Solid fills keep colour samples recognisable in every reading theme. */
+.fig .light-red { stroke: #c64c43; }
+.fig .light-yellow { stroke: #b08a16; }
+.fig .light-green { stroke: #41805e; }
+.fig .light-blue { stroke: #437ec0; }
+.fig .light-violet { stroke: #9861be; }
+.fig .sample-yellow { fill: #edcb52; }
+.fig .sample-red { fill: #cc6251; }
+.fig .sample-dark { fill: #29332f; }
+.fig .sample-violet { fill: #9861be; }
+.fig .sample-yellow, .fig .sample-red, .fig .sample-dark, .fig .sample-violet { stroke: var(--ink); stroke-width: 1.4; }
+.fig .cover-emblem .ln { stroke: var(--sheet); stroke-width: 1.5; }
+.fig .cover-emblem .fill-ink { fill: var(--sheet); }
+.fig .spectrum-absorption { stroke: #18221e; }
+.fig .moon-day { fill: #eadb9c; }
+.fig .moon-night { fill: #424b48; }
+.fig .t.bar-label { fill: var(--sheet); }
+
 /* ------------------------------------------------------------------ live figures */
 figure[data-live] { position: relative; }
 .live-open {

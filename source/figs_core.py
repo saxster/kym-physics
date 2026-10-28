@@ -43,7 +43,7 @@ class Fig:
         cls = 'fig wide' if self.wide else 'fig'
         return (f'<svg class="{cls}" viewBox="0 0 {self.w} {self.h}" role="img" '
                 f'aria-label="{escape(self.label)}" xmlns="http://www.w3.org/2000/svg">'
-                + ''.join(self.parts) + '</svg>')
+                + ''.join(self.parts).replace(' />', '/>') + '</svg>')
 
     # ---------------------------------------------------------- basic shapes
     def rect(self, x, y, w, h, cls='plate', rx=6, extra=''):
@@ -60,8 +60,10 @@ class Fig:
 
     def text(self, x, y, s, cls='t', anchor='start', size=15, weight=None, extra=''):
         w = f' font-weight="{weight}"' if weight else ''
-        return self.add(f'<text x="{r_(x)}" y="{r_(y)}" class="{cls}" text-anchor="{anchor}" '
-                        f'font-size="{size}"{w} {extra}>{s}</text>')
+        # "start" is SVG's default; omitting it saves space across thousands of labels.
+        a = f' text-anchor="{anchor}"' if anchor != 'start' else ''
+        return self.add(f'<text x="{r_(x)}" y="{r_(y)}" class="{cls}"{a} '
+                        f'font-size="{size}"{w}{(" " + extra) if extra else ""}>{s}</text>')
 
     def lines(self, x, y, rows, cls='t', anchor='start', size=15, lh=1.3, weight=None):
         for i, s in enumerate(rows):
@@ -210,7 +212,9 @@ class Fig:
             a, b = 7, 5   # length back along the ray, half-width
             p1 = (cx - ux * a - uy * b, cy - uy * a + ux * b)
             p2 = (cx - ux * a + uy * b, cy - uy * a - ux * b)
-            self.add(f'<path d="M{r_(p1[0])},{r_(p1[1])} L{r_(cx)},{r_(cy)} L{r_(p2[0])},{r_(p2[1])}" class="ray-ch"/>')
+            # Keep a wavelength-specific stroke on both the ray and its chevrons.
+            colours = ' '.join(cls.split()[1:])
+            self.add(f'<path d="M{r_(p1[0])},{r_(p1[1])} L{r_(cx)},{r_(cy)} L{r_(p2[0])},{r_(p2[1])}" class="ray-ch {colours}"/>')
         return self
 
     def wave(self, x0, y0, w, amp, wavelength, phase=0.0, cls='ln e', step=2.0):
@@ -251,6 +255,43 @@ class Fig:
         self.rect(x, y, w, h, 'block', rx=3)
         if label:
             self.text(x + w / 2, y + h / 2 + size * .35, label, 't b', 'middle', size)
+        return self
+
+    def book(self, x, y, w=76, h=32):
+        """Side view: a closed book, with page edges and a coloured spine."""
+        self.rect(x, y, w, h, 'block', rx=3)
+        self.rect(x, y, 8, h, 'wash-e', rx=2)
+        for off in (h * .35, h * .58, h * .8):
+            self.line(x + 13, y + off, x + w - 5, y + off, 'ln r')
+        self.line(x - 2, y, x + w + 2, y, 'ln e')
+        self.line(x - 2, y + h, x + w + 2, y + h, 'ln e')
+        return self
+
+    def cart(self, x, y, w=96, h=24, loads=1, label='m'):
+        """A trolley with countable identical loads, rather than a box of arbitrary size."""
+        self.rect(x, y, w, h, 'block', rx=4)
+        for wx in (x + 16, x + w - 16):
+            self.circle(wx, y + h + 9, 9, 'block')
+            self.circle(wx, y + h + 9, 3, 'fill-ink')
+        for k in range(loads):
+            lx = x + (w - loads * 34 - (loads - 1) * 4) / 2 + k * 38
+            self.rect(lx, y - 30, 34, 30, 'wash-e', rx=2)
+            self.rect(lx, y - 30, 34, 30, 'ln', rx=2)
+            self.text(lx + 17, y - 10, label, 't b', 'middle', 14)
+        return self
+
+    def train(self, x, y, w=170, h=40):
+        """A local-train carriage in side view; labels belong outside the drawing."""
+        self.rect(x, y, w, h, 'block', rx=7)
+        self.rect(x + 2, y + h * .62, w - 4, h * .17, 'wash-e', rx=0)
+        for off in (12, w - 29):
+            self.rect(x + off, y + 7, 17, h - 11, 'glass', rx=2)
+            self.rect(x + off + 3, y + 10, 11, 10, 'water', rx=1)
+        count = max(1, int((w - 72) / 23))
+        for k in range(count):
+            self.rect(x + 39 + k * 23, y + 8, 16, 12, 'water', rx=2)
+        for wx in (x + 24, x + w - 24):
+            self.circle(wx, y + h + 3, 6, 'fill-ink')
         return self
 
 

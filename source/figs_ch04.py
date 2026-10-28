@@ -33,8 +33,8 @@ def c4_two_predictions():
             f.line(x0 + 290, 52, x0 + 290, 272, 'ln m')
             f.line(x0 + 284, 52, x0 + 296, 52, 'ln m')
             f.line(x0 + 284, 272, x0 + 296, 272, 'ln m')
-            f.text(x0 + 300, 165, 'about 9 m', 't m', 'start', 12,
-                   extra=f'transform="rotate(-90 {x0 + 300} 165)"')
+            f.text(x0 + 282, 165, 'about 9 m', 't m', 'start', 12,
+                   extra=f'transform="rotate(-90 {x0 + 282} 165)"')
     return f.svg()
 
 

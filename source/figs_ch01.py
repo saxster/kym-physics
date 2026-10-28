@@ -15,29 +15,42 @@ def _ball(f, x, y, r=8):
 
 @figure
 def c1_two_frames():
-    f = Fig(640, 296, 'A ball bounced by someone walking, drawn twice. Seen by a friend walking alongside, the ball goes '
-                      'straight up and down. Seen by someone standing still, the same ball traces a zigzag.')
-    f.text(160, 30, 'Seen by a friend walking alongside', 't b', 'middle', 14)
-    f.text(470, 30, 'Seen by someone standing still', 't b', 'middle', 14)
-    f.ground(30, 220, 270)
-    f.ground(340, 220, 270)
-    # left: straight up and down
-    f.line(160, 80, 160, 212, 'ln e dash')
-    for y in (80, 120, 165, 212):
-        _ball(f, 160, y, 7)
-    f.vector(184, 200, 0, -110, '', 13)
-    f.vector(136, 92, 0, 110, '', 13)
-    f.text(192, 150, 'up', 't e', 'start', 13)
-    f.text(128, 150, 'down', 't e', 'end', 13)
-    f.text(160, 250, 'the ball stays beside you', 't m', 'middle', 13)
-    # right: a zigzag, because the bouncer moves along while the ball goes up and down
-    pts = [(360, 212), (395, 80), (430, 212), (465, 80), (500, 212), (535, 80), (570, 212)]
-    f.path('M' + ' L'.join(f'{x},{y}' for x, y in pts), 'ln e dash')
-    for x, y in pts:
-        _ball(f, x, y, 7)
-    f.vector(390, 246, 130, 0, '', 13)
-    f.text(460, 266, 'the bouncer walks this way', 't e', 'middle', 13)
-    f.text(320, 290, 'Same ball, same bounces. Neither picture is "the real one".', 't', 'middle', 13)
+    f = Fig(640, 340, 'The same bouncing ball in two reference frames. A walking observer sees vertical motion; a stationary observer sees three parabolic arcs. Numbered dots 1, 2 and 3 identify the same moments in both views. Gravity curves the flight between bounces; no air resistance is included.')
+    for cx, title, sub in ((160, 'Walking beside the ball', 'your sideways speed matches its speed'),
+                            (480, 'Standing on the platform', 'the ball keeps moving sideways')):
+        f.text(cx, 30, title, 't b', 'middle', 16)
+        f.text(cx, 52, sub, 't m', 'middle', 12)
+    f.line(320, 18, 320, 302, 'ln r')
+    f.ground(28, 252, 275)
+    f.ground(340, 252, 276)
+    # The world-lines are sampled from the SAME projectile at equal times.
+    f.line(160, 100, 160, 244, 'ln e dash')
+    for t, num in ((0, '1'), (.5, '2'), (1, '3')):
+        yy = 244 - 144 * 4 * t * (1-t)
+        if t == 1:
+            continue  # same place as dot 1; show the shared endpoint label below
+        f.circle(160, yy, 9, 'fill-vol')
+        f.circle(160, yy, 9, 'ln')
+        f.text(181, yy + 5, '1, 3' if t == 0 else num, 't b', 'start', 14)
+    f.vector(118, 224, 0, -90)
+    f.vector(210, 120, 0, 90)
+    f.text(104, 175, 'up', 't e', 'end', 13)
+    f.text(225, 175, 'down', 't e', 'start', 13)
+    for bounce in range(3):
+        pts=[]
+        for k in range(41):
+            t=k/40
+            pts.append((350+bounce*86+86*t, 244-144*4*t*(1-t)))
+        f.path('M'+' L'.join(f'{x:.1f},{y:.1f}' for x,y in pts), 'ln e')
+    for t,num in ((0,'1'),(.5,'2'),(1,'3')):
+        x,y=350+86*t,244-144*4*t*(1-t)
+        f.circle(x,y,7,'fill-vol')
+        f.circle(x,y,7,'ln')
+        f.text(x, y-17, num, 't b', 'middle',14)
+    f.vector(418,280,120,0)
+    f.text(480,302,'steady sideways motion','t e','middle',13)
+    f.text(160,284,'same place sideways','t e b','middle',13)
+    f.text(320,332,'Match dots 1, 2 and 3: same events, different observers.','t','middle',14)
     return f.svg()
 
 
@@ -76,7 +89,7 @@ def _car(f, x, y, w=76, h=24):
 
 @figure
 def c1_four_cars():
-    f = Fig(640, 330, 'Four cars on a road with the positive direction to the right. The velocity arrow shows which way each '
+    f = Fig(640, 350, 'Four cars on a road with the positive direction to the right. The velocity arrow shows which way each '
                       'car moves; the acceleration arrow shows which way its velocity is changing. When the two arrows point '
                       'the same way the car speeds up; when they point opposite ways it slows down, whatever the signs.')
     f.vector(250, 16, 120, 0, 'positive direction', 13)
@@ -92,7 +105,7 @@ def c1_four_cars():
         f.vector(290 + sa * 44, y + 24, sa * 48, 0, 'a', 13, kind='muted')
         f.text(20, y + 5, left, 't m', 'start', 13)
         f.text(430, y + 5, right, 't', 'start', 13)
-    f.text(320, 324, 'v is the velocity, a the acceleration; opposite arrows always mean slowing down', 't m', 'middle', 12)
+    f.text(320, 344, 'v is the velocity, a the acceleration; opposite arrows always mean slowing down', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -235,26 +248,23 @@ def c1_toss_graphs():
 
 @figure
 def c1_trains():
-    f = Fig(640, 230, 'Three trains on three parallel tracks. Your train runs at 60 km/h to the right. On one side a train '
-                      'runs at 70 km/h in the same direction; relative to you it creeps past at 10 km/h. On the other side a '
-                      'train runs at 60 km/h the opposite way; relative to you it passes at 120 km/h.')
-    tracks = (62, 122, 182)
-    for y in tracks:
-        f.line(20, y + 14, 620, y + 14, 'ln m')
-        f.line(20, y + 18, 620, y + 18, 'ln m')
-    # top: the oncoming train
-    f.rect(400, 48, 150, 28, 'block', rx=8)
-    f.text(475, 67, 'a local the other way', 't', 'middle', 13)
-    f.vector(396, 50, -90, 0, '60 km/h', 13)
-    # middle: Kym's train
-    f.rect(110, 108, 150, 28, 'block', rx=8)
-    f.text(185, 127, 'your train', 't b', 'middle', 13)
-    f.vector(264, 110, 90, 0, '60 km/h', 13)
-    # bottom: the faster train on the next track
-    f.rect(190, 168, 150, 28, 'block', rx=8)
-    f.text(265, 187, 'a faster local', 't', 'middle', 13)
-    f.vector(344, 170, 105, 0, '70 km/h', 13)
-    f.text(620, 36, 'relative to you: 120 km/h, flashing past', 't e', 'end', 12)
-    f.text(620, 216, 'relative to you: 10 km/h, creeping past', 't e', 'end', 12)
-    f.text(20, 36, 'speeds relative to the track', 't m', 'start', 12)
+    f = Fig(640, 370, 'Three Mumbai local trains. Track-frame arrows use the same speed scale: an oncoming train 60 km/h left, your train 60 km/h right, and a faster train 70 km/h right. In your frame the oncoming train approaches at 120 km/h and the faster train gains at 10 km/h.')
+    f.text(24,28,'What the platform sees', 't b',size=16)
+    f.text(440,28,'What you see', 't b',size=16)
+    f.line(420,42,420,340,'ln r')
+    rows=[(94,220,-90,'an oncoming local','120 km/h','approaching you'),
+          (194,65,90,'your train','0 km/h','you are at rest here'),
+          (294,130,105,'a faster local','10 km/h','gaining on you')]
+    for y,x,dx,label,rel,note in rows:
+        f.line(22,y+44,398,y+44,'ln m')
+        f.line(22,y+48,398,y+48,'ln r')
+        f.train(x,y,170,36)
+        f.text(24,y-36,label,'t b',size=13)
+        ax=x-7 if dx<0 else x+175
+        if dx>0: ax=min(ax,290)
+        f.vector(ax,y-14,dx,0)
+        f.text(ax+dx/2,y-26,'70 km/h' if dx==105 else '60 km/h','t e','middle',13)
+        f.text(446,y+5,rel,'t e b',size=23)
+        f.text(446,y+28,note,'t m',size=13)
+    f.text(320,363,'Relative velocity = the other train’s velocity − your velocity.','t','middle',14)
     return f.svg()

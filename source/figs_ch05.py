@@ -66,7 +66,8 @@ def c5_moon_fall():
     f.line(ox, my, ox, oy, 'ln m')
     f.line(ox - 6, my, ox + 6, my, 'ln m'); f.line(ox - 6, oy, ox + 6, oy, 'ln m')
     f.lines(ox + 10, (my + oy) / 2 - 8, ['the gap is the fall:', '4.9 m after one minute'], 't', 'start', 12)
-    f.force(mx + 30, my + 40, -22, 42, 'pull of Earth', 12)
+    f.force(mx, my + 13, 0, 58)
+    f.text(mx + 10, my + 74, 'pull of Earth', 't p b', 'start', 12)
     ax, ay = 50, 150
     f.circle(ax, ay, 8, 'fill-ink')
     f.line(ax, ay + 12, ax, ay + 92, 'ln dash')

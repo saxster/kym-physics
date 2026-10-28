@@ -49,10 +49,10 @@ def s_clay_dents():
 def s_energy_bars():
     f = Fig(640, 340, 'Four stacked bars of equal total height for a dropped ball: at the top all gravitational; halfway '
                       'down half gravitational and half kinetic; at the floor all kinetic; at the top of the first bounce '
-                      '69 units gravitational and 31 units thermal and sound. A dashed line marks the unchanging total.')
+                      '69 units gravitational and 31 units spread into the surroundings through heating and sound. A dashed line marks the unchanging total.')
     cols = [('at the top', [100, 0, 0]), ('halfway down', [50, 50, 0]),
             ('at the floor', [0, 100, 0]), ('top of first bounce', [69, 0, 31])]
-    names = ['gravitational', 'kinetic', 'thermal + sound']
+    names = ['gravitational', 'kinetic', 'spread out']
     fills = ['bar-e', 'bar-p', 'bar-n']
     y0, scale, w = 262, 1.6, 100
     for k, (title, vals) in enumerate(cols):
@@ -65,10 +65,10 @@ def s_energy_bars():
             f.rect(x, y - hgt, w, hgt, fill, rx=0)
             f.rect(x, y - hgt, w, hgt, 'ln', rx=0, extra='fill="none"')
             if hgt >= 34:
-                f.text(x + w / 2, y - hgt / 2 - 2, name, 't', 'middle', 12)
-                f.text(x + w / 2, y - hgt / 2 + 13, str(v), 't b', 'middle', 12)
+                f.text(x + w / 2, y - hgt / 2 - 2, name, 't bar-label', 'middle', 12)
+                f.text(x + w / 2, y - hgt / 2 + 13, str(v), 't b bar-label', 'middle', 12)
             else:
-                f.text(x + w / 2, y - hgt / 2 + 4, f'{name} {v}', 't', 'middle', 12)
+                f.text(x + w / 2, y - hgt / 2 + 4, f'{name} {v}', 't bar-label', 'middle', 12)
             y -= hgt
         f.text(x + w / 2, y0 + 20, title, 't b', 'middle', 13)
     f.line(40, y0 - 100 * scale, 610, y0 - 100 * scale, 'ln dash')
@@ -294,24 +294,42 @@ def s_vectors():
 # ---------------------------------------------------------------- si-units
 @figure
 def s_unit_chain():
-    f = Fig(640, 230, 'Four boxes joined by arrows: the newton, the force that gives one kilogram an acceleration of one '
-                      'metre per second squared; the joule, one newton pushed through one metre; the watt, one joule every '
-                      'second; and the kilowatt-hour, a thousand watts for an hour, which is 3.6 million joules.')
-    boxes = [('newton (N)', ['1 kg gaining 1 m/s', 'of speed each second', 'a 1 kg bag weighs 9.8 N']),
-             ('joule (J)', ['1 N pushed through 1 m', 'lifting 1 kg by 10 cm', 'takes about 1 J']),
-             ('watt (W)', ['1 J every second', 'a 60 W bulb moves', '60 J each second']),
-             ('kilowatt-hour (kWh)', ['1000 W for 3600 s', '= 3,600,000 J', 'one “unit” on the bill'])]
-    bw, bh, gap = 146, 120, 12
-    x = 9
-    for i, (title, rows) in enumerate(boxes):
-        f.rect(x, 40, bw, bh, 'plate', rx=8)
-        f.text(x + bw / 2, 64, title, 't b', 'middle', 13)
-        f.lines(x + bw / 2, 90, rows, 't m', 'middle', 12, lh=1.4)
-        if i < 3:
-            f.arrow(x + bw + 1, 100, x + bw + gap - 1, 100, 'ink')
-        x += bw + gap
-    f.text(320, 190, 'each unit is built from the one before it, and every one of them is built, in the end,', 't m', 'middle', 12)
-    f.text(320, 208, 'from the metre, the kilogram and the second', 't m', 'middle', 12)
+    f = Fig(640, 350, 'Four different quantities shown physically. A newton is force: 1 N accelerates 1 kg at 1 metre per second squared. A joule is energy transferred: about 1 J lifts 1 kg by 10 cm near Earth. A watt is rate: 1 J every second. A kilowatt-hour is an amount of energy: 1000 W for 3600 seconds equals 3.6 million J.')
+    headers=[('newton (N)','a force'),('joule (J)','energy transferred'),('watt (W)','energy each second'),('kilowatt-hour','an amount of energy')]
+    for i,(name,kind) in enumerate(headers):
+        cx=80+160*i
+        if i: f.line(160*i,20,160*i,310,'ln r')
+        f.text(cx,33,name,'t b','middle',15)
+        f.text(cx,57,kind,'t m','middle',12)
+    f.cart(49,151,75,20,label='1 kg')
+    f.ground(26,190,112)
+    f.force(14,160,30,0)
+    f.text(28,144,'1 N','t p b','middle',13)
+    f.vector(62,106,46,0)
+    f.text(84,89,'1 m/s²','t e','middle',13)
+    f.lines(80,232,['1 kg gains 1 m/s','of speed each second.'],'t','middle',12,lh=1.6)
+    # Lift, with the displacement bracket attached to the mass's two positions.
+    f.mass_block(217,166,45,32,'1 kg',12)
+    f.rect(217,104,45,32,'ln m dash',rx=3)
+    f.arrow(240,159,240,137,'ink')
+    f.path('M276,120 L284,120 L284,182 L276,182','ln m')
+    f.text(294,154,'10','t m',size=12)
+    f.text(294,170,'cm','t m',size=12)
+    f.lines(240,232,['≈ 1 J lifts 1 kg','through 10 cm.'],'t','middle',12,lh=1.6)
+    # An amount per time, rather than an arrow that turns joules into watts.
+    f.circle(400,147,36,'block')
+    f.line(400,147,400,122,'ln')
+    f.line(400,147,419,155,'ln')
+    f.text(400,111,'1 s','t b','middle',13)
+    f.text(400,199,'1 J each tick','t e b','middle',13)
+    f.lines(400,232,['1 W transfers','1 J every second.'],'t','middle',12,lh=1.6)
+    # A heater is recognisable by its coil. This is accounting, not a build instruction.
+    f.rect(522,115,76,77,'block',rx=5)
+    f.spring(535,147,585,147,coils=5,width=12,cls='ln nn')
+    f.text(560,179,'1,000 W','t b','middle',13)
+    f.lines(560,232,['run for 1 hour:','3,600,000 J'],'t','middle',12,lh=1.6)
+    f.text(320,310,'Force, energy and rate answer different questions.','t b','middle',15)
+    f.text(320,337,'All these units are built from metres, kilograms and seconds.','t m','middle',13)
     return f.svg()
 
 
@@ -359,30 +377,36 @@ def s_engine_fall():
 # ---------------------------------------------------------------- proportion
 @figure
 def s_torch_patch():
-    f = Fig(640, 320, 'A torch on the left shines on three walls at one, two and three metres. The lit patch is one square '
-                      'at one metre, four squares at two metres and nine squares at three metres: the same light spread '
-                      'over four and then nine times the area.')
-    tx, ty = 50, 170
-    f.rect(tx - 30, ty - 10, 36, 20, 'block', rx=4)
-    f.path(f'M{tx + 6},{ty - 14} L{tx + 18},{ty - 18} L{tx + 18},{ty + 18} L{tx + 6},{ty + 14} Z', 'plate')
-    f.text(tx - 12, ty + 40, 'torch', 't m', 'middle', 12)
-    unit = 28
-    walls = [(1, 200, 'at 1 m: 1 square', 'full brightness'),
-             (2, 370, 'at 2 m: 4 squares', 'each ¼ as bright'),
-             (3, 580, 'at 3 m: 9 squares', 'each ⅑ as bright')]
-    for n, wx, lab, sub in walls:
-        half = n * unit / 2
-        f.line(wx, 40, wx, 300, 'ln m')
-        f.rect(wx - 4, ty - half, 4, 2 * half, 'wash-p', rx=0)
+    """Face-on patches make the inverse-square law visible as countable equal-area squares."""
+    f = Fig(640, 390, 'The same spreading beam meets a screen at one, two or three metres. Seen face-on, '
+                      'the lit patches are one by one, two by two and three by three equal squares: areas of '
+                      'one, four and nine squares. The same light is shared over each whole patch, so one '
+                      'square receives one, one quarter or one ninth as much light. A small side view shows '
+                      'the common source and the increasing beam width. This is an ideal spreading beam.')
+    f.text(320, 25, 'The same light, shared over more squares', 't b', 'middle', 17)
+    cell, cy = 34, 133
+    for cx, n, share in ((108, 1, 'all the light'), (320, 2, '¼ of the light'), (532, 3, '⅑ of the light')):
+        f.text(cx, 58, f'{n} m from the source', 't b', 'middle', 15)
+        side = n * cell
+        x, y = cx - side / 2, cy - side / 2
+        f.rect(x, y, side, side, 'bar-n', rx=0, extra=f'opacity="{0.8 / (n * n):.3f}"')
         for k in range(n + 1):
-            yy = ty - half + k * unit
-            f.line(wx - 4, yy, wx, yy, 'ln')
-        f.line(wx - 4, ty - half, wx - 4, ty + half, 'ln')
-        # rays from the torch lens to the patch edges
-        f.ray(tx + 18, ty - 18, wx - 4, ty - half, chevrons=1, cls='ray')
-        f.ray(tx + 18, ty + 18, wx - 4, ty + half, chevrons=1, cls='ray')
-        f.text(wx - 10, 56, lab, 't b', 'end', 12)
-        f.text(wx - 10, 72, sub, 't m', 'end', 12)
-        f.text(wx - 10, 290, f'{n} m from the torch', 't m', 'end', 12)
-    f.text(320, 310, 'the patch is drawn edge-on; seen face-on it is 1 × 1, 2 × 2 and 3 × 3 squares', 't m', 'middle', 12)
+            f.line(x + k * cell, y, x + k * cell, y + side, 'ln nn')
+            f.line(x, y + k * cell, x + side, y + k * cell, 'ln nn')
+        f.text(cx, 209, f'{n} × {n} = {n * n} square' + ('s' if n > 1 else ''), 't b', 'middle', 15)
+        f.text(cx, 234, share + ' in each square', 't nn', 'middle', 13)
+    f.line(24, 254, 616, 254, 'ln r')
+    # A separate side view establishes distance and the common divergence angle;
+    # the three screens are alternative placements, not opaque walls in sequence.
+    sx, sy, dx = 94, 315, 150
+    f.rect(sx - 48, sy - 9, 32, 18, 'block', rx=4)
+    f.path(f'M{sx - 16},{sy - 9} L{sx - 4},{sy - 14} L{sx - 4},{sy + 14} L{sx - 16},{sy + 9} Z', 'plate')
+    for sign in (-1, 1):
+        f.ray(sx, sy, sx + 3 * dx, sy + sign * 3 * 11, chevrons=2)
+    for n in (1, 2, 3):
+        x = sx + n * dx
+        f.line(x, sy - n * 11, x, sy + n * 11, 'ln m dash')
+        f.text(x, 376, f'{n} m', 't m', 'middle', 13)
+    f.text(30, 376, 'side view', 't m', 'start', 12)
+    f.text(320, 275, 'Move one screen along a spreading beam; view its patch face-on above.', 't m', 'middle', 12)
     return f.svg()

@@ -1,12 +1,13 @@
 // 9.7 Doppler effect: moving horn past a platform listener, ring arrival times, gauge, and constant-gain Web Audio.
 import { Live } from './core.js';
+import { sampledWavefronts, SOUND_SPEED_MS, CREST_STRIDE } from './doppler_model.mjs';
 
 Live.register('doppler', (stage, params, api) => {
   const c = api.colors();
   const W = 640, H = 300;
   const k = api.canvas(W, H, 'A train horn moving along a track past a listener, emitting circular sound wavefronts');
 
-  const C_SOUND = 348.7; // m/s at 30 °C (CP 17.2)
+  const C_SOUND = SOUND_SPEED_MS; // m/s at 30 °C (CP 17.2)
   let speedKmh = 80;     // km/h (default 80 km/h)
   let hornHz = 300;      // Hz (default 300 Hz)
 
@@ -17,9 +18,11 @@ Live.register('doppler', (stage, params, api) => {
   const LISTENER_X_M = 0;
   const LISTENER_Y_M = 1.4; // 1.4 m from track centreline
 
-  // Visual simulation time (slowed 10x so rings and train can be watched comfortably)
-  // Audio pass time runs at real-time speed during a horn pass (~3.6 s for the pass)
-  let visT = 1.25; // start with train approaching at x = -22 m with rings already spread
+  // Physical clock: silent demonstration advances at one tenth real time.
+  // A requested audio pass advances the same geometry at real time, matching the
+  // actual-frequency horn. Every crest keeps its fixed emission point in the air.
+  let visT = 1.25; // physical seconds: the train begins near -22 m at 80 km/h
+  let sourceStartXM = -50;
   let soundActive = false;
   let audioPassT = 0;
   let voice = null;
@@ -55,15 +58,15 @@ Live.register('doppler', (stage, params, api) => {
   }
 
   function trainPosM() {
-    const vMs = speedKmh / 3.6;
-    if (soundActive) {
-      // Real-time pass from -40 m to +40 m
-      return -40 + vMs * audioPassT;
-    }
-    // Slowed 10x visual loop from -50 m to +50 m
-    const span = 100;
-    const d = ((visT * (vMs / 10)) % span);
-    return -50 + d;
+    return sourceStartXM + (speedKmh / 3.6) * visT;
+  }
+
+  function restartAtCurrentPosition() {
+    // A slider creates a new constant-speed/note case. Clear its old emission
+    // history rather than relabelling existing crests with the new parameters.
+    sourceStartXM = trainPosM();
+    visT = 0;
+    audioPassT = 0;
   }
 
   function stopHorn() {
@@ -83,6 +86,7 @@ Live.register('doppler', (stage, params, api) => {
     min: 0, max: 120, step: 5, value: speedKmh,
     fmt: (v) => `${v} km/h`,
     onInput: (v) => {
+      restartAtCurrentPosition();
       speedKmh = v;
       drawFrame(0);
     },
@@ -93,6 +97,7 @@ Live.register('doppler', (stage, params, api) => {
     min: 200, max: 500, step: 10, value: hornHz,
     fmt: (v) => `${v} Hz`,
     onInput: (v) => {
+      restartAtCurrentPosition();
       hornHz = v;
       drawFrame(0);
     },
@@ -105,6 +110,10 @@ Live.register('doppler', (stage, params, api) => {
     } else {
       soundActive = true;
       audioPassT = 0;
+      visT = 0;
+      sourceStartXM = -40;
+      // Asking to hear the pass also starts it if the reader paused the view.
+      if (playBtn?.getAttribute('aria-pressed') !== 'true') playBtn?.click();
       hornBtn.textContent = 'Stop the horn';
       hornBtn.setAttribute('aria-pressed', 'true');
       const vMs = speedKmh / 3.6;
@@ -115,18 +124,32 @@ Live.register('doppler', (stage, params, api) => {
   });
 
   api.onHide(stopHorn);
+  // The runtime pauses its clock at dt=0 but does not stop a sustained tone.
+  // Stop this widget's horn whenever Pause or Still mode stops the clock.
+  const playBtn = stage.parentElement.querySelector('.live-play');
+  const pauseObserver = new MutationObserver(() => {
+    if (soundActive && playBtn?.getAttribute('aria-pressed') === 'false') {
+      stopHorn();
+      drawFrame(0);
+    }
+  });
+  if (playBtn) pauseObserver.observe(playBtn, { attributes: true, attributeFilter: ['aria-pressed'] });
+  api.onCleanup(() => pauseObserver.disconnect());
   const say = api.readout();
 
   function drawFrame(dt) {
     const vMs = speedKmh / 3.6;
     if (dt > 0) {
-      visT += dt;
       if (soundActive) {
         audioPassT += dt;
-        const xM = -40 + vMs * audioPassT;
+        visT = audioPassT;
+        const xM = trainPosM();
         const fObsNow = computeObservedHzAt(xM, vMs, hornHz);
         if (voice) voice.setFreq(fObsNow);
         if (xM > 45 || audioPassT > 8) stopHorn();
+      } else {
+        visT += dt / 10;
+        if (trainPosM() > 50) { sourceStartXM = -50; visT = 0; }
       }
     }
 
@@ -155,21 +178,21 @@ Live.register('doppler', (stage, params, api) => {
       ctx.stroke();
     }
 
-    // Draw spreading wavefront rings (real ratio: horn moves at vMs, rings spread at C_SOUND in the same scale)
-    // Emit one visual ring every dT_ring seconds of physical time so rings are spaced ~14 m apart at rest
-    const dTRing = 14 / (C_SOUND * (hornHz / 300));
-    const nRings = 16;
-    for (let i = 1; i <= nRings; i++) {
-      const agePhys = i * dTRing;
-      const xEmitM = xNowM - vMs * agePhys;
-      const radiusM = C_SOUND * agePhys;
-      const cx = W / 2 + xEmitM * SCALE;
-      const rPx = radiusM * SCALE;
-      if (rPx > W * 1.1) continue;
+    // Every twelfth crest is sampled so actual sound wavelengths do not turn
+    // the diagram into a solid blur. Emission centres stay fixed; only radii
+    // grow, at c times the same physical clock used for the moving source.
+    const maxRadiusM = 220;
+    const fronts = sampledWavefronts({
+      timeS: visT, sourceStartXM, sourceSpeedMs: vMs, frequencyHz: hornHz, maxRadiusM,
+    });
+    for (const front of fronts) {
+      if (front.radiusM === 0) continue;
+      const cx = W / 2 + front.centreXM * SCALE;
+      const rPx = front.radiusM * SCALE;
       ctx.beginPath();
       ctx.arc(cx, TRACK_Y, rPx, 0, Math.PI * 2);
       ctx.strokeStyle = c.electron;
-      ctx.globalAlpha = Math.max(0.12, 0.72 * (1 - i / (nRings + 2)));
+      ctx.globalAlpha = Math.max(0.12, 0.72 * (1 - front.radiusM / maxRadiusM));
       ctx.lineWidth = 1.6;
       ctx.stroke();
     }
@@ -189,6 +212,17 @@ Live.register('doppler', (stage, params, api) => {
     if (speedKmh > 0) {
       api.draw.arrow(ctx, trainX + 26, TRACK_Y, trainX + 52, TRACK_Y, c.proton, 2.2, 7);
     }
+
+    // The small dot is the physical listening point, 1.4 m off the track.
+    // A leader offsets the person below it so the horn and rings stay visible.
+    const listeningY = TRACK_Y + LISTENER_Y_M * SCALE;
+    ctx.strokeStyle = c.muted;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(W / 2, listeningY); ctx.lineTo(W / 2, TRACK_Y + 33); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(W / 2, listeningY, 3, 0, Math.PI * 2);
+    ctx.fillStyle = c.green; ctx.fill();
 
     // Draw listener on the platform at bottom centre
     const listX = W / 2;
@@ -249,7 +283,10 @@ Live.register('doppler', (stage, params, api) => {
     say(
       `Train at ${speedKmh} km/h, horn ${hornHz} Hz. You hear ${fObsRound} Hz: ${dirWord} ` +
       `(${fApp} Hz approaching, ${fRec} Hz receding). The driver hears ${hornHz} Hz. ` +
-      `Rings ahead are ${ratio}× closer than rings behind (sound in real time, drawing slowed 10×).`
+      `Ahead/behind spacing ratio: ${ratio} (behind spacing ÷ ahead spacing). ` +
+      `Each drawn ring samples every ${CREST_STRIDE}th crest; actual sound has ${hornHz} crests per second. ` +
+      (soundActive ? 'Sound and drawing run in real time during this pass. ' : 'The silent drawing runs 10× slower. ') +
+      'The listening point is 1.4 m from the track; the person is drawn lower for clarity.'
     );
   }
 

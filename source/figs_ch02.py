@@ -23,28 +23,25 @@ def _person(f, x, yf, h=92, lean=0, cls='ln'):
 
 @figure
 def c2_book_slide():
-    f = Fig(640, 240, 'Three snapshots of a book shoved across a table: pushed and speeding up; sliding and slowing, '
-                      'with a dashed backward arrow and a question mark asking what pushes it back; and stopped.')
-    f.ground(20, 170, 600)
-    # 1: pushed
-    f.rect(44, 148, 26, 22, 'plate', rx=6)
-    f.text(57, 195, 'hand', 't m', 'middle', 12)
-    f.mass_block(74, 140, 70, 30)
-    f.force(70, 155, 52, 0)
-    f.text(126, 195, 'push from hand', 't p b', 'middle', 12)
-    f.vector(109, 118, 62, 0, 'speeding up', 13)
-    f.text(109, 220, '1  pushed', 't b', 'middle', 13)
-    # 2: let go, slowing
-    f.mass_block(290, 140, 70, 30)
-    f.vector(325, 118, 32, 0, 'slowing', 13)
-    f.arrow(290, 155, 240, 155, 'muted', dash=True)
-    f.text(229, 160, '?', 't m', 'middle', 18, 700)
-    f.text(325, 195, 'what pushes it back?', 't m', 'middle', 12)
-    f.text(325, 220, '2  let go: slowing', 't b', 'middle', 13)
-    # 3: stopped
-    f.mass_block(500, 140, 70, 30)
-    f.text(535, 124, 'v = 0', 't e', 'middle', 13)
-    f.text(535, 220, '3  stopped', 't b', 'middle', 13)
+    f = Fig(640, 290, 'Three snapshots of a book on a table: pushed by a hand and speeding up; released and slowing, with an unknown backward contact force; and stopped. Page edges identify the same book at each stage. Blue velocity arrows shorten; red arrows are forces.')
+    f.text(24,28,'A shove ends. Motion does not end at once.', 't b',size=17)
+    f.ground(22,184,594)
+    for x,n,title,note in ((72,'1','While you push','the book speeds up'),(292,'2','After you let go','it is still moving'),(510,'3','A little later','it has stopped')):
+        f.book(x,150,76,34)
+        f.text(x+38,222,n+'  '+title,'t b','middle',14)
+        f.text(x+38,244,note,'t m','middle',13)
+    # A recognisable hand touches only in the first snapshot.
+    f.path('M28,174 L28,160 Q29,155 34,157 L45,162 L63,162 Q70,162 70,167 L70,177 L46,181 Z','wash-p')
+    f.path('M28,174 L28,160 Q29,155 34,157 L45,162 L63,162 Q70,162 70,167 L70,177 L46,181','ln')
+    f.force(71,167,62,0)
+    f.vector(82,120,84,0)
+    f.text(110,98,'moving right','t e','middle',13)
+    f.vector(300,120,42,0)
+    f.arrow(291,166,242,166,'muted',dash=True)
+    f.text(235,172,'?','t b','end',20)
+    f.text(330,98,'moving more slowly','t e','middle',13)
+    f.text(548,120,'v = 0','t e b','middle',16)
+    f.text(320,278,'What touches the sliding book and pushes it backwards?','t','middle',14)
     return f.svg()
 
 
