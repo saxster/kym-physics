@@ -1,0 +1,120 @@
+# Chapter 11 — Colour, and what light really is. One entry per numbered section, plus the stories and figures this chapter introduces.
+# Every number in the chapter was recomputed with python3 -I -c (see "computed:" notes).
+"11.1":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 19 notes (n depends on wavelength, usually decreasing with wavelength)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec19/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "25.5 Dispersion: The Rainbow and Prisms", url: "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms", took: "dispersion definition; Table 25.2 (water 1.331 red to 1.342 violet; crown glass 1.512–1.530); sunlight slightly yellow but contains all colours; rainbow path and 'look away from the Sun'; continuous spectrum, seven colours a convention; al-Farisi and Theodoric of Freiberg with water-filled spheres; al-Farisi's camera obscura"}
+    - {book: "Physics", section: "17.2 Applications of Diffraction, Interference, and Coherence", url: "https://openstax.org/books/physics/pages/17-2-applications-of-diffraction-interference-and-coherence", took: "CDs are diffraction gratings (the CD is deliberately not used as the dispersion demo)"}
+  research:
+    - {what: "'white light is pure' misconception", source: "research/misconceptions.md §9", url: ""}
+    - {what: "IGCSE 0625 3.2.4 Dispersion; Cambridge Lower Secondary 8Ps dispersion", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Newton's darkened room, the hole in the shutter, the prism; experimentum crucis; letter of 6 February 1672 (1666 dating is Newton's own)", source: "research/history.md §5", url: "https://en.wikisource.org/wiki/New_Theory_About_Light_and_Colour"}
+  computed:
+    - "45° into water: red (n 1.331) 32.09°, violet (n 1.342) 31.80°, spread 0.29°; Newton aged 23 in 1666 (born 1643, history.md cast table)"
+  figures:
+    - {name: c11_prism, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"11.2":
+  openstax:
+    - {book: "College Physics 2e", section: "26.3 Color and Color Vision", url: "https://openstax.org/books/college-physics-2e/pages/26-3-color-and-color-vision", took: "three cone types; hues from combinations; RGB screen dots; object colour from absorption and reflection; a blue object under red light looks black; 'true colour' is the response to white light; colour constancy"}
+    - {book: "Physics", section: "15.1 The Electromagnetic Spectrum", url: "https://openstax.org/books/physics/pages/15-1-the-electromagnetic-spectrum", took: "additive vs subtractive mixing; cyan + yellow = green; cone ranges 400–500, 450–630, 500–700 nm; pigment primaries magenta, yellow, cyan (the teacher note 'absorb all colours but one' was rejected)"}
+    - {book: "College Physics 2e", section: "25.5 Dispersion: The Rainbow and Prisms", url: "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms", took: "Table 25.2: yellow about 580 nm"}
+    - {book: "College Physics 2e", section: "Ch 26 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/26-conceptual-questions", took: "Q10 (object vanishes under light of another colour), Q11 (colour constancy)"}
+  research:
+    - {what: "'colour is an innate property of the object'; the red-screen banana/leaf demo", source: "IOP Spark and research/misconceptions.md §9", url: "https://spark.iop.org/colour-objects"}
+    - {what: "Cambridge Lower Secondary 8Ps: adding and subtracting colours", source: "research/school-wording.md §2", url: ""}
+  figures:
+    - {name: c11_banana, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"11.3":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 18 (radiation from an oscillating charge)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/lecture-18/", took: "idea: shaken charges re-radiate"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 20 opening review (skylight polarised by scattering, about 90° from the Sun)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/lecture-20/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "27.8 Polarization", url: "https://openstax.org/books/college-physics-2e/pages/27-8-polarization", took: "scattering mechanism (electrons as small antennae); skylight partly polarised; sunglasses-at-the-sky test"}
+    - {book: "College Physics 2e", section: "Ch 27 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions", took: "Q34 (scattering ∝ 1/λ⁴, blue sky), Q35 (red sunsets)"}
+  research:
+    - {what: "blue scattered more because its waves are shorter; sunset reds from the long path", source: "NASA Space Place, Why is the sky blue?", url: "https://spaceplace.nasa.gov/blue-sky/en/"}
+    - {what: "milk-in-water model of the sky (amount of milk unverified)", source: "research/misconceptions.md §9", url: ""}
+  computed:
+    - "(700/450)^4 = 5.86; (450/400)^4 = 1.60; flat-air path ratio 1/sin(elevation): 1, 2.0, 5.8, 11.5 at 90°, 30°, 10°, 5° (geometry only; overestimates near the horizon). UNSOURCED for the fact gate: why the sky is not violet (less violet in sunlight; eye less sensitive to violet)"
+  figures:
+    - {name: c11_sky, origin: ours}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); NASA public domain"
+"11.4":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 19 notes and Brewster's Angle demo (θB + θT = 90°; R = 0 for one polarisation only)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy_of_lecture-19-video/", took: "demo, idea"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 17 notes (polariser, I = I0 cos²θ)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec17/", took: "equation: half at 45°, none at 90°"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 20 notes (reflection coefficient at a surface)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec20/", took: "method for the 2% normal-incidence reflection from water"}
+  openstax:
+    - {book: "College Physics 2e", section: "27.8 Polarization", url: "https://openstax.org/books/college-physics-2e/pages/27-8-polarization", took: "polarisation definition; reflected light polarised parallel to the surface; Polaroid sunglasses pass vertical; Brewster's law tan θ = n, Ex 27.9 (53.1° for water); 'bright and dim, but not completely black'; LCD screens are based on polarisation"}
+    - {book: "Physics", section: "Ch 15 Concept Items", url: "https://openstax.org/books/physics/pages/15-concept-items", took: "item 7: pond glare brightens when the glasses are rotated (the :::check)"}
+    - {book: "College Physics 2e", section: "Ch 27 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions", took: "Q31: sound in air cannot be polarised (the :::recall 9)"}
+  research:
+    - {what: "Rayleigh said the sea reflects the sky; Raman's Nicol prism; test polarised glasses on a phone screen first", source: "research/misconceptions.md §9 (Optica OPN; The Wire)", url: "https://www.optica-opn.org/home/articles/volume_20/issue_3/features/c_v_raman_and_the_raman_effect/"}
+    - {what: "Feynman's Brazil class could recite Brewster's angle but not see it in the light off the bay (cite only)", source: "BOOKPLAN §2, citing Surely You're Joking, Mr. Feynman!, 'O Americano, Outra Vez!'", url: ""}
+  history:
+    - {what: "Raman on the SS Narkunda, Mediterranean, September 1921; letter to Nature written on board and posted at Bombay", source: "research/history.md §5", url: "https://www.aps.org/apsnews/2009/02/this-month-in-physics-history"}
+  computed:
+    - "atan(1.333) = 53.1°, 90 − 53.1 = 36.9° below the horizontal; cos²45° = 0.50, cos²90° = 0; normal-incidence reflection ((1−1.333)/(1+1.333))² = 2.0%. UNSOURCED for the fact gate: water faintly absorbs red light (the modern second half of the sea's colour)"
+  figures:
+    - {name: c11_brewster, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"11.5":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 20 notes (interference; soap-film thickness estimate; phase flip)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec20/", took: "idea, numbers: 100 nm film bright at 600 nm; very thin film goes dark"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 22 (Huygens principle, diffraction; single-slit laser demo)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/lecture-22/", took: "sequence"}
+  openstax:
+    - {book: "College Physics 2e", section: "27.1 The Wave Aspect of Light: Interference", url: "https://openstax.org/books/college-physics-2e/pages/27-1-the-wave-aspect-of-light-interference", took: "'the most certain indication of a wave is interference'"}
+    - {book: "College Physics 2e", section: "27.2 Huygens's Principle: Diffraction", url: "https://openstax.org/books/college-physics-2e/pages/27-2-huygenss-principle-diffraction", took: "every point on a wavefront is a source; bending round edges"}
+    - {book: "College Physics 2e", section: "27.3 Young's Double Slit Experiment", url: "https://openstax.org/books/college-physics-2e/pages/27-3-youngs-double-slit-experiment", took: "Newton's authority kept the particle view; d sinθ = mλ (the '1801 double slit' framing was rejected in favour of history.md's 1803 card)"}
+    - {book: "College Physics 2e", section: "27.7 Thin Film Interference", url: "https://openstax.org/books/college-physics-2e/pages/27-7-thin-film-interference", took: "soap bubbles and oil films; two-surface interference"}
+    - {book: "Physics", section: "17.2 Applications of Diffraction, Interference, and Coherence", url: "https://openstax.org/books/physics/pages/17-2-applications-of-diffraction-interference-and-coherence", took: "CD tracks as a diffraction grating"}
+    - {book: "College Physics 2e", section: "Ch 27 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions", took: "Q3 (sound bends round corners, light hardly), Q5 (fuzzy shadows are mostly not diffraction), Q15 (grating order reversed from a prism), Q17 (feather colour without pigment), Q27 (bubble goes black before popping)"}
+  research:
+    - {what: "Poisson's 'absurd' spot found by Arago; Fresnel's 1819 prize; Poisson never convinced", source: "Physics World, The spot in the shadow (cite only)", url: "https://physicsworld.com/a/the-spot-in-the-shadow/"}
+    - {what: "Cambridge Lower Secondary 9Ps lists interference; IGCSE 0625 light is ray-based", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Young's card, about 1/30 inch wide, edge-on in a sunbeam, 24 November 1803; the double slit as a later tidy-up", source: "research/history.md §5", url: "https://en.wikipedia.org/wiki/Young%27s_interference_experiment"}
+    - {what: "Paris 1818–19: Fresnel, Poisson, Arago; Maraldi had seen the spot earlier", source: "research/history.md §5", url: "https://www.britannica.com/science/Poissons-spot"}
+  computed:
+    - "1/30 inch = 0.85 mm; fringe spacing λL/d with 550 nm, 0.5 mm, 1 m = 1.1 mm (assumed values); 4×100 nm×1.5/(2N−1) = 600, 200, 120 nm; a 1 m doorway is 1/500e-9 = 2 million wavelengths across; sound at 340 m/s has wavelengths from tens of cm (34 cm, grounding/ch09) to a few metres"
+  figures:
+    - {name: c11_young, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"11.6":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 12 (EM wave equation; wave speed equals c)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-ii-electromagnetic-waves/lecture-12/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "bands of the spectrum; ultraviolet below 400 nm"}
+    - {book: "Astronomy 2e", section: "5.2 The Electromagnetic Spectrum", url: "https://openstax.org/books/astronomy-2e/pages/5-2-the-electromagnetic-spectrum", took: "visible about 400–700 nm; order of the spectrum"}
+    - {book: "Astronomy 2e", section: "5.1 The Behavior of Light", url: "https://openstax.org/books/astronomy-2e/pages/5-1-the-behavior-of-light", took: "Maxwell: computed EM speed equals the speed of light; c = fλ"}
+    - {book: "Physics", section: "15.1 The Electromagnetic Spectrum", url: "https://openstax.org/books/physics/pages/15-1-the-electromagnetic-spectrum", took: "yellow light about 600 nm"}
+    - {book: "Physics", section: "Ch 15 Concept Items", url: "https://openstax.org/books/physics/pages/15-concept-items", took: "items 3–4: where regions sit on the spectrum (the :::check)"}
+  research:
+    - {what: "plaque wording: a fraction of the scattered light is of a different colour, dependent on material property; 28 February 1928", source: "ETHW, Milestones: Raman Effect", url: "https://ethw.org/Milestones:Raman_Effect"}
+    - {what: "Maxwell 1865; J. C. Bose's millimetre waves; GMRT on the Ladder of Light", source: "BOOKPLAN §3 and §5 (Ch 13.6)", url: ""}
+  history:
+    - {what: "Raman and K. S. Krishnan, IACS Calcutta, February 1928; Krishnan's diary 5–28 February; 'Raman-Krishnan effect' on 9 February; National Science Day; 1930 Nobel citation as quoted", source: "research/history.md §5", url: "https://collections.archives.ncbs.res.in/handle/42412/4108"}
+    - {what: "J. C. Bose's millimetre-wave experiments in Calcutta, 1894–96; GMRT near Pune", source: "research/history.md cast table and §9", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
+  computed:
+    - "299792458 / 600e-9 = 5.0e14 Hz (five hundred trillion per second). UNSOURCED for the fact gate: the mechanism (molecules take or give a fixed bit of the light's energy); Raman spectroscopy used to identify substances; Bose's '5 mm' figure is from BOOKPLAN only (60 GHz)"
+  figures:
+    - {name: c11_raman, origin: ours}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); ETHW cite only"
+"story:prism":
+  history:
+    - {what: "Newton's dark room and the experimentum crucis; the 1672 letter", source: "research/history.md §5", url: "https://en.wikisource.org/wiki/New_Theory_About_Light_and_Colour"}
+"story:blue-sky":
+  openstax:
+    - {book: "College Physics 2e", section: "Ch 27 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions", took: "Q34–35: 1/λ⁴ scattering, blue sky, red sunset"}
+  research:
+    - {what: "blue scatters more; sunsets from the long path", source: "NASA Space Place", url: "https://spaceplace.nasa.gov/blue-sky/en/"}
+"story:raman":
+  history:
+    - {what: "the Narkunda voyage, September 1921, letter posted at Bombay; Raman and Krishnan, February 1928; Krishnan's diary; Nobel 1930", source: "research/history.md §5", url: "https://publicdomainreview.org/collection/raman-sea/"}
+"story:light-wave":
+  history:
+    - {what: "Young's card, 24 November 1803; Fresnel, Poisson and Arago, 1818–19; Maraldi", source: "research/history.md §5; Physics World (cite only)", url: "https://physicsworld.com/a/the-spot-in-the-shadow/"}

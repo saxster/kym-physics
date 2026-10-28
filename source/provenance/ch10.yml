@@ -1,0 +1,111 @@
+# Chapter 10 — Light and seeing. One entry per numbered section, plus the stories and figures this chapter introduces.
+# Every number in the chapter was recomputed with python3 -I -c (see "computed:" notes).
+"10.1":
+  openstax:
+    - {book: "College Physics 2e", section: "26.1 Physics of the Eye", url: "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye", took: "Euclid and Ptolemy vs Ibn al-Haytham; the eye's 10^10 brightness range"}
+    - {book: "College Physics 2e", section: "25.2 The Law of Reflection", url: "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection", took: "diffuse reflection; why a page is seen from any angle"}
+    - {book: "College Physics 2e", section: "Ch 26 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/26-conceptual-questions", took: "Q13: rods work in light about 1000× dimmer than cones need"}
+    - {book: "College Physics 2e", section: "Ch 25 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions", took: "Q1 face powder (the :::check)"}
+  research:
+    - {what: "extramission held by 86% of students (drawing task) and 69% of adults; corrections fade in 3–5 months", source: "Winer et al. 2002, via research/misconceptions.md §9", url: "https://Www.Gwern.net/doc/psychology/cognitive-bias/illusion-of-depth/extramission/2002-winer.pdf"}
+    - {what: "windowless-bathroom and torch-through-mist demonstrations", source: "research/misconceptions.md §9", url: ""}
+  history:
+    - {what: "Ibn al-Haytham in Cairo c. 1011: bright light hurts the eyes, every point sends its own light, the dark room; feigned-madness story told as HEDGE", source: "research/history.md §5", url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"}
+  figures:
+    - {name: c10_seeing, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"10.2":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 16 (geometrical optics from waves)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-ii-electromagnetic-waves/lecture-16/", took: "idea: rays follow from waves when the wavelength is small"}
+  openstax:
+    - {book: "College Physics 2e", section: "25.1 The Ray Aspect of Light", url: "https://openstax.org/books/college-physics-2e/pages/25-1-the-ray-aspect-of-light", took: "ray definition; rays valid for objects much larger than the wavelength"}
+    - {book: "University Physics Volume 3", section: "1.1 The Propagation of Light", url: "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light", took: "ray model and its limits"}
+    - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "visible range about 400–700 nm"}
+    - {book: "Physics", section: "16.3 Lenses", url: "https://openstax.org/books/physics/pages/16-3-lenses", took: "eye-safety line: never point at or look at the Sun"}
+    - {book: "College Physics 2e", section: "Ch 27 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/27-conceptual-questions", took: "Q5: fuzzy shadow edges come from the Sun's width"}
+  research:
+    - {what: "school bridge: a ray is a pencil line, not a thing", source: "research/school-wording.md §6", url: ""}
+  history:
+    - {what: "Ibn al-Haytham described dark-room (camera obscura) images in the Book of Optics", source: "research/history.md §5", url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"}
+  computed:
+    - "pinhole image by similar triangles: 1 m window at 3 m, 30 cm box -> 10.0 cm (python3 -I -c 'print(1*0.30/3*100)'); the pinhole camera itself has no OpenStax/OCW source and is reasoned from straight-line travel"
+  figures:
+    - {name: c10_pinhole, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"10.3":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 16 notes (reflection law from waves)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec16/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "25.2 The Law of Reflection", url: "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection", took: "law of reflection; image as far behind as the object is in front (1.0 m -> 2.0 m); images can be photographed"}
+    - {book: "Physics", section: "16.1 Reflection", url: "https://openstax.org/books/physics/pages/16-1-reflection", took: "virtual image definition; spoon snap lab"}
+    - {book: "College Physics 2e", section: "Ch 25 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions", took: "Q20 (photographing a virtual image), Q28 (half-height mirror, independent of distance)"}
+  research:
+    - {what: "students place the image on the mirror surface", source: "IOP Spark via research/misconceptions.md §9", url: "https://spark.iop.org/some-students-believe-image-mirror-mirror-rather-behind-it"}
+    - {what: "IGCSE 0625 3.2.1 wording: normal, angle of incidence", source: "research/school-wording.md §1", url: ""}
+  computed:
+    - "half-height mirror for a 1.50 m person: 0.75 m; image distances 1.5 m -> 3.0 m, 2.0 m -> 4.0 m"
+  figures:
+    - {name: c10_mirror, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"10.4":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 16 notes (Snell's law from waves)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec16/", took: "idea: the marching-line picture of bending"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Demo: Total Internal Reflection; Demo: Fiber Optic Bundle", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy_of_lecture-17-video/", took: "demo: surface as a mirror from below; fibres trap light"}
+  openstax:
+    - {book: "College Physics 2e", section: "25.3 The Law of Refraction", url: "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction", took: "definition; bending because speed changes; n = c/v >= 1; Table 25.1 (water 1.333, glass 1.52, ice 1.309, diamond 2.419); Ibn Sahl 984; fish seen in two places"}
+    - {book: "College Physics 2e", section: "25.4 Total Internal Reflection", url: "https://openstax.org/books/college-physics-2e/pages/25-4-total-internal-reflection", took: "critical angle"}
+    - {book: "Physics", section: "16.2 Refraction", url: "https://openstax.org/books/physics/pages/16-2-refraction", took: "bent-pencil snap lab"}
+    - {book: "College Physics 2e", section: "Ch 25 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions", took: "Q3 (n never below 1), Q5 (towards/away from the normal), Q6 (shallower-looking water, divers' necks), Q7 (short legs in a pool), Q13 (mirage)"}
+  research:
+    - {what: "Cambridge Lower Secondary 8Ps: refraction in terms of change of speed; avoid 'denser medium'", source: "research/school-wording.md §2", url: ""}
+  computed:
+    - "speed in water 299792458/1.333 = 2.249e8 m/s = 0.75c; Snell air->water 45°->32.0°, 30°->22.0°; critical angle 48.6°; apparent depth looking straight down d/n: 10 cm -> 7.5 cm, 2 m -> 1.5 m (small-angle result, not stated in any source fetched)"
+  figures:
+    - {name: c10_refraction, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"10.5":
+  openstax:
+    - {book: "College Physics 2e", section: "25.6 Image Formation by Lenses", url: "https://openstax.org/books/college-physics-2e/pages/25-6-image-formation-by-lenses", took: "focal point; magnifier focuses sunlight; half a lens gives the same image, fainter"}
+    - {book: "College Physics 2e", section: "26.1 Physics of the Eye", url: "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye", took: "cornea does about two-thirds of the bending; Table 26.1 indices; accommodation; near point 25 cm; dioptres; Ex 26.2 50 D -> 54 D (8%); 'ideal rather than normal'; pupil take-home"}
+    - {book: "College Physics 2e", section: "26.2 Vision Correction", url: "https://openstax.org/books/college-physics-2e/pages/26-2-vision-correction", took: "short and long sight; diverging and converging lenses; glasses do not change the eye"}
+    - {book: "Physics", section: "16.3 Lenses", url: "https://openstax.org/books/physics/pages/16-3-lenses", took: "focal-length snap lab and its Sun warning; 'power' means two things"}
+    - {book: "Physics", section: "Ch 16 Concept Items", url: "https://openstax.org/books/physics/pages/16-concept-items", took: "item 5: watch to Moon, the lens changes shape"}
+    - {book: "College Physics 2e", section: "Ch 26 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/26-conceptual-questions", took: "Q5: blurry underwater, fixed by a mask"}
+  computed:
+    - "1/0.02 m = 50 D; 1/0.25 + 1/0.02 = 54 D; 8% increase; index jump at the cornea 1.38-1.00 = 0.38 in air, 1.38-1.33 = 0.05 in water. The water-drop lens has no source; it is a curved water surface acting as a converging lens (grounding note, 10.5 gaps)"
+  figures:
+    - {name: c10_eye, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"10.6":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 12 notes (1638 Galileo; 1676 Rømer; EM wave speed = c)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec12/", took: "sequence; Galileo 1638"}
+  openstax:
+    - {book: "University Physics Volume 3", section: "1.1 The Propagation of Light", url: "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light", took: "Rømer's method; Fizeau 1849 (3.15e8, 5% high); Foucault 1862 (2.98e8); Michelson to 1926; exact c"}
+    - {book: "College Physics 2e", section: "25.3 The Law of Refraction", url: "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction", took: "Galileo 'extremely fast, perhaps instantaneous'; Rømer's figure about 25% low (used as a check on our 24.4%)"}
+    - {book: "College Physics 2e", section: "25.4 Total Internal Reflection", url: "https://openstax.org/books/college-physics-2e/pages/25-4-total-internal-reflection", took: "corner reflectors left on the Moon (NASA)"}
+    - {book: "Physics", section: "17.2 Applications of Diffraction, Interference, and Coherence", url: "https://openstax.org/books/physics/pages/17-2-applications-of-diffraction-interference-and-coherence", took: "lasers bounced off the Moon's reflectors time the distance"}
+    - {book: "College Physics 2e", section: "Ch 25 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions", took: "Q4: lightning and thunder show only that light is faster than sound"}
+    - {book: "College Physics 2e", section: "17.2 Speed of Sound, Frequency, and Wavelength", url: "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength", took: "speed of sound about 340 m/s in warm air (via grounding/ch09.md)"}
+  research:
+    - {what: "c = 299 792 458 m/s exactly; the metre defined from it (1983)", source: "BIPM, CGPM 1983 Resolution 1", url: "https://www.bipm.org/en/committees/cg/cgpm/17-1983/resolution-1"}
+    - {what: "c exact", source: "NIST CODATA", url: "https://physics.nist.gov/cgi-bin/cuu/Value?c"}
+    - {what: "astronomical unit 149 597 870 700 m", source: "IAU 2012 Resolution B2", url: "https://syrte.obspm.fr/IAU_resolutions/IAUResol_2012_0.html"}
+    - {what: "Moon semimajor axis 384,400 km", source: "NASA Moon Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"}
+  history:
+    - {what: "Rømer 1676: predicted the November eclipse of Io would be about 10 minutes late; gave a time, Huygens did the arithmetic", source: "research/history.md §5", url: "https://www.amnh.org/learn-teach/curriculum-collections/cosmic-horizons-book/ole-roemer-speed-of-light"}
+    - {what: "Rømer's 22 minutes appears in his 1677 letter to Huygens (cite only, BY-SA)", source: "Wikipedia, Rømer's determination of the speed of light", url: "https://en.wikipedia.org/wiki/R%C3%B8mer%27s_determination_of_the_speed_of_light"}
+    - {what: "Fizeau 1849: 720-tooth wheel, mirror about 8.6 km away, about 315,000 km/s", source: "research/history.md §5", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Fizeau/"}
+    - {what: "Galileo's four moons of Jupiter, January 1610", source: "research/history.md §1", url: "https://www.astronomy.com/today-in-the-history-of-astronomy/jan-7-1610-galileo-sees-four-moons-of-jupiter"}
+  computed:
+    - "au/c = 499.0 s = 8.32 min; 2 au/c = 998.0 s = 16.63 min; 22 min -> 2.267e8 m/s, 24.4% low, 22/16.63 = 1.32 (a third too long); Moon one way 384400/299792.458 = 1.282 s, round trip 2.56 s; Fizeau 3.15e8 is 5.1% high; round trip 2×8633 m takes 57.6 µs, so about 12 turns/s (8,633 m is an assumed reading of '8.6 km'); Foucault 2.98e8 within 0.6%; 5 m room 16.7 ns; lightning 6 s × 340 m/s ≈ 2 km, light 2 km in 6.7 µs"
+  figures:
+    - {name: c10_romer, origin: ours}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); BIPM, NIST, IAU and NASA values are public"
+"story:seeing":
+  history:
+    - {what: "Euclid and Ptolemy's eye-rays; Ibn al-Haytham in Cairo; the dark room", source: "research/history.md §5; OpenStax College Physics 2e 26.1", url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"}
+  research:
+    - {what: "86% of students draw rays leaving the eye", source: "Winer et al. 2002, via research/misconceptions.md §9", url: ""}
+"story:speed-of-light":
+  history:
+    - {what: "Rømer 1676 and Huygens's arithmetic; Fizeau's cogwheel 1849", source: "research/history.md §5; OpenStax University Physics Vol. 3, 1.1", url: "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"}
