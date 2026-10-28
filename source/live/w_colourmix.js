@@ -1,5 +1,6 @@
 // 11.2 Additive lights, subtractive paints, and object reflectance under coloured light.
 import { Live } from './core.js';
+import { drawObject, note } from './art_waves.js';
 
 const OBJECTS = [
   { name: 'Banana', refl: [0.9, 0.8, 0.1], desc: 'R .9 G .8 B .1' },
@@ -27,6 +28,7 @@ Live.register('colourmix', (stage, params, api) => {
     s1Lab.textContent = tab === 1 ? 'Cyan paint' : 'Red light';
     s2Lab.textContent = tab === 1 ? 'Magenta paint' : 'Green light';
     s3Lab.textContent = tab === 1 ? 'Yellow paint' : 'Blue light';
+    objectControl.style.display = tab === 2 ? 'flex' : 'none';
     drawFrame();
   });
 
@@ -50,6 +52,15 @@ Live.register('colourmix', (stage, params, api) => {
   const s2Lab = s2.input.previousElementSibling;
   const s3Lab = s3.input.previousElementSibling;
 
+  const objectControl=document.createElement('label');
+  objectControl.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 14px;font:14px var(--sans);color:var(--ink);background:var(--sheet)';
+  objectControl.textContent='Choose an object';objectControl.style.display='none';
+  const objectSelect=document.createElement('select');objectSelect.setAttribute('aria-label','Object under coloured light');
+  objectSelect.style.cssText='font:inherit;min-height:44px;max-width:100%;background:var(--paper);color:var(--ink)';
+  OBJECTS.forEach((ob,i)=>{const o=document.createElement('option');o.value=i;o.textContent=ob.name;objectSelect.append(o);});
+  objectSelect.addEventListener('change',()=>{objIdx=+objectSelect.value;drawFrame();});
+  objectControl.append(objectSelect);stage.append(objectControl);
+  note(stage,'Object colours use an idealised three-channel reflectance model. The drawing shows light arriving and the colour returned to your eye; real materials have richer spectra.');
   // Clicking on the 4 object cards in the Object tab selects that object
   k.cv.addEventListener('pointerdown', (e) => {
     if (tab !== 2) return;
@@ -60,6 +71,7 @@ Live.register('colourmix', (stage, params, api) => {
       const idx = Math.floor((px - 32) / 146);
       if (idx >= 0 && idx < 4) {
         objIdx = idx;
+        objectSelect.value=String(idx);
         drawFrame();
       }
     }
@@ -221,13 +233,8 @@ Live.register('colourmix', (stage, params, api) => {
 
     api.draw.arrow(ctx, 152, 118, 232, 118, rgbCss(Math.max(0.3, lr), Math.max(0.3, lg), Math.max(0.3, lb)), 2.5, 8);
 
-    // Chosen object display
-    ctx.fillStyle = rgbCss(outR, outG, outB);
-    api.draw.roundRect(ctx, 246, 64, 148, 92, 10);
-    ctx.fill();
-    ctx.strokeStyle = '#fbfaf5';
-    ctx.lineWidth = 1.8;
-    ctx.stroke();
+    // Recognisable material silhouettes, coloured by the calculated reflected light.
+    drawObject(ctx,{...c,ink:'#fbfaf5'},objIdx,320,111,52,rgbCss(outR,outG,outB));
     api.draw.text(ctx, ob.name, 320, 52, { size: 13, color: '#fbfaf5', align: 'center', weight: 700 });
     api.draw.text(ctx, `Reflectance ${ob.desc}`, 320, 176, { size: 11, color: '#cfccbf', align: 'center' });
 

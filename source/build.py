@@ -766,6 +766,17 @@ def esbuild_bin():
     return esb
 
 
+def compact_css(css):
+    """Remove stylesheet comments/whitespace without changing CSS values or selectors.
+
+    The document's fixed offline budget should pay for teaching art rather than
+    source formatting. Keep the authoring files readable and use the installed parser.
+    """
+    result = subprocess.run([esbuild_bin(), '--loader=css', '--minify-whitespace', '--legal-comments=none',
+                             '--log-level=warning'], input=css, text=True, capture_output=True, check=True, cwd=ROOT)
+    return result.stdout
+
+
 def iife(entry_src, tag, folder):
     """Bundle a generated entry (a list of imports) into one minified IIFE script."""
     entry = os.path.join(folder, f'.entry_{tag}.js')
@@ -1147,6 +1158,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
         live_js = bundle_live_inline(widgets, tag)
     app_js, app_css = bundle_app(tag, inline_explorers=not site_dir)
     css += '\n' + app_css
+    css = compact_css(css)
     book_data = {
         'title': TITLE,
         'chapters': [{'n': c.n, 'title': plain(c.title), 'vol': c.vol,

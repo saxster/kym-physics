@@ -1,8 +1,11 @@
 // 10.3 Flat mirror: law of reflection, equal object and image distance (1 px = 1 cm), and the half-height full-body mirror.
 import { Live } from './core.js';
+import { note, legend } from './art_waves.js';
 
 Live.register('mirror', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'Silver hatching marks the back of the mirror. Solid arrows carry light to the eye; dashed extensions locate a virtual image. Keyboard: focus the drawing, use ↑/↓ for eye height, or Shift+↑/↓ for object height. In Whole body, arrows move the lower edge; Shift moves the upper edge.');
+  legend(stage,[['Light path',c.neutron],['Virtual extension',c.neutron,true]]);
   const W = 640, H = 320;
   const k = api.canvas(W, H, 'Rays from an object reflecting off a flat mirror into an eye, traced back to the virtual image');
 
@@ -60,6 +63,8 @@ Live.register('mirror', (stage, params, api) => {
     };
   }
 
+  k.cv.tabIndex=0;k.cv.setAttribute('aria-keyshortcuts','ArrowUp ArrowDown Shift+ArrowUp Shift+ArrowDown');
+  k.cv.addEventListener('keydown',e=>{if(!['ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const d=e.key==='ArrowUp'?-3:3;if(tab===0){const p=e.shiftKey?obj:eye;p.y=Math.max(36,Math.min(H-46,p.y+d));if(!e.shiftKey)eyeMoved=true;}else if(e.shiftKey)mirTopCm=Math.max(mirBotCm+2,Math.min(150,mirTopCm-d));else mirBotCm=Math.max(0,Math.min(mirTopCm-2,mirBotCm-d));drawFrame();});
   k.cv.style.cursor = 'grab';
   k.cv.addEventListener('pointerdown', (e) => {
     const p = toCanvas(e);
@@ -336,6 +341,7 @@ Live.register('mirror', (stage, params, api) => {
       ctx.lineTo(MIRROR_X, yOfCm(hitCm));
       ctx.lineTo(ox, yOfCm(eyeCm));
       ctx.stroke();
+      if(hitsMirror){api.draw.arrow(ctx,ox,yOfCm(srcCm),(ox+MIRROR_X)/2,(yOfCm(srcCm)+yOfCm(hitCm))/2,col,1.8,6);api.draw.arrow(ctx,MIRROR_X,yOfCm(hitCm),(ox+MIRROR_X)/2,(yOfCm(eyeCm)+yOfCm(hitCm))/2,col,1.8,6);}
       if (showTraced && hitsMirror) {
         ctx.save();
         ctx.setLineDash([4, 4]);

@@ -1,5 +1,6 @@
 // 14.2 Tilt and the noon Sun: Earth's orbit, solar declination, noon altitude, ground patch width, day length, and torch on graph paper.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 const LATS = [
   { name: 'Mumbai 19.08° N', short: 'Mumbai', phi: 19.08 },
@@ -22,9 +23,11 @@ function dayToDateStr(dayOfYear) {
 
 Live.register('seasons', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The orbit is a schematic. Earth’s axis keeps its direction through the year. The plan view below compares equal-power beams on a surface: a longer footprint spreads the same energy over more area. Colour density indicates energy per area, not extra rays.');
   const W = 640, H = 330;
   const k = api.canvas(W, H, 'Earth orbit with constant axial tilt on the left, and the noon Sun beam or tilted torch on the right');
 
+  const footprint=api.canvas(640,154,'Plan view of equal power light beams: one square metre upright and a wider footprint at the selected angle');
   let dayOfYear = 172; // 21 June default (shows 85.6° high at Mumbai, leaning 4.4° north)
   let latIdx = 0;      // Mumbai 19.08° N
   let torchMode = false;
@@ -332,6 +335,16 @@ Live.register('seasons', (stage, params, api) => {
     ctx.lineTo(290, H - 16);
     ctx.stroke();
 
+    const f=footprint.ctx;footprint.clear(c.plate);
+    const factor=torchMode?1/Math.cos(torchTiltDeg*Math.PI/180):sol.patchMetres;
+    label(f,c,'SAME BEAM · VIEW FROM ABOVE',20,23,{size:12,weight:600});
+    for(const [x,ratio,title] of [[48,1,'Vertical beam'],[290,factor,torchMode?`${torchTiltDeg}° tilt`:`Noon at ${lat.short.trim()}`]]){
+      const width=Math.min(310,56*ratio);f.fillStyle=c.neutron;f.globalAlpha=1/ratio;f.fillRect(x,46,width,56);f.globalAlpha=1;
+      f.strokeStyle=c.ink;f.lineWidth=1.2;f.strokeRect(x,46,width,56);f.strokeStyle=c.rule;
+      for(let gx=0;gx<width;gx+=14){f.beginPath();f.moveTo(x+gx,46);f.lineTo(x+gx,102);f.stroke();}
+      for(let gy=0;gy<=56;gy+=14){f.beginPath();f.moveTo(x,46+gy);f.lineTo(x+width,46+gy);f.stroke();}
+      label(f,c,title,x,121,{size:12});label(f,c,`${ratio.toFixed(2)} m² · ${(100/ratio).toFixed(0)}% per m²`,x,141,{size:12,color:c.muted});
+    }
     drawOrbitPanel(ctx, sol);
     if (!torchMode) drawNoonSunPanel(ctx, sol, lat);
     else drawTorchPanel(ctx);

@@ -1,6 +1,7 @@
 // Ch 0.2 c0_eratosthenes -> w_shadow: Eratosthenes' two-stick measurement of the Earth.
 // Static widget: the reader varies the distance in stadia, the shadow angle at Alexandria, and the length of a stadion.
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 
 const STADIA = [
   { name: 'Olympic (192 m)', m: 192 },
@@ -16,6 +17,7 @@ Live.register('shadow', (stage, params, api) => {
   let angleDeg = 7.2;
   let stIdx = 0;
   const say = api.readout();
+  mechanismKey(stage, "Two scales, one angle", ["The globe preserves the chosen angle. Sticks are enlarged relative to the Earth so you can see them.", "The inset magnifies Alexandria\u2019s stick and shadow together; its angle is the same as the central angle."]);
 
   const update = () => {
     const turns = 360 / angleDeg;
@@ -41,7 +43,7 @@ Live.register('shadow', (stage, params, api) => {
     } else {
       unitStr = '; somewhere between a few percent and about 20% too large, as the unit was never written down.';
     }
-    say(`${fracStr} of a circle \u2192 circumference = ${turns.toFixed(1).replace(/\.0$/, '')} \u00d7 ${dist.toLocaleString('en-GB')} = ${circStadia.toLocaleString('en-GB')} stadia${unitStr} Drawn to scale: this is why Eratosthenes needed a tall column.`);
+    say(`${fracStr} of a circle \u2192 circumference = ${turns.toFixed(1).replace(/\.0$/, '')} \u00d7 ${dist.toLocaleString('en-GB')} = ${circStadia.toLocaleString('en-GB')} stadia${unitStr} Earth angle is to scale; sticks are enlarged and the labelled inset magnifies the local shadow.`);
     drawFrame();
   };
 
@@ -178,6 +180,16 @@ Live.register('shadow', (stage, params, api) => {
     api.draw.text(ctx, `${dist.toLocaleString('en-GB')} stadia`, Cx - R * Math.sin(ang * 0.5) - 12, Cy - R * Math.cos(ang * 0.5) + 22, { size: 12, color: c.vol, align: 'right', weight: 600 });
     api.draw.text(ctx, `central angle = ${angleDeg.toFixed(1)}\u00b0 (same angle)`, Cx + 12, Cy - 18, { size: 13, color: c.electron, weight: 600 });
     api.draw.text(ctx, `= 1/${(360 / angleDeg).toFixed(1).replace(/\.0$/, '')} of a full turn`, Cx + 12, Cy - 2, { size: 12, color: c.muted });
+    ctx.restore();
+    ctx.save();
+    const ix=430,iy=165,iw=186,ih=105;
+    ctx.fillStyle=c.sheet;ctx.strokeStyle=c.rule;ctx.lineWidth=1;ctx.fillRect(ix,iy,iw,ih);ctx.strokeRect(ix,iy,iw,ih);
+    api.draw.text(ctx,'Alexandria: local close-up',ix+9,iy+18,{size:12,color:c.ink,weight:600});
+    const gx=ix+38,gy=iy+84,stick=50,shadow=stick*Math.tan(ang);
+    ctx.strokeStyle=c.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ix+12,gy);ctx.lineTo(ix+iw-10,gy);ctx.moveTo(gx,gy);ctx.lineTo(gx,gy-stick);ctx.stroke();
+    ctx.strokeStyle=c.neutron;ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(gx,gy-stick);ctx.lineTo(gx+shadow,gy);ctx.stroke();
+    ctx.strokeStyle=c.proton;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(gx,gy+2);ctx.lineTo(gx+shadow,gy+2);ctx.stroke();
+    api.draw.text(ctx,`${angleDeg.toFixed(1)}°`,gx+shadow+10,gy-13,{size:13,color:c.electron,weight:600});
     ctx.restore();
   }
 

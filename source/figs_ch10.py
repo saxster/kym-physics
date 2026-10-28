@@ -26,71 +26,61 @@ def _lamp(f, x, y, r=12):
 
 @figure
 def c10_seeing():
-    f = Fig(640, 300, 'Two drawings of seeing a mango: rays wrongly drawn leaving the eye, and light from a lamp bouncing off the mango into the eye')
-    # left: the common drawing
-    f.text(160, 26, 'What most people draw', 't m', 'middle', 13)
-    _eye(f, 60, 160)
-    f.text(60, 206, 'eye', 't m', 'middle', 12)
-    _mango(f, 250, 160)
-    f.text(250, 206, 'mango', 't m', 'middle', 12)
-    f.arrow(92, 150, 220, 150, 'muted', dash=True)
-    f.arrow(92, 170, 220, 170, 'muted', dash=True)
-    f.text(156, 138, 'rays going out of the eye?', 't m', 'middle', 12)
-    f.line(320, 40, 320, 280, 'ln r')
-    # right: what happens
-    f.text(480, 26, 'What happens', 't b', 'middle', 13)
-    _lamp(f, 590, 70)
-    f.text(590, 108, 'lamp', 't', 'middle', 12)
-    mx, my = 500, 190
-    _mango(f, mx, my)
-    f.text(mx, 236, 'mango', 't', 'middle', 12)
-    ex, ey = 370, 120
-    _eye(f, ex, ey)
-    f.text(ex, 166, 'eye', 't', 'middle', 12)
-    f.ray(578, 84, 514, 172, chevrons=1)
-    # light scattered in every direction
-    for k in range(10):
-        a = math.radians(k * 36 + 10)
-        dx, dy = math.cos(a), math.sin(a)
-        f.ray(mx + dx * 32, my + dy * 32, mx + dx * 58, my + dy * 58, chevrons=0)
-    # the share that reaches the eye
-    dx, dy = ex - mx, ey - my
-    n = math.hypot(dx, dy)
-    ux, uy = dx / n, dy / n
-    f.ray(mx + ux * 32, my + uy * 32, ex - ux * 30, ey - uy * 30, chevrons=2)
-    f.text(mx + 12, my + 72, 'light goes off in every direction', 't m', 'middle', 12)
-    f.text(400, 206, 'some of it', 't m', 'middle', 12)
-    f.text(400, 220, 'reaches the eye', 't m', 'middle', 12)
+    f = Fig(640, 330, 'Two models of seeing a mango. The crossed-out prediction sends rays out of the eye. In the observed mechanism, light goes from the lamp to the mango, scatters in many directions, and a small part enters the eye. The mango and eye are recognisable; arrows show light travel, not the direction of attention.')
+    f.text(160,29,'Prediction: eyes send light?','t m','middle',14)
+    f.text(484,29,'Light must reach your eye','t b','middle',15)
+    f.line(320,16,320,304,'ln r')
+    _eye(f,58,158);_mango(f,252,158,cls='sample-yellow')
+    for yy in (150,171): f.arrow(92,yy,218,yy,'muted',dash=True)
+    f.line(146,142,172,180,'ln p');f.line(146,180,172,142,'ln p')
+    f.text(160,220,'No lamp, no visible mango.','t','middle',13)
+    f.text(160,244,'The eye is a receiver.','t b','middle',14)
+    _lamp(f,578,81)
+    _mango(f,516,211,cls='sample-yellow')
+    _eye(f,365,127)
+    f.ray(567,97,526,188,chevrons=2)
+    f.ray(491,196,391,140,chevrons=2)
+    for a in (0,45,90,135,270,315):
+        a=math.radians(a);f.ray(516+33*math.cos(a),211+33*math.sin(a),516+58*math.cos(a),211+58*math.sin(a),chevrons=0)
+    f.text(580,121,'1 lamp','t b','middle',13)
+    f.text(516,295,'2 mango scatters light','t','middle',13)
+    f.text(378,91,'3 eye receives some','t b',size=12)
+    f.text(320,322,'Trace the light: source → object → eye.','t b','middle',15)
     return f.svg()
 
 
 @figure
 def c10_pinhole():
-    f = Fig(640, 300, 'A pinhole camera: light from the top of a window passes straight through the hole and lands low on the screen, light from the bottom lands high, so the image is upside down')
-    # the window (object)
-    f.arrow(70, 230, 70, 78, 'ink', width=2.5)
-    f.text(80, 70, 'top', 't m', 'start', 12)
-    f.text(84, 236, 'bottom', 't m', 'start', 12)
-    f.text(70, 258, 'a window 1 m tall', 't', 'middle', 13)
-    # the box with a pinhole in its left face
-    f.path('M400,144 L400,90 L600,90 L600,210 L400,210 L400,156 Z', 'fill-sheet')
-    f.path('M400,144 L400,90 L600,90 L600,210 L400,210 L400,156', 'ln')
-    f.line(600, 90, 600, 210, 'ln e')
-    f.text(598, 80, 'screen', 't e', 'middle', 12)
-    f.text(330, 100, 'pinhole', 't', 'middle', 12)
-    f.line(330, 106, 396, 146, 'ln m')
-    # rays: top of the window through the hole to the screen (lands low); bottom lands high
-    y_top = 150 + (150 - 78) * 200 / 330
-    y_bot = 150 - (230 - 150) * 200 / 330
-    f.ray(70, 78, 400, 150, chevrons=2)
-    f.ray(400, 150, 600, y_top, chevrons=1)
-    f.ray(70, 230, 400, 150, chevrons=2)
-    f.ray(400, 150, 600, y_bot, chevrons=1)
-    # the inverted image on the screen
-    f.arrow(594, y_bot, 594, y_top - 4, 'ink', width=2.5)
-    f.text(500, 236, 'image: upside down and small', 't', 'middle', 12)
-    f.bracket_label(70, 400, 280, '3 m (not to scale)', 12)
-    f.bracket_label(400, 600, 280, '30 cm', 12)
+    f = Fig(640, 448, 'A recognisable four-pane window projects an upside-down image through a pinhole. Two marked points identify the window top and bottom and their image positions. A separate scale inset compares the one metre object with the ten centimetre image predicted by a three metre object distance and thirty centimetre image distance. Main apparatus distances are schematic.')
+    f.text(24,28,'Every point sends light through the same tiny hole','t b',size=17)
+    # Window rather than an unexplained object arrow.
+    f.rect(38,77,67,152,'block',rx=1)
+    f.rect(44,83,55,140,'water',rx=0)
+    f.line(71.5,83,71.5,223,'ln');f.line(44,153,99,153,'ln')
+    f.circle(72,82,4,'fill-vol');f.circle(72,224,4,'bar-p')
+    f.path('M374,145 V76 H604 V230 H374 V155','glass')
+    f.line(597,80,597,225,'ln e')
+    f.text(600,64,'screen','t e','end',13)
+    f.text(374,111,'pinhole','t b','middle',13)
+    f.line(374,117,374,143,'ln m')
+    # The marked rays are exactly collinear through the hole at (374,150).
+    xt=597;yt=150+(150-82)*(xt-374)/(374-72);yb=150+(150-224)*(xt-374)/(374-72)
+    for yy,end,cls in ((82,yt,'light-blue'),(224,yb,'light-red')):
+        f.ray(72,yy,374,150,chevrons=1,cls='ray '+cls)
+        f.ray(374,150,xt,end,chevrons=1,cls='ray '+cls)
+    ih=yt-yb;iw=ih*67/152
+    f.rect(xt-iw,yb,iw,ih,'water',rx=0)
+    f.line(xt-iw/2,yb,xt-iw/2,yt,'ln');f.line(xt-iw,(yb+yt)/2,xt,(yb+yt)/2,'ln')
+    f.circle(xt,yt,4,'fill-vol');f.circle(xt,yb,4,'bar-p')
+    f.bracket_label(72,374,250,'3 m to the hole',13,up=False)
+    f.bracket_label(374,597,250,'30 cm to the screen',13,up=False)
+    f.text(24,306,'Image height = object height × 0.30 m ÷ 3 m = one tenth.','t',size=13)
+    f.text(24,330,'Height comparison at one shared scale','t b',size=13)
+    f.rect(70,340,12,100,'water',rx=0);f.rect(265,430,12,10,'water',rx=0)
+    f.line(55,440,300,440,'ln r')
+    f.text(95,380,'1 m window','t',size=13);f.text(294,432,'10 cm image','t',size=13)
+    f.text(610,370,'Main apparatus:','t m','end',12)
+    f.text(610,388,'spacing and sizes schematic','t m','end',12)
     return f.svg()
 
 
@@ -175,39 +165,53 @@ def c10_refraction():
 
 @figure
 def c10_eye():
-    f = Fig(640, 300, 'Cross-section of the eye forming an upside-down image of a tree on the retina: most bending at the cornea, fine-tuning at the lens')
-    gx, gy, R = 400, 150, 105
-    f.circle(gx, gy, R, 'block')
-    # cornea bulge, iris, lens, retina
-    f.path('M305,100 Q274,150 305,200', 'glass')
-    f.line(318, 98, 318, 126, 'ln', extra='stroke-width="4"')
-    f.line(318, 174, 318, 202, 'ln', extra='stroke-width="4"')
-    f.add('<ellipse cx="332" cy="150" rx="12" ry="34" class="water"/>')
-    a = math.radians(65)
-    f.path(f'M{r_(gx + 100 * math.cos(-a))},{r_(gy + 100 * math.sin(-a))} A100,100 0 0 1 {r_(gx + 100 * math.cos(a))},{r_(gy + 100 * math.sin(a))}', 'ln e')
-    # the object: a far-off tree, drawn as an arrow
-    f.ground(40, 212, 120)
-    f.arrow(100, 210, 100, 92, 'green', width=2.5)
-    f.text(100, 236, 'a tree, far away', 't', 'middle', 12)
-    # two rays from the top of the tree, two from the bottom
-    it = (gx + 100 * math.cos(math.radians(25)), gy + 100 * math.sin(math.radians(25)))
-    ib = (gx + 100 * math.cos(math.radians(-25)), gy + 100 * math.sin(math.radians(-25)))
-    for (sy, img, lens_y) in ((94, it, (126, 176)), (208, ib, (124, 174))):
-        for cy, ly in zip((118, 182), lens_y):
-            f.ray(100, sy, 298, cy, chevrons=1)
-            f.path(f'M298,{cy} L332,{ly} L{r_(img[0])},{r_(img[1])}', 'ray')
-    f.arrow(486, ib[1], 486, it[1] - 2, 'green', width=2.5)
-    # labels
-    f.text(280, 84, 'cornea', 't', 'end', 12)
-    f.line(284, 88, 292, 112, 'ln m')
-    f.text(318, 70, 'pupil', 't m', 'middle', 12)
-    f.line(318, 76, 318, 94, 'ln m')
-    f.text(332, 236, 'lens', 't', 'middle', 12)
-    f.text(528, 154, 'retina', 't e', 'start', 12)
-    f.text(512, ib[1] - 4, 'image of the bottom', 't m', 'start', 12)
-    f.text(512, it[1] + 14, 'image of the top', 't m', 'start', 12)
-    f.text(276, 272, 'most of the bending happens at the cornea', 't m', 'end', 12)
-    f.line(280, 262, 288, 176, 'ln m')
+    f = Fig(640, 370, 'A cut-away eye, with cornea, iris aperture, adjustable lens, vitreous space, retina and optic nerve. Rays from two marked points on a tree meet at inverted positions on the retina. A two-thin-surface model gives stronger power to the cornea than the lens; its geometry is illustrative rather than an anatomical scale drawing.')
+    f.text(24,28,'The eye forms an image on a sensitive lining','t b',size=17)
+    f.add('<ellipse cx="400" cy="173" rx="113" ry="111" class="wash-n"/>')
+    f.add('<ellipse cx="400" cy="173" rx="108" ry="106" class="fill-sheet"/>')
+    f.path('M299,124 Q263,173 299,222','water')
+    f.path('M465,86 Q544,173 465,260','ln p',extra='stroke-width="4"')
+    f.path('M508,191 L550,207 L548,222 L505,207','wash-n')
+    f.path('M508,191 L550,207 M505,207 L548,222','ln')
+    f.line(310,120,310,132,'ln',extra='stroke-width="5"');f.line(310,214,310,226,'ln',extra='stroke-width="5"')
+    f.add('<ellipse cx="325" cy="173" rx="12" ry="35" class="water"/>')
+    f.text(394,192,'vitreous','t m','middle',12)
+    # Two serial thin optical surfaces. Choose cornea focal length so
+    # rays from x=55 meet x=500, with lens power half the corneal power.
+    u,d,v=233,37,175
+    def residual(fc):
+        # A ray from object centre with angle1: y=u at cornea.
+        y=u;theta=1-y/fc;y+=d*theta;theta-=y/(2*fc)
+        return y+v*theta
+    lo,hi=60.,300.
+    for _ in range(60):
+        mid=(lo+hi)/2
+        if residual(mid)>0:hi=mid
+        else:lo=mid
+    fc=(lo+hi)/2
+    def image_ray(sy,yc):
+        theta=(yc-sy)/233;after=theta-(yc-173)/fc
+        yl=yc+37*after;theta2=after-(yl-173)/(2*fc)
+        return yl,yl+175*theta2
+    # A trunk and branching crown identify the object without replacing it by an arrow.
+    f.line(55,222,55,124,'ln',extra='stroke-width="4"')
+    f.path('M55,129 L31,145 M55,149 L76,131 M55,167 L29,157','ln g')
+    for sy,cls in ((124,'light-blue'),(222,'light-red')):
+        f.circle(55,sy,4,'fill-vol' if sy==124 else 'bar-p')
+        for yc in (143,203):
+            yl,yi=image_ray(sy,yc)
+            f.ray(55,sy,288,yc,cls='ray '+cls)
+            f.ray(288,yc,325,yl,cls='ray '+cls,chevrons=0)
+            f.ray(325,yl,500,yi,cls='ray '+cls)
+        f.circle(500,yi,4,'fill-vol' if sy==124 else 'bar-p')
+    f.text(55,251,'tree','t b','middle',13)
+    f.text(236,87,'cornea','t b','end',13);f.line(242,93,281,146,'ln m')
+    f.text(332,78,'iris + pupil','t',size=13);f.line(334,84,310,128,'ln m')
+    f.text(325,286,'lens','t b','middle',13);f.line(325,276,325,211,'ln m')
+    f.text(540,143,'retina','t p b',size=13);f.line(534,150,503,167,'ln m')
+    f.text(547,247,'optic nerve','t m','middle',12)
+    f.text(24,320,'Most bending at the cornea; the lens adjusts the focus.','t b',size=14)
+    f.text(24,347,'Two optical surfaces and coloured point tags are explanatory models, not scale anatomy.','t m',size=12)
     return f.svg()
 
 

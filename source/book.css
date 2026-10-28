@@ -337,6 +337,13 @@ figure.live-on.live-lifting > svg.fig {
   position: relative; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden;
   transform-origin: 50% 100%;
 }
+.live-stage.live-inspect { overflow-x: auto; overscroll-behavior-x: contain; }
+.live-stage.live-inspect canvas[data-logical-width] { width: max(100%, var(--drawing-width, 640px)) !important; max-width: none; }
+.live-stage.live-inspect .live-3d { min-width: 640px; }
+.live-stage.live-inspect:focus-visible { outline: 3px solid var(--vol); outline-offset: 3px; }
+.live-detail-toggle { order: 2; }
+.live-detail-hint { order: 4; flex-basis: 100%; margin: 0; font: .8rem/1.5 var(--sans); color: var(--muted); }
+.live-detail-hint[hidden] { display: none; }
 figure.live-lifting .live-stage {
   animation: live-peel-up .5s cubic-bezier(.22, .88, .28, 1);
 }

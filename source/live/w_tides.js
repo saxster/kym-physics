@@ -1,5 +1,6 @@
 // 14.5 Tides: two bulges from the difference in the Moon's pull, 24 h 50 min lunar day, and the Sun's 0.46 bulge (spring and neap tides).
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 Live.register('tides', (stage, params, api) => {
   const c = api.colors();
@@ -12,6 +13,8 @@ Live.register('tides', (stage, params, api) => {
 
   let timeHours = 0;   // 0..708 hours
   let includeSun = true;
+  let pullView = 0;
+  note(stage,'An ideal all-water Earth explains the two-bulge mechanism. Select raw Moon pull or the pull relative to Earth’s centre: every raw arrow points towards the Moon, while the differential arrows stretch both sides. Relative arrows and the water height are magnified independently; the Moon is drawn close. This is not a Mumbai tide prediction.');
 
   const say = api.readout();
 
@@ -32,6 +35,8 @@ Live.register('tides', (stage, params, api) => {
     sunBtn.setAttribute('aria-pressed', String(includeSun));
     drawFrame(0);
   }, { pressed: true });
+
+  api.tabs(['Water response','Moon pull','Pull relative to centre'],i=>{pullView=i;drawFrame(0);});
 
   function tidalHeightAtAngle(phiRad, moonRad, withSun) {
     // Quadrupole tidal height: cos(2*(phi - moonRad)) + 0.46 * cos(2*phi)
@@ -116,14 +121,27 @@ Live.register('tides', (stage, params, api) => {
       ctx.stroke();
     }
 
-    // Mumbai marker on the Earth's rim at angle earthRotRad
+    if (pullView) {
+      const ux=Math.cos(moonOrbRad),uy=Math.sin(moonOrbRad),D=60;
+      for(let i=0;i<8;i++){
+        const a=i*Math.PI/4,rx=Math.cos(a),ry=Math.sin(a);
+        const dx=D*ux-rx,dy=D*uy-ry,rr=Math.hypot(dx,dy);
+        let gx=dx/rr**3,gy=dy/rr**3;
+        if(pullView===2){gx-=ux/D**2;gy-=uy/D**2;}
+        const gain=pullView===2?22*D**3:22*D**2;
+        api.draw.arrow(ctx,cx+earthR*rx,cy-earthR*ry,cx+earthR*rx+gx*gain,cy-earthR*ry-gy*gain,c.proton,2,6);
+      }
+      label(ctx,c,pullView===1?'Raw pull: all towards Moon':'Relative pull: subtract centre’s pull',185,16,{align:'center',size:12,weight:600});
+    }
+
+    // Model-site marker on the Earth's rim at angle earthRotRad
     const mumX = cx + earthR * Math.cos(earthRotRad);
     const mumY = cy - earthR * Math.sin(earthRotRad);
     ctx.beginPath();
     ctx.arc(mumX, mumY, 5, 0, Math.PI * 2);
     ctx.fillStyle = c.proton;
     ctx.fill();
-    api.draw.text(ctx, 'Mumbai', mumX + 14 * Math.cos(earthRotRad), mumY - 14 * Math.sin(earthRotRad), {
+    api.draw.text(ctx, 'Site', mumX + 14 * Math.cos(earthRotRad), mumY - 14 * Math.sin(earthRotRad), {
       size: 10.5, color: c.proton, align: 'center', weight: 700,
     });
 
@@ -152,10 +170,10 @@ Live.register('tides', (stage, params, api) => {
     api.draw.roundRect(ctx, zoomL, zoomTop, zoomR - zoomL, zoomH, 6);
     ctx.fill();
     ctx.stroke();
-    api.draw.text(ctx, 'Mumbai tide over 48 hours (2 highs/day)', (zoomL + zoomR) / 2, zoomTop + 18, {
+    api.draw.text(ctx, 'Ideal site: 48 hours', (zoomL + zoomR) / 2, zoomTop + 18, {
       size: 11, color: c.ink, align: 'center', weight: 700,
     });
-    api.draw.text(ctx, 'Peak-to-peak: 12 h 25 min (lunar day 24 h 50 min)', (zoomL + zoomR) / 2, zoomTop + 34, {
+    api.draw.text(ctx, 'Two highs per lunar day (about 24 h 50 min)', (zoomL + zoomR) / 2, zoomTop + 34, {
       size: 10, color: c.muted, align: 'center',
     });
 
@@ -241,11 +259,11 @@ Live.register('tides', (stage, params, api) => {
     const cos2 = Math.cos(2 * relAng);
     const tideState = cos2 > 0.5
       ? Math.cos(relAng) > 0
-        ? 'Mumbai is under the near bulge: high tide'
-        : 'Mumbai is under the far-side bulge: second daily high tide'
+        ? 'The model site is under the near bulge: high tide'
+        : 'The model site is under the far-side bulge: second daily high tide'
       : cos2 < -0.5
-      ? 'Mumbai is between the bulges: low tide'
-      : 'the tide at Mumbai is turning between high and low';
+      ? 'The model site is between the bulges: low tide'
+      : 'the model tide is turning between high and low';
 
     const alignCos = Math.cos(2 * moonOrbRad);
     const springNeapText = !includeSun
@@ -257,7 +275,7 @@ Live.register('tides', (stage, params, api) => {
       : 'Between spring and neap tide as the Moon’s and Sun’s bulges shift in angle.';
 
     say(
-      `${tideState}. Next high tide in about 12 h 25 min; tomorrow’s high is about 50 min later (lunar day 24 h 50 min as the Moon advances 12.19°/day). ` +
+      `${tideState}. Successive Moon-only highs are about 12 h 25 min apart; tomorrow’s high is about 50 min later (lunar day 24 h 50 min as the Moon advances 12.19°/day). ` +
       `${springNeapText} ` +
       `(The Earth’s two bulges are drawn thousands of times too tall, since the real all-water bulge is under 1 m, and the Moon is drawn close; real tides lag the Moon and vary by coast, so Mumbai’s real times come from published tide tables.)`
     );

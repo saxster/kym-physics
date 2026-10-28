@@ -124,38 +124,21 @@ def s_rumford():
 # ---------------------------------------------------------------- matka
 @figure
 def s_wetbulb():
-    f = Fig(640, 340, 'Three pairs of bars on a temperature axis from 15 to 40 degrees. For a Mumbai afternoon in May the '
-                      'air is 34.3 degrees and the wet-bulb floor 28.7, a drop of 5.6. For July the air is 29.4 and the '
-                      'floor 26.7, a drop of 2.7. For a dry inland town at 38 degrees and 20 percent humidity the floor is '
-                      '21.3, a drop of 16.7.')
-    x0, y0, h = 70, 250, 200
-    px = h / 25.0          # pixels per degree, 15 to 40 °C
-
-    def Y(t):
-        return y0 - (t - 15) * px
-    f.axis(x0, y0, 540, h, '', 'temperature (°C)',
-           ticks={'y': [((t - 15) * px, str(t)) for t in (15, 20, 25, 30, 35, 40)]})
-    groups = [(130, 'Mumbai, May afternoon', '34.3 °C, 65% humidity', 34.3, 28.7),
-              (320, 'Mumbai, July afternoon', '29.4 °C, 81% humidity', 29.4, 26.7),
-              (510, 'a dry inland town', '38 °C, 20% humidity', 38.0, 21.3)]
-    for cx, title, sub, ta, tw in groups:
-        f.rect(cx - 56, Y(ta), 50, y0 - Y(ta), 'bar-p', rx=0)
-        f.rect(cx + 6, Y(tw), 50, y0 - Y(tw), 'bar-e', rx=0)
-        f.text(cx - 31, Y(ta) - 6, f'{ta:g}', 't p b', 'middle', 12)
-        f.text(cx + 31, Y(tw) - 6, f'{tw:g}', 't e b', 'middle', 12)
-        # the drop, as a bracket between the two tops
-        f.line(cx + 62, Y(ta), cx + 62, Y(tw), 'ln')
-        f.line(cx + 58, Y(ta), cx + 66, Y(ta), 'ln')
-        f.line(cx + 58, Y(tw), cx + 66, Y(tw), 'ln')
-        f.text(cx + 70, (Y(ta) + Y(tw)) / 2 + 4, f'{ta - tw:.1f} °C', 't b', 'start', 12)
-        f.text(cx, y0 + 20, title, 't b', 'middle', 12)
-        f.text(cx, y0 + 36, sub, 't m', 'middle', 12)
-    # legend
-    f.rect(70, 300, 14, 14, 'bar-p', rx=2)
-    f.text(90, 311, 'air temperature', 't', 'start', 12)
-    f.rect(230, 300, 14, 14, 'bar-e', rx=2)
-    f.text(250, 311, 'the floor: lowest a wet surface can reach (wet-bulb temperature)', 't', 'start', 12)
-    f.text(70, 332, 'typical afternoon values; the floor is computed from the air temperature and humidity', 't m', 'start', 12)
+    f = Fig(640, 378, 'Three paired-dot comparisons on a shared Celsius axis show the potential evaporative temperature drop. Mumbai May: air 34.3 and wet bulb 28.7; Mumbai July: 29.4 and 26.7; dry inland air: 38 and 21.3. Dots are temperatures, not bars representing ratios above absolute zero. Conditions are illustrative and wet-bulb values are computed.')
+    f.text(24,28,'Humidity sets how far evaporation can cool','t b',size=17)
+    x0=265;scale=13
+    def X(t):return x0+(t-20)*scale
+    for yy,title,sub,ta,tw in ((99,'Mumbai, May','65% humidity',34.3,28.7),(177,'Mumbai, July','81% humidity',29.4,26.7),(255,'Dry inland air','20% humidity',38,21.3)):
+        f.text(24,yy-2,title,'t b',size=14);f.text(24,yy+19,sub,'t m',size=12)
+        f.line(X(20),yy,X(40),yy,'ln r')
+        f.line(X(tw),yy,X(ta),yy,'ln',extra='stroke-width="3"')
+        f.circle(X(ta),yy,6,'bar-p');f.circle(X(tw),yy,6,'bar-e')
+        f.text(X(ta),yy-14,f'{ta:g} °C','t p b','middle',12)
+        f.text(X(tw),yy+25,f'{tw:g} °C','t e b','middle',12)
+        f.text(616,yy+4,f'−{ta-tw:.1f}°','t b','end',14)
+    f.axis(X(20),300,X(40)-X(20),0,'temperature (°C)','',ticks={'x':[(scale*(t-20),str(t)) for t in (20,25,30,35,40)]})
+    f.text(24,306,'red: air','t p',size=12);f.text(24,326,'blue: wet surface','t e',size=12)
+    f.text(320,371,'Illustrative air conditions; wet-bulb limits computed from temperature and humidity.','t m','middle',12)
     return f.svg()
 
 
@@ -336,41 +319,27 @@ def s_unit_chain():
 # ---------------------------------------------------------------- engines
 @figure
 def s_engine_fall():
-    f = Fig(640, 320, 'Left: Carnot’s picture of an engine, heat falling from a hot boiler to the cold outside air past a '
-                      'wheel that takes out some work. Right: a bar for a steam engine, with 17 of every 100 joules from '
-                      'the fire becoming useful work and 83 joules going to the cold side.')
-    # ---- the fall
-    f.text(170, 28, 'Carnot’s picture', 't b', 'middle', 14)
-    f.text(170, 46, 'as historians summarise it', 't m', 'middle', 12)
-    f.rect(90, 60, 160, 44, 'wash-p', rx=6)
-    f.text(170, 78, 'hot: the boiler', 't p b', 'middle', 13)
-    f.text(170, 95, 'steam at high temperature', 't p', 'middle', 12)
-    f.rect(90, 236, 160, 44, 'wash-e', rx=6)
-    f.text(170, 254, 'cold: the air outside', 't e b', 'middle', 13)
-    f.text(170, 271, 'where the used steam goes', 't e', 'middle', 12)
-    f.arrow(130, 108, 130, 230, 'ink', width=6)
-    f.text(118, 170, 'heat “falls”', 't b', 'end', 13)
-    f.text(118, 186, 'from hot to cold', 't m', 'end', 12)
-    # the wheel
-    f.circle(190, 170, 26, 'plate')
-    f.circle(190, 170, 26, 'ln')
-    for k in range(6):
-        a = math.radians(k * 60)
-        f.line(190, 170, 190 + 26 * math.cos(a), 170 + 26 * math.sin(a), 'ln m')
-    f.curved_arrow(190, 136, 224, 170, bend=-14)
-    f.force(220, 170, 60, 0, 'work out', 12)
-    # ---- the bar
-    f.text(470, 28, 'A steam engine, by the numbers', 't b', 'middle', 14)
-    f.text(470, 46, 'of every 100 J the fire gives', 't m', 'middle', 12)
-    bx, by, bw = 372, 70, 60
-    f.rect(bx, by, bw, 17 * 2, 'bar-p', rx=0)
-    f.rect(bx, by + 34, bw, 83 * 2, 'bar-e', rx=0)
-    f.rect(bx, by, bw, 200, 'ln', rx=0, extra='fill="none"')
-    f.text(bx + bw + 12, by + 22, '17 J become useful work', 't p b', 'start', 13)
-    f.text(bx + bw + 12, by + 120, '83 J go to the cold side', 't e b', 'start', 13)
-    f.text(bx + bw + 12, by + 138, 'as warmth in the air and water', 't e', 'start', 12)
-    f.text(bx + bw + 12, by + 164, 'efficiency = 17 ÷ 100 = 17%', 't', 'start', 12)
-    f.text(320, 300, 'representative values: a petrol engine manages about 30%, a coal power station about 42%', 't m', 'middle', 12)
+    f = Fig(640, 360, 'Carnot’s hot-to-cold heat-engine picture, with an explicitly illustrative energy-flow account. Of each 100 joules entering from a hot source, 17 joules become useful work and 83 joules pass to colder surroundings. At the split the two ribbon widths add to the input width; energy is conserved and the remaining heat is not destroyed.')
+    f.text(24,28,'A heat engine needs somewhere colder to send energy','t b',size=16)
+    f.rect(30,67,170,56,'wash-p',rx=6)
+    f.lines(115,90,['hot source','boiler + steam'],'t p b','middle',13)
+    f.circle(115,183,30,'block')
+    for a in range(0,360,60):
+        a=math.radians(a);f.line(115,183,115+26*math.cos(a),183+26*math.sin(a),'ln m')
+    f.arrow(115,124,115,149,'ink')
+    f.arrow(115,214,115,259,'ink')
+    f.rect(30,268,170,48,'wash-e',rx=6)
+    f.text(115,288,'cold surroundings','t e b','middle',13)
+    f.text(115,307,'air + cooling water','t m','middle',12)
+    f.arrow(149,183,197,183,'proton');f.text(166,166,'work','t p b','middle',12)
+    # One input of width100 splits into17+83. No zero-based truncated bars.
+    f.text(267,81,'100 J supplied','t b',size=14)
+    f.path('M267,104 H375 V204 H267 Z','wash-n');f.path('M267,104 H375 V204 H267 Z','ln')
+    f.path('M375,104 H552 L577,112.5 L552,121 H375 Z','wash-p');f.path('M375,104 H552 L577,112.5 L552,121 H375','ln')
+    f.text(450,95,'17 J: useful work','t p b','middle',13)
+    f.path('M375,121 H458 V276 L416.5,301 L375,276 Z','wash-e');f.path('M375,121 H458 V276 L416.5,301 L375,276 Z','ln')
+    f.text(481,220,'83 J to','t e b',size=13);f.text(481,239,'colder places','t e',size=12)
+    f.text(320,342,'Illustrative engine: 100 J = 17 J + 83 J. The flow widths share one scale.','t m','middle',12)
     return f.svg()
 
 

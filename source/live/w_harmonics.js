@@ -1,5 +1,6 @@
 // 9.6 Harmonic builder: fundamental + overtones, string vs plain drum vs tabla, waveform + mode strip + Web Audio.
 import { Live } from './core.js';
+import { note } from './art_waves.js';
 
 const LADDERS = [
   {
@@ -35,6 +36,21 @@ Live.register('harmonics', (stage, params, api) => {
   let phase = 0;
   const say = api.readout();
 
+  const detail=document.createElement('details');detail.style.cssText='padding:10px 14px;background:var(--sheet);font:13px/1.5 var(--sans);color:var(--ink)';
+  const summary=document.createElement('summary');summary.textContent='Edit one partial at a time';summary.style.cssText='min-height:44px;display:list-item;padding:10px 0;cursor:pointer';detail.append(summary);
+  const amplitudeInputs=[];
+  for(let i=0;i<6;i++){
+    const lab=document.createElement('label'),input=document.createElement('input'),value=document.createElement('output');
+    lab.style.cssText='display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:7px 0';lab.append(document.createTextNode(`Partial ${i+1}`));
+    input.type='range';input.min=0;input.max=1;input.step=.01;input.value=amps[i];input.setAttribute('aria-label',`Partial ${i+1} amplitude`);input.style.cssText='flex:1;min-width:120px;min-height:44px';
+    input.addEventListener('input',()=>{amps[i]=+input.value;mixChanged=true;syncAmplitudes();updateReadout();drawFrame(0);});
+    lab.append(input,value);detail.append(lab);amplitudeInputs.push({input,value});
+  }
+  stage.append(detail);
+  function syncAmplitudes(){amplitudeInputs.forEach(({input,value},i)=>{input.value=amps[i];value.textContent=`${LADDERS[tabIdx].ratios[i].toFixed(2)} f₀ · ${Math.round(100*amps[i])}%`;});}
+  syncAmplitudes();
+  note(stage,'The string has nodal points along a line. A circular drum has nodal diameters; these lower views are illustrative mode patterns. The loaded tabla shifts the important partial frequencies closer to whole-number ratios.');
+  function bessel(m,z){let term=(z/2)**m;for(let j=2;j<=m;j++)term/=j;let sum=term;for(let j=1;j<18;j++){term*=-(z*z/4)/(j*(j+m));sum+=term;}return sum;}
   function isOddOnly() {
     return (
       tabIdx === 0 &&
@@ -47,6 +63,7 @@ Live.register('harmonics', (stage, params, api) => {
   }
 
   function updateReadout() {
+    syncAmplitudes();
     let msg = LADDERS[tabIdx].readout;
     if (mixChanged) msg += ' Timbre: same note, different mix.';
     if (isOddOnly()) msg += ' A pipe closed at one end has only these: 1, 3, 5.';
@@ -143,7 +160,7 @@ Live.register('harmonics', (stage, params, api) => {
     const ladder = LADDERS[tabIdx];
 
     // Left panel: 6 vertical overtone sliders (the harmonic ladder)
-    api.draw.text(ctx, 'Overtones (drag bars)', sliderArea.x0, 24, { size: 12, color: c.ink, weight: 600 });
+    api.draw.text(ctx, 'Partial amplitudes', sliderArea.x0, 24, { size: 12, color: c.ink, weight: 600 });
     for (let i = 0; i < 6; i++) {
       const x = colX(i);
       const yTop = sliderArea.y0, yBot = yTop + sliderArea.h;
@@ -249,6 +266,18 @@ Live.register('harmonics', (stage, params, api) => {
       ctx.fill();
       ctx.stroke();
 
+      if(tabIdx!==0){
+        const dcx=mx+modeW/2,dcy=myMid,rad=26,order=m;
+        const root=[2.4048255577,3.8317059702,5.1356223018][m];
+        ctx.save();ctx.beginPath();ctx.arc(dcx,dcy,rad,0,2*Math.PI);ctx.clip();
+        for(let iy=-rad;iy<=rad;iy+=3)for(let ix=-rad;ix<=rad;ix+=3){
+          const rr=Math.hypot(ix,iy)/rad;if(rr>1)continue;
+          const val=bessel(order,root*rr)*Math.cos(order*Math.atan2(iy,ix));
+          ctx.globalAlpha=Math.min(.8,Math.abs(val)*Math.max(.15,amp)*1.5);ctx.fillStyle=val>=0?c.electron:c.proton;ctx.fillRect(dcx+ix,dcy+iy,3,3);
+        }
+        ctx.restore();ctx.strokeStyle=c.ink;ctx.lineWidth=1;ctx.beginPath();ctx.arc(dcx,dcy,rad,0,2*Math.PI);ctx.stroke();
+        if(tabIdx===2){ctx.fillStyle=c.ink;ctx.beginPath();ctx.arc(dcx,dcy,rad*.28,0,2*Math.PI);ctx.fill();}
+      }else{
       // Draw vibrating standing-wave loop(s)
       ctx.save();
       ctx.globalAlpha = Math.max(0.15, amp);
@@ -283,6 +312,7 @@ Live.register('harmonics', (stage, params, api) => {
       ctx.stroke();
       ctx.restore();
 
+      }
       const modeRatio = Number.isInteger(ladder.ratios[m]) ? `${ladder.ratios[m]}×f₀` : `${ladder.ratios[m].toFixed(2)}×f₀`;
       api.draw.text(ctx, `Mode ${m + 1} (${modeRatio})`, mx + modeW / 2, modeY + modeH + 14, {
         size: 10.5, color: c.muted, align: 'center',

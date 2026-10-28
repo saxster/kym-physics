@@ -1,6 +1,7 @@
 // Ch 1.2 c1_graph_walk -> w_graphwalk: Position-time graph of a corridor walk.
 // Teaches that horizontal axis is time, velocity is slope, a flat line is zero velocity, and a downward slope is walking back.
 import { Live } from './core.js';
+import { mechanismKey,person } from './art_mechanics.js';
 
 function presetPos(t) {
   if (t <= 0) return 0;
@@ -25,6 +26,7 @@ Live.register('graphwalk', (stage, params, api) => {
   let finished = api.reduced;
   const trace = []; // [{t, x}] for Walk it yourself
   const say = api.readout();
+  mechanismKey(stage, "One person, two representations", ["The walker\u2019s horizontal position and the highlighted graph point describe the same event.", "The vertical guide gives time; the horizontal guide gives corridor position. A flat trace means standing still."]);
 
   function seedPresetTrace(upTo) {
     trace.length = 0;
@@ -199,17 +201,11 @@ Live.register('graphwalk', (stage, params, api) => {
       api.draw.text(ctx, 'friend', fx, corY - 22, { size: 11, color: c.muted, align: 'center' });
     }
 
-    // Walker on corridor
+    // Fixed-height people establish the corridor's physical scene.
     const curX = mode === 0 ? presetPos(simT) : userPos;
     const wx = corX0 + curX * pxPerM;
-    ctx.beginPath();
-    ctx.arc(wx, corY, 8, 0, Math.PI * 2);
-    ctx.fillStyle = c.electron;
-    ctx.fill();
-    ctx.lineWidth = 1.8;
-    ctx.strokeStyle = c.ink;
-    ctx.stroke();
-    api.draw.text(ctx, 'you', wx, corY - 13, { size: 12, color: c.electron, align: 'center', weight: 600 });
+    person(ctx,wx,corY,31,c.electron);
+    api.draw.text(ctx,'you',wx,corY-36,{size:12,color:c.electron,align:'center',weight:600});
 
     // ---- Position-time graph below
     const gx0 = 70, gy0 = 278, gw = 520, gh = 176;
@@ -283,6 +279,7 @@ Live.register('graphwalk', (stage, params, api) => {
 
       const last = trace[trace.length - 1];
       const lx = gx0 + last.t * px, ly = gy0 - last.x * py;
+      ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle=c.electron;ctx.globalAlpha=.5;ctx.beginPath();ctx.moveTo(lx,gy0);ctx.lineTo(lx,ly);ctx.lineTo(gx0,ly);ctx.stroke();ctx.restore();
       ctx.beginPath();
       ctx.arc(lx, ly, 5, 0, Math.PI * 2);
       ctx.fillStyle = c.electron;

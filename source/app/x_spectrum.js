@@ -245,8 +245,13 @@ App.explorer('spectrum', {
     let lastTime = 0;
     let showTour = false;
     let tourIdx = 0;
+    let panel = 'visible';
+    let disposed = false;
 
-    const canvas = el('canvas', { class: 'xp-canvas', width: 880, height: 460, 'aria-label': 'Electromagnetic spectrum, coupled E and B wave, and photoelectric packet tester' });
+    const canvas = el('canvas', { class: 'xp-canvas spectrum-canvas', width: 880, height: 460, role:'img', 'aria-label': 'The electromagnetic spectrum and an enlarged selected explanation.' });
+    const panelNote = el('p', {class:'explorer-scene-note'});
+    const panels = [['visible','Colour & spectral lines'],['wave','Electric & magnetic fields'],['photon','One photon & an electron']];
+    const panelButtons = panels.map(([key,label])=>el('button',{type:'button',class:'xp-tab','aria-pressed':String(key===panel),onclick:()=>{panel=key;stopPlay();panelButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(panels[i][0]===key)));drawCanvas();}},label));
     const slider = el('input', {
       type: 'range',
       min: LOGF_MIN,
@@ -394,326 +399,65 @@ App.explorer('spectrum', {
     }
 
     function drawCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const cssW = canvas.clientWidth || 880;
-      const cssH = Math.max(350, Math.min(460, Math.round(cssW * 0.54)));
-      if (canvas.width !== Math.round(cssW * dpr) || canvas.height !== Math.round(cssH * dpr)) {
-        canvas.width = Math.round(cssW * dpr);
-        canvas.height = Math.round(cssH * dpr);
+      if (disposed || stage.closest('[data-page-off]')) return;
+      const dpr=Math.min(devicePixelRatio||1,2),W=canvas.clientWidth||700,H=410;
+      canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+      const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+      const col=readPalette(),freq=10**logF,lam=C_LIGHT/freq,ev=H_PLANCK_EV*freq,nm=lam*1e9;
+      const text=(s,x,y,{size=13,colour=col.ink,align='left',weight=400}={})=>{ctx.fillStyle=colour;ctx.font=`${weight} ${size}px Lexend,system-ui`;ctx.textAlign=align;ctx.fillText(s,x,y);};
+      const line=(x,y,x2,y2,colour=col.rule,width=1)=>{ctx.strokeStyle=colour;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();};
+      const arrow=(x,y,x2,y2,colour)=>{line(x,y,x2,y2,colour,2);const a=Math.atan2(y2-y,x2-x);ctx.fillStyle=colour;ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-8*Math.cos(a-.45),y2-8*Math.sin(a-.45));ctx.lineTo(x2-8*Math.cos(a+.45),y2-8*Math.sin(a+.45));ctx.fill();};
+      ctx.fillStyle=col.plate;ctx.fillRect(0,0,W,H);
+      const pad=24,bw=W-pad*2,by=48,bh=24;
+      const xf=lf=>pad+(lf-LOGF_MIN)/(LOGF_MAX-LOGF_MIN)*bw;
+      text('Whole electromagnetic spectrum',pad,25,{weight:700});
+      ctx.fillStyle=col.sheet;ctx.fillRect(pad,by,bw,bh);ctx.strokeStyle=col.rule;ctx.strokeRect(pad,by,bw,bh);
+      const v0=xf(Math.log10(C_LIGHT/750e-9)),v1=xf(Math.log10(C_LIGHT/400e-9));
+      const rainbow=ctx.createLinearGradient(v0,0,v1,0);['#c83e2b','#d99b26','#2e8b57','#2b6cb0','#6b46c1'].forEach((c,i)=>rainbow.addColorStop(i/4,c));ctx.fillStyle=rainbow;ctx.fillRect(v0,by,v1-v0,bh);
+      RUNGS.forEach(r=>{ctx.fillStyle=Math.abs(r.logF-logF)<.25?col.proton:col.electron;ctx.beginPath();ctx.arc(xf(r.logF),by+bh/2,3,0,Math.PI*2);ctx.fill();});
+      line(xf(logF),by-6,xf(logF),by+bh+6,col.proton,2.5);
+      text('lower frequency',pad,94,{size:12,colour:col.muted});text('higher frequency',W-pad,94,{size:12,colour:col.muted,align:'right'});
+      const rung=nearestRung(logF);
+      text(rung.band.length>34?rung.name:rung.band,pad,121,{weight:600,size:W<400?12:14});
+      if(panel==='visible'){
+        // Exact log-width sliver, expanded into an explicitly linked linear-wavelength view.
+        line(v0,by+bh,pad,171,col.muted);line(v1,by+bh,W-pad,171,col.muted);
+        const zy=179,zh=47,zn=w=>pad+(750-w)/350*bw;
+        const g=ctx.createLinearGradient(pad,0,W-pad,0);['#bd5145','#cf933e','#c4b856','#6c9b5e','#4f87b1','#8a67b0'].forEach((c,i)=>g.addColorStop(i/5,c));ctx.fillStyle=g;ctx.fillRect(pad,zy,bw,zh);
+        text('Visible band enlarged',pad,159,{weight:700,size:14});
+        FRAUNHOFER.filter(f=>f.wl>=400).forEach(f=>{const x=zn(f.wl);line(x,zy,x,zy+zh,'#202822',2);});
+        [750,650,550,450,400].forEach(w=>text(String(w),zn(w),zy+zh+21,{size:12,align:w===750?'left':w===400?'right':'center'}));
+        text('wavelength (nm)',W-pad,zy+zh+44,{size:12,align:'right',colour:col.muted});
+        const ca=zn(H_PLANCK_EV*C_LIGHT/CA_WORK_EV*1e9);ctx.setLineDash([4,3]);line(ca,zy-5,ca,zy+zh+4,col.proton,2);ctx.setLineDash([]);
+        if(nm>=400&&nm<=750)line(zn(nm),zy-4,zn(nm),zy+zh+4,'#fff',3);
+        text(W<400?'Dark lines: atoms absorb light':'Dark lines: atoms absorb particular colours.',pad,310,{size:13});
+        text(W<400?'Dashed: calcium threshold (458 nm)':'Dashed mark: calcium threshold, 458 nm.',pad,334,{size:13,colour:col.proton});
+        text('Red 750 nm',pad,380,{size:12,colour:col.muted});text('Violet 400 nm',W-pad,380,{size:12,colour:col.muted,align:'right'});
+        panelNote.textContent='The connectors magnify the true, narrow visible band above. The lower strip uses a linear wavelength axis; the upper ruler uses logarithmic frequency. The white mark is your selected colour when it lies in the visible band.';
+      }else if(panel==='wave'){
+        const x0=pad+15,x1=W-pad-15,mid=246,amp=Math.min(58,bw*.18),cycles=2;
+        text('Two fields, one travelling wave',pad,159,{weight:700,size:14});
+        arrow(x0,mid,x1,mid,col.muted);
+        for(const [colour,isB]of [[col.electron,true],[col.proton,false]]){ctx.strokeStyle=colour;ctx.lineWidth=2.2;ctx.beginPath();for(let i=0;i<=160;i++){const u=i/160,v=Math.sin(u*cycles*Math.PI*2-phase),x=x0+u*(x1-x0)+(isB?v*amp*.35:0),y=mid-v*amp*(isB?.38:1);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();}
+        for(let i=0;i<=24;i++){const u=i/24,v=Math.sin(u*cycles*Math.PI*2-phase),x=x0+u*(x1-x0);ctx.globalAlpha=.35;line(x,mid,x,mid-v*amp,col.proton);line(x,mid,x+v*amp*.35,mid-v*amp*.38,col.electron);}ctx.globalAlpha=1;
+        text('E: up / down',pad,185,{size:13,colour:col.proton});text('B: perpendicular to E',pad,344,{size:13,colour:col.electron});
+        text('travel direction →',W-pad,369,{size:12,colour:col.muted,align:'right'});
+        text('span = '+fmtWavelength(lam*2),pad,395,{weight:600,size:13});
+        panelNote.textContent='This view always shows two wavelengths, so its physical span changes as you move along the ladder. E and B are in phase and perpendicular to each other and to travel. Their amplitudes use separate schematic scales; motion is slowed for viewing.';
+      }else{
+        text('Can one photon free an electron?',pad,159,{weight:700,size:14});
+        const px=W*.5,py=258;
+        ctx.fillStyle=col.rule;ctx.fillRect(px-10,py-53,20,106);ctx.strokeStyle=col.ink;ctx.strokeRect(px-10,py-53,20,106);
+        ctx.strokeStyle=visibleHueForNm(nm)||col.neutron;ctx.lineWidth=2;ctx.beginPath();const end=px-19,start=pad+4;for(let i=0;i<=80;i++){const x=start+(end-start)*i/80,y=py+Math.sin(i/80*Math.PI*6-phase)*10;i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();
+        text(fmtEnergyEv(ev),pad,196,{weight:700,size:13});
+        if(ev>=CA_WORK_EV){arrow(px+20,py,W-pad-10,py-38,col.electron);ctx.fillStyle=col.electron;ctx.beginPath();ctx.arc(W-pad-10,py-38,5,0,Math.PI*2);ctx.fill();text('electron out',W-pad,286,{align:'right',weight:700,size:13,colour:col.electron});text('KE '+fmtEnergyEv(ev-CA_WORK_EV),W-pad,308,{align:'right',size:12});}
+        else{text('stays bound',W-pad,286,{align:'right',weight:700,size:13,colour:col.proton});}
+        text('calcium',px,332,{align:'center',weight:700,size:13});text('needs 2.71 eV',px,354,{align:'center',size:13});
+        text(ev>=CA_WORK_EV?'Above the threshold':'Below the threshold',pad,391,{weight:700,size:14,colour:ev>=CA_WORK_EV?col.electron:col.proton});
+        panelNote.textContent='Brightness changes the number of photons; wavelength changes each photon’s energy. This single-photon model uses clean calcium’s 2.71 eV work function. Ionisation thresholds depend on the material; “non-ionising” does not mean harmless.';
       }
-      const ctx = canvas.getContext('2d');
-      ctx.save();
-      ctx.scale(dpr, dpr);
-
-      const W = cssW, H = cssH;
-      const col = readPalette();
-      const freq = Math.pow(10, logF);
-      const lam = C_LIGHT / freq;
-      const ev = H_PLANCK_EV * freq;
-      const nm = lam * 1e9;
-
-      ctx.fillStyle = col.plate;
-      ctx.fillRect(0, 0, W, H);
-
-      // 1. TOP SPECTRUM LADDER BAR (y = 14..82)
-      const padX = 24;
-      const barW = W - padX * 2;
-      const barY = 30;
-      const barH = 26;
-      const xOfLogF = lf => padX + ((lf - LOGF_MIN) / (LOGF_MAX - LOGF_MIN)) * barW;
-
-      ctx.fillStyle = col.sheet;
-      ctx.strokeStyle = col.rule;
-      ctx.lineWidth = 1.2;
-      ctx.fillRect(padX, barY, barW, barH);
-      ctx.strokeRect(padX, barY, barW, barH);
-
-      // Highlight visible sliver on the main bar (logF ~ 14.60 to 14.88)
-      const visX0 = xOfLogF(Math.log10(C_LIGHT / 750e-9));
-      const visX1 = xOfLogF(Math.log10(C_LIGHT / 400e-9));
-      const gradVis = ctx.createLinearGradient(visX0, 0, visX1, 0);
-      gradVis.addColorStop(0, '#c83e2b');
-      gradVis.addColorStop(0.35, '#d99b26');
-      gradVis.addColorStop(0.6, '#2e8b57');
-      gradVis.addColorStop(0.85, '#2b6cb0');
-      gradVis.addColorStop(1, '#6b46c1');
-      ctx.fillStyle = gradVis;
-      ctx.fillRect(visX0, barY + 1, Math.max(6, visX1 - visX0), barH - 2);
-
-      // Band labels along the spectrum bar
-      const bandLabels = [
-        { lf: 2.3, text: '50 Hz' },
-        { lf: 8.5, text: 'Radio' },
-        { lf: 10.6, text: 'mm / μwave' },
-        { lf: 13.4, text: 'Infrared' },
-        { lf: 14.74, text: 'Vis' },
-        { lf: 15.8, text: 'UV' },
-        { lf: 18.0, text: 'X-rays' },
-        { lf: 20.0, text: 'γ-rays' },
-      ];
-      ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
-      ctx.textAlign = 'center';
-      bandLabels.forEach(b => {
-        const bx = xOfLogF(b.lf);
-        if (bx > padX + 12 && bx < padX + barW - 12) {
-          ctx.fillStyle = col.ink2;
-          ctx.fillText(b.text, bx, barY - 6);
-        }
-      });
-
-      // Rung dots on main bar
-      RUNGS.forEach(r => {
-        const rx = xOfLogF(r.logF);
-        ctx.fillStyle = Math.abs(r.logF - logF) < 0.25 ? col.proton : col.electron;
-        ctx.beginPath();
-        ctx.arc(rx, barY + barH / 2, 3.5, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Current cursor on main bar
-      const curX = xOfLogF(logF);
-      ctx.strokeStyle = col.proton;
-      ctx.lineWidth = 2.4;
-      ctx.beginPath();
-      ctx.moveTo(curX, barY - 4);
-      ctx.lineTo(curX, barY + barH + 4);
-      ctx.stroke();
-
-      // 2. VISIBLE RAINBOW & FRAUNHOFER ZOOM STRIP (y = 74..118)
-      const zoomY = 74, zoomH = 26;
-      const zGrad = ctx.createLinearGradient(padX, 0, padX + barW, 0);
-      zGrad.addColorStop(0, '#b83227');
-      zGrad.addColorStop(0.22, '#d97724');
-      zGrad.addColorStop(0.42, '#d4ac2b');
-      zGrad.addColorStop(0.62, '#2f855a');
-      zGrad.addColorStop(0.82, '#2b6cb0');
-      zGrad.addColorStop(1, '#553c9a');
-      ctx.fillStyle = zGrad;
-      ctx.globalAlpha = (nm >= 380 && nm <= 760) ? 0.92 : 0.45;
-      ctx.fillRect(padX, zoomY, barW, zoomH);
-      ctx.globalAlpha = 1;
-      ctx.strokeStyle = col.rule;
-      ctx.strokeRect(padX, zoomY, barW, zoomH);
-
-      // Map 750 nm (left) to 380 nm (right)
-      const xOfNm = w => padX + ((750 - w) / (750 - 380)) * barW;
-
-      // Fraunhofer dark solar absorption lines (Ch 15.4)
-      FRAUNHOFER.forEach(fl => {
-        const fx = xOfNm(fl.wl);
-        ctx.strokeStyle = '#111';
-        ctx.lineWidth = 1.6;
-        ctx.beginPath();
-        ctx.moveTo(fx, zoomY);
-        ctx.lineTo(fx, zoomY + zoomH);
-        ctx.stroke();
-        if (W > 560) {
-          ctx.fillStyle = col.ink2;
-          ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'center';
-          ctx.fillText(fl.label.split(' ')[0], fx, zoomY + zoomH + 11);
-        }
-      });
-
-      // Calcium 2.71 eV photoelectric threshold marker (458 nm)
-      const caX = xOfNm(457.5);
-      ctx.strokeStyle = col.proton;
-      ctx.lineWidth = 2;
-      ctx.setLineDash([3, 2]);
-      ctx.beginPath();
-      ctx.moveTo(caX, zoomY - 3);
-      ctx.lineTo(caX, zoomY + zoomH + 3);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = col.proton;
-      ctx.font = `700 9.5px "Lexend", system-ui, sans-serif`;
-      ctx.textAlign = 'right';
-      ctx.fillText('Ca threshold 2.71 eV (458 nm) →', caX - 4, zoomY - 4);
-
-      if (nm >= 380 && nm <= 750) {
-        const vx = xOfNm(nm);
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        ctx.moveTo(vx, zoomY - 2);
-        ctx.lineTo(vx, zoomY + zoomH + 2);
-        ctx.stroke();
-      }
-
-      // 3. BOTTOM LEFT: COUPLED E ⊥ B WAVE VISUALISER
-      const waveTop = 124;
-      const waveW = W > 640 ? W * 0.56 : W - padX * 2;
-      const waveH = H - waveTop - 16;
-      const wCx = padX + 16;
-      const wCy = waveTop + waveH * 0.52;
-      const axisLen = waveW - 32;
-
-      ctx.strokeStyle = col.rule;
-      ctx.lineWidth = 1;
-      ctx.strokeRect(padX, waveTop, waveW, waveH);
-
-      // Propagation axis (c)
-      ctx.strokeStyle = col.muted;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(wCx, wCy);
-      ctx.lineTo(wCx + axisLen, wCy);
-      ctx.stroke();
-
-      // Number of spatial cycles shown scales smoothly with logF (from 1.2 cycles at 50 Hz to 14 cycles at gamma)
-      const cycles = 1.2 + ((logF - LOGF_MIN) / (LOGF_MAX - LOGF_MIN)) * 12.5;
-      const ampE = Math.min(48, waveH * 0.34);
-      const bxSlant = 0.45, bySlant = -0.32; // 3D oblique projection for perpendicular B field
-
-      // Draw B-field wave (blue/electron, perpendicular to E)
-      ctx.strokeStyle = col.electron;
-      ctx.lineWidth = 1.8;
-      ctx.beginPath();
-      const steps = 140;
-      for (let i = 0; i <= steps; i++) {
-        const u = i / steps;
-        const x0 = wCx + u * axisLen;
-        const s = Math.sin(u * cycles * Math.PI * 2 - phase);
-        const bx = x0 + s * ampE * bxSlant;
-        const by = wCy + s * ampE * bySlant;
-        if (i === 0) ctx.moveTo(bx, by);
-        else ctx.lineTo(bx, by);
-      }
-      ctx.stroke();
-
-      // Draw E-field wave (red/proton, vertical) with field vectors
-      const visCol = visibleHueForNm(nm);
-      ctx.strokeStyle = visCol || col.proton;
-      ctx.lineWidth = 2.2;
-      ctx.beginPath();
-      for (let i = 0; i <= steps; i++) {
-        const u = i / steps;
-        const x0 = wCx + u * axisLen;
-        const s = Math.sin(u * cycles * Math.PI * 2 - phase);
-        const ey = wCy - s * ampE;
-        if (i === 0) ctx.moveTo(x0, ey);
-        else ctx.lineTo(x0, ey);
-      }
-      ctx.stroke();
-
-      // Draw E and B field vector ribs every few steps
-      for (let i = 0; i <= steps; i += 6) {
-        const u = i / steps;
-        const x0 = wCx + u * axisLen;
-        const s = Math.sin(u * cycles * Math.PI * 2 - phase);
-        ctx.strokeStyle = visCol || col.proton;
-        ctx.globalAlpha = 0.32;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(x0, wCy);
-        ctx.lineTo(x0, wCy - s * ampE);
-        ctx.stroke();
-
-        ctx.strokeStyle = col.electron;
-        ctx.beginPath();
-        ctx.moveTo(x0, wCy);
-        ctx.lineTo(x0 + s * ampE * bxSlant, wCy + s * ampE * bySlant);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      }
-
-      ctx.font = `700 11px "Lexend", system-ui, sans-serif`;
-      ctx.fillStyle = col.ink;
-      ctx.textAlign = 'left';
-      ctx.fillText('Coupled Electromagnetic Wave (E ⊥ B, speed c = 299,792,458 m/s)', padX + 10, waveTop + 18);
-      ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
-      ctx.fillStyle = visCol || col.proton;
-      ctx.fillText('Electric field E (vertical)', padX + 10, waveTop + waveH - 10);
-      ctx.fillStyle = col.electron;
-      ctx.fillText('Magnetic field B (90° to E)', padX + 165, waveTop + waveH - 10);
-
-      // 4. BOTTOM RIGHT: PHOTOELECTRIC (Ca 2.71 eV) & IONISATION (~10 eV) PACKET TESTER
-      if (W > 640) {
-        const pLeft = padX + waveW + 12;
-        const pW = W - pLeft - padX;
-        ctx.strokeStyle = col.rule;
-        ctx.lineWidth = 1;
-        ctx.strokeRect(pLeft, waveTop, pW, waveH);
-
-        ctx.font = `700 11px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.ink;
-        ctx.textAlign = 'left';
-        ctx.fillText('Single-Photon Packet Test (E = hf)', pLeft + 10, waveTop + 18);
-
-        // Draw Calcium metal plate
-        const plateX = pLeft + pW * 0.48;
-        const plateY = waveTop + waveH * 0.56;
-        ctx.fillStyle = col.rule;
-        ctx.fillRect(plateX - 8, plateY - 38, 16, 76);
-        ctx.strokeStyle = col.ink2;
-        ctx.strokeRect(plateX - 8, plateY - 38, 16, 76);
-
-        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.ink2;
-        ctx.textAlign = 'center';
-        ctx.fillText('Calcium metal', plateX, plateY + 52);
-        ctx.fillText('(BE = 2.71 eV)', plateX, plateY + 64);
-
-        // Incoming photon wave-packet from left
-        ctx.strokeStyle = visCol || col.neutron;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        const pktX = pLeft + pW * 0.22;
-        for (let dx = -22; dx <= 22; dx++) {
-          const env = Math.cos((dx / 22) * (Math.PI / 2));
-          const py = plateY - 12 + Math.sin(dx * 0.65 - phase * 2) * 11 * env;
-          if (dx === -22) ctx.moveTo(pktX + dx, py);
-          else ctx.lineTo(pktX + dx, py);
-        }
-        ctx.stroke();
-        ctx.fillStyle = col.ink;
-        ctx.fillText(`hf = ${fmtEnergyEv(ev)}`, pktX, plateY - 30);
-
-        const ejectsCa = ev >= CA_WORK_EV;
-        const ionises = ev >= IONISE_EV;
-
-        if (ejectsCa) {
-          const ke = ev - CA_WORK_EV;
-          ctx.strokeStyle = col.green;
-          ctx.lineWidth = 2.2;
-          ctx.beginPath();
-          ctx.moveTo(plateX + 10, plateY - 10);
-          ctx.lineTo(pLeft + pW - 22, plateY - 28);
-          ctx.stroke();
-
-          ctx.fillStyle = col.green;
-          ctx.beginPath();
-          ctx.arc(pLeft + pW - 22, plateY - 28, 5, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.fillText('e⁻ ejected!', plateX + 16, plateY - 34);
-          ctx.font = `500 9.5px "Lexend", system-ui, sans-serif`;
-          ctx.fillText(`KE = ${fmtEnergyEv(ke)}`, plateX + 16, plateY - 4);
-        } else {
-          ctx.fillStyle = col.proton;
-          ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.fillText('No electron ejected', plateX + 14, plateY - 14);
-          ctx.font = `400 9.5px "Lexend", system-ui, sans-serif`;
-          ctx.fillStyle = col.muted;
-          ctx.fillText('(hf < 2.71 eV threshold)', plateX + 14, plateY + 2);
-        }
-
-        // Bottom status line in tester box
-        ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = ionises ? col.proton : col.green;
-        ctx.textAlign = 'left';
-        ctx.fillText(
-          ionises
-            ? 'Ionising (> 10 eV): single photon can ionise atoms'
-            : 'Non-ionising (< 10 eV): safe per photon (heating only)',
-          pLeft + 10, waveTop + waveH - 10
-        );
-      }
-
-      ctx.restore();
+      playBtn.hidden=panel!=='wave';
+      canvas.setAttribute('aria-label',`${panels.find(p=>p[0]===panel)[1]}. ${sliderOut.textContent}. ${panelNote.textContent}`);
     }
 
     function setLogF(val) {
@@ -758,13 +502,13 @@ App.explorer('spectrum', {
           el('b', {}, 'Photoelectric & ionisation check (Chapters 15.1 & 15.2): '),
           ejectsCa
             ? `Each photon carries ${fmtEnergyEv(ev)}, which beats calcium’s 2.71 eV work function and knocks out an electron with maximum kinetic energy KE = hf − BE = ${fmtEnergyEv(ev - CA_WORK_EV)}. `
-            : `Each photon carries ${fmtEnergyEv(ev)}, which is below calcium’s 2.71 eV binding energy, so zero electrons are ejected however bright the beam is. `,
+            : `Each photon carries ${fmtEnergyEv(ev)}, which is below calcium’s 2.71 eV binding energy, so increasing the number of photons does not eject electrons in this single-photon model. `,
           ionises
-            ? 'Because each photon exceeds ~10 eV, single photons can ionise atoms and break biological molecules.'
-            : 'Because each photon is below ~10 eV, this radiation is non-ionising.'
+            ? 'This is above the approximate 10 eV guide used here for ionising radiation. Actual ionisation thresholds depend on the material.'
+            : 'This is below the approximate 10 eV guide used here. Actual ionisation thresholds depend on the material; non-ionising does not mean harmless.'
         ),
         el('p', { class: 'xp-honest' },
-          'Model note: In empty space every electromagnetic wave travels at c = 299,792,458 m/s. Because real frequencies run from 50 Hz to 3 × 10²⁰ Hz, the wave animation is slowed by factors of up to 10²⁰ so you can watch the coupled electric (E) and magnetic (B) fields oscillate at right angles.'
+          'Model note: In empty space every electromagnetic wave travels at c = 299,792,458 m/s. The wave view rescales its window to show two wavelengths at every selected frequency; its visible motion is illustrative, not a clock for the actual oscillation.'
         )
       );
 
@@ -775,20 +519,12 @@ App.explorer('spectrum', {
       setLogF(parseFloat(slider.value));
     });
 
-    // Click on top spectrum bar or visible rainbow zoom strip to jump directly
-    canvas.addEventListener('pointerdown', e => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const padX = 24;
-      const barW = rect.width - padX * 2;
-      const frac = Math.max(0, Math.min(1, (x - padX) / barW));
-      if (y >= 16 && y <= 64) {
-        setLogF(LOGF_MIN + frac * (LOGF_MAX - LOGF_MIN));
-      } else if (y >= 68 && y <= 112) {
-        const nm = 750 - frac * (750 - 380);
-        setLogF(Math.log10(C_LIGHT / (nm * 1e-9)));
-      }
+    // The same native slider is available to keyboard users; the drawing is an optional shortcut.
+    canvas.addEventListener('pointerdown',e=>{
+      const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=(e.clientY-r.top)*410/r.height,pad=24;
+      const frac=Math.max(0,Math.min(1,(x-pad)/(r.width-2*pad)));
+      if(y>=35&&y<=80)setLogF(LOGF_MIN+frac*(LOGF_MAX-LOGF_MIN));
+      else if(panel==='visible'&&y>=170&&y<=235)setLogF(Math.log10(C_LIGHT/((750-frac*350)*1e-9)));
     });
 
     const wrap = el('div', { class: 'xp-wrap' },
@@ -801,7 +537,8 @@ App.explorer('spectrum', {
       ),
       el('div', { class: 'xp-tabs', role: 'toolbar', 'aria-label': 'Spectrum explorer modes' }, tabExplore, tabTour),
       el('div', { class: 'xp-rungs', role: 'group', 'aria-label': 'Electromagnetic spectrum rungs' }, rungBtns),
-      el('div', { class: 'xp-canvas-wrap' }, canvas),
+      el('div',{class:'spectrum-panels',role:'group','aria-label':'Choose a visual explanation'},panelButtons),
+      el('div', { class: 'xp-canvas-wrap' }, canvas), panelNote,
       el('div', { class: 'xp-controls' },
         el('div', { class: 'xp-slider' },
           el('label', {}, 'Spectrum rung'),
@@ -823,6 +560,11 @@ App.explorer('spectrum', {
     setLogF(logF);
 
     let rTimer;
-    window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(drawCanvas, 80); });
+    const resize=()=>{clearTimeout(rTimer);rTimer=setTimeout(drawCanvas,80);};
+    const hide=()=>{if(document.hidden||stage.closest('[data-page-off]'))stopPlay();};
+    window.addEventListener('resize',resize);document.addEventListener('visibilitychange',hide);
+    const pageObserver=new MutationObserver(hide);const section=stage.closest('section');if(section)pageObserver.observe(section,{attributes:true,attributeFilter:['data-page-off']});
+    const observer=new MutationObserver(drawCanvas);observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class']});
+    return ()=>{disposed=true;stopPlay();clearTimeout(rTimer);window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',hide);observer.disconnect();pageObserver.disconnect();};
   },
 });

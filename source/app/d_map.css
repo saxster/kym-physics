@@ -5,7 +5,7 @@
 .amap-views { display: flex; flex-wrap: wrap; gap: .35rem; }
 .amap-btn {
   font: 500 .8rem/1 var(--sans); color: var(--ink-2); background: var(--sheet); border: 1px solid var(--rule);
-  border-radius: 999px; padding: .5rem .85rem; cursor: pointer; min-height: 2.1rem;
+  border-radius: 999px; padding: .5rem .85rem; cursor: pointer; min-height: 44px;
 }
 .amap-btn:hover { border-color: var(--ink); }
 .amap-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
@@ -72,15 +72,15 @@
 .ll-track { position: relative; min-height: 6rem; }
 .ll-tick { position: absolute; top: 18px; bottom: 0; width: 0; border-left: 1px solid var(--grid); }
 .ll-tick.major { border-left-color: var(--rule); }
-.ll-yr { position: absolute; top: 4px; transform: translateX(-50%); font: .66rem/1 var(--sans); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ll-yr { position: absolute; top: 4px; transform: translateX(-50%); font: .8rem/1 var(--sans); color: var(--muted); font-variant-numeric: tabular-nums; }
 a.ll-bar {
-  position: absolute; height: 22px; border-radius: 11px; background: var(--vol-wash); border: 1px solid var(--electron);
+  position: absolute; height: 26px; border-radius: 11px; background: var(--vol-wash); border: 1px solid var(--electron);
   text-decoration: none !important; color: var(--ink); display: flex; align-items: center; white-space: nowrap; overflow: visible;
 }
 a.ll-bar::after { display: none !important; }
 a.ll-bar.living { border-right-style: dashed; }
 a.ll-bar:hover, a.ll-bar:focus-visible { background: var(--electron); color: var(--paper); outline: none; z-index: 2; }
-.ll-name { font: 500 .74rem/1 var(--sans); padding: 0 .55rem; }
+.ll-name { font: 500 .85rem/1 var(--sans); padding: 0 .55rem; }
 a.ll-bar.out .ll-name { position: absolute; left: 100%; padding-left: .35rem; }
 a.ll-bar.out:hover .ll-name, a.ll-bar.out:focus-visible .ll-name { color: var(--ink); }
 .ll-cursor { position: absolute; top: 14px; bottom: 0; width: 0; border-left: 2px solid var(--proton); pointer-events: none; z-index: 3; }
@@ -97,3 +97,6 @@ a.ll-bar.out:hover .ll-name, a.ll-bar.out:focus-visible .ll-name { color: var(--
   .amap-scale span.minor { display: none; }
 }
 @media print { #explore-map { display: none !important; } }
+
+.amap-labels text{font-weight:500;}
+a.ll-bar:focus-visible{outline:2px solid var(--vol);outline-offset:3px;}

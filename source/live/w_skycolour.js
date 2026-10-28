@@ -1,5 +1,6 @@
 // 11.3 Rayleigh sky dome from a Mumbai sea wall: 1/lambda^4 scattering (700, 530, 450 nm) on a curved Earth.
 import { Live } from './core.js';
+import { note, label, eye } from './art_waves.js';
 
 const FRAG = `
 uniform float u_elev;    // Sun elevation in degrees (-2 to 90)
@@ -111,6 +112,7 @@ void main() {
 
 Live.register('skycolour', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The sky colour is an illustrative RGB, single-scattering model. Direct sunlight travels to the observer; scattered skylight arrives from another direction. The atmosphere and light paths are greatly enlarged.');
   const W = 640, H = 360;
 
   let elev = 10;    // degrees (-2 to 90), default 10 deg
@@ -223,7 +225,23 @@ Live.register('skycolour', (stage, params, api) => {
     );
   }
 
+  const path=api.canvas(640,160,'Direct sunlight and a separately scattered ray arriving at an eye');
+  function drawPaths(){
+    const ctx=path.ctx;path.clear(c.plate);const ox=530,oy=118,sx=52,sy=30;
+    ctx.fillStyle=c.electron;ctx.globalAlpha=.07*DENS[tabIdx];ctx.fillRect(16,15,608,115);ctx.globalAlpha=1;
+    ctx.strokeStyle=c.rule;ctx.beginPath();ctx.moveTo(16,130);ctx.lineTo(624,130);ctx.stroke();
+    eye(ctx,c,ox,oy,.7);ctx.fillStyle=c.neutron;ctx.beginPath();ctx.arc(sx,sy,13,0,2*Math.PI);ctx.fill();
+    api.draw.arrow(ctx,sx+18,sy+4,ox-20,oy,c.neutron,2.2,7);label(ctx,c,'Direct sunlight → eye',275,101,{size:12,color:c.neutron});
+    if(DENS[tabIdx]>0){
+      api.draw.arrow(ctx,sx+18,sy,330,43,c.neutron,1.8,6);api.draw.arrow(ctx,330,43,ox-14,oy-12,c.electron,2.2,7);
+      ctx.beginPath();ctx.arc(330,43,5,0,2*Math.PI);ctx.fillStyle=c.electron;ctx.fill();label(ctx,c,'Air molecule scatters light',340,27,{size:12});
+      label(ctx,c,'Scattered skylight',380,60,{size:12,color:c.electron});
+    }else label(ctx,c,'No atmosphere → no scattered skylight',270,45,{size:13,align:'center'});
+    label(ctx,c,`Path key · schematic, not an angle measurement · Sun ${elev}°`,20,151,{size:12,color:c.muted});
+  }
+  api.loop(drawPaths);
   function sync() {
+    drawPaths();
     gl.set('u_elev', elev);
     gl.set('u_dens', DENS[tabIdx]);
     gl.set('u_pan', pan);

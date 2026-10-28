@@ -97,7 +97,7 @@ The exhaustive tables retain specific follow-on opportunities, particularly usef
 These are factual checks; the new drawings are original programmatic SVGs. Chapter 15’s grounding and provenance ledger record the newly explicit wavelength and mass values.
 
 
-## Completion receipt
+## First-pass completion receipt (`07f790d`)
 
 - All 158 final SVGs rendered with **zero out-of-bounds labels and zero detected text-to-text collisions**.
 - The new detail view passed five viewport widths × three themes, print, story-pattern isolation, native keyboard/focus behavior and illustrated-cover touch targets.
@@ -107,3 +107,10 @@ These are factual checks; the new drawings are original programmatic SVGs. Chapt
 - Figure helpers and the water-jet, sound-phase, story-geometry, Doppler-wavefront, Kepler-area and mission-orbit regressions passed. Existing scale and energy-scenario regressions passed.
 - The rebuilt root site matches the reviewed build; index.html remains below the existing 4 MiB budget, and all individual widget/explorer chunks remain below 150 KiB (shared three.js is the documented exception). The new service-worker cache hash is 7b586658c9a3.
 - The release includes the figure sources, audit, regression checks and matching generated site. GitHub Pages deployment and the public service-worker revision are verified after pushing.
+
+
+## Continuation: live diagrams and explorer scenes
+
+The 29 October continuation addresses **all 36 live widgets, all three full-page explorers, the map/lifelines and 16 additional still diagrams**. Shared guided tours and numerical strips were reconciled with the actual models. Read the current [implementation and verification receipt](graphics-continuation.md), with per-widget and per-scene reports linked there. The first-pass results above describe the earlier release; the continuation receipt is authoritative for the new cache/build.
+
+Completed continuation examples include the eye/friction/Kibble cut-aways, hollow conducting cage, linked Moon phase views, material and astronomical scale landmarks, staged spectrum panels, native-size live reading and more legible map labels. The original tables remain a record of every examined opportunity; selective further still-art ideas remain editorial options, rather than unreported implementation.

@@ -1,6 +1,8 @@
 // Ch 4.4 c4_two_coins -> w_projectile: Dropped and flicked coins launched together off a 75 cm table.
 // Teaches independence of horizontal and vertical motions. Scale 240 px/m matching the still figure. Time slowed 3x.
 import { Live } from './core.js';
+import { projectileDrawingScale } from './mechanics_geometry.mjs';
+import { mechanismKey, coin, dimension } from './art_mechanics.js';
 
 const G = 9.8;
 const H_TABLE = 0.75; // m
@@ -14,6 +16,7 @@ Live.register('projectile', (stage, params, api) => {
   let simT = 0;
   let running = !api.reduced;
   const say = api.readout();
+  mechanismKey(stage, "Read the paired flashes", ["Dotted connectors join equal times; at a horizontal launch both coins have the same height.", "Coin symbols are enlarged. The metre ruler and changing drawing scale apply to both directions."]);
 
   function flightTimes() {
     // Dropped coin: 0.5 * g * t^2 = H_TABLE => t1 = sqrt(2 * 0.75 / 9.8) = 0.3912 s
@@ -79,7 +82,7 @@ Live.register('projectile', (stage, params, api) => {
   });
 
   api.loop((dt) => {
-    const { tDrop, tFlick, vx0 } = flightTimes();
+    const { tDrop, tFlick, vx0, vy0, xLand } = flightTimes();
     const maxT = Math.max(tDrop, tFlick);
 
     if (dt > 0 && running) {
@@ -95,8 +98,10 @@ Live.register('projectile', (stage, params, api) => {
     k.clear(c.plate);
     const ctx = k.ctx;
 
-    const edgeX = 160, topY = 96;
-    const floorY = topY + H_TABLE * SCALE; // 96 + 180 = 276
+    const edgeX = 120;
+    const scale = projectileDrawingScale(xLand,vy0,H_TABLE);
+    const topY = 272 - H_TABLE*scale;
+    const floorY = topY + H_TABLE * scale;
     const xOrigin = edgeX + 10;
 
     // Table and floor (matching c4_two_coins)
@@ -117,8 +122,10 @@ Live.register('projectile', (stage, params, api) => {
     ctx.lineTo(620, floorY);
     ctx.stroke();
 
-    api.draw.text(ctx, 'table, 75 cm high', 34, topY - 10, { size: 12, color: c.muted });
-    api.draw.text(ctx, 'coin size not to scale', 616, 24, { size: 11, color: c.muted, align: 'right' });
+    api.draw.text(ctx, '75 cm table', 25, topY - 10, { size: 12, color: c.muted });
+    dimension(ctx, xOrigin, 315, xOrigin+scale, 315, c.muted);
+    api.draw.text(ctx, '1 metre',xOrigin+scale/2,332,{size:12,color:c.muted,align:'center'});
+    api.draw.text(ctx, `scale: 1 m = ${Math.round(scale)} drawing units`, 616, 24, { size: 11, color: c.muted, align: 'right' });
 
     // Full trajectory curve (faint guide) and active trajectory up to drawT
     ctx.strokeStyle = c.electron;
@@ -128,8 +135,8 @@ Live.register('projectile', (stage, params, api) => {
     for (let i = 0; i <= steps; i++) {
       const tt = (i / steps) * Math.min(drawT, tFlick);
       const p = coinPos(tt);
-      const px = xOrigin + p.x2 * SCALE;
-      const py = Math.min(floorY - 7, topY - p.y2 * SCALE);
+      const px = xOrigin + p.x2 * scale;
+      const py = Math.min(floorY - 7, topY - p.y2 * scale);
       if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
     }
     ctx.stroke();
@@ -143,9 +150,9 @@ Live.register('projectile', (stage, params, api) => {
       if (st > drawT + 1e-4) continue;
       const p = coinPos(st);
       const xd = xOrigin;
-      const yd = Math.min(floorY - 7, topY - p.y1 * SCALE);
-      const xf = xOrigin + p.x2 * SCALE;
-      const yf = Math.min(floorY - 7, topY - p.y2 * SCALE);
+      const yd = Math.min(floorY - 7, topY - p.y1 * scale);
+      const xf = xOrigin + p.x2 * scale;
+      const yf = Math.min(floorY - 7, topY - p.y2 * scale);
 
       // Dashed horizontal level line joining the two coins when deg === 0
       if (deg === 0 && xf - xd > 16) {
@@ -182,7 +189,7 @@ Live.register('projectile', (stage, params, api) => {
     if (vx0 > 0.1) {
       const yTick = floorY + 14;
       for (let kStep = 0; kStep <= 3; kStep++) {
-        const tx = xOrigin + vx0 * (kStep * 0.1) * SCALE;
+        const tx = xOrigin + vx0 * (kStep * 0.1) * scale;
         if (tx <= 615) {
           ctx.strokeStyle = c.muted;
           ctx.lineWidth = 1.2;
@@ -199,8 +206,8 @@ Live.register('projectile', (stage, params, api) => {
 
     // Live coins at current drawT
     const cur = coinPos(drawT);
-    const curXd = xOrigin, curYd = Math.min(floorY - 7, topY - cur.y1 * SCALE);
-    const curXf = xOrigin + cur.x2 * SCALE, curYf = Math.min(floorY - 7, topY - cur.y2 * SCALE);
+    const curXd = xOrigin, curYd = Math.min(floorY - 7, topY - cur.y1 * scale);
+    const curXf = xOrigin + cur.x2 * scale, curYf = Math.min(floorY - 7, topY - cur.y2 * scale);
 
     if (deg === 0 && curXf - curXd > 16) {
       ctx.save();
@@ -215,17 +222,11 @@ Live.register('projectile', (stage, params, api) => {
     }
 
     for (const [cx, cy, col] of [[curXd, curYd, c.ink], [curXf, curYf, c.electron]]) {
-      ctx.beginPath();
-      ctx.arc(cx, cy, 7.5, 0, Math.PI * 2);
-      ctx.fillStyle = col;
-      ctx.fill();
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = c.sheet;
-      ctx.stroke();
+      coin(ctx, cx, cy, 7.5, col, c.sheet);
     }
 
-    api.draw.text(ctx, 'dropped', xOrigin, topY - 12, { size: 12, color: c.ink, align: 'center', weight: 600 });
-    api.draw.text(ctx, `launched at ${v0.toFixed(1)} m/s (${deg}\u00b0)`, xOrigin + 125, topY - 12, {
+    api.draw.text(ctx, 'dropped', 50, 46, { size: 12, color: c.ink, align: 'center', weight: 600 });
+    api.draw.text(ctx, `launched at ${v0.toFixed(1)} m/s (${deg}\u00b0)`, 300, 46, {
       size: 12, color: c.electron, align: 'center', weight: 600,
     });
   });

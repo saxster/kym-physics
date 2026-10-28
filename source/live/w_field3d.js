@@ -4,6 +4,7 @@ import {
   MeshStandardMaterial, Color, CatmullRomCurve3, TubeGeometry, Vector3, Quaternion,
 } from 'three';
 import { Live } from './core.js';
+import { label, note } from './art_waves.js';
 import { makeStage, addArrow, addAtom, webglOK } from './three_kit.js';
 
 Live.register('field3d', (stage, params, api) => {
@@ -26,7 +27,36 @@ Live.register('field3d', (stage, params, api) => {
     return (Math.atan2(b1, H_MUMBAI) * 180) / Math.PI;
   }
 
+  const diagram=api.canvas(640,180,'Fixed perpendicular wire cross-section and compass needle, or coil and permanent-magnet comparison');
+  note(stage,'A field line marks a compass direction, not a track for moving charge. The fixed inset is a cross-section: a dot is current towards you; a cross is current away.');
+  function drawDiagram(){
+    const ctx=diagram.ctx;diagram.clear(c.plate);
+    if(tab===0){
+      const x=145,y=91;label(ctx,c,'View along the wire',24,24,{weight:600});
+      for(const r of [24,46,68]){
+        ctx.strokeStyle=currentA>0?c.electron:c.rule;ctx.lineWidth=1.6;ctx.beginPath();ctx.arc(x,y,r,0,2*Math.PI);ctx.stroke();
+        if(currentA>0){const a=reversed?-.4:.4,px=x+r*Math.cos(a),py=y+r*Math.sin(a),dx=reversed?-Math.sin(a):Math.sin(a),dy=reversed?Math.cos(a):-Math.cos(a);api.draw.arrow(ctx,px-6*dx,py-6*dy,px+6*dx,py+6*dy,c.electron,1.5,5);}
+      }
+      ctx.fillStyle=c.sheet;ctx.strokeStyle=c.ink;ctx.beginPath();ctx.arc(x,y,10,0,2*Math.PI);ctx.fill();ctx.stroke();
+      if(reversed){ctx.beginPath();ctx.moveTo(x-4,y-4);ctx.lineTo(x+4,y+4);ctx.moveTo(x-4,y+4);ctx.lineTo(x+4,y-4);ctx.stroke();}else{ctx.beginPath();ctx.arc(x,y,3,0,2*Math.PI);ctx.fillStyle=c.ink;ctx.fill();}
+      label(ctx,c,`B at 1 cm: ${bWireAtCm(1).toFixed(1)} μT`,270,62,{weight:600,color:c.electron});
+      label(ctx,c,'twice the distance → half the wire field',270,89,{size:13});
+      const nx=526,ny=132,a=compassAngleDeg()*Math.PI/180*(reversed?-1:1);
+      ctx.strokeStyle=c.rule;ctx.beginPath();ctx.arc(nx,ny,30,0,2*Math.PI);ctx.stroke();api.draw.arrow(ctx,nx-Math.sin(a)*23,ny+Math.cos(a)*23,nx+Math.sin(a)*23,ny-Math.cos(a)*23,c.proton,2,6);
+      label(ctx,c,'N',nx,ny-37,{align:'center',size:12});label(ctx,c,`${compassAngleDeg().toFixed(1)}°`,463,153,{size:13,align:'right'});
+      label(ctx,c,'wire direction and compass geometry are separate views',24,173,{size:12});
+    }else{
+      label(ctx,c,'Coil current changes; the permanent magnet stays magnetic.',24,24,{weight:600});
+      for(const [cx,isCoil] of [[175,true],[465,false]]){
+        ctx.strokeStyle=c.ink;ctx.lineWidth=2;
+        if(isCoil){for(let i=0;i<10;i++){ctx.beginPath();ctx.ellipse(cx-49+i*10,92,7,25,0,0,2*Math.PI);ctx.stroke();}}
+        else{ctx.fillStyle=c.proton;ctx.fillRect(cx-48,67,48,50);ctx.fillStyle=c.electron;ctx.fillRect(cx,67,48,50);label(ctx,{...c,ink:c.sheet},'N',cx-24,98,{align:'center',weight:600});label(ctx,{...c,ink:c.sheet},'S',cx+24,98,{align:'center',weight:600});}
+        label(ctx,c,isCoil?'10 drawn turns':'bar magnet',cx,151,{align:'center',weight:600});
+      }
+    }
+  }
   function updateReadout() {
+    drawDiagram();
     const signWord = reversed ? 'reversed' : 'forward';
     if (tab === 0) {
       const b1 = bWireAtCm(1).toFixed(1);
@@ -73,27 +103,8 @@ Live.register('field3d', (stage, params, api) => {
     rebuild();
   });
 
-  if (!webglOK()) {
-    const k2 = api.canvas(640, 300, 'Magnetic field circles around a wire and dipole loops around a coil and bar magnet');
-    function drawFallback() {
-      const ctx = k2.ctx;
-      k2.clear(c.plate);
-      const radii = [1, 2, 3, 4, 6];
-      for (const r of radii) {
-        ctx.beginPath();
-        ctx.arc(320, 150, r * 20, 0, Math.PI * 2);
-        ctx.strokeStyle = c.electron;
-        ctx.globalAlpha = Math.min(1, (currentA / 1.5) * (1 / r));
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-      updateReadout();
-    }
-    var rebuild = drawFallback;
-    api.loop(() => drawFallback());
-    drawFallback();
-    return { destroy() {} };
+  if(!webglOK()){
+    var rebuild=()=>{drawDiagram();updateReadout();};api.loop(drawDiagram);rebuild();return {destroy(){}};
   }
 
   const kit = makeStage(stage, api, {
@@ -101,6 +112,8 @@ Live.register('field3d', (stage, params, api) => {
     distance: 7.5,
     label: '3D magnetic field lines around a current-carrying wire with a compass, and around a 10-turn coil beside a bar magnet',
   });
+  stage.append(diagram.cv);
+  api.loop(drawDiagram);
   kit.spinSpeed = 0.18;
   kit.root.rotation.x = 0.42;
   kit.root.rotation.y = -0.35;

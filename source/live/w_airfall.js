@@ -1,6 +1,8 @@
 // Ch 4.2 c4_drag_balance -> w_airfall: Falling through air vs vacuum, terminal speed, and drag = weight balance.
 // Integrates a = g - 0.5 * C * rho * A * v^2 / m with RK2 (dt <= 2 ms). Time slowed 4x.
 import { Live } from './core.js';
+import { equalTimePositions } from './mechanics_geometry.mjs';
+import { mechanismKey } from './art_mechanics.js';
 
 const G = 9.8;
 const RHO_MUMBAI = 1.225; // kg/m^3
@@ -37,13 +39,14 @@ const PAIRS = [
 
 Live.register('airfall', (stage, params, api) => {
   const c = api.colors();
-  const k = api.canvas(640, 320, 'Two objects dropped side by side with weight and drag arrows, plus a speed-time graph');
+  const k = api.canvas(640, 400, 'Two objects dropped side by side with weight and drag arrows, plus a speed-time graph');
   let air = 1.0; // fraction of Mumbai air density
   let pairIdx = 0;
   let simT = 0;
   let state = [];
   let history = [];
   const say = api.readout();
+  mechanismKey(stage, "Compare equal times, then compare forces", ["Faint snapshots share a 0.1 s clock; hollow marks show earlier positions.", "Each object\u2019s weight arrow is its own 100% reference, not a common newton scale. Graph traces use solid / dashed marks to identify the objects."]);
 
   function reset() {
     simT = 0;
@@ -56,7 +59,7 @@ Live.register('airfall', (stage, params, api) => {
       tLand: null,
       vt: air > 1e-6 ? Math.sqrt((2 * o.m * G) / (o.C * (air * RHO_MUMBAI) * o.A)) : Infinity,
     }));
-    history = [{ t: 0, v0: 0, v1: 0 }];
+    history = [{ t: 0, v0: 0, v1: 0, y0:0,y1:0 }];
     updateReadout();
   }
 
@@ -114,7 +117,7 @@ Live.register('airfall', (stage, params, api) => {
       });
 
       if (simT - (history[history.length - 1]?.t || 0) >= 0.02) {
-        history.push({ t: simT, v0: state[0].v, v1: state[1].v });
+        history.push({ t: simT, v0: state[0].v, v1: state[1].v, y0:state[0].y,y1:state[1].y });
       }
     }
 
@@ -206,7 +209,7 @@ Live.register('airfall', (stage, params, api) => {
     ctx.stroke();
     ctx.restore();
     api.draw.text(ctx, `release height ${p.height} m`, 34, topY - 8, { size: 12, color: c.muted, weight: 600 });
-    api.draw.text(ctx, 'object sizes not to scale', 302, topY - 8, { size: 11, color: c.muted, align: 'right' });
+    api.draw.text(ctx, 'sizes enlarged', 302, 22, { size: 11, color: c.muted, align: 'right' });
 
     ctx.strokeStyle = c.ink;
     ctx.lineWidth = 2;
@@ -216,11 +219,15 @@ Live.register('airfall', (stage, params, api) => {
     ctx.stroke();
 
     const xs = [110, 225];
-    const wArrowLen = 44; // fixed weight arrow length for each object so drag = % of weight is directly visible
+    const strobes = equalTimePositions([...history,{t:simT,y0:state[0].y,y1:state[1].y}]);
     state.forEach((s, i) => {
       const o = p.objs[i];
       const cx = xs[i];
       const cy = Math.min(floorY - 12, topY + s.y * pxPerM);
+
+      // Earlier positions share one strobe clock across both drop lanes.
+      ctx.save();ctx.strokeStyle=i?c.neutron:c.electron;ctx.globalAlpha=.35;
+      strobes.forEach(h=>{const yy=Math.min(floorY-12,topY+(i?h.y1:h.y0)*pxPerM);ctx.beginPath();ctx.arc(cx,yy,4,0,Math.PI*2);ctx.stroke();});ctx.restore();
 
       // Draw object icon
       ctx.fillStyle = c.ink;
@@ -236,7 +243,7 @@ Live.register('airfall', (stage, params, api) => {
         ctx.quadraticCurveTo(cx - 8, cy, cx, cy - 12);
         ctx.stroke();
       } else if (o.shape === 'sheet') {
-        ctx.fillRect(cx - 14, cy - 2, 28, 4);
+        ctx.save();ctx.translate(cx,cy);ctx.rotate(-.12);ctx.fillStyle=c.sheet;ctx.fillRect(-14,-5,28,10);ctx.strokeRect(-14,-5,28,10);ctx.beginPath();ctx.moveTo(-9,-1);ctx.lineTo(9,-1);ctx.moveTo(-9,2);ctx.lineTo(6,2);ctx.stroke();ctx.restore();
       } else {
         const rad = o.shape === 'drop2' ? 6 : o.shape === 'drop4' ? 9 : 8;
         ctx.beginPath();
@@ -245,18 +252,14 @@ Live.register('airfall', (stage, params, api) => {
         ctx.fill();
       }
 
-      // Weight arrow (downward, fixed length wArrowLen)
-      api.draw.arrow(ctx, cx, cy + 10, cx, cy + 10 + wArrowLen, c.proton, 2, 7);
-      api.draw.text(ctx, 'weight', cx + 8, cy + 10 + wArrowLen - 4, { size: 11, color: c.proton });
-
-      // Drag arrow (upward, proportional to dragRatio * wArrowLen)
-      const dLen = s.dragRatio * wArrowLen;
-      if (dLen >= 2) {
-        api.draw.arrow(ctx, cx, cy - 10, cx, cy - 10 - dLen, c.proton, 2, 7);
-        api.draw.text(ctx, `drag ${Math.round(s.dragRatio * 100)}%`, cx + 8, cy - 10 - dLen + 8, {
-          size: 11, color: c.proton, weight: 600,
-        });
-      }
+      // Compare a common zero-to-weight reference away from the moving icon.
+      const fy=348;
+      if(!s.landed){
+        api.draw.arrow(ctx,cx-20,fy,cx-20,fy+34,c.proton,2,6);
+        if(s.dragRatio>.03)api.draw.arrow(ctx,cx+20,fy+34,cx+20,fy+34-s.dragRatio*34,c.proton,2,6);
+        api.draw.text(ctx,'weight',cx-20,397,{size:11,color:c.proton,align:'center'});
+        api.draw.text(ctx,`drag ${Math.round(s.dragRatio*100)}%`,cx+30,337,{size:11,color:c.proton,align:'center'});
+      }else api.draw.text(ctx,'landed',cx,365,{size:12,color:c.muted,align:'center'});
 
       api.draw.text(ctx, o.label, cx, floorY + 18, { size: 12, color: c.ink, align: 'center', weight: 600 });
       api.draw.text(ctx, `${s.v.toFixed(1)} m/s`, cx, floorY + 33, { size: 11.5, color: c.electron, align: 'center' });
@@ -264,8 +267,8 @@ Live.register('airfall', (stage, params, api) => {
 
     // ---- Right panel: Speed-time graph (x: 355..615)
     const gx0 = 365, gy0 = 276, gw = 248, gh = 216;
-    const maxV = pairIdx === 2 ? 12 : 8;
-    const maxT = pairIdx === 2 ? 3.5 : 1.5;
+    const maxV = Math.max(pairIdx===2?12:8,Math.ceil(Math.max(state[0].v,state[1].v)/2)*2);
+    const maxT = Math.max(pairIdx===2?3.5:1.5,simT+.1);
     const sx = gw / maxT;
     const sy = gh / maxV;
 
@@ -303,6 +306,7 @@ Live.register('airfall', (stage, params, api) => {
     if (history.length > 1) {
       [0, 1].forEach((idx) => {
         ctx.strokeStyle = idx === 0 ? c.ink : c.electron;
+        ctx.setLineDash(idx===1?[5,3]:[]);
         ctx.lineWidth = 2.2;
         ctx.beginPath();
         history.forEach((pt, kIdx) => {
@@ -312,6 +316,7 @@ Live.register('airfall', (stage, params, api) => {
         });
         ctx.stroke();
       });
+      ctx.setLineDash([]);
     }
   });
 

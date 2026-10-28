@@ -106,35 +106,42 @@ def c6_barometer():
 
 @figure
 def c6_card():
-    f = Fig(640, 300, 'An upside-down glass of water held shut by a card, with the air pushing up on the card; and a '
-                      'straw in a glass, with the air pressing on the drink’s surface and the drink rising in the straw')
-    # ---- left: the card
-    f.text(150, 24, 'The card stays', 't b', 'middle', 14)
-    gx, gw, top, rim = 105, 80, 70, 200
-    f.rect(gx, top, gw, rim - top, 'water', rx=0)
-    f.path(f'M{gx},{rim} L{gx},{top} L{gx + gw},{top} L{gx + gw},{rim}', 'glass')
-    f.rect(gx - 12, rim, gw + 24, 6, 'fill-ink', rx=1)
-    f.text(gx + gw + 18, rim + 6, 'card', 't', 'start', 12)
-    # 10 cm dimension
-    f.line(gx - 26, top, gx - 26, rim, 'ln m'); f.line(gx - 30, top, gx - 22, top, 'ln m'); f.line(gx - 30, rim, gx - 22, rim, 'ln m')
-    f.text(gx - 34, (top + rim) / 2 + 4, '10 cm', 't m', 'end', 12)
-    f.text(150, 46, 'the 10 cm of water adds only ≈ 1 kPa (1%)', 't m', 'middle', 12)
-    f.text(150, 60, 'to the push the card feels from inside', 't m', 'middle', 12)
-    _press_arrows(f, [(125, 252, 125, 212), (145, 252, 145, 212), (165, 252, 165, 212)])
-    f.text(150, 272, 'air pushes up on the card:', 't e', 'middle', 12)
-    f.text(150, 286, 'about 1.01 × 10⁵ Pa', 't e', 'middle', 12)
-    # ---- right: the straw
-    f.text(460, 24, 'The straw', 't b', 'middle', 14)
-    f.rect(400, 170, 110, 90, 'water', rx=0)
-    f.path('M400,150 L400,260 L510,260 L510,150', 'glass')
-    # straw with the drink standing higher inside it
-    f.rect(455, 118, 12, 138, 'water', rx=0)
-    f.line(455, 60, 455, 256, 'ln'); f.line(467, 60, 467, 256, 'ln')
-    f.text(461, 48, 'lower pressure in the mouth', 't m', 'middle', 12)
-    _press_arrows(f, [(418, 140, 418, 166), (436, 140, 436, 166), (500, 140, 500, 166)])
-    f.arrow(477, 215, 477, 130, 'ink')
-    f.text(484, 102, 'the drink', 't', 'start', 12); f.text(484, 116, 'is pushed up', 't', 'start', 12)
-    f.text(455, 282, 'air presses on the drink’s surface at full atmospheric pressure', 't e', 'middle', 12)
+    f = Fig(640, 430, 'An inverted water glass and a separate free-body diagram of the card show atmospheric pressure up, internal water pressure down and the card weight down. Internal pressure almost balances outside pressure; the weight of the water is already reflected in the hydrostatic pressure at the card, so is not added again as a separate force on the card. A straw comparison shows a lower mouth pressure and a raised column. Arrows are explanatory, not pressure-scale drawings.')
+    f.text(24,28,'Pressure acts on both sides','t b',size=17)
+    f.text(157,61,'inverted glass','t b','middle',14)
+    f.rect(90,91,88,115,'water',rx=0)
+    f.rect(90,82,88,9,'fill-sheet',rx=0)
+    f.path('M90,206 V82 H178 V206','glass')
+    f.rect(79,206,110,5,'block',rx=1)
+    f.text(193,104,'trapped air','t m',size=12);f.line(185,99,165,88,'ln m')
+    f.text(193,125,'slightly below','t m',size=12)
+    f.text(193,143,'outside pressure','t m',size=12)
+    f.line(69,91,69,206,'ln m');f.line(65,91,73,91,'ln m');f.line(65,206,73,206,'ln m')
+    f.text(57,154,'h','t s i','end',14)
+    # Isolate the card so forces are not confused with forces on all the water.
+    f.text(157,256,'forces on the card only','t b','middle',13)
+    f.rect(103,319,104,5,'block',rx=0)
+    f.force(128,386,0,-59);f.force(128,263,0,54)
+    f.force(188,327,0,22)
+    f.text(24,407,'air pressure up','t p b',size=12)
+    f.text(148,288,'water pressure down','t p',size=12)
+    f.text(200,352,'card weight','t p',size=12)
+    f.text(353,61,'straw','t b',size=14)
+    f.path('M416,183 V283 H541 V183','glass')
+    f.rect(417,212,123,70,'water',rx=0)
+    f.rect(469,141,13,138,'water',rx=0)
+    f.path('M469,278 V101 H496 M482,278 V112 H496','ln')
+    # Mouth profile, directly attached to the straw.
+    f.path('M546,79 Q521,80 516,93 L499,100 L504,106 L498,113 L515,118 Q519,139 546,141','ln')
+    f.text(430,92,'mouth pressure','t m','middle',12)
+    f.text(430,109,'lower than outside','t m','middle',12)
+    f.arrow(448,176,448,205,'electron');f.arrow(527,176,527,205,'electron')
+    f.arrow(493,246,493,154,'ink')
+    f.text(483,307,'outside air presses on the surface','t e','middle',12)
+    f.text(483,333,'p(outside) − p(mouth) ≈ ρgh','t b','middle',13)
+    f.text(483,360,'A larger pressure difference','t','middle',12)
+    f.text(483,379,'can support a taller column.','t','middle',12)
+    f.text(320,426,'Card arrows are not to scale. Water pressure includes the column’s weight; do not count it twice.','t m','middle',11.5)
     return f.svg()
 
 

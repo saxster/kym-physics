@@ -1,6 +1,7 @@
 // Ch 3.1 c3_tug_cart -> w_forces: Adding forces on a 50 kg cart.
 // Teaches that net force changes velocity, and balanced forces mean constant velocity (which may be non-zero).
 import { Live } from './core.js';
+import { mechanismKey,hatch } from './art_mechanics.js';
 
 const MASS = 50; // kg
 const FRIC_MAX = 100; // N on rough floor
@@ -15,6 +16,7 @@ Live.register('forces', (stage, params, api) => {
   let x = 0; // m along track
   let v = 0; // m/s
   const say = api.readout();
+  mechanismKey(stage, "Follow the load, not just the arrows", ["Red arrows are horizontal forces: 1 drawing unit represents 3.9 N.", "Blue is velocity; floor marks passing the wheels show motion even when the net force is zero."]);
 
   // Reset button inside the stage (not counted as a control in controls bar)
   stage.style.position = 'relative';
@@ -154,6 +156,8 @@ Live.register('forces', (stage, params, api) => {
     api.draw.roundRect(ctx, cx - cw / 2, cy, cw, ch, 4);
     ctx.fill();
     ctx.stroke();
+    hatch(ctx,cx-cw/2+3,cy+3,cw-6,9,c.muted,6);
+    ctx.strokeStyle=c.muted;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-26,cy+13);ctx.lineTo(cx+26,cy+13);ctx.stroke();
     api.draw.text(ctx, '50 kg', cx, cy + 27, { size: 13, color: c.ink, align: 'center', weight: 600 });
 
     // Wheels
@@ -184,6 +188,8 @@ Live.register('forces', (stage, params, api) => {
     } else {
       api.draw.text(ctx, 'v = 0 m/s', cx, cy - 18, { size: 12.5, color: c.muted, align: 'center' });
     }
+
+    if (vAbs > 10) api.draw.text(ctx,'velocity arrow at display limit',320,48,{size:12,color:c.muted,align:'center'});
 
     // Left pull arrow (1 px per 3.9 N)
     const midY = cy + ch * 0.5;

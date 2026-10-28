@@ -21,7 +21,7 @@ A metal is a material in which some of the electric charge is free to move. Put 
 
 Now ask what would happen if there were any electric push left inside the hollow. The free charges in the metal would feel it and move. They keep moving, rearranging themselves on the surface, until there is nothing left to move them, and that happens only when the inside is completely quiet. So the charges always end up arranged in exactly the pattern that cancels every push inside. It is not that the metal "blocks" anything. The charges on the shell build a push of their own that undoes the one from outside, wherever it comes from and however strong it is. That is a ==Faraday cage==, and any closed metal shell is one.
 
-:::fig s_faraday_cube() | Faraday's foil cube. The charge sits on the outside surface and rearranges itself until the inside is free of any electric push, so the gold leaves of the electroscope hang straight.
+:::fig s_faraday_cube() | A cut-away of Faraday’s foil-covered box, with a comparison electroscope outside. The real conducting shell is closed. Excess charge stays on its outer surface; in electrostatic equilibrium, with no charge enclosed, the empty cavity has no electric field, so the inside leaves hang straight.
 
 #### Cages you have been inside
 

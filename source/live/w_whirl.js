@@ -1,6 +1,8 @@
 // Ch 4.5 c4_whirl -> w_whirl: Ball on a 1 m string (m = 0.2 kg), whirling and released.
 // Shows inertial ("from the floor") and co-rotating ("from the ball's seat") frames.
 import { Live } from './core.js';
+import { clockwiseTangent } from './mechanics_geometry.mjs';
+import { mechanismKey,dimension } from './art_mechanics.js';
 
 const M_BALL = 0.2; // kg
 const R_STR = 1.0;  // m
@@ -16,6 +18,7 @@ Live.register('whirl', (stage, params, api) => {
   let tAfter = 0;           // time since release (s)
   let relTrail = [];        // trail after release in active frame
   const say = api.readout();
+  mechanismKey(stage, "The frame changes the description, not the event", ["Solid red: real inward string force. Blue: velocity direction (speed given above). Dashed grey: fictitious force used only in the spinning frame.", "After release the view zooms out to keep the flight visible. The radius ruler shrinks by the same scale."]);
 
   const relBtn = api.button('Release', () => {
     if (!released) {
@@ -113,6 +116,7 @@ Live.register('whirl', (stage, params, api) => {
     k.clear(c.plate);
     const ctx = k.ctx;
     const cx = 270, cy = 175;
+    const sceneScale=released?Math.min(PX_R,130/(1+speed*Math.max(.6,tAfter))):PX_R;
 
     // Background reference grid (rotates backward in rotating view so the spinning frame is obvious)
     const bgAngle = rotatingView ? -(theta + omega * tAfter + Math.PI / 4) : 0;
@@ -134,7 +138,7 @@ Live.register('whirl', (stage, params, api) => {
     ctx.strokeStyle = c.muted;
     ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.arc(cx, cy, PX_R, 0, Math.PI * 2);
+    ctx.arc(cx, cy, sceneScale, 0, Math.PI * 2);
     ctx.stroke();
     ctx.restore();
 
@@ -146,8 +150,8 @@ Live.register('whirl', (stage, params, api) => {
 
     const st = inertialState(theta, released ? tAfter : 0);
     const vp = toViewCoords(st.x, st.y, theta, released ? tAfter : 0);
-    const bx = cx + vp.x * PX_R;
-    const by = cy + vp.y * PX_R;
+    const bx = cx + vp.x * sceneScale;
+    const by = cy + vp.y * sceneScale;
 
     const F = (M_BALL * speed * speed) / R_STR; // 0.2 to 3.2 N
     const fScale = 28; // px per N
@@ -164,22 +168,18 @@ Live.register('whirl', (stage, params, api) => {
       // Unit inward vector in current view
       const rLen = Math.hypot(vp.x, vp.y) || 1;
       const inX = -vp.x / rLen, inY = -vp.y / rLen;
-      const fLen = Math.max(18, F * fScale);
+      const fLen = F * fScale;
 
       // Inward string force arrow
       api.draw.arrow(ctx, bx, by, bx + inX * fLen, by + inY * fLen, c.proton, 2.4, 8);
-      api.draw.text(ctx, `inward pull ${F.toFixed(2)} N`, bx + inX * (fLen + 14), by + inY * (fLen + 14), {
-        size: 12, color: c.proton, align: 'center', weight: 600,
-      });
+
 
       if (!rotatingView) {
         // Tangent velocity arrow (in floor view)
-        const tx = -inY, ty = inX;
-        const vLen = speed * 24;
+        const {x: tx, y: ty} = clockwiseTangent(inX,inY);
+        const vLen = released ? 24 : speed * 18;
         api.draw.arrow(ctx, bx, by, bx + tx * vLen, by + ty * vLen, c.electron, 2.4, 8);
-        api.draw.text(ctx, `v = ${speed.toFixed(1)} m/s`, bx + tx * (vLen + 14), by + ty * (vLen + 14), {
-          size: 12, color: c.electron, align: 'center', weight: 600,
-        });
+
       } else {
         // Dashed pretend outward arrow in rotating view
         const outX = -inX, outY = -inY;
@@ -187,14 +187,12 @@ Live.register('whirl', (stage, params, api) => {
         ctx.setLineDash([5, 4]);
         api.draw.arrow(ctx, bx, by, bx + outX * fLen, by + outY * fLen, c.muted, 2.2, 8);
         ctx.restore();
-        api.draw.text(ctx, 'pretend (only in this view)', bx + outX * (fLen + 12), by + outY * (fLen + 12) - 4, {
-          size: 12, color: c.muted, align: 'left', weight: 600,
-        });
+
       }
     } else {
       // Released: draw exact trajectory from t = 0 to tAfter
       const relPt0 = toViewCoords(R_STR * Math.cos(theta), R_STR * Math.sin(theta), theta, tAfter);
-      const rx0 = cx + relPt0.x * PX_R, ry0 = cy + relPt0.y * PX_R;
+      const rx0 = cx + relPt0.x * sceneScale, ry0 = cy + relPt0.y * sceneScale;
 
       // Tempting wrong radial outward line from release point (dashed muted)
       const radOutX = relPt0.x, radOutY = relPt0.y;
@@ -207,9 +205,7 @@ Live.register('whirl', (stage, params, api) => {
       ctx.lineTo(rx0 + radOutX * 95, ry0 + radOutY * 95);
       ctx.stroke();
       ctx.restore();
-      api.draw.text(ctx, 'not outward: nothing pushes that way', rx0 + radOutX * 98, ry0 + radOutY * 98, {
-        size: 11.5, color: c.muted,
-      });
+
 
       // Actual path after release (straight tangent in inertial view; curved inertial-line-transformed in rotating view)
       ctx.strokeStyle = c.electron;
@@ -221,17 +217,15 @@ Live.register('whirl', (stage, params, api) => {
         const tau = (i / N) * tDraw;
         const pIn = inertialState(theta, tau);
         const pVw = toViewCoords(pIn.x, pIn.y, theta, tau);
-        const px = cx + pVw.x * PX_R, py = cy + pVw.y * PX_R;
+        const px = cx + pVw.x * sceneScale, py = cy + pVw.y * sceneScale;
         if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
       }
       ctx.stroke();
 
       if (!rotatingView) {
-        const vLen = speed * 24;
+        const vLen = released ? 24 : speed * 18;
         api.draw.arrow(ctx, bx, by, bx + st.tx * vLen, by + st.ty * vLen, c.electron, 2.2, 8);
-        api.draw.text(ctx, `straight on at ${speed.toFixed(1)} m/s`, bx + 14, by - 10, {
-          size: 12, color: c.electron, weight: 600,
-        });
+
       }
     }
 
@@ -244,7 +238,10 @@ Live.register('whirl', (stage, params, api) => {
     ctx.strokeStyle = c.sheet;
     ctx.stroke();
 
-    api.draw.text(ctx, 'm = 0.2 kg · r = 1.0 m (ball size exaggerated)', 20, 24, { size: 12, color: c.muted });
+    api.draw.text(ctx,'m = 0.2 kg · r = 1.0 m',20,24,{size:13,color:c.muted});
+    api.draw.text(ctx,`string force ${released?'0':F.toFixed(2)} N · speed ${speed.toFixed(1)} m/s`,620,43,{size:13,color:c.ink,align:'right',weight:600});
+    dimension(ctx,435,300,435+sceneScale,300,c.muted);api.draw.text(ctx,'1 m',435+sceneScale/2,319,{size:12,color:c.muted,align:'center'});
+    if(rotatingView)api.draw.text(ctx,'spinning frame: grey force is fictitious',620,64,{size:12,color:c.muted,align:'right'});
   });
 
   updateReadout();

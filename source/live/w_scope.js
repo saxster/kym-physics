@@ -1,10 +1,12 @@
 // 9.5 Microphone oscilloscope & spectrum strip: loudness is amplitude, pitch is frequency.
 import { Live } from './core.js';
+import { note } from './art_waves.js';
 
 Live.register('scope', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The microphone signal is a relative amplitude, not calibrated pressure in pascals. Compare trace height for loudness and the spacing of peaks for pitch. The initial trace is a simulated 220 Hz preview.');
   const W = 640, H = 320;
-  const k = api.canvas(W, H, 'Oscilloscope showing sound pressure against time and a frequency spectrum strip');
+  const k = api.canvas(W, H, 'Oscilloscope showing relative microphone amplitude against time and a frequency spectrum strip');
 
   let showSpectrum = false;
   let frozenWave = null;
@@ -59,6 +61,7 @@ Live.register('scope', (stage, params, api) => {
     drawFrame();
   });
 
+  const metrics=document.createElement('div');metrics.style.cssText='padding:12px 14px;font:14px/1.6 var(--sans);color:var(--ink);background:var(--sheet)';metrics.setAttribute('aria-label','Oscilloscope axes and measurements');stage.append(metrics);
   const say = api.readout();
 
   function analysePitch(fd, binHz) {
@@ -147,7 +150,7 @@ Live.register('scope', (stage, params, api) => {
       ctx.stroke();
       api.draw.text(ctx, `${ms} ms`, x, waveTop + waveH + 15, { size: 11, color: c.muted, align: 'center' });
     }
-    api.draw.text(ctx, 'pressure', 10, waveMid, { size: 11, color: c.muted });
+    api.draw.text(ctx, 'signal', 10, waveMid, { size: 11, color: c.muted });
     api.draw.text(ctx, '+', 36, waveTop + 14, { size: 11, color: c.muted, align: 'center' });
     api.draw.text(ctx, '0', 36, waveMid + 4, { size: 11, color: c.muted, align: 'center' });
     api.draw.text(ctx, '−', 36, waveTop + waveH - 6, { size: 11, color: c.muted, align: 'center' });
@@ -212,10 +215,11 @@ Live.register('scope', (stage, params, api) => {
     const rms = computeRms(activeT);
     const relDb = Math.max(0, Math.round(20 * Math.log10(Math.max(rms, 1e-4) / 1e-4)));
     const pitchStr = analysePitch(activeF, binHz);
+    metrics.textContent=`${mic.active?'Microphone':'Simulated preview'}${freezeActive?' · frozen':''} · Pitch: ${pitchStr} · Relative signal: ${relDb} dB · Time axis: milliseconds · Vertical axis: arbitrary digital amplitude`;
     say(
       `Taller trace, same spacing: louder, same note. Closer crests: a higher note, ${pitchStr}. ` +
-      `Loudness ${relDb} dB (relative dB: every +10 dB is 10× the sound energy); ` +
-      `this is the real pressure at your microphone, drawn 1000 times slower than it happens.`
+      `Relative signal level ${relDb} dB above an arbitrary digital reference; this is not a sound-level meter. ` +
+      `${mic.active ? "Your live microphone signal" : "The simulated preview"} is plotted against the labelled millisecond time axis.`
     );
   }
 

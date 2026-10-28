@@ -1,6 +1,7 @@
 // Ch 6.4 c6_tank -> w_pressuretank: Tank of liquid with depth-dependent wall pressure arrows and Torricelli jets.
 // p = rho * g * h, v = sqrt(2 * g * h). Supports tapping a hole to inspect its exact depth, pressure, and jet speed.
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 
 const G = 9.8;
 const P_ATM = 101.3; // kPa
@@ -22,6 +23,7 @@ Live.register('pressuretank', (stage, params, api) => {
   let selectedHole = null; // 0, 1, or 2 when tapped
   let dropPhase = 0;
   const say = api.readout();
+  mechanismKey(stage, "Read speed and landing range separately", ["Depth sets gauge pressure. The labelled arrow scale changes with fluid density so every arrow fits.", "At a common floor the middle hole can throw furthest, even while the deepest hole exits fastest."]);
 
   // Geometry constants
   const tankL = 175, tankR = 405, tankBot = 280, maxH_m = 2.0;
@@ -40,9 +42,13 @@ Live.register('pressuretank', (stage, params, api) => {
     });
     if (best !== null) {
       selectedHole = selectedHole === best ? null : best;
-      updateReadout();
+      [...holeGroup.children].forEach((n,i)=>n.setAttribute('aria-pressed',String(i===selectedHole)));
+      updateReadout(); drawFrame(0);
     }
   });
+
+  const holeGroup=document.createElement('div');holeGroup.setAttribute('role','group');holeGroup.setAttribute('aria-label','Inspect a tank hole');holeGroup.style.cssText='display:flex;gap:.4rem;padding:.5rem .8rem;flex-wrap:wrap';
+  HOLE_Z.forEach((z,idx)=>{const b=document.createElement('button');b.type='button';b.className='live-ctl';b.textContent=`Hole ${idx+1}`;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{selectedHole=selectedHole===idx?null:idx;[...holeGroup.children].forEach((n,i)=>n.setAttribute('aria-pressed',String(i===selectedHole)));updateReadout();drawFrame(0);});holeGroup.append(b);});stage.append(holeGroup);
 
   function pressureKpaAt(depthBelowSurface) {
     if (depthBelowSurface <= 0) return showAtm ? P_ATM : 0;
@@ -55,7 +61,7 @@ Live.register('pressuretank', (stage, params, api) => {
     const p1m = (liq.rho * G * 1.0) / 1000;
     const p1mShown = showAtm ? p1m + P_ATM : p1m;
     const atmNote = showAtm ? ' (including the air\u2019s 101 kPa)' : '';
-    const clipNote = liqIdx === 2 && fillDepth > 0.3 ? ' Mercury\u2019s wall-pressure arrows are clipped at the frame edge.' : '';
+    const clipNote = ' Pressure-arrow scale is shown below the tank.';
 
     if (selectedHole !== null) {
       const z = HOLE_Z[selectedHole];
@@ -94,7 +100,7 @@ Live.register('pressuretank', (stage, params, api) => {
     updateReadout();
   }, { pressed: false });
 
-  api.loop((dt) => {
+  function drawFrame(dt) {
     if (dt > 0) {
       // Slowed to half speed
       dropPhase = (dropPhase + dt * 0.5) % 10;
@@ -146,7 +152,8 @@ Live.register('pressuretank', (stage, params, api) => {
     });
 
     // Pressure arrows on the left wall (at 4 depth levels below the surface, same scale across all liquids: 4.5 px per kPa)
-    const pScale = 4.5; // px per kPa
+    const maxGauge=liq.rho*G*Math.max(.1,fillDepth)/1000;
+    const pScale=130/Math.max(1,maxGauge); // common linear scale for this fluid and fill
     const maxArrowW = 148;
     const sampleDepths = [0.25, 0.5, 1.0, 1.5, 1.9].filter((d) => d <= fillDepth + 1e-4);
     for (const d of sampleDepths) {
@@ -154,8 +161,8 @@ Live.register('pressuretank', (stage, params, api) => {
       const pLiq = (liq.rho * G * d) / 1000;
       const pTot = showAtm ? pLiq + P_ATM : pLiq;
       const rawLen = pLiq * pScale;
-      const clipped = rawLen > maxArrowW;
-      const len = Math.min(maxArrowW, Math.max(10, rawLen));
+      const clipped = false;
+      const len = rawLen;
 
       // Arrow inside tank pointing left against the left wall
       const xStart = Math.min(tankR - 12, tankL + 4 + len);
@@ -166,6 +173,8 @@ Live.register('pressuretank', (stage, params, api) => {
         size: 11.5, color: c.ink, align: 'right',
       });
     }
+
+    api.draw.text(ctx,`pressure arrows: 100 px = ${(100/pScale).toFixed(1)} kPa`,320,310,{size:12,color:c.muted,align:'center'});
 
     // Three holes on the right wall and their Torricelli parabolic jets: x = v * t, y_drop = 0.5 * g * t^2 => y_drop = x^2 / (4 * h)
     HOLE_Z.forEach((z, idx) => {
@@ -214,16 +223,17 @@ Live.register('pressuretank', (stage, params, api) => {
         }
 
         const landX = Math.min(625, tankR + 3 + (vJet * tFall) * pxPerM);
-        api.draw.text(ctx, `${vJet.toFixed(1)} m/s`, Math.min(618, landX + 6), hy + 14, {
+        api.draw.text(ctx, `${vJet.toFixed(1)} m/s`, tankR + 12, hy - 10, {
           size: 11, color: isSel ? c.proton : c.electron, weight: isSel ? 600 : 400,
         });
       }
     });
 
-    api.draw.text(ctx, 'tap any hole on the right wall to inspect', 520, 38, {
+    api.draw.text(ctx, 'select a hole to inspect its depth', 480, 38, {
       size: 11.5, color: c.muted, align: 'center',
     });
-  });
+  }
+  api.loop(drawFrame);
 
   updateReadout();
   return { destroy() {} };

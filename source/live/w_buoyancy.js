@@ -1,6 +1,8 @@
 // Ch 6.5 c6_buoyancy -> w_buoyancy: Block or hollowed hull in a tank of fresh water, sea water, or mercury.
 // Shows face pressure arrows, net buoyant force vs weight, and displaced water volume matching submerged volume every frame.
 import { Live } from './core.js';
+import { buoyancyForceAccount } from './mechanics_geometry.mjs';
+import { mechanismKey,hatch,dimension } from './art_mechanics.js';
 
 const G = 9.8;
 const LIQUIDS = [
@@ -20,11 +22,12 @@ function materialName(rho) {
 
 Live.register('buoyancy', (stage, params, api) => {
   const c = api.colors();
-  const k = api.canvas(640, 330, 'A block in a tank with pressure arrows on its faces, buoyant and weight force bars, and shaded displaced liquid');
+  const k = api.canvas(640, 380, 'A block in a tank with pressure arrows on its faces, buoyant and weight force bars, and shaded displaced liquid');
   let rhoBlock = 920; // kg/m^3 (100 to 10,000)
   let liqIdx = 0;
   let hollow = false; // when true, same mass occupies 10x the volume (effective density = rhoBlock / 10)
   const say = api.readout();
+  mechanismKey(stage, "A cut-away hull, not a solid block with a label", ["Diagonal hatching marks the volume the liquid cannot occupy, including the air enclosed by a hull.", "Weight acts down. Buoyancy acts up. At the floor, the separate contact support supplies the remaining upward force."]);
 
   // Block vertical coordinate yTop: 0 = top of block at water surface, 1 = fully submerged at surface, >1 deeper, 1.55 = tank bottom
   const MAX_DEPTH_RATIO = 1.55;
@@ -225,10 +228,14 @@ Live.register('buoyancy', (stage, params, api) => {
     if (subHeightPx > 0.5) {
       ctx.save();
       ctx.fillStyle = c.electron;
-      ctx.globalAlpha = 0.25;
+      ctx.globalAlpha = hollow ? 0.06 : 0.25;
       ctx.fillRect(bx, bBotY - subHeightPx, bW, subHeightPx);
       ctx.restore();
     }
+
+    hatch(ctx,bx+2,bBotY-subHeightPx,bW-4,subHeightPx,c.electron,9);
+    if(hollow){api.draw.text(ctx,'trapped air',bx+bW/2,bTopY+bH*.65,{size:12,color:c.muted,align:'center'});}
+    dimension(ctx,30,surfY,30,bBotY,c.muted);
 
     // Pressure arrows on top, bottom, left, right faces (lengths proportional to depth below surface)
     const hTopPx = Math.max(0, bTopY - surfY);
@@ -287,12 +294,12 @@ Live.register('buoyancy', (stage, params, api) => {
       ctx.restore();
     }
     api.draw.text(ctx, 'liquid displaced', dispX + dispW / 2, dispBotY + 16, { size: 11.5, color: c.muted, align: 'center' });
-    api.draw.text(ctx, `${Math.round(fracSub * 100)}% of block`, dispX + dispW / 2, dispBotY + 30, { size: 11.5, color: c.electron, align: 'center', weight: 600 });
+    api.draw.text(ctx, `${V_displaced.toFixed(3)} m³ displaced`, dispX + dispW / 2, dispBotY + 30, { size: 11.5, color: c.electron, align: 'center', weight: 600 });
 
     // Two horizontal bars below: Weight vs Buoyant force
-    const fWeight = rhoEff * G; // N per unit volume
-    const fBuoy = rhoFluid * fracSub * G;
-    const fMax = Math.max(fWeight, fBuoy, 1000 * G);
+    const {weight: fWeight, buoyancy: fBuoy, support: fSupport} =
+      buoyancyForceAccount(rhoEff,V_block,rhoFluid,V_submerged,subPos>=MAX_DEPTH_RATIO-.002);
+    const fMax = Math.max(fWeight, fBuoy, 100);
     const barMaxW = 145;
 
     const drawBar = (y, label, val, col) => {
@@ -306,11 +313,13 @@ Live.register('buoyancy', (stage, params, api) => {
       api.draw.text(ctx, `${(val / 1000).toFixed(1)} kN`, rx0 + wBar + 6, y + 12, { size: 11.5, color: c.ink });
     };
 
-    drawBar(212, 'Weight (\u03c1_block V g)', fWeight, c.muted);
-    drawBar(262, 'Buoyant force (\u03c1_liquid V_sub g)', fBuoy, c.proton);
+    drawBar(212, 'Weight: mass × g', fWeight, c.muted);
+    drawBar(262, 'Buoyancy: liquid mass × g', fBuoy, c.proton);
+    drawBar(312, 'Floor support', fSupport, c.green);
+    if(fSupport>0){api.draw.arrow(ctx,midX,Math.min(301,bBotY+48),midX,bBotY,c.green,3,8);api.draw.text(ctx,'floor support',midX+12,Math.min(299,bBotY+43),{size:12,color:c.green});}
 
     // Benchmarks reminder along bottom of tank
-    api.draw.text(ctx, 'Marks: wood 700 · ice 920 · water 1,000 · aluminium 2,700 · steel 7,800 kg/m\u00b3', 320, 314, {
+    api.draw.text(ctx, 'Marks: wood 700 · ice 920 · water 1,000 · aluminium 2,700 · steel 7,800 kg/m\u00b3', 320, 364, {
       size: 11.5, color: c.muted, align: 'center',
     });
   });

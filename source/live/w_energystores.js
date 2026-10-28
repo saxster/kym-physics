@@ -10,6 +10,7 @@
 //     Mechanical work (steady stream), Electrical work (fast pulses), Heating (wavering thermal shimmer), Waves (stepped wave rays).
 //     Internal conversions can reuse a pattern; their badges state the process separately.
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 import { SCENARIOS } from './energy_scenarios.mjs';
 
 export const STORES = [
@@ -396,6 +397,7 @@ Live.register('energystores', (stage, params, api) => {
   let showAll8 = false;
   let cutAway = false;
   const say = api.readout();
+  mechanismKey(stage, 'Stores hold energy; pathways transfer it', ['The eight-store view is a reference key. Select a scenario to inspect its own energy account and jar scale.', 'Colour and hatch identify each store. Tubes name the transfer process; glowing dots do not represent a material fluid.', 'The rubber cut-away replaces the jar scene with a larger molecular view. Its motion is schematic and greatly enlarged.']);
 
   const progSlider = api.slider('Transfer progress', {
     min: 0, max: 3, step: 0.05, value: progress,
@@ -450,7 +452,7 @@ Live.register('energystores', (stage, params, api) => {
       caption: 'Your turn: drag the Transfer progress slider or tap “All 8 stores & hatches” to earn the stamp.',
       enter: () => { scenIdx = 0; showAll8 = false; cutAway = false; progress = 3.0; progSlider.set(3.0); tabBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0))); },
     },
-  ], { onCutAway: (on) => { cutAway = on; } });
+  ], { cutaway: 'Rubber cut-away: local molecular motion is schematic and greatly enlarged. The thermal account includes the ball and its surroundings.', onCutAway: (on) => { cutAway = on; drawFrame(0); } });
 
   function update() {
     const sc = SCENARIOS[scenIdx];
@@ -460,7 +462,7 @@ Live.register('energystores', (stage, params, api) => {
     say(`${st.caption} (Jar scale: full jar = ${scale.label}).`);
   }
 
-  api.loop((dt, t) => {
+  function drawFrame(dt, t = 0) {
     k.clear(c.plate);
     const ctx = k.ctx;
 
@@ -478,7 +480,7 @@ Live.register('energystores', (stage, params, api) => {
       });
       // Legend of 4 pathways at bottom
       const pWays = ['Mechanical work (forces)', 'Electrical work (current)', 'Heating (ΔT)', 'Waves (light / sound)'];
-      api.draw.text(ctx, '4 Pathways between stores:  ' + pWays.join('   ·   '), W / 2, 304, {
+      api.draw.text(ctx, 'Pathways: mechanical work · electrical work · heating · waves', W / 2, 304, {
         size: 11, color: c.muted, align: 'center', weight: 600,
       });
       return;
@@ -496,6 +498,30 @@ Live.register('energystores', (stage, params, api) => {
     ctx.textAlign = 'right';
     ctx.fillText(`full jar = ${scale.label}`, W - 22, 24);
     ctx.restore();
+
+    if (cutAway && scenIdx === 0) {
+      ctx.strokeStyle = c.proton; ctx.fillStyle = c.sheet; ctx.lineWidth = 1.5;
+      ctx.fillRect(22, 48, 596, 244); ctx.strokeRect(22, 48, 596, 244);
+      api.draw.text(ctx, 'CUT-AWAY: IMPACT WARMS THE RUBBER', 40, 73, {size: 14, color: c.proton, weight: 600});
+      ctx.fillStyle = c.mark_soft; ctx.strokeStyle = c.ink;
+      ctx.beginPath(); ctx.arc(143, 166, 67, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.strokeStyle = c.rule; ctx.beginPath(); ctx.moveTo(143, 99); ctx.lineTo(143, 233); ctx.stroke();
+      api.draw.text(ctx, 'rubber ball: enlarged section', 143, 259, {size: 12, color: c.muted, align: 'center'});
+      api.draw.arrow(ctx, 218, 165, 293, 165, c.ink, 1.4, 6);
+      const thermal = state.jars.find(j => j.id === 'thermal')?.val || 0;
+      const amp = 1.2 + progress * 1.1;
+      ctx.strokeStyle = c.rule; ctx.strokeRect(320, 92, 274, 143);
+      for (let m = 0; m < 24; m++) {
+        const hx = 344 + (m % 6) * 44, hy = 112 + Math.floor(m / 6) * 32;
+        const mx = hx + Math.sin(t * 14 + m * 1.7) * amp;
+        const my = hy + Math.cos(t * 15 + m * 2.3) * amp;
+        ctx.strokeStyle = c.rule; ctx.beginPath(); ctx.moveTo(hx - 7, hy); ctx.lineTo(hx + 7, hy); ctx.stroke();
+        ctx.fillStyle = c.proton; ctx.beginPath(); ctx.arc(mx, my, 4, 0, Math.PI * 2); ctx.fill();
+      }
+      api.draw.text(ctx, 'local, disordered molecular motion', 457, 257, {size: 12, color: c.ink, align: 'center'});
+      api.draw.text(ctx, `Ball + surroundings thermal store: ${fmtJoules(thermal)} · motion not to scale`, 320, 281, {size: 12, color: c.proton, align: 'center'});
+      return;
+    }
 
     const nJars = state.jars.length;
     const jw = 72;
@@ -524,29 +550,9 @@ Live.register('energystores', (stage, params, api) => {
       });
     });
 
-    // Cut-away inspector overlay when cutAway is active
-    if (cutAway) {
-      const cx = W - 188, cy = 44, cw = 168, ch = 96;
-      ctx.save();
-      ctx.fillStyle = c.sheet;
-      ctx.strokeStyle = c.proton;
-      ctx.lineWidth = 1.6;
-      ctx.fillRect(cx, cy, cw, ch);
-      ctx.strokeRect(cx, cy, cw, ch);
-      api.draw.text(ctx, 'CUT-AWAY: INSIDE THE RUBBER', cx + 8, cy + 16, { size: 9.5, color: c.proton, weight: 700 });
-      const rng = api.rng(42);
-      for (let m = 0; m < 18; m++) {
-        const mx = cx + 18 + (m % 6) * 26 + Math.sin(t * 14 + m * 1.7) * (1.2 + progress * 1.1);
-        const my = cy + 34 + Math.floor(m / 6) * 20 + Math.cos(t * 15 + m * 2.3) * (1.2 + progress * 1.1);
-        ctx.beginPath();
-        ctx.arc(mx, my, 3.2, 0, Math.PI * 2);
-        ctx.fillStyle = '#ff7a1c';
-        ctx.fill();
-      }
-      api.draw.text(ctx, 'Random molecular jiggling = thermal store', cx + cw / 2, cy + ch - 7, { size: 9.5, color: c.muted, align: 'center' });
-      ctx.restore();
-    }
-  });
+
+  }
+  api.loop(drawFrame);
 
   update();
   return { destroy() {} };

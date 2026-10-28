@@ -1,8 +1,10 @@
 // 12.5 Series and parallel LED circuits: Kirchhoff current & voltage laws, unclipping one LED, and battery drain rate.
 import { Live } from './core.js';
+import { note } from './art_waves.js';
 
 Live.register('seriesparallel', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'A junction dot is an electrical connection. Zigzags are resistors; diode triangles with outgoing arrows are LEDs. Each parallel branch has its own current-limiting resistor. Brightness is an approximate display of electrical power, not a photometric calibration.');
   const W = 640, H = 360;
   const k = api.canvas(W, H, 'Series and parallel LED circuits with 9 V battery, 330 ohm resistors, and live current arrows');
 
@@ -38,13 +40,9 @@ Live.register('seriesparallel', (stage, params, api) => {
   }, { pressed: false });
 
   function drawResistor(ctx, x, y, w, h, label) {
-    ctx.fillStyle = c.sheet;
-    ctx.strokeStyle = c.ink;
-    ctx.lineWidth = 1.6;
-    api.draw.roundRect(ctx, x - w / 2, y - h / 2, w, h, 3);
-    ctx.fill();
-    ctx.stroke();
-    api.draw.text(ctx, label, x, y + 4, { size: 10, color: c.ink, align: 'center', weight: 600 });
+    ctx.fillStyle=c.plate;ctx.fillRect(x-w/2-2,y-h/2-2,w+4,h+4);ctx.strokeStyle=c.ink;ctx.lineWidth=1.7;
+    ctx.beginPath();ctx.moveTo(x-w/2,y);for(let i=0;i<10;i++)ctx.lineTo(x-w/2+(i+1)*w/11,y+(i%2?1:-1)*h*.3);ctx.lineTo(x+w/2,y);ctx.stroke();
+    api.draw.text(ctx,label,x,y-14,{size:11.5,color:c.ink,align:'center',weight:600});
   }
 
   function drawLed(ctx, x, y, powerW, isBroken, label) {
@@ -71,13 +69,10 @@ Live.register('seriesparallel', (stage, params, api) => {
       api.draw.text(ctx, 'unclipped gap', x, y - 16, { size: 10, color: c.proton, align: 'center', weight: 700 });
       return;
     }
-    ctx.beginPath();
-    ctx.arc(x, y, 9.5, 0, Math.PI * 2);
-    ctx.fillStyle = bright > 0 ? c.proton : c.sheet;
-    ctx.fill();
-    ctx.strokeStyle = c.ink;
-    ctx.lineWidth = 1.6;
-    ctx.stroke();
+    ctx.fillStyle=c.plate;ctx.fillRect(x-12,y-12,24,24);ctx.strokeStyle=c.ink;ctx.lineWidth=1.7;
+    ctx.beginPath();ctx.moveTo(x-9,y-9);ctx.lineTo(x+6,y);ctx.lineTo(x-9,y+9);ctx.closePath();ctx.fillStyle=bright>0?c.proton:c.sheet;ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+7,y-10);ctx.lineTo(x+7,y+10);ctx.stroke();
+    api.draw.arrow(ctx,x+9,y-10,x+17,y-18,c.proton,1.3,4);api.draw.arrow(ctx,x+14,y-5,x+22,y-13,c.proton,1.3,4);
     api.draw.text(ctx, label, x, y - 15, { size: 10.5, color: c.ink, align: 'center', weight: 600 });
     api.draw.text(ctx, `${powerW.toFixed(3)} W`, x, y + 23, { size: 10, color: c.muted, align: 'center' });
   }
@@ -203,13 +198,13 @@ Live.register('seriesparallel', (stage, params, api) => {
     ctx.moveTo(forkX, branchYs[0]);
     ctx.lineTo(forkX, lastBranchY);
     ctx.moveTo(joinX, branchYs[0]);
-    ctx.lineTo(joinX, lastBranchY);
-    ctx.moveTo(joinX, lastBranchY);
-    ctx.lineTo(leftX, lastBranchY);
+    ctx.lineTo(joinX, botY);
+    ctx.moveTo(joinX, botY);
+    ctx.lineTo(leftX, botY);
     ctx.lineTo(leftX, branchYs[0]);
     ctx.stroke();
 
-    drawBatteryAndMeter(ctx, leftX, branchYs[0], lastBranchY, iBatMa, `Battery runs down ×${activeCount} as fast`);
+    drawBatteryAndMeter(ctx, leftX, branchYs[0], botY, iBatMa, `Battery runs down ×${activeCount} as fast`);
 
     // Total battery current arrows before the fork and after the join
     api.draw.arrow(ctx, 138, branchYs[0] - 14, 185, branchYs[0] - 14, c.proton, 2.4, 7);

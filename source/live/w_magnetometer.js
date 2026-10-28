@@ -1,8 +1,10 @@
 // 13.2 Magnetometer sensor lab: |B|, horizontal, vertical (down), and dip angle compared with WMM2025 Mumbai reference.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 Live.register('magnetometer', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'Keep the phone flat, screen upwards. Sensor x/y are in the screen plane; z points out of the screen. Only then do √(x²+y²) and −z represent horizontal and down. Tilting the phone changes these components, but not |B|. Reference values are a model, not a calibration.');
   const W = 640, H = 290;
   const k = api.canvas(W, H, 'Three-bar magnetic field display (total, horizontal, down) and dip angle diagram for Mumbai');
 
@@ -101,9 +103,16 @@ Live.register('magnetometer', (stage, params, api) => {
   api.onHide(stopSensor);
   api.onCleanup(stopSensor);
 
+  const axes=api.canvas(640,140,'Phone lying flat with x and y screen-plane axes and z pointing out of the screen');
+  function drawAxes(){const ctx=axes.ctx;axes.clear(c.plate);ctx.strokeStyle=c.ink;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(36,28,126,72,9);ctx.stroke();ctx.strokeStyle=c.rule;ctx.strokeRect(45,35,108,55);
+    api.draw.arrow(ctx,98,63,191,63,c.proton,2,7);label(ctx,c,'+x',199,67,{size:12,color:c.proton});
+    api.draw.arrow(ctx,98,63,98,13,c.electron,2,7);label(ctx,c,'+y',108,19,{size:12,color:c.electron});
+    ctx.fillStyle=c.ink;ctx.beginPath();ctx.arc(98,63,3,0,2*Math.PI);ctx.fill();ctx.beginPath();ctx.arc(98,63,9,0,2*Math.PI);ctx.strokeStyle=c.ink;ctx.stroke();label(ctx,c,'⊙ +z out of screen',35,123,{size:12});
+    label(ctx,c,'SCREEN UP · PHONE FLAT',269,35,{size:12,weight:600});label(ctx,c,'x and y → horizontal components',269,65,{size:13});label(ctx,c,'−z → down (only in this orientation)',269,88,{size:13});label(ctx,c,'Rotation changes components, not total field.',269,115,{size:12,color:c.muted});}
+
   function computeMetrics() {
     const horiz = Math.hypot(cur.x, cur.y);
-    const vert = Math.abs(cur.z);
+    const vert = -cur.z;
     const total = Math.hypot(cur.x, cur.y, cur.z);
     const dipDeg = (Math.atan2(vert, Math.max(1e-6, horiz)) * 180) / Math.PI;
     return {
@@ -120,6 +129,7 @@ Live.register('magnetometer', (stage, params, api) => {
     const ctx = k.ctx;
     k.clear(c.plate);
     const m = computeMetrics();
+    drawAxes();
 
     // Reminder note at top
     api.draw.text(ctx, statusNote, 24, 22, {
@@ -130,7 +140,7 @@ Live.register('magnetometer', (stage, params, api) => {
     const bars = [
       { label: 'Total |B|', val: m.total, wmm: WMM.total, col: c.ink },
       { label: 'Horizontal', val: m.horiz, wmm: WMM.horiz, col: c.electron },
-      { label: 'Vertical (down)', val: m.vert, wmm: WMM.down, col: c.proton },
+      { label: m.vert>=0?'Down':'Up', val: Math.abs(m.vert), wmm: WMM.down, col: c.proton },
     ];
     const maxScale = Math.max(80, m.total * 1.15);
     const barX = 135, barW = 190;
@@ -168,7 +178,7 @@ Live.register('magnetometer', (stage, params, api) => {
       ctx.moveTo(wmmX, y - 4);
       ctx.lineTo(wmmX, y + 28);
       ctx.stroke();
-      api.draw.text(ctx, `WMM ${b.wmm} μT`, wmmX, y + 40, { size: 9.5, color: c.muted, align: 'center' });
+      api.draw.text(ctx, `WMM ${b.wmm} μT`, wmmX, y + 40, { size: 12, color: c.muted, align: 'center' });
 
       // Value readout at right of bar
       api.draw.text(ctx, `${b.val} μT`, barX + barW + 10, y + 17, {
@@ -189,8 +199,8 @@ Live.register('magnetometer', (stage, params, api) => {
       size: 11.5, color: c.ink, align: 'center', weight: 700,
     });
 
-    const ox = boxX + 36, oy = boxY + 68;
-    const vecLen = 128;
+    const ox = boxX + 36, oy = boxY + 100;
+    const vecLen = 90;
     const dipRad = (m.rawDip * Math.PI) / 180;
     const hx = ox + vecLen * Math.cos(dipRad);
     const vy = oy + vecLen * Math.sin(dipRad);
@@ -222,7 +232,7 @@ Live.register('magnetometer', (stage, params, api) => {
 
     // Vertical (down) arrow
     api.draw.arrow(ctx, ox, oy, ox, vy, c.proton, 2.2, 7);
-    api.draw.text(ctx, `Down ${m.vert} μT`, ox + 8, (oy + vy) / 2 + 4, {
+    api.draw.text(ctx, `${m.vert>=0?'Down':'Up'} ${Math.abs(m.vert)} μT`, ox + 8, (oy + vy) / 2 + 4, {
       size: 10.5, color: c.proton, weight: 600,
     });
 
@@ -236,9 +246,11 @@ Live.register('magnetometer', (stage, params, api) => {
     ctx.strokeStyle = c.ink;
     ctx.lineWidth = 1.3;
     ctx.beginPath();
-    ctx.arc(ox, oy, 34, 0, dipRad);
+    ctx.arc(ox, oy, 34, Math.min(0,dipRad), Math.max(0,dipRad));
     ctx.stroke();
     api.draw.text(ctx, `${m.dip}°`, ox + 42, oy + 16, { size: 11, color: c.ink, weight: 600 });
+
+    label(ctx,c,`Sensor axes: x ${cur.x.toFixed(1)} · y ${cur.y.toFixed(1)} · z ${cur.z.toFixed(1)} μT`,24,278,{size:12,color:c.muted});
 
     // Readout
     if (m.rawTotal > 150) {
@@ -251,7 +263,7 @@ Live.register('magnetometer', (stage, params, api) => {
       say(
         `Total |B| = ${m.total} μT, horizontal = ${m.horiz} μT, vertical (down) = ${m.vert} μT, dip = ${m.dip}° ` +
         `(Mumbai WMM2025 reference: total 43.6 μT, horizontal 38.4 μT, down 20.7 μT, dip 28°). ` +
-        `These three quantities depend only on the phone lying flat; phone magnetometers are uncalibrated and nearby steel (table legs, phone parts) shifts the reading, so agreement within about 10 μT is good.`
+        `Horizontal and vertical components require the phone to lie flat; phone magnetometers are uncalibrated and nearby steel (table legs, phone parts) shifts the reading, so agreement within about 10 μT is good.`
       );
     }
   }

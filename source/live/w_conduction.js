@@ -2,6 +2,7 @@
 // Materials: Steel (k = 14 W/(m.K)), Wood (k = 0.12 W/(m.K)), Aluminium (k = 220 W/(m.K)).
 // Conserves energy every frame: energy leaving the hand equals energy gained by the 6 surface layers + room sink.
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 
 const T_ROOM = 30.0; // deg C
 const MATERIALS = [
@@ -17,6 +18,7 @@ Live.register('conduction', (stage, params, api) => {
   let tHandSet = 35.0; // deg C (32 to 38)
   let touching = true;
   const say = api.readout();
+  mechanismKey(stage, 'A contact cut-away, not moving matter', ['The top region represents skin pressed against the slab; lifting it opens a gap and stops contact transfer.', 'Sites jiggle locally: they do not travel down the slab. The connected dots at the right show temperature through six depth layers.', 'The rate gauge is a relative model scale, not a watt meter. The conserved ledger records transferred energy in joules.']);
 
   // 1 hand layer + 6 surface layers
   let tHand = tHandSet;
@@ -218,6 +220,13 @@ Live.register('conduction', (stage, params, api) => {
     ctx.fillRect(lx0, 112, lw, 168);
     ctx.restore();
 
+    // A finger outline locates this molecular cut-away within a contact.
+    ctx.save(); ctx.strokeStyle = c.proton; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(lx0 + 12, 42 + handShiftY);
+    ctx.bezierCurveTo(lx0 + 90, 38 + handShiftY, lx0 + 210, 38 + handShiftY, lx0 + 280, 54 + handShiftY);
+    ctx.bezierCurveTo(lx0 + 330, 66 + handShiftY, lx0 + 330, 105 + handShiftY, lx0 + 282, 108 + handShiftY);
+    ctx.lineTo(lx0 + 12, 108 + handShiftY); ctx.stroke(); ctx.restore();
+
     // Boundary line at y = 111
     ctx.strokeStyle = c.ink;
     ctx.lineWidth = touching ? 2.4 : 1.4;
@@ -228,7 +237,7 @@ Live.register('conduction', (stage, params, api) => {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    api.draw.text(ctx, `hand (${tHandSet.toFixed(0)} \u00b0C)`, lx0 + 8, 30 + handShiftY * 0.4, {
+    api.draw.text(ctx, `skin (${tHandSet.toFixed(0)} \u00b0C)`, lx0 + 8, 30 + handShiftY * 0.4, {
       size: 12, color: c.proton, weight: 600,
     });
     api.draw.text(ctx, `${mat.short} surface (starts at room 30 \u00b0C)`, lx0 + lw - 6, 30, {
@@ -266,6 +275,11 @@ Live.register('conduction', (stage, params, api) => {
       drawParticle(p, tHand, c.proton, handShiftY);
     }
 
+    // The temperature profile uses one common horizontal temperature scale.
+    const tempX = temp => lx0 + lw + 10 + 35 * Math.max(0, Math.min(1, (temp - T_ROOM) / Math.max(1, tHandSet - T_ROOM)));
+    ctx.strokeStyle = c.proton; ctx.lineWidth = 1.5; ctx.beginPath();
+    layers.forEach((temp, l) => l ? ctx.lineTo(tempX(temp), 132 + l * 26) : ctx.moveTo(tempX(temp), 132)); ctx.stroke();
+    api.draw.text(ctx, '30 → hand °C', lx0 + lw + 28, 116, {size: 10, color: c.muted, align: 'center'});
     // Surface particles across 6 depth layers
     const surfCol = mat.isMetal ? c.electron : c.neutron;
     for (let l = 0; l < 6; l++) {
@@ -273,10 +287,7 @@ Live.register('conduction', (stage, params, api) => {
       for (const p of surfParticles[l]) {
         drawParticle(p, tLayer, surfCol, 0);
       }
-      // Layer temperature readout on right edge of lattice
-      api.draw.text(ctx, `${tLayer.toFixed(1)} \u00b0C`, lx0 + lw + 6, 136 + l * 26, {
-        size: 11, color: l === 0 ? c.ink : c.muted, weight: l === 0 ? 600 : 400,
-      });
+      ctx.fillStyle = c.proton; ctx.beginPath(); ctx.arc(tempX(tLayer), 132 + l * 26, 3, 0, Math.PI * 2); ctx.fill();
     }
 
     // Boundary energy-transfer arrows when touching

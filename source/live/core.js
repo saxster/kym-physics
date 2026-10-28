@@ -225,6 +225,8 @@ function makeApi(fig, stage, controls, state) {
   };
   const sizeCanvas = (cv, W, H) => {
     cv.style.width = '100%'; cv.style.height = 'auto'; cv.style.aspectRatio = `${W} / ${H}`; cv.style.display = 'block';
+    cv.style.setProperty('--drawing-width', W + 'px');
+    cv.dataset.logicalWidth = W;
   };
   const api = {
     get reduced() { return isReducedMotion(); },
@@ -930,6 +932,28 @@ function setup(fig) {
     close.type = 'button'; close.className = 'live-ctl live-close'; close.textContent = 'Back to the drawing';
     close.addEventListener('click', closeLive);
     controls.appendChild(close);
+    const detail = document.createElement('button');
+    detail.type = 'button'; detail.className = 'live-ctl live-detail-toggle';
+    detail.textContent = 'Full-size drawing'; detail.setAttribute('aria-pressed', 'false');
+    const detailHint = document.createElement('p');
+    detailHint.className = 'live-detail-hint'; detailHint.hidden = true;
+    detailHint.textContent = 'Scroll sideways to see the full drawing. The controls below still work.';
+    controls.append(detail, detailHint);
+    detail.addEventListener('click', () => {
+      const full = stage.classList.toggle('live-inspect');
+      detail.setAttribute('aria-pressed', String(full));
+      detail.textContent = full ? 'Fit drawing' : 'Full-size drawing';
+      detailHint.hidden = !full;
+      if (full) {
+        stage.tabIndex = 0;
+        stage.setAttribute('role', 'region');
+        stage.setAttribute('aria-label', 'Full-size live drawing. Scroll horizontally to explore.');
+      } else {
+        stage.removeAttribute('tabindex'); stage.removeAttribute('role'); stage.removeAttribute('aria-label');
+        stage.scrollLeft = 0;
+      }
+      // Canvas ResizeObservers redraw the same state; this changes no physical input or clock.
+    });
     open.hidden = true;
     setPlaying(!api.reduced && !w.meta.static);
     if (w.meta.static) for (const fn of api._loops) fn(0, 0);

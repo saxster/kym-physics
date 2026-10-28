@@ -60,3 +60,31 @@ for rarefaction_x in (100, 250, 400, 550):
     _, trough_y = min(curve, key=lambda point: abs(point[0] - rarefaction_x))
     assert math.isclose(trough_y, 265 + 24, abs_tol=0.1), (rarefaction_x, trough_y)
 print('sound: pressure maxima align with particle compressions; minima with rarefactions')
+
+# Interference paths must start at both actual sources, reach a shared point,
+# and match the bright/dark condition rather than coming from a fictitious midpoint.
+from figs_ch11 import c11_young
+paths = [e for e in svg_elements(c11_young(),'line') if e.attrib.get('x1')=='95']
+assert len(paths)==4
+for pair,expected in ((paths[:2],0),(paths[2:],7)):
+    a,b=pair
+    assert a.attrib['x2']==b.attrib['x2'] and a.attrib['y2']==b.attrib['y2']
+    lengths=[math.hypot(float(e.attrib['x2'])-float(e.attrib['x1']),float(e.attrib['y2'])-float(e.attrib['y1'])) for e in pair]
+    assert math.isclose(abs(lengths[1]-lengths[0]),expected,abs_tol=.02)
+print('Young: true source paths agree with zero and half-wavelength interference')
+
+# Two rays from each tree point must converge on one inverted image point,
+# and the rays must pass through the pupil instead of the opaque iris.
+from figs_ch10 import c10_eye
+rays=svg_elements(c10_eye(),'line')
+for colour in ('light-blue','light-red'):
+    group=[e for e in rays if e.attrib.get('class')=='ray '+colour]
+    final=[e for e in group if e.attrib['x2']=='500']
+    assert len(final)==2 and final[0].attrib['y2']==final[1].attrib['y2']
+    source=next(e for e in group if e.attrib['x1']=='55')
+    assert (float(source.attrib['y1'])-173)*(float(final[0].attrib['y2'])-173)<0
+    for e in group:
+        if e.attrib['x1']=='288':
+            y=float(e.attrib['y1'])+(310-288)/(325-288)*(float(e.attrib['y2'])-float(e.attrib['y1']))
+            assert 134.5<y<211.5
+print('Eye: two points focus inverted and all model rays clear the pupil')

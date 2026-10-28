@@ -1,6 +1,7 @@
 // Ch 2.3 c2_two_ramps -> w_ramp: Galileo's two-ramp thought experiment.
 // Point-mass sliding puck released from 1.0 m on a 30 deg first ramp, climbing a second ramp of angle 0..40 deg with friction mu = 0..0.30.
 import { Live } from './core.js';
+import { mechanismKey,dimension,hatch } from './art_mechanics.js';
 
 const G = 9.8;
 const TH1 = (30 * Math.PI) / 180;
@@ -13,6 +14,7 @@ Live.register('ramp', (stage, params, api) => {
   let deg2 = 30;
   let mu = 0.10;
   const say = api.readout();
+  mechanismKey(stage, "Same height, different distance", ["The striped ramp is the solid support; the puck slides on its upper edge. The blue vertical bracket measures height.", "A dotted return mark records the highest point. On a flat second track the arrow continues beyond this drawing."]);
 
   // State: s is arc-length along track (s = 0 at top of first ramp, s = L1 at bottom vertex, s > L1 on second ramp)
   let s = 0;
@@ -177,13 +179,13 @@ Live.register('ramp', (stage, params, api) => {
     const ctx = k.ctx;
 
     // Geometry: bottom vertex at (vx, vy) = (210, 200), scale = 120 px per metre of height
-    const scale = 120;
-    const vx = 200, vy = 200;
+    const scale = 110;
+    const vx = 225, vy = 220;
     const xStart = vx - L1 * Math.cos(TH1) * scale;
     const yStart = vy - H0 * scale;
 
     const th2 = (deg2 * Math.PI) / 180;
-    const maxDrawS2 = deg2 === 0 ? 3.4 : Math.min(3.5, Math.max(2.2, H0 / Math.sin(Math.max(th2, 0.08))));
+    const maxDrawS2 = deg2 === 0 ? 3.4 : Math.min(3.5, 1.1 / Math.sin(Math.max(th2, 0.08)));
     const xEnd = vx + maxDrawS2 * Math.cos(th2) * scale;
     const yEnd = vy - maxDrawS2 * Math.sin(th2) * scale;
 
@@ -216,6 +218,11 @@ Live.register('ramp', (stage, params, api) => {
     ctx.lineTo(vx, vy);
     ctx.lineTo(xEnd, yEnd);
     ctx.stroke();
+
+    hatch(ctx,xStart,yStart,20,Math.max(0,vy-yStart),c.muted,10);
+    dimension(ctx,24,yStart,24,vy,c.electron);
+    api.draw.text(ctx,'1 m',34,(yStart+vy)/2,{size:12,color:c.electron});
+    if(deg2===0){api.draw.arrow(ctx,560,vy-15,612,vy-15,c.electron,2,7);api.draw.text(ctx,'continues',585,vy-25,{size:12,color:c.electron,align:'center'});}
 
     // Labels for angles
     api.draw.text(ctx, '30\u00b0', vx - 46, vy - 6, { size: 12, color: c.muted, align: 'center' });
@@ -290,4 +297,4 @@ Live.register('ramp', (stage, params, api) => {
 
   reset();
   return { destroy() {} };
-}, { label: 'Roll the puck' });
+}, { label: 'Slide the puck' });

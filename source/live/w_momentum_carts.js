@@ -1,6 +1,7 @@
 // Ch 3.5 c3_momentum_carts -> w_momentum_carts: 1D elastic ("bounce") and perfectly inelastic ("stick") collisions.
 // Initial velocities fixed at +2.00 m/s (cart 1) and -0.50 m/s (cart 2). Conserves momentum every frame.
 import { Live } from './core.js';
+import { mechanismKey,hatch } from './art_mechanics.js';
 
 const V1_INIT = 2.00;
 const V2_INIT = -0.50;
@@ -23,6 +24,7 @@ Live.register('momentum_carts', (stage, params, api) => {
   let collided = false;
   let running = false;
   const say = api.readout();
+  mechanismKey(stage, "Add signed momentum, not speeds", ["The two cart masses retain their own labels; their speeds and momenta use different arrow scales.", "The bottom arrows add head-to-tail. Their endpoint stays at the same total through the collision."]);
 
   // Stage action button ("Collide" / "Again") inside stage so control count is strictly 3
   stage.style.position = 'relative';
@@ -181,6 +183,7 @@ Live.register('momentum_carts', (stage, params, api) => {
       ctx.fill();
       ctx.stroke();
 
+      hatch(ctx,sx-w/2+3,sy+3,w-6,7,title==='cart 1'?c.electron:c.neutron,7);
       api.draw.text(ctx, `${m.toFixed(2)} kg`, sx, sy + h / 2 + 4, {
         size: 12, color: c.ink, align: 'center', weight: 600,
       });
@@ -240,12 +243,16 @@ Live.register('momentum_carts', (stage, params, api) => {
     ctx.lineTo(cx + 140, barY + 4);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(cx, barY - 2);
-    ctx.lineTo(cx, barY + 10);
+    ctx.moveTo(cx-100, barY+13);
+    ctx.lineTo(cx-100, barY+29);
     ctx.stroke();
-    if (Math.abs(pLenTot) > 2) {
-      api.draw.arrow(ctx, cx, barY + 4, cx + pLenTot, barY + 4, c.proton, 3, 9);
-    }
+    api.draw.text(ctx,'0',cx-109,barY+25,{size:11,color:c.muted,align:'right'});
+    const contributionScale=90;
+    const p1=m1*v1,p2=m2*v2,start=cx-100;
+    api.draw.arrow(ctx,start,barY+20,start+p1*contributionScale,barY+20,c.electron,3,7);
+    api.draw.arrow(ctx,start+p1*contributionScale,barY+20,start+(p1+p2)*contributionScale,barY+20,c.neutron,3,7);
+    ctx.strokeStyle=c.ink;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(start+pInit*contributionScale,barY+11);ctx.lineTo(start+pInit*contributionScale,barY+29);ctx.stroke();
+
   });
 
   updateReadout();

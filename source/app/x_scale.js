@@ -3,6 +3,7 @@ import App from './core.js';
 import { MIN_EXP, MAX_EXP, clampExp, widthAt, stepTarget, formatWidth, formatPower, fitExponent, ratioText } from './scale_model.mjs';
 import { RUNGS, drawRungIcon } from './scale_catalog.js';
 import { drawEarth } from './scale_earth.js';
+import { drawScaleLandmark, SCALE_DETAILS } from './explorer_art.js';
 const { el } = App;
 const DIMENSIONS = [1e-15, 1e-10, 5e-7, .001, 1, 1.2742e7, 1.39e9, 1.496e11, 9.4607e15, 1e21];
 const STOPS = RUNGS.map((r, i) => ({...r, metres: DIMENSIONS[i]})).concat([
@@ -27,6 +28,8 @@ App.explorer('scale', {
     const power = el('span', {class:'scale-power'});
     const comparison = el('p', {class:'scale-comparison'});
     const caption = el('p', {class:'scale-caption'});
+    const mechanism = el('p', {class:'scale-mechanism'});
+    const referenceStrip = el('p', {class:'scale-reference'});
     const windowNote = el('p', {class:'scale-window-note', id:'scale-window-note'});
     canvas.setAttribute('aria-describedby','scale-window-note');
     const status = el('p', {class:'scale-sr', role:'status', 'aria-live':'polite'});
@@ -75,7 +78,7 @@ App.explorer('scale', {
       el('div',{class:'scale-readout'},el('span',{class:'xp-kicker'},'Width of your window'),width,power),scene,
       el('div',{class:'scale-step-controls'},minus,plus),
       el('div',{class:'scale-ruler'},el('span',{},'Smaller'),slider,el('span',{},'Larger')),
-      windowNote,comparison,caption,
+      windowNote,referenceStrip,comparison,caption,mechanism,
       el('div',{class:'scale-secondary'},home,choose,retryImages));
     const wrap=el('div',{class:'scale-explorer'},
       el('div',{class:'scale-top'},el('p',{class:'xp-kicker'},'One metre. Then the universe.'),
@@ -150,6 +153,8 @@ App.explorer('scale', {
       windowNote.textContent=`Dashed window: ${formatWidth(exp-1)} across, one tenth of the full view width.`;
       clearTimeout(announceTimer);
       if(isActive())announceTimer=setTimeout(()=>{if(isActive())status.textContent=`${width.textContent}. ${comparison.textContent}`;},180);
+      referenceStrip.textContent = `One-metre reference: ${formatWidth(0)}. ${exp===0?'This is your starting width.':exp>0?`The current width contains ${Number(widthAt(exp)).toLocaleString('en-GB',{maximumSignificantDigits:3})} one-metre lengths.`:`One metre contains ${Number(1/widthAt(exp)).toLocaleString('en-GB',{maximumSignificantDigits:3})} windows this wide.`}`;
+      mechanism.textContent = SCALE_DETAILS[r.kind] || (r.kind==='earth'?'The Earth uses geographic outlines rather than arbitrary land blobs. The outer circle gives its reference diameter.':'The reference artwork is illustrative; the width of the physical window remains exact.');
       updateGuide();draw();
     }
     function draw() {
@@ -158,7 +163,7 @@ App.explorer('scale', {
       canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
       const ctx=canvas.getContext('2d');if(!ctx)return;
       ctx.scale(dpr,dpr);const css=getComputedStyle(stage),g=k=>css.getPropertyValue(k).trim();
-      const col={ink:g('--ink'),ink2:g('--ink-2'),muted:g('--muted'),vol:g('--vol'),green:g('--green'),proton:g('--proton'),electron:g('--electron'),neutron:g('--neutron'),protonWash:'rgba(169,71,48,.14)',electronWash:'rgba(53,109,131,.15)',neutronWash:'rgba(147,96,34,.15)'};
+      const col={ink:g('--ink'),ink2:g('--ink-2'),muted:g('--muted'),vol:g('--vol'),green:g('--green'),proton:g('--proton'),electron:g('--electron'),neutron:g('--neutron'),protonWash:'rgba(169,71,48,.14)',electronWash:'rgba(53,109,131,.15)',neutronWash:'rgba(147,96,34,.15)',paper:g('--paper')};
       ctx.fillStyle=g('--plate')||'#faf6e9';ctx.fillRect(0,0,W,H);
       const metres=widthAt(exp),ppm=W/metres;
       let sceneNote='';
@@ -177,7 +182,7 @@ App.explorer('scale', {
           if(r.kind==='earth')drawEarth(ctx,W/2,H/2,size/2,col);
           else if(r.kind==='illustration'){
             ctx.strokeStyle=col.ink;ctx.lineWidth=1.5;ctx.strokeRect((W-size)/2,(H-size*2/3)/2,size,size*2/3);
-          }else drawRungIcon(ctx,r.kind,W/2,H/2,size/2,col);
+          }else drawScaleLandmark(ctx,r.kind,W/2,H/2,size/2,col,drawRungIcon);
           drawn++;
         }
         // When the closest larger reference is outside the frame, show the largest

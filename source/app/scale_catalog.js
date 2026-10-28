@@ -23,7 +23,7 @@ export const RUNGS = [
     label: 'Visible light wave 10⁻⁶ m',
     sizeText: 'About 0.5 micrometres (500 nm)',
     kind: 'wave',
-    story: 'A single wavelength of green-red sunlight is just under one micrometre, about 10,000 atoms wide. Soap-bubble films of this thickness glow with interference colours.',
+    story: 'A single 500 nm wavelength of green light is half a micrometre, about 5,000 of our hydrogen-atom reference widths. Soap-bubble films of this thickness glow with interference colours.',
     chapter: 'Chapters 0.3 & 11.5',
   },
   {
@@ -68,7 +68,7 @@ export const RUNGS = [
     label: 'Earth–Sun 10¹¹ m',
     sizeText: '149.6 million km (1 AU, ~1.5 × 10¹¹ m)',
     kind: 'orbit',
-    story: 'Two more steps of ×10 take us from the Sun’s width to the width of Earth’s orbit around it. Light takes about 8 minutes and 20 seconds to cross this radius.',
+    story: 'Our reference is the mean Earth–Sun distance: one astronomical unit, or the mean radius of Earth’s orbit. Light takes about 8 minutes and 20 seconds to cross this distance.',
     chapter: 'Chapters 0.3, 5.3 & 14.2',
   },
   {

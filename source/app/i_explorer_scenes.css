@@ -1,0 +1,16 @@
+/* Explanation-specific views keep scene labels readable at their actual CSS size. */
+.spectrum-panels {display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0;}
+.spectrum-panels .xp-tab {min-height:44px;flex:1 1 11rem;border-radius:6px;}
+.explorer-scene-note {font:.86rem/1.55 var(--sans);color:var(--ink-2);padding:.65rem .8rem;border-left:3px solid var(--vol);background:var(--vol-wash);margin:.6rem 0 1rem;}
+.spectrum-canvas {height:410px;}
+#explore-sky .xp-pane-head {font-size:.85rem;flex-wrap:wrap;}
+#explore-sky .xp-pane-head span {font-size:.8rem;}
+@media(max-width:500px){.spectrum-panels .xp-tab{flex-basis:100%;}.xp-wrap .explorer-scene-note{font-size:.82rem;}}
+
+.sky-phase-links {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem;margin:.8rem 0;}
+.sky-phase-links button {font:.8rem/1.4 var(--sans);background:var(--plate);border:1px solid var(--rule);border-radius:5px;color:var(--ink);min-height:86px;padding:.4rem;cursor:pointer;display:flex;align-items:center;gap:.4rem;}
+.sky-phase-links button[aria-pressed=true] {border:2px solid var(--vol);background:var(--vol-wash);}
+.sky-phase-links button:focus-visible {outline:3px solid var(--vol);outline-offset:3px;}
+.sky-phase-links[hidden] {display:none!important;}
+@media(max-width:650px){.sky-phase-links{grid-template-columns:repeat(2,minmax(0,1fr));}.sky-phase-links button{flex-direction:column;}.sky-phase-links svg{width:42px;height:42px;}}
+@media(prefers-reduced-motion:reduce){.explore-mount .xp-btn,.explore-mount .xp-tab,.explore-mount .xp-rung,.explore-mount .xp-step-pill{transition:none;}}

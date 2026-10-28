@@ -1,5 +1,6 @@
 // 15.7 Expanding ruler & balloon: v proportional to distance from every observer, constant galaxy size, and cosmological redshift z = s - 1.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 const ANTS_CM = [2, 4, 7, 12];
 const OBS_INDICES = [0, 2, 3]; // 2 cm, 7 cm, 12 cm ants
@@ -15,6 +16,7 @@ function waveRGBForScale(s) {
 
 Live.register('expansion', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'Compare every distance from the selected observer. Ants and galaxies keep their size; the separation and light wavelength stretch. The balloon is a projected analogy, not a map with a centre of expansion.');
   const W = 640, H = 330;
   const k = api.canvas(W, H, 'A stretching rubber ruler with four ants and a balloon ring of galaxies with a stretching light wave');
 
@@ -214,6 +216,13 @@ Live.register('expansion', (stage, params, api) => {
         });
       }
     }
+
+    // Distances on the surface are arcs: show both a reference and the selected scale.
+    label(ctx,c,'Reference wavelength',28,292,{size:11,color:c.muted});
+    for(const [yy,lam,col] of [[305,10,c.muted],[322,10*scaleS,waveRGBForScale(scaleS)]]){
+      ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();for(let x=155;x<395;x++){const y=yy+4*Math.sin((x-155)*2*Math.PI/lam);if(x===155)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();
+    }
+    label(ctx,c,'Stretched λ',28,324,{size:11,color:c.electron});
 
     // Right info card
     const rx = 420, ry = 46, rw = 200, rh = 236;

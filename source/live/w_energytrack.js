@@ -1,6 +1,7 @@
 // Ch 7.3 c7_track -> w_energytrack: Ideal sliding bead (no spin), with height, motion, and warmth bars.
 // Speed computed directly from energy: v = sqrt(2*g*(h0 - h) - 2*thermal/m). Conserves PE + KE + thermal = m*g*h0 every frame.
 import { Live } from './core.js';
+import { mechanismKey, dimension } from './art_mechanics.js';
 
 const G = 9.8;
 const MARBLES = [
@@ -66,6 +67,7 @@ Live.register('energytrack', (stage, params, api) => {
   let marbleIdx = 0;
   let viewMode = 0; // 0 = Bars, 1 = Glowing jars
   const say = api.readout();
+  mechanismKey(stage, 'Follow the same energy account', ['The vertical bracket links the bead’s present height to the gravitational store. The blue start line fixes the initial energy.', 'The bead slides without spinning. Motion and warmth share the same joule scale as height; the outlined total stays fixed.']);
 
   let x = findReleaseX(h0);
   let dir = 1; // +1 right, -1 left
@@ -249,6 +251,15 @@ Live.register('energytrack', (stage, params, api) => {
       if (i === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
     }
     ctx.stroke();
+
+    // Light supports make the abstract profile a physical track.
+    ctx.save(); ctx.strokeStyle = c.rule; ctx.lineWidth = 1;
+    for (let xm = 0.2; xm < 4; xm += 0.4) {
+      ctx.beginPath(); ctx.moveTo(X(xm), Y(trackHeight(xm)) + 3); ctx.lineTo(X(xm), yBase + 5); ctx.stroke();
+    }
+    ctx.restore();
+    dimension(ctx, X(x) + 18, Y(h), X(x) + 18, Y(0), c.electron);
+    api.draw.text(ctx, `h = ${h.toFixed(2)} m`, tx0 + 10, 24, {size: 12, color: c.electron, weight: 600});
 
     // Marble on track
     const slope = trackSlope(x);
@@ -437,4 +448,4 @@ Live.register('energytrack', (stage, params, api) => {
 
   updateReadout();
   return { destroy() {} };
-}, { label: 'Let it roll' });
+}, { label: 'Slide the bead' });

@@ -208,33 +208,38 @@ def c5_ellipse():
 
 @figure
 def c5_cavendish():
-    """Cavendish's torsion balance seen from above, inside its shed, with the telescope through the wall (schematic)."""
-    f = Fig(640, 300, 'Cavendish’s experiment seen from above: inside a closed shed a light rod hangs from a thin wire with '
-                      'a small lead ball at each end; a big lead ball sits beside each small one on opposite sides, the tiny '
-                      'pull twists the rod, and Cavendish watches the twist through a telescope poked through a hole in the wall')
-    f.rect(70, 30, 500, 240, 'ln', rx=0)
-    f.text(80, 50, 'shed, closed up', 't m', 'start', 12)
-    cx, cy = 320, 150
-    f.line(cx - 130, cy, cx + 130, cy, 'ln', extra='stroke-width="3"')
-    f.circle(cx, cy, 4, 'fill-ink')
-    f.text(cx, cy - 12, 'thin wire, seen end-on', 't m', 'middle', 12)
-    f.text(cx, cy + 22, 'light rod', 't m', 'middle', 12)
-    for sx, big_dy, side in ((cx - 130, -46, -1), (cx + 130, 46, 1)):
-        f.circle(sx, cy, 10, 'fill-ink')
-        f.circle(sx, cy + big_dy, 24, 'plate')
-        f.force(sx, cy + (-10 if big_dy < 0 else 10), 0, 14 * (1 if big_dy > 0 else -1), '', 12)
-    f.text(cx - 130, cy - 86, 'big lead ball', 't m', 'middle', 12)
-    f.text(cx + 130, cy + 92, 'big lead ball', 't m', 'middle', 12)
-    f.text(cx - 130 - 16, cy + 28, 'small ball', 't m', 'end', 12)
-    f.text(cx + 130 + 16, cy - 20, 'small ball', 't m', 'start', 12)
-    f.text(cx - 100, cy - 36, 'pull (tiny)', 't p b', 'end', 12)
-    f.text(cx + 100, cy + 44, 'pull (tiny)', 't p b', 'start', 12)
-    f.curved_arrow(cx - 60, cy - 24, cx + 60, cy - 24, bend=14, kind='muted')
-    f.text(cx, cy - 36, 'the rod twists a little', 't m', 'middle', 12)
-    f.rect(20, cy - 8, 52, 16, 'block', rx=3)
-    f.line(72, cy, cx - 140, cy, 'ln dash')
-    f.lines(14, 110, ['telescope through', 'a hole in the wall'], 't m', 'start', 12)
-    f.text(320, 292, 'schematic, not to scale', 't m', 'middle', 12)
+    f = Fig(640, 365, 'Cavendish torsion balance, schematic and greatly enlarged. In a top view, large balls attract the two small end masses in opposite directions and turn a suspended rod. A ghost rod shows the original position. A side inset shows the thin suspension wire and a telescope reads a scale without opening the enclosure. There is no laser or mirror readout in this historical drawing.')
+    f.text(20,27,'A tiny attraction. A measurable twist.','t b',size=17)
+    f.rect(34,64,362,236,'plate',rx=3)
+    f.text(48,86,'closed enclosure · view from above','t m',size=12)
+    cx,cy=222,180
+    f.line(110,180,334,180,'ln m dash')
+    f.circle(110,180,9,'ln m dash');f.circle(334,180,9,'ln m dash')
+    f.line(110,168,334,192,'ln',extra='stroke-width="3"')
+    f.circle(cx,cy,4,'fill-ink')
+    for x,y,bigy in ((110,168,123),(334,192,237)):
+        f.circle(x,y,9,'fill-ink');f.circle(x,bigy,22,'wash-n');f.circle(x,bigy,22,'ln')
+        f.force(x,y-10 if bigy<y else y+10,0,-18 if bigy<y else 18)
+    f.text(222,125,'large lead balls','t','middle',13)
+    f.text(222,212,'light rod + small end masses','t','middle',12)
+    f.curved_arrow(189,151,256,157,bend=-17,kind='muted')
+    f.text(222,263,'dashed: before   solid: after','t m','middle',12)
+    # A suspension inset earns the restoring torque.
+    f.rect(426,64,191,236,'plate',rx=6)
+    f.text(520,88,'View from the side','t b','middle',14)
+    f.ground(456,110,126)
+    f.line(520,119,520,216,'ln')
+    f.rect(465,216,110,7,'block',rx=1)
+    f.circle(475,227,8,'block');f.circle(564,227,8,'block')
+    f.text(533,154,'thin wire','t',size=12)
+    f.text(520,271,'twisting wire resists','t m','middle',12)
+    f.text(520,287,'the gravitational turn','t m','middle',12)
+    # Original experiment: telescope observes a graduated scale, no modern optical lever.
+    f.rect(8,176,44,14,'block',rx=3)
+    f.line(52,183,99,183,'ln m dash')
+    for k in range(6): f.line(76+k*4,160,76+k*4,168+(k%2)*4,'ln m')
+    f.text(20,328,'Telescope reads the scale through a window; the enclosure stays shut.','t',size=13)
+    f.text(20,351,'Twist and ball sizes enlarged. The apparatus is a model, not a scale drawing.','t m',size=12)
     return f.svg()
 
 

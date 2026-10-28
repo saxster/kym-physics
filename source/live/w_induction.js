@@ -1,5 +1,6 @@
 // 13.5 Electromagnetic induction: Faraday's law e = -N dPhi/dt, Lenz's law, zero when still inside coil, and 4 s strip trace.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 const TURNS_CHOICES = [1, 10, 50, 200];
 const METRES_PER_PX = 0.001; // Drawing scale: 100 px = 0.10 m.
@@ -7,6 +8,7 @@ const NUDGE_SPEED_PX = 360; // 180 px (0.18 m) in a half-second stroke.
 
 Live.register('induction', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The coil is a cut-away: drawn turns represent the selected total turn count. A held magnet produces no sustained voltage. Moving it changes the field through the coil; reversing the change reverses the pulse.');
   const W = 640, H = 340;
   const k = api.canvas(W, H, 'A bar magnet movable into and out of a coil connected to a centre-zero galvanometer and a 4-second voltage trace');
 
@@ -166,6 +168,12 @@ Live.register('induction', (stage, params, api) => {
 
     const ctx = k.ctx;
     k.clear(c.plate);
+
+    // Field-through-the-loop cue: flux linkage is a model value, not a voltage.
+    const linked=fluxAt(magX,N,flipped);
+    label(ctx,c,`Flux linkage NΦ: ${linked.toFixed(2)} mWb`,22,24,{size:12,weight:600});
+    label(ctx,c,'Voltage responds to its rate of change.',22,44,{size:11,color:c.muted});
+    ctx.save();ctx.globalAlpha=.15;ctx.fillStyle=c.electron;ctx.beginPath();ctx.ellipse(COIL_X,COIL_Y,15,36,0,0,2*Math.PI);ctx.fill();ctx.restore();
 
     // 1. Top: Centre-zero galvanometer wired to the coil
     const meterX = COIL_X, meterY = 58, meterR = 42;

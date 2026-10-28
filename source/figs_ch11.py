@@ -172,54 +172,63 @@ def c11_brewster():
 
 @figure
 def c11_young():
-    f = Fig(640, 320, 'Two sources of light in step send out crests; where crests meet crests the screen is bright, where a crest meets a trough it is dark, giving stripes')
-    s1, s2, lam = (120, 130), (120, 190), 16
-    for (x, y), cls in ((s1, 'ln m'), (s2, 'ln e')):
-        for r in range(lam, 130, lam):
-            f.path(f'M{x},{y - r} A{r},{r} 0 0 1 {x},{y + r}', cls)
-        f.circle(x, y, 4, 'fill-ink')
-    f.text(104, 134, 'S₁', 't b', 'end', 13)
-    f.text(104, 194, 'S₂', 't b', 'end', 13)
-    f.text(8, 160, 'two sources', 't m', 'start', 12)
-    f.text(8, 174, 'in step', 't m', 'start', 12)
-    # screen with bright and dark bands (fringe spacing 117 in these units)
-    f.rect(556, 14, 12, 292, 'plate', rx=0)
-    for y0 in (72, 189):
-        f.rect(556, y0, 12, 58, 'fill-ink', rx=0)
-    for y, lab in ((47, 'bright'), (105, 'dark'), (164, 'bright'), (222, 'dark'), (281, 'bright')):
-        f.text(576, y, lab, 't', 'start', 12)
-    mx, my = 120, 160
-    for y in (43, 160, 277):
-        f.line(mx, my, 556, y, 'ln g')
-    for y in (101.5, 218.5):
-        f.line(mx, my, 556, y, 'ln dash')
-    f.text(380, 150, 'crests meet crests: bright', 't g', 'middle', 12)
-    f.text(300, 80, 'crest meets trough: dark', 't m', 'middle', 12)
+    f = Fig(640, 390, 'Two coherent sources feed two actual paths to each marked screen point. A calculated equal-amplitude intensity strip and curve show bright points at integer wavelength path differences and dark points at half-integer differences. The finite-slit diffraction envelope is omitted; geometry and wavelength are illustrative.')
+    f.text(24,27,'Two routes to the same point','t b',size=17)
+    sx,ya,yb,xx,lam=95,126,186,478,14
+    def delta(y):return math.hypot(xx-sx,y-yb)-math.hypot(xx-sx,y-ya)
+    def target(d):
+        lo,hi=40.,272.
+        for _ in range(50):
+            m=(lo+hi)/2
+            if delta(m)>d:lo=m
+            else:hi=m
+        return (lo+hi)/2
+    for y in (ya,yb):
+        for r in range(14,85,14):
+            f.path(f'M{sx},{y-r} A{r},{r} 0 0 1 {sx},{y+r}','ln r')
+        f.circle(sx,y,5,'fill-ink')
+    f.text(78,ya+4,'S₁','t b','end',14);f.text(78,yb+4,'S₂','t b','end',14)
+    f.text(24,290,'Sources stay in step','t b',size=13)
+    # Each sample is derived from the same two distances as the path labels.
+    f.rect(xx,40,22,232,'glass',rx=0)
+    pts=[]
+    for y in range(40,272):
+        intensity=math.cos(math.pi*delta(y)/lam)**2
+        f.add(f'<rect x="{xx}" y="{y}" width="22" height="1.1" class="fill-vol" opacity="{intensity:.3f}"/>')
+        pts.append((530+64*intensity,y))
+    f.path('M'+' L'.join(f'{x:.2f},{y}' for x,y in pts),'ln e')
+    f.line(530,40,530,272,'ln m')
+    f.text(562,292,'intensity →','t e','middle',12)
+    f.text(489,26,'screen','t b','middle',12)
+    for d,lab,cls in ((0,'A','ln e'),(lam/2,'B','ln p dash')):
+        y=target(d)
+        f.line(sx,ya,xx,y,cls);f.line(sx,yb,xx,y,cls)
+        f.circle(xx,y,4,'fill-ink');f.text(463,y+4,lab,'t b','end',14)
+    f.text(24,319,'A · equal paths: crest meets crest → bright','t e b',size=14)
+    f.text(24,346,'B · extra half-wavelength: crest meets trough → dark','t p b',size=14)
+    f.text(24,378,'Same-amplitude point sources; slit-width envelope omitted. Distances are schematic.','t m',size=12)
     return f.svg()
 
 
 @figure
 def c11_raman():
-    f = Fig(640, 280, 'The Raman effect as a spectrum: light of one colour enters a liquid; of the light scattered sideways almost all keeps its colour, and a small fraction comes out shifted')
-    # a flask of liquid, lit from the left
-    f.path('M100,150 L80,230 L180,230 L160,150 Z', 'water')
-    f.path('M100,90 L100,150 L80,230 L180,230 L160,150 L160,90', 'glass')
-    f.text(130, 250, 'liquid', 't', 'middle', 12)
-    f.ray(10, 190, 88, 190, chevrons=1)
-    f.line(88, 190, 172, 190, 'ray')
-    f.text(8, 176, 'one colour in', 't', 'start', 12)
-    f.ray(130, 188, 130, 100, chevrons=1)
-    f.text(134, 70, 'scattered sideways', 't', 'start', 12)
-    f.arrow(160, 100, 270, 100, 'muted')
-    f.text(215, 92, 'spread into a spectrum', 't m', 'middle', 12)
-    # the spectrum
-    f.axis(280, 230, 320, 170, 'wavelength (colour)', 'how much light')
-    f.line(440, 230, 440, 80, 'ln', extra='stroke-width="3"')
-    f.text(452, 84, 'the same colour', 't', 'start', 12)
-    f.text(452, 98, 'as went in', 't', 'start', 12)
-    for x in (400, 480):
-        f.line(x, 230, x, 210, 'ln p', extra='stroke-width="3"')
-    f.text(400, 204, 'shifted', 't p', 'middle', 12)
-    f.text(490, 190, 'a tiny fraction,', 't p', 'start', 12)
-    f.text(490, 204, 'shifted', 't p', 'start', 12)
+    f = Fig(640, 365, 'One-frequency light enters a liquid. Sideways scattered light is analysed by wavelength. The strong central Rayleigh line has unchanged photon energy; the two weak Raman lines correspond to energy given to or received from molecular vibration. Peak heights are schematic, not a prediction of relative intensities.')
+    f.text(24,28,'A colour shift records an energy exchange','t b',size=17)
+    f.path('M92,119 V169 L68,240 Q68,253 82,253 H174 Q188,253 188,240 L164,169 V119','glass')
+    f.path('M81,205 L72,239 Q72,249 83,249 H173 Q184,249 184,239 L175,205 Z','water')
+    f.ray(15,222,171,222,chevrons=2)
+    f.circle(128,222,4,'fill-ink')
+    f.ray(128,218,128,145,chevrons=1)
+    f.text(24,285,'one colour enters','t b',size=13)
+    f.text(128,102,'sideways light','t','middle',12)
+    f.path('M148,147 L252,147 L275,180','ln m')
+    f.text(220,127,'analyse','t m','middle',12)
+    f.axis(285,252,310,178,'wavelength increases →','scattered light')
+    for x,h,cls in ((342,30,'ln e'),(441,150,'ln'),(540,36,'ln p')):
+        f.line(x,252,x,252-h,cls,extra='stroke-width="3"')
+    f.text(441,75,'unchanged','t b','middle',13)
+    f.text(342,195,'shorter λ','t e b','middle',12)
+    f.text(540,195,'longer λ','t p b','middle',12)
+    f.text(24,320,'Shorter λ: photon gains energy. Longer λ: photon gives energy to the molecule.','t',size=13)
+    f.text(24,350,'Raman lines are weak; peak heights here are schematic, not measured intensities.','t m',size=12)
     return f.svg()

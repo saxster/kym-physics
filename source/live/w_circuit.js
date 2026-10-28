@@ -1,283 +1,86 @@
-// 12.3 Potential hill & rope-loop circuit: identical current everywhere, volts height profile, and power conservation.
+// 12.3 A circuit, energy-per-charge profile and rope analogy: one representation at a time.
 import { Live } from './core.js';
+import { label, note } from './art_waves.js';
 
 Live.register('circuit', (stage, params, api) => {
-  const c = api.colors();
-  const W = 640, H = 360;
-  const k = api.canvas(W, H, 'Potential height profile, circuit loop with three charge counters, and the rope-loop analogy');
-
-  let nLeds = 1;    // 1..4 LEDs
-  let vBat = 9.0;   // 1.5..9.0 V in 1.5 V steps (default 9.0 V)
-  let beadPhase = 0; // cumulative bead spacings passed (integer part = identical count at all 3 stations)
-  let ropePhase = 0;
-
-  const say = api.readout();
-
-  // Control 1: LEDs in the loop tabs (1, 2, 3, 4)
-  api.tabs(['1 LED', '2 LEDs', '3 LEDs', '4 LEDs'], (i) => {
-    nLeds = i + 1;
-    beadPhase = 0;
-    drawFrame(0);
-  });
-
-  // Control 2: Battery slider (1.5 V to 9.0 V in 1.5 V steps, default 9.0 V)
-  api.slider('Battery', {
-    min: 1.5, max: 9.0, step: 1.5, value: vBat,
-    fmt: (v) => `${v.toFixed(1)} V`,
-    onInput: (v) => {
-      vBat = v;
-      beadPhase = 0;
-      drawFrame(0);
-    },
-  });
-
-  // Control 3: Reset counters button
-  api.button('Reset counters', () => {
-    beadPhase = 0;
-    drawFrame(0);
-  });
-
-  function solveCircuit() {
-    const vLedsNeeded = 2.0 * nLeds;
-    const I = vBat > vLedsNeeded ? (vBat - vLedsNeeded) / 330 : 0;
-    const pBat = vBat * I;
-    const pLedEach = I > 0 ? 2.0 * I : 0;
-    const pRes = I * I * 330;
-    // Conservation check every frame: P_battery = n * P_LED + P_resistor within 1e-9 W
-    if (I > 0 && Math.abs(pBat - (nLeds * pLedEach + pRes)) > 1e-9) {
-      throw new Error('Power conservation violated in w_circuit');
-    }
-    return { I, iMa: I * 1000, pBat, pLedEach, pRes, vRes: I > 0 ? vBat - vLedsNeeded : 0 };
+  const c=api.colors(),k=api.canvas(640,360,'A closed LED circuit linked to equal charge counters and energy-per-charge accounting');
+  let nLeds=1,vBat=9,phase=0,view=0;
+  const say=api.readout();
+  api.tabs(['1 LED','2 LEDs','3 LEDs','4 LEDs'],i=>{nLeds=i+1;phase=0;draw(0);});
+  api.slider('Battery',{min:1.5,max:9,step:1.5,value:vBat,fmt:v=>`${v.toFixed(1)} V`,onInput:v=>{vBat=v;phase=0;draw(0);}});
+  api.tabs(['Circuit','Energy per charge','Rope model'],i=>{view=i;draw(0);});
+  note(stage,'Choose a view: charge keeps circulating; the battery supplies energy per charge. Dots mark equal amounts of conventional charge, not individual electrons.');
+  function solve(){
+    const I=Math.max(0,(vBat-2*nLeds)/330),pLed=I>0?2*I:0,pRes=I*I*330,pBat=vBat*I;
+    if(I>0&&Math.abs(pBat-nLeds*pLed-pRes)>1e-9)throw new Error('Circuit power is not conserved');
+    return {I,iMa:1000*I,pLed,pRes,pBat,vRes:I>0?vBat-2*nLeds:0};
   }
-
-  function drawFrame(dt) {
-    const s = solveCircuit();
-    // 21.2 mA maps to ~60 px/s; with bead spacing 20 px, that is 3.0 beads/s at 21.2 mA
-    const beadsPerSec = s.I > 0 ? (s.iMa / 21.212) * 3.0 : 0;
-    if (dt > 0) {
-      beadPhase += beadsPerSec * dt;
-      ropePhase += beadsPerSec * 20 * dt;
-    }
-    const countInt = Math.floor(beadPhase);
-
-    const ctx = k.ctx;
-    k.clear(c.plate);
-
-    // 1. TOP PANEL (y = 14..102): Potential hill (volts as height)
-    const hillL = 64, hillR = 576, hillBot = 96, hillMaxH = 68;
-    const yOfV = (v) => hillBot - (v / 9.0) * hillMaxH;
-
-    ctx.strokeStyle = c.rule;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(hillL, hillBot);
-    ctx.lineTo(hillR, hillBot);
-    ctx.stroke();
-
-    // Potential profile coordinates:
-    // x = 64..110: battery climb 0 -> vBat
-    // x = 110..210: flat lead at vBat
-    // x = 210..310: 330 ohm resistor drop from vBat to vAfterRes
-    // x = 310..360: flat lead
-    // x = 360..520: nLeds steps, each dropping 2 V (if conducting) or sharing vBat
-    const vAfterRes = s.I > 0 ? 2.0 * nLeds : vBat;
-    ctx.strokeStyle = c.electron;
-    ctx.lineWidth = 2.4;
-    ctx.beginPath();
-    ctx.moveTo(hillL, yOfV(0));
-    ctx.lineTo(100, yOfV(vBat));
-    ctx.lineTo(210, yOfV(vBat));
-    ctx.lineTo(305, yOfV(vAfterRes));
-    ctx.lineTo(355, yOfV(vAfterRes));
-    const ledSpan = 165 / nLeds;
-    for (let i = 0; i < nLeds; i++) {
-      const x1 = 355 + i * ledSpan;
-      const x2 = x1 + ledSpan * 0.65;
-      const x3 = x1 + ledSpan;
-      const vDropAfter = s.I > 0 ? 2.0 * (nLeds - 1 - i) : (i === nLeds - 1 ? 0 : vBat);
-      ctx.lineTo(x2, yOfV(vDropAfter));
-      ctx.lineTo(x3, yOfV(vDropAfter));
-    }
-    ctx.lineTo(hillR, yOfV(0));
-    ctx.stroke();
-
-    api.draw.text(ctx, `Potential height: +${vBat.toFixed(1)} V at battery, −${s.vRes.toFixed(1)} V across resistor, −2.0 V per lit LED`, hillL, 18, {
-      size: 11.5, color: c.electron, weight: 600,
-    });
-
-    // 2. MIDDLE PANEL (y = 118..224): Unrolled circuit loop with circulating charge beads and 3 counters
-    const loopL = 64, loopR = 576, loopTop = 136, loopBot = 204;
-    const loopW = loopR - loopL, loopH = loopBot - loopTop;
-    const perim = 2 * (loopW + loopH);
-
-    // Wire rectangle
-    ctx.strokeStyle = c.ink;
-    ctx.lineWidth = 2;
-    ctx.strokeRect(loopL, loopTop, loopW, loopH);
-
-    // Battery on left edge
-    ctx.fillStyle = c.sheet;
-    ctx.strokeStyle = c.ink;
-    api.draw.roundRect(ctx, loopL - 22, (loopTop + loopBot) / 2 - 22, 44, 44, 4);
-    ctx.fill();
-    ctx.stroke();
-    api.draw.text(ctx, `${vBat.toFixed(1)} V`, loopL, (loopTop + loopBot) / 2 + 4, {
-      size: 11, color: c.ink, align: 'center', weight: 700,
-    });
-    api.draw.text(ctx, '+', loopL, loopTop - 5, { size: 12, color: c.proton, align: 'center', weight: 700 });
-    api.draw.text(ctx, '−', loopL, loopBot + 14, { size: 12, color: c.electron, align: 'center', weight: 700 });
-
-    // 330 ohm resistor on top branch (x = 210..305)
-    ctx.fillStyle = c.sheet;
-    ctx.strokeStyle = c.ink;
-    api.draw.roundRect(ctx, 210, loopTop - 11, 95, 22, 3);
-    ctx.fill();
-    ctx.stroke();
-    api.draw.text(ctx, `330 Ω (${s.pRes.toFixed(2)} W)`, 257.5, loopTop + 4, {
-      size: 10.5, color: c.ink, align: 'center', weight: 600,
-    });
-
-    // 1 to 4 Red LEDs on top branch (x = 360..520)
-    const ledBright = s.I > 0.001 ? Math.min(1, 0.28 + (s.pLedEach / 0.0424) * 0.72) : 0;
-    for (let i = 0; i < nLeds; i++) {
-      const lx = 368 + i * (152 / nLeds) + (76 / nLeds - 14);
-      if (ledBright > 0) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(lx, loopTop, 16, 0, Math.PI * 2);
-        ctx.fillStyle = c.proton;
-        ctx.globalAlpha = 0.35 * ledBright;
-        ctx.fill();
-        ctx.restore();
-      }
-      ctx.beginPath();
-      ctx.arc(lx, loopTop, 8.5, 0, Math.PI * 2);
-      ctx.fillStyle = ledBright > 0 ? c.proton : c.sheet;
-      ctx.fill();
-      ctx.strokeStyle = c.ink;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-      api.draw.text(ctx, `LED ${i + 1}`, lx, loopTop - 14, { size: 10, color: c.muted, align: 'center' });
-    }
-
-    // Fixed population of 64 beads circulating round the perimeter
-    const nBeads = 64;
-    const spacing = perim / nBeads;
-    const shift = ((beadPhase % 1) + 1) % 1;
-    ctx.fillStyle = c.ink;
-    for (let b = 0; b < nBeads; b++) {
-      const dist = ((b + shift) * spacing) % perim;
-      let bx = 0, by = 0;
-      if (dist < loopW) { bx = loopL + dist; by = loopTop; }
-      else if (dist < loopW + loopH) { bx = loopR; by = loopTop + (dist - loopW); }
-      else if (dist < 2 * loopW + loopH) { bx = loopR - (dist - loopW - loopH); by = loopBot; }
-      else { bx = loopL; by = loopBot - (dist - 2 * loopW - loopH); }
-      // Don't draw on top of battery/resistor boxes
-      if (Math.abs(bx - loopL) < 22 && Math.abs(by - (loopTop + loopBot) / 2) < 22) continue;
-      if (by === loopTop && bx >= 210 && bx <= 305) continue;
-      ctx.beginPath();
-      ctx.arc(bx, by, 2.7, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Three counters at marked points: "leaving +", "after the resistor", "returning to −"
-    const stations = [
-      { x: 145, y: loopTop, lbl: 'leaving +' },
-      { x: 332, y: loopTop, lbl: 'after the resistor' },
-      { x: 320, y: loopBot, lbl: 'returning to −' },
-    ];
-    for (const st of stations) {
-      ctx.strokeStyle = c.proton;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(st.x, st.y - 9);
-      ctx.lineTo(st.x, st.y + 9);
-      ctx.stroke();
-      const ty = st.y === loopTop ? st.y + 23 : st.y - 12;
-      api.draw.text(ctx, `${st.lbl}: ${s.iMa.toFixed(1)} mA (${countInt})`, st.x, ty, {
-        size: 10.5, color: c.proton, align: 'center', weight: 600,
-      });
-    }
-
-    // 3. BOTTOM PANEL (y = 242..344): Rope-loop model with hauling hands ("battery") and gripping hands ("grips")
-    const ropeY = 294, ropeRx = 220, ropeRy = 32, ropeCx = W / 2;
-    ctx.strokeStyle = c.ink;
-    ctx.lineWidth = 3.5;
-    ctx.beginPath();
-    ctx.ellipse(ropeCx, ropeY, ropeRx, ropeRy, 0, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Knots on the rope moving at the same speed everywhere
-    const nKnots = 28;
-    for (let i = 0; i < nKnots; i++) {
-      const ang = ((i / nKnots) * Math.PI * 2 + (ropePhase / 120)) % (Math.PI * 2);
-      const kx = ropeCx + ropeRx * Math.cos(ang);
-      const ky = ropeY + ropeRy * Math.sin(ang);
-      ctx.beginPath();
-      ctx.arc(kx, ky, 3, 0, Math.PI * 2);
-      ctx.fillStyle = c.sheet;
-      ctx.fill();
-      ctx.lineWidth = 1.2;
-      ctx.strokeStyle = c.ink;
-      ctx.stroke();
-    }
-
-    // Battery hauling hands at left of rope loop
-    const drawGrip = (gx, gy, label, powerW, isBattery) => {
-      if (!isBattery && powerW > 0.001) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(gx, gy, 18, 0, Math.PI * 2);
-        ctx.fillStyle = c.proton;
-        ctx.globalAlpha = Math.min(0.55, 0.15 + powerW * 2.5);
-        ctx.fill();
-        ctx.restore();
-      }
-      ctx.fillStyle = c.sheet;
-      ctx.strokeStyle = isBattery ? c.electron : c.proton;
-      ctx.lineWidth = 1.8;
-      api.draw.roundRect(ctx, gx - 26, gy - 11, 52, 22, 6);
-      ctx.fill();
-      ctx.stroke();
-      api.draw.text(ctx, label, gx, gy + 4, { size: 10, color: c.ink, align: 'center', weight: 600 });
-    };
-
-    drawGrip(ropeCx - ropeRx, ropeY, 'battery', s.pBat, true);
-    drawGrip(ropeCx - 70, ropeY - ropeRy, 'resistor grip', s.pRes, false);
-    for (let i = 0; i < nLeds; i++) {
-      const gx = ropeCx + 20 + i * 52;
-      drawGrip(gx, ropeY - ropeRy, `grip ${i + 1}`, s.pLedEach, false);
-    }
-    api.draw.text(ctx, 'Rope-loop model: the whole rope moves at one speed; gripping hands warm up where it is hard to push through', ropeCx, 346, {
-      size: 11, color: c.muted, align: 'center',
-    });
-
-    // Readout
-    if (s.I > 0) {
-      const iStr = s.iMa.toFixed(1);
-      const ledText = nLeds === 1
-        ? `the LED hands over ${s.pLedEach.toFixed(3)} W as light and warmth`
-        : `${nLeds} LEDs hand over ${s.pLedEach.toFixed(3)} W each (${(nLeds * s.pLedEach).toFixed(3)} W total)`;
-      const dimNote = nLeds === 4 ? ' (with 4 LEDs the current is only 3.0 mA, giving a dim glow)' : '';
-      say(
-        `Same current everywhere: ${iStr} mA leaving +, ${iStr} mA after the resistor, ${iStr} mA returning to −${dimNote}. ` +
-        `The battery delivers ${s.pBat.toFixed(3)} W; ${ledText}, and the resistor ${s.pRes.toFixed(3)} W as warmth ` +
-        `(a real LED's 2 V shifts a little with current; swapping the LED and resistor order would change nothing). ` +
-        `Beads are drawn moving about ten million times faster than real electrons creep (about 8 µm/s at 21 mA in half-millimetre wire); ` +
-        `the push that starts them all moving is not drawn, because at 10⁸ m/s it would be instant.`
-      );
-    } else {
-      say(
-        `No push to spare: ${vBat.toFixed(1)} V is less than ${nLeds} red LEDs' ${(2 * nLeds).toFixed(0)} V (${nLeds} × 2 V needed), ` +
-        `so 0.0 mA flows everywhere and nothing lights.`
-      );
-    }
+  function resistor(ctx,x,y,w=82){
+    ctx.strokeStyle=c.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);
+    for(let i=1;i<12;i++)ctx.lineTo(x+i*w/12,y+(i%2?-8:8));ctx.lineTo(x+w,y);ctx.stroke();
   }
-
-  api.loop((dt) => {
-    drawFrame(dt);
-  });
-
-  drawFrame(0);
-  return { destroy() {} };
-}, { label: 'Run the loop' });
+  function circuit(ctx,s){
+    label(ctx,c,'1  Follow the charge around the whole loop',24,29,{size:17,weight:600});
+    const L=78,R=565,T=111,B=262,P=2*(R-L+B-T);
+    ctx.strokeStyle=c.ink;ctx.lineWidth=2;ctx.strokeRect(L,T,R-L,B-T);
+    ctx.fillStyle=c.sheet;ctx.fillRect(L-22,166,44,48);ctx.strokeRect(L-22,166,44,48);
+    label(ctx,c,'+',L,179,{align:'center',weight:600,color:c.proton});label(ctx,c,'−',L,207,{align:'center',weight:600});
+    label(ctx,c,`${vBat.toFixed(1)} V`,L,239,{align:'center',weight:600});
+    ctx.fillStyle=c.plate;ctx.fillRect(202,T-12,86,24);resistor(ctx,204,T);
+    label(ctx,c,'330 Ω',245,84,{align:'center',weight:600});
+    for(let i=0;i<nLeds;i++){
+      const x=355+(i+.5)*170/nLeds;
+      ctx.fillStyle=s.I>0?c.proton:c.sheet;ctx.beginPath();ctx.moveTo(x-8,T-9);ctx.lineTo(x+8,T);ctx.lineTo(x-8,T+9);ctx.closePath();ctx.fill();ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x+9,T-10);ctx.lineTo(x+9,T+10);ctx.stroke();
+      api.draw.arrow(ctx,x+7,T-13,x+18,T-24,c.proton,1.4,4);
+    }
+    label(ctx,c,`${nLeds} red LED${nLeds>1?'s':''}`,440,65,{align:'center',weight:600});
+    // Equal spacing and rate everywhere: a charge ledger, not a drift-speed simulation.
+    for(let i=0;i<32;i++){
+      let d=((i+phase%1)/32)*P,x,y;
+      if(d<R-L){x=L+d;y=T;}else if(d<R-L+B-T){x=R;y=T+d-(R-L);}else if(d<2*(R-L)+B-T){x=R-(d-(R-L)-(B-T));y=B;}else{x=L;y=B-(d-2*(R-L)-(B-T));}
+      if(y===T&&((x>200&&x<294)||(x>350&&x<530)))continue;
+      if(x===L&&y>160&&y<218)continue;
+      ctx.fillStyle=c.electron;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill();
+    }
+    for(const [x,y,n,txt] of [[154,T,'A','leaving +'],[322,T,'B','after resistor'],[320,B,'C','returning to −']]){
+      ctx.strokeStyle=c.proton;ctx.beginPath();ctx.moveTo(x,y-8);ctx.lineTo(x,y+8);ctx.stroke();
+      label(ctx,c,n,x,y===T?y+27:y-18,{align:'center',weight:600,color:c.proton});
+      label(ctx,c,`${s.iMa.toFixed(1)} mA`,x,y===T?y+47:y-38,{align:'center',weight:600});
+      label(ctx,c,txt,x,y===T?y+65:y+28,{align:'center',size:12});
+    }
+    label(ctx,c,`A = B = C: ${Math.floor(phase)} equal charge amounts counted`,320,336,{align:'center',weight:600});
+  }
+  function energy(ctx,s){
+    label(ctx,c,'2  Follow the energy carried by each coulomb',24,29,{size:17,weight:600});
+    if(s.I<=0){label(ctx,c,`${vBat.toFixed(1)} V is below the ${2*nLeds} V threshold.`,320,127,{size:19,align:'center',weight:600});label(ctx,c,'No charge circulates; no power is transferred.',320,170,{size:16,align:'center'});label(ctx,c,'This threshold model does not resolve the individual LED voltages.',320,219,{size:13,align:'center',color:c.muted});return;}
+    const base=252,Y=v=>base-v*17;
+    ctx.strokeStyle=c.rule;ctx.lineWidth=1;for(const v of [0,3,6,9]){ctx.beginPath();ctx.moveTo(60,Y(v));ctx.lineTo(600,Y(v));ctx.stroke();label(ctx,c,`${v} V`,49,Y(v)+4,{align:'right',size:12});}
+    const pts=[[76,0],[114,vBat],[218,vBat],[318,s.I>0?2*nLeds:vBat],[355,s.I>0?2*nLeds:vBat]];
+    for(let i=0;i<nLeds;i++)pts.push([355+(i+1)*175/nLeds,s.I>0?2*(nLeds-i-1):i===nLeds-1?0:vBat]);
+    pts.push([600,0]);ctx.strokeStyle=c.electron;ctx.lineWidth=3;ctx.beginPath();pts.forEach(([x,v],i)=>i?ctx.lineTo(x,Y(v)):ctx.moveTo(x,Y(v)));ctx.stroke();
+    label(ctx,c,'battery',95,281,{align:'center',weight:600});label(ctx,c,'resistor',270,281,{align:'center',weight:600});label(ctx,c,'LEDs',447,281,{align:'center',weight:600});
+    label(ctx,c,`+${vBat.toFixed(1)} J/C`,100,307,{align:'center',color:c.electron});label(ctx,c,`−${s.vRes.toFixed(1)} J/C`,270,307,{align:'center',color:c.proton});label(ctx,c,s.I>0?'−2 J/C each':'no current',447,307,{align:'center',color:c.proton});
+    label(ctx,c,'This “height” means energy per charge, not physical altitude.',320,339,{align:'center',size:13});
+  }
+  function rope(ctx,s){
+    label(ctx,c,'3  A rope helps us picture a complete circuit',24,29,{size:17,weight:600});
+    ctx.strokeStyle=c.ink;ctx.lineWidth=5;ctx.beginPath();ctx.ellipse(320,182,230,77,0,0,2*Math.PI);ctx.stroke();
+    for(let i=0;i<28;i++){
+      const a=(i/28+phase/28)*2*Math.PI,x=320+230*Math.cos(a),y=182+77*Math.sin(a);
+      ctx.fillStyle=c.sheet;ctx.strokeStyle=c.ink;ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,3,0,2*Math.PI);ctx.fill();ctx.stroke();
+    }
+    // Opposed finger strokes make a contact instead of another labelled box.
+    for(const [x,y,col] of [[90,181,c.electron],[430,112,c.proton]]){
+      ctx.fillStyle=c.sheet;ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(x-28,y-17,56,34,13);ctx.fill();ctx.stroke();
+      for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(x-15+i*9,y-11);ctx.lineTo(x-15+i*9,y+11);ctx.stroke();}
+    }
+    label(ctx,c,'hands pull',90,225,{align:'center',color:c.electron,weight:600});label(ctx,c,'hands grip: they warm up',430,76,{align:'center',color:c.proton,weight:600});
+    api.draw.arrow(ctx,240,105,300,105,c.electron,2,8);api.draw.arrow(ctx,400,260,340,260,c.electron,2,8);
+    label(ctx,c,'Same rope speed everywhere; energy is passed at the contacts.',320,304,{align:'center',weight:600});
+    label(ctx,c,'A circuit has charge carriers and electric fields; it has no material rope.',320,336,{align:'center',size:12});
+  }
+  function draw(dt){const s=solve();if(dt>0)phase+=(s.iMa/21.212)*3*dt;k.clear(c.plate);[circuit,energy,rope][view](k.ctx,s);
+    say(s.I>0?`Same current everywhere: ${s.iMa.toFixed(1)} mA. Battery supplies ${s.pBat.toFixed(3)} W; resistor receives ${s.pRes.toFixed(3)} W and each of ${nLeds} LEDs receives ${s.pLed.toFixed(3)} W. Energy balances; charge is not used up. The 2 V LED model is approximate.`:`${vBat.toFixed(1)} V does not exceed the ${2*nLeds} V LED threshold in this approximate model: no current anywhere in the loop.`);}
+  api.loop(draw);draw(0);return {destroy(){}};
+},{label:'Run the loop'});

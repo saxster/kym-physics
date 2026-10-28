@@ -16,45 +16,37 @@ def _jiggle(f, x, y, dx, dy, kind='muted'):
 
 @figure
 def c8_joule():
-    f = Fig(640, 300, 'Joule’s apparatus in outline: a falling weight on a string turns a paddle wheel inside a tub of water, '
-                      'and a thermometer in the water shows a small rise')
-    # pulley, string and weight
-    f.circle(90, 50, 16, 'ln')
-    f.circle(90, 50, 3, 'fill-ink')
-    f.line(74, 50, 74, 150, 'ln')                 # string down to the weight
-    f.line(90, 34, 300, 34, 'ln')                 # string across to the axle drum
-    f.mass_block(49, 150, 50, 44, 'weight')
-    f.vector(74, 200, 0, 44)
-    f.text(74, 262, 'the weight falls', 't m', 'middle', 13)
-    f.text(74, 280, 'and does work', 't m', 'middle', 13)
-    # axle drum and shaft
-    f.rect(292, 24, 16, 20, 'block', rx=3)
-    f.line(300, 44, 300, 236, 'ln')
-    f.curved_arrow(338, 62, 262, 62, bend=18)
-    f.text(300, 98, 'paddle turns', 't m', 'middle', 13)
-    # tub of water
-    f.path('M230,120 L236,262 L364,262 L370,120', 'glass')
-    f.path('M233,150 L238,258 L362,258 L367,150 Z', 'water')
-    # paddle blades
-    for yy in (170, 200, 230):
-        f.line(300, yy, 262, yy + 12, 'ln')
-        f.line(300, yy, 338, yy - 12, 'ln')
-    f.text(300, 284, 'water, churned', 't m', 'middle', 13)
-    # thermometer: scale on the left, the rise on the right
-    f.rect(482, 70, 14, 170, 'glass', rx=7)
-    f.circle(489, 250, 13, 'glass')
-    f.rect(486, 150, 6, 88, 'bar-p', rx=3)
-    f.circle(489, 250, 10, 'bar-p')
-    f.rect(486, 120, 6, 32, 'bar-m', rx=3)
-    for yy, lab in ((100, '30 °C'), (150, '20 °C'), (200, '10 °C')):
-        f.line(474, yy, 482, yy, 'ln m')
-        f.text(470, yy + 4, lab, 't m', 'end', 12)
-    f.arrow(516, 150, 516, 122, 'proton')
-    f.text(526, 132, 'the reading', 't', 'start', 13)
-    f.text(526, 148, 'climbs a little,', 't', 'start', 13)
-    f.text(526, 164, 'every time', 't', 'start', 13)
-    # the bookkeeping line
-    f.text(470, 284, 'so much falling, so much warming', 't b', 'middle', 13)
+    f = Fig(640, 360, 'A falling weight turns a drum and shaft whose paddles stir water inside a vessel. The thermometer bulb is physically in the water. A magnified thermometer scale shows a tiny temperature rise, not an invented large measured rise. Mechanical work enters the water; the falling weight and the water are linked by the string and shaft.')
+    f.text(24,28,'Follow the connection from falling weight to warmer water','t b',size=16)
+    f.circle(86,76,17,'block');f.circle(86,76,3,'fill-ink')
+    f.path('M69,76 L69,165 M86,59 L307,59','ln')
+    f.mass_block(44,165,50,46,'weight',13)
+    f.vector(69,224,0,50)
+    f.text(69,299,'falls','t e b','middle',14)
+    f.rect(295,45,24,28,'block',rx=4)
+    f.line(307,73,307,272,'ln',extra='stroke-width="3"')
+    f.curved_arrow(341,91,272,91,bend=21)
+    f.text(307,129,'shaft turns','t b','middle',13)
+    f.path('M215,153 L224,292 L390,292 L399,153','glass')
+    f.path('M218,177 L226,289 L388,289 L396,177 Z','water')
+    for y in (213,242,267):
+        f.path(f'M269,{y+10} L307,{y-3} L345,{y-16}','ln')
+    for y in (202,232,262): f.line(239,y,248,y+9,'ln m')
+    # Probe is immersed; the scale close-up is linked to this physical bulb.
+    f.rect(365,143,8,102,'glass',rx=4);f.circle(369,253,8,'sample-red')
+    f.line(369,244,369,185,'ln p')
+    f.circle(369,184,14,'ln e')
+    f.line(381,176,456,93,'ln m');f.line(383,190,456,267,'ln m')
+    f.rect(456,64,164,228,'plate',rx=7)
+    f.text(538,88,'Magnified rise','t b','middle',14)
+    f.rect(482,111,13,137,'glass',rx=6)
+    f.circle(488.5,258,12,'sample-red')
+    f.line(488.5,246,488.5,158,'ln p',extra='stroke-width="5"')
+    f.line(488.5,158,488.5,146,'ln p dash',extra='stroke-width="5"')
+    f.line(501,158,553,158,'ln m dash');f.line(501,146,553,146,'ln p')
+    f.lines(512,184,['small rise,','enlarged here'],'t m',size=12)
+    f.text(307,317,'paddles do work on the water','t b','middle',14)
+    f.text(320,349,'Less energy in the raised weight; more internal energy in the water and apparatus.','t m','middle',12)
     return f.svg()
 
 
@@ -159,46 +151,43 @@ def c8_conduction():
 
 @figure
 def c8_sweater():
-    f = Fig(640, 280, 'A sweater in cross-section between skin and a cooler room: wool fibres trap pockets of air, and '
-                      'energy leaks through slowly. At the right, two ice cubes after an hour: the wrapped one is still a cube, '
-                      'the bare one a puddle')
-    # skin, sweater, room
-    f.rect(30, 40, 60, 190, 'wash-p', rx=0)
-    f.rect(90, 40, 250, 190, 'wash-n', rx=0)
-    f.rect(340, 40, 70, 190, 'wash-e', rx=0)
-    f.line(90, 40, 90, 230, 'ln')
-    f.line(340, 40, 340, 230, 'ln')
-    f.text(60, 60, 'skin', 't p b', 'middle', 13)
-    f.text(60, 78, '37 °C', 't p', 'middle', 13)
-    f.text(375, 60, 'room', 't e b', 'middle', 13)
-    f.text(375, 78, 'cooler', 't e', 'middle', 13)
-    f.text(215, 60, 'the sweater', 't b', 'middle', 13)
-    # fibres: wavy lines
-    rnd = [0.0, 1.1, 2.3, 0.6, 1.8, 2.9, 0.3, 1.5]
-    for i in range(8):
-        y = 92 + i * 17
-        f.wave(96, y, 238, 5, 46, phase=rnd[i], cls='ln nn')
-    # air pockets
-    for (x, y) in ((150, 118), (250, 152), (190, 186), (290, 110), (120, 170), (270, 196)):
-        f.circle(x, y, 9, 'fill-sheet')
-        f.circle(x, y, 9, 'ln dash')
-    f.text(215, 246, 'air trapped in pockets too small to flow', 't m', 'middle', 12)
-    f.text(215, 262, 'still air conducts at 0.023: a very poor conductor', 't m', 'middle', 12)
-    # leak arrows: a few short dashed arrows across the sweater
-    for y in (128, 160, 192):
-        f.arrow(100, y, 330, y, 'muted', dash=True)
-    f.text(215, 84, 'energy leaks out, slowly', 't m', 'middle', 12)
-    # the two ice cubes
-    f.text(530, 60, 'after an hour', 't b', 'middle', 13)
-    # wrapped
-    f.path('M452,120 Q450,92 480,94 Q500,80 522,96 Q548,92 546,124 Q552,150 524,150 Q500,162 476,150 Q450,150 452,120 Z', 'wash-n')
-    f.path('M452,120 Q450,92 480,94 Q500,80 522,96 Q548,92 546,124 Q552,150 524,150 Q500,162 476,150 Q450,150 452,120 Z', 'ln nn')
-    f.rect(486, 108, 28, 28, 'glass', rx=3)
-    f.text(500, 174, 'wrapped: still a cube', 't', 'middle', 12)
-    # bare
-    f.path('M470,228 Q500,214 530,228 Q540,236 500,238 Q460,236 470,228 Z', 'water')
-    f.rect(493, 212, 14, 14, 'glass', rx=2)
-    f.text(500, 258, 'bare: nearly gone', 't', 'middle', 12)
+    f = Fig(640, 390, 'A connected cut-away shows wool fibres holding still air and slowing energy transfer. Matched ice cubes start the same size in the same warmer room. After the same interval, the unwrapped cube has melted more; arrows point into both cold cubes, with a smaller transfer through insulation. The time and remaining sizes are illustrative, not experimental data.')
+    f.text(24,28,'Insulation slows energy transfer in either direction','t b',size=16)
+    f.text(162,68,'a warm body in a cooler room','t b','middle',13)
+    f.rect(35,99,48,151,'wash-p',rx=0)
+    f.rect(83,99,156,151,'wash-n',rx=0)
+    f.rect(239,99,49,151,'wash-e',rx=0)
+    f.text(59,91,'skin','t p','middle',12);f.text(263,91,'room','t e','middle',12)
+    f.text(161,91,'wool + still air','t b','middle',12)
+    for i in range(7):
+        y=116+i*19
+        f.path('M87,'+str(y)+' '+' '.join(f'Q{x+8},{y-10} {x+16},{y}' for x in range(87,215,16)),'ln nn')
+    for x,y in ((109,145),(164,183),(207,221)):
+        f.circle(x,y,9,'fill-sheet')
+    f.arrow(42,172,78,172,'proton',width=3)
+    f.arrow(91,172,275,172,'proton',width=1.4)
+    f.text(161,279,'fibres hold pockets of air','t b','middle',12)
+    f.text(161,300,'energy passes through slowly','t m','middle',12)
+    f.line(320,54,320,326,'ln r')
+    f.text(480,68,'two identical starting ice cubes','t b','middle',13)
+    def cube(x,y,s=25):
+        f.rect(x-s/2,y-s,s,s,'water',rx=2)
+        f.path(f'M{x-s/2},{y-s} l7,-5 h{s} v{s} l-7,5 M{x+s/2},{y-s} l7,-5','ln e')
+    for x in (399,555):cube(x,124)
+    f.text(399,146,'bare','t','middle',12);f.text(555,146,'wrapped','t','middle',12)
+    f.arrow(399,160,399,199,'muted');f.arrow(555,160,555,199,'muted')
+    f.text(480,185,'same interval','t m','middle',12)
+    f.add('<ellipse cx="399" cy="259" rx="40" ry="8" class="water"/>')
+    cube(399,253,10)
+    f.rect(515,214,80,64,'wash-n',rx=12)
+    f.rect(529,224,52,44,'fill-sheet',rx=6)
+    cube(555,259,23)
+    for x in (519,589):f.path(f'M{x},227 q8,10 0,20 q-8,10 0,20','ln nn')
+    f.arrow(361,215,390,238,'proton',width=3)
+    f.arrow(516,205,542,233,'proton',width=1.2)
+    f.text(480,308,'Energy enters both from the warmer room.','t b','middle',12)
+    f.text(480,329,'The wrapped cube receives it more slowly.','t','middle',12)
+    f.text(320,365,'Wool does not supply heat: it slows the transfer. The cube sizes and elapsed time are illustrative.','t m','middle',12)
     return f.svg()
 
 

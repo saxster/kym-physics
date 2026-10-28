@@ -204,7 +204,7 @@
 "fig:s_faraday_cube": {origin: "ours", note: "12 ft (3.7 m) foil cube from story:faraday-cage"}
 "fig:s_fizeau_wheel": {origin: "ours", note: "720 teeth, 8,633 m path, 12.6 rev/s first blackout from story:fizeau-wheel"}
 "fig:s_foucault_turn": {origin: "ours", note: "hourly rotation rates 15° sin(lat) computed in story:foucault"}
-"fig:s_kilogram_rule": {origin: "ours", note: "Le Grand K 39 mm cylinder vs h = 6.62607015e-34 J·s Kibble balance from story:kilogram"}
+"fig:s_kilogram_rule": {origin: "ours", note: "Original two-mode Kibble-balance mechanism: mg=BLI; U=BLv; combined mgv=UI. Planck constant fixed exactly at 6.62607015e-34 J·s.", source: "https://www.nist.gov/si-redefinition/kilogram/kilogram-kibble-balance"}
 "fig:s_mpemba_curves": {origin: "ours", note: "schematic cooling curves illustrating the crossing argument in story:mpemba"}
 "fig:s_tram_field": {origin: "ours", note: "B = 500 nT at r = 200 m for I = 500 A computed in story:trams"}
 "fig:s_wobble_loop": {origin: "ours", note: "feedback loop and damper cure from story:wobbly-bridge"}

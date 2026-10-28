@@ -1,6 +1,7 @@
 // Ch 5.2 c5_phone_drop -> w_freefall: Accelerometer sensor lab showing |a| = 9.8 m/s^2 at rest and ~0 in free fall.
 // Uses api.motion() for live device readings, plus a Replay the simulated drop button for readers without a sensor.
 import { Live } from './core.js';
+import { mechanismKey,phone } from './art_mechanics.js';
 
 const G = 9.8;
 const WINDOW_S = 4.0;
@@ -18,8 +19,9 @@ function schematicReading(t) {
 
 Live.register('freefall', (stage, params, api) => {
   const c = api.colors();
-  const k = api.canvas(640, 260, 'Accelerometer trace against time showing 9.8 m/s^2 when held still and near 0 during free fall');
+  const k = api.canvas(640, 345, 'Accelerometer trace against time showing 9.8 m/s^2 when held still and near 0 during free fall');
   const say = api.readout();
+  mechanismKey(stage, "A sensor measures support, not gravity itself", ["Held: the hand or floor pushes the phone, so its accelerometer reads about 9.8 m/s\u00b2.", "Falling: phone and sensor fall together, so support is near zero. The catch produces the short peak."]);
 
   let samples = []; // [{t, g}]
   let t0Sensor = null;
@@ -151,7 +153,7 @@ Live.register('freefall', (stage, params, api) => {
       size: 12, color: c.proton, weight: 600,
     });
     if (!motion.active) {
-      api.draw.text(ctx, 'simulated example, not your phone', 610, 22, {
+      api.draw.text(ctx, 'simulated trace', 610, 42, {
         size: 11.5, color: c.muted, align: 'right',
       });
     }
@@ -221,6 +223,15 @@ Live.register('freefall', (stage, params, api) => {
       ctx.fillStyle = c.electron;
       ctx.fill();
     }
+    // The three physical states make the otherwise surprising zero reading intelligible.
+    for(const [x,label,stateCol] of [[130,'held',c.muted],[320,'falling',c.electron],[510,'caught',c.proton]]){
+      phone(ctx,x-13,278,26,43,c);
+      if(label==='held'){ctx.strokeStyle=c.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-23,324);ctx.lineTo(x+23,324);ctx.stroke();api.draw.arrow(ctx,x+23,317,x+23,289,stateCol,2,6);}
+      else if(label==='falling'){ctx.save();ctx.setLineDash([3,3]);api.draw.arrow(ctx,x+24,281,x+24,315,stateCol,1.8,6);ctx.restore();}
+      else{ctx.fillStyle=c.mark_soft;ctx.beginPath();ctx.ellipse(x,325,35,9,0,0,Math.PI*2);ctx.fill();api.draw.arrow(ctx,x+23,317,x+23,289,stateCol,3,6);}
+      api.draw.text(ctx,label,x,264,{size:13,color:stateCol,align:'center',weight:600});
+    }
+
   });
 
   return { destroy() {} };

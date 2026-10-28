@@ -378,20 +378,28 @@ def s_halflife_c14():
 
 @figure
 def s_sun_budget():
-    """What the Sun does each second: 600 million tonnes of hydrogen in, 596 million tonnes of helium out, 4 million tonnes to energy."""
-    f = Fig(640, 240, 'Flow diagram. Every second about 600 million tonnes of hydrogen fuse into about 596 million tonnes '
-                      'of helium, and the missing 4 million tonnes leaves as 4 times ten to the 26 joules of light and heat. '
-                      'In 4.5 billion years this has used about 0.03% of the Sun\'s mass.')
-    f.text(320, 30, "every second, at the Sun's centre", 't b', 'middle', 14)
-    f.rect(30, 64, 200, 70, 'block', rx=8)
-    f.lines(130, 92, ['600 million tonnes', 'of hydrogen'], 't b', 'middle', 14)
-    f.rect(410, 64, 200, 70, 'block', rx=8)
-    f.lines(510, 92, ['596 million tonnes', 'of helium'], 't b', 'middle', 14)
-    f.arrow(232, 99, 406, 99, 'ink', width=3)
-    f.text(320, 88, 'fusion', 't m', 'middle', 13)
-    f.arrow(320, 106, 320, 150, 'force')
-    f.lines(320, 172, ['4 million tonnes becomes energy:', '4 × 10²⁶ joules of light and heat'], 't p b', 'middle', 13)
-    f.text(320, 224, "in 4.5 billion years: about 0.03% of the Sun's mass used", 't m', 'middle', 12)
+    f = Fig(640, 350, 'A solar cut-away identifies the core as the fusion region. A quantitative mass-account bar starts at 600 million tonnes of hydrogen per second; about 596 million tonnes remain as helium and about four million tonnes worth of mass becomes released energy. The energy fraction is shown at its true approximate width and in a magnified inset, not as an equally wide output arrow. Rounded solar numbers are approximate.')
+    f.text(24,28,'What the Sun does in one second','t b',size=17)
+    f.circle(110,151,77,'wash-n');f.circle(110,151,77,'ln nn')
+    f.circle(110,151,25,'sample-yellow');f.text(110,156,'core','t b','middle',13)
+    for a in range(0,360,45):
+        a=math.radians(a);f.line(110+83*math.cos(a),151+83*math.sin(a),110+93*math.cos(a),151+93*math.sin(a),'ln nn')
+    f.text(110,266,'fusion happens here','t','middle',13)
+    f.line(134,143,233,96,'ln m');f.line(134,160,233,250,'ln m')
+    bx,bw=245,350
+    f.text(bx,92,'600 million tonnes of hydrogen','t b',size=14)
+    f.rect(bx,109,bw,37,'wash-p',rx=1);f.rect(bx,109,bw,37,'glass',rx=1)
+    fraction=596/600
+    f.text(bx,192,'≈ 596 million tonnes of helium','t b',size=14)
+    f.rect(bx,209,bw*fraction,37,'wash-e',rx=1)
+    f.rect(bx+bw*fraction,209,bw*(1-fraction),37,'bar-p',rx=0)
+    f.rect(bx,209,bw,37,'glass',rx=1)
+    f.line(bx+bw,103,bx+bw,256,'ln m dash')
+    f.path(f'M{bx+bw-1},246 L555,270','ln m')
+    f.rect(555,270,40,20,'bar-p',rx=0)
+    f.text(534,285,'4 million tonnes → energy','t p b','end',13)
+    f.text(320,317,'≈ 4 × 10²⁶ J released each second · mass fractions shown approximately to scale','t m','middle',12)
+    f.text(320,343,'The red sliver is enlarged in the callout; released energy is not another material stream.','t m','middle',12)
     return f.svg()
 
 

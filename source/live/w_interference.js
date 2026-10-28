@@ -1,5 +1,6 @@
 // 11.5 Young's two-source interference: ripple tank view and stripes on a screen 1.00 m away.
 import { Live } from './core.js';
+import { note } from './art_waves.js';
 
 function wavelengthToRGB(nm) {
   let r = 0, g = 0, b = 0;
@@ -79,6 +80,8 @@ Live.register('interference', (stage, params, api) => {
   const offCtx = offCv.getContext('2d');
   const imgData = offCtx.createImageData(bufW, bufH);
 
+  note(stage,'Tank view compresses the source-spacing/wavelength ratio so the interference pattern can be seen. The screen view uses a separate 1.00 m optical geometry; its stripes, rather than tank pixels, carry the millimetre scale.');
+
   function updateReadout() {
     const L_mm = 1000; // 1.00 m = 1000 mm
     const lamMm = lamNm * 1e-6; // nm to mm
@@ -113,7 +116,7 @@ Live.register('interference', (stage, params, api) => {
     for (let by = 0; by < bufH; by++) {
       const y = (by + 0.5) * 4;
       for (let bx = 0; bx < bufW; bx++) {
-        const x = (bx + 0.5) * 4;
+        const x = (bx + 0.5) * (W - 90) / bufW;
         const r1 = Math.hypot(x - s1x, y - s1y);
         const r2 = Math.hypot(x - s2x, y - s2y);
         const a1 = Math.sin(kWave * r1 - phase) / Math.sqrt(Math.max(r1, 12) / 12);

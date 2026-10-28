@@ -71,69 +71,35 @@ def s_eclipse_bend():
 # ------------------------------------------------------------------ faraday-cage
 @figure
 def s_faraday_cube():
-    """Faraday's 1836 12-foot foil cube: charge on outside, sparks outside, zero electric field and straight gold leaves inside."""
-    f = Fig(640, 300, "Faraday's 12-foot foil-covered cube connected to an electrostatic generator on the left. Plus signs "
-                      "sit all around the outside surface of the metal shell and sparks jump from the corners, while inside "
-                      "the hollow box the electric push is zero and the two gold leaves of the electroscope hang straight down")
-    # Electrostatic generator at left
-    gx, gy = 74, 175
-    f.rect(gx - 34, gy + 28, 68, 16, 'block', rx=2)
-    f.line(gx, gy - 26, gx, gy + 28, 'ln')
-    f.circle(gx, gy - 26, 28, 'plate')
-    f.circle(gx, gy - 26, 28, 'ln')
-    f.text(gx, gy - 22, 'generator', 't m', 'middle', 11)
-    # Charging wire to cube with spark
-    f.line(gx + 28, gy - 26, 178, gy - 26, 'ln')
-    f.path('M148,149 L156,139 L160,153 L169,141 L176,149', 'ln p')
-    f.text(144, 124, 'sparks', 't p b', 'end', 12)
-
-    # Outer foil cube (12 ft = 3.7 m)
-    bx, by, bw, bh = 182, 46, 276, 206
-    f.rect(bx, by, bw, bh, 'plate', rx=4)
-    f.rect(bx + 8, by + 8, bw - 16, bh - 16, 'wash-n', rx=2)
-    f.rect(bx, by, bw, bh, 'ln', rx=4)
-
-    # Surface charges (+ badges) distributed around outside perimeter only
-    top_xs = [202, 248, 296, 344, 392, 438]
-    for x in top_xs:
-        f.text(x, by - 7, '+', 't p b', 'middle', 15)
-        f.text(x, by + bh + 16, '+', 't p b', 'middle', 15)
-    side_ys = [78, 122, 166, 210, 238]
-    for y in side_ys:
-        f.text(bx - 12, y, '+', 't p b', 'middle', 15)
-        f.text(bx + bw + 12, y, '+', 't p b', 'middle', 15)
-
-    # Corner spark on top right
-    f.path(f'M{bx + bw},{by + 12} L{bx + bw + 16},{by + 2} L{bx + bw + 12},{by - 8} L{bx + bw + 28},{by - 16}', 'ln p')
-
-    # Dimension bracket at bottom
-    f.bracket_label(bx, bx + bw, by + bh + 26, '12 ft (3.7 m) foil-covered cube', 12, up=False)
-
-    # Inside the cube: electroscope jar & straight gold leaves
-    ex, ey = 320, 152
-    f.circle(ex, ey - 46, 7, 'fill-ink')                      # brass knob
-    f.line(ex, ey - 39, ex, ey - 10, 'ln')                    # stem
-    f.rect(ex - 32, ey - 22, 64, 72, 'plate', rx=8)           # glass jar
-    f.rect(ex - 32, ey - 22, 64, 72, 'ln', rx=8)
-    # Two gold leaves hanging straight down side by side
-    f.line(ex - 3, ey - 10, ex - 3, ey + 28, 'ln p')
-    f.line(ex + 3, ey - 10, ex + 3, ey + 28, 'ln p')
-    f.text(ex, ey - 64, 'inside the metal shell:', 't b', 'middle', 13)
-    f.text(ex, ey + 72, 'gold leaves hang straight', 't b', 'middle', 13)
-    f.text(ex, ey + 88, '(no electric push inside)', 't m', 'middle', 12)
-
-    # Explanatory callouts at right
-    f.lines(482, 92, [
-        'Outside:',
-        'charges repel and spread',
-        'over the outer foil skin.',
-    ], 't', 'start', 12)
-    f.lines(482, 166, [
-        'Inside:',
-        'surface charges arrange',
-        'until their pushes cancel',
-        'everywhere in the hollow.',
-    ], 't m', 'start', 12)
+    f = Fig(640, 375, 'A foil-covered conducting box shown with its front wall removed so the hollow interior is visible. Excess positive charge resides on the outer surface. An electroscope inside has straight leaves, whereas the comparison electroscope outside has separated leaves when charged. In electrostatic equilibrium, with no charge enclosed, the field inside the empty conducting cavity is zero.')
+    f.text(24,27,'Charge spreads on the conducting skin','t b',size=17)
+    # Back and side walls; the interior stays paper coloured, not metal coloured.
+    f.path('M150,84 L185,58 L480,58 L480,278 L445,308 L150,308 Z','wash-n')
+    f.rect(164,97,267,196,'fill-sheet',rx=0)
+    f.path('M150,84 L445,84 L480,58 M445,84 L445,308 L480,278 M150,84 L150,308 L445,308 M185,58 L185,84','ln')
+    f.path('M164,97 L431,97 L431,293 L164,293 Z','ln m dash')
+    for x in (178,223,268,313,358,403):
+        f.text(x,78,'+','t p b','middle',15);f.text(x,329,'+','t p b','middle',15)
+    for y in (125,168,211,254):
+        f.text(139,y,'+','t p b','middle',15);f.text(491,y,'+','t p b','middle',15)
+    f.text(298,120,'hollow cavity','t b','middle',14)
+    # Generator and an explicit electrical connection to outer skin.
+    f.circle(56,159,24,'block');f.line(56,183,56,238,'ln');f.rect(28,238,56,9,'block',rx=2)
+    f.line(80,159,150,159,'ln');f.path('M103,159 l8,-9 l5,17 l8,-10','ln p')
+    f.text(56,270,'generator','t m','middle',12)
+    def electroscope(x,y,spread):
+        f.circle(x,y,7,'fill-ink');f.line(x,y+7,x,y+48,'ln')
+        f.rect(x-27,y+27,54,69,'glass',rx=7)
+        f.line(x if spread else x-3,y+48,x-(17 if spread else 3),y+80,'ln nn')
+        f.line(x if spread else x+3,y+48,x+(17 if spread else 3),y+80,'ln nn')
+    electroscope(298,154,False)
+    f.text(298,268,'leaves hang straight','t b','middle',13)
+    electroscope(561,112,True)
+    f.text(561,101,'+','t p b','middle',16)
+    f.text(561,236,'outside:','t b','middle',13)
+    f.text(561,254,'charged leaves','t m','middle',12)
+    f.text(561,272,'separate','t m','middle',12)
+    f.text(320,357,'Front wall cut away to show the inside; the real foil shell is closed.','t m','middle',12)
     return f.svg()
 
 
@@ -255,66 +221,39 @@ def s_foucault_turn():
 # ------------------------------------------------------------------ kilogram
 @figure
 def s_kilogram_rule():
-    """Old kilogram (Le Grand K artifact in Sèvres) vs new kilogram (20 May 2019 Planck constant + Kibble balance)."""
-    f = Fig(640, 330, "Left: from 1889 to 2019, the kilogram was defined by Le Grand K, a 39 mm by 39 mm platinum-iridium "
-                      "cylinder under three glass bell jars in Sèvres, which drifted by about 50 micrograms over a century "
-                      "relative to its copies. Right: since 20 May 2019, the kilogram is fixed by the Planck constant h = "
-                      "6.626 070 15 × 10^-34 kg m^2/s and realised anywhere on a Kibble balance against an electric force")
-    # Left panel: 1889–2019 Artifact
-    f.rect(18, 20, 290, 288, 'plate', rx=8)
-    f.text(163, 46, '1889 to 2019: one metal object', 't b', 'middle', 14)
-    f.text(163, 64, 'Le Grand K in a vault at Sèvres', 't m', 'middle', 12)
-
-    # Base + three nested bell jars + 39 mm cylinder
-    cx, by = 163, 184
-    f.rect(cx - 78, by, 156, 12, 'block', rx=2)
-    for jr, jh in ((64, 96), (50, 80), (36, 64)):
-        f.path(f'M{cx - jr},{by} L{cx - jr},{by - jh + jr * 0.6:.1f} '
-               f'A{jr} {jr * 0.6:.1f} 0 0 1 {cx + jr},{by - jh + jr * 0.6:.1f} L{cx + jr},{by}', 'ln m')
-    # 39 mm x 39 mm cylinder inside
-    f.rect(cx - 18, by - 38, 36, 38, 'fill-ink', rx=2)
-    f.text(cx, by - 15, '1 kg', 't b', 'middle', 11, extra='style="fill:var(--paper)"')
-    f.text(cx + 46, by - 22, '39 mm', 't m', 'start', 11)
-    f.lines(163, 264, [
-        'Drifted ~50 µg in 100 years',
-        'against its sister copies;',
-        'only one vault had the original.',
-    ], 't p', 'middle', 12)
-
-    # Right panel: 2019–present Constant of nature
-    f.rect(332, 20, 290, 288, 'plate', rx=8)
-    f.text(477, 46, 'Since 20 May 2019: a rule of nature', 't b', 'middle', 14)
-    f.text(477, 64, 'Planck constant fixed for all laboratories', 't m', 'middle', 12)
-
-    # Formula banner at top of right card
-    f.rect(354, 78, 246, 32, 'wash-n', rx=4)
-    f.text(477, 99, 'h = 6.626 070 15 × 10⁻³⁴ kg m²/s', 't s b', 'middle', 13)
-
-    # Schematic Kibble balance comparing gravitational pull mg with electromagnetic force
-    bx, py = 477, 132
-    f.line(bx, py - 12, bx, py + 58, 'ln')                    # central pillar
-    f.rect(bx - 24, py + 58, 48, 8, 'block', rx=2)
-    f.line(bx - 70, py, bx + 70, py, 'ln')                    # balance beam
-    f.circle(bx, py, 4, 'fill-ink')
-    # Left pan: mass m pulled by gravity mg
-    lx = bx - 64
-    f.line(lx, py, lx, py + 32, 'ln')
-    f.rect(lx - 14, py + 32, 28, 22, 'fill-ink', rx=2)
-    f.text(lx, py + 47, 'm', 't b', 'middle', 12, extra='style="fill:var(--paper)"')
-    f.force(lx, py + 54, 0, 26, 'weight mg', 12)
-    # Right pan: coil in magnet pulled by electric current measured via h
-    rx = bx + 64
-    f.line(rx, py, rx, py + 32, 'ln')
-    f.rect(rx - 18, py + 32, 36, 22, 'plate', rx=3)
-    f.rect(rx - 18, py + 32, 36, 22, 'ln e', rx=3)
-    f.text(rx, py + 47, 'coil', 't e b', 'middle', 11)
-    f.vector(rx, py + 32, 0, -24, 'electric pull', 12)
-
-    f.lines(477, 264, [
-        'Never wears out or drifts;',
-        'any national lab can build',
-        '1 kg from the fixed number h.',
-    ], 't', 'middle', 12)
+    f = Fig(640, 420, 'The kilogram changed from one protected metal object to a reproducible measurement using a fixed Planck constant. A Kibble balance has two separate modes: a stationary coil carries current to balance a mass; then the same coil is moved at a measured speed to measure an induced voltage. Combining the modes eliminates magnetic field and coil length. The two modes are not simultaneous.')
+    f.text(24,27,'One kilogram: from an object to a repeatable measurement','t b',size=16)
+    f.text(24,52,'Until 2019: the original cylinder in Sèvres','t m',size=12)
+    f.text(24,77,'Since 2019: fix h, then measure electrical quantities','t b',size=13)
+    f.text(320,102,'h = 6.626 070 15 × 10⁻³⁴ J s','t s','middle',16)
+    for x,title in ((18,'1  Weighing mode'),(338,'2  Velocity mode')):
+        f.rect(x,124,284,232,'plate',rx=7)
+        f.text(x+142,149,title,'t b','middle',15)
+        # The same coil in a magnetic gap, seen in cut-away.
+        for xx,lab,cls in ((x+42,'N','wash-p'),(x+203,'S','wash-e')):
+            f.rect(xx,214,38,69,cls,rx=3);f.rect(xx,214,38,69,'ln',rx=3)
+            f.text(xx+19,254,lab,'t b','middle',14)
+        f.rect(x+103,230,77,29,'water',rx=4)
+        for k in range(5):f.line(x+111+13*k,233,x+111+13*k,256,'ln e')
+    # First mode: coil and mass stationary; opposing forces balance.
+    f.mass_block(139,175,42,33,'m',15)
+    f.line(160,208,160,230,'ln')
+    f.force(177,221,0,-41)
+    f.force(141,213,0,41)
+    f.text(218,195,'magnetic','t p',size=12);f.text(218,212,'support','t p',size=12)
+    f.text(99,278,'mg','t p b','end',13)
+    f.text(160,313,'stationary coil: mg = B L I','t s','middle',14)
+    f.text(160,338,'measure the balancing current I','t m','middle',12)
+    # Second mode: no load/current, motion produces an open-circuit voltage.
+    f.vector(480,220,0,-45)
+    f.text(498,184,'speed v','t e b',size=12)
+    f.path('M441,245 H430 V165 H588 V213 H570','ln');f.line(518,245,552,245,'ln')
+    f.circle(552,213,18,'block');f.text(552,218,'V','t b','middle',15)
+    f.line(552,231,552,245,'ln')
+    f.text(480,313,'moving coil: U = B L v','t s','middle',14)
+    f.text(480,338,'measure speed v and voltage U','t m','middle',12)
+    f.text(320,386,'Combine the two modes: mgv = UI. The unknown B L cancels.','t b','middle',14)
+    f.text(320,411,'Schematic measurement principle; the coil is not weighed and moved at the same time.','t m','middle',12)
     return f.svg()
 
 

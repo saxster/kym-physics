@@ -34,34 +34,27 @@ def _small_arrow(f, x, y, ang_deg, L=14, kind='ink'):
 # ---------------------------------------------------------------- 13.1
 @figure
 def c13_domains():
-    f = Fig(640, 300, 'Two blocks of iron drawn as grids of domains, each domain a small arrow. Left, no magnet near: '
-                      'the arrows point every way and cancel. Right, a bar magnet above with its north end down: every '
-                      'arrow points down, the top of the block has become a south pole, the bottom a north pole, and the '
-                      'block is pulled up towards the magnet.')
-    angles = [20, 160, 250, 95, 310, 45, 200, 130, 350, 80, 230, 15, 290, 110, 60, 180, 335, 145, 265, 30]
-
-    def block(x0, y0, w, h, cols, rows, dirs):
-        f.rect(x0, y0, w, h, 'plate', rx=4)
-        cw, ch = w / cols, h / rows
-        k = 0
-        for r in range(rows):
-            for c in range(cols):
-                f.rect(x0 + c * cw, y0 + r * ch, cw, ch, 'ln m', rx=0)
-                _small_arrow(f, x0 + (c + .5) * cw, y0 + (r + .5) * ch, dirs[k % len(dirs)], 16)
-                k += 1
-
-    f.text(160, 24, 'No magnet near', 't b', 'middle', 14)
-    block(60, 70, 200, 150, 5, 4, angles)
-    f.text(160, 246, 'domains point every way and cancel:', 't', 'middle', 12)
-    f.text(160, 262, 'the block is not a magnet', 't', 'middle', 12)
-    f.line(320, 20, 320, 280, 'ln r')
-    f.text(480, 24, 'A magnet brought near', 't b', 'middle', 14)
-    _magnet(f, 455, 40, 50, 44, horizontal=False, n_first=False)     # S on top, N at the bottom, nearest the block
-    block(380, 112, 200, 150, 5, 4, [270])
-    f.text(590, 124, 'S', 't b', 'start', 15)
-    f.text(590, 258, 'N', 't b', 'start', 15)
-    f.force(370, 190, 0, -60, 'pulled', 12)
-    f.text(480, 288, 'all domains agree: the block is a magnet', 't', 'middle', 12)
+    f = Fig(640, 365, 'Irregular domains inside two iron samples. Arrows stand for the average magnetic moment in each domain, not separate little compass needles. Initially different directions largely cancel. Near a magnet, domain walls shift and favourably oriented regions grow, with some rotation; the iron gains a net magnetic moment. Boundaries and changes are schematic, not microscope images.')
+    f.text(24,27,'Domains are regions inside one piece of iron','t b',size=17)
+    f.text(160,64,'before','t b','middle',14);f.text(480,64,'near a magnet','t b','middle',14)
+    # Irregular shared boundaries, rather than a grid of independent magnets.
+    nodes=[[(0,0),(66,0),(133,0),(210,0)],[(0,58),(82,48),(143,69),(210,56)],[(0,113),(60,121),(151,112),(210,126)],[(0,175),(75,175),(140,175),(210,175)]]
+    angles=[20,190,85,245,10,150,300,120,260]
+    for x0,aligned in ((55,False),(375,True)):
+        f.rect(x0,99,210,175,'plate',rx=0)
+        for r in range(3):
+            for c in range(3):
+                grid = [[(0,0),(40,0),(166,0),(210,0)],[(0,40),(48,42),(177,54),(210,45)],[(0,137),(37,140),(174,134),(210,146)],[(0,175),(45,175),(165,175),(210,175)]] if aligned else nodes
+                poly=[grid[r][c],grid[r][c+1],grid[r+1][c+1],grid[r+1][c]]
+                f.path('M'+' L'.join(f'{x0+x},{99+y}' for x,y in poly)+' Z','ln m')
+                cx=sum(x for x,y in poly)/4+x0;cy=sum(y for x,y in poly)/4+99
+                _small_arrow(f,cx,cy,270+([-12,8,0,10,0,-6,0,15,-8][r*3+c]) if aligned else angles[r*3+c],24)
+    # An explicitly local external field, pointing down from the nearby N pole.
+    _magnet(f,464,73,32,19,horizontal=False,n_first=False,size=9)
+    f.text(160,301,'directions largely cancel','t b','middle',13)
+    f.text(480,301,'a net moment develops ↓','t b','middle',13)
+    f.text(320,332,'Walls move and some regions grow; magnetic moments can also turn.','t','middle',13)
+    f.text(320,356,'Arrows show domain magnetisation. The boundaries are schematic.','t m','middle',12)
     return f.svg()
 
 

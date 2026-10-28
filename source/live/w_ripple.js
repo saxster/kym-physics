@@ -1,6 +1,7 @@
 // 9.3 Ripple tank: disturbance travels, water (and floating paper scrap) moves in a closed loop and stays put.
 // Amplitude falls as 1/sqrt(r); two sources superpose by plain addition.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 const FRAG = `
 uniform vec4 u_s0;
@@ -69,6 +70,7 @@ void main() {
 
 Live.register('ripple', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The paper scrap is a local marker: it oscillates near its starting point while the pattern travels outward. Two-source bands are places of reinforcement or cancellation, not streams of travelling water.');
   const W = 640, H = 360;
   const SPEED_PX = 30; // 30 px/s = 3.0 cm/s (10 px = 1 cm)
   const SPEED_CM = 3.0;
@@ -230,8 +232,21 @@ Live.register('ripple', (stage, params, api) => {
     }
   }
 
+  const marker=api.canvas(640,130,'Magnified displacement of the local paper marker about its rest position');
+  function drawMarker(){
+    const ctx=marker.ctx;marker.clear(c.plate);const x=122,y=62,magnify=7,dx=(scrap.x-scrap.x0)*magnify,dy=(scrap.y-scrap.y0)*magnify;
+    ctx.strokeStyle=c.muted;ctx.setLineDash([3,4]);ctx.beginPath();ctx.ellipse(x,y,48,24,0,0,2*Math.PI);ctx.stroke();ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(x-6,y);ctx.lineTo(x+6,y);ctx.moveTo(x,y-6);ctx.lineTo(x,y+6);ctx.stroke();
+    ctx.save();ctx.translate(x+dx,y+dy);ctx.rotate(-.2);ctx.fillStyle=c.sheet;ctx.fillRect(-9,-6,18,12);ctx.strokeStyle=c.ink;ctx.strokeRect(-9,-6,18,12);ctx.restore();
+    label(ctx,c,'Rest + / paper □',20,115,{size:12});label(ctx,c,'LOCAL MOTION ×7',20,20,{size:12,weight:600});
+    label(ctx,c,`Displacement: ${scrap.dispMm.toFixed(1)} mm`,270,40,{size:14,weight:600});
+    label(ctx,c,'The pattern spreads across the tank.',270,68,{size:13});
+    label(ctx,c,'This scrap moves around its rest point.',270,91,{size:13});
+    label(ctx,c,'Dashed oval is a motion guide, not a wave crest.',270,115,{size:11,color:c.muted});
+  }
   function syncUniforms() {
     updateScrap();
+    drawMarker();
     if (twoFingers) {
       gl.set('u_s0', [260, 180, 0, 0]);
       gl.set('u_s1', [380, 180, 0, 0]);
@@ -314,6 +329,7 @@ Live.register('ripple', (stage, params, api) => {
       syncUniforms();
     } else {
       updateScrap();
+    drawMarker();
       updateReadout();
     }
   });

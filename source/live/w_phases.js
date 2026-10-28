@@ -4,6 +4,7 @@ import {
   Color, Vector3,
 } from 'three';
 import { Live } from './core.js';
+import { label, note, phaseDisc } from './art_waves.js';
 import { makeStage, addArrow, addAtom, webglOK } from './three_kit.js';
 
 function phaseNameForDay(day) {
@@ -37,7 +38,20 @@ Live.register('phases', (stage, params, api) => {
     return { theta, litFrac, pct, delayStr, name: phaseNameForDay(day) };
   }
 
+  const diagram=api.canvas(640,186,'Linked overhead lunar orbit and the phase seen from Earth, with the same selected day');
+  note(stage,'Left: the Sun always lights half the Moon. Right: look from Earth at that same Moon. The Moon’s own night side makes the phase; orbit tilt and eclipse dates are not modelled.');
+  function drawDiagram(){
+    const ctx=diagram.ctx,p=computePhase();diagram.clear(c.plate);
+    label(ctx,c,'1  From above',24,25,{weight:600});label(ctx,c,'2  Seen from Earth',392,25,{weight:600});
+    const cx=175,cy=101,R=60;ctx.strokeStyle=c.rule;ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(cx,cy,R,0,2*Math.PI);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=c.electron;ctx.beginPath();ctx.arc(cx,cy,15,0,2*Math.PI);ctx.fill();label(ctx,c,'Earth',cx,cy+33,{align:'center',size:12});
+    const mx=cx+R*Math.cos(p.theta),my=cy-R*Math.sin(p.theta);
+    phaseDisc(ctx,mx,my,10,Math.PI/2); // In the overhead view the right hemisphere always faces sunlight.
+    api.draw.arrow(ctx,337,75,267,75,c.neutron,1.8,7);api.draw.arrow(ctx,337,118,267,118,c.neutron,1.8,7);label(ctx,c,'sunlight',303,55,{align:'center',size:12});
+    phaseDisc(ctx,478,101,47,p.theta);label(ctx,c,`${p.name}: ${p.pct}% lit`,478,172,{align:'center',weight:600});
+  }
   function updateReadout() {
+    drawDiagram();
     const p = computePhase();
     const scaleNote = trueScale
       ? 'drawn at the true distance of about 30 Earth-diameters, with the Earth’s narrow shadow cone shown'
@@ -45,7 +59,7 @@ Live.register('phases', (stage, params, api) => {
     say(
       `Day ${day.toFixed(1)}: ${p.name}, about ${p.pct}% lit. ` +
       `The lit half always faces the Sun; from the Earth we see ${p.pct}% of it, and the dark part is the Moon's own night side (never the Earth's shadow). ` +
-      `Rises about ${p.delayStr} after the Sun; the Moon turns once per orbit so the same face always looks at the Earth (${scaleNote}).`
+      `In a simplified rise-time model, rises about ${p.delayStr} after the Sun (not a Mumbai ephemeris); the Moon turns once per orbit so the same face always looks at the Earth (${scaleNote}).`
     );
   }
 
@@ -73,29 +87,8 @@ Live.register('phases', (stage, params, api) => {
     rebuild();
   }, { pressed: false });
 
-  if (!webglOK()) {
-    const k2 = api.canvas(640, 300, 'Earth and Moon lit by parallel sunlight showing the lunar phase');
-    function drawFallback() {
-      const ctx = k2.ctx;
-      k2.clear(c.plate);
-      const p = computePhase();
-      ctx.beginPath();
-      ctx.arc(320, 150, 26, 0, Math.PI * 2);
-      ctx.fillStyle = c.electron;
-      ctx.fill();
-      const mx = 320 + 100 * Math.cos(p.theta);
-      const my = 150 - 100 * Math.sin(p.theta);
-      ctx.beginPath();
-      ctx.arc(mx, my, 14, 0, Math.PI * 2);
-      ctx.fillStyle = c.sheet;
-      ctx.fill();
-      ctx.stroke();
-      updateReadout();
-    }
-    var rebuild = drawFallback;
-    api.loop(() => drawFallback());
-    drawFallback();
-    return { destroy() {} };
+  if(!webglOK()){
+    var rebuild=()=>{drawDiagram();updateReadout();};api.loop(drawDiagram);rebuild();return {destroy(){}};
   }
 
   const kit = makeStage(stage, api, {
@@ -103,6 +96,8 @@ Live.register('phases', (stage, params, api) => {
     distance: 7.6,
     label: '3D view of the Moon orbiting the Earth in parallel sunlight, showing its lit half and the phase seen from Mumbai',
   });
+  stage.append(diagram.cv);
+  api.loop(drawDiagram);
   kit.spinSpeed = 0; // Advance orbit on Play instead of spinning the camera root
 
   // Advance day of month gently while playing
@@ -159,9 +154,9 @@ Live.register('phases', (stage, params, api) => {
       kit.root.quaternion.identity();
       kit.root.rotation.x = 1.18;
 
-      const earthR = trueScale ? 0.09 : 0.62;
-      const orbitR = trueScale ? 2.65 : 2.15; // In trueScale, orbitR / (2 * earthR) ≈ 15, i.e. diameter = 30 Earths!
-      const moonR = trueScale ? 0.045 : 0.34;
+      const earthR = trueScale ? 2.65 / 60 : 0.62;
+      const orbitR = trueScale ? 2.65 : 2.15; // In trueScale, orbitR / (2 * earthR) = 30 Earth diameters to the Moon.
+      const moonR = trueScale ? earthR * .2727 : 0.34;
 
       // Earth at origin (lit side facing Sun at +x)
       const earth = makeDayNightSphere(earthR, '#3b7a94', '#16262e');

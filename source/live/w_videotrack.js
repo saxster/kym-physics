@@ -1,6 +1,7 @@
 // Ch 1.5 c1_toss_strobe -> w_videotrack: Strobe video tracker for a one-metre vertical toss.
 // Has a Demo tab (playing the computed 1 m toss, V0 = 4.43 m/s, 10 cm tiles) and a Your clip tab using api.video().
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 
 const DEMO_HEIGHTS = [0, 39.4, 68.9, 88.7, 98.7, 98.9, 89.2, 69.8, 40.6, 1.5]; // cm at 0.1 s steps
 
@@ -18,6 +19,7 @@ Live.register('videotrack', (stage, params, api) => {
   let scalePts = []; // up to 2 points [{x, y}] in video pixels for 1 tile
   let settingScale = false;
   const say = api.readout();
+  mechanismKey(stage, 'Link a mark, its graph point and its gap', ['The newest event is red in both the strobe and height–time graph. The final table row is the displacement into that event.', 'For your clip, calibrate one tile with two taps before interpreting centimetres. Until then, heights are in video pixels.', 'A fitted value depends on scale, frame timing and marking precision; the displayed spread is not a full uncertainty estimate.']);
 
   // Control 1: Demo vs Your clip + api.video()
   const vid = api.video({
@@ -27,9 +29,15 @@ Live.register('videotrack', (stage, params, api) => {
     onLoad: () => {
       mode = 1;
       scalePts = [];
+      calibrate.disabled = false;
       updateReadout();
     },
   });
+
+  const calibrate = document.createElement('button');
+  calibrate.type = 'button'; calibrate.textContent = 'Calibrate (clears marks): tap two tile marks'; calibrate.disabled = true;
+  calibrate.addEventListener('click', () => { vid.clear(); settingScale = true; scalePts = []; say(`Tap two marks one ${tileCm} cm tile apart in your video.`); });
+  stage.appendChild(calibrate);
 
   // Override step buttons inside live-vbar so they step by the chosen sample interval
   const vbars = stage.parentElement?.querySelectorAll('.live-vbar button') || [];
@@ -49,6 +57,11 @@ Live.register('videotrack', (stage, params, api) => {
       scalePts.push({ x: m.x, y: m.y });
       vid.undo(); // don't keep calibration tap as a ball mark
       if (scalePts.length >= 2) {
+        if (Math.hypot(scalePts[1].x-scalePts[0].x,scalePts[1].y-scalePts[0].y) <= 2) {
+          scalePts=[];
+          say('Calibration marks must be separate: tap the first tile mark again.');
+          return;
+        }
         settingScale = false;
       }
       updateReadout();
@@ -82,7 +95,7 @@ Live.register('videotrack', (stage, params, api) => {
   });
 
   function getActivePoints() {
-    if (mode === 0 || !vid.marks().length) {
+    if (mode === 0) {
       const n = Math.max(1, Math.min(DEMO_HEIGHTS.length, demoStep));
       const scaleFactor = tileCm / 10;
       return DEMO_HEIGHTS.slice(0, n).map((h, i) => ({
@@ -92,6 +105,7 @@ Live.register('videotrack', (stage, params, api) => {
       }));
     }
     const raw = vid.marks();
+    if (!raw.length) return [];
     const y0 = raw[0].y;
     let pxPerTile = 50;
     let calibrated = false;
@@ -100,18 +114,19 @@ Live.register('videotrack', (stage, params, api) => {
       if (d > 2) { pxPerTile = d; calibrated = true; }
     }
     return raw.map((m) => {
-      const tiles = (y0 - m.y) / pxPerTile;
+      const tiles = calibrated ? (y0 - m.y) / pxPerTile : y0 - m.y;
       return {
         t: m.t,
         hCm: calibrated ? +(tiles * tileCm).toFixed(1) : +tiles.toFixed(2),
-        unit: calibrated ? 'cm' : 'tiles',
+        unit: calibrated ? 'cm' : 'px',
       };
     });
   }
 
   function updateReadout() {
+    if (settingScale) { say(`Calibration: tap ${scalePts.length ? 'the second' : 'the first'} mark of one ${tileCm} cm tile in your video. Existing ball marks were cleared.`); return; }
     const pts = getActivePoints();
-    const unit = pts[0]?.unit || 'cm';
+    const unit = pts[0]?.unit || (mode === 0 || scalePts.length >= 2 ? 'cm' : 'px');
     const dtNominal = mode === 0 ? 0.1 : (sampleIntervals[sampleIdx] || (1 / vid.fps));
 
     if (sampleIdx === 2) {
@@ -125,11 +140,11 @@ Live.register('videotrack', (stage, params, api) => {
     }
 
     let msg = '';
-    if (gaps.length > 0) {
+    if (gaps.length > 0 && unit === 'cm') {
       const gapList = gaps.map((g) => (g >= 0 ? `+${Math.round(g)}` : `\u2212${Math.abs(Math.round(g))}`)).join(', ');
-      msg = `Gaps so far (${ dtNominal.toFixed(2).replace(/0$/, '') } s steps at ${vid.fps} fps): ${gapList} ${unit}. Each gap is about ${(9.8 * dtNominal * dtNominal * 100 * (tileCm / 10)).toFixed(1)} ${unit} shorter than the one before: that shrinking is the acceleration.`;
+      msg = `Gaps so far (${ dtNominal.toFixed(2).replace(/0$/, '') } s steps at ${vid.fps} fps): ${gapList} ${unit}. Each gap is about ${(9.8 * dtNominal * dtNominal * 100 * (mode === 0 ? tileCm / 10 : 1)).toFixed(1)} ${unit} shorter than the one before: that shrinking is the acceleration.`;
     } else {
-      msg = `Tap Play or step through frames to mark the ball every ${dtNominal} s. Your clip never leaves this device.`;
+      msg = unit === 'px' ? 'Uncalibrated: height is in video pixels. Use Calibrate, then tap two marks one tile apart.' : `Tap Play or step through frames to mark the ball every ${dtNominal} s. Your clip never leaves this device.`;
     }
 
     if (mode === 0 && pts.length >= 6) {
@@ -145,8 +160,9 @@ Live.register('videotrack', (stage, params, api) => {
       }
       const meanG = d2.reduce((a, b) => a + b, 0) / d2.length;
       const spread = Math.max(...d2.map((v) => Math.abs(v - meanG)));
-      msg += ` Estimate from \u0394gap \u00f7 \u0394t\u00b2: g \u2248 ${meanG.toFixed(1)} \u00b1 ${spread.toFixed(1)} m/s\u00b2 (the textbook value is 9.8 m/s\u00b2; yours will be a little lower if the ball is light and the air slows it).`;
+      msg += ` Estimate from \u0394gap \u00f7 \u0394t\u00b2: g \u2248 ${meanG.toFixed(1)} \u00b1 ${spread.toFixed(1)} m/s\u00b2 (the textbook value is 9.8 m/s\u00b2; scale, perspective, timing and marking errors can shift the estimate).`;
     }
+    if (mode === 1 && unit === 'cm') msg = `Calibrated: one tile = ${tileCm} cm. ` + msg;
     say(msg);
   }
 
@@ -163,31 +179,32 @@ Live.register('videotrack', (stage, params, api) => {
     k.clear(c.plate);
     const ctx = k.ctx;
     const pts = getActivePoints();
-    const unit = pts[0]?.unit || 'cm';
-    const maxH = Math.max(100, tileCm * 10);
+    const unit = pts[0]?.unit || (mode === 0 || scalePts.length >= 2 ? 'cm' : 'px');
+    const maxH = Math.max(100, tileCm * 10,...pts.map(p=>p.hCm));
+    const minH = Math.min(0,...pts.map(p=>p.hCm));
 
     // ---- Left panel: tiled wall & strobe positions (x: 30..250)
     const wallL = 55, wallR = 225, base = 280, topY = 40;
-    const pxPerCm = (base - topY) / maxH;
+    const pxPerCm = (base - topY) / (maxH-minH);
 
     // 10-tile grid
     ctx.strokeStyle = c.rule;
     ctx.lineWidth = 1;
     for (let ti = 0; ti <= 10; ti++) {
-      const hVal = ti * tileCm;
-      const y = base - hVal * pxPerCm;
+      const hVal = mode === 0 ? ti * tileCm : minH + (maxH-minH)*ti/10;
+      const y = base - (hVal-minH) * pxPerCm;
       ctx.beginPath(); ctx.moveTo(wallL, y); ctx.lineTo(wallR, y); ctx.stroke();
       if (ti % 5 === 0) {
-        api.draw.text(ctx, `${hVal} ${unit}`, wallL - 6, y + 4, { size: 11, color: c.muted, align: 'right' });
+        api.draw.text(ctx, `${+hVal.toFixed(1)} ${unit}`, wallL - 6, y + 4, { size: 11, color: c.muted, align: 'right' });
       }
     }
-    api.draw.text(ctx, `tiles ${tileCm} cm apart`, (wallL + wallR) / 2, 24, { size: 12, color: c.muted, align: 'center', weight: 600 });
+    api.draw.text(ctx, mode === 0 ? `tiles ${tileCm} cm apart` : unit === 'px' ? 'uncalibrated image scale' : `calibrated tile: ${tileCm} cm`, (wallL + wallR) / 2, 24, { size: 12, color: c.muted, align: 'center', weight: 600 });
 
     const xu = 105, xd = 175;
     pts.forEach((p, i) => {
-      const goingUp = i < 5;
+      const goingUp = i === 0 || p.hCm >= pts[i-1].hCm;
       const x = goingUp ? xu : xd;
-      const y = base - p.hCm * pxPerCm;
+      const y = base - (p.hCm-minH) * pxPerCm;
       ctx.beginPath();
       ctx.arc(x, y, 6.5, 0, Math.PI * 2);
       ctx.fillStyle = i === pts.length - 1 ? c.proton : c.vol;
@@ -206,12 +223,19 @@ Live.register('videotrack', (stage, params, api) => {
     const gx0 = 280, gy0 = 280, gw = 205, gh = 220;
     const tMax = Math.max(0.95, pts[pts.length - 1]?.t || 0.9);
     const pxT = gw / tMax;
-    const pyH = gh / maxH;
+    const pyH = gh / (maxH-minH);
 
     api.draw.arrow(ctx, gx0, gy0, gx0 + gw + 8, gy0, c.ink, 1.5, 6);
     api.draw.arrow(ctx, gx0, gy0, gx0, gy0 - gh - 8, c.ink, 1.5, 6);
     api.draw.text(ctx, 'time (s)', gx0 + gw, gy0 + 22, { size: 12, color: c.muted, align: 'right' });
     api.draw.text(ctx, `height (${unit})`, gx0 + 8, gy0 - gh + 4, { size: 12, color: c.muted, weight: 600 });
+
+    // Height origin remains explicit when a clip falls below its initial mark.
+    for (const value of [...new Set([minH, 0, maxH])]) {
+      const yy=gy0-(value-minH)*pyH;
+      ctx.strokeStyle=c.rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(gx0-4,yy); ctx.lineTo(gx0+gw,yy); ctx.stroke();
+      api.draw.text(ctx,`${+value.toFixed(1)}`,gx0-7,yy+4,{size:10.5,color:c.muted,align:'right'});
+    }
 
     for (const tv of [0.2, 0.4, 0.6, 0.8]) {
       if (tv <= tMax) {
@@ -226,15 +250,18 @@ Live.register('videotrack', (stage, params, api) => {
       ctx.lineWidth = 2;
       ctx.beginPath();
       pts.forEach((p, idx) => {
-        const x = gx0 + p.t * pxT, y = gy0 - p.hCm * pyH;
+        const x = gx0 + p.t * pxT, y = gy0 - (p.hCm-minH) * pyH;
         if (idx === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       });
       ctx.stroke();
     }
-    pts.forEach((p) => {
-      const x = gx0 + p.t * pxT, y = gy0 - p.hCm * pyH;
+    pts.forEach((p, idx) => {
+      const x = gx0 + p.t * pxT, y = gy0 - (p.hCm-minH) * pyH;
       ctx.beginPath(); ctx.arc(x, y, 3.8, 0, Math.PI * 2);
-      ctx.fillStyle = c.electron; ctx.fill();
+      ctx.fillStyle = idx === pts.length - 1 ? c.proton : c.electron; ctx.fill();
+      if (idx === pts.length - 1) {
+        ctx.save(); ctx.strokeStyle=c.proton; ctx.setLineDash([3,3]); ctx.beginPath(); ctx.moveTo(x,gy0); ctx.lineTo(x,y); ctx.lineTo(gx0,y); ctx.stroke(); ctx.restore();
+      }
     });
 
     // ---- Right panel: Table of gaps (x: 510..630)
@@ -247,6 +274,7 @@ Live.register('videotrack', (stage, params, api) => {
     for (let i = 0; i < Math.min(9, pts.length - 1); i++) {
       const gap = pts[i + 1].hCm - pts[i].hCm;
       const rowY = 66 + i * 24;
+      if (i === pts.length - 2) { ctx.save(); ctx.globalAlpha=.12; ctx.fillStyle=c.proton; ctx.fillRect(tx0-3,rowY-14,116,21); ctx.restore(); }
       const label = `${pts[i].t.toFixed(1)}\u2013${pts[i + 1].t.toFixed(1)}s`;
       const gStr = gap >= 0 ? `+${gap.toFixed(1)}` : `\u2212${Math.abs(gap).toFixed(1)}`;
       api.draw.text(ctx, label, tx0, rowY, { size: 11, color: c.ink });

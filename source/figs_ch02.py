@@ -144,33 +144,32 @@ def c2_train_brake():
 
 @figure
 def c2_friction_closeup():
-    f = Fig(640, 232, 'Left: a block sliding on a table, with the contact force split into a part straight out of the '
-                      'surface and a part along it, friction. Right: a magnified view of the two surfaces, rough and '
-                      'touching only at a few high points.')
-    f.ground(30, 170, 280)
-    f.mass_block(120, 120, 90, 50)
-    f.vector(215, 128, 45, 0, 'sliding', 13)
-    f.force(165, 170, 0, -58)
-    f.text(165, 100, 'straight out of the surface', 't p b', 'middle', 12)
-    f.force(120, 168, -60, 0)
-    f.text(90, 198, 'friction: along the surface', 't p b', 'middle', 12)
-    f.text(165, 62, 'two parts of one contact force', 't m', 'middle', 13)
-    # magnifier
-    f.add('<clipPath id="c2mag"><circle cx="470" cy="120" r="84"/></clipPath>')
-    f.circle(470, 120, 86, 'ln')
-    top = [(385, 100), (400, 112), (415, 104), (428, 116), (440, 120), (452, 108), (470, 121), (486, 106),
-           (500, 119), (514, 109), (528, 118), (540, 104), (556, 112)]
-    bot = [(385, 140), (400, 128), (415, 136), (428, 125), (440, 120), (452, 133), (470, 121), (486, 134),
-           (500, 119), (514, 131), (528, 125), (540, 138), (556, 128)]
-    f.add('<g clip-path="url(#c2mag)">')
-    f.path('M385,30 ' + ' '.join(f'L{x},{y}' for x, y in top) + ' L556,30 Z', 'block')
-    f.path('M385,210 ' + ' '.join(f'L{x},{y}' for x, y in bot) + ' L556,210 Z', 'plate')
-    f.add('</g>')
-    for x, y in ((440, 120), (470, 121), (500, 119)):
-        f.circle(x, y, 4.5, 'wash-p')
-    f.text(470, 66, 'block', 't m', 'middle', 12)
-    f.text(470, 180, 'table', 't m', 'middle', 12)
-    f.text(470, 224, 'magnified: only the high points touch', 't m', 'middle', 12)
+    f = Fig(640, 330, 'A sliding block and a connected magnified contact cut-away. Upward normal force and backward friction are two components of the contact interaction. Microscopic junctions deform and break as surfaces slide; the roughness and deformation are enlarged, not measured geometry.')
+    f.text(24,28,'The contact is where the push happens','t b',size=17)
+    f.mass_block(72,132,120,52,'block',15)
+    f.ground(30,184,238)
+    f.vector(112,108,90,0)
+    f.text(158,86,'sliding right','t e','middle',13)
+    f.force(132,180,0,-48)
+    f.force(72,180,-43,0)
+    f.text(29,218,'friction: backwards','t p b',size=13)
+    f.text(132,244,'normal: out of the surface','t p','middle',12)
+    f.circle(175,184,13,'ln e')
+    f.line(185,175,334,80,'ln m');f.line(185,193,334,243,'ln m')
+    f.rect(334,61,282,203,'plate',rx=8)
+    top=[(334,137),(355,137),(370,154),(387,142),(405,157),(426,139),(446,152),(464,142),(482,158),(503,141),(524,155),(545,139),(567,153),(590,140),(616,141)]
+    bot=[(334,181),(355,179),(370,154),(387,174),(405,157),(426,178),(446,175),(464,178),(482,158),(503,180),(524,155),(545,178),(567,176),(590,180),(616,179)]
+    f.path('M334,62 L616,62 L616,141 '+' '.join(f'L{x},{y}' for x,y in reversed(top))+' Z','wash-e')
+    f.path('M334,263 L616,263 L616,179 '+' '.join(f'L{x},{y}' for x,y in reversed(bot))+' Z','wash-n')
+    f.path('M'+' L'.join(f'{x},{y}' for x,y in top),'ln')
+    f.path('M'+' L'.join(f'{x},{y}' for x,y in bot),'ln')
+    for x,y in ((370,154),(405,157),(482,158),(524,155)):
+        f.circle(x,y,5,'wash-p');f.line(x-4,y,x+4,y,'ln p')
+    f.text(475,89,'block surface','t b','middle',13)
+    f.text(475,238,'table surface','t b','middle',13)
+    f.vector(516,106,58,0)
+    f.text(475,291,'tiny contact junctions deform and break','t','middle',12)
+    f.text(320,322,'Magnified model: real contact also depends on adhesion and material deformation.','t m','middle',12)
     return f.svg()
 
 

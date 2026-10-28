@@ -55,7 +55,8 @@ function animateWhileVisible(el, setup) {
     last = performance.now();
     const tick = now => {
       if (!motionOK()) { raf = 0; state.draw(now, 0); return; }
-      const dt = Math.min(64, now - last); last = now;
+      // A newly scheduled RAF can share an earlier frame timestamp than performance.now().
+      const dt = Math.max(0, Math.min(64, now - last)); last = now;
       state.draw(now, dt);
       raf = visible ? requestAnimationFrame(tick) : 0;
     };

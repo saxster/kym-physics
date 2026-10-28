@@ -1,9 +1,13 @@
 // 9.7 Doppler effect: moving horn past a platform listener, ring arrival times, gauge, and constant-gain Web Audio.
 import { Live } from './core.js';
+import { note, legend } from './art_waves.js';
 import { sampledWavefronts, SOUND_SPEED_MS, CREST_STRIDE } from './doppler_model.mjs';
 
 Live.register('doppler', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'Each ring keeps the centre where it was emitted. A moving horn changes the time between arrivals, not the speed of sound. The frequency gauge is the sound reaching the platform listener.');
+  legend(stage,[['Sampled sound crests',c.electron],['Horn / current source',c.proton]]);
+  const arrival=document.createElement('p');arrival.style.cssText='margin:0;padding:10px 14px;font:13px/1.5 var(--sans);color:var(--ink);background:var(--sheet)';stage.append(arrival);
   const W = 640, H = 300;
   const k = api.canvas(W, H, 'A train horn moving along a track past a listener, emitting circular sound wavefronts');
 
@@ -185,16 +189,21 @@ Live.register('doppler', (stage, params, api) => {
     const fronts = sampledWavefronts({
       timeS: visT, sourceStartXM, sourceSpeedMs: vMs, frequencyHz: hornHz, maxRadiusM,
     });
+    const timed=fronts.map(front=>({...front,arrives:front.emittedAtS+Math.hypot(front.centreXM,LISTENER_Y_M)/C_SOUND}));
+    const next=timed.findIndex(front=>front.arrives>=visT),pair=next>0?[timed[next-1],timed[next]]:timed.slice(0,2);
+    arrival.textContent=pair.length===2?`Highlighted crests A → B: ${(1000*(pair[1].arrives-pair[0].arrives)).toFixed(1)} ms between arrivals (${CREST_STRIDE} sound cycles). One cycle reaches you every ${(1000/fObs).toFixed(2)} ms. The listening point is 1.4 m off the track.`:'The horn is starting: waiting for two sampled crests.';
     for (const front of fronts) {
       if (front.radiusM === 0) continue;
       const cx = W / 2 + front.centreXM * SCALE;
       const rPx = front.radiusM * SCALE;
       ctx.beginPath();
       ctx.arc(cx, TRACK_Y, rPx, 0, Math.PI * 2);
-      ctx.strokeStyle = c.electron;
-      ctx.globalAlpha = Math.max(0.12, 0.72 * (1 - front.radiusM / maxRadiusM));
-      ctx.lineWidth = 1.6;
+      const tag=pair.findIndex(p=>p.index===front.index);
+      ctx.strokeStyle = tag>=0?c.neutron:c.electron;
+      ctx.globalAlpha = tag>=0?1:Math.max(0.12, 0.72 * (1 - front.radiusM / maxRadiusM));
+      ctx.lineWidth = tag>=0?2.6:1.6;
       ctx.stroke();
+      if(tag>=0){const edge=xNowM<0?cx+rPx:cx-rPx;if(edge>16&&edge<W-16)api.draw.text(ctx,tag?'B':'A',edge,TRACK_Y-16,{size:13,color:c.neutron,weight:700,align:'center'});}
     }
     ctx.globalAlpha = 1;
 

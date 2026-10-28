@@ -233,3 +233,10 @@ A beautiful book gets read. Use everything the browser offers, but every moving 
 - No autoplay. Pause off-screen. Reduced motion opens paused. At most two or three controls. Book colours in light, dark and sepia.
 - Budget: `index.html` under 4 MB; each widget chunk under 150 KB; three.js as one shared chunk loaded only when a 3D figure opens; 60 fps on a mid-range Android phone; everything precached for offline reading.
 - Content first, beauty second: the design pass follows the content gates, never the other way round.
+
+### Graphics continuation lessons (29 October 2026)
+
+- A live canvas needs both a fitted composition and native-width inspection on phones. Apply inspection sizing to nested teaching canvases as well as direct children; keep input state, clock, keyboard controls and WebGL fallbacks intact.
+- Link each diagram to evidence: actual source paths must generate the same interference strip; a lens’s central ray and focus must agree; calibration must not rescale physical gravity. Label a display horizon separately from escape.
+- Verify the paused first frame after ResizeObserver and theme changes. A clear canvas is not evidence of a working fallback. Start animation time deltas at zero if the first RAF timestamp predates the synchronous setup clock.
+- Additional original static art can stay within the existing document budget by minifying CSS whitespace and deferring heavy map data to the existing precached explorer-chunk mechanism. Measure SVG labels using actual font bounds when culling map labels.

@@ -5,6 +5,7 @@ import {
   Mesh, SphereGeometry, ConeGeometry, RingGeometry, MeshStandardMaterial, BufferGeometry, LineBasicMaterial, Line, Vector3, Color, DoubleSide,
 } from 'three';
 import { Live } from './core.js';
+import { mechanismKey } from './art_mechanics.js';
 import { makeStage, webglOK } from './three_kit.js';
 
 const GM = 3.986e14;         // m^3 / s^2
@@ -14,6 +15,7 @@ const R_DRAW_MTN = 1.045;    // mountain drawn taller so the trajectory clearanc
 
 Live.register('cannon3d', (stage, params, api) => {
   const say = api.readout();
+  mechanismKey(stage, 'Read the orbit in its own plane', ['The flat inset keeps the orbital plane visible as you turn the globe. Its Earth and trajectory share one scale.', 'Ideal gravity only: no atmosphere; the mountain and ball in 3D are enlarged. Dashed predictions stop at landing, one orbit, or the display horizon (4.2 Earth radii / 4 h); reaching that horizon does not mean escape.']);
   if (!webglOK()) {
     const svg = stage.parentElement?.querySelector('svg.fig');
     if (svg) stage.appendChild(svg.cloneNode(true));
@@ -29,6 +31,7 @@ Live.register('cannon3d', (stage, params, api) => {
     label: 'A 3D globe with Newton cannon on a tall mountain firing orbital and sub-orbital shots',
   });
   kit.spinSpeed = 0.15;
+  const map = api.canvas(640, 190, 'Orbital-plane map at a common Earth and trajectory scale');
 
   // Globe in book colours (matte sphere + subtle latitude/longitude rings)
   const earthMat = new MeshStandardMaterial({
@@ -51,6 +54,19 @@ Live.register('cannon3d', (stage, params, api) => {
 
   const merRing = new Mesh(new RingGeometry(1.001, 1.006, 64), ringMat);
   kit.root.add(merRing);
+
+  // Sparse graticule makes the globe readable without decorative surface imagery.
+  const gridMat = new LineBasicMaterial({color: new Color(c.muted), transparent: true, opacity: 0.55});
+  for (const latitude of [-60,-30,0,30,60]) {
+    const a=latitude*Math.PI/180, points=[];
+    for (let i=0;i<=96;i++) { const b=i*Math.PI/48; points.push(new Vector3(1.006*Math.cos(a)*Math.cos(b),1.006*Math.sin(a),1.006*Math.cos(a)*Math.sin(b))); }
+    kit.root.add(new Line(new BufferGeometry().setFromPoints(points),gridMat));
+  }
+  for (const longitude of [0,60,120]) {
+    const b=longitude*Math.PI/180, points=[];
+    for (let i=0;i<=96;i++) { const a=i*Math.PI/48; points.push(new Vector3(1.006*Math.cos(a)*Math.cos(b),1.006*Math.sin(a),1.006*Math.cos(a)*Math.sin(b))); }
+    kit.root.add(new Line(new BufferGeometry().setFromPoints(points),gridMat));
+  }
 
   // Mountain cone at top (0, 1, 0)
   const mtnMat = new MeshStandardMaterial({
@@ -136,9 +152,25 @@ Live.register('cannon3d', (stage, params, api) => {
       done: false,
       outcome: 'flying',
       pts: [toSceneVec(0, R_LAUNCH)],
+      physicalPts: [[0, R_LAUNCH]],
       line,
       energyOk: true,
     };
+
+    // A dashed prediction makes the paused opening frame informative without autoplay.
+    const predicted = {x: 0, y: R_LAUNCH, vx: v0, vy: 0};
+    activeShot.prediction = [[0, R_LAUNCH]];
+    for (let step = 0; step < 7200; step++) {
+      const before = Math.atan2(predicted.x, predicted.y);
+      rk4Step(predicted, 2);
+      const radius = Math.hypot(predicted.x, predicted.y);
+      if (radius <= R_EARTH) {
+        activeShot.prediction.push([predicted.x * R_EARTH / radius, predicted.y * R_EARTH / radius]);
+        break;
+      }
+      activeShot.prediction.push([predicted.x, predicted.y]);
+      if (radius > 4.2 * R_EARTH || (step > 1000 && before < 0 && Math.atan2(predicted.x, predicted.y) >= 0)) break;
+    }
 
     // If reduced motion is on, pre-advance one complete path so the still frame shows the shot
     if (api.reduced) {
@@ -176,6 +208,7 @@ Live.register('cannon3d', (stage, params, api) => {
       }
 
       shot.pts.push(toSceneVec(shot.x, shot.y));
+      shot.physicalPts.push([shot.x, shot.y]);
       added = true;
 
       if (r <= R_EARTH) {
@@ -185,7 +218,7 @@ Live.register('cannon3d', (stage, params, api) => {
       }
       if (r > 4.2 * R_EARTH) {
         shot.done = true;
-        shot.outcome = 'escaped';
+        shot.outcome = 'view-limit';
         break;
       }
       const curAngle = Math.atan2(shot.x, shot.y);
@@ -240,6 +273,7 @@ Live.register('cannon3d', (stage, params, api) => {
       summary = `Escapes: never comes back (now at altitude ${Math.round(altKm).toLocaleString('en-GB')} km, speed ${vKms.toFixed(1)} km/s).`;
     }
 
+    if (shot.outcome === 'view-limit') summary += ` The drawn path stops at 4.2 Earth radii; its energy is ${shot.e0 < 0 ? 'still bound' : 'unbound'}.`;
     const chk = shot.energyOk ? 'energy check: ok' : 'energy check: drift';
     say(`${summary}${specialNote} Time sped up (1 s = about 2 minutes of flight); no air in this model; the mountain is drawn far too tall (${chk}).`);
   }
@@ -270,6 +304,28 @@ Live.register('cannon3d', (stage, params, api) => {
       updateReadout();
     }
   };
+
+  api.loop(() => {
+    map.clear(c.plate);
+    const ctx = map.ctx;
+    const pts = activeShot?.physicalPts || [[0, R_LAUNCH]];
+    let extentX = R_EARTH, extentY = R_EARTH;
+    const prediction = activeShot?.prediction || pts;
+    for (const [x, y] of prediction) { extentX = Math.max(extentX, Math.abs(x)); extentY = Math.max(extentY, Math.abs(y)); }
+    const scale = Math.min(250 / extentX, 65 / extentY);
+    const X = x => 320 + x * scale, Y = y => 101 - y * scale;
+    ctx.fillStyle = c.mark_soft; ctx.strokeStyle = c.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(320, 101, R_EARTH * scale, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = c.electron; ctx.lineWidth = 2.2; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); prediction.forEach(([x, y], i) => i ? ctx.lineTo(X(x), Y(y)) : ctx.moveTo(X(x), Y(y))); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = c.electron; ctx.lineWidth = 2;
+    ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(X(x), Y(y)) : ctx.moveTo(X(x), Y(y))); ctx.stroke();
+    const last = pts[pts.length - 1];
+    ctx.fillStyle = c.proton; ctx.beginPath(); ctx.arc(X(last[0]), Y(last[1]), 4, 0, Math.PI * 2); ctx.fill();
+    api.draw.text(ctx, 'Orbital plane · dashed = prediction · no air', 14, 20, {size: 13, color: c.ink, weight: 600});
+    api.draw.text(ctx, 'Earth diameter: 12,742 km', 14, 181, {size: 12, color: c.muted});
+    api.draw.text(ctx, 'red dot = current shot', 626, 181, {size: 12, color: c.proton, align: 'right'});
+  });
 
   fireShot();
   return { destroy() {} };

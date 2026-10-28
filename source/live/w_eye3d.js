@@ -4,6 +4,7 @@ import {
   MeshStandardMaterial, Color, DoubleSide, Vector3,
 } from 'three';
 import { Live } from './core.js';
+import { label, note } from './art_waves.js';
 import { makeStage, addArrow, webglOK } from './three_kit.js';
 
 Live.register('eye3d', (stage, params, api) => {
@@ -51,7 +52,26 @@ Live.register('eye3d', (stage, params, api) => {
     return { doM, pEye, pCornea, pLens, pGlass, accomFrac, diCm, errMm };
   }
 
+  const diagram=api.canvas(640,190,'Stable eye cross-section: object, effective lens, retina, and the focus error, independent of the 3D viewpoint');
+  note(stage,'The fixed cross-section keeps the optical story visible while you turn the 3D eye. It combines cornea and lens into one effective thin lens; distances and image height are framed for clarity.');
+  function drawDiagram(){
+    const ctx=diagram.ctx,o=computeOptics(),ax=93,lens=285,retina=500,fx=lens+(o.diCm/2)*215,fy=ax+(ax-49)*(fx-lens)/(lens-70);
+    diagram.clear(c.plate);ctx.strokeStyle=c.rule;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(30,ax);ctx.lineTo(607,ax);ctx.stroke();ctx.setLineDash([]);
+    ctx.strokeStyle=c.ink;ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(391,ax,116,62,0,-Math.PI*.75,Math.PI*.75);ctx.stroke();
+    ctx.fillStyle='rgba(53,109,131,.18)';ctx.beginPath();ctx.ellipse(lens,ax,9+o.accomFrac*6,42,0,0,2*Math.PI);ctx.fill();ctx.stroke();
+    ctx.strokeStyle=c.proton;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(retina,44);ctx.lineTo(retina,144);ctx.stroke();
+    api.draw.arrow(ctx,70,ax,70,49,c.ink,2,7);
+    for(const ly of optMode===2?[67]:[67,93,119]){
+      ctx.strokeStyle=c.neutron;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(70,49);ctx.lineTo(lens,ly);ctx.lineTo(fx,fy);ctx.stroke();
+      api.draw.arrow(ctx,125,49+(ly-49)*55/(lens-70),195,49+(ly-49)*125/(lens-70),c.neutron,1.5,5);
+    }
+    ctx.fillStyle=c.electron;ctx.beginPath();ctx.arc(fx,fy,4,0,2*Math.PI);ctx.fill();
+    if(optMode===1){ctx.strokeStyle=c.electron;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(235,ax,6,35,0,0,2*Math.PI);ctx.stroke();label(ctx,c,'glasses',235,153,{align:'center',size:12});}
+    label(ctx,c,'object',70,27,{align:'center',weight:600});label(ctx,c,'effective lens',285,27,{align:'center',weight:600});label(ctx,c,'retina',500,27,{align:'center',weight:600,color:c.proton});
+    label(ctx,c,Math.abs(o.errMm)<.15?'focus on retina':`focus ${Math.abs(o.errMm).toFixed(1)} mm ${o.errMm>0?'in front':'behind'}`,405,176,{align:'center',weight:600,color:c.electron});
+  }
   function updateReadout() {
+    drawDiagram();
     const o = computeOptics();
     const distLbl = sliderVal >= 98 ? 'far away' : o.doM < 1 ? `${Math.round(o.doM * 100)} cm` : `${o.doM.toFixed(1)} m`;
     const sharp = Math.abs(o.errMm) < 0.15;
@@ -113,43 +133,10 @@ Live.register('eye3d', (stage, params, api) => {
     rebuild();
   });
 
-  // 2D fallback if WebGL is unavailable
-  if (!webglOK()) {
-    const k2 = api.canvas(640, 300, 'Cross-section of the human eye showing cornea, lens, retina and light rays');
-    function drawFallback() {
-      const ctx = k2.ctx;
-      k2.clear(c.plate);
-      const o = computeOptics();
-      ctx.strokeStyle = c.ink;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(430, 150, 90, -Math.PI * 0.78, Math.PI * 0.78);
-      ctx.stroke();
-      // Lens
-      ctx.fillStyle = 'rgba(53, 109, 131, 0.25)';
-      ctx.beginPath();
-      ctx.ellipse(345, 150, 10 + o.accomFrac * 8, 42, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      // Rays
-      const focusX = 345 + (o.diCm / 2.0) * 175;
-      ctx.strokeStyle = c.neutron;
-      ctx.beginPath();
-      ctx.moveTo(90, 115);
-      ctx.lineTo(345, 122);
-      ctx.lineTo(focusX, 168);
-      if (optMode !== 2) {
-        ctx.moveTo(90, 185);
-        ctx.lineTo(345, 178);
-        ctx.lineTo(focusX, 132);
-      }
-      ctx.stroke();
-      updateReadout();
-    }
-    var rebuild = drawFallback;
-    api.loop(() => drawFallback());
-    drawFallback();
-    return { destroy() {} };
+  // The labelled 2D cross-section remains a complete explanation without WebGL.
+  if(!webglOK()){
+    var rebuild=()=>{drawDiagram();updateReadout();};
+    api.loop(()=>drawDiagram());rebuild();return {destroy(){}};
   }
 
   const kit = makeStage(stage, api, {
@@ -157,6 +144,8 @@ Live.register('eye3d', (stage, params, api) => {
     distance: 7.4,
     label: 'Cut-away 3D eyeball showing cornea, iris, crystalline lens, retina, and light rays from an arrow object',
   });
+  stage.append(diagram.cv);
+  api.loop(drawDiagram);
   kit.spinSpeed = 0; // Keep cut-away facing the reader unless dragged
   kit.root.rotation.y = -0.18;
   kit.root.rotation.x = 0.08;

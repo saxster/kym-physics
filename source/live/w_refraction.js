@@ -1,5 +1,6 @@
 // 10.4 Refraction & total internal reflection: Snell's law, marching wavefronts at c/n, and critical angle.
 import { Live } from './core.js';
+import { note, label } from './art_waves.js';
 
 const MATS = [
   { name: 'water', Cap: 'Water', n: 1.333, speedText: 'three-quarters of its speed', wash: 'rgba(53, 109, 131, 0.14)' },
@@ -10,6 +11,7 @@ const MATS = [
 Live.register('refraction', (stage, params, api) => {
   const c = api.colors();
   const W = 640, H = 320;
+  note(stage,'Angles are measured from the dashed normal. Wavefront spacing changes with speed, while frequency stays the same. Solid arrows show light paths, not the motion of water or glass.');
   const k = api.canvas(W, H, 'A beam of light with marching wavefronts bending at the boundary between air and water, glass, or diamond');
 
   let theta1Deg = 45;
@@ -43,6 +45,27 @@ Live.register('refraction', (stage, params, api) => {
     drawFrame(0);
   }, { pressed: false });
 
+  const detail=document.createElement('details');
+  const summary=document.createElement('summary');summary.textContent='Follow light from a fixed coin';summary.style.cssText='padding:12px;font:14px var(--sans);cursor:pointer';detail.append(summary);stage.append(detail);
+  const coin=api.canvas(640,250,'Fixed coin eight centimetres below a material surface, with actual light and apparent position');detail.append(coin.cv);
+  function drawCoin(mat){
+    const ctx=coin.ctx;coin.clear(c.plate);
+    const x=160,y=70,S=16,depth=8*S,coinX=x+6.5*S;
+    const th=Math.asin(Math.SQRT1_2/mat.n),reach=8*Math.tan(th),hitX=coinX-reach*S;
+    ctx.fillStyle=mat.wash;ctx.fillRect(x,y,220,depth);ctx.strokeStyle=c.ink;ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+depth);ctx.lineTo(x+220,y+depth);ctx.lineTo(x+220,y);ctx.stroke();
+    ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle=c.muted;ctx.beginPath();ctx.moveTo(hitX,y);ctx.lineTo(coinX,y+reach*S);ctx.stroke();ctx.restore();
+    api.draw.arrow(ctx,coinX,y+depth,hitX,y,c.neutron,2.5,7);
+    api.draw.arrow(ctx,hitX,y,hitX-42,y-42,c.neutron,2.5,7);
+    ctx.fillStyle=c.proton;ctx.beginPath();ctx.ellipse(coinX,y+depth-3,11,4,0,0,Math.PI*2);ctx.fill();
+    ctx.save();ctx.setLineDash([3,3]);ctx.strokeStyle=c.proton;ctx.beginPath();ctx.ellipse(coinX,y+reach*S,11,4,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+    label(ctx,c,'Observer',hitX-52,20,{align:'center'});label(ctx,c,'45° in air',hitX+18,y-15,{size:12});
+    label(ctx,c,'Apparent coin',399,108,{color:c.muted});label(ctx,c,'Fixed real coin · 8 cm deep',399,131,{size:12,color:c.proton});
+    label(ctx,c,`${mat.Cap}: ${ (th*180/Math.PI).toFixed(1)}° inside`,399,160,{size:12});
+    label(ctx,c,'Dashed = back-projection',399,183,{size:12,color:c.muted});
+    label(ctx,c,'Same coin position for every material. An optical box, not a filled kitchen cup.',20,232,{size:12,color:c.muted});
+  }
+
   function drawWavefrontsAlong(ctx, cx, cy, dirX, dirY, nIndex, isIncoming, maxDist, col, alpha) {
     const lamAir = 28; // px in air
     const lam = lamAir / nIndex; // spacing shrinks by factor n!
@@ -73,19 +96,19 @@ Live.register('refraction', (stage, params, api) => {
     k.clear(c.plate);
 
     const mat = MATS[matIdx];
-    const cx = 240, cy = 160; // boundary intersection point
+    const cx = 320, cy = 160; // boundary intersection point
     const rayLen = 142;
 
     // Top half is air (n = 1.00), bottom half is material (n = mat.n)
     ctx.fillStyle = mat.wash;
-    ctx.fillRect(0, cy, 460, H - cy);
+    ctx.fillRect(0, cy, W, H - cy);
 
     // Boundary line
     ctx.strokeStyle = c.ink;
     ctx.lineWidth = 1.8;
     ctx.beginPath();
     ctx.moveTo(16, cy);
-    ctx.lineTo(460, cy);
+    ctx.lineTo(W-16, cy);
     ctx.stroke();
 
     // Dashed normal line
@@ -177,67 +200,7 @@ Live.register('refraction', (stage, params, api) => {
     }
 
     // Right side panel: "Coin in the 8 cm cup" summary diagram (45 deg sightline over rim)
-    const boxX = 472, boxY = 20, boxW = 154, boxH = 280;
-    ctx.fillStyle = c.sheet;
-    ctx.strokeStyle = c.rule;
-    ctx.lineWidth = 1;
-    api.draw.roundRect(ctx, boxX, boxY, boxW, boxH, 6);
-    ctx.fill();
-    ctx.stroke();
-
-    api.draw.text(ctx, 'Coin in the 8 cm cup', boxX + boxW / 2, boxY + 20, {
-      size: 11.5, color: c.ink, align: 'center', weight: 700,
-    });
-    const cupX = boxX + 26, cupY = boxY + 68, cupS = 96; // 8 cm x 8 cm cup (12 px = 1 cm)
-    ctx.fillStyle = mat.wash;
-    ctx.fillRect(cupX, cupY, cupS, cupS);
-    ctx.strokeStyle = c.ink;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(cupX, cupY);
-    ctx.lineTo(cupX, cupY + cupS);
-    ctx.lineTo(cupX + cupS, cupY + cupS);
-    ctx.lineTo(cupX + cupS, cupY);
-    ctx.stroke();
-
-    // Sightline at 45 deg over near rim (cupX, cupY):
-    // Without water (dashed): hits far bottom corner at 8.0 cm
-    ctx.save();
-    ctx.setLineDash([3, 3]);
-    ctx.strokeStyle = c.muted;
-    ctx.beginPath();
-    ctx.moveTo(cupX, cupY);
-    ctx.lineTo(cupX + cupS, cupY + cupS);
-    ctx.stroke();
-    ctx.restore();
-
-    // With material (refracted from 45 deg in air): sin th_cup = sin(45 deg) / mat.n
-    const thCup = Math.asin(Math.SQRT1_2 / mat.n);
-    const reachCm = 8 * Math.tan(thCup); // 5.00 cm for water
-    const reachPx = reachCm * 12;
-    ctx.strokeStyle = c.neutron;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(cupX - 18, cupY - 18);
-    ctx.lineTo(cupX, cupY);
-    ctx.lineTo(cupX + reachPx, cupY + cupS);
-    ctx.stroke();
-
-    // Coin at 6.5 cm from near wall
-    ctx.fillStyle = c.proton;
-    api.draw.roundRect(ctx, cupX + reachPx - 4, cupY + cupS - 5, 16, 5, 2);
-    ctx.fill();
-
-    api.draw.text(ctx, `45° sightline bends to`, boxX + boxW / 2, boxY + 190, { size: 10.5, color: c.muted, align: 'center' });
-    api.draw.text(ctx, `${((thCup * 180) / Math.PI).toFixed(1)}° in ${mat.name}`, boxX + boxW / 2, boxY + 206, {
-      size: 11, color: c.ink, align: 'center', weight: 600,
-    });
-    api.draw.text(ctx, `Reaches ${reachCm.toFixed(1)} cm (not 8.0 cm)`, boxX + boxW / 2, boxY + 226, {
-      size: 10.5, color: c.proton, align: 'center',
-    });
-    api.draw.text(ctx, 'The coin has not moved.', boxX + boxW / 2, boxY + 244, {
-      size: 10.5, color: c.muted, align: 'center',
-    });
+    drawCoin(mat);
 
     // Readout
     if (!fromMaterial) {

@@ -1,10 +1,12 @@
 // 15.5 Stellar parallax: p = 1/d (arcseconds and parsecs), 1 AU vs 2 AU baseline, ₹1-coin angle comparison, and telescope view.
 import { Live } from './core.js';
+import { note } from './art_waves.js';
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 Live.register('parallax', (stage, params, api) => {
   const c = api.colors();
+  note(stage,'The same month selects Earth’s position and the telescope’s moving star. The telescope circle applies near an orbital pole; other stars trace ellipses. Parallax p is the half-shift; January to July spans 2p. Background stars are held fixed.');
   const W = 640, H = 330;
   const k = api.canvas(W, H, 'Stellar parallax geometry from above the Earth orbit and the star loop seen through a telescope');
 
@@ -250,11 +252,17 @@ Live.register('parallax', (stage, params, api) => {
       ctx.beginPath();
       ctx.moveTo(cx - loopR, cy + loopR + 18);
       ctx.lineTo(cx + loopR, cy + loopR + 18);
-      ctx.stroke();
+      for(const xx of [cx-loopR,cx+loopR]){ctx.moveTo(xx,cy+loopR+13);ctx.lineTo(xx,cy+loopR+23);}ctx.stroke();
       api.draw.text(ctx, `6-month shift 2p = ${(2 * pArcsec).toFixed(2)}″`, cx, cy + loopR + 34, {
         size: 11, color: '#e6e3d6', align: 'center',
       });
     }
+
+    // Half-shift has its own bracket, anchored at the loop centre.
+    ctx.strokeStyle='#d9c792';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(cx,cy-15);ctx.lineTo(cx+loopR,cy-15);
+    for(const xx of [cx,cx+loopR]){ctx.moveTo(xx,cy-20);ctx.lineTo(xx,cy-10);}ctx.stroke();
+    api.draw.text(ctx,`p = ${pArcsec.toFixed(3)}″`,cx+Math.max(30,loopR/2),cy-26,{size:12,color:'#d9c792',align:'center'});
+    for(const [dx,name] of [[-loopR,'Jan'],[loopR,'Jul']]){ctx.beginPath();ctx.arc(cx+dx,cy,4,0,2*Math.PI);ctx.strokeStyle='#fbfaf5';ctx.stroke();if(loopR>20)api.draw.text(ctx,name,cx+dx,cy+20,{size:11,color:'#fbfaf5',align:'center'});}
 
     // Current position of the nearby star along its yearly loop
     const ang = (monthFloat / 12) * Math.PI * 2;

@@ -1,6 +1,7 @@
 // The Sky explorer: Sun, Earth, Moon, Mumbai's 19.08° N rooftop, ideal tides, Chandrayaan-3 & Aditya-L1.
 import App from './core.js';
 import { fitMissionOrbit, missionPeriodHours } from './mission_orbit.mjs';
+import { phaseDisc } from './phase_shape.mjs';
 
 const { el } = App;
 
@@ -218,6 +219,7 @@ App.explorer('sky', {
 
     let rafId = 0;
     let lastTick = 0;
+    let disposed = false;
 
     const canvasL = el('canvas', { class: 'xp-canvas', width: 460, height: 340 });
     const canvasR = el('canvas', { class: 'xp-canvas', width: 460, height: 340 });
@@ -229,6 +231,15 @@ App.explorer('sky', {
     const statsMount = el('div', { class: 'xp-stats' });
     const readoutMount = el('div', { class: 'xp-readout', 'aria-live': 'polite' });
     const tourMount = el('div', { class: 'xp-tour', hidden: true });
+    const sceneNote=el('p',{class:'explorer-scene-note'});
+    const phaseNames=['New','Waxing crescent','First quarter','Waxing gibbous','Full','Waning gibbous','Third quarter','Waning crescent'];
+    const phaseLinks=el('div',{class:'sky-phase-links',role:'group','aria-label':'Match the numbered orbit position to the Moon phase',hidden:true});
+    const phaseButtons=phaseNames.map((name,i)=>{
+      const shape=phaseDisc(i*45);
+      const art=`<svg viewBox="-24 -24 48 48" width="48" height="48" aria-hidden="true"><circle r="18" fill="#424b48" stroke="var(--ink)"/><path d="${shape.path}" fill="#eadb9c"/></svg>`;
+      return el('button',{type:'button','aria-pressed':'false',onclick:()=>{stopPlay();state.lunarDay=i*SYNODIC_DAYS/8;rebuildControls();updateView(true);}},el('span',{html:art}),el('span',{},`${i+1} · ${name}`));
+    });
+    phaseLinks.append(...phaseButtons);
 
     const TABS = [
       { id: 'seasons', label: 'From space & Mumbai rooftop' },
@@ -557,275 +568,72 @@ App.explorer('sky', {
       const dayLen = dayLengthHours(MUMBAI_LAT, dec);
       const { alt: curAlt } = sunPositionAtHour(MUMBAI_LAT, dec, state.hour);
 
-      headL.replaceChildren(el('b', {}, 'From space: Earth’s orbit & 23.44° tilt'), el('span', {}, `Distance: ${dist.toFixed(1)} million km`));
-      headR.replaceChildren(el('b', {}, 'From a Mumbai rooftop (19.08° N)'), el('span', {}, `Noon Sun: ${noonAlt.toFixed(1)}°`));
+      headL.replaceChildren(el('b', {}, '1 · Sunlight reaches tilted Earth'), el('span', {}, `Distance: ${dist.toFixed(1)} million km`));
+      headR.replaceChildren(el('b', {}, curAlt<0?'2 · Mumbai’s northern night sky':'2 · The same beam at Mumbai noon'), el('span', {}, curAlt<0?`${fmtHours(state.hour)} solar time · Sun below horizon`:`Noon Sun: ${noonAlt.toFixed(1)}°`));
 
-      // LEFT CANVAS: Orbit + Tilted Earth closeup
+      // Two large linked views replace the cramped orbit/tilt/dome mini-panels.
       {
-        const { ctx, W, H } = prepCanvas(canvasL);
-        ctx.fillStyle = col.plate;
-        ctx.fillRect(0, 0, W, H);
-
-        // Top-left: Orbit around Sun
-        const ox = W * 0.36, oy = H * 0.44;
-        const rx = Math.min(W, H) * 0.28, ry = rx * 0.56;
-
-        ctx.strokeStyle = col.rule;
-        ctx.lineWidth = 1.4;
-        ctx.setLineDash([4, 4]);
-        ctx.beginPath();
-        ctx.ellipse(ox, oy, rx, ry, 0, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        // Sun at focus
-        ctx.fillStyle = col.neutron;
-        ctx.beginPath();
-        ctx.arc(ox + 4, oy, 11, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.font = `600 10.5px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.ink2;
-        ctx.textAlign = 'center';
-        ctx.fillText('Sun', ox + 4, oy + 23);
-
-        // Season labels around orbit
-        ctx.fillStyle = col.muted;
-        ctx.font = `500 10px "Lexend", system-ui, sans-serif`;
-        ctx.fillText('Jun (152.1M km)', ox - rx - 4, oy - ry * 0.65);
-        ctx.fillText('Dec (147.1M km)', ox + rx + 4, oy - ry * 0.65);
-        ctx.fillText('Mar', ox, oy - ry - 7);
-        ctx.fillText('Sep', ox, oy + ry + 13);
-
-        // Earth position on orbit (Jun at left: angle = pi, Dec at right: angle = 0)
-        const orbAngle = ((state.doy - 355) / 365) * Math.PI * 2;
-        const ex = ox + Math.cos(orbAngle) * rx;
-        const ey = oy - Math.sin(orbAngle) * ry;
-
-        // Earth tilted axis in orbit (always leaning up-right by 23.44 deg ->Towards Sun in June when Earth is at left!)
-        const tiltRad = OBLIQUITY * Math.PI / 180;
-        const axLen = 18;
-        ctx.strokeStyle = col.proton;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(ex - Math.sin(tiltRad) * axLen, ey + Math.cos(tiltRad) * axLen);
-        ctx.lineTo(ex + Math.sin(tiltRad) * axLen, ey - Math.cos(tiltRad) * axLen);
-        ctx.stroke();
-
-        ctx.fillStyle = col.electron;
-        ctx.beginPath();
-        ctx.arc(ex, ey, 8, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Inset on right of Left Canvas: Tilted Earth cross-section in sunlight
-        const ix = W * 0.81, iy = H * 0.45, ir = Math.min(W, H) * 0.17;
-        ctx.strokeStyle = col.rule;
-        ctx.lineWidth = 1;
-        ctx.strokeRect(W * 0.65, 14, W * 0.32, H - 52);
-
-        ctx.font = `700 10px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.ink2;
-        ctx.fillText('23.44° Tilt Closeup', ix, 29);
-
-        // Parallel sunbeams from left of inset
-        ctx.strokeStyle = col.neutron;
-        ctx.lineWidth = 1.2;
-        for (let dy = -ir * 0.8; dy <= ir * 0.8; dy += ir * 0.4) {
-          ctx.beginPath();
-          ctx.moveTo(W * 0.67, iy + dy);
-          ctx.lineTo(ix - ir - 4, iy + dy);
-          ctx.stroke();
+        const {ctx,W,H}=prepCanvas(canvasL);ctx.fillStyle=col.plate;ctx.fillRect(0,0,W,H);
+        const text=(v,x,y,align='center',colour=col.ink,size=13)=>{ctx.fillStyle=colour;ctx.font=`500 ${size}px Lexend,system-ui`;ctx.textAlign=align;ctx.fillText(v,x,y);};
+        const cx=W*.5,cy=H*.46,rx=Math.min(W*.31,H*.35),ry=rx*.58;
+        ctx.strokeStyle=col.rule;ctx.lineWidth=1.5;ctx.setLineDash([4,4]);ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
+        ctx.fillStyle=col.neutron;ctx.beginPath();ctx.arc(cx,cy,15,0,Math.PI*2);ctx.fill();text('Sun',cx,cy+32);
+        text('June',cx-rx,cy-ry-18);text('December',cx+rx,cy-ry-18);text('March',cx,cy-ry-18);text('September',cx,cy+ry+35);
+        const a=((state.doy-355)/365)*Math.PI*2,ex=cx+Math.cos(a)*rx,ey=cy-Math.sin(a)*ry;
+        const tilt=OBLIQUITY*Math.PI/180;
+        for(const angle of [0,Math.PI/2,Math.PI,3*Math.PI/2]){
+          const x=cx+Math.cos(angle)*rx,y=cy-Math.sin(angle)*ry;ctx.fillStyle=col.sheet;ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fill();ctx.strokeStyle=col.electron;ctx.stroke();ctx.strokeStyle=col.proton;ctx.beginPath();ctx.moveTo(x-Math.sin(tilt)*19,y+Math.cos(tilt)*19);ctx.lineTo(x+Math.sin(tilt)*19,y-Math.cos(tilt)*19);ctx.stroke();
         }
-
-        // Earth globe in inset, with effective tilt relative to sunbeam = dec
-        const effTilt = (dec * Math.PI) / 180;
-        ctx.fillStyle = col.electron;
-        ctx.globalAlpha = 0.18;
-        ctx.beginPath();
-        ctx.arc(ix, iy, ir, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.strokeStyle = col.electron;
-        ctx.lineWidth = 1.6;
-        ctx.stroke();
-
-        // Night half (right half in this sun-from-left diagram)
-        ctx.fillStyle = col.ink;
-        ctx.globalAlpha = 0.22;
-        ctx.beginPath();
-        ctx.arc(ix, iy, ir, -Math.PI / 2, Math.PI / 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-
-        // Spin axis tilted by effTilt toward/away from Sun
-        ctx.strokeStyle = col.proton;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(ix + Math.sin(effTilt) * (ir + 12), iy + Math.cos(effTilt) * (ir + 12));
-        ctx.lineTo(ix - Math.sin(effTilt) * (ir + 12), iy - Math.cos(effTilt) * (ir + 12));
-        ctx.stroke();
-        ctx.fillStyle = col.proton;
-        ctx.font = `700 9.5px "Lexend", system-ui, sans-serif`;
-        ctx.fillText('N', ix - Math.sin(effTilt) * (ir + 19), iy - Math.cos(effTilt) * (ir + 16));
-
-        // Equator & Mumbai 19.08 N line
-        ctx.strokeStyle = col.green;
-        ctx.lineWidth = 1.3;
-        ctx.beginPath();
-        ctx.moveTo(ix - Math.cos(effTilt) * ir, iy + Math.sin(effTilt) * ir);
-        ctx.lineTo(ix + Math.cos(effTilt) * ir, iy - Math.sin(effTilt) * ir);
-        ctx.stroke();
-
-        ctx.fillStyle = col.ink2;
-        ctx.font = `500 10.5px "Lexend", system-ui, sans-serif`;
-        ctx.textAlign = 'left';
-        const sunPct = ((149.598 / dist) ** 2 - 1) * 100;
-        ctx.fillText(
-          `Sunlight at Earth: ${sunPct >= 0 ? '+' : ''}${sunPct.toFixed(1)}% vs average (distance changes only ~3.4%)`,
-          12, H - 14
-        );
-
+        ctx.strokeStyle=col.neutron;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(ex,ey);ctx.stroke();
+        ctx.fillStyle=col.electron;ctx.beginPath();ctx.arc(ex,ey,11,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle=col.proton;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ex-Math.sin(tilt)*21,ey+Math.cos(tilt)*21);ctx.lineTo(ex+Math.sin(tilt)*21,ey-Math.cos(tilt)*21);ctx.stroke();
+        text('1',ex,ey-29,'center',col.neutron,16);text('Axis keeps the same direction',W/2,H-31,'center',col.proton,13);text('Orbit overview: sizes enlarged',W/2,H-12,'center',col.muted,12);
         ctx.restore();
       }
-
-      // RIGHT CANVAS: Mumbai 19.08 N Sky Dome + Torch/Beam patch
       {
-        const { ctx, W, H } = prepCanvas(canvasR);
-        ctx.fillStyle = col.plate;
-        ctx.fillRect(0, 0, W, H);
-
-        const horizonY = H * 0.72;
-        const cx = W * 0.44;
-        const domeR = Math.min(W * 0.39, horizonY - 26);
-
-        // Night sky wash if Sun is below horizon
-        if (curAlt < 0) {
-          ctx.fillStyle = col.ink;
-          ctx.globalAlpha = 0.14;
-          ctx.beginPath();
-          ctx.arc(cx, horizonY, domeR, Math.PI, 0);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-
-          // Star trails around North Celestial Pole (19.08 deg above N horizon!)
-          const ncpAngle = Math.PI - (MUMBAI_LAT * Math.PI / 180);
-          const ncpX = cx + Math.cos(ncpAngle) * domeR * 0.65;
-          const ncpY = horizonY - Math.sin(Math.PI - ncpAngle) * domeR * 0.65;
-          ctx.strokeStyle = col.electron;
-          ctx.lineWidth = 1;
-          const arcSpan = (15 * Math.PI / 180) * 2.5;
-          const rotOff = (state.hour / 24) * Math.PI * 2;
-          [14, 26, 40].forEach((sr, idx) => {
-            ctx.beginPath();
-            ctx.arc(ncpX, ncpY, sr, rotOff + idx, rotOff + idx + arcSpan);
-            ctx.stroke();
-          });
-          ctx.fillStyle = col.electron;
-          ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.fillText('Pole star (19.1° N, trails 15°/h)', ncpX - 20, ncpY - 18);
+        const {ctx,W,H}=prepCanvas(canvasR);ctx.fillStyle=col.plate;ctx.fillRect(0,0,W,H);
+        const text=(v,x,y,align='center',colour=col.ink,size=13)=>{ctx.fillStyle=colour;ctx.font=`500 ${size}px Lexend,system-ui`;ctx.textAlign=align;ctx.fillText(v,x,y);};
+        if(curAlt<0){
+          const horizon=H*.78,poleX=W*.5,poleY=horizon-Math.sin(MUMBAI_LAT*Math.PI/180)*H*.6;
+          text('Looking north · Mumbai',W/2,25,'center',col.ink,13);
+          text('Each arc traces one hour (15°)',W/2,46,'center',col.electron,12);
+          ctx.save();ctx.beginPath();ctx.rect(15,56,W-30,horizon-56);ctx.clip();
+          ctx.strokeStyle=col.electron;ctx.lineWidth=2;
+          for(let i=0;i<18;i++){
+            const r=22+(i%6)*19,a=i*2.39996+state.hour*Math.PI/12;
+            ctx.globalAlpha=.45+(i%3)*.2;ctx.beginPath();ctx.arc(poleX,poleY,r,a-Math.PI/12,a);ctx.stroke();
+            ctx.fillStyle=col.electron;ctx.beginPath();ctx.arc(poleX+r*Math.cos(a),poleY+r*Math.sin(a),2,0,Math.PI*2);ctx.fill();
+          }
+          ctx.globalAlpha=1;ctx.restore();
+          ctx.strokeStyle=col.ink;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(20,horizon);ctx.lineTo(W-20,horizon);ctx.stroke();
+          ctx.fillStyle=col.proton;ctx.beginPath();ctx.arc(poleX,poleY,3,0,Math.PI*2);ctx.fill();
+          text('North celestial pole',poleX,poleY-13,'center',col.proton,12);
+          text('19.08° above the north horizon',W/2,horizon+23,'center',col.muted,12);
+          text('Change the clock to turn the trails',W/2,H-16,'center',col.muted,12);
+        }else{
+        const roofY=H*.6,gx=W*.47,stick=37;
+        // A local meridian section at noon: geography and compass direction stay explicit.
+        const zenith=W*.5,sunRad=noonAlt*Math.PI/180,reach=Math.min(W*.38,H*.31),sx=zenith+(leansNorth?-1:1)*Math.cos(sunRad)*reach,sy=roofY-Math.sin(sunRad)*reach;
+        ctx.fillStyle=col.neutron;ctx.beginPath();ctx.arc(sx,sy,11,0,Math.PI*2);ctx.fill();
+        text('2  noon sunlight',W/2,25,'center',col.neutron,13);
+        text(`${fmtHours(state.hour)}: Sun ${curAlt.toFixed(0)}° high`,W/2,46,'center',col.electron,12);
+        ctx.fillStyle=col.sheet;ctx.fillRect(22,roofY,W-44,40);ctx.strokeStyle=col.ink;ctx.strokeRect(22,roofY,W-44,40);
+        for(let x=36;x<W-30;x+=28){ctx.strokeStyle=col.rule;ctx.beginPath();ctx.moveTo(x,roofY+13);ctx.lineTo(x+10,roofY+40);ctx.stroke();}
+        ctx.strokeStyle=col.ink;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(gx,roofY);ctx.lineTo(gx,roofY-stick);ctx.stroke();
+        const shadowDirection=leansNorth?1:-1,shadow=stick/Math.tan(sunRad);
+        ctx.strokeStyle=col.proton;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(gx,roofY+2);ctx.lineTo(gx+shadowDirection*shadow,roofY+2);ctx.stroke();
+        const dx=gx-sx,dy=roofY-sy,len=Math.hypot(dx,dy),ux=dx/len,uy=dy/len;
+        ctx.strokeStyle=col.neutron;ctx.lineWidth=2;for(const off of [-10,0,10]){ctx.beginPath();ctx.moveTo(sx+off*uy,sy-off*ux);ctx.lineTo(gx+off*uy,roofY-off*ux);ctx.stroke();}
+        text('North',24,roofY+58,'left',col.muted,12);text('South',W-24,roofY+58,'right',col.muted,12);
+        // Equal incoming beam width, countable ground footprint. Not a second size scale.
+        const spread=1/Math.sin(sunRad),patch=62*spread,px=(W-patch)/2,py=H-44;
+        ctx.fillStyle=col.neutron;ctx.globalAlpha=.2;ctx.fillRect(px,py,patch,20);ctx.globalAlpha=1;ctx.strokeStyle=col.neutron;ctx.strokeRect(px,py,patch,20);
+        for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(px+i*patch/4,py);ctx.lineTo(px+i*patch/4,py+20);ctx.stroke();}
+        text(`1 m beam → ${spread.toFixed(2)} m on ground`,W/2,H-10,'center',col.ink,13);
         }
-
-        // Sky dome arc (South on left, Zenith at top, North on right)
-        ctx.strokeStyle = col.rule;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(cx, horizonY, domeR, Math.PI, 0);
-        ctx.stroke();
-
-        // Ground line
-        ctx.strokeStyle = col.ink;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(cx - domeR - 14, horizonY);
-        ctx.lineTo(cx + domeR + 14, horizonY);
-        ctx.stroke();
-
-        // Zenith tick
-        ctx.strokeStyle = col.muted;
-        ctx.setLineDash([3, 3]);
-        ctx.beginPath();
-        ctx.moveTo(cx, horizonY);
-        ctx.lineTo(cx, horizonY - domeR);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        ctx.font = `700 10.5px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.ink2;
-        ctx.textAlign = 'center';
-        ctx.fillText('South', cx - domeR, horizonY + 16);
-        ctx.fillText('North', cx + domeR, horizonY + 16);
-        ctx.fillText('Zenith (90°)', cx, horizonY - domeR - 7);
-
-        // Noon Sun position on the N-Z-S meridian arc
-        // Angle from South horizon (left): if leaning South, angle is noonAlt; if leaning North, 180 - noonAlt
-        const meridianDeg = leansNorth ? (180 - noonAlt) : noonAlt;
-        const mRad = meridianDeg * Math.PI / 180;
-        const noonX = cx - Math.cos(mRad) * domeR;
-        const noonY = horizonY - Math.sin(mRad) * domeR;
-
-        // Noon sunbeam hitting Mumbai rooftop
-        ctx.strokeStyle = col.neutron;
-        ctx.lineWidth = 2.2;
-        ctx.beginPath();
-        ctx.moveTo(noonX, noonY);
-        ctx.lineTo(cx, horizonY);
-        ctx.stroke();
-
-        // Current time-of-day Sun marker along path
-        const curShownAlt = Math.max(0, curAlt);
-        const curDeg = leansNorth ? (180 - curShownAlt) : curShownAlt;
-        const curRad = curDeg * Math.PI / 180;
-        const sunX = cx - Math.cos(curRad) * domeR * (curAlt >= 0 ? 1 : 0.85);
-        const sunY = curAlt >= 0 ? horizonY - Math.sin(curRad) * domeR : horizonY + 18;
-
-        // Noon Sun ghost ring
-        ctx.strokeStyle = col.neutron;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(noonX, noonY, 7, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Live Sun disc
-        ctx.fillStyle = curAlt >= 0 ? col.neutron : col.muted;
-        ctx.beginPath();
-        ctx.arc(sunX, sunY, 8.5, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Stick at cx, horizonY casting a noon shadow
-        const stickH = 28;
-        ctx.strokeStyle = col.ink;
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(cx, horizonY);
-        ctx.lineTo(cx, horizonY - stickH);
-        ctx.stroke();
-
-        const shadowLen = stickH / Math.tan(noonAlt * Math.PI / 180);
-        const shadowDir = leansNorth ? -1 : 1; // Sun in North -> shadow points South (left)
-        ctx.strokeStyle = col.proton;
-        ctx.lineWidth = 3.5;
-        ctx.beginPath();
-        ctx.moveTo(cx, horizonY + 2);
-        ctx.lineTo(cx + shadowDir * shadowLen, horizonY + 2);
-        ctx.stroke();
-
-        // Beam spread box on right side
-        const patchW = 1 / Math.sin(noonAlt * Math.PI / 180);
-        ctx.fillStyle = col.ink;
-        ctx.font = `700 11px "Lexend", system-ui, sans-serif`;
-        ctx.textAlign = 'left';
-        ctx.fillText(`1.00 m beam spreads over ${patchW.toFixed(2)} m`, 14, H - 30);
-        ctx.font = `400 10.5px "Lexend", system-ui, sans-serif`;
-        ctx.fillStyle = col.muted;
-        ctx.fillText(
-          noonAlt > 89.2
-            ? 'Zero-shadow day! The noon Sun stands straight overhead (90°).'
-            : `Noon shadow points ${leansNorth ? 'South (Sun 4° N of zenith)' : 'North'} · Day length ${dayLen.toFixed(1)} h`,
-          14, H - 13
-        );
-
         ctx.restore();
       }
+      sceneNote.textContent=curAlt<0?'The northern sky rotates around a pole 19.08° above Mumbai’s horizon. Each blue arc traces one hour, or approximately 15°. Moving the clock rotates all the arcs together. Trail radii and star locations are schematic. The space view keeps the selected date.':`Follow the ochre light in views 1 and 2. At noon it reaches Mumbai at ${noonAlt.toFixed(1)}°, lighting ${ (1/Math.sin(noonAlt*Math.PI/180)).toFixed(2)} m of ground for a 1 m-wide beam. The rooftop is a north–south section; the Sun is ${leansNorth?'north':'south'} of zenith. The red line is the stick’s shadow. Sizes and the orbit perspective are schematic.`;
 
       // Stats & Readout
       const patchW = 1 / Math.sin(noonAlt * Math.PI / 180);
@@ -924,7 +732,7 @@ App.explorer('sky', {
           ctx.stroke();
         }
         ctx.fillStyle = col.neutron;
-        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.font = `600 11.5px "Lexend", system-ui, sans-serif`;
         ctx.textAlign = 'left';
         ctx.fillText('Sunlight', 8, cy - orbR * 0.92);
 
@@ -978,6 +786,13 @@ App.explorer('sky', {
         ctx.arc(cx, cy, orbR, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
+
+        // Match orbit positions to the observed phase sequence, without confusing shadow with night.
+        for(let k=0;k<8;k++){
+          const a=Math.PI-k*Math.PI/4,x=cx+Math.cos(a)*orbR,y=cy-Math.sin(a)*orbR;
+          ctx.fillStyle=col.plate;ctx.strokeStyle=col.rule;ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fill();ctx.stroke();
+          ctx.fillStyle=col.ink;ctx.font='600 12px Lexend,system-ui';ctx.textAlign='center';ctx.fillText(String(k+1),x+Math.cos(a)*15,y-Math.sin(a)*15+4);
+        }
 
         // Moon position (New Moon at left = angle pi, facing Sun)
         const mAngle = Math.PI - phaseAngle;
@@ -1042,7 +857,7 @@ App.explorer('sky', {
         ctx.arc(sideMoonX, sideMoonY, 4.5, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
+        ctx.font = `600 12px "Lexend", system-ui, sans-serif`;
         ctx.fillStyle = col.ink2;
         ctx.textAlign = 'left';
         ctx.fillText(`Side view (5.14° tilt): ${eclipseState}`, 16, H - 10);
@@ -1100,13 +915,13 @@ App.explorer('sky', {
         ctx.stroke();
 
         // Labels for Spring / Neap
-        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.font = `600 11.5px "Lexend", system-ui, sans-serif`;
         ctx.fillStyle = col.muted;
         ctx.textAlign = 'center';
-        ctx.fillText('New (Spring)', padL + 24, midY + 14);
-        ctx.fillText('1st Q (Neap)', padL + plotW * 0.25, midY + 14);
-        ctx.fillText('Full (Spring)', padL + plotW * 0.5, midY + 14);
-        ctx.fillText('3rd Q (Neap)', padL + plotW * 0.75, midY + 14);
+        ctx.fillText('New', padL + 24, midY + 14);
+        ctx.fillText('1st Q', padL + plotW * 0.25, midY + 14);
+        ctx.fillText('Full', padL + plotW * 0.5, midY + 14);
+        ctx.fillText('3rd Q', padL + plotW * 0.75, midY + 14);
 
         // Bottom half: relative water level over one ideal lunar day
         const dTop = midY + 34;
@@ -1124,7 +939,7 @@ App.explorer('sky', {
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.fillStyle = col.neutron;
-        ctx.font = `600 9.5px "Lexend", system-ui, sans-serif`;
+        ctx.font = `600 11.5px "Lexend", system-ui, sans-serif`;
         ctx.textAlign = 'right';
         ctx.fillText('Mean water level', padL + plotW - 4, dMid - 4);
 
@@ -1141,7 +956,7 @@ App.explorer('sky', {
         ctx.stroke();
 
         ctx.fillStyle = col.ink2;
-        ctx.font = `600 10px "Lexend", system-ui, sans-serif`;
+        ctx.font = `600 12px "Lexend", system-ui, sans-serif`;
         ctx.textAlign = 'left';
         ctx.fillText(
           `Model highs: ~12 h 25 min apart`,
@@ -1151,6 +966,7 @@ App.explorer('sky', {
         ctx.restore();
       }
 
+      sceneNote.textContent=`Numbered orbit positions: 1 new → 2 waxing crescent → 3 first quarter → 4 waxing gibbous → 5 full → 6 waning gibbous → 7 third quarter → 8 waning crescent. Current position ${Math.round((state.lunarDay/SYNODIC_DAYS)*8)%8+1}. Each Moon has a sunlit half and its own night; the grey cone behind Earth is Earth’s shadow, a different thing. The shape seen from Mumbai is an idealised orientation, not the exact sky rotation.`;
       const tideStrength = state.includeSunTide
         ? (1 + 0.46 * Math.cos(2 * phaseAngle))
         : 1.0;
@@ -1202,6 +1018,7 @@ App.explorer('sky', {
     }
 
     function drawMissionsMode(col) {
+      sceneNote.textContent=state.mission==='l1'?'The halo is an oblique view of a three-dimensional path. The dotted projection shows its depth relative to the Sun–Earth line. L1 is a location, not a massive object; the orbit shape is schematic.':'Each panel has its own labelled distance scale. The selected Earth or lunar orbit retains its actual eccentricity and places the central body at a focus.';
       if (state.mission === 'ch3') {
         const st = CH3_STEPS[state.ch3Idx];
         const earthStep = CH3_STEPS[Math.min(state.ch3Idx, 4)];
@@ -1410,15 +1227,12 @@ App.explorer('sky', {
           ctx.fill();
           ctx.fillText('L1 point', cx, cy + 15);
 
-          // Halo loop around L1
-          ctx.strokeStyle = col.proton;
-          ctx.lineWidth = 2.2;
-          ctx.beginPath();
-          ctx.ellipse(cx, cy, rx, ry, -0.18, 0, Math.PI * 2);
-          ctx.stroke();
-
-          const ax = cx + Math.cos(haloAngle) * rx * Math.cos(-0.18) - Math.sin(haloAngle) * ry * Math.sin(-0.18);
-          const ay = cy + Math.cos(haloAngle) * rx * Math.sin(-0.18) + Math.sin(haloAngle) * ry * Math.cos(-0.18);
+          // Oblique 3D schematic: y and z motions project into different screen axes.
+          const haloPoint=t=>({x:cx+Math.cos(t)*rx+Math.sin(t)*rx*.17,y:cy+Math.sin(t)*ry*.52-Math.sin(t*2)*ry*.6});
+          ctx.strokeStyle=col.rule;ctx.setLineDash([4,4]);ctx.beginPath();ctx.ellipse(cx,cy,rx,ry*.52,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
+          ctx.strokeStyle=col.proton;ctx.lineWidth=2.2;ctx.beginPath();for(let i=0;i<=120;i++){const q=haloPoint(i/120*Math.PI*2);i?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y);}ctx.stroke();
+          const position=haloPoint(haloAngle),ax=position.x,ay=position.y;
+          ctx.strokeStyle=col.muted;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax,cy+Math.sin(haloAngle)*ry*.52);ctx.stroke();ctx.setLineDash([]);
 
           ctx.fillStyle = col.proton;
           ctx.beginPath();
@@ -1429,7 +1243,7 @@ App.explorer('sky', {
 
           ctx.textAlign = 'left';
           ctx.fillStyle = col.ink2;
-          ctx.fillText('177.86-day halo loop keeps the craft out of Earth’s shadow all year', 14, 24);
+          ctx.fillText('Oblique halo view · 177.86 days per loop', 14, 24);
 
           ctx.restore();
         }
@@ -1466,6 +1280,8 @@ App.explorer('sky', {
 
     function updateView(syncPresets) {
       const mode = activeMode();
+      phaseLinks.hidden=mode!=='moon';
+      phaseButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===Math.round(state.lunarDay/SYNODIC_DAYS*8)%8)));
       const col = readPalette();
 
       if (mode === 'seasons') {
@@ -1509,7 +1325,7 @@ App.explorer('sky', {
         el('div', { class: 'xp-pane' }, headL, el('div', { class: 'xp-canvas-wrap' }, canvasL)),
         el('div', { class: 'xp-pane' }, headR, el('div', { class: 'xp-canvas-wrap' }, canvasR))
       ),
-      controlsMount,
+      phaseLinks,sceneNote, controlsMount,
       statsMount,
       readoutMount,
       tourMount
@@ -1520,6 +1336,11 @@ App.explorer('sky', {
     updateView(true);
 
     let rTimer;
-    window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(() => updateView(false), 80); });
+    const resize=()=>{clearTimeout(rTimer);rTimer=setTimeout(()=>{if(!disposed)updateView(false);},80);};
+    const hide=()=>{if(document.hidden||stage.closest('[data-page-off]'))stopPlay();};
+    window.addEventListener('resize',resize);document.addEventListener('visibilitychange',hide);
+    const themeObserver=new MutationObserver(()=>{if(!disposed)updateView(false);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    const pageObserver=new MutationObserver(hide);const section=stage.closest('section');if(section)pageObserver.observe(section,{attributes:true,attributeFilter:['data-page-off']});
+    return ()=>{disposed=true;stopPlay();clearTimeout(rTimer);window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',hide);themeObserver.disconnect();pageObserver.disconnect();};
   },
 });
