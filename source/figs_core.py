@@ -2,7 +2,9 @@
 
 Every figure is an inline SVG. Colours come from CSS classes (defined in book.css) so the
 figures follow light/dark themes and print. Rules:
-  * Never rely on colour alone: every atom carries its symbol, every particle its sign.
+  * Never rely on colour alone: every force carries its label, every atom its symbol, every particle its sign.
+  * Physics helpers (Fig methods): force, vector, axis, ray, wave, spring, ground, mass_block; plus arrow,
+    curved_arrow, bracket_label, axes, and the particle helpers atom, ion, nucleon, bond, molecule.
   * Text in figures uses class "t" (sans, ink) or "t m" (muted) or "t s" (serif, for formulas).
   * Sizes are in viewBox units; figures are drawn at a nominal width of 640 (full text column)
     or 1000 (wide, spans into the margin on large screens).
@@ -152,6 +154,105 @@ class Fig:
             self.text(x0 - 12, y0 - h - 12, ylabel, 't m', 'start', 13)
         return self
 
+    # ---------------------------------------------------------- physics helpers
+    def _tip_label(self, x2, y2, dx, dy, label, cls, size, gap=10):
+        n = math.hypot(dx, dy) or 1
+        ux, uy = dx / n, dy / n
+        anchor = 'start' if ux > .35 else 'end' if ux < -.35 else 'middle'
+        lx, ly = x2 + ux * gap, y2 + uy * gap + size * .35
+        if anchor == 'middle':
+            ly = y2 + (gap + size * .8 if uy > 0 else -gap)
+        return self.text(lx, ly, label, cls, anchor, size)
+
+    def force(self, x, y, dx, dy, label='', size=14):
+        """A force: a bold arrow from its point of action (x, y) along (dx, dy) (viewBox units, y down; length shows size),
+        labelled at the tip, e.g. f.force(200, 120, 0, 80, 'weight 9.8 N')."""
+        self.add(f'<line x1="{r_(x)}" y1="{r_(y)}" x2="{r_(x + dx)}" y2="{r_(y + dy)}" class="ar ar-force" marker-end="url(#ah-force)"/>')
+        if label:
+            self._tip_label(x + dx, y + dy, dx, dy, label, 't p b', size)
+        return self
+
+    def vector(self, x, y, dx, dy, label='', size=14, kind='vector', dash=False):
+        """Any other vector (velocity, displacement, acceleration, field): a thinner arrow in the vector colour.
+        kind='vector' (blue) or 'muted'; label at the tip, e.g. f.vector(80, 60, 120, 0, 'v = 3 m/s')."""
+        da = ' stroke-dasharray="6 4"' if dash else ''
+        self.add(f'<line x1="{r_(x)}" y1="{r_(y)}" x2="{r_(x + dx)}" y2="{r_(y + dy)}" class="ar ar-{kind}" marker-end="url(#ah-{kind})"{da}/>')
+        if label:
+            self._tip_label(x + dx, y + dy, dx, dy, label, 't e' if kind == 'vector' else 't m', size)
+        return self
+
+    def axis(self, x0, y0, w, h, xlabel='', ylabel='', ticks=None, size=13):
+        """Graph axes with the origin at (x0, y0) (bottom left), arrowheads on both axes, axis labels in words with units
+        (e.g. 'time (s)'). ticks = {'x': [(offset, '1'), ...], 'y': [(offset, '10'), ...]}: offsets in viewBox units
+        from the origin along each axis."""
+        self.add(f'<line x1="{r_(x0)}" y1="{r_(y0)}" x2="{r_(x0 + w)}" y2="{r_(y0)}" class="ax" marker-end="url(#ah-ink)"/>')
+        self.add(f'<line x1="{r_(x0)}" y1="{r_(y0)}" x2="{r_(x0)}" y2="{r_(y0 - h)}" class="ax" marker-end="url(#ah-ink)"/>')
+        for off, lab in (ticks or {}).get('x', []):
+            self.line(x0 + off, y0, x0 + off, y0 + 5, 'ax')
+            self.text(x0 + off, y0 + 7 + size, lab, 't m', 'middle', max(12, size - 1))
+        for off, lab in (ticks or {}).get('y', []):
+            self.line(x0 - 5, y0 - off, x0, y0 - off, 'ax')
+            self.text(x0 - 9, y0 - off + size * .35, lab, 't m', 'end', max(12, size - 1))
+        if xlabel:
+            self.text(x0 + w, y0 + (2 * size + 12 if (ticks or {}).get('x') else size + 14), xlabel, 't m', 'end', size)
+        if ylabel:
+            self.text(x0 + 8, y0 - h + size * .35, ylabel, 't m', 'start', size)
+        return self
+
+    def ray(self, x1, y1, x2, y2, chevrons=1, cls='ray'):
+        """A light ray from (x1, y1) to (x2, y2) with chevrons pointing the way the light travels."""
+        self.add(f'<line x1="{r_(x1)}" y1="{r_(y1)}" x2="{r_(x2)}" y2="{r_(y2)}" class="{cls}"/>')
+        dx, dy = x2 - x1, y2 - y1
+        n = math.hypot(dx, dy) or 1
+        ux, uy = dx / n, dy / n
+        for k in range(1, chevrons + 1):
+            cx, cy = x1 + dx * k / (chevrons + 1), y1 + dy * k / (chevrons + 1)
+            a, b = 7, 5   # length back along the ray, half-width
+            p1 = (cx - ux * a - uy * b, cy - uy * a + ux * b)
+            p2 = (cx - ux * a + uy * b, cy - uy * a - ux * b)
+            self.add(f'<path d="M{r_(p1[0])},{r_(p1[1])} L{r_(cx)},{r_(cy)} L{r_(p2[0])},{r_(p2[1])}" class="ray-ch"/>')
+        return self
+
+    def wave(self, x0, y0, w, amp, wavelength, phase=0.0, cls='ln e', step=2.0):
+        """A sine wave along y = y0 from x0 for a width w: amplitude amp, wavelength in viewBox units, phase in radians."""
+        pts, x = [], 0.0
+        while x <= w + 1e-6:
+            pts.append((x0 + x, y0 - amp * math.sin(2 * math.pi * x / wavelength + phase)))
+            x += step
+        d = 'M' + ' L'.join(f'{r_(round(px, 1))},{r_(round(py, 1))}' for px, py in pts)
+        return self.path(d, cls)
+
+    def spring(self, x1, y1, x2, y2, coils=8, width=10, cls='ln'):
+        """A coil spring between two points (straight leads at each end, a zigzag of `coils` turns between)."""
+        dx, dy = x2 - x1, y2 - y1
+        n = math.hypot(dx, dy) or 1
+        ux, uy = dx / n, dy / n
+        lead = min(12, n * .12)
+        pts = [(x1, y1), (x1 + ux * lead, y1 + uy * lead)]
+        body = n - 2 * lead
+        for k in range(1, 2 * coils):
+            t = lead + body * k / (2 * coils)
+            s = width if k % 2 else -width
+            pts.append((x1 + ux * t - uy * s, y1 + uy * t + ux * s))
+        pts += [(x2 - ux * lead, y2 - uy * lead), (x2, y2)]
+        return self.path('M' + ' L'.join(f'{r_(round(px, 1))},{r_(round(py, 1))}' for px, py in pts), cls)
+
+    def ground(self, x0, y, w, hatch=10, depth=8, cls='ln m'):
+        """A surface (floor, table top, ground) at height y from x0 to x0 + w, hatched underneath."""
+        self.line(x0, y, x0 + w, y, 'ln')
+        x = x0 + 2
+        while x < x0 + w:
+            self.line(x, y + depth, min(x + depth, x0 + w), y, cls)
+            x += hatch
+        return self
+
+    def mass_block(self, x, y, w, h, label='', size=14):
+        """A block (a crate, a trolley body, a mass) with its label in the middle; (x, y) is the top-left corner."""
+        self.rect(x, y, w, h, 'block', rx=3)
+        if label:
+            self.text(x + w / 2, y + h / 2 + size * .35, label, 't b', 'middle', size)
+        return self
+
 
 ATOM_R = {'H': 10, 'C': 15, 'N': 15, 'O': 15.5, 'Cl': 18, 'Na': 17, 'S': 17}
 
@@ -227,7 +328,7 @@ DEFS = '''<svg width="0" height="0" style="position:absolute" aria-hidden="true"
 ''' + ''.join(
     f'<marker id="ah-{k}" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
     f'<path d="M0,0.6 L9.4,5 L0,9.4 L2.4,5 Z" class="ah ah-{k}"/></marker>'
-    for k in ('ink', 'muted', 'proton', 'electron', 'neutron', 'green')) + '''
+    for k in ('ink', 'muted', 'proton', 'electron', 'neutron', 'green', 'force', 'vector')) + '''
 <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0 L0 0 0 16" class="gridln"/></pattern>
 </defs></svg>'''
 

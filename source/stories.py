@@ -3,17 +3,18 @@
 Each story lives in src/stories/<id>.md:
 
     ---
-    id: mole
-    title: The mole, step by step
-    year: 1811 to 2019            (shown above the title)
-    sort: 1811                    (number used to place it on the timeline)
-    people: Amedeo Avogadro, Stanislao Cannizzaro, Jean Perrin
-    group: quantity               (atoms | matter | change | quantity | electrons | carbon | tools)
-    terms: mole, moles, molar mass    (words in the main text that link here; longest match wins)
+    id: cavendish-shed
+    title: Weighing the world from a garden shed
+    year: 1798                    (shown above the title)
+    sort: 1798                    (number used to place it on the timeline)
+    people: Henry Cavendish, John Michell
+    group: sky                    (people | tales | motion | fluids | sky | energy | waves | fields | atoms | tools)
+    terms: torsion balance, Cavendish experiment   (words in the main text that link here; longest match wins)
     blurb: One sentence for the timeline and the index.
     ---
     Markdown body, with the same blocks as chapters (:::fig, :::live, :::work, :::careful, :::home, :::scene ...).
 
+Life stories (group: people, ids p-<surname>) also carry name, born, died and role; they become the cast cards.
 The build links the first mention of any term in each section of the book (and in other stories) to the story.
 """
 from __future__ import annotations
@@ -21,15 +22,15 @@ import glob, os, re
 from html import escape
 
 GROUPS = [
-    ('table', 'The periodic table, inside out'),
-    ('people', 'The cast: lives of the chemists'),
+    ('people', 'The cast: lives of the physicists'),
     ('tales', 'True stories that sound made up'),
-    ('atoms', 'Inside the atom'),
-    ('matter', 'Elements, bonds and the states of matter'),
-    ('change', 'Reactions, energy and balance'),
-    ('quantity', 'Counting the uncountable'),
-    ('electrons', 'Acids, electricity and batteries'),
-    ('carbon', 'Carbon, life and the planet'),
+    ('motion', 'Motion and force'),
+    ('fluids', 'Pressure and floating'),
+    ('sky', 'Gravity and the sky'),
+    ('energy', 'Energy and heat'),
+    ('waves', 'Sound and light'),
+    ('fields', 'Electricity and magnetism'),
+    ('atoms', 'Atoms, stars and the universe'),
     ('tools', 'Thinking tools'),
 ]
 
@@ -60,8 +61,9 @@ class Story:
         self.html = ''
 
 
-def load(root):
-    paths = sorted(glob.glob(os.path.join(root, 'src', 'stories', '*.md')))
+def load(src):
+    """Every story in <src>/stories/*.md (src is the book's src folder, or a test fixture's)."""
+    paths = sorted(glob.glob(os.path.join(src, 'stories', '*.md')))
     return [Story(p, i + 1) for i, p in enumerate(paths)]
 
 
@@ -137,7 +139,7 @@ def story_article(s: Story) -> str:
 
 def stories_section(stories, md_inline) -> str:
     out = ['<section class="stories flow" id="stories"><h2>Stories behind the ideas</h2>'
-           '<p class="st-intro">Every big idea in chemistry was found by someone, somewhere, often after years of getting it wrong. '
+           '<p class="st-intro">Every big idea in physics was found by someone, somewhere, often after years of getting it wrong. '
            'These are their stories, told slowly, with the idea explained step by step. Any word in the book that has a story '
            'is <a class="sl" href="#story-index" data-noopen>marked like this</a>; tap it and the story opens beside the page.</p>'
            '<nav class="st-index" id="story-index" aria-label="All stories">']
@@ -172,9 +174,9 @@ def cast_section(stories, md_inline) -> str:
         f'<b>{escape(s.name)}</b><span class="yrs">{escape(" to ".join(x for x in (s.born, s.died) if x))}</span>'
         f'<span class="role">{escape(s.role)}</span></a></li>' for s in people)
     return ('<section class="front flow cast-page" id="cast"><h2>The cast</h2>'
-            '<p>Every adventure has its characters. These are some of the people you will meet in this book: secret alchemists, a weaver\u2019s son, '
-            'a blacksmith\u2019s son who bound books, a tax collector, a nobleman\u2019s son, an accountant who did physics at night, '
-            'women who had to fight to be allowed to study, and a boy from a New Zealand farm. Tap anyone to read their life story.</p>'
+            '<p>Every adventure has its characters. These are some of the people you will meet in this book: '
+            'star-gazers and instrument-makers, a ship\u2019s doctor, a teacher in Dacca who wrote to a famous stranger, '
+            'and women who had to fight to be allowed to study. Tap anyone to read their life story.</p>'
             f'<ul class="cast full">{cards}</ul></section>')
 
 
@@ -197,7 +199,7 @@ def timeline_section(stories, md_inline) -> str:
     rows = ''.join(rows)
     return ('<section class="timeline flow" id="timeline"><h2>The adventure in time</h2>'
             '<p>The ideas in this book were not found in the order a textbook teaches them. Here they are in the order '
-            'they actually happened: two and a half thousand years of people asking what everything is made of.</p>'
+            'they actually happened: two and a half thousand years of people asking how things move, and why.</p>'
             f'<ol class="tl">{rows}</ol></section>')
 
 
@@ -228,7 +230,7 @@ DIALOG_JS = r'''
     back.hidden = depth<2;
     if(!dlg.open){ dlg.showModal(); document.documentElement.classList.add('sd-open'); }
     body.setAttribute('tabindex','-1'); body.focus({preventScroll:true});
-    document.title = (art.getAttribute('data-story-title')||'') + ' · The Invisible World';
+    document.title = (art.getAttribute('data-story-title')||'') + ' · ' + baseTitle;
     emit('story:open', {id:id, el:art});
     return true;
   }

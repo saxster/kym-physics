@@ -1,7 +1,7 @@
-/* The Invisible World — book stylesheet
+/* The Moving World — book stylesheet
    Type: Literata (text & display) + Lexend (labels, notes, figures)
-   Colour: forest ink on notebook paper; particle colours carry meaning (proton / neutron / electron)
-   Volume tints: I electron blue, II neutron ochre, III proton red */
+   Colour: forest ink on notebook paper; four accent colours carry meaning (forces red, light ochre, vectors blue, green)
+   Volume tints: I blue (--electron), II ochre (--neutron), III red (--proton), IV green (--green) */
 
 :root {
   --paper: #f6f4ec;
@@ -30,6 +30,7 @@
 }
 .vol-2 { --vol: var(--neutron); --vol-wash: rgba(147, 96, 34, .07); }
 .vol-3 { --vol: var(--proton); --vol-wash: rgba(169, 71, 48, .065); }
+.vol-4 { --vol: var(--green); --vol-wash: rgba(46, 96, 74, .07); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -41,7 +42,12 @@
   :root:not([data-theme="light"]) .vol-1 { --vol-wash: rgba(120, 179, 203, .08); }
   :root:not([data-theme="light"]) .vol-2 { --vol-wash: rgba(212, 163, 95, .08); }
   :root:not([data-theme="light"]) .vol-3 { --vol-wash: rgba(224, 137, 111, .08); }
+  :root:not([data-theme="light"]) .vol-4 { --vol-wash: rgba(124, 191, 156, .08); }
 }
+:root[data-theme="dark"] .vol-1 { --vol-wash: rgba(120, 179, 203, .08); }
+:root[data-theme="dark"] .vol-2 { --vol-wash: rgba(212, 163, 95, .08); }
+:root[data-theme="dark"] .vol-3 { --vol-wash: rgba(224, 137, 111, .08); }
+:root[data-theme="dark"] .vol-4 { --vol-wash: rgba(124, 191, 156, .08); }
 :root[data-theme="dark"] {
   --paper: #141c19; --sheet: #18211e; --ink: #e6e3d6; --ink-2: #cfccbf; --muted: #9eaaa4;
   --rule: #34423c; --rule-2: #26312d; --proton: #e0896f; --neutron: #d4a35f; --electron: #78b3cb;
@@ -258,6 +264,11 @@ figure figcaption b { color: var(--vol); font-weight: 700; margin-right: .4em; f
 .fig .ar-electron { stroke: var(--electron); } .ah-electron { fill: var(--electron); }
 .fig .ar-neutron { stroke: var(--neutron); } .ah-neutron { fill: var(--neutron); }
 .fig .ar-green { stroke: var(--green); } .ah-green { fill: var(--green); }
+.fig .ar-force { stroke: var(--proton); stroke-width: 2.6; } .ah-force { fill: var(--proton); }
+.fig .ar-vector { stroke: var(--electron); stroke-width: 2; } .ah-vector { fill: var(--electron); }
+.fig .ray { stroke: var(--neutron); stroke-width: 1.8; fill: none; stroke-linecap: round; }
+.fig .ray-ch { stroke: var(--neutron); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.fig .block { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.4; }
 .fig .t { fill: var(--ink); font-family: var(--sans); }
 .fig .t.m { fill: var(--muted); }
 .fig .t.s { font-family: var(--serif); }
@@ -529,4 +540,68 @@ html.sd-open { overflow: hidden; }
   a { text-decoration: none; }
   .side { font-size: 7.6pt; }
   .sec > h3 .n { position: static; margin-right: .6em; font-size: .8em; }
+}
+
+
+/* ------------------------------------------------------------------ physics blocks: predict, recall, school */
+.predict { background: var(--sheet); border: 1px solid var(--rule); border-top: 3px solid var(--vol); }
+.predict .bh { color: var(--vol); }
+.predict .pq > :last-child { margin-bottom: .6rem; }
+.pred-opts { margin: 0 0 .8rem; padding-left: 1.6rem; }
+.pred-opts li { margin: .25rem 0; }
+.pred-reveal { border-top: 1px solid var(--rule); padding-top: .7rem; }
+.pred-reveal > :last-child { margin-bottom: 0; }
+.pr-k { font-family: var(--sans); font-weight: 700; font-size: .85rem; color: var(--muted); margin: 0 0 .3rem; }
+.pred-js .pred-opts { list-style: none; padding: 0; display: grid; gap: .45rem; }
+.pred-opt {
+  display: flex; gap: .7rem; align-items: baseline; width: 100%; text-align: left; cursor: pointer;
+  font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 8px;
+  padding: .55rem .8rem; min-height: 44px;
+}
+.pred-opt:hover:not(:disabled) { border-color: var(--vol); }
+.pred-opt:focus-visible { outline: 2px solid var(--vol); outline-offset: 2px; }
+.pred-opt:disabled { cursor: default; opacity: .62; }
+.pred-opt[aria-pressed="true"] { opacity: 1; border-color: var(--vol); background: var(--vol-wash); box-shadow: inset 3px 0 0 var(--vol); }
+.pred-l { font: 700 .85rem var(--sans); color: var(--vol); flex: none; }
+.pred-you { font-family: var(--sans); font-size: .85rem; color: var(--ink-2); margin: 0 0 .7rem; }
+.pred-reveal .lj-link { margin-top: .6rem; }
+.recall .bh { color: var(--vol); }
+.rec-pred { font-family: var(--sans); font-size: .85rem; color: var(--ink-2); background: var(--vol-wash); border-radius: 6px; padding: .4rem .6rem; }
+.school { background: transparent; border: 1px solid var(--rule); border-left: 3px solid var(--electron); border-radius: 3px 8px 8px 3px; padding: .75rem 1.1rem .8rem; }
+.school .bh { color: var(--electron); }
+
+/* ------------------------------------------------------------------ chapter credit line and "Where this book comes from" */
+.ch-credit { margin: 2.2rem 0 0; padding-top: .8rem; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: .78rem; line-height: 1.5; color: var(--muted); }
+.ch-credit p { margin: 0 0 .35rem; }
+.ch-credit a { overflow-wrap: anywhere; }
+.credits h3 { margin: 2.2rem 0 .8rem; font-family: var(--sans); font-size: 1rem; color: var(--vol); }
+.cr-src { margin: 0 0 1.4rem; }
+.cr-name { margin: 0; font-weight: 600; }
+.cr-name span { font-weight: 400; color: var(--muted); }
+.cr-who { margin: .1rem 0 .3rem; font-family: var(--sans); font-size: .85rem; color: var(--ink-2); }
+.cr-who a { overflow-wrap: anywhere; }
+.cr-uses { margin: .3rem 0 0; padding-left: 1.1rem; font-size: .95em; }
+.cr-uses li { margin: .15rem 0; }
+.cr-uses li > span { display: block; font-family: var(--sans); font-size: .8rem; color: var(--muted); }
+.cr-lic { font-size: .95em; }
+
+/* ------------------------------------------------------------------ explorer shells */
+.explore-soon { font-family: var(--sans); font-size: .85rem; font-weight: 700; color: var(--vol); }
+.explore-stage { margin-top: 1rem; }
+.explore-ph { border: 1px dashed var(--rule); border-radius: 10px; padding: 1rem 1.2rem; background: var(--sheet); }
+.explore-ph p { margin: 0 0 .7rem; }
+
+/* ------------------------------------------------------------------ live figures: notes, sensors, video */
+.live-note { order: 4; flex-basis: 100%; margin: .1rem 0 0; font-size: .8rem; color: var(--muted); line-height: 1.45; }
+.live-note.live-warn { color: var(--proton); }
+figure > .live-note { font-family: var(--sans); }
+.live-video { position: relative; background: #000; }
+.live-video video { display: block; width: 100%; height: auto; }
+.live-video-marks { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: manipulation; }
+.live-vbar select.live-ctl { appearance: auto; padding-right: .6rem; }
+
+@media print {
+  .pred-opt { border: 0; padding: 0; min-height: 0; }
+  .pred-you, .pred-reveal .lj-link, .explore-mount { display: none !important; }
+  .pred-reveal[hidden] { display: block !important; }
 }

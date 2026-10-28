@@ -13,6 +13,7 @@ html { font-size: calc(100% * var(--scale, 1)); }
 :root[data-theme="sepia"] .vol-1 { --vol-wash: rgba(60, 104, 122, .07); }
 :root[data-theme="sepia"] .vol-2 { --vol-wash: rgba(135, 88, 27, .07); }
 :root[data-theme="sepia"] .vol-3 { --vol-wash: rgba(163, 69, 44, .065); }
+:root[data-theme="sepia"] .vol-4 { --vol-wash: rgba(69, 100, 70, .07); }
 :root[data-theme="sepia"] img, :root[data-theme="sepia"] svg.fig { filter: sepia(.12); }
 
 /* ------------------------------------------------------------------ the toolbar pill */

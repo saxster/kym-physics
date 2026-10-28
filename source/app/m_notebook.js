@@ -1,11 +1,13 @@
 // Highlights and notes (select text in a chapter section or a story), and the Notebook
-// that gathers highlights, check answers and experiment journals in one place.
+// that gathers highlights, predictions, check answers and experiment journals in one place.
 import App from './core.js';
 
 const { el, store } = App;
 const HL_KEY = 'hl';
-const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:');
-const SKIP = 'svg, figure, button, textarea, input, template, script, style, .chk-ui, .home-ui, .hl-pop, .live-controls, .scene, .bh, h2, h3, h4';
+const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:');
+const BOOK = () => App.data.title || document.title;
+const SLUG = () => BOOK().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const SKIP = 'svg, figure, button, textarea, input, template, script, style, .chk-ui, .home-ui, .pred-opts, .pred-you, .hl-pop, .live-controls, .scene, .bh, h2, h3, h4';
 const CONTAINERS = 'section.sec[id], article.story[id]';
 
 // ------------------------------------------------------------------ text model of a container
@@ -250,6 +252,16 @@ function gather() {
     const q = strip([...box.children].filter(x => x.tagName === 'P' && !x.classList.contains('bh') && !x.classList.contains('ans')).map(x => x.textContent).join(' '));
     add(place, { type: 'check', target: box.id, story: place.kind === 'story' ? place.id : null, where: place.label, q, a: s.a, r: s.r, t: s.t });
   });
+  const preds = [...document.querySelectorAll('.box.predict[data-predict]')];
+  let predN = 0;
+  preds.forEach(box => {
+    const s = store.get('pred:' + box.dataset.predict, null);
+    if (!s || s.c == null) return;
+    predN++;
+    const place = placeOf(box);
+    add(place, { type: 'pred', target: box.id, story: place.kind === 'story' ? place.id : null, where: place.label,
+      q: s.q || strip(box.querySelector('.pq') && box.querySelector('.pq').textContent), o: s.o, c: s.c, t: s.t });
+  });
   const homes = [...document.querySelectorAll('.box.home[data-home]')];
   let doneN = 0;
   homes.forEach(box => {
@@ -269,7 +281,7 @@ function gather() {
     add(place, { type: 'hl', target: mark ? null : h.c, mark: h.id, story: place.kind === 'story' ? place.id : null, where: place.label, quote: h.quote, note: h.note, t: h.t });
   });
   const list = [...groups.values()].sort((a, b) => a.sort - b.sort || a.name.localeCompare(b.name));
-  return { list, stats: { checks: checks.length, tried, got, partly, homes: homes.length, done: doneN, hls: hls.length, notes: hls.filter(h => h.note).length } };
+  return { list, stats: { preds: preds.length, predN, checks: checks.length, tried, got, partly, homes: homes.length, done: doneN, hls: hls.length, notes: hls.filter(h => h.note).length } };
 }
 
 const RLABEL = { got: 'I got it', partly: 'Partly', not: 'Not yet' };
@@ -282,13 +294,14 @@ function renderNotebook() {
   nbBody.innerHTML = '';
   if (!store.available) nbBody.append(el('p', { class: 'nb-warn' }, 'This browser is not letting the book save anything, so your notes will last only while this page stays open. Use “Save my notebook” to keep a copy.'));
   nbBody.append(el('div', { class: 'nb-stats' },
+    stats.preds ? stat(stats.predN, `of ${stats.preds} predictions made`, '') : null,
     stat(stats.tried, `of ${stats.checks} checks tried`, stats.got ? `${stats.got} got it` + (stats.partly ? `, ${stats.partly} partly` : '') : ''),
     stat(stats.done, `of ${stats.homes} home experiments done`, ''),
     stat(stats.hls, stats.hls === 1 ? 'highlight' : 'highlights', stats.notes ? `${stats.notes} with notes` : '')));
   if (!list.length) {
     nbBody.append(el('div', { class: 'nb-empty' },
       el('p', {}, 'Your notebook is empty for now.'),
-      el('p', {}, 'Select any words in the book to highlight them or add a note. Answer a “Check yourself” question, or keep a journal for a “Try it at home” experiment, and it will all collect here.')));
+      el('p', {}, 'Select any words in the book to highlight them or add a note. Make a prediction, answer a “Check yourself” question, or keep a journal for a “Try it at home” experiment, and it will all collect here.')));
     return;
   }
   list.forEach(g => {
@@ -313,6 +326,11 @@ function item(it) {
     return el('article', { class: 'nb-item hl-item' }, el('p', { class: 'nb-kind' }, 'Highlight', where),
       el('blockquote', {}, it.quote.trim()), it.note ? el('p', { class: 'nb-note' }, it.note) : null, go);
   }
+  if (it.type === 'pred') {
+    return el('article', { class: 'nb-item' }, el('p', { class: 'nb-kind' }, 'Prediction', where),
+      el('p', { class: 'nb-q' }, it.q),
+      el('p', { class: 'nb-a' }, el('span', {}, 'I predicted: '), `${'ABCDEFGHIJ'[it.c] || ''}. ${it.o}`), go);
+  }
   if (it.type === 'check') {
     return el('article', { class: 'nb-item' }, el('p', { class: 'nb-kind' }, 'Check yourself', where),
       el('p', { class: 'nb-q' }, it.q),
@@ -327,7 +345,8 @@ function item(it) {
 
 function markdown() {
   const { list, stats } = gather();
-  const L = ['# My notebook: The Invisible World', '', `Saved ${fmtDate(Date.now())}.`, '',
+  const L = [`# My notebook: ${BOOK()}`, '', `Saved ${fmtDate(Date.now())}.`, '',
+    `- Predictions made: ${stats.predN} of ${stats.preds}`,
     `- Checks tried: ${stats.tried} of ${stats.checks} (${stats.got} got it, ${stats.partly} partly)`,
     `- Home experiments done: ${stats.done} of ${stats.homes}`, `- Highlights: ${stats.hls} (${stats.notes} with notes)`, ''];
   list.forEach(g => {
@@ -335,6 +354,7 @@ function markdown() {
     g.items.forEach(it => {
       const w = it.where ? ` (${it.where})` : '';
       if (it.type === 'hl') { L.push(`> ${strip(it.quote)}${w}`, ''); if (it.note) L.push(`Note: ${it.note}`, ''); }
+      else if (it.type === 'pred') { L.push(`**Prediction${w}.** ${it.q}`, '', `I predicted: ${it.o}`, ''); }
       else if (it.type === 'check') { L.push(`**Check yourself${w}.** ${it.q}`, '', `My answer: ${it.a || '(in my head)'}${it.r ? ` · ${RLABEL[it.r]}` : ''}`, ''); }
       else { L.push(`**Try it at home${w}: ${it.title}**${it.done ? ` (done ${fmtDate(it.date)})` : ''}`, '');
         if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`What happened: ${it.res}`, ''); }
@@ -352,7 +372,7 @@ function download(name, text, type) {
 function backup() {
   const keys = {};
   store.keys().filter(OWNED).forEach(k => { keys[k] = store.get(k); });
-  download(`invisible-world-notebook-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({ book: 'The Invisible World', kind: 'notebook', version: 1, saved: Date.now(), keys }, null, 1), 'application/json');
+  download(`${SLUG()}-notebook-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({ book: BOOK(), kind: 'notebook', version: 1, saved: Date.now(), keys }, null, 1), 'application/json');
 }
 function restore(file) {
   const r = new FileReader();

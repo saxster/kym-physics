@@ -11,12 +11,10 @@ The fonts are subset and embedded in the page.
 - **d3-geo** and **topojson-client**, ISC License. Copyright Mike Bostock.
 - **world-atlas**, ISC License. Map data from Natural Earth (public domain).
 
-## Teaching ideas
-The book borrows approaches, not text, from these sources. They are listed in the book's "Further adventures" page:
-- MIT OpenCourseWare
-- the Royal Society of Chemistry
-- the American Chemical Society
-- PhET Interactive Simulations
-- NCERT
+## Teaching material
+The book re-teaches ideas, sequences, demonstrations and problems from these sources, in its own words. Its page "Where this book comes from" lists, section by section, what came from where:
+- MIT OpenCourseWare (CC BY-NC-SA 4.0)
+- OpenStax (CC BY-NC-SA 4.0). Access for free at https://openstax.org
+- research on how students learn physics, cited where it is used
 
-Their materials stay under their own licences.
+Their materials stay under their own licences. MIT and OpenStax do not endorse this book, and their logos are not used.

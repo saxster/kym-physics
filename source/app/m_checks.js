@@ -1,4 +1,6 @@
 // Check yourself: commit to an answer, then reveal, then rate yourself.
+// Back from Chapter N (:::recall): the same, plus "You predicted ..." when it recalls a :::predict.
+// Predict first: choose an option before the reveal shows; the choice is kept (pred:<id>) for the notebook and recalls.
 // Try it at home: a small experiment journal (prediction, done, what happened).
 import App from './core.js';
 
@@ -113,7 +115,70 @@ function setupHome(box) {
   paint();
 }
 
+const LETTERS = 'ABCDEFGHIJ';
+const clean = s => String(s || '').replace(/\s+/g, ' ').trim();
+
+function setupPredict(box) {
+  const id = box.dataset.predict;
+  const list = box.querySelector('.pred-opts');
+  const rev = box.querySelector('.pred-reveal');
+  if (!id || !list || !rev || box.querySelector('.pred-you')) return;
+  const key = 'pred:' + id;
+  const q = clean(box.querySelector('.pq') && box.querySelector('.pq').textContent);
+  box.classList.add('pred-js');
+  list.setAttribute('role', 'group');
+  list.setAttribute('aria-label', 'Your prediction');
+  const btns = [...list.children].map((li, i) => {
+    const b = el('button', { type: 'button', class: 'pred-opt', 'aria-pressed': 'false' },
+      el('span', { class: 'pred-l', 'aria-hidden': 'true' }, LETTERS[i] || String(i + 1)));
+    const txt = el('span', { class: 'pred-t' });
+    while (li.firstChild) txt.append(li.firstChild);
+    b.append(txt); li.append(b);
+    b.addEventListener('click', () => choose(i));
+    return b;
+  });
+  const you = el('p', { class: 'pred-you', 'aria-live': 'polite' });
+  const again = el('button', { type: 'button', class: 'lj-link' }, 'Change my prediction');
+  list.after(you);
+  rev.append(again);
+  rev.id = rev.id || id + '-reveal';
+  btns.forEach(b => b.setAttribute('aria-controls', rev.id));
+
+  function paint(animate) {
+    const s = store.get(key, null);
+    const has = s && s.c != null && btns[s.c];
+    btns.forEach((b, i) => { b.setAttribute('aria-pressed', String(!!has && i === s.c)); b.disabled = !!has; });
+    you.textContent = has ? `You predicted ${LETTERS[s.c]}: ${s.o}` : 'Choose one before you read on.';
+    box.dataset.chosen = has ? '1' : '';
+    if (has) { if (animate) reveal(rev, true); else rev.hidden = false; } else rev.hidden = true;
+  }
+  function choose(i) {
+    store.set(key, { c: i, o: clean(btns[i].querySelector('.pred-t').textContent), q, t: Date.now() });
+    paint(true); App.emit('learn:change');
+  }
+  again.addEventListener('click', () => {
+    store.remove(key); paint(false); App.emit('learn:change');
+    btns[0].focus({ preventScroll: true });
+  });
+  paint(false);
+}
+
+function paintRecall(box) {
+  const ref = box.dataset.recallPred;
+  if (!ref) return;
+  const s = store.get('pred:' + ref, null);
+  let p = box.querySelector('.rec-pred');
+  if (!s || s.c == null) { if (p) p.remove(); return; }
+  if (!p) { p = el('p', { class: 'rec-pred' }); box.querySelector('.bh').after(p); }
+  const where = ref.replace(/^pred-/, '').replace('-', '.');
+  p.textContent = `Back in section ${where} you predicted: “${s.o}”`;
+}
+
 App.ready(() => {
+  document.querySelectorAll('.box.predict[data-predict]').forEach(setupPredict);
   document.querySelectorAll('.box.check[id]').forEach(setupCheck);
+  const recalls = [...document.querySelectorAll('.box.recall[data-recall-pred]')];
+  recalls.forEach(paintRecall);
+  App.on('learn:change', () => recalls.forEach(paintRecall));
   document.querySelectorAll('.box.home[data-home]').forEach(setupHome);
 });

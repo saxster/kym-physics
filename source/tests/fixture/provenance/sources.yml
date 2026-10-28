@@ -1,0 +1,9 @@
+# Who made each course and book, for the credits page. Fixture copy; the book's lives in provenance/sources.yml.
+ocw:
+  "8.01SC Classical Mechanics, Fall 2016":
+    faculty: "Deepto Chakrabarty, Peter Dourmashkin, Michelle Tomasik, Anna Frebel, Vladan Vuletic"
+    url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+openstax:
+  "Physics":
+    authors: "Paul Peter Urone, Roger Hinrichs"
+    url: "https://openstax.org/books/physics/pages/1-introduction"

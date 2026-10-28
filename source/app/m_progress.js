@@ -61,7 +61,7 @@ App.ready(() => {
       const url = pageUrl('story-' + currentStory.id);
       const title = currentStory.title;
       if (navigator.share) {
-        try { await navigator.share({ title, text: `${title}, from The Invisible World`, url }); return; }
+        try { await navigator.share({ title, text: `${title}, from ${App.data.title || document.title}`, url }); return; }
         catch (e) { if (e && e.name === 'AbortError') return; }
       }
       App.copyLink('story-' + currentStory.id, 'this story');

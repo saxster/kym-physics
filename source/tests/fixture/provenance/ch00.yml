@@ -1,0 +1,27 @@
+# Fixture ledger: the same shape as provenance/chNN.yml in the book (see FORMAT.md, "Provenance").
+"0.1":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 1, Lesson 1", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/", took: "order of ideas: forces before motion graphs"}
+  openstax:
+    - {book: "Physics", section: "4.1 Force", url: "https://openstax.org/books/physics/pages/4-1-force", took: "definition of force; worked weight example"}
+  research:
+    - {what: "the force-keeps-it-moving misconception", source: "Halloun & Hestenes 1985", url: ""}
+  history:
+    - {what: "Stevin's drop at Delft", source: "Stevin, De Beghinselen der Weeghconst (1586)", url: ""}
+  licence: "CC BY-NC-SA 4.0"
+"0.2":
+  research:
+    - {what: "how long a spring takes to bounce", source: "fixture note", url: ""}
+  figures:
+    - {name: c0_helpers, origin: ours}
+    - {name: c0_globe, origin: "redrawn from a fixture sketch"}
+  licence: "CC BY-NC-SA 4.0"
+"0.3":
+  openstax:
+    - {book: "Physics", section: "3.2 Representing Acceleration with Equations and Graphs", url: "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs", took: "free fall at 9.8 m/s²"}
+  licence: "CC BY-NC-SA 4.0"
+"fig:c0_ripples":
+  origin: ours
+"story:tale-selftest":
+  history:
+    - {what: "the Delft drop", source: "research/history.md §1", url: ""}

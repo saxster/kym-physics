@@ -9,8 +9,11 @@
 //   App.ready(fn)       run after DOM + data are ready
 //   App.el(tag, attrs, ...children)            small DOM builder
 //   App.transition(fn)  wraps a DOM change in a View Transition when supported and motion is allowed
+//   App.explorer(name, {mount(el)})            an explorer implementation registers itself (app/x_<name>.js)
+//   App.loadExplorer(name) -> Promise<impl>    the registered implementation, loading its lazy chunk if needed
 
-const PREFIX = 'iw:';
+// Every book on saxster.github.io shares one origin, so each keeps its own prefix ('iw:' is the chemistry book).
+const PREFIX = 'mw:';
 let mem = {};
 let canStore = true;
 try { const k = PREFIX + '__t'; localStorage.setItem(k, '1'); localStorage.removeItem(k); } catch (e) { canStore = false; }
@@ -79,8 +82,21 @@ let isReady = false;
 function ready(fn) { if (isReady) fn(); else readyFns.push(fn); }
 function boot() { isReady = true; readyFns.splice(0).forEach(fn => { try { fn(); } catch (e) { console.error(e); } }); emit('ready'); }
 
+// Explorers: in the single-file build their code is bundled in and registers at once; in the --site build each is a
+// lazy chunk (window.BOOK_CHUNKS['x_<name>']) fetched the first time the reader opens it.
+const explorers = {};
+function explorer(name, impl) { explorers[name] = impl; }
+async function loadExplorer(name, chunk = 'x_' + name) {
+  if (explorers[name]) return explorers[name];
+  const rel = (window.BOOK_CHUNKS || {})[chunk];
+  if (!rel) throw new Error(`explorer ${name} is not in this build`);
+  await import(new URL(rel, document.baseURI).href);
+  if (!explorers[name]) throw new Error(`chunk ${chunk} did not register explorer ${name}`);
+  return explorers[name];
+}
+
 const App = window.App = {
-  data, store, on, emit, el, tool, ready, transition, reduceMotion,
+  data, store, on, emit, el, tool, ready, transition, reduceMotion, explorer, loadExplorer,
   openStory: id => window.__openStory && window.__openStory(id),
   closeStory: () => window.__closeStory && window.__closeStory(),
 };

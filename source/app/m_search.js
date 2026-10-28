@@ -49,7 +49,7 @@ function buildIndex() {
     const link = dd.querySelector('a[href^="#"]');
     out.push({ kind: 'Word', label: 'Word worth knowing', title: dt.textContent.trim(), text: cleanText(dd, 'a[href^="#"]:last-child'), target: link ? link.getAttribute('href').slice(1) : 'glossary', boost: 10 });
   });
-  ['letter', 'howto', 'ideas', 'explore-table', 'explore-map', 'timeline', 'further'].forEach(id => {
+  ['letter', 'howto', 'ideas', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
     const s = document.getElementById(id);
     if (!s) return;
     const h = s.querySelector('h2');

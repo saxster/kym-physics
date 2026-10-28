@@ -1,7 +1,8 @@
 // The look of the book, brought to life.
-// One idea runs through all of it: everything decorative is made of dots, because everything is made of atoms.
-//   - the cover: a faint field of particles in Brownian motion, behind the assembling periodic table
-//   - volume pages: a stippled motif per volume (electron cloud; a dynamic equilibrium; a carbon lattice with moving charge)
+// One idea runs through all of it: everything decorative is made of dots, like an engraving.
+//   - the cover: a faint field of particles in Brownian motion
+//   - volume pages: a stippled motif per volume (MOTIFS below; build.py MOTIFS picks one per volume:
+//     I cloud, II balance, III lattice, IV field: the field lines of a magnet, with charge running along them)
 //   - medallions for the people in the book, stippled like an engraving
 //   - a chapter spine in the left margin on wide screens, showing where you are
 // Every animation runs only while on screen, and not at all when the reader prefers reduced motion.
@@ -212,6 +213,43 @@ const MOTIFS = {
         ctx.fillStyle = col.vol;
         s.trail.forEach(([tx, ty], idx) => { ctx.globalAlpha = (idx / s.trail.length) * .5; ctx.beginPath(); ctx.arc(tx, ty, 1.6, 0, 6.2832); ctx.fill(); });
         ctx.globalAlpha = .95; ctx.beginPath(); ctx.arc(x, y, 3, 0, 6.2832); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    };
+  },
+
+  // Volume IV: electricity and magnetism. The field lines of a magnet (a dipole), drawn in stipple: each line
+  // follows r = L·sin²θ, the shape iron filings make around a bar magnet. A few bright points run along the lines.
+  field(ctx, w, h, col, r) {
+    const cx = w * .5, cy = h * .5, S = Math.min(w * .46, h * 1.15);   // magnet upright, loops spread sideways
+    const Ls = [.12, .19, .28, .4, .55, .74, 1.0];
+    const fade = (x, y) => { const u = (x - cx) / (w * .5), v = (y - cy) / (h * .5); return Math.max(0, 1 - (u * u * .9 + v * v * 1.1)); };
+    const lines = [];
+    for (const L of Ls) for (const side of [1, -1]) {
+      const pts = [];
+      for (let th = .06; th < Math.PI - .06; th += .012) {
+        const rr = L * S * Math.sin(th) ** 2;
+        pts.push([cx + side * rr * Math.sin(th), cy - rr * Math.cos(th)]);
+      }
+      lines.push(pts);
+    }
+    const dots = [];
+    lines.forEach(pts => pts.forEach(([x, y], i) => { if (i % 2 === 0) dots.push([x + gauss(r) * .5, y + gauss(r) * .5, fade(x, y)]); }));
+    const mag = [];                                    // the magnet itself: a small stippled bar
+    for (let i = 0; i < 260; i++) mag.push([cx + (r() - .5) * S * .05, cy + (r() - .5) * S * .2]);
+    const sparks = Array.from({ length: 7 }, (_, i) => ({ line: lines[(i * 5 + 3) % lines.length], k: r(), trail: [] }));
+    return (t, dt) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = col.ink;
+      for (const [x, y, f] of dots) { if (f <= 0) continue; ctx.globalAlpha = f * .38; ctx.fillRect(x, y, 1.15, 1.15); }
+      ctx.globalAlpha = .55; for (const [x, y] of mag) ctx.fillRect(x, y, 1.2, 1.2);
+      ctx.fillStyle = col.vol;
+      for (const s of sparks) {
+        if (dt) s.k = (s.k + dt / 5200) % 1;
+        const p = s.line[Math.floor(s.k * (s.line.length - 1))];
+        s.trail.push(p); if (s.trail.length > 22) s.trail.shift();
+        s.trail.forEach(([tx, ty], i) => { ctx.globalAlpha = (i / s.trail.length) * .45 * fade(tx, ty); ctx.beginPath(); ctx.arc(tx, ty, 1.5, 0, 6.2832); ctx.fill(); });
+        ctx.globalAlpha = .9 * fade(p[0], p[1]); ctx.beginPath(); ctx.arc(p[0], p[1], 2.8, 0, 6.2832); ctx.fill();
       }
       ctx.globalAlpha = 1;
     };
