@@ -1,6 +1,7 @@
 // Pure length and view-width calculations shared by the scale explorer and its tests.
 export const MIN_EXP = -15;
-export const MAX_EXP = 21;
+// One extra framing step lets the full Milky Way fit in a landscape viewport.
+export const MAX_EXP = 22;
 const LIGHT_YEAR = 9.4607304725808e15; // metres; Julian year, c = 299 792 458 m/s
 const AU = 149597870700; // metres; exact IAU astronomical unit
 const SUPERSCRIPT = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };

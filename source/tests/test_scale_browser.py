@@ -42,10 +42,10 @@ with sync_playwright() as p:
             expect(readout).to_have_text('1 m across')
         # Keyboard slider remains a real input, not a canvas-only control.
         slider=page.get_by_role('slider',name='View width, from proton scale to galaxy scale')
-        slider.focus();slider.press('End');expect(slider).to_have_value('21')
+        slider.focus();slider.press('End');expect(slider).to_have_value('22')
         expect(page.get_by_role('button',name='10× larger',exact=True)).to_be_disabled()
         for _ in range(4): slider.press('ArrowLeft')
-        expect(slider).to_have_value('20.8')
+        expect(slider).to_have_value('21.8')
         expect(page.get_by_role('button',name='10× larger',exact=True)).to_be_disabled()
         slider.press('Home');expect(slider).to_have_value('-15')
         expect(page.get_by_role('button',name='10× smaller',exact=True)).to_be_disabled()

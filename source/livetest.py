@@ -39,7 +39,7 @@ with sync_playwright() as p:
     errs, chunk_log = [], []
     gpu_noise = []   # software-GL performance notes from the headless test browser, not page errors
     pg.on('console', lambda m: (gpu_noise if 'GL Driver Message' in m.text else errs).append(f'{m.type}: {m.text}') if m.type in ('error', 'warning') else None)
-    pg.on('pageerror', lambda e: errs.append(f'pageerror: {e}'))
+    pg.on('pageerror', lambda e: errs.append(f'pageerror: {e.stack}'))
     pg.on('requestfailed', lambda r: errs.append(f'request failed: {r.url} {r.failure}'))
     pg.on('request', lambda r: chunk_log.append(r.url.rsplit('/', 1)[-1]) if '/live/' in r.url else None)
     print('opening', url)
@@ -101,7 +101,7 @@ with sync_playwright() as p:
         pg.wait_for_timeout(1500)
         ctx.set_offline(True)
         pg2 = ctx.new_page()
-        pg2.on('pageerror', lambda e: errs.append(f'offline pageerror: {e}'))
+        pg2.on('pageerror', lambda e: errs.append(f'offline pageerror: {e.stack}'))
         try:
             pg2.goto(url, wait_until='load'); pg2.wait_for_timeout(800)
             title = pg2.title()

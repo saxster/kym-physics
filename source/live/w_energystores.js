@@ -7,8 +7,10 @@
 //   - Smart Jar Auto-Scaling (jarScale): picks a 1-2-5 × 10^n J capacity ("full jar = 1 J", "full jar = 5 kJ", etc.),
 //     and overflows for 1 second of the Sun's nuclear output (3.83 × 10^26 J).
 //   - 4 Pathway Tubes with shortest-arc HSV colour blending:
-//     Mechanical work (steady stream), Electrical work (fast pulses), Heating (wavering thermal shimmer), Radiation (stepped wave rays).
+//     Mechanical work (steady stream), Electrical work (fast pulses), Heating (wavering thermal shimmer), Waves (stepped wave rays).
+//     Internal conversions can reuse a pattern; their badges state the process separately.
 import { Live } from './core.js';
+import { SCENARIOS } from './energy_scenarios.mjs';
 
 export const STORES = [
   { id: 'kinetic', name: 'Kinetic', short: 'Kinetic (½mv²)', color: '#2f7bff', hatch: 'chevrons', desc: 'Moving things' },
@@ -288,7 +290,7 @@ export function drawEnergyJar(ctx, x, yBase, w, hMax, storeId, valJ, capJ, t, c,
   // Store name below jar
   ctx.font = '600 11.5px Lexend, system-ui, sans-serif';
   ctx.fillStyle = c.ink;
-  ctx.fillText(st.name, x + w / 2, yBase + 15);
+  ctx.fillText(opts.title || st.name, x + w / 2, yBase + 15);
   if (opts.subLabel) {
     ctx.font = '400 10px Lexend, system-ui, sans-serif';
     ctx.fillStyle = c.muted;
@@ -297,12 +299,13 @@ export function drawEnergyJar(ctx, x, yBase, w, hMax, storeId, valJ, capJ, t, c,
   ctx.restore();
 }
 
-// Draw one of the 4 Pathway Tubes between (x1, y1) and (x2, y2):
-// pathway in {'mechanical', 'electrical', 'heating', 'radiation'}
-export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate, t, c) {
+// Draw a tube between account categories. opts.pattern keeps the original
+// animation independently of the honest physical process named by its badge.
+export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate, t, c, opts = {}) {
   if (rate <= 0.01) return;
   const stA = STORE_MAP[fromId] || STORES[0];
   const stB = STORE_MAP[toId] || STORES[3];
+  const pattern = opts.pattern || pathway;
   const N = 28;
   const cx = (x1 + x2) / 2;
   const cy = Math.min(y1, y2) - 28 - Math.abs(x2 - x1) * 0.08;
@@ -323,11 +326,11 @@ export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate
     const u0 = i / N, u1 = (i + 1) / N, um = (u0 + u1) * 0.5;
     let [px0, py0] = pt(u0);
     let [px1, py1] = pt(u1);
-    if (pathway === 'heating') {
+    if (pattern === 'heating') {
       // Wavering thermal shimmer
       py0 += Math.sin(u0 * 18 - t * 7) * 2.8;
       py1 += Math.sin(u1 * 18 - t * 7) * 2.8;
-    } else if (pathway === 'radiation') {
+    } else if (pattern === 'radiation') {
       // Stepped electromagnetic/acoustic wave rays
       py0 += (Math.floor(((u0 * 14 - t * 3.5) % 1 + 1) % 1 * 2) * 2 - 1) * 2.6;
       py1 += (Math.floor(((u1 * 14 - t * 3.5) % 1 + 1) % 1 * 2) * 2 - 1) * 2.6;
@@ -342,17 +345,17 @@ export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate
 
   // Animated pathway pattern overlays inside the tube
   const flowPhase = (t * 0.85) % 1;
-  const nBeads = pathway === 'electrical' ? 9 : 6;
+  const nBeads = pattern === 'electrical' ? 9 : 6;
   for (let k = 0; k < nBeads; k++) {
     const u = (k / nBeads + flowPhase) % 1;
     const [bx, by] = pt(u);
     ctx.fillStyle = '#ffffff';
-    if (pathway === 'electrical') {
+    if (pattern === 'electrical') {
       // Fast sharp pulses
       ctx.beginPath();
       ctx.arc(bx, by, 2.6, 0, Math.PI * 2);
       ctx.fill();
-    } else if (pathway === 'mechanical') {
+    } else if (pattern === 'mechanical') {
       // Steady directional stream chevrons
       ctx.beginPath();
       ctx.arc(bx, by, 2.0, 0, Math.PI * 2);
@@ -366,9 +369,10 @@ export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate
     mechanical: 'Mechanical work',
     electrical: 'Electrical work',
     heating: 'Heating',
-    radiation: 'Radiation (waves)',
+    waves: 'Waves (light / sound)',
+    conversion: 'Internal conversion',
   };
-  const lab = pLabels[pathway] || pathway;
+  const lab = opts.label || pLabels[pathway] || pathway;
   ctx.font = '600 10.5px Lexend, system-ui, sans-serif';
   const tw = ctx.measureText(lab).width + 10;
   ctx.fillStyle = c.sheet;
@@ -382,145 +386,10 @@ export function drawPathwayTube(ctx, x1, y1, x2, y2, fromId, toId, pathway, rate
   ctx.restore();
 }
 
-const SCENARIOS = [
-  {
-    name: 'Bouncing ball (0.98 J)',
-    totalJ: 0.98,
-    sliderLabel: 'Stage of drop & bounce',
-    stages: ['Released (1.00 m)', 'Halfway down (0.50 m)', 'Impact squash (floor)', 'Top of 1st bounce (0.64 m)'],
-    eval(u) {
-      // u in [0, 3]
-      if (u <= 1) {
-        const f = u;
-        return {
-          jars: [
-            { id: 'grav', val: 0.98 * (1 - f), sub: 'height mgh' },
-            { id: 'kinetic', val: 0.98 * f, sub: 'motion ½mv²' },
-            { id: 'elastic', val: 0, sub: 'squash ½kx²' },
-            { id: 'thermal', val: 0, sub: 'warmth + sound' },
-          ],
-          tubes: [
-            { from: 0, to: 1, fromId: 'grav', toId: 'kinetic', way: 'mechanical', rate: Math.sin(f * Math.PI) + 0.25 },
-          ],
-          eq: `E_p + E_k + E_el + E_th = ${(0.98 * (1 - f)).toFixed(2)} + ${(0.98 * f).toFixed(2)} + 0.00 + 0.00 = 0.98 J`,
-          caption: 'Gravity pulls the 100 g ball down: the mechanical work pathway pours joules from the gravitational jar into the kinetic jar.',
-        };
-      }
-      if (u <= 2) {
-        const f = u - 1;
-        const elJ = 0.78 * f;
-        const thJ = 0.20 * f;
-        const keJ = Math.max(0, 0.98 - elJ - thJ);
-        return {
-          jars: [
-            { id: 'grav', val: 0, sub: 'height mgh' },
-            { id: 'kinetic', val: keJ, sub: 'motion ½mv²' },
-            { id: 'elastic', val: elJ, sub: 'squash ½kx²' },
-            { id: 'thermal', val: thJ, sub: 'warmth + sound' },
-          ],
-          tubes: [
-            { from: 1, to: 2, fromId: 'kinetic', toId: 'elastic', way: 'mechanical', rate: 0.8 },
-            { from: 1, to: 3, fromId: 'kinetic', toId: 'thermal', way: 'heating', rate: 0.45 },
-          ],
-          eq: `Impact squash: E_k (${keJ.toFixed(2)} J) + E_el (${elJ.toFixed(2)} J) + E_th (${thJ.toFixed(2)} J) = 0.98 J`,
-          caption: 'At the floor the rubber squashes into the elastic store while internal rubbing warms the rubber and sends out a thock sound wave.',
-        };
-      }
-      const f = u - 2;
-      const gravJ = 0.63 * f;
-      const elJ = 0.78 * (1 - f);
-      const thJ = 0.20 + 0.15 * f;
-      const keJ = Math.max(0, 0.98 - gravJ - elJ - thJ);
-      return {
-        jars: [
-          { id: 'grav', val: gravJ, sub: 'height 0.64 m' },
-          { id: 'kinetic', val: keJ, sub: 'motion ½mv²' },
-          { id: 'elastic', val: elJ, sub: 'squash ½kx²' },
-          { id: 'thermal', val: thJ, sub: 'warmth + sound' },
-        ],
-        tubes: [
-          { from: 2, to: 0, fromId: 'elastic', toId: 'grav', way: 'mechanical', rate: 0.7 * (1 - f * 0.6) },
-          { from: 2, to: 3, fromId: 'elastic', toId: 'thermal', way: 'radiation', rate: 0.35 },
-        ],
-        eq: `1st bounce peak: E_p = ${gravJ.toFixed(2)} J · to thermal & sound = ${thJ.toFixed(2)} J · Total = 0.98 J`,
-        caption: 'At the 0.64 m peak: 0.63 J is back in the gravitational jar and 0.35 J stays in the thermal jar (warm rubber, floor and air).',
-      };
-    },
-  },
-  {
-    name: 'Climbing 4 floors (18.8 kJ)',
-    totalJ: 18800,
-    eval(u) {
-      const f = u / 3;
-      const grav = 4704 * f; // 40 kg * 9.8 * 12 m = 4,704 J useful mechanical work
-      const therm = 14096 * f; // ~25% muscle efficiency -> 3x as much warms the body
-      const chem = Math.max(0, 18800 - grav - therm);
-      return {
-        jars: [
-          { id: 'chemical', val: chem, sub: 'food in muscles' },
-          { id: 'grav', val: grav, sub: 'height (4 floors)' },
-          { id: 'thermal', val: therm, sub: 'warmth in body' },
-        ],
-        tubes: [
-          { from: 0, to: 1, fromId: 'chemical', toId: 'grav', way: 'mechanical', rate: f > 0.02 ? 0.65 : 0 },
-          { from: 0, to: 2, fromId: 'chemical', toId: 'thermal', way: 'heating', rate: f > 0.02 ? 0.9 : 0 },
-        ],
-        eq: `W_climb = m g h = 40 × 9.8 × ${(12 * f).toFixed(1)} m = ${(grav / 1000).toFixed(2)} kJ · Body warmth = ${(therm / 1000).toFixed(2)} kJ`,
-        caption: 'Human muscles are ~25% efficient: for every 1.18 kJ lifted into the gravitational jar per floor, ~3.5 kJ warms your body and the air.',
-      };
-    },
-  },
-  {
-    name: 'Coal station (100 J)',
-    totalJ: 100,
-    eval(u) {
-      const f = u / 3;
-      const chem = 100 * (1 - f);
-      const elec = 40 * f;
-      const therm = 60 * f;
-      return {
-        jars: [
-          { id: 'chemical', val: chem, sub: 'coal fuel' },
-          { id: 'kinetic', val: 15 * Math.sin(f * Math.PI), sub: 'spinning turbine' },
-          { id: 'electro', val: elec, sub: 'useful out (40%)' },
-          { id: 'thermal', val: therm, sub: 'cooling tower (60%)' },
-        ],
-        tubes: [
-          { from: 0, to: 1, fromId: 'chemical', toId: 'kinetic', way: 'heating', rate: f > 0.02 ? 0.7 : 0 },
-          { from: 1, to: 2, fromId: 'kinetic', toId: 'electro', way: 'electrical', rate: f > 0.02 ? 0.65 : 0 },
-          { from: 0, to: 3, fromId: 'chemical', toId: 'thermal', way: 'heating', rate: f > 0.02 ? 0.95 : 0 },
-        ],
-        eq: `η = useful ÷ total = ${elec.toFixed(0)} J ÷ 100 J = 40% · Dissipated to thermal store = ${therm.toFixed(0)} J`,
-        caption: 'Of every 100 J in the coal’s chemical store, 40 J leaves along the wires via the electrical pathway and 60 J warms the cooling water and air.',
-      };
-    },
-  },
-  {
-    name: 'The Sun (1 s: 3.83 × 10²⁶ J)',
-    totalJ: 3.83e26,
-    eval(u) {
-      const f = Math.max(0.15, u / 3);
-      return {
-        jars: [
-          { id: 'nuclear', val: 3.83e26, sub: 'core fusion (mc²)', overflow: true, valLabel: '3.83 × 10²⁶ J' },
-          { id: 'thermal', val: 3.83e26 * f, sub: '15 million °C core', overflow: true, valLabel: `${(3.83 * f).toFixed(2)} × 10²⁶ J` },
-          { id: 'grav', val: 1.74e17 * f, sub: 'reaching Earth', overflow: true, valLabel: '1.74 × 10¹⁷ J' },
-        ],
-        tubes: [
-          { from: 0, to: 1, fromId: 'nuclear', toId: 'thermal', way: 'heating', rate: 1.0 },
-          { from: 1, to: 2, fromId: 'thermal', toId: 'grav', way: 'radiation', rate: 1.0 },
-        ],
-        eq: `E = Δm c² = (4.26 × 10⁹ kg) × (3.00 × 10⁸ m/s)² = 3.83 × 10²⁶ J every single second!`,
-        caption: 'Every second the Sun turns 4.26 million tonnes of mass in its nuclear store into 3.83 × 10²⁶ J of thermal and radiation energy — overflowing any terrestrial jar.',
-      };
-    },
-  },
-];
-
 Live.register('energystores', (stage, params, api) => {
   const c = api.colors();
   const W = 640, H = 320;
-  const k = api.canvas(W, H, 'Glowing energy store jars with monochrome hatches and 4 animated transfer pathway tubes');
+  const k = api.canvas(W, H, 'Energy account jars with monochrome hatches and animated transfer and conversion tubes');
 
   let scenIdx = 0;
   let progress = 3.0; // 0..3
@@ -553,17 +422,17 @@ Live.register('energystores', (stage, params, api) => {
   );
 
   const setEq = api.yourNumbers();
-  api.idealised('The share of bounce energy leaving as sound is illustrative (< 1.1% in published basketball measurements, arXiv:1708.01282); almost all non-rebound energy warms the ball and floor.');
+  api.idealised('The jars track one starting amount, including energy delivered to the surroundings. “Delivered” and “Sunlight” are cumulative output accounts, not stores inside a machine. Intermediate allocations are illustrative stages, not physical timings. Bounce sound is counted after absorption; the Sun’s photon travel time is not modelled.');
 
   api.watch([
     {
       title: 'Wide shot: the energy ledger as glowing jars',
-      caption: 'Every store has both a colour and a monochrome hatch pattern, and the total energy across all jars stays constant.',
+      caption: 'Each jar has a colour and a hatch pattern. In this bounce account, all jars together track the same initial 0.98 J, including warming of the surroundings.',
       enter: () => { scenIdx = 0; showAll8 = false; cutAway = false; progress = 0.0; progSlider.set(0.0); tabBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0))); },
     },
     {
       title: 'Close-up: impact squash & the 4 pathways',
-      caption: 'As the ball hits the floor, mechanical work fills the elastic jar while heating and radiation pathways carry energy to the thermal jar.',
+      caption: 'At impact, work squashes the rubber and internal friction converts some motion into internal energy. Sound also carries energy away; the thermal jar counts it after absorption.',
       enter: () => { scenIdx = 0; showAll8 = false; cutAway = false; progress = 1.85; progSlider.set(1.85); },
     },
     {
@@ -608,7 +477,7 @@ Live.register('energystores', (stage, params, api) => {
         });
       });
       // Legend of 4 pathways at bottom
-      const pWays = ['Mechanical work (forces)', 'Electrical work (current)', 'Heating (ΔT)', 'Radiation (light & sound)'];
+      const pWays = ['Mechanical work (forces)', 'Electrical work (current)', 'Heating (ΔT)', 'Waves (light / sound)'];
       api.draw.text(ctx, '4 Pathways between stores:  ' + pWays.join('   ·   '), W / 2, 304, {
         size: 11, color: c.muted, align: 'center', weight: 600,
       });
@@ -641,14 +510,15 @@ Live.register('energystores', (stage, params, api) => {
     for (const tb of state.tubes) {
       const [x1, y1] = jarCenters[tb.from];
       const [x2, y2] = jarCenters[tb.to];
-      drawPathwayTube(ctx, x1, y1, x2, y2, tb.fromId, tb.toId, tb.way, tb.rate, t, c);
+      drawPathwayTube(ctx, x1, y1, x2, y2, tb.fromId, tb.toId, tb.way, tb.rate, t, c, { pattern: tb.style, label: tb.label });
     }
 
     // Draw each store jar
     state.jars.forEach((j, i) => {
       const x = startX + i * stepX;
       drawEnergyJar(ctx, x, yBase, jw, hMax, j.id, j.val, scale.cap, t, c, {
-        overflow: j.overflow || scale.overflow,
+        overflow: j.overflow || (scale.overflow && j.val > scale.cap),
+        title: j.title,
         valLabel: j.valLabel,
         subLabel: j.sub,
       });
