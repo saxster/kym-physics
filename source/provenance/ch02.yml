@@ -1,0 +1,93 @@
+# Chapter 2 ledger: Why things keep moving. One entry per numbered section; the case file's sources sit under 2.5.
+# Course and book names are the exact keys in provenance/sources.yml. Every number in `computed:` was run with
+# python3 -I -c on 2026-10-28; ASSUMED marks an input we chose because no source gives one.
+"2.1":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.1 (everyday push and pull; Galileo then Newton)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "idea, sequence"}
+  openstax:
+    - {book: "College Physics 2e", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia", took: "experience says moving things stop; push-a-book elicit"}
+    - {book: "College Physics 2e", section: "4.1 Development of Force Concept", url: "https://openstax.org/books/college-physics-2e/pages/4-1-development-of-force-concept", took: "force as a push or pull with magnitude and direction (its 'forces that cause objects to move' line rejected)"}
+    - {book: "Physics", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia", took: "first law 'may seem to contradict everyday experience'; which force was not yet understood (its 4.1 'force is the cause of motion' line rejected)"}
+  research:
+    - {what: "65% 'every motion has a cause'; 65/18/17% impetus/Aristotelian/Newtonian, n=478", source: "Halloun & Hestenes 1985, via research/misconceptions.md §3", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+  history:
+    - {what: "Aristotle: motion needs a mover (framing only; no dates used)", source: "research/history.md §1 (Philoponus entry) and NARRATIVE.md", url: ""}
+  figures:
+    - {name: c2_book_slide, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"2.2":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.1 (forces involve real physical interactions; name what exerts each force)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-1-newtons-first-and-second-laws/", took: "the two-object test"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.2-7.3 (Newton's commentary on Law 1: projectiles retarded by air, pulled down by gravity; planets persist; quantity of motion)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "paraphrased idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "Chapter 4 Conceptual Questions (section 4.3)", url: "https://openstax.org/books/college-physics-2e/pages/4-conceptual-questions", took: "non-zero velocity with zero net force concept question"}
+  research:
+    - {what: "impetus belief 65% before, 44% after; 47% slows with no force; 'held firm to mistaken beliefs' quote", source: "Halloun & Hestenes 1985, via research/misconceptions.md §3", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+  history:
+    - {what: "Philoponus (Alexandria, 6th c.), Ibn Sina's mayl (Bukhara, Book of Healing), Buridan's impetus (Paris, 14th c.) growing with speed and quantity of matter; Latin scholars probably did not read Philoponus directly", source: "research/history.md §1", url: "https://www.encyclopedia.com/humanities/dictionaries-thesauruses-pictures-and-press-releases/impetus"}
+  figures:
+    - {name: c2_arrow_forces, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"2.3":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.1 (isolated body keeps constant velocity, which may be zero)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-1-newtons-first-and-second-laws/", took: "definition of an isolated body"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 8 §8.3.2 (kinetic friction law, used for the stopping-distance ratio)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf", took: "law"}
+  openstax:
+    - {book: "College Physics 2e", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia", took: "talcum, oil, frictionless extrapolation; air hockey"}
+    - {book: "Physics", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia", took: "air hockey; which way is the net force after the push stops (concept question)"}
+    - {book: "College Physics 2e", section: "5.1 Friction, Table 5.1", url: "https://openstax.org/books/college-physics-2e/pages/5-1-friction", took: "steel on ice μ_k = 0.02"}
+  research:
+    - {what: "ice cube on a wet steel thali vs cloth (decisive demo); 47% believe an object slows with no net force", source: "research/misconceptions.md §3", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+  history:
+    - {what: "Galileo's ramps at Padua, c. 1604 (TRUE). The two-ramp thought experiment itself is in no grounding or research file: UNSOURCED, told as a thought experiment from 'the books he wrote as an old man'", source: "research/history.md §1 (Padua entry)", url: "https://www.teacherplus.org/?p=16841"}
+  computed:
+    - "stopping distance v²/(2μg) for v0 = 1 m/s (ASSUMED): steel on ice μ 0.02 → 2.55 m; cloth μ 0.3 (ASSUMED) → 0.17 m; ratio 15"
+    - "widget check a = g(sin25° − μcos25°) with 45 N friction on 60 kg → 3.39 m/s², matching OpenStax College 4.5"
+  figures:
+    - {name: c2_two_ramps, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"2.4":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.4 Non-inertial Reference Frames (fictitious force in an accelerating frame; braking-train lurch)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-4-non-inertial-reference-frames/", took: "idea for the two views of the train"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.2 (Law 1 in the Motte–Cajori translation, paraphrased; Galileo first, unacknowledged by Newton)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "statement (paraphrased), history"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.1 (isolated body; inertial frames)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-1-newtons-first-and-second-laws/", took: "definitions"}
+  openstax:
+    - {book: "Physics", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia", took: "inertia and mass definitions; mass the same on Earth, in orbit, on the Moon; box pushed at +50 N against −50 N friction; CYU 5 distractor 'constant acceleration'"}
+    - {book: "College Physics 2e", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia", took: "mass measures inertia; boulder vs basketball; kilogram of cotton vs gold (recast as puffed rice vs steel bolts)"}
+  research:
+    - {what: "IGCSE 0625 wording of the first law and of mass", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "zero speed ≠ zero acceleration (recall of Ch 1), 44% n=100", source: "research/misconceptions.md §2", url: "https://www.dcu.ie/sites/default/files/smec/pdfs/CP3-DKeenahan.pdf"}
+  history:
+    - {what: "Principia, 1687", source: "research/history.md §1 (Halley and the Principia)", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
+  computed:
+    - "coin-card-glass (μ 0.3 ASSUMED): flick 0.05 s → v = μgt = 0.147 m/s, slip ½μgt² = 0.37 cm; slow pull 0.5 s → 36.75 cm. The trick itself is in no source: will-it-work gate."
+  figures:
+    - {name: c2_train_brake, origin: "ours; the two-frame idea follows 8.01SC Lesson 4.4"}
+  licence: "CC BY-NC-SA 4.0"
+"2.5":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lessons 6.1 Contact Forces, 6.2 Static Friction Lesson, DD.1.1 Friction at the Nanoscale (transcripts)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/6-1-contact-forces/", took: "kinetic friction rules; static friction grows then slips; real contact area; hand-on-table demo; luggage-scale ramp-up ('friction destroys energy' line rejected)"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 8 §8.3.1-8.3.2 (contact force = normal + friction; da Vinci 1493-4 to c. 1515, Amontons 1699, Coulomb; chalk and violin bow stick-slip; f_k = μ_k N; 0 ≤ f_s ≤ μ_s N). Also the case file: impulse from Week 5 Lesson 15.1", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf", took: "definitions, history, laws"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 5 Lesson 15.1 Momentum and Impulse (force × time = change in momentum, for the tablecloth case)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/15-1-momentum-and-impulse/", took: "law, applied with ASSUMED inputs"}
+  openstax:
+    - {book: "College Physics 2e", section: "5.1 Friction", url: "https://openstax.org/books/college-physics-2e/pages/5-1-friction", took: "definition; Table 5.1 (rubber on dry concrete 0.7, wood on wood 0.3, steel on ice 0.02); adhesion; 'still not completely understood'; friction lets us walk; coin-on-book take-home; Conceptual Q1-4"}
+  research:
+    - {what: "IGCSE 0625 'solid friction ... may impede motion and produce heating'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "'friction not recognised as a force' (grades 9-12)", source: "MOSART, via research/misconceptions.md §3", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+  computed:
+    - "μ_k = tan θ: 15° → 0.27, 20° → 0.36 (angles ASSUMED; Kym measures them)"
+    - "tablecloth case (μ 0.3 ASSUMED, cloth on plate and plate on table): pull 0.1 s → plate speed 0.294 m/s, slip 1.47 cm under the cloth, then 1.47 cm more on the table; 0.05 s → 0.37 cm; 0.5 s → 36.75 cm. Acceleration μg is independent of plate mass."
+  figures:
+    - {name: c2_friction_closeup, origin: "ours; the rough-surfaces idea is from OpenStax College Physics 2e Fig 5.2, redrawn"}
+    - {name: c2_friction_graph, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"story:impetus":
+  history:
+    - {what: "Aristotle's mover; Philoponus; Ibn Sina's mayl; Buridan's impetus; forerunner of momentum", source: "research/history.md §1", url: "https://www.encyclopedia.com/humanities/dictionaries-thesauruses-pictures-and-press-releases/impetus"}
+  research:
+    - {what: "impetus held by 65% before and 44% after instruction", source: "Halloun & Hestenes 1985, via research/misconceptions.md §3", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+"story:inertia":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.2 (Law 1; Galileo first); Week 2 Lesson 4.4 (the braking frame)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "statement, history"}
+  history:
+    - {what: "Galileo's ramps, Padua c. 1604; Principia 1687. The two-ramp thought experiment is UNSOURCED in research/history.md", source: "research/history.md §1", url: "https://www.teacherplus.org/?p=16841"}

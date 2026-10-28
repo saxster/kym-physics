@@ -1,0 +1,198 @@
+# Ledger for Chapter 6: Pressure, floating and the ocean of air.
+# course:/book: names are the exact keys in provenance/sources.yml. `computed:` lists the python3 -I arithmetic
+# behind every number in the text and figures (inputs marked ASSUMED are model numbers the chapter labels as such).
+"6.1":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 Static Fluids §27.1–27.3 (fluid vs solid; pressure; the pascal; pressure from molecular collisions)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "definitions; molecular-collision picture of pressure"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.1 What Is a Fluid?; 11.3 Pressure (Fig 11.5 finger vs needle; tyre and swimmer pictures; pressure is a scalar)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-3-pressure"
+      took: "sequence, definitions, fluid pushes on every surface"
+    - book: "College Physics 2e"
+      section: "Ch 11 Conceptual Questions (knife sharpness)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-conceptual-questions"
+      took: "concept question (the knife)"
+  research:
+    - what: "elephant vs stiletto hook (all inputs ASSUMED, labelled made-up in the text)"
+      source: "BOOKPLAN §5 Ch 6; grounding/ch06.md 6.1"
+      url: ""
+  computed:
+    - "elephant 4000 kg on 4 × 0.1 m² (ASSUMED): 4000×9.8 = 39,200 N; /0.4 = 98 kPa; heel 60 kg on 1 cm² (ASSUMED): 588 N /1e-4 = 5.9 MPa; ratio ≈ 60"
+    - "atta packet 20×12×5 cm (ASSUMED), 1 kg: 9.8 N; 240 cm² → 408 Pa; 60 cm² → 1,633 Pa; ratio 4.0"
+  figures:
+    - {name: c6_pressure, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"6.2":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 §27.3 (atmospheric pressure from the weight of the air; 1 cm² column 1.03 kg, 10.1 N; 1 atm = 1.01325×10⁵ Pa; Table 27.1 densities)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "definitions, numbers"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.4 Variation of Pressure with Depth (atmospheric pressure; weather highs and lows; 10.3 m of water)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
+      took: "sequence, worked numbers"
+    - book: "College Physics 2e"
+      section: "11.6 Gauge Pressure, Absolute Pressure, and Pressure Measurement (mercury barometer; barometer as altimeter)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+      took: "barometer idea; air pushes the mercury up (not pulled by the vacuum)"
+    - book: "College Physics 2e"
+      section: "11.2 Density, Table 11.1 (mercury 13.6×10³, water 1.000×10³ kg/m³)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+      took: "numbers"
+    - book: "College Physics 2e"
+      section: "Ch 11 Conceptual Questions (10 tons of air on a body: why you can get up)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-conceptual-questions"
+      took: "the pushes balance inside and out"
+  history:
+    - what: "Torricelli's tube, Florence 1643; letter to Ricci 11 June 1644, 'we live submerged at the bottom of an ocean of air'; pumps stopping at about 10 m"
+      source: "research/history.md §3 (TRUE)"
+      url: "https://www.chemistryworld.com/opinion/torricellis-barometer/1017293.article"
+    - what: "Périer on the Puy de Dôme for Pascal, 19 September 1648; mercury fell about 3 inches (≈8 cm); control tube in Clermont watched by a priest"
+      source: "research/history.md §3 (TRUE)"
+      url: "https://en.scientificrussia.ru/articles/under-atmospheric-pressure"
+  research:
+    - what: "'gravity needs air' bundle recalled in :::recall 4 (Moon barometer)"
+      source: "research/misconceptions.md §4"
+      url: "https://spark.iop.org/some-pupils-think-gravity-requires-presence-air-so-there-no-gravity-moon-or-space"
+  computed:
+    - "1 atm per cm²: 101325×1e-4 = 10.13 N, 1.034 kg; per m²: 101325/9.8 = 10,339 kg ≈ 10 tonnes"
+    - "mercury column 101325/(13.6e3×9.8) = 0.760 m; water 101325/(1000×9.8) = 10.34 m (OS College 1.01e5 → 10.31 m); 0.76×13.6 = 10.34"
+    - "Périer 8 cm Hg: 13.6e3×9.8×0.08 = 10,662 Pa = 10.5% of 101,325 Pa"
+    - "figure scale: 27 px/m; 10.3 m = 278 px; 0.76 m = 20.5 px; three floors of 3 m (ASSUMED floor height) = 9 m"
+  figures:
+    - {name: c6_barometer, origin: "ours; the mercury tube and dish follow OpenStax College Physics 2e Fig 11.16 in outline"}
+  licence: "CC BY-NC-SA 4.0"
+"6.3":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 §27.3 (pressure from molecular collisions: a fluid can only push)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "idea"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.6 Gauge Pressure, Absolute Pressure, and Pressure Measurement (fluids push rather than pull; gauge vs absolute; lowest absolute pressure is zero)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+      took: "definitions, idea"
+    - book: "College Physics 2e"
+      section: "11.4 (10.3 m water column: the straw and card limit)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
+      took: "number"
+  research:
+    - what: "suction misconception; card-on-glass and straw demos (will-it-work: yes, over a sink, wet stiff card)"
+      source: "research/misconceptions.md §5"
+      url: ""
+    - what: "IGCSE 0625: 'suction' and 'upthrust' appear 0 times; bridge 'the air pressure outside is bigger and pushes'"
+      source: "research/school-wording.md §1, §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+    - what: "suction cup held by atmospheric pressure, 'absence of air inside'"
+      source: "research/misconceptions.md §5 (NCERT Class 8 study notes via EduRev)"
+      url: "https://edurev.in/t/154915/Short-Answer-Question-Force-Pressure"
+  history:
+    - what: "von Guericke's hemispheres, Regensburg 1654 or later; horse count varies (12/16/30), told as 'teams of horses'"
+      source: "research/history.md §3 (TRUE, details HEDGE)"
+      url: "https://physicstoday.aip.org/backscatter/magdeburg-hemispheres"
+  computed:
+    - "10 cm of water: 1000×9.8×0.10 = 980 Pa = 0.97% of 101,325 Pa"
+    - "1 atm on 1 cm² = 10.13 N (the hook and the hemispheres)"
+  figures:
+    - {name: c6_card, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"6.4":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 §27.4 (P(z) − P(0) = ρgz; the notes call it Pascal's Law, a name this book does not use for it) and Example 27.1 Pressure in the Earth's Ocean (4 km: 40 MPa)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "equation, worked example"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.4 Variation of Pressure with Depth (P = hρg; depth not width; dam example 500 m × 80 m; reservoir 50 km² × 40 m; dams thicker at the bottom; pressures add)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
+      took: "sequence, worked examples"
+    - book: "College Physics 2e"
+      section: "11.5 Pascal's Principle"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-5-pascals-principle"
+      took: "definition (hydraulic brakes and jack)"
+    - book: "College Physics 2e"
+      section: "11.2 Density, Table 11.1 (sea water 1.025×10³ kg/m³)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+      took: "number"
+    - book: "College Physics 2e"
+      section: "Ch 11 Conceptual Questions (sandbags round a levee leak, Fig 11.38)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-conceptual-questions"
+      took: "concept question"
+  research:
+    - what: "IGCSE 0625 wording Δp = ρgΔh; bridge 'the Δ means change in'"
+      source: "research/school-wording.md §1, §6"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+    - what: "holes-in-a-bottle demo (our suggestion; compare jet speed, not landing spot) — needs the will-it-work gate"
+      source: "grounding/ch06.md 6.4 Demonstrations"
+      url: ""
+  computed:
+    - "1 m³ of water: 1000 kg, 9,800 N over 1 m² → 9,800 Pa; 2 m → 19,600 Pa"
+    - "sea 10 m: 1025×9.8×10 = 100,450 Pa (0.99 atm); total 1.99 atm; 20 m total 2.98 atm"
+    - "ocean 4 km: 1.03e3×9.8×4e3 = 40.4 MPa ≈ 398 atm"
+    - "dam: bottom 1000×9.8×80 = 784,000 Pa (7.7 atm); average 1000×9.8×40 = 392,000 Pa; force 392,000×80×500 = 1.57×10¹⁰ N; reservoir 50e6×40×1000 = 2.0×10¹² kg, weight 1.96×10¹³ N; ratio 0.08%"
+    - "tank figure: 0.5/1.0/1.5 m of fresh water → 4,900/9,800/14,700 Pa; jet speeds ∝ √depth (0.71 : 1 : 1.22), shapes schematic"
+  figures:
+    - {name: c6_tank, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"6.5":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 §27.2 Density (Table 27.1: ice 0.92, seawater 1.03); §27.6 Archimedes' Principle (eq. 27.6.2–27.6.6; replace-with-fluid argument; why a steel ship floats); Examples 27.4–27.6"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "idea, derivation, numbers"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.7 Archimedes' Principle (buoyant force from the pressure difference; Fig 11.18–11.19; steel-ship example 1.00×10⁷ kg; coin 8.630 g / 7.800 g example; fraction submerged = ρ_obj/ρ_fl; clay boat; foil boat with cargo; the crown story told as 'as the story goes')"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-7-archimedes-principle"
+      took: "sequence, definitions, worked examples, demos"
+    - book: "College Physics 2e"
+      section: "11.2 Density, Table 11.1 (water 1.000, sea water 1.025, iron or steel 7.8 ×10³ kg/m³)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+      took: "numbers"
+    - book: "College Physics 2e"
+      section: "Ch 11 Conceptual Questions (ship in salt vs fresh water)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-conceptual-questions"
+      took: "concept question"
+  research:
+    - what: "'heavy things sink' misconception; orange-with-peel (very reliable; peel full of air pockets) and egg-in-salt-water demos (add salt until it lifts; amount UNVERIFIED)"
+      source: "research/misconceptions.md §5"
+      url: ""
+    - what: "egg salt arithmetic kept out of the text: 11–12% brine ≈ 31–34 g of salt in 250 g of water (CRC via Wikipedia, secondary); egg density UNVERIFIED, so the text says only 'keep adding salt until it lifts'"
+      source: "grounding/ch06.md 6.5 (CRC Handbook 86th ed. via Wikipedia Sodium chloride data page)"
+      url: "https://en.wikipedia.org/wiki/Sodium_chloride_(data_page)"
+    - what: "IGCSE 0625 does not use 'upthrust' (0 mentions); 'buoyant force' used, 'upthrust' bridged"
+      source: "research/school-wording.md §1"
+      url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+    - what: "'tables can't push' (about half of high-schoolers, Minstrell) recalled in :::recall 3"
+      source: "research/misconceptions.md §3"
+      url: "https://arxiv.org/pdf/1603.06024"
+  history:
+    - what: "Archimedes' crown and bath: LEGEND (Vitruvius, two centuries later); Galileo's La Bilancetta, 1586, aged 22: overflow method impractical, hydrostatic balance proposed; Archimedes' principle TRUE"
+      source: "research/history.md §3"
+      url: "https://math.nyu.edu/Archimedes/Crown/bilancetta.html"
+  computed:
+    - "OS ship: 1.00e7 kg / 7800 = 1,282 m³; buoyant 1282×1000×9.8 = 1.26×10⁷ N vs weight 9.80×10⁷ N (ratio 7.8); hull 1.00e5 m³ → 9.8×10⁸ N = 10× weight → one tenth submerged"
+    - "50,000 t ship: 5e7 kg / 1025 = 48,780 m³ of sea water; steel/sea water 7.8/1.025 = 7.61; steel volume 5e7/7800 = 6,410 m³"
+    - "ice: 0.92/1.000 = 92% submerged; 0.92/1.025 = 89.8%"
+    - "coin: 8.630 − 7.800 = 0.830 g of water → 0.830 cm³; 8.630/0.830 = 10.4 g/cm³"
+  figures:
+    - {name: c6_buoyancy, origin: "ours; the pressure-on-every-face panel follows OpenStax College Physics 2e Fig 11.18 in outline"}
+  licence: "CC BY-NC-SA 4.0"
+"story:ocean-of-air":
+  history:
+    - {what: "Torricelli 1643–44 and the Ricci letter; Périer on the Puy de Dôme 1648 with the control tube; von Guericke's hemispheres (horse count HEDGE)", source: "research/history.md §3", url: "https://www.chemistryworld.com/opinion/torricellis-barometer/1017293.article"}
+  licence: "CC BY-NC-SA 4.0"
+"story:floating":
+  history:
+    - {what: "Archimedes' crown as LEGEND (Vitruvius); Galileo's La Bilancetta 1586; Archimedes' principle TRUE", source: "research/history.md §3", url: "https://math.nyu.edu/Archimedes/Crown/bilancetta.html"}
+  openstax:
+    - {book: "College Physics 2e", section: "11.7 Archimedes' Principle", url: "https://openstax.org/books/college-physics-2e/pages/11-7-archimedes-principle", took: "why a steel ship floats"}
+  licence: "CC BY-NC-SA 4.0"

@@ -1,0 +1,107 @@
+# Chapter 3 ledger: Forces come in pairs. One entry per numbered section; the mosquito case file's sources sit under 3.5.
+# Course and book names are the exact keys in provenance/sources.yml. Every number in `computed:` was run with
+# python3 -I -c on 2026-10-28; ASSUMED marks an input we chose because no source gives one.
+"3.1":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.1 (forces add as vectors is an experimental result; Example 7.1 too advanced, replaced by a 1D cart)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "idea"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 7.1 Pushing, Pulling and Tension (tug of war; tension the same along a light rope)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/7-1-pushing-pulling-and-tension/", took: "idea"}
+  openstax:
+    - {book: "Physics", section: "4.1 Force", url: "https://openstax.org/books/physics/pages/4-1-force", took: "net, external and internal force; free-body diagram as a dot with external forces only; one positive direction (its opening 'force is the cause of motion' line rejected)"}
+    - {book: "College Physics 2e", section: "4.1 Development of Force Concept", url: "https://openstax.org/books/college-physics-2e/pages/4-1-development-of-force-concept", took: "force as push or pull with magnitude and direction; spring force standard; rubber-band take-home (recast with ₹5 coins)"}
+    - {book: "Physics", section: "4.2 Newton's First Law of Motion: Inertia", url: "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia", took: "balanced forces mean constant velocity, not rest; PhET tug-of-war idea (link-out only)"}
+  research:
+    - {what: "IGCSE 'resultant force' wording and the resultant/net/unbalanced bridge", source: "research/school-wording.md §1 and §6", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  computed:
+    - "tug of war (ASSUMED pulls): 120+100+90+80 = 390 N left; 150+130+110 = 390 N right; net 0; with +100 N: net 100 N right"
+    - "weight of 100 g: 0.1 × 9.8 = 0.98 N ≈ 1 N"
+    - "check: 200 + 150 − 350 = 0 N"
+  figures:
+    - {name: c3_tug_cart, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"3.2":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.1 Newton's First and Second Laws (F = ma; F = dp/dt the general form)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-1-newtons-first-and-second-laws/", took: "sequence"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.1.1 Mass Calibration (mass measured by comparing accelerations)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "idea"}
+  openstax:
+    - {book: "Physics", section: "4.3 Newton's Second Law of Motion", url: "https://openstax.org/books/physics/pages/4-3-newtons-second-law-of-motion", took: "a ∝ F, a ∝ 1/m; basketball vs car (Fig 4.5 idea); newton definition; W = mg; g = 9.80 Earth, 1.67 Moon; lawn mower 51 N / 240 kg; bathroom-scale activity (detects weight, displays mass; push on a table); only the net force counts (its 'gravity is an acceleration' line rejected)"}
+    - {book: "College Physics 2e", section: "Chapter 4 Conceptual Questions (section 4.3)", url: "https://openstax.org/books/college-physics-2e/pages/4-conceptual-questions", took: "net force causes change in motion; zero acceleration vs no forces"}
+  research:
+    - {what: "constant push → constant speed: 66% of n=478 (Halloun & Hestenes) and 44% of US middle/high schoolers (AAAS, ≥2,000 per item)", source: "research/misconceptions.md §3 and ranked table", url: "https://www.aaas.org/news/us-students-and-science-aaas-testing-gives-new-insight-what-they-know-and-their-misconceptions"}
+    - {what: "IGCSE wording: weight is a gravitational force on an object that has mass; g = W/m in N/kg equivalent to the acceleration of free fall; write mass in kg and weight in N", source: "research/school-wording.md §1 and §6", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  computed:
+    - "51/240 = 0.21 m/s²; scooter 2000/200 = 10 m/s² vs truck 2000/10000 = 0.2 m/s² (masses and force ASSUMED, stated as made-up), ratio 50"
+    - "1 kg: 9.8 N on Earth, 1.67 N on the Moon; cricket ball 0.16 kg (ASSUMED) → 1.57 N; check 30 N / 60 kg = 0.5 m/s²"
+  figures:
+    - {name: c3_f_ma, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"3.3":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 8 §8.3 Constraint Forces, §8.3.1 Contact Forces, Example 8.2 (atoms squeezed, electrons repel; normal force not given by a force law; block in the hand; second hand makes it feel lighter; weightless in a jump; warning that N = mg only at rest; gravity and normal force not a third-law pair)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf", took: "idea, sequence, warnings, demo"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 6.1 Contact Forces", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/6-1-contact-forces/", took: "definition of the normal component"}
+  openstax:
+    - {book: "College Physics 2e", section: "4.5 Normal, Tension, and Other Examples of Forces", url: "https://openstax.org/books/college-physics-2e/pages/4-5-normal-tension-and-other-examples-of-forces", took: "card table sags under a load; restoring force grows with deformation like a spring or trampoline; normal force can be less (slope) or more (push) than weight; skier on 25° slope"}
+    - {book: "Physics", section: "4.4 Newton's Third Law of Motion", url: "https://openstax.org/books/physics/pages/4-4-newtons-third-law-of-motion", took: "normal force definition; N = mg only on a horizontal surface; not a pair with gravity"}
+  research:
+    - {what: "Minstrell: about half of high-school students say the table pushes; Clement's bridging chain (spring → foam → ruler → table); a 30 cm steel ruler visibly sags under a few ₹5 coins", source: "research/misconceptions.md §3 (Clement 1993, JRST 30(10); review arXiv 1603.06024)", url: "https://arxiv.org/pdf/1603.06024"}
+  computed:
+    - "skier: N = 60 × 9.8 × cos 25° = 532.9 N (≈533 N) vs mg = 588 N; cricket ball 0.16 kg → 1.57 N"
+  figures:
+    - {name: c3_bridging_chain, origin: "ours; the sagging-table idea is from OpenStax College Physics 2e Fig 4.11, redrawn as a steel ruler with coins"}
+  licence: "CC BY-NC-SA 4.0"
+"3.4":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.2 Newton's Third Law (marble vs train; accelerations in inverse ratio of masses; pairs act on different objects; person standing: the partners of weight and normal force; name the partner of every force)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-2-newtons-third-law/", took: "idea, sequence, concept question, warnings"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.4 (Law III; finger and stone, paraphrased; interaction pair)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "statement (paraphrased)"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 7.1 (a rope as a chain of interaction pairs; tension)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/7-1-pushing-pulling-and-tension/", took: "why the two luggage scales agree"}
+  openstax:
+    - {book: "Physics", section: "4.4 Newton's Third Law of Motion", url: "https://openstax.org/books/physics/pages/4-4-newtons-third-law-of-motion", took: "statement; swimmer, walking, car, helicopter, octopus; which force is the 'action' depends on your point of view; equal and opposite forces do not cancel because they act on different systems"}
+    - {book: "College Physics 2e", section: "Chapter 4 Conceptual Questions (section 4.4)", url: "https://openstax.org/books/college-physics-2e/pages/4-conceptual-questions", took: "lineman question recast as tug of war; system choice decides whether a pair cancels"}
+    - {book: "Physics", section: "1.3 The Language of Physics: Physical Quantities and Units, Table 1.3", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "Earth's mass 5.97 × 10²⁴ kg"}
+  research:
+    - {what: "FCI truck-and-car item: 73% of about 900 students before instruction, 39% after; two luggage scales read equal to about ±0.1 kg", source: "research/misconceptions.md §3 (Maries & Singh, arXiv 1307.7177)", url: "https://arxiv.org/pdf/1307.7177"}
+  history:
+    - {what: "Principia, London, 1687", source: "research/history.md §1 (Halley and the Principia)", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
+  computed:
+    - "Kym 40 kg (ASSUMED): weight 392 N; Earth's acceleration from her pull 392/5.97e24 = 6.6 × 10⁻²³ m/s² (written 'about 7 × 10⁻²³'); dial 10 kg → 98 N"
+  figures:
+    - {name: c3_luggage_scales, origin: ours}
+    - {name: c3_pairs_person, origin: "ours; the person-standing pairs follow 8.01SC Lesson 4.2"}
+  licence: "CC BY-NC-SA 4.0"
+"3.5":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 5 Lessons 15.1 Momentum and Impulse, 16.1 Conservation of Momentum (p = mv; impulse = Δp; F = dp/dt; choose the system so collision forces are internal)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/15-1-momentum-and-impulse/", took: "definitions, law, system choice; also the mosquito case (impulse)"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 10 §10.2, §10.7-10.8 (momentum frame-dependent; isolated systems; third law makes the momentum changes cancel)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter10.pdf", took: "the pairs-plus-impulse argument for conservation"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 6 Lesson 19.1 Rocket Problem; Course notes Ch 12 §12.3 Rocket Propulsion (rocket pushes exhaust, exhaust pushes rocket)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter12.pdf", took: "idea"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.2 Newton's Third Law (marble vs train, the physics of the mosquito case)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-2-newtons-third-law/", took: "idea for the case file"}
+  openstax:
+    - {book: "Physics", section: "8.1 Linear Momentum, Force, and Impulse; 8.2 Conservation of Momentum; 8.3 Elastic and Inelastic Collisions", url: "https://openstax.org/books/physics/pages/8-2-conservation-of-momentum", took: "quantity of motion; impulse; bend your knees; goalpost makes Earth recoil; two-cart worked example (0.350 kg at 2 m/s, 0.500 kg at −0.5 m/s, cart 1 to −0.94 m/s); ice-cube Snap Lab; CYU 7-8"}
+    - {book: "Physics", section: "4.4 Newton's Third Law of Motion", url: "https://openstax.org/books/physics/pages/4-4-newtons-third-law-of-motion", took: "thrust; rockets do not push on air or ground, work better in a vacuum; astronaut throwing an object"}
+    - {book: "College Physics 2e", section: "8.7 Introduction to Rocket Propulsion", url: "https://openstax.org/books/college-physics-2e/pages/8-7-introduction-to-rocket-propulsion", took: "balloon take-home (string-and-straw version is ours); same principle for jets, balloons, squid, recoil; misconception alert"}
+    - {book: "Physics", section: "1.3 The Language of Physics: Physical Quantities and Units, Table 1.3", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "mosquito mass ~10⁻⁵ kg (order of magnitude) for the case file"}
+  research:
+    - {what: "IGCSE topic 1.6 Momentum exists (heading only; exact wording not in the research file)", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "impetus returns (recall of 2.2): 65% / 44%", source: "Halloun & Hestenes 1985, via research/misconceptions.md §3", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+  history:
+    - {what: "Thumba, 21 November 1963: Nike-Apache launched beside St Mary Magdalene church, the church as control and assembly building, rockets about where the altar had been (TRUE); parts by bicycle and bullock cart (HEDGE, told as 'the story goes'); Sarabhai; Chandrayaan-3 landing 23 August 2023 (TRUE)", source: "research/history.md §8", url: "https://thesouthfirst.com/kerala/60th-anniversary-of-indias-first-rocket-launch-fishworkers-latin-catholic/"}
+  computed:
+    - "cricket ball 0.16 kg (ASSUMED) at 30 m/s (ASSUMED): p = 4.8 kg·m/s"
+    - "carts: total 0.350×2 + 0.500×(−0.5) = 0.45 kg·m/s; cart 2 after = (0.45 − 0.350×(−0.94))/0.500 = 1.56 m/s"
+    - "mosquito case: 90 km/h = 25 m/s; m = 1e-5 kg (OpenStax order of magnitude), Δt = 1 ms and car 1200 kg (ASSUMED): F = 0.25 N on each; car a = 2.1e-4 m/s²; mosquito a = 25,000 m/s² ≈ 2,550 g; ratio 1.2e8; 25 g biscuit weighs 0.245 N"
+  figures:
+    - {name: c3_momentum_carts, origin: ours}
+    - {name: c3_rocket_momentum, origin: "ours; a momentum diagram in the spirit of OpenStax College Physics 2e Fig 8.12, redrawn"}
+  licence: "CC BY-NC-SA 4.0"
+"story:third-law":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.4; Week 2 Lesson 4.2 (marble vs train)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-2-newtons-third-law/", took: "statement, example"}
+  research:
+    - {what: "73% / 39% FCI truck-and-car item; two luggage scales", source: "research/misconceptions.md §3", url: "https://arxiv.org/pdf/1307.7177"}
+  history:
+    - {what: "Principia, 1687 (the horse-and-stone wording is to be checked in the Principia itself)", source: "research/history.md §1", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
+"story:momentum":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 5 Lesson 16.1; Course notes Ch 12 §12.3 Rocket Propulsion", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter12.pdf", took: "conservation; rocket principle"}
+  openstax:
+    - {book: "College Physics 2e", section: "8.7 Introduction to Rocket Propulsion", url: "https://openstax.org/books/college-physics-2e/pages/8-7-introduction-to-rocket-propulsion", took: "balloon take-home"}
+  history:
+    - {what: "Sarabhai and St Mary Magdalene church, Thumba, 21 November 1963 (bicycle HEDGE); Chandrayaan-3, 2023", source: "research/history.md §8", url: "https://thesouthfirst.com/kerala/60th-anniversary-of-indias-first-rocket-launch-fishworkers-latin-catholic/"}

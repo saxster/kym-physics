@@ -1,0 +1,105 @@
+# Chapter 8, Heat and temperature. Every numbered section, figure and story card the chapter introduces.
+# Numbers were recomputed with python3 -I (see the "computed" notes); ASSUMED inputs are named as such.
+"8.1":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slide 3 (thermal energy vs heat definitions)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "definition: heat is transferred thermal energy"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.1 Heat", url: "https://openstax.org/books/college-physics-2e/pages/14-1-heat", took: "heat as transfer; no 'heat content'; Joule's falling weights and paddle; 1 kcal = 4186 J; food Calorie; Check Your Understanding (10 kJ heating vs 10 kJ work)"}
+    - {book: "Physics", section: "11.1 Temperature and Thermal Energy", url: "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy", took: "eraser-rubbing demo; heat vs temperature"}
+  research:
+    - {what: "heat and cold as substances; 'cold comes in'", source: "research/misconceptions.md §7 (MOSART list)", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+    - {what: "IGCSE wording: 'transfer of thermal energy', heating as a process", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Rumford's cannon-boring at Munich, 1798; water boiled after 2.5 h with no fire (paraphrased, not quoted)", source: "research/history.md §4 (IOP Spark 'Revolutionary Rumford'; Wikipedia on the 1798 paper)", url: "https://spark.iop.org/revolutionary-rumford"}
+    - {what: "Joule's paddle wheel, Manchester 1840s (waterfall thermometer not used)", source: "research/history.md §4 (APS News)", url: "https://www.aps.org/apsnews/2009/12/joule-abstract-converting-mechanical-heat"}
+  figures:
+    - {name: c8_joule, origin: "ours, schematic after the paddle apparatus described in College Physics 2e 14.1 (Fig 14.3 idea, redrawn)"}
+  licence: "CC BY-NC-SA 4.0"
+"8.2":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slides 3, 6 (heat capacity, water 4.18 J/g·K)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "idea; water's heat capacity"}
+  openstax:
+    - {book: "Physics", section: "11.1 Temperature and Thermal Energy", url: "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy", took: "bucketful-vs-spoonful teacher prompt; 'temperature measures heat' warning; temperature as average particle motion"}
+    - {book: "Physics", section: "11.2 Heat, Specific Heat, and Heat Transfer", url: "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer", took: "Q = mcΔT; sand c ≈ 800; land-and-water snap lab (Investigation 8.2)"}
+    - {book: "College Physics 2e", section: "14.2 Temperature Change and Heat Capacity", url: "https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity", took: "Table 14.1 values (water 4186, aluminium 900, steel 452, wood 1700, glass 840); three factors; Check Your Understanding (25 kJ, 25→30 vs 45→50 °C); land vs sea lead-in"}
+  research:
+    - {what: "heat = temperature misconception", source: "research/misconceptions.md §7", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+    - {what: "IGCSE c = ΔE/(mΔθ); 'average kinetic energies of all of the particles'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "computed: bucket 10 kg × 4186 × 10 = 418,600 J; spoon 0.005 × 4186 × 60 = 1,256 J; ratio 333 (ASSUMED 10 kg at 40 °C, 5 g at 90 °C, room 30 °C); 4186/800 = 5.23", source: "python3 -I, 2026-10-28", url: ""}
+  figures:
+    - {name: c8_bucket_spoon, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"8.3":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slides 9–11 (Fourier law; conductivity table)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "idea; conduction as a flow driven by temperature difference"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.5 Conduction", url: "https://openstax.org/books/college-physics-2e/pages/14-5-conduction", took: "carpet-and-tile sequence (same temperature, different rate); particle collisions at the contact surface (Fig 14.14 idea); Q/t = kAΔT/d; Table 14.3 (aluminium 220, steel 80, stainless 14, glass 0.84, water 0.6, wood 0.08–0.16, wool 0.04, air 0.023); free electrons"}
+    - {book: "Physics", section: "11.2 Heat, Specific Heat, and Heat Transfer", url: "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer", took: "conduction definition; 'does the desk feel colder?' prompt"}
+  research:
+    - {what: "metal feels colder; ice cube on aluminium vs a poor conductor melts in under about 4 minutes", source: "research/misconceptions.md §7 (IOP Spark; UCSB demo; PASCO manual)", url: "https://cdn.pasco.com/product_document/MELT_Manual_2024-01-03.pdf"}
+    - {what: "computed: 14/0.16 = 88, 14/0.08 = 175 (stainless vs wood 'about a hundred times'); 220/0.04 = 5500; 10 g × 334 kJ/kg = 3340 J", source: "python3 -I, 2026-10-28", url: ""}
+  figures:
+    - {name: c8_conduction, origin: "ours; the contact-surface idea is redrawn from College Physics 2e Fig 14.14, the conductivity ruler from Table 14.3"}
+  licence: "CC BY-NC-SA 4.0"
+"8.4":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slides 11–12 (insulation; layers in series; concrete wall ≈ 5 GJ/day vs ≈ 160 MJ/day with 3 cm fibreglass)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "idea; the wall numbers (recomputed: 1.4 × 20/0.2 × 450 m² × 86400 s = 5.4 GJ/day; 5000/160 ≈ 31)"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.5 Conduction", url: "https://openstax.org/books/college-physics-2e/pages/14-5-conduction", took: "thickness as 1/d; wool 0.04, down 0.025, air 0.023; Styrofoam ice-box Example 14.5 (3.44 kg/day) for the check"}
+    - {book: "College Physics 2e", section: "14.6 Convection", url: "https://openstax.org/books/college-physics-2e/pages/14-6-convection", took: "air insulates only when trapped; fur/feather air pockets (Fig 14.19 idea)"}
+    - {book: "Physics", section: "11.2 Heat, Specific Heat, and Heat Transfer", url: "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer", took: "'sweaters slow down the transfer of heat'; the PhET answer key's 'large specific heat' line is cited as a source error and NOT reused"}
+  research:
+    - {what: "'sweaters make heat' (NSTA Mitten problem); NCERT 'keep warmth close to the body'", source: "research/misconceptions.md §7", url: "https://www.nsta.org/lesson-plan/mitten-problem"}
+  figures:
+    - {name: c8_sweater, origin: "ours; air-pocket idea redrawn from College Physics 2e Fig 14.19"}
+  licence: "CC BY-NC-SA 4.0"
+"8.5":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 10 (enthalpies of phase change: melting ≈ 334 kJ/kg, vaporisation ≈ 2.26 MJ/kg)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec10/", took: "numbers"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.3 Phase Change and Latent Heat", url: "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat", took: "sequence; Table 14.2 (334 kJ/kg, 2256 kJ/kg at 100 °C, 2430 at 37 °C); heating curve Fig 14.8 (redrawn to scale); Example 14.4 (three 6 g cubes, 0.25 kg at 20 °C → 13 °C); condensation warms; orchard spraying; iced-glass condensation speeds melting"}
+    - {book: "Physics", section: "11.3 Phase Change and Latent Heat", url: "https://openstax.org/books/physics/pages/11-3-phase-change-and-latent-heat", took: "ice water stays at 0 °C until the ice is gone; energy loosens the particles' attraction"}
+    - {book: "College Physics 2e", section: "Ch 14 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/14-conceptual-questions", took: "Q9 (0 °C ice in 0 °C water) for the check"}
+  research:
+    - {what: "computed: 334e3/4186 = 79.8 °C; 2256/334 = 6.75; curve segments 41.8, 334, 418.6, 2256 kJ (total 3050); (0.25×4186×20 − 0.018×334e3)/(0.268×4186) = 13.3 °C", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IGCSE 2.2.3 Melting, boiling and evaporation", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Joseph Black, Glasgow 1761: melting ice does not warm; 'latent'; survives in lecture notes", source: "research/history.md §4 (LibreTexts edition of Black's writings)", url: "https://chem.libretexts.org/Ancillary_Materials/Exemplars_and_Case_Studies/Exemplars/Culture/Original_Writings_of_Joseph_Black_on_the_Melting_of_Ice"}
+  figures:
+    - {name: c8_heating_curve, origin: "ours, to scale; shape after College Physics 2e Fig 14.8"}
+  licence: "CC BY-NC-SA 4.0"
+"8.6":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slide 7 (sweat evaporation example)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "idea: evaporation as cooling"}
+  openstax:
+    - {book: "College Physics 2e", section: "13.6 Humidity, Evaporation, and Boiling", url: "https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling", took: "evaporation below boiling; fastest molecules escape; relative humidity and saturation; 'air does not hold vapour' warning; Table 13.5 (3170 Pa at 25 °C, 6310 Pa at 37 °C → 'about twice')"}
+    - {book: "College Physics 2e", section: "14.6 Convection", url: "https://openstax.org/books/college-physics-2e/pages/14-6-convection", took: "moving air carries saturated air away (why a fan feels cool); Example 14.8 (120 W → 2.96 g/min sweat); convection loops"}
+    - {book: "College Physics 2e", section: "14.3 Phase Change and Latent Heat", url: "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat", took: "Lv at 37 °C = 2430 kJ/kg ('about 2.4 kJ per gram')"}
+    - {book: "Physics", section: "11.1 Temperature and Thermal Energy", url: "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy", took: "wind chill cannot cool below ambient (the predict's wrong option)"}
+    - {book: "Physics", section: "11.2 Heat, Specific Heat, and Heat Transfer", url: "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer", took: "convection is driven by buoyancy; definition"}
+  research:
+    - {what: "matka misconception ('clay is cold'); measured drops 5–15 °C (Springer 2025) and up to 7 °C in Kolkata (arXiv 1710.00667); wet-cloth-and-fan home version", source: "research/misconceptions.md §7", url: "https://export.arxiv.org/pdf/1710.00667"}
+    - {what: "sea and land breezes: land heats faster, air over land rises, cooler sea air flows in; reversal at night", source: "NOAA JetStream, Sea and Land Breezes (US government, public domain)", url: "https://www.noaa.gov/jetstream/ocean/sea-breeze"}
+    - {what: "wet-bulb temperature via Stull's 2011 fit (coefficients as transcribed by NCL/reskit; not yet checked against the paper); cross-checked with an OpenStax-only energy balance to within 0.5 °C", source: "Stull 2011, J. Appl. Meteor. Climatol. 50:2267–2269, via NCL docs", url: "https://www.ncl.ucar.edu/Document/Functions/Contributed/wetbulb_stull.shtml"}
+    - {what: "ASSUMED typical Mumbai inputs: May 34.3 °C / 65% RH, July 29.4 °C / 81% RH (IMD Santacruz 1991–2020 normals as tabulated on Wikipedia; IMD's own table not fetched); dry inland 38 °C / 20% is an invented contrast case", source: "Wikipedia, Climate of Mumbai (citing IMD)", url: "https://en.wikipedia.org/wiki/Climate_of_Mumbai"}
+    - {what: "computed: Stull Tw = 28.7 °C (May, 5.6 below), 26.7 °C (July, 2.7 below), 21.3 °C (38 °C/20%, 16.7 below); 10 L × 4186 × 10 / 2430e3 = 172 g; 120/2430 × 60 = 2.96 g/min; 6310/3170 = 1.99", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IGCSE 2.2.3 evaporation, 2.3.2 Convection; Lower Secondary 9Pf 'evaporative cooling'", source: "research/school-wording.md §1–2", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Halley 1686: the monsoon as a giant sea breeze; Gadgil et al. 2021 argue it fails tests and that ITCZ rain bands matter more; IMD normal onset for Mumbai 11 June", source: "research/history.md §9 (IMD press release; IISc eprint; PSU Meteo 3)", url: "https://eprints.iisc.ac.in/69617/"}
+    - {what: "Anna Mani standardised India's weather-instrument drawings at IMD", source: "research/history.md §4 (Wikipedia; Scroll)", url: "https://en.wikipedia.org/wiki/Anna_Mani"}
+    - {what: "'a matka works better in Pune in April than in Mumbai in July' (not quoted; the May/July case uses computed numbers)", source: "research/history.md §4", url: "https://arxiv.org/pdf/1710.00667"}
+  figures:
+    - {name: c8_matka, origin: ours}
+    - {name: c8_sea_breeze, origin: "ours; after the NOAA JetStream sea-breeze description"}
+  licence: "CC BY-NC-SA 4.0 (OpenStax, OCW); NOAA material public domain"
+"story:caloric":
+  history:
+    - {what: "caloric as a fluid; Rumford at the Munich arsenal, 1798; Joule's paddle", source: "research/history.md §4", url: "https://spark.iop.org/revolutionary-rumford"}
+"story:matka":
+  research:
+    - {what: "evaporative cooling; wet-bulb floor; May vs July computed with Stull 2011 on ASSUMED IMD-via-Wikipedia inputs", source: "grounding/ch08.md §8.6; research/misconceptions.md §7", url: "https://www.ncl.ucar.edu/Document/Functions/Contributed/wetbulb_stull.shtml"}
+"story:monsoon":
+  history:
+    - {what: "Halley 1686; Anna Mani's instruments; Gadgil et al. 2021; the open argument", source: "research/history.md §4, §9", url: "https://eprints.iisc.ac.in/69617/"}
+  research:
+    - {what: "sea breeze mechanism", source: "NOAA JetStream", url: "https://www.noaa.gov/jetstream/ocean/sea-breeze"}

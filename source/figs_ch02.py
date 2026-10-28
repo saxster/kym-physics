@@ -1,0 +1,195 @@
+"""Chapter 2 figures: why things keep moving.
+
+All drawings are ours. c2_friction_closeup is drawn from the idea in OpenStax College Physics 2e Fig 5.2 (rough surfaces
+touch at high points); c2_train_brake redraws the braking-frame idea of 8.01SC Lesson 4.4 as a Mumbai local. Nothing is
+copied. Helpers come from figs_core (force, vector, axis, ground, mass_block, arrow, text).
+"""
+from figs_core import Fig, figure
+
+
+def _person(f, x, yf, h=92, lean=0, cls='ln'):
+    """A stick figure with its feet at (x, yf); `lean` shifts the head sideways (positive = right)."""
+    hx, hy = x + lean, yf - h + 10
+    hip = yf - 26
+    f.circle(hx, hy, 9, cls)
+    f.line(x, hip, hx, hy + 9, cls)
+    f.line(x - 10, yf, x, hip, cls)
+    f.line(x + 10, yf, x, hip, cls)
+    sx, sy = x + lean * 0.6, hip - (h - 36) * 0.6
+    f.line(sx, sy, sx - 14, sy + 20, cls)
+    f.line(sx, sy, sx + 16, sy + 16, cls)
+    return f
+
+
+@figure
+def c2_book_slide():
+    f = Fig(640, 240, 'Three snapshots of a book shoved across a table: pushed and speeding up; sliding and slowing, '
+                      'with a dashed backward arrow and a question mark asking what pushes it back; and stopped.')
+    f.ground(20, 170, 600)
+    # 1: pushed
+    f.rect(44, 148, 26, 22, 'plate', rx=6)
+    f.text(57, 195, 'hand', 't m', 'middle', 12)
+    f.mass_block(74, 140, 70, 30)
+    f.force(70, 155, 52, 0)
+    f.text(126, 195, 'push from hand', 't p b', 'middle', 12)
+    f.vector(109, 118, 62, 0, 'speeding up', 13)
+    f.text(109, 220, '1  pushed', 't b', 'middle', 13)
+    # 2: let go, slowing
+    f.mass_block(290, 140, 70, 30)
+    f.vector(325, 118, 32, 0, 'slowing', 13)
+    f.arrow(290, 155, 240, 155, 'muted', dash=True)
+    f.text(229, 160, '?', 't m', 'middle', 18, 700)
+    f.text(325, 195, 'what pushes it back?', 't m', 'middle', 12)
+    f.text(325, 220, '2  let go: slowing', 't b', 'middle', 13)
+    # 3: stopped
+    f.mass_block(500, 140, 70, 30)
+    f.text(535, 124, 'v = 0', 't e', 'middle', 13)
+    f.text(535, 220, '3  stopped', 't b', 'middle', 13)
+    return f.svg()
+
+
+@figure
+def c2_arrow_forces():
+    f = Fig(640, 270, 'An arrow in flight. Named forces: the Earth pulls it down, the air pushes it backward. Its velocity '
+                      'is drawn separately as a blue arrow. A crossed-out dashed arrow shows Aristotle\'s forward push '
+                      'from the air, which no object exerts.')
+    x1, y1, x2, y2 = 170, 170, 430, 110
+    ux, uy = 0.9745, -0.2249
+    # the arrow itself: shaft, head, fletching
+    f.line(x1, y1, x2, y2, 'ln', 'stroke-width="3"')
+    f.path(f'M{x2 + ux * 14:.1f},{y2 + uy * 14:.1f} L{x2 - uy * 5:.1f},{y2 + ux * 5:.1f} L{x2 + uy * 5:.1f},{y2 - ux * 5:.1f} Z', 'fill-ink')
+    for k in (0, 14):
+        bx, by = x1 + ux * k, y1 + uy * k
+        f.line(bx, by, bx - ux * 10 - uy * 8, by - uy * 10 + ux * 8, 'ln')
+        f.line(bx, by, bx - ux * 10 + uy * 8, by - uy * 10 - ux * 8, 'ln')
+    mx, my = 300, 140
+    # velocity (not a force), offset above the shaft
+    f.vector(mx - uy * 26, my - ux * 26, ux * 90, uy * 90, 'velocity (not a force)', 13)
+    # forces, labelled by hand so nothing collides with the shaft
+    f.force(mx, my, 0, 70)
+    f.text(310, 214, 'pull of the Earth', 't p b', 'start', 13)
+    f.force(mx, my, -ux * 70, -uy * 70)
+    f.text(236, 128, 'push of the air (slows it)', 't p b', 'end', 13)
+    # Aristotle's forward push from behind, crossed out
+    ax, ay = 118, 184
+    f.arrow(ax, ay, ax + ux * 60, ay + uy * 60, 'muted', dash=True)
+    cx, cy = ax + ux * 30, ay + uy * 30
+    f.line(cx - 7, cy - 7, cx + 7, cy + 7, 'ln')
+    f.line(cx - 7, cy + 7, cx + 7, cy - 7, 'ln')
+    f.text(30, 214, "Aristotle's idea: air pushing from behind.", 't m', 'start', 12)
+    f.text(30, 230, 'No object exerts it, so it is crossed out.', 't m', 'start', 12)
+    return f.svg()
+
+
+def _ramp_panel(f, x0, start_h, bottom, down_w, up_pts, ghost=None, flat=False):
+    f.line(x0, start_h, x0 + down_w, bottom, 'ln')
+    f.path('M' + ' L'.join(f'{px},{py}' for px, py in up_pts), 'ln')
+    f.line(x0, start_h, up_pts[-1][0], start_h, 'ln dash')
+    f.circle(x0 + 15, start_h + 5, 7, 'fill-ink')
+    if ghost:
+        f.circle(ghost[0], ghost[1], 7, 'ln m')
+    if flat:
+        f.arrow(up_pts[-1][0] - 60, bottom - 12, up_pts[-1][0] - 6, bottom - 12, 'ink')
+        f.text(up_pts[-1][0] - 33, bottom - 20, 'and on', 't m', 'middle', 12)
+
+
+@figure
+def c2_two_ramps():
+    f = Fig(640, 232, "Galileo's two-ramp thought experiment in three panels: a steep second ramp, a shallower one and a "
+                      "flat one. A dashed line marks the starting height. The ball regains it on the steep and shallow "
+                      "ramps, travelling further on the shallow one, and can never regain it on the flat ramp.")
+    f.text(22, 60, 'starting height', 't m', 'start', 12)
+    _ramp_panel(f, 20, 70, 140, 70, [(90, 140), (160, 70)], ghost=(147, 73))
+    f.text(90, 176, 'steep second ramp:', 't', 'middle', 12)
+    f.text(90, 192, 'back to nearly', 't m', 'middle', 12)
+    f.text(90, 207, 'the same height', 't m', 'middle', 12)
+    _ramp_panel(f, 200, 70, 140, 70, [(270, 140), (430, 70)], ghost=(413, 70))
+    f.text(315, 176, 'shallower ramp:', 't', 'middle', 12)
+    f.text(315, 192, 'further along it,', 't m', 'middle', 12)
+    f.text(315, 207, 'same height', 't m', 'middle', 12)
+    _ramp_panel(f, 450, 70, 140, 70, [(520, 140), (620, 140)], flat=True)
+    f.text(535, 176, 'flat:', 't', 'middle', 12)
+    f.text(535, 192, 'never back to its height,', 't m', 'middle', 12)
+    f.text(535, 207, 'so it never stops', 't m', 'middle', 12)
+    return f.svg()
+
+
+@figure
+def c2_train_brake():
+    f = Fig(640, 300, 'A braking local train seen from the platform and from inside. On the platform view the floor '
+                      'pushes the passenger\'s feet backward while her upper body keeps the old velocity, so she tilts '
+                      'forward. Inside, a dashed arrow marks the apparent forward push that no object exerts.')
+    f.text(200, 40, 'From the platform', 't b', 'middle', 13)
+    f.text(520, 40, 'From inside the train', 't b', 'middle', 13)
+    f.line(405, 50, 405, 280, 'ln dash')
+    # the carriage
+    f.rect(40, 95, 340, 120, 'plate', rx=8)
+    f.circle(90, 227, 12, 'ln')
+    f.circle(330, 227, 12, 'ln')
+    f.ground(20, 239, 380)
+    f.vector(60, 72, 90, 0, 'train slowing', 13)
+    # the passenger, tilting forward (to the right, the way the train moves)
+    _person(f, 150, 215, 92, lean=18)
+    f.force(150, 212, -60, 0)
+    f.text(172, 206, 'friction from the floor', 't p b', 'start', 12)
+    f.text(172, 221, 'slows her feet', 't p b', 'start', 12)
+    f.vector(186, 118, 60, 0)
+    f.text(256, 112, 'her top half keeps', 't e', 'start', 12)
+    f.text(256, 127, 'the old velocity', 't e', 'start', 12)
+    # inside view
+    f.ground(430, 215, 190)
+    _person(f, 525, 215, 92, lean=18)
+    f.arrow(505, 152, 567, 152, 'muted', dash=True)
+    f.text(430, 100, 'feels like a push forward,', 't m', 'start', 12)
+    f.text(430, 115, 'but nothing exerts it', 't m', 'start', 12)
+    return f.svg()
+
+
+@figure
+def c2_friction_closeup():
+    f = Fig(640, 232, 'Left: a block sliding on a table, with the contact force split into a part straight out of the '
+                      'surface and a part along it, friction. Right: a magnified view of the two surfaces, rough and '
+                      'touching only at a few high points.')
+    f.ground(30, 170, 280)
+    f.mass_block(120, 120, 90, 50)
+    f.vector(215, 128, 45, 0, 'sliding', 13)
+    f.force(165, 170, 0, -58)
+    f.text(165, 100, 'straight out of the surface', 't p b', 'middle', 12)
+    f.force(120, 168, -60, 0)
+    f.text(90, 198, 'friction: along the surface', 't p b', 'middle', 12)
+    f.text(165, 62, 'two parts of one contact force', 't m', 'middle', 13)
+    # magnifier
+    f.add('<clipPath id="c2mag"><circle cx="470" cy="120" r="84"/></clipPath>')
+    f.circle(470, 120, 86, 'ln')
+    top = [(385, 100), (400, 112), (415, 104), (428, 116), (440, 120), (452, 108), (470, 121), (486, 106),
+           (500, 119), (514, 109), (528, 118), (540, 104), (556, 112)]
+    bot = [(385, 140), (400, 128), (415, 136), (428, 125), (440, 120), (452, 133), (470, 121), (486, 134),
+           (500, 119), (514, 131), (528, 125), (540, 138), (556, 128)]
+    f.add('<g clip-path="url(#c2mag)">')
+    f.path('M385,30 ' + ' '.join(f'L{x},{y}' for x, y in top) + ' L556,30 Z', 'block')
+    f.path('M385,210 ' + ' '.join(f'L{x},{y}' for x, y in bot) + ' L556,210 Z', 'plate')
+    f.add('</g>')
+    for x, y in ((440, 120), (470, 121), (500, 119)):
+        f.circle(x, y, 4.5, 'wash-p')
+    f.text(470, 66, 'block', 't m', 'middle', 12)
+    f.text(470, 180, 'table', 't m', 'middle', 12)
+    f.text(470, 224, 'magnified: only the high points touch', 't m', 'middle', 12)
+    return f.svg()
+
+
+@figure
+def c2_friction_graph():
+    f = Fig(640, 300, 'A schematic graph of friction against the push on an object. From the origin, friction rises '
+                      'along a diagonal, matching the push exactly while nothing moves. At a limit the object slips, and '
+                      'friction drops to a slightly lower, roughly steady sliding value.')
+    f.axis(70, 250, 520, 200, 'push on the object (N)', 'friction from the floor (N)')
+    f.line(70, 250, 260, 60, 'ln p')
+    f.circle(260, 60, 4, 'fill-ink')
+    f.line(260, 60, 260, 95, 'ln dash')
+    f.line(260, 95, 560, 95, 'ln p')
+    f.text(200, 200, 'at rest: friction', 't', 'start', 12)
+    f.text(200, 215, 'matches your push exactly', 't', 'start', 12)
+    f.text(272, 56, 'slips here', 't b', 'start', 12)
+    f.text(420, 84, 'sliding: a little less, and roughly steady', 't m', 'middle', 12)
+    f.text(86, 240, 'no push, no friction', 't m', 'start', 12)
+    return f.svg()

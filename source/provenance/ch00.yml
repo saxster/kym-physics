@@ -1,0 +1,65 @@
+# Provenance ledger for Chapter 0, The physicist's way of seeing. One entry per numbered section, plus the case
+# figure and the two stories this chapter introduces. Course and book names are the keys in provenance/sources.yml.
+"0.1":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 1 §1.1 (models built from observation and generalised; limits of Newtonian mechanics)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter1.pdf", took: "idea: observation first, then a model with limits"}
+  openstax:
+    - {book: "Physics", section: "1.2 The Scientific Methods", url: "https://openstax.org/books/physics/pages/1-2-the-scientific-methods", took: "definitions of observation, model, law; models hold only within limits"}
+    - {book: "College Physics 2e", section: "1.1 Physics: An Introduction", url: "https://openstax.org/books/college-physics-2e/pages/1-1-physics-an-introduction", took: "law vs theory; 'just a theory' warning; laws are never proved absolutely"}
+    - {book: "Astronomy 2e", section: "2.2 Ancient Astronomy", url: "https://openstax.org/books/astronomy-2e/pages/2-2-ancient-astronomy", took: "Aristotle's round-Earth evidence (eclipse shadow, stars, ships hull-first); Pythagoras' belief without evidence; the missing stellar parallax; Eratosthenes told about the Syene well; Greeks knew the Earth was round long before Columbus"}
+  research:
+    - {what: "a demonstration changes a belief only after a prediction (elicit, confront, resolve); the predict-first box", source: "Halloun & Hestenes 1985, via research/misconceptions.md", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+    - {what: "IGCSE 0625 has no observation/model topic; MYP names Models and Evidence as related concepts", source: "research/school-wording.md §1 and §3", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c0_hull_down, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"0.2":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.1 (SI base units; Table 2.2 defining constants; §2.1.3 the kilogram: prototype made 1879 by George Matthey, 39 mm by 39 mm, 90% platinum 10% iridium, Sèvres, triple bell jar, six copies; redefinition in force 20 May 2019; h = 6.626 070 15 × 10⁻³⁴ J·s exactly; metre and second histories; caesium 9 192 631 770 Hz; c = 299 792 458 m/s)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "numbers, history of the definitions, the kilogram tale"}
+  openstax:
+    - {book: "Physics", section: "1.3 The Language of Physics: Physical Quantities and Units", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "a measurement is a number times a unit; base and derived units; metre 1791 definition; contaminants changed the prototype's mass; accuracy, precision, uncertainty, percent uncertainty; the last digit is estimated; three rulers of different resolution (Fig 1.24 idea)"}
+    - {book: "College Physics 2e", section: "1.3 Accuracy, Precision, and Significant Figures", url: "https://openstax.org/books/college-physics-2e/pages/1-3-accuracy-precision-and-significant-figures", took: "cross-check of accuracy vs precision"}
+  history:
+    - {what: "the kilogram prototype retired on 20 May 2019; the kilogram now defined through the Planck constant", source: "Physics World, 'New definition of the kilogram comes into force' (research/history.md tale 13)", url: "https://physicsworld.com/a/new-definition-of-the-kilogram-comes-into-force/"}
+  research:
+    - {what: "IGCSE definition of mass as 'a measure of the quantity of matter in an object'", source: "research/school-wording.md §1, quoting the 0625 syllabus", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c0_rulers, origin: "ours; the three-rulers idea follows OpenStax Physics Fig 1.24, with our own stick and readings"}
+  licence: "CC BY-NC-SA 4.0"
+"0.3":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.4 intro (counting gives way to estimating; within a factor of ten is close enough for an order-of-magnitude answer)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "idea, tolerance rule"}
+  openstax:
+    - {book: "Physics", section: "1.3 The Language of Physics: Physical Quantities and Units", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "Table 1.3 benchmark lengths, masses and times (proton 10⁻¹⁵ m, hydrogen atom 10⁻¹⁰ m, light 10⁻⁶ m, sand 10⁻³ m, Earth 10⁷ m, Earth–Sun 10¹¹ m, light year 10¹⁶ m, Milky Way 10²¹ m; day 8.64 × 10⁴ s, year 3.16 × 10⁷ s; bacterium and electron masses); metric prefixes; scientific notation; logarithmic scale (its '0' mark rejected: a log scale never reaches zero)"}
+    - {book: "College Physics 2e", section: "1.2 Physical Quantities and Units", url: "https://openstax.org/books/college-physics-2e/pages/1-2-physical-quantities-and-units", took: "order of magnitude defined; 800 and 450 both ~10²; atom 10⁻¹⁰ m and Sun ~10⁹ m, so 19 orders apart (recomputed)"}
+  research:
+    - {what: "powers of ten treated as additive steps; everything microscopic lumped as one size; the teaspoon-of-rice count with about ±20% spread", source: "Tretter et al. 2006 and the research brief's own suggestion, research/misconceptions.md §1", url: "https://www.physics.purdue.edu/psas/docs/How%20Small%20is%20Nano%20Lesson.pdf"}
+  figures:
+    - {name: c0_ladder, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"0.4":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.4 Order of Magnitude Estimates – Fermi Problems (method: estimable quantities, a relationship, dimension check; piano tuners in Chicago, recomputed to 80 ≈ 100; mass = density × volume with water 1000 kg/m³; the answer is only as good as the inputs, as the ocean-mass example shows)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "method, worked example (recomputed), the weak-input lesson"}
+  openstax:
+    - {book: "College Physics 2e", section: "1.4 Approximation", url: "https://openstax.org/books/college-physics-2e/pages/1-4-approximation", took: "estimating a building's height storey by storey (our 3 m per storey replaces the source's 4 m); one significant figure on purpose; compare with the gut guess"}
+  figures:
+    - {name: c0_rain, origin: "ours; inputs (40 km × 15 km, 100 mm) are stated in the text as the reader's own rough estimates"}
+  licence: "CC BY-NC-SA 4.0"
+"fig:c0_eratosthenes":
+  origin: "redrawn from the geometry of OpenStax Astronomy 2e Fig 2.11 (credited there as a modification of work by NOAA Ocean Service Education), in the book's style, with the angle enlarged to 30° and labelled as such"
+  openstax:
+    - {book: "Astronomy 2e", section: "2.2 Ancient Astronomy, 'Measurement of Earth by Eratosthenes'", url: "https://openstax.org/books/astronomy-2e/pages/2-2-ancient-astronomy", took: "the method: Syene well, Alexandria column, 1/50 of a circle (7.2°), 5000 stadia, 250,000 stadia; Sun 150 million km away so rays are parallel; stadion uncertainty; Olympic stadion about 20% too large; the '1/6 km, within 1%' claim was recomputed and rejected (41,667 km is 4.2% high)"}
+    - {book: "Astronomy 2e", section: "Ch 2 Figuring For Yourself Q41–42", url: "https://openstax.org/books/astronomy-2e/pages/2-figuring-for-yourself", took: "the stadion length that would make him exactly right (160 m, recomputed)"}
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.1.2 and §2.4 Example 2.4.3 (the metre as 1/10,000,000 of the equator-to-pole arc, so the circumference was 4 × 10⁷ m by definition)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "the 1791 echo in the case solution"}
+  licence: "CC BY-NC-SA 4.0"
+"story:kilogram":
+  history:
+    - {what: "the kilogram prototype retired on 20 May 2019; the kilogram now defined through the Planck constant", source: "Physics World (research/history.md tale 13)", url: "https://physicsworld.com/a/new-definition-of-the-kilogram-comes-into-force/"}
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.1.3 (the prototype's maker, size, alloy, home and copies)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "numbers"}
+"story:estimation":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.4 Fermi Problems", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "method and the piano-tuner example"}
+  openstax:
+    - {book: "College Physics 2e", section: "1.4 Approximation", url: "https://openstax.org/books/college-physics-2e/pages/1-4-approximation", took: "worked examples"}

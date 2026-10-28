@@ -1,0 +1,80 @@
+# Provenance ledger for Chapter 1, Describing motion. One entry per numbered section, plus the case figure and the
+# two stories this chapter introduces. Course and book names are the keys in provenance/sources.yml.
+"1.1":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 2 Lesson 4.3 Reference Frames (transcript: v′ = v − V; the same acceleration in all steadily moving frames; an object at rest in one frame moves in another)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-3-reference-frames/", took: "idea; velocity addition for the walking-in-a-train sum"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 11 §11.1–11.3 (reference frames, law of addition of velocities) and Ch 7 §7.2 (a gently starting train: the station seems to move backwards; at constant velocity nothing tells which is 'really' moving)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter11.pdf", took: "sequence; the platform-sliding-backwards opening"}
+  openstax:
+    - {book: "Physics", section: "2.1 Relative Motion, Distance, and Displacement", url: "https://openstax.org/books/physics/pages/2-1-relative-motion-distance-and-displacement", took: "Galileo's windowless ship; a reference frame is the viewpoint, not the background (Teacher Support); Snap Lab 'Looking at Motion from Two Reference Frames' (straight up-and-down vs zigzag); cyclist 3 km west then 2 km east; distance vs displacement; scalar vs vector; kinematics defined"}
+  research:
+    - {what: "IGCSE lists weight as a vector and mass as a scalar", source: "research/school-wording.md §1, quoting the 0625 syllabus", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c1_two_frames, origin: "ours; the two-frames bouncing ball follows the OpenStax Physics 2.1 Snap Lab"}
+  licence: "CC BY-NC-SA 4.0"
+"1.2":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 1 Lessons 1.3 Displacement, 1.4 Average Velocity, 1.5 Instantaneous Velocity (transcripts: average velocity depends on the interval; shrink it to reach the instantaneous value; slope of the tangent)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/1-4-average-velocity-in-1d/", took: "sequence: average, then shrink the interval, then instantaneous"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 4 §4.2–4.3 (position, displacement, velocity)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", took: "definitions"}
+  openstax:
+    - {book: "Physics", section: "2.2 Speed and Velocity", url: "https://openstax.org/books/physics/pages/2-2-speed-and-velocity", took: "speed and velocity defined; worked numbers (car 150 km in 3.2 h → 47 km/h; walk 205 m at 1.40 m/s → 146 s; round trip 6 km in 30 min → 12 km/h, velocity zero; 304 m north in 180 s → 1.7 m/s north), all recomputed"}
+    - {book: "Physics", section: "2.3 Position vs. Time Graphs", url: "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs", took: "slope = velocity; negative slope going back; the Teacher Support forward-back-forward activity behind the graph-walker"}
+    - {book: "College Physics 2e", section: "Ch 2 Conceptual Questions (Q10) and 2.7 Falling Objects (Misconception Alert: an x–t graph is not a path)", url: "https://openstax.org/books/college-physics-2e/pages/2-conceptual-questions", took: "odometer/speedometer check; the graph-is-not-a-path warning"}
+  research:
+    - {what: "over 30% of 478 students say two things at the same place at the same time have the same speed", source: "Halloun & Hestenes 1985, via research/misconceptions.md §2", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+    - {what: "Cambridge Lower Secondary Stage 8: speed = distance/time and distance–time graphs; IGCSE topic 1.2 Motion", source: "research/school-wording.md §1–2", url: "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/science"}
+  figures:
+    - {name: c1_graph_walk, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"1.3":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 1 Lessons 2.1 Introduction to Acceleration and 2.2 Acceleration in 1D (transcripts: acceleration is harder to see than velocity; average and instantaneous acceleration)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/2-2-acceleration-in-1d/", took: "sequence"}
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 4 §4.4 (acceleration, unit m/s²)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", took: "definition, unit"}
+  openstax:
+    - {book: "Physics", section: "3.1 Acceleration", url: "https://openstax.org/books/physics/pages/3-1-acceleration", took: "definition (change in velocity divided by the time); train 0 → 30 km/h in 20 s (0.42 m/s²) and 30 km/h → 0 in 8 s (−1.0 m/s²), recomputed; 'deceleration' avoided in physics talk. Its 3.2 phrase 'rate at which velocity increases' was not used"}
+    - {book: "College Physics 2e", section: "2.4 Acceleration", url: "https://openstax.org/books/college-physics-2e/pages/2-4-acceleration", took: "turning at constant speed is acceleration; acceleration points along the change in velocity; negative is not the same as slowing (Fig 2.14 four cars); Conceptual Questions 13–16"}
+  research:
+    - {what: "IGCSE: 'a resultant force may change the velocity of an object by changing its direction of motion or its speed'", source: "research/school-wording.md §1, quoting the 0625 syllabus", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c1_four_cars, origin: "redrawn from the idea of OpenStax College Physics 2e Fig 2.14 (four cars with velocity and acceleration arrows), our drawing"}
+  licence: "CC BY-NC-SA 4.0"
+"1.4":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 4 §4.5 Constant Acceleration (v = v₀ + at; displacement is the area under the v–t graph; x = ½at² from rest)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", took: "the triangle argument and the equation"}
+  openstax:
+    - {book: "Physics", section: "3.2 Representing Acceleration with Equations and Graphs", url: "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs", took: "kinematic equations hold only for constant acceleration; Check Your Understanding 12 (8 or 16 m/s) recast"}
+    - {book: "Physics", section: "2.3 Position vs. Time Graphs, Snap Lab 'Graphing Motion' (a ball down a book ramp, timed at marks)", url: "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs", took: "the home ramp idea; our marks at 10, 40, 90, 160 cm and the coin clickers are our design"}
+  history:
+    - {what: "Padua, c. 1604: Galileo slowed falling with inclined planes (TRUE); Stillman Drake's reconstruction of singing a beat and moving gut frets until the clicks were even (HEDGE, told as one historian's reconstruction)", source: "research/history.md §1", url: "https://www.teacherplus.org/?p=16841"}
+  research:
+    - {what: "the 1 : 3 : 5 : 7 rule is not in either spine source; computed from distance ∝ time²", source: "our computation, python3 -I -c 'print([n*n-(n-1)**2 for n in range(1,6)])' → [1, 3, 5, 7, 9]", url: ""}
+  figures:
+    - {name: c1_ramp, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"1.5":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 1 Lesson 2.1 Introduction to Acceleration (transcript: a marker tossed up; at the top is its velocity zero, is its acceleration zero; gravity is not switched off at the top)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/2-1-introduction-to-acceleration/", took: "the opening question and its answer"}
+  openstax:
+    - {book: "College Physics 2e", section: "2.7 Falling Objects", url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects", took: "free fall defined, upward motion included; g = 9.80 m/s² average, 9.78–9.83 across Earth; velocity zero at the top while acceleration stays −9.8; Misconception Alert (the y–t graph is not the path); Fig 2.39 idea (y, v, a against t). Our one-metre toss numbers (v₀ = 4.43 m/s, top at 0.45 s, heights every 0.1 s, gaps shrinking by 9.8 cm) were computed from these equations"}
+    - {book: "College Physics 2e", section: "Ch 2 Conceptual Questions 20–22", url: "https://openstax.org/books/college-physics-2e/pages/2-conceptual-questions", took: "the coconut check (Q22)"}
+  research:
+    - {what: "44% of 100 students chose 'acceleration is zero at the highest point' (one Irish item, indicative only); the slow-motion toss against tiles as the decisive demo, with the sampling interval corrected to every 0.1 s by our computation (g/f² is 0.17 mm per frame at 240 fps)", source: "Keenahan, DCU slides, via research/misconceptions.md §2", url: "https://www.dcu.ie/sites/default/files/smec/pdfs/CP3-DKeenahan.pdf"}
+    - {what: "IGCSE: 'acceleration of free fall g … is approximately 9.8 m/s²'; g also given as field strength in N/kg", source: "research/school-wording.md §1, quoting the 0625 syllabus", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c1_toss_strobe, origin: "ours, from computed heights of a one-metre toss"}
+    - {name: c1_toss_graphs, origin: "redrawn from the idea of OpenStax College Physics 2e Fig 2.39 (position, velocity and acceleration against time) with our own numbers"}
+  licence: "CC BY-NC-SA 4.0"
+"fig:c1_trains":
+  origin: "ours; the speeds are round numbers for the puzzle, not Western Railway data"
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 11 §11.3 Law of Addition of Velocities; Week 2 Lesson 4.3", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter11.pdf", took: "the method behind the case solution (60 + 10 = 70; 120 − 60 = 60; 10 km/h = 2.8 m/s, 120 km/h = 33 m/s, recomputed)"}
+  openstax:
+    - {book: "Physics", section: "2.1 Relative Motion, Distance, and Displacement (the platform-and-train question: each sees the other moving past; no frame is the correct one)", url: "https://openstax.org/books/physics/pages/2-1-relative-motion-distance-and-displacement", took: "concept question and the fidelity rule for the case"}
+  licence: "CC BY-NC-SA 4.0"
+"story:motion-graphs":
+  openstax:
+    - {book: "Physics", section: "2.3 Position vs. Time Graphs", url: "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs", took: "slope as velocity; the forward-back-forward activity"}
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 1 Lesson 1.5 Instantaneous Velocity (slope of the tangent)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/1-5-instantaneous-velocity-in-1d/", took: "idea"}
+"story:p-galileo":
+  history:
+    - {what: "Galileo Galilei, 1564–1642: Padua ramps c. 1604 (TRUE), Drake's singing-beat reconstruction (HEDGE), La Bilancetta at 22 (TRUE), telescope and Jupiter's moons 1609–10 (TRUE), Pisa drop (LEGEND), cathedral lamp (LEGEND)", source: "research/history.md §1 and cast table", url: "https://math.nyu.edu/Archimedes/Crown/bilancetta.html"}
