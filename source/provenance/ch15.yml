@@ -1,0 +1,193 @@
+# Chapter 15, Atoms, stars and the universe. One entry per numbered section, figure and story first linked here.
+# The Sun's age is written "about four and a half billion years" throughout, following Astronomy 2e 16.2 (4.5 Gyr);
+# no NASA source for 4.6 was in the grounding note. Every number was recomputed with python3 -I -c ("computed:").
+"15.1":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Assignments, PS4 'Semiclassical' and PS6 'Planck Distribution' (titles only; too advanced)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/assignments/", took: "nothing usable; listed for the map"}
+  openstax:
+    - {book: "Physics", section: "21.1 Planck and Quantum Nature of Light", url: "https://openstax.org/books/physics/pages/21-1-planck-and-quantum-nature-of-light", took: "E = hf; h = 6.626e-34 J·s; the 100 W bulb photon-count example (its blue-flame 'more dangerous' line rejected)"}
+    - {book: "Physics", section: "21.2 Einstein and the Photoelectric Effect", url: "https://openstax.org/books/physics/pages/21-2-einstein-and-the-photoelectric-effect", took: "the effect; the five properties a wave cannot explain; one photon to one electron; KE = hf − BE (its 'photon or photoelectron' slip not copied)"}
+    - {book: "College Physics 2e", section: "29.2 The Photoelectric Effect", url: "https://openstax.org/books/college-physics-2e/pages/29-2-the-photoelectric-effect", took: "Example 29.1: calcium binding energy 2.71 eV, 420 nm photon"}
+    - {book: "College Physics 2e", section: "29.3 Photon Energies and the Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/29-3-photon-energies-and-the-electromagnetic-spectrum", took: "visible photons 1.63–3.26 eV; IR and below do not ionise"}
+  research:
+    - {what: "TV remote about 940 nm; some phone cameras see it (front/rear difference is unsourced)", source: "NASA Science, Infrared Waves", url: "https://science.nasa.gov/ems/07_infraredwaves/"}
+    - {what: "photoelectric effect not in IGCSE 0625; IB DP E.2; IGCSE 3.3 electromagnetic spectrum", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Einstein, Bern 1905, four papers in Annalen der Physik; Nobel for the photoelectric effect", source: "research/history.md §7", url: "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"}
+    - {what: "S. N. Bose, Dacca, 4 June 1924: 'Respected Sir'; Philosophical Magazine silent; Einstein's translation, postcard of 2 July, printed August; bosons", source: "research/history.md §7", url: "https://physicstoday.aip.org/features/the-man-behind-bose-statistics"}
+  computed:
+    - "hc/λ in eV: 940 nm -> 1.32; 420 nm -> 2.95 (minus 2.71 = 0.24); 760 nm -> 1.63; 380 nm -> 3.26"
+    - "10 W of 580 nm light = 2.92e19 photons/s (PH 21.1's assumptions)"
+    - "check: 3.26 − 2.3 = 0.96 eV (the 2.3 eV metal is made up for the question and says so)"
+  figures:
+    - {name: c15_photoelectric, origin: "redrawn from the idea of OpenStax Physics Figs 21.7–21.8, our geometry and CP 29.2–29.3 numbers"}
+  licence: "CC BY-NC-SA 4.0"
+"15.2":
+  openstax:
+    - {book: "Physics", section: "22.1 The Structure of the Atom", url: "https://openstax.org/books/physics/pages/22-1-the-structure-of-the-atom", took: "1 in 8,000 alphas bounced back; nucleus about 1e-15 m, 100,000 times smaller than the atom"}
+    - {book: "Physics", section: "22.2 Nuclear Forces and Radioactivity", url: "https://openstax.org/books/physics/pages/22-2-nuclear-forces-and-radioactivity", took: "protons and neutrons; strong force, short range; Becquerel 1896 and the wrapped plates; about 1e6 eV per nuclear event vs a few eV atomic; alpha, beta, gamma ranges"}
+    - {book: "College Physics 2e", section: "32.4 Food Irradiation", url: "https://openstax.org/books/college-physics-2e/pages/32-4-food-irradiation", took: "gamma, X-ray and electron irradiation leaves no residual radioactivity; neutron irradiation can, and is not used on food"}
+    - {book: "College Physics 2e", section: "32.2 Biological Effects of Ionizing Radiation", url: "https://openstax.org/books/college-physics-2e/pages/32-2-biological-effects-of-ionizing-radiation", took: "cosmic rays about 0.40 mSv/y; 12-h flight 0.02–0.03 mSv; ground doses up to ten times average; 'low dose' below 100 mSv; 'we are all a little radioactive'"}
+  research:
+    - {what: "exposure is not contamination; the X-ray example; contamination = material on or in the body", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
+    - {what: "radiation makes things radioactive: 63–75% across studies", source: "research/misconceptions.md §13", url: "https://arxiv.org/pdf/2001.07746"}
+    - {what: "IGCSE 0625 5.1 nuclear model, 5.2 radioactivity (three types of emission, half-life, safety)", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Bhabha: Cambridge letter 1928 (wording varies, paraphrased); letter to the Sir Dorab Tata Trust 12 March 1944; TIFR Bangalore June 1945; Kenilworth, Peddar Road, 19 December 1945", source: "research/history.md §7", url: "https://arxiv.org/pdf/0906.3356"}
+    - {what: "Bibha Chowdhuri: Darjeeling and Sandakphu plates 1939–42, coarse wartime plates, curved tracks of a new particle; joined TIFR 1949", source: "research/history.md §7", url: "https://en.wikipedia.org/wiki/Bibha_Chowdhuri"}
+  computed:
+    - "1e-10/1e-15 = 100,000; a 1 cm marble nucleus gives a 1 km atom"
+  figures:
+    - {name: c15_exposure, origin: ours}
+  unsourced:
+    - "'a few minutes' walk from Haji Ali' for Peddar Road: Mumbai geography, no source in the grounding"
+    - "'potassium in your food' as a background source: CP 32.2 says food contributes; potassium is not named in the grounding note"
+  licence: "CC BY-NC-SA 4.0"
+"15.3":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 8, Problems 5–7 (Fueling the Sun; Main-Sequence Lifetimes; p-p efficiency 0.007)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps8/", took: "efficiency value; the lifetime-sum idea used in the check"}
+  openstax:
+    - {book: "Astronomy 2e", section: "16.1 Sources of Sunshine: Thermal and Gravitational Energy", url: "https://openstax.org/books/astronomy-2e/pages/16-1-sources-of-sunshine-thermal-and-gravitational-energy", took: "coal or wood Sun lasts a few thousand years; nothing like coal survives its temperature; contraction gives about 100 million years; water on Earth nearly 4 billion years ago"}
+    - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "E = mc²; 0.71% of mass converted; 600 million tons of hydrogen and 4 million tons of mass per second; most protons not yet fused; the Sun about 4.5 billion years old; protons repel so the core must be hot"}
+    - {book: "Astronomy 2e", section: "16.3 The Solar Interior: Theory", url: "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory", took: "fusion in the centre, above 12 million K; centre about 15 million K; photons take 100,000–1,000,000 years to get out (PH 22.4's 'boundary of the helium core' and 'splitting of an atomic bond' lines rejected)"}
+  research:
+    - {what: "L = 382.8e24 W; mass conversion 4260e6 kg/s; Sun mass 1.9884e30 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
+    - {what: "Aditya-L1 halo orbit about L1, roughly 1.5 million km on the Sun–Earth line, period 177.86 days, insertion 6 January 2024", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}
+    - {what: "E = mc² 'is only about bombs' misconception", source: "research/misconceptions.md §13", url: ""}
+    - {what: "IGCSE 1.7.1 'nuclear' energy store; 6.2.1 The Sun as a star", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Meitner and Frisch, Kungälv, Christmas 1938: Hahn's letter, barium, the walk in the snow (skis and tree trunk HEDGE: told as 'the story goes'), about 200 MeV, Nature February 1939", source: "research/history.md §7", url: "https://inference-review.com/article/the-discovery-of-nuclear-fission"}
+  computed:
+    - "c² = 8.99e16 J/kg; 1 g -> 8.99e13 J = 2.50e7 kWh"
+    - "0.0071 × (2.998e8)² = 6.38e14 J per kg of hydrogen"
+    - "3.828e26 / c² = 4.259e9 kg/s (4.26 million tonnes); / 0.0071 = 6.00e11 kg/s (600 million tonnes)"
+    - "fraction of the Sun used in 4.5 Gyr: 4.259e9 × 4.5e9 × 3.15576e7 / 1.9884e30 = 0.03%"
+    - "L1 by the Hill approximation: 1.49598e11 × (5.9722e24/(3×1.9884e30))^(1/3) = 1.497 million km, 1.0% of the way to the Sun"
+    - "200 MeV vs a few eV: 'more than a hundred thousand times' (2e8/1e3 = 2e5) and 'about a million times' for the Sun's per-atom energy (1e6 eV / a few eV), both order-of-magnitude"
+  figures:
+    - {name: c15_fusion, origin: "redrawn from the idea of OpenStax Astronomy 2e's proton–proton figure, with the 0.71% mass bars added; our geometry"}
+  licence: "CC BY-NC-SA 4.0"
+"15.4":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Syllabus (students were given a simple spectrometer kit)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/", took: "the idea of a home spectroscope (the Sun-viewing part dropped for safety)"}
+  openstax:
+    - {book: "Astronomy 2e", section: "5.3 Spectroscopy in Astronomy", url: "https://openstax.org/books/astronomy-2e/pages/5-3-spectroscopy-in-astronomy", took: "absorption lines; Fraunhofer about 600 lines in 1815; Kirchhoff identified sodium in 1860; helium found in the Sun first"}
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "the 'different composition' hypothesis was wrong: temperature sets the spectrum; hydrogen lines missing in the hottest (ionised) and coolest (electrons in the lowest level) stars; Cannon's O B A F G K M; women hired at one-third or one-fourth of men's pay"}
+    - {book: "Astronomy 2e", section: "15.1 The Structure and Composition of the Sun", url: "https://openstax.org/books/astronomy-2e/pages/15-1-the-structure-and-composition-of-the-sun", took: "Payne 1925: so unexpected she was persuaded it must be wrong, confirmed three years later; 73% hydrogen, 25% helium by mass; crust is oxygen, silicon, aluminium; plasma"}
+  history:
+    - {what: "Saha, Calcutta → London 1920: ionisation equation; Fowler at Imperial College. Payne 1925: Russell 'clearly impossible', thesis labelled 'spurious', Russell 1929; Struve's 'most brilliant PhD thesis' line", source: "research/history.md §7", url: "https://www.aps.org/apsnews/2015/01/cecilia-payne-gaposchkin-universe-changed"}
+  computed:
+    - "100 − 73 − 25 = 2% for everything else"
+  figures:
+    - {name: c15_spectra, origin: "ours; schematic line positions, said in the caption"}
+  unsourced:
+    - "'the Sun is a G star' and 'Star B is a little hotter than the Sun' in the case: standard classification, not stated in the grounding note; flagged"
+  licence: "CC BY-NC-SA 4.0"
+"15.5":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 1, Problem 3 (Accuracy of Parallax Measurements)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps1/", took: "the 0.001″ accuracy problem, solved in the :::work box"}
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 10, Problem 5 (Cepheid Variables as Distance Indicators, Leavitt's 1912 data)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps10/", took: "activity idea for the widget spec"}
+  openstax:
+    - {book: "Astronomy 2e", section: "19.2 Surveying the Stars", url: "https://openstax.org/books/astronomy-2e/pages/19-2-surveying-the-stars", took: "pen-and-eyes demo; parallax is half the shift, defined by 1 AU; parsec 206,265 AU = 3.26 ly; Bessel 1838, 61 Cygni; Proxima 4.25 ly; Gaia a few millionths of an arcsecond for nearly a billion stars; the coin-at-5-km scale idea"}
+    - {book: "Astronomy 2e", section: "19.3 Variable Stars: One Key to Cosmic Distances", url: "https://openstax.org/books/astronomy-2e/pages/19-3-variable-stars-one-key-to-cosmic-distances", took: "Cepheids named for Delta Cephei; brighter-appearing have longer periods; same distance in the SMC; she could not calibrate; Hubble's use"}
+  research:
+    - {what: "₹1 coin 22 mm (2011 series)", source: "RBI press release, 22 July 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
+    - {what: "IGCSE 6.2.2 Stars (light-year as a distance)", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Leavitt, Harvard 1912, the Small Magellanic Cloud; the '$0.30 an hour' figure dropped as unverified", source: "research/history.md §8", url: "https://astrobites.org/2019/03/08/leavitt-variable-stars/"}
+    - {what: "Bandra–Worli Sea Link 5.6 km", source: "research/history.md §9", url: "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"}
+  computed:
+    - "206,265 AU per parsec; 3.0857e16 m; 3.261 ly; a light-year 2.998e8 × 3.15576e7 = 9.46e15 m"
+    - "Proxima 4.25/3.2616 = 1.303 pc, parallax 0.767″"
+    - "0.022 m × 206,265 = 4.54 km for a ₹1 coin to look 1″ wide; at 0.767″, 4.54/0.767 = 5.9 km"
+    - "10% at ±0.001″ needs p ≥ 0.01″: 1/0.01 = 100 pc = 326 ly"
+    - "doubling the distance halves the parallax angle (small-angle geometry)"
+  figures:
+    - {name: c15_parallax, origin: "redrawn from the idea of OpenStax Astronomy 2e's parallax figure, our geometry"}
+  licence: "CC BY-NC-SA 4.0"
+"15.6":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Calendar, Lecture 26 (Fermi pressure, white dwarfs, Chandrasekhar limit); optional compset3 White Dwarf Models", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/", took: "sequence position only (no notes posted)"}
+  openstax:
+    - {book: "Astronomy 2e", section: "23.1 The Death of Low-Mass Stars", url: "https://openstax.org/books/astronomy-2e/pages/23-1-the-death-of-low-mass-stars", took: "core contracts until electrons cannot be squeezed closer; Pauli 'no two electrons in the same place doing the same thing'; degeneracy pressure different from and stronger than electric repulsion; more mass, smaller radius; zero radius at about 1.4 Suns = the Chandrasekhar limit; heavier stars shed mass; Chandrasekhar born 1910 Lahore, Raman's nephew, finished college at 19, began the calculations on the voyage, Eddington's public ridicule, Nobel 1983"}
+  research:
+    - {what: "Sun mass 1.9884e30 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
+  history:
+    - {what: "SS Pilsna from Bombay, 1930, aged 19; Eddington 1935", source: "research/history.md §8", url: "https://mathshistory.st-andrews.ac.uk/HistTopics/Chandrasekhar_Eddington/"}
+  computed:
+    - "1.4 × 1.9884e30 = 2.784e30 kg"
+  figures:
+    - {name: c15_white_dwarf, origin: "redrawn from the idea of OpenStax Astronomy 2e Fig 23.2 (mass–radius), schematic shape said in the caption; our geometry"}
+  unsourced:
+    - "'from Madras' for Chandrasekhar's home: not in the grounding note (AS gives Lahore as his birthplace); flagged"
+    - "above the limit the endings are 'neutron stars and black holes': general knowledge; AS 23.2 was not fetched; flagged"
+    - "the local-train seats analogy for the Pauli principle is ours"
+  licence: "CC BY-NC-SA 4.0"
+"15.7":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 13, Problems 4–6 (distance–redshift; H0; Expanding Balloon Analogy)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps13/", took: "the balloon analogy for the home box; d = v/H0"}
+  openstax:
+    - {book: "Astronomy 2e", section: "5.6 The Doppler Effect", url: "https://openstax.org/books/astronomy-2e/pages/5-6-the-doppler-effect", took: "redshift and blueshift definitions"}
+    - {book: "Astronomy 2e", section: "26.5 The Expanding Universe", url: "https://openstax.org/books/astronomy-2e/pages/26-5-the-expanding-universe", took: "Slipher from 1912, up to 1,800 km/s; Hubble and Humason 1929 and 1931; v = H × d with H about 22 km/s per million light-years; the ruler ants at 2, 4, 7, 12 cm doubling in a minute; raisin bread; galaxies do not expand; analogies have edges and a centre, the universe has none"}
+    - {book: "Astronomy 2e", section: "29.2 A Model of the Universe", url: "https://openstax.org/books/astronomy-2e/pages/29-2-a-model-of-the-universe", took: "light waves stretched by the stretching of space; no location where the Big Bang happened; a wave drawn on an expanding elastic surface stretches"}
+    - {book: "Astronomy 2e", section: "29.1 The Age of the Universe", url: "https://openstax.org/books/astronomy-2e/pages/29-1-the-age-of-the-universe", took: "13.8 billion years; 1/H as the rough age"}
+  research:
+    - {what: "IGCSE 6.2.3 wording: 'receding', 'supports the Big Bang Theory', 'present at a single point', H0 = v/d; the bridge sentence", source: "research/school-wording.md", url: ""}
+  computed:
+    - "22 × 100 = 2,200 km/s at 100 million ly"
+    - "22 × 3.2616 = 71.8 km/s per Mpc"
+    - "H = 22e3/(1e6 × 2.998e8 × 3.15576e7) = 2.325e-18 s⁻¹; 1/H = 13.63 billion years"
+    - "ruler speeds from the 2 cm ant: [2, 5, 10] cm/min; from the 7 cm ant: [5, 3, 5] cm/min (distances 5, 3, 5 cm)"
+  figures:
+    - {name: c15_ruler, origin: "redrawn from the idea of OpenStax Astronomy 2e Fig 26.16 (ants on a stretching ruler), with the second observer added; our geometry"}
+  licence: "CC BY-NC-SA 4.0"
+"story:photons":
+  history:
+    - {what: "Einstein 1905; S. N. Bose's letter, 4 June 1924", source: "research/history.md §7", url: "https://physicstoday.aip.org/features/the-man-behind-bose-statistics"}
+  openstax:
+    - {book: "Physics", section: "21.2 Einstein and the Photoelectric Effect", url: "https://openstax.org/books/physics/pages/21-2-einstein-and-the-photoelectric-effect", took: "the five properties; E = hf"}
+  research:
+    - {what: "TV remote about 940 nm", source: "NASA Science, Infrared Waves", url: "https://science.nasa.gov/ems/07_infraredwaves/"}
+  licence: "CC BY-NC-SA 4.0"
+"story:radiation":
+  research:
+    - {what: "exposure vs contamination", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
+    - {what: "63–75% believe radiation makes things radioactive", source: "research/misconceptions.md §13", url: ""}
+  openstax:
+    - {book: "College Physics 2e", section: "32.4 Food Irradiation", url: "https://openstax.org/books/college-physics-2e/pages/32-4-food-irradiation", took: "no residual radioactivity except from neutrons"}
+  licence: "CC BY-NC-SA 4.0"
+"story:sun-fire":
+  history:
+    - {what: "Meitner and Frisch at Kungälv, Christmas 1938 (skis HEDGE)", source: "research/history.md §7", url: "https://inference-review.com/article/the-discovery-of-nuclear-fission"}
+  openstax:
+    - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "0.71%; 600 and 4 million tons per second; age about 4.5 billion years (the story title's 4.6 should match)"}
+  licence: "CC BY-NC-SA 4.0"
+"story:sun-watcher":
+  research:
+    - {what: "Aditya-L1 halo orbit, 6 January 2024, about 1.5 million km, 177.86 days", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}
+  licence: "CC BY-NC-SA 4.0"
+"story:star-stuff":
+  history:
+    - {what: "Saha 1920; Payne 1925 and 'spurious'; Russell 1929", source: "research/history.md §7", url: "https://www.encyclopedia.com/people/science-and-technology/physics-biographies/meghnad-saha"}
+  openstax:
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "temperature, not composition"}
+  licence: "CC BY-NC-SA 4.0"
+"story:star-distances":
+  history:
+    - {what: "Leavitt, Harvard 1912", source: "research/history.md §8", url: "https://astrobites.org/2019/03/08/leavitt-variable-stars/"}
+  openstax:
+    - {book: "Astronomy 2e", section: "19.2 Surveying the Stars", url: "https://openstax.org/books/astronomy-2e/pages/19-2-surveying-the-stars", took: "parallax and the parsec"}
+  licence: "CC BY-NC-SA 4.0"
+"story:star-death":
+  history:
+    - {what: "Chandrasekhar on the SS Pilsna, 1930; Eddington 1935; Nobel 1983", source: "research/history.md §8", url: "https://mathshistory.st-andrews.ac.uk/HistTopics/Chandrasekhar_Eddington/"}
+  openstax:
+    - {book: "Astronomy 2e", section: "23.1 The Death of Low-Mass Stars", url: "https://openstax.org/books/astronomy-2e/pages/23-1-the-death-of-low-mass-stars", took: "degeneracy pressure; the 1.4 solar-mass limit"}
+  licence: "CC BY-NC-SA 4.0"
+"story:expanding":
+  openstax:
+    - {book: "Astronomy 2e", section: "26.5 The Expanding Universe", url: "https://openstax.org/books/astronomy-2e/pages/26-5-the-expanding-universe", took: "Hubble's law; ants and raisins"}
+    - {book: "Astronomy 2e", section: "29.2 A Model of the Universe", url: "https://openstax.org/books/astronomy-2e/pages/29-2-a-model-of-the-universe", took: "space stretching, no place where it began"}
+  research:
+    - {what: "IGCSE 6.2.3 redshift wording", source: "research/school-wording.md", url: ""}
+  licence: "CC BY-NC-SA 4.0"

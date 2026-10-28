@@ -1,0 +1,127 @@
+# Chapter 14, Earth, Moon and Sun. One entry per numbered section, figure and story first linked here.
+# No MIT OCW course in the spine covers seasons or tides (grounding/ch14.md): this chapter rests on OpenStax
+# Astronomy 2e 4.1–4.7, MIT 8.282J Problem Set 1 (Aristarchus' methods) and NASA fact sheets. Every number in the
+# chapter was recomputed with python3 -I -c (see "computed:" notes).
+"14.1":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Calendar, Lecture 2 'Greek Astronomy' (no notes posted)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/", took: "sequence position only"}
+  openstax:
+    - {book: "Astronomy 2e", section: "4.1 Earth and Sky", url: "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky", took: "watching the sky cannot decide whether Earth or sky turns; astronomers accepted the turning Earth from the 1600s; Foucault 1851 as the demonstration; a pendulum keeps its plane; latitude"}
+  research:
+    - {what: "Earth volumetric mean radius 6371 km; obliquity 23.44°", source: "NASA NSSDC Earth Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"}
+    - {what: "IGCSE 0625 6.1.1 wording: rotates 'once in approximately 24 hours'", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Aryabhata, Kusumapura, 499 CE: the boat picture; born 476 (age about 23 computed)", source: "research/history.md §2 and cast table", url: "https://en.wikipedia.org/wiki/Aryabhatiya"}
+    - {what: "Foucault, Panthéon 1851: 67 m wire, 28 kg bob (Astronomy 2e says 60 m and about 25 kg; the primary-research figure is used); 'Avez-vous vu tourner la Terre?'", source: "research/history.md true-stories list (Comptes Rendus Physique 2017)", url: "https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/j.crhy.2017.11.003.pdf"}
+  computed:
+    - "360/24 = 15.0 deg/h"
+    - "2*pi*6371*cos(19.08 deg)/24 = 1576 km/h (ASSUMED spherical Earth, 24 h day)"
+    - "Foucault turning rate 15*sin(latitude) deg/h: Paris 48.85 N -> 11.3; Mumbai 19.08 N -> 4.9 deg/h, full turn 24/sin(lat) = 73.4 h (about three days). The sin(latitude) rule is standard physics not in the grounding note: flagged for the fact gate"
+  figures:
+    - {name: c14_boat, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"14.2":
+  openstax:
+    - {book: "Astronomy 2e", section: "4.2 The Seasons", url: "https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons", took: "distance argument refuted (closest in January; hemispheres opposite); axis points the same way all year; two effects, angle and day length; flashlight demo; noon altitude = 90 − |latitude − declination|; solstices over the tropics, equinoxes over the equator with about 12 h; refraction adds minutes; warmest weeks come after the solstice; near the equator seasons are wet and dry"}
+  research:
+    - {what: "obliquity 23.44°; perihelion 147.095 and aphelion 152.100 million km", source: "NASA NSSDC Earth Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"}
+    - {what: "seasons-distance misconception: A Private Universe (count hedged as 'most of those asked', secondary write-ups); IOP 'by far the most common explanation'; January is Mumbai's coolest month; Australia has summer in December", source: "research/misconceptions.md §12", url: ""}
+    - {what: "IGCSE 0625 6.1.1: orbit 'approximately 365 days… periodic nature of the seasons'; tilt not linked; bridge sentence", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "IMD normal monsoon onset for Mumbai, 11 June", source: "research/history.md §9", url: "https://mausam.imd.gov.in/backend/assets/press_release_pdf/IMD_Press_release_new_onset_and_withdrawal_dates%28Final%29.pdf"}
+    - {what: "May 34.3 °C and July 29.4 °C afternoons: cross-reference to this book's Chapter 8 case (its own ledger)", source: "src/ch08.md", url: ""}
+  computed:
+    - "152.100/147.095 = 1.034 (3.4% farther); squared = 1.0692 (about 7% more sunlight in early January); difference 5.005 million km"
+    - "noon Sun at 19.08 N: 90-|19.08-23.44| = 85.64 (June, 4.36 deg north of overhead); 90-19.08 = 70.92 (equinox); 90-(19.08+23.44) = 47.48 (December)"
+    - "sin(85.64)/sin(47.48) = 1.353: the same beam lights 35% more ground in December, so about a third less light per square metre"
+    - "day length cos H = -tan(lat) tan(dec): 13.15 h (June) and 10.85 h (December), geometric; about 2.3 h difference"
+    - "torch tilted 60 deg from straight down: 1/cos(60) = 2.0 times the area"
+    - "zero-shadow days near 2026-05-16 and 2026-07-27 from the approximate declination formula (grounding); printed only as 'around mid-May and late July'; needs an almanac check"
+  figures:
+    - {name: c14_tilt_orbit, origin: "redrawn from the idea of OpenStax Astronomy 2e Fig 4.5, our geometry and NASA numbers"}
+    - {name: c14_sun_height, origin: "redrawn from the idea of OpenStax Astronomy 2e Fig 4.6, with Mumbai's computed Sun heights"}
+  licence: "CC BY-NC-SA 4.0"
+"14.3":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 1, Problem 2 (Aristarchus: the Sun's distance from the quarter Moon)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps1/", took: "background only (quarter-Moon geometry)"}
+  openstax:
+    - {book: "Astronomy 2e", section: "4.5 Phases and Motions of the Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-5-phases-and-motions-of-the-moon", took: "reflected sunlight; half always lit; phase sequence in about 29.5 days; about 12° a day; full Moon rises at sunset and is highest at midnight, first quarter rises around noon; synchronous rotation and the 'orbit your roommate' demo; 30 Earth-diameters; ball-and-lamp demo; 'dark side' warning; sidereal 27.3 vs solar 29.5 days"}
+  research:
+    - {what: "phases = Earth's shadow, 41–44% (Sadler 1992, Baxter 1988)", source: "research/misconceptions.md §12", url: ""}
+    - {what: "synodic 29.53 d, sidereal 27.3217 d, semimajor axis 384,400 km", source: "NASA NSSDC Moon Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"}
+    - {what: "IGCSE 0625 6.1.1.3 'approximately one month… cycle of phases'; 'dark side' not used", source: "research/school-wording.md", url: ""}
+  computed:
+    - "360/29.5306 = 12.19 deg/day against the Sun; 360/27.3217 = 13.18 against the stars"
+    - "24*60*12.19/360 = 49 min later moonrise per day (printed as 'about 50 minutes'; ignores orbital tilt and latitude)"
+    - "384400/(2*6371) = 30.2 Earth-diameters"
+  figures:
+    - {name: c14_phases, origin: "redrawn from the idea of OpenStax Astronomy 2e Fig 4.14, with its scale problem stated in the caption"}
+  unsourced:
+    - "amavasya = new Moon and purnima = full Moon (Indian calendar names): common usage, no source in the grounding; flagged"
+  licence: "CC BY-NC-SA 4.0"
+"14.4":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 1, Problem 1 (Aristarchus: the Moon's size and distance from a lunar eclipse)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps1/", took: "½° angular sizes of Sun and Moon"}
+  openstax:
+    - {book: "Astronomy 2e", section: "4.7 Eclipses of the Sun and Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-7-eclipses-of-the-sun-and-moon", took: "400 times wider and 400 times farther; umbra and penumbra; solar at new Moon, lunar at full; 5° tilt and eclipse seasons twice a year; Earth's shadow about 1.4 million km; annular eclipses; lunar eclipses last longer; coppery red from refraction; predicted centuries ahead; eye-safety warnings and the 1 mm pinhole projector; filters and smoked glass unsafe"}
+  research:
+    - {what: "Moon radius 1737.4 km, inclination 5.145°, perigee 363,300 and apogee 405,500 km; Sun radius 695,700 km; AU 149.598 million km", source: "NASA NSSDC Moon, Sun and Earth Fact Sheets", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"}
+    - {what: "'apparent, not actual, size' bridge (NCERT Curiosity Class 7)", source: "research/misconceptions.md §12", url: ""}
+    - {what: "eclipses: 0 mentions in IGCSE 0625; Lower Secondary 7ESs covers eclipses and tides", source: "research/school-wording.md", url: ""}
+  history:
+    - {what: "Aryabhata: eclipses are shadows, not demons", source: "research/history.md §2", url: "https://en.wikipedia.org/wiki/Aryabhatiya"}
+  computed:
+    - "695700/1737.4 = 400.4; 149.598e6/384400 = 389.2; diameters 1,391,400 km and 3,474.8 km"
+    - "angular sizes 2*atan(1737.4/384400) = 0.518 deg and 2*atan(695700/149.598e6) = 0.533 deg"
+    - "shadow length 149.598e6*6371/(695700-6371) = 1.38 million km (similar triangles)"
+    - "384400*sin(5.145 deg) = 34,472 km off the plane at most, against Earth's radius 6,371 km"
+  figures:
+    - {name: c14_eclipse_tilt, origin: "redrawn from the idea of OpenStax Astronomy 2e Figs 4.21–4.24, our geometry; the tilt is drawn steeper than 5° and the caption says so"}
+  licence: "CC BY-NC-SA 4.0"
+"14.5":
+  openstax:
+    - {book: "Astronomy 2e", section: "4.6 Ocean Tides and the Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-6-ocean-tides-and-the-moon", took: "daily delay of high tide equals the delay in moonrise; the Moon pulls each part of Earth differently and tides come from the differences; the bulges are an actual flow of water, not lifting; two bulges, two highs a day; the Sun less than half as effective; spring and neap tides and the name 'spring up'; land, friction, rotation, wind and depth make tide tables necessary; nearly 1 m on an all-water Earth, about 20 cm in the solid Earth; 0.002 s per century and 3.8 cm per year from Apollo mirrors"}
+  research:
+    - {what: "Sun and Moon masses and distances for the tidal ratio; Earth radius", source: "NASA NSSDC Sun, Moon and Earth Fact Sheets", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"}
+    - {what: "two-thirds name the Moon's attraction but cannot picture it globally (Corrochano 2017); Haji Ali causeway open at low tide, submerged at high tide", source: "research/misconceptions.md §12", url: ""}
+  history:
+    - {what: "Haji Ali causeway submerged at high tide; Mumbai tide 'mixed semi-diurnal, two highs of unequal height' (HEDGE); one day's forecast 3.93 m high and 1.43 m low (newspaper report, labelled as one day's forecast in the text); typical range UNSOURCED (INCOIS unreachable)", source: "research/history.md §9", url: "https://www.freepressjournal.in/mumbai/mumbai-on-alert-as-393-metre-high-tide-expected-today-imd-warns-of-heavy-rain-strong-winds"}
+  computed:
+    - "tidal ratio (M_sun/d_sun^3)/(M_moon/d_moon^3) = 0.459 (about 46%)"
+    - "near/far pull ratio ((384400+6371)/(384400-6371))^2 = 1.0685: the Moon pulls the near sea about 7% harder than the far sea"
+    - "lunar day 24*29.5306/28.5306 = 24.841 h; half = 12.42 h (about 12 h 25 min); delay (24.841-24)*60 = 50 min"
+    - "spring to spring 29.5306/2 = 14.77 days"
+    - "one day's forecast range 3.93-1.43 = 2.5 m (HEDGE; one day only)"
+    - "case: 7 days x 50 min = 5 h 50 min, so a 10:30 low moves to about 16:20; the other low about 12 h 25 min earlier, about 03:55"
+  figures:
+    - {name: c14_tides, origin: "redrawn from the idea of OpenStax Astronomy 2e Figs 4.16–4.17 (differential pull, two bulges), our geometry; exaggerations stated in the caption"}
+  licence: "CC BY-NC-SA 4.0"
+"story:earth-turns":
+  history:
+    - {what: "Aryabhata's boat, 499 CE; eclipses as shadows; avoid 'heliocentric' and '99.4%' claims", source: "research/history.md §2", url: "https://en.wikipedia.org/wiki/Aryabhatiya"}
+  openstax:
+    - {book: "Astronomy 2e", section: "4.1 Earth and Sky", url: "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky", took: "Foucault as the later proof"}
+  licence: "CC BY-NC-SA 4.0"
+"story:foucault":
+  history:
+    - {what: "Panthéon 1851; 67 m wire, 28 kg bob; 'Have you seen the Earth turn?'", source: "research/history.md true-stories list (Comptes Rendus Physique 2017)", url: "https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/j.crhy.2017.11.003.pdf"}
+  licence: "CC BY-NC-SA 4.0"
+"story:seasons":
+  research:
+    - {what: "A Private Universe (count hedged); distance misconception prevalence", source: "research/misconceptions.md §12", url: ""}
+  openstax:
+    - {book: "Astronomy 2e", section: "4.2 The Seasons", url: "https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons", took: "tilt, angle and day length; perihelion in January"}
+  licence: "CC BY-NC-SA 4.0"
+"story:moon-phases":
+  openstax:
+    - {book: "Astronomy 2e", section: "4.5 Phases and Motions of the Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-5-phases-and-motions-of-the-moon", took: "half lit always; ball-and-lamp"}
+    - {book: "Astronomy 2e", section: "4.7 Eclipses of the Sun and Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-7-eclipses-of-the-sun-and-moon", took: "5° tilt; why eclipses are rare"}
+  research:
+    - {what: "phases = Earth's shadow, 41–44%", source: "research/misconceptions.md §12", url: ""}
+  licence: "CC BY-NC-SA 4.0"
+"story:tides":
+  openstax:
+    - {book: "Astronomy 2e", section: "4.6 Ocean Tides and the Moon", url: "https://openstax.org/books/astronomy-2e/pages/4-6-ocean-tides-and-the-moon", took: "two bulges by differential pull; spring and neap"}
+  history:
+    - {what: "Haji Ali causeway; Mumbai tide tables (INCOIS, Survey of India) as the source for numbers", source: "research/history.md §9", url: "https://en.wikipedia.org/wiki/Haji_Ali_Dargah"}
+  licence: "CC BY-NC-SA 4.0"
