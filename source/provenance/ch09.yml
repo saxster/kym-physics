@@ -1,0 +1,129 @@
+# Chapter 9, Vibrations, waves and sound. Every numbered section, figure and story card the chapter introduces.
+# Numbers were recomputed with python3 -I (see the "computed" notes); ASSUMED inputs are named as such.
+"9.1":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 1 notes ('NO Hooke's Law': the small-oscillation approximation near a stable equilibrium; 'the law breaks down at some point')", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec1/", took: "idea"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 2 (small-angle approximation; Physical Pendulum demo)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-2/", took: "sequence"}
+  openstax:
+    - {book: "College Physics 2e", section: "16.4 The Simple Pendulum", url: "https://openstax.org/books/college-physics-2e/pages/16-4-the-simple-pendulum", took: "restoring force −mg sinθ; T = 2π√(L/g); 15° limit (about 1%); Example 16.5 (75.000 cm, 1.7357 s → 9.8281 m/s²); take-home (1 m string, under 10°, 10 swings); Check Your Understanding (10 kg vs 100 kg bobs)"}
+    - {book: "College Physics 2e", section: "16.2 Period and Frequency in Oscillations", url: "https://openstax.org/books/college-physics-2e/pages/16-2-period-and-frequency-in-oscillations", took: "period, frequency = 1/T"}
+    - {book: "College Physics 2e", section: "16.7 Damped Harmonic Motion", url: "https://openstax.org/books/college-physics-2e/pages/16-7-damped-harmonic-motion", took: "real swings lose energy; a parent keeps pushing"}
+    - {book: "College Physics 2e", section: "Ch 16 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/16-conceptual-questions", took: "Q8 (pendulum clock moved to larger g) for the check"}
+  research:
+    - {what: "computed: T(1 m) = 2.007 s, T(4 m) = 4.014 s, T(2.5 m, ASSUMED swing) = 3.17 s; small-angle error 1.15% at 15°; exact/small-angle period ratio 1.0043 at 15°, 1.0732 at 60° (arithmetic–geometric mean, pure maths); 4π² = 39.5", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IB DP C.1 Simple harmonic motion; IGCSE has no pendulum formula in the quoted content", source: "research/school-wording.md §1, §4", url: "https://www.choithraminternational.com/IB%20Subject%20Guides/Physics.pdf"}
+  history:
+    - {what: "the Pisa cathedral lamp is a legend (Viviani only; the lamp now there was installed after Galileo left Pisa); the pendulum work itself is real", source: "research/history.md §1 (Museo Galileo)", url: "https://brunelleschi.imss.fi.it/itineraries/place/CathedralOfSantaMaria.html"}
+  figures:
+    - {name: c9_pendulum, origin: "ours; force split after College Physics 2e Fig 16.13"}
+  licence: "CC BY-NC-SA 4.0"
+"9.2":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 3 notes (driven oscillator; resonance amplitude; damping)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec3/", took: "idea; the amplitude formula used only to draw the schematic curve shapes"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 3 demos: Breaking Glass with Sound; Ball on String Pendulum; rubbed wine glass", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy4_of_lecture-3-video/", took: "demo (glass broken by a loudspeaker at its note; ball-on-string rhythm, Investigation 9.2)"}
+    - {course: "18.03 Differential Equations, Spring 2010", where: "Appendix B: The Tacoma Narrows Bridge, resonance vs flutter ('the wind was not gusting… This explanation is worthless'; 'One car and a dog were lost')", url: "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/63b26053bec64e7c32b93900b15d7fad_MIT18_03S10_Appendix_B.pdf", took: "idea: flutter, a self-excited twist, in place of the resonance story"}
+  openstax:
+    - {book: "College Physics 2e", section: "16.8 Forced Oscillations and Resonance", url: "https://openstax.org/books/college-physics-2e/pages/16-8-forced-oscillations-and-resonance", took: "natural frequency, resonance, paddle-ball sequence (slow/near/fast), damping vs peak height (Fig 16.25 idea), Check Your Understanding (loud note or right note); its Tacoma caption and 'same reason' Millennium Bridge line are REJECTED"}
+    - {book: "College Physics 2e", section: "Ch 16 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/16-conceptual-questions", took: "Q13 (soldiers break step) for the check"}
+  research:
+    - {what: "Billah & Scanlan, Am. J. Phys. 59 (1991) 118–124 (flutter, via 18.03 App B)", source: "MIT 18.03 Appendix B", url: "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/63b26053bec64e7c32b93900b15d7fad_MIT18_03S10_Appendix_B.pdf"}
+    - {what: "Millennium Bridge: synchronous lateral excitation (walkers adjust steps to the sway); cite only, gate to replace with Dallard et al. 2001 / Arup", source: "Wikipedia, Synchronous lateral excitation", url: "https://en.wikipedia.org/wiki/Synchronous_lateral_excitation"}
+    - {what: "computed: natural frequency of the ASSUMED 2.5 m swing 1/3.17 s ≈ 0.3 Hz", source: "python3 -I, 2026-10-28", url: ""}
+  history:
+    - {what: "Millennium Bridge opened 10 June 2000, closed two days later, dampers about £5m, reopened 2002; a 2021 paper offers a rival explanation (dates conflict across sources: gate)", source: "research/history.md tales §10; grounding/ch09.md 9.2 gaps", url: "https://enr.com/articles/53233-new-explanation-given-for-londons-wobbling-millennium-bridge-after-two-decades"}
+    - {what: "Tacoma Narrows 1940: flutter; the dog Tubby bit the professor who tried to rescue him", source: "research/history.md tales §11 (ASCE; ketchum.org)", url: "https://www.asce.org/publications-and-news/civil-engineering-source/article/2023/06/13/professor-farquharsons-dog"}
+  figures:
+    - {name: c9_resonance, origin: "ours; curve shapes after College Physics 2e Fig 16.25, computed from the 8.03 amplitude formula; schematic"}
+    - {name: c9_flutter, origin: "ours; after the MIT 18.03 Appendix B resonance-vs-flutter contrast"}
+  licence: "CC BY-NC-SA 4.0"
+"9.3":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lectures 9–10, Bell Labs wave machine demos (travelling waves; reflection)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-10/", took: "sequence"}
+  openstax:
+    - {book: "College Physics 2e", section: "16.9 Waves", url: "https://openstax.org/books/college-physics-2e/pages/16-9-waves", took: "definition (a disturbance that propagates); the bobbing gull; Misconception Alert (water moves in circles, 'far from shore'); v = λ/T = fλ; Example 16.8 (10.0 m, 5.00 s → 2.00 m/s); transverse vs longitudinal; Waves in a Bowl take-home"}
+    - {book: "College Physics 2e", section: "16.11 Energy in Waves: Intensity", url: "https://openstax.org/books/college-physics-2e/pages/16-11-energy-in-waves-intensity", took: "energy ∝ amplitude²"}
+    - {book: "College Physics 2e", section: "16.10 Superposition and Interference", url: "https://openstax.org/books/college-physics-2e/pages/16-10-superposition-and-interference", took: "waves add where they meet and carry on"}
+    - {book: "Physics", section: "13.1 Types of Waves", url: "https://openstax.org/books/physics/pages/13-1-types-of-waves", took: "waves carry energy, not necessarily mass; mechanical waves need a medium, light does not (used in :::next)"}
+    - {book: "College Physics 2e", section: "Ch 16 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/16-conceptual-questions", took: "Q18 (rings shrink as they spread) for the check"}
+  research:
+    - {what: "waves carry water/air misconception; paper-scrap demo", source: "research/misconceptions.md §8", url: "https://spark.iop.org/many-students-believe-sound-can-travel-through-empty-space"}
+    - {what: "impetus (recall 2)", source: "research/misconceptions.md §3 (Halloun & Hestenes 1985)", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+    - {what: "computed: 10.0/5.00 = 2.0 m/s; 2² = 4, 3² = 9", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IGCSE 3.1 General properties of waves", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c9_wave_carries, origin: "ours; the bobbing-object idea after College Physics 2e Fig 16.28"}
+  licence: "CC BY-NC-SA 4.0"
+"9.4":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 11 notes (v = √(γP₀/ρ); Newton's isothermal assumption 'not quite right'; Laplace's adiabatic correction ≈ 342 m/s)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec11/", took: "idea; numbers recomputed (√(1.4e5/1.2) = 341.6, √(1e5/1.2) = 288.7 m/s); the transcript's '389' is NOT used"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 11 demo: Standing Sound Waves in a Glass Tube (34 cm wavelength → 340 m/s, within 1%); the class vote Newton vs Laplace", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy_of_lecture-11-video/", took: "demo, number (the :::evidence block)"}
+  openstax:
+    - {book: "College Physics 2e", section: "17.1 Sound", url: "https://openstax.org/books/college-physics-2e/pages/17-1-sound", took: "compressions and rarefactions; longitudinal; air does not travel from source to ear"}
+    - {book: "College Physics 2e", section: "17.2 Speed of Sound, Frequency, and Wavelength", url: "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength", took: "v = 331√(T/273); Table 17.1 (air 331, water 1480, steel 5960, aluminium 5120, lead 1960); stiffer faster, denser slower; Example 17.1 (17 m and 1.7 cm at 30 °C); fireworks flash-before-bang; echo delay ∝ distance; Check Your Understanding (fireworks)"}
+    - {book: "Physics", section: "13.1 Types of Waves", url: "https://openstax.org/books/physics/pages/13-1-types-of-waves", took: "mechanical waves need a medium"}
+  research:
+    - {what: "spoon-on-a-string demo; bell jar (no home vacuum works; the vacuum-bag test is on the rejected list); echo at 50 m ≈ 0.3 s", source: "research/misconceptions.md §8", url: "https://spark.iop.org/many-students-believe-sound-can-travel-through-empty-space"}
+    - {what: "computed: v(30 °C) = 348.7 m/s, v(20 °C) = 342.9; 5960/331 = 18.0; 100 m rail 0.017 s vs air 0.287 s; echo 2×50/348.7 = 0.287 s; 1000/348.7 = 2.87 s per km; wavelengths 17.4 m and 1.74 cm", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IGCSE 3.4 Sound; Lower Secondary 7Ps 'no sound in a vacuum; echoes'", source: "research/school-wording.md §1–2", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  figures:
+    - {name: c9_compressions, origin: "ours; after College Physics 2e Figs 17.3–17.5"}
+  licence: "CC BY-NC-SA 4.0"
+"9.5":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 11 notes (power-spectrum example)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec11/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "17.6 Hearing", url: "https://openstax.org/books/college-physics-2e/pages/17-6-hearing", took: "pitch = perceived frequency; 0.3% discrimination; 20–20,000 Hz, infrasound/ultrasound; loudness depends on intensity and frequency (Table 17.4)"}
+    - {book: "College Physics 2e", section: "17.3 Sound Intensity and Sound Level", url: "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level", took: "10¹² range; decibel definition; Table 17.2 (0 threshold, 20 whisper, 60 conversation, 70 busy traffic); Feeling Sound snap lab"}
+    - {book: "College Physics 2e", section: "16.11 Energy in Waves: Intensity", url: "https://openstax.org/books/college-physics-2e/pages/16-11-energy-in-waves-intensity", took: "energy ∝ amplitude²"}
+    - {book: "College Physics 2e", section: "Ch 17 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/17-conceptual-questions", took: "Q4 (the mayor's 'only 30 dB') for the check"}
+    - {book: "Physics", section: "14.2 Sound Intensity and Sound Level", url: "https://openstax.org/books/physics/pages/14-2-sound-intensity-and-sound-level", took: "Feeling Sound snap lab (Investigation 9.5)"}
+  research:
+    - {what: "pitch vs loudness confusion", source: "research/misconceptions.md §8 (IOP Spark; APFSLT)", url: "https://spark.iop.org/many-students-confuse-effects-changing-amplitude-and-frequency-sound-wave-pitch-and-volume-sound"}
+    - {what: "computed: 10^((70−40)/10) = 1000; 10·log10(4) = 6.02 dB", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "Lower Secondary 9Ps 'loudness ↔ amplitude, pitch ↔ frequency'", source: "research/school-wording.md §2", url: "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/science"}
+  figures:
+    - {name: c9_loud_high, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"9.6":
+  ocw:
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 9 (standing waves on a string; any shape as a sum of modes)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-9/", took: "idea, sequence"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Demo: Chladni Figures (Speaker Driven)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/copy_of_lecture-16-video/", took: "demo (salt on a driven plate shows the modes)"}
+    - {course: "8.03SC Physics III: Vibrations and Waves, Fall 2016", where: "Lecture 11 notes (pipe boundary conditions)", url: "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec11/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "16.10 Superposition and Interference", url: "https://openstax.org/books/college-physics-2e/pages/16-10-superposition-and-interference", took: "string modes fₙ = n·v/2L"}
+    - {book: "College Physics 2e", section: "17.5 Sound Interference and Resonance", url: "https://openstax.org/books/college-physics-2e/pages/17-5-sound-interference-and-resonance-standing-waves-in-air-columns", took: "fundamental/overtone/harmonic definitions; timbre (violin vs piano); blowing across a bottle; its 'all resonant frequencies are integral multiples' line is REJECTED for drums and closed pipes"}
+    - {book: "Physics", section: "14.4 Sound Interference and Resonance", url: "https://openstax.org/books/physics/pages/14-4-sound-interference-and-resonance", took: "closed pipe: odd multiples only; overtone mix gives instruments their character"}
+    - {book: "College Physics 2e", section: "Ch 17 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/17-conceptual-questions", took: "Q9 (open vs closed pipe, lower note) for the check; Q10 (overtone vs harmonic)"}
+  research:
+    - {what: "computed: closed 30 cm tube at 30 °C: 290.6, 872, 1453 Hz; open: 581.2 Hz; octave = 2× frequency ↔ 4× tension (square root read off Vincenzo's finding)", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "UNSOURCED MODEL for the gate: the ideal circular-membrane mode ratios 1 : 1.593 : 2.136 : 2.295 : 2.653 (zeros of Bessel functions, computed by series + bisection in python3 -I). Standard physics, but in neither grounding source; the qualitative claim (drum overtones are not whole-number multiples) rests on Raman & Kumar 1920", source: "python3 -I, 2026-10-28", url: ""}
+  history:
+    - {what: "Raman & Sivakali Kumar, Nature 104, p. 500 (15 January 1920): most drums inharmonic; tabla and mridangam harmonic because the syahi tunes the drumhead", source: "research/history.md §5 (IAS repository; Live History India)", url: "https://repository.ias.ac.in/52555"}
+    - {what: "Pythagoras' hammers: LEGEND (Nicomachus, ~600 years later; hammer weight does not set pitch). Vincenzo Galilei, Florence c. 1589: an octave needs four times the weight (TRUE)", source: "research/history.md §5 (APS News; Lumen)", url: "https://aps.org/apsnews/2015/07/death-vincenzo-galilei"}
+  figures:
+    - {name: c9_harmonics, origin: "ours; string modes after College Physics 2e Fig 16.38; drum ladder from the computed Bessel ratios"}
+  licence: "CC BY-NC-SA 4.0"
+"9.7":
+  openstax:
+    - {book: "College Physics 2e", section: "17.4 Doppler Effect and Sonic Booms", url: "https://openstax.org/books/college-physics-2e/pages/17-4-doppler-effect-and-sonic-booms", took: "definition; wavefront bunching (Figs 17.13–17.15 idea, redrawn); f_obs = f·v/(v ∓ v_s); moving observer; Example 17.4 (150 Hz, 35 m/s, 340 m/s → 167/136 Hz; the driver hears the true note); sonic boom; shifts not symmetric; line-of-sight caveat; its 'Doppler had musicians play on a train' attribution is REJECTED"}
+    - {book: "Physics", section: "14.3 Doppler Effect and Sonic Booms", url: "https://openstax.org/books/physics/pages/14-3-doppler-effect-and-sonic-booms", took: "concept item (faster source sounds higher) for the check"}
+  research:
+    - {what: "computed: ASSUMED local-train horn 300 Hz at 80 km/h (22.2 m/s) in 30 °C air (348.7 m/s): 320.4 Hz approaching, 282.0 Hz receding; ratio 1.136 = 2.21 semitones; CP example 167.2/136.0 Hz (+17.2/−14.0)", source: "python3 -I, 2026-10-28", url: ""}
+    - {what: "IGCSE 6.2.3 redshift (no sound Doppler); IB DP C.5 Doppler effect", source: "research/school-wording.md §1, §4", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "pitch vs loudness (for the :::careful)", source: "research/misconceptions.md §8", url: "https://spark.iop.org/many-students-confuse-effects-changing-amplitude-and-frequency-sound-wave-pitch-and-volume-sound"}
+  history:
+    - {what: "Doppler, Prague, 25 May 1842 (Royal Bohemian Society; double-star example wrong); Buys Ballot, Utrecht–Maarssen line, 1845: horn players on an open wagon, musicians with perfect pitch", source: "research/history.md §5 (New World Encyclopedia; Utrecht mural site)", url: "https://muurformules.sitestest.hum.uu.nl/mural-paintings/christophorus-buys-ballot/?lang=en"}
+  figures:
+    - {name: c9_doppler, origin: "ours; after College Physics 2e Figs 17.13–17.15; drawn for a source at 0.3 of the speed of sound, stated in the caption"}
+  licence: "CC BY-NC-SA 4.0"
+"story:resonance":
+  history:
+    - {what: "Galileo's pendulum work (the cathedral lamp as legend); pushing in time; bridges", source: "research/history.md §1, tales §10–11", url: "https://brunelleschi.imss.fi.it/itineraries/place/CathedralOfSantaMaria.html"}
+  ocw:
+    - {course: "18.03 Differential Equations, Spring 2010", where: "Appendix B (Tacoma: flutter, not resonance)", url: "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/63b26053bec64e7c32b93900b15d7fad_MIT18_03S10_Appendix_B.pdf", took: "idea"}
+"story:tabla":
+  history:
+    - {what: "Vincenzo Galilei's weights and strings; Pythagoras' hammers as legend; Raman & Kumar 1920; the syahi", source: "research/history.md §5", url: "https://repository.ias.ac.in/52555"}
+"story:doppler":
+  history:
+    - {what: "Doppler in Prague 1842 (star-colour example wrong); Buys Ballot's horn players near Utrecht, 1845; the local-train horn (ASSUMED numbers)", source: "research/history.md §5", url: "https://www.newworldencyclopedia.org/entry/Christian_Doppler"}
