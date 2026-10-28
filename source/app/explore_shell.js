@@ -16,15 +16,25 @@ export function explorerShell(name, { label } = {}) {
     const btn = el('button', { type: 'button', class: 'live-open explore-open', html: ICON + `<span>${btnLabel}</span>` });
     const msg = el('p', { class: 'live-note', role: 'status' });
     const stage = el('div', { class: 'explore-stage', hidden: true });
+    let preview;
+    if (name === 'scale') {
+      preview = el('figure', { class: 'scale-preview' },
+        el('img', { src: window.BOOK_SCALE_ART, width: 1536, height: 1024, loading: 'lazy', alt: 'An illustrated Mumbai neighbourhood with a room at its centre.' }),
+        el('figcaption', {}, 'A room. A street. A world. Begin with one metre and see what surrounds it.'));
+      mount.append(preview);
+    }
     mount.append(btn, msg, stage);
     btn.addEventListener('click', async () => {
+      msg.classList.remove('live-warn');
       btn.disabled = true; btn.querySelector('span').textContent = 'Opening…'; msg.textContent = '';
       try {
         const impl = await App.loadExplorer(name, chunk);
         stage.hidden = false; btn.hidden = true;
-        await impl.mount(stage, { title, close: () => { stage.replaceChildren(); stage.hidden = true; btn.hidden = false; btn.focus(); } });
+        if (preview) preview.hidden = true;
+        await impl.mount(stage, { title, close: () => { stage.replaceChildren(); stage.hidden = true; btn.hidden = false; if(preview) preview.hidden = false; btn.focus(); } });
         App.emit('explore:open', { name });
       } catch (e) {
+        stage.replaceChildren(); stage.hidden = true; btn.hidden = false; if(preview) preview.hidden = false;
         msg.textContent = location.protocol === 'file:'
           ? 'This explorer loads from the web. Open the book from its website (or a local server) to use it.'
           : 'This explorer could not load. Check the connection and try again.';
