@@ -1,0 +1,65 @@
+/* ------------------------------------------------------------------ layout and typography refinements
+   Loads after book.css and 0_beauty.css. Readability first: legible notes and charges, no word-splitting,
+   a calm Contents page, an upright big question, and a cover table you can actually read on a phone. */
+
+/* headings and running text never split words; very long words may still wrap rather than overflow */
+h1, h2, h3, h4, .side, figcaption, .toc, .box, .case { hyphens: manual; -webkit-hyphens: manual; }
+p, li, dd, figcaption { text-wrap: pretty; }
+
+/* ---------------------------------------------------------- margin notes: readable, not fine print */
+.side { font-size: .95rem; line-height: 1.5; color: var(--ink-2); }
+.side b { font-size: 1rem; letter-spacing: .005em; margin-bottom: .2rem; }
+.side.aside { color: var(--ink-2); }
+@media screen and (max-width: 959px) {
+  /* notes sit in the text column, after the paragraph that introduces the word (see m_layout.js) */
+  .side { margin: -.2rem 0 1.4rem; padding: .6rem .9rem .65rem 1rem; border-left: 2px solid var(--vol); background: var(--vol-wash); border-radius: 0 8px 8px 0; }
+}
+.sd-body .side { margin: -.2rem 0 1.4rem; padding: .6rem .9rem .65rem 1rem; background: var(--vol-wash); border-radius: 0 8px 8px 0; font-size: .95rem; }
+figure figcaption { font-size: .94rem; line-height: 1.5; color: var(--ink-2); }
+
+/* ---------------------------------------------------------- superscripts and subscripts (Na⁺, Cl⁻, 10²³, H₂O) */
+/* the font's superior and inferior glyphs are tiny and hairline-thin; enlarge and embolden them a little */
+.sx, .sb { font-size: 1.24em; font-weight: 600; line-height: 0; font-variant-position: normal; }
+.sb { font-size: 1.18em; font-weight: 500; }
+h1 .sx, h2 .sx, h3 .sx, h1 .sb, h2 .sb, h3 .sb { font-size: 1.12em; }
+sup, sub { font-size: .72em; font-weight: 500; }
+
+/* ---------------------------------------------------------- the big question: upright, larger, calm */
+.opener .bq { font-style: normal; color: var(--ink); font-size: clamp(1.3rem, 2.3vw, 1.62rem); line-height: 1.4; font-weight: 400; }
+.opener .bq-label { color: var(--vol); }
+
+/* ---------------------------------------------------------- the Contents page */
+.toc > ol > li { padding: .9rem 0 1rem; }
+.toc .tch { grid-template-columns: 2.8rem 1fr; row-gap: 0; }
+.toc .tch > a { font-size: 1.16rem; font-weight: 600; }
+.toc .tsec {
+  grid-column: 2; display: grid; grid-template-columns: 1fr; gap: .05rem 2rem; margin-top: .55rem;
+  font-family: var(--serif); font-size: .98rem; line-height: 1.4; color: var(--ink-2);
+}
+.toc .tsec .sep { display: none; }
+.toc .tsec a { display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding: .2rem 0; text-decoration: none; }
+.toc .tsec a:hover .st { text-decoration: underline; text-decoration-color: var(--vol); }
+.toc .tsec .sn { font-family: var(--sans); font-size: .8rem; font-weight: 600; color: var(--vol); font-variant-numeric: lining-nums tabular-nums; }
+.toc .tsec a.is-read::before { content: none; }
+.toc .tsec a.is-read .sn::after { content: " \2713"; color: var(--green); }
+@media screen and (min-width: 720px) { .toc .tsec { grid-template-columns: 1fr 1fr; } }
+/* progress rings appear only once a chapter has been started */
+.toc .cprog.none { display: none; }
+.toc .tch .n { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ---------------------------------------------------------- the cover table on phones: bigger tiles, swipe sideways */
+@media screen and (max-width: 720px) {
+  .cover .art { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem -1rem 0; padding: 0 1rem .4rem; scrollbar-width: thin; }
+  .cover .art svg { min-width: 620px; }
+  .cover .art .legend { position: sticky; left: 0; max-width: calc(100vw - 2rem); }
+  .cover .art .legend::after { content: "Swipe sideways to see the whole table."; display: block; color: var(--muted); font-size: .85em; margin-top: .2rem; }
+}
+.toc .tch .tsec a { font-weight: 400; }
+/* the font's superscript plus and minus are hairlines: hide the glyphs and draw clear signs in their place
+   (the characters stay in the text, so search, copying, highlights and read-aloud are unaffected) */
+.sx { font-weight: 500; }
+.sxm, .sxp { display: inline-block; position: relative; line-height: 1; height: 1em; vertical-align: -.2em; width: .48em;
+  -webkit-text-fill-color: transparent; }
+.sxm::after, .sxp::after, .sxp::before { content: ""; position: absolute; border-radius: 1px; background: currentColor; }
+.sxm::after, .sxp::after { left: .08em; right: .06em; bottom: .66em; height: max(1.5px, .08em); }
+.sxp::before { width: max(1.5px, .08em); left: calc(50% + .01em - max(.75px, .04em)); bottom: .5em; height: .34em; }

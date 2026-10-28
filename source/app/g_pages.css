@@ -1,0 +1,30 @@
+/* One page at a time (app/m_pages.js). Without JavaScript, or in print, every page shows. */
+html.paged [data-page-off] { display: none !important; }
+@media print { html.paged [data-page-off] { display: block !important; } .pg-nav { display: none !important; } }
+
+.pg-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin: 5rem 0 3rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+}
+.pg-nav a {
+  display: grid; gap: .15rem; padding: 1rem 1.15rem; border: 1px solid var(--rule); border-radius: 12px;
+  background: var(--sheet); color: var(--ink); text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.pg-nav a:hover, .pg-nav a:focus-visible { border-color: var(--vol); }
+.pg-nav a:hover { transform: translateY(-1px); }
+.pg-nav .pg-next { text-align: right; }
+.pg-nav .pg-k { font-size: .78rem; letter-spacing: .04em; color: var(--vol); font-weight: 600; }
+.pg-nav .pg-l { font-size: .8rem; color: var(--muted); }
+.pg-nav .pg-t { font-family: var(--serif); font-size: 1.12rem; line-height: 1.3; }
+.pg-nav .pg-none { visibility: hidden; }
+@media (max-width: 560px) {
+  .pg-nav { grid-template-columns: 1fr; }
+  .pg-nav .pg-none { display: none; }
+  .pg-nav .pg-next { order: -1; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .pg-nav a { transition: none; } .pg-nav a:hover { transform: none; } }
+
+/* The stories page is an index: each story is read in the story panel, so the long articles stay tucked away. */
+html.paged #stories > article.story { display: none; }
