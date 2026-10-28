@@ -1,0 +1,234 @@
+# Ledger for the stories of the fields group (static, circuits, earth-magnet, oersted, induction, maxwell, bose-waves)
+# and the atoms group (photons, radiation, sun-fire, star-stuff, star-distances, star-death, expanding).
+# Course and book names are the exact keys in provenance/sources.yml. Every number under `computed:` was run with
+# python3 -I -c on 2026-10-28; ASSUMED marks an input chosen because no source gives one. History entries whose URL is
+# not in research/history.md were fetched on 2026-10-28 (marked "fetched 2026-10-28").
+"story:static":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 2 §2.1 Electric Charge", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap2coulomb_law/", took: "charge conserved, 'transferred from one body to another'; Franklin's convention (glass rubbed with silk is positive); e = 1.602e-19 C"}
+  openstax:
+    - {book: "Physics", section: "18.1 Electrical Charges, Conservation of Charge, and Transfer of Charge", url: "https://openstax.org/books/physics/pages/18-1-electrical-charges-conservation-of-charge-and-transfer-of-charge", took: "electrons move in solids; rubbing increases contact; conductors and insulators; polarisation and the tap-water lab; tape-strip lab; ink-drop numbers; 'carried away in humid air' (the child-on-slide paragraph rejected)"}
+    - {book: "Physics", section: "19.1 Ohm's Law", url: "https://openstax.org/books/physics/pages/19-1-ohms-law", took: "lightning: 1e20 electrons in 2 ms"}
+  research:
+    - {what: "static is a different kind of electricity; humidity weakens the balloon demo", source: "research/misconceptions.md §10", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+  history:
+    - {what: "De Magnete, London 1600; 'electricus' from elektron (amber); the versorium; electric vs magnetic attraction kept apart (fetched 2026-10-28)", source: "Wikipedia, De Magnete", url: "https://en.wikipedia.org/wiki/De_Magnete"}
+    - {what: "Franklin's kite, June 1752: HEDGE (no first-hand account; Priestley 15 years later; only witness his son)", source: "research/history.md §6", url: "https://whyy.org/articles/ben-franklins-kite-story-charged-with-confusion/"}
+  computed:
+    - "electrons per coulomb 1/1.602e-19 = 6.242e18; ink drop 1e-10/1.602e-19 = 6.24e8 electrons, one per 1e7 atoms (PH 18.1's own ratio); lightning 1e20 × 1.60e-19 / 2e-3 = 8000 A"
+  licence: "CC BY-NC-SA 4.0"
+"story:circuits":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 7 §7.1–7.3 (closed vs open circuits; emf as charge pump; current conservation; energy delivered in the resistor); ch 6 §6.1–6.2 (drift velocity; non-ohmic materials)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap7dc_circuits/", took: "loop; same current everywhere; energy is what is delivered; emf in J/C"}
+  openstax:
+    - {book: "Physics", section: "19.1 Ohm's Law", url: "https://openstax.org/books/physics/pages/19-1-ohms-law", took: "current definition; conventional current; V = IR empirical, 'holds for most materials and at common temperatures'; headlight 12.0 V / 2.50 A = 4.80 Ω; pea-straw lab and its limit (electrons push by repulsion); resistance rises at high temperature"}
+    - {book: "Physics", section: "19.2 Series Circuits", url: "https://openstax.org/books/physics/pages/19-2-series-circuits", took: "circuit = closed path; current same at all points incl. inside the battery; neither speeds up nor slows down; series rule (ground 'infinite charge' wording rejected)"}
+    - {book: "Physics", section: "19.3 Parallel Circuits", url: "https://openstax.org/books/physics/pages/19-3-parallel-circuits", took: "parallel: same voltage, currents add"}
+    - {book: "College Physics 2e", section: "21.2 Electromotive Force: Terminal Voltage", url: "https://openstax.org/books/college-physics-2e/pages/21-2-electromotive-force-terminal-voltage", took: "reaction will not take place without a complete circuit; battery sets a push, not a current; internal resistance sags under load"}
+    - {book: "College Physics 2e", section: "20.1 Current", url: "https://openstax.org/books/college-physics-2e/pages/20-1-current", took: "drift ~1e-4 m/s vs signal ~1e8 m/s; random fast motion averages out; Example 20.3 inputs"}
+    - {book: "College Physics 2e", section: "21.1 Resistors in Series and Parallel", url: "https://openstax.org/books/college-physics-2e/pages/21-1-resistors-in-series-and-parallel", took: "houses wired in parallel so devices operate independently"}
+  research:
+    - {what: "bulb uses up current; battery gives constant current; one wire is enough; hollow-pipe model", source: "research/misconceptions.md §10", url: "https://spark.iop.org/what-gets-used"}
+    - {what: "LED forward voltage about 2 V (red)", source: "OptoSupply OSRB5131AH-C via Rapid (grounding/ch12.md §12.4)", url: "https://static.rapidonline.com/pdf/56-0352.pdf"}
+    - {what: "IGCSE 4.2.2 conventional current wording", source: "research/school-wording.md", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Ohm at the Cologne Jesuit Gymnasium (well-equipped lab; experiments after Ørsted 1820); 1826 papers modelled on Fourier; leave on half pay in Berlin from August 1826; Die galvanische Kette 1827 'received with little enthusiasm', older German physicists unconvinced by the mathematical approach, Caneva on its lack of clarity; resigned Cologne March 1828; Nuremberg 1833 (title of professor, not a chair); Copley Medal 1841; Munich chair 1852; died 6 July 1854 (fetched 2026-10-28)", source: "MacTutor, Georg Simon Ohm", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Ohm.html"}
+  computed:
+    - "drift speed for 15 mA (ASSUMED LED current) in 0.5 mm copper (ASSUMED): n = 8.80e3/63.54e-3 × 6.02e23, A = π(0.25e-3)², v = 5.73e-6 m/s, 49 h per metre; CP Example 20.3 redone: 4.529e-4 m/s, 37 min per metre; 12.0/2.50 = 4.8 Ω; 6.0/4.8 = 1.25 A; 1e8/1e-4 = 1e12; 1841 − 1827 = 14"
+  licence: "CC BY-NC-SA 4.0"
+"story:earth-magnet":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 8 §8.1 Introduction", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/ch8magneti_field/", took: "compass needle lines up with B; poles always come in a pair"}
+  openstax:
+    - {book: "Physics", section: "20.1 Magnetic Fields, Field Lines, and Force", url: "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force", took: "freely hanging magnet turns north; field direction = where a compass's north end points; lines denser where stronger; closed loops"}
+    - {book: "College Physics 2e", section: "22.1 Magnets", url: "https://openstax.org/books/college-physics-2e/pages/22-1-magnets", took: "pole near geographic north is a magnetic south pole; 'confusion arises'; cut a magnet, two magnets; Earth 'acts like' a magnet"}
+    - {book: "College Physics 2e", section: "22.9 Magnetic Fields Produced by Currents: Ampere's Law", url: "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law", took: "Earth's field about 5.0e-5 T"}
+  research:
+    - {what: "Mumbai F ≈ 43.6 μT, H ≈ 38.4 μT, inclination ≈ 28.3°, declination ≈ 0°; Alibag inclination ≈ 27.4° (computed from WMM2025 coefficients in grounding/ch13.md §13.2, verified on NOAA test values)", source: "NOAA/NCEI World Magnetic Model 2025", url: "https://www.ncei.noaa.gov/products/world-magnetic-model"}
+    - {what: "Earth's N = magnet's N; floating-needle and phyphox demos", source: "research/misconceptions.md §11", url: "https://spark.iop.org/some-students-conflate-magnetic-and-electrostatic-effects"}
+  history:
+    - {what: "Gilbert's terrella and dip needle; garlic 'fable and falsehood'; della Porta breathed garlic on a lodestone", source: "research/history.md §6", url: "https://www.theiet.org/membership/library-archives/the-iet-archives/archives-highlights/earth-the-magnet-william-gilberts-terrella"}
+    - {what: "De Magnete Book 5 on dip: level at the equator, increasing towards the poles; terrella as a spherical lodestone (fetched 2026-10-28)", source: "Wikipedia, De Magnete", url: "https://en.wikipedia.org/wiki/De_Magnete"}
+    - {what: "Colaba observatory 1841, hourly readings from 1846, move to Alibag because of the trams", source: "research/history.md §6", url: "https://hgss.copernicus.org/articles/6/107/2015/"}
+  computed:
+    - "hypot(38365, 20688) = 43587 nT; atan2(20688, 38365) = 28.34°; 43.587/50 = 0.87"
+  licence: "CC BY-NC-SA 4.0"
+"story:oersted":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 17 PRS: parallel wires; free dipoles", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/prs_w07d1_qonly/", took: "the parallel-wires question"}
+    - {course: "8.02T Electricity and Magnetism, Spring 2005", where: "PRS02 (class 2)", url: "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/resources/prs_w01d2/", took: "'particles do NOT move along field lines'"}
+  openstax:
+    - {book: "Physics", section: "20.1 Magnetic Fields, Field Lines, and Force", url: "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force", took: "circles around a wire; right-hand rule; B = μ0 I/(2πr); μ0"}
+    - {book: "College Physics 2e", section: "22.2 Ferromagnets and Electromagnets", url: "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets", took: "Ørsted 1820 first evidence linking moving charge and magnets; coil vs bar-magnet filings; iron core; 'current: the source of all magnetism'; orbit and spin pictures 'not completely consistent with modern physics'"}
+    - {book: "College Physics 2e", section: "22.9 Magnetic Fields Produced by Currents: Ampere's Law", url: "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law", took: "Ørsted's currents were not large; Example 22.6"}
+    - {book: "College Physics 2e", section: "22.10 Magnetic Force between Two Parallel Conductors", url: "https://openstax.org/books/college-physics-2e/pages/22-10-magnetic-force-between-two-parallel-conductors", took: "same-direction currents attract, opposite repel"}
+  research:
+    - {what: "wire-over-phone-compass demo; brief touches, the wire heats; AA internal resistance 150–300 mΩ (short-circuit current estimate 5–10 A)", source: "research/misconceptions.md §11; Energizer E91 datasheet via grounding/ch12.md", url: "https://data.energizer.com/pdfs/e91.pdf"}
+  history:
+    - {what: "Copenhagen, 21 April 1820: twitch during a lecture, unnoticed by the audience; reversing the current reversed it; four pages in Latin in July", source: "research/history.md §6", url: "https://aps.org/apsnews/2008/07/1820-oersted-electromagnetism"}
+    - {what: "Arago told the Académie on 4 Sept 1820 and repeated the experiment on 11 Sept; Ampère presented his first electrodynamics work on 18 Sept, with a new theory of the magnet (currents inside) and the 'bonhomme d'Ampère' rule (fetched 2026-10-28)", source: "École Polytechnique, 'Bonhomme d'Ampère celebrates his two century anniversary'", url: "https://www.polytechnique.edu/en/content/bonhomme-dampere-celebrates-his-two-century-anniversary"}
+  computed:
+    - "B at 1 cm from 1 A = 4πe-7 × 1 / (2π × 0.01) = 20.0 μT; deflection atan(20/38.4) = 27.5° (ASSUMED: wire north–south, so the fields are perpendicular); 18 − 11 September = 7 days"
+  licence: "CC BY-NC-SA 4.0"
+"story:induction":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 20 slides (falling magnet slows near a copper ring in liquid nitrogen; ways to induce emf: change B, A or θ)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/presentati_w09d1/", took: "the falling-magnet demo; any change in flux"}
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Experiment 5: Faraday's Law", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/experiment5/", took: "Lenz's law: the response opposes the change (reworded without 'try')"}
+  openstax:
+    - {book: "Physics", section: "20.2 Motors, Generators, and Transformers", url: "https://openstax.org/books/physics/pages/20-2-motors-generators-and-transformers", took: "force on a current in a field; motors convert electrical to mechanical energy; brushes reverse the current each half turn; generator emf alternates; falling water, steam or wind; transformer turns ratio; transmission at 120–700 kV"}
+    - {book: "Physics", section: "20.3 Electromagnetic Induction", url: "https://openstax.org/books/physics/pages/20-3-electromagnetic-induction", took: "Faraday and Henry 1831; current only when the magnet moves; faster = more; opposite motion = opposite current (Queen Victoria anecdote and '12 years' rejected)"}
+    - {book: "College Physics 2e", section: "23.1 Induced Emf and Magnetic Flux", url: "https://openstax.org/books/college-physics-2e/pages/23-1-induced-emf-and-magnetic-flux", took: "Faraday's ring: pulse at switch-on, opposite pulse at switch-off, nothing when steady; generator 'very similar in construction to a motor'; 'work done to turn the coil is converted to electric energy'"}
+  research:
+    - {what: "Bhivpuri built 1916–1922, dam at Thokerwadi (Raigad), water 'cascades from a steep slope', about 300 million units a year all supplied to Mumbai, 75 MW; Khopoli, Bhivpuri and Bhira form Mumbai's 'islanding system' (fetched 2026-10-28)", source: "Tata group newsroom, 'Tata Power Bhivpuri: 100 years' (July 2022)", url: "https://www.tata.com/newsroom/business/tata-power-bhivpuri-100-years"}
+    - {what: "Mumbai supply: alternating current, 50 cycles, 230/240 V single phase", source: "MERC Supply Code Regulations 2021 §3.1–3.2 (grounding/ch12.md §12.6)", url: "https://merc.gov.in/wp-content/uploads/2022/07/Supply-Code-Regulations-2021-English.pdf"}
+  history:
+    - {what: "3–4 September 1821: wire circling a magnet in a dish of mercury (first motor); 29 August 1831: iron ring with two coils, the needle jumped (induction, first transformer)", source: "research/history.md §6", url: "https://www.aps.org/apsnews/2001/08/faraday-electromagnetism"}
+  computed:
+    - "line loss (P/V)²R for P = 1 MW, R = 1 Ω (both ASSUMED): 10 kV → 10,000 W; 100 kV → 100 W (ratio 100); 1831 − 1821 = 10; 50 Hz → 100 reversals per second"
+  licence: "CC BY-NC-SA 4.0"
+"story:maxwell":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 13 §13.3 (c = 1/√μ0ε0; Hertz 1887), §13.8 (waves from accelerating charges; not from stationary charges or steady currents)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapte13em_waves/", took: "prediction of EM waves; production by acceleration"}
+  openstax:
+    - {book: "Physics", section: "15.1 The Electromagnetic Spectrum", url: "https://openstax.org/books/physics/pages/15-1-the-electromagnetic-spectrum", took: "Maxwell's equations in words; E ⊥ B ⊥ travel; waves cross empty space; spectrum order (the 'moving charge = electric current' and remote-control wording rejected)"}
+    - {book: "College Physics 2e", section: "24.1 Maxwell's Equations: Electromagnetic Waves Predicted and Observed", url: "https://openstax.org/books/college-physics-2e/pages/24-1-maxwells-equations-electromagnetic-waves-predicted-and-observed", took: "c from μ0 and ε0 (8.85e-12, 4πe-7); Hertz from 1887: tuned circuits, speed of light, reflection, refraction, interference"}
+    - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "visible 400–750 nm; UV 400 nm down to about 10 nm"}
+  research:
+    - {what: "a typical TV remote uses about 940 nm infrared", source: "NASA Science, Infrared Waves", url: "https://science.nasa.gov/ems/07_infraredwaves/"}
+  history:
+    - {what: "'On Physical Lines of Force' 1861–62; the speed matched Fizeau's; the 'we can scarcely avoid the inference' sentence; Hertz, Karlsruhe 1887–88; the 'no use' reply HEDGE (traced only to a 2013 article)", source: "research/history.md §6", url: "https://spark.iop.org/hertzs-useless-discovery"}
+    - {what: "Maxwell's computed velocity 310,740,000,000 mm/s (193,088 miles/s) against Fizeau's 314,858,000,000 mm/s (195,647 miles/s), Part III (fetched 2026-10-28)", source: "Wikisource, On Physical Lines of Force", url: "https://en.wikisource.org/wiki/On_Physical_Lines_of_Force"}
+    - {what: "1865, A Dynamical Theory of the Electromagnetic Field (fetched 2026-10-28)", source: "Wikipedia, On Physical Lines of Force", url: "https://en.wikipedia.org/wiki/On_Physical_Lines_of_Force"}
+    - {what: "Fizeau 1849: 315,000 km/s, about 5% high; Maxwell 1831–1879; GMRT metre waves near Pune", source: "research/history.md §5, cast table, §9", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Fizeau/"}
+  computed:
+    - "1/√(4πe-7 × 8.85e-12) = 2.9986e8 m/s; (314858 − 310740)/314858 = 1.3%; c/750e-9 = 400 THz, c/400e-9 = 750 THz; c/5e-3 = 60 GHz; c/50 = 5996 km; c/1 m = 299.8 MHz; 1862 − 1849 = 13; 1901 − 1887 = 14"
+  licence: "CC BY-NC-SA 4.0"
+"story:bose-waves":
+  openstax:
+    - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "microwaves as a band of the spectrum"}
+  research:
+    - {what: "₹1 coin 22 mm (2011 series)", source: "RBI press release 22 Jul 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
+  history:
+    - {what: "1895 demonstration at Presidency College: 60 GHz over 23 m through two walls, rang a bell and detonated gunpowder; wavelengths 2.5 cm to 5 mm, chosen partly for the small laboratory; spark transmitter, coherer, dielectric lens, polariser, horn antenna, cylindrical diffraction grating; IEEE Milestone plaque dedicated 15 Sept 2012 (fetched 2026-10-28)", source: "ETHW, IEEE Milestone: First Millimeter-wave Communication Experiments by J.C. Bose, 1894-96", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
+    - {what: "Lt-Governor Sir Alexander Mackenzie reportedly presided (HEDGE; accounts differ on walls and date); Royal Institution, January 1897, at Rayleigh's invitation", source: "research/history.md §6", url: "https://ieeemilestones.ethw.org/Milestone-Proposal:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
+    - {what: "US Patent 755,840 (crystal detector, filed 1901, granted 1904) obtained by his friends Sara Bull and Sister Nivedita; not pursued commercially; lapsed", source: "research/history.md §6", url: "https://www.computerhistory.org/siliconengine/semiconductor-rectifiers-patented-as-cats-whisker-detectors/"}
+    - {what: "Marconi, Signal Hill, 12 December 1901: 'S' from Cornwall; reception contested; J. C. Bose 1858–1937", source: "research/history.md §6 and cast table", url: "https://ethw.org/Milestones:Reception_of_Transatlantic_Radio_Signals,_1901"}
+  computed:
+    - "c/5e-3 = 60.0 GHz; c/2.5e-2 = 12.0 GHz; c/1 m = 299.8 MHz (ratio 200); 23 m = 75.5 ft; 22 mm / 5 mm = 4.4 waves across the coin"
+  licence: "CC BY-NC-SA 4.0"
+"story:photons":
+  openstax:
+    - {book: "Physics", section: "21.1 Planck and Quantum Nature of Light", url: "https://openstax.org/books/physics/pages/21-1-planck-and-quantum-nature-of-light", took: "E = hf; h = 6.626e-34 J·s; 100 W bulb example (blue-flame danger line rejected)"}
+    - {book: "Physics", section: "21.2 Einstein and the Photoelectric Effect", url: "https://openstax.org/books/physics/pages/21-2-einstein-and-the-photoelectric-effect", took: "the observations a wave cannot explain: threshold regardless of intensity, no delay, number with intensity, max energy independent of intensity; KE = hf − BE (its 'photon or photoelectron' sentence rejected)"}
+    - {book: "College Physics 2e", section: "29.2 The Photoelectric Effect", url: "https://openstax.org/books/college-physics-2e/pages/29-2-the-photoelectric-effect", took: "Example 29.1: 420 nm on calcium, BE 2.71 eV"}
+    - {book: "College Physics 2e", section: "29.3 Photon Energies and the Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/29-3-photon-energies-and-the-electromagnetic-spectrum", took: "visible photons 1.63–3.26 eV; IR and below cannot ionise one photon at a time"}
+  research:
+    - {what: "TV remote about 940 nm; some phone cameras see it", source: "NASA Science, Infrared Waves", url: "https://science.nasa.gov/ems/07_infraredwaves/"}
+    - {what: "'light is either a wave or a particle'; remote-and-camera demo", source: "research/misconceptions.md §13", url: "https://www.aapt.org/docdirectory/meetingpresentations/SM14/PST2C37%20A%20Johnson%20Journeys_poster.pdf"}
+  history:
+    - {what: "Bern 1905: patent examiner; four Annalen papers; the light-quanta paper received 18 March, published 9 June; Nobel Prize for 1921 named the photoelectric effect, 'the only specific discovery mentioned in the citation' (fetched 2026-10-28)", source: "Wikipedia, Annus mirabilis papers", url: "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"}
+    - {what: "Dacca, 4 June 1924: 'Respected Sir'; Philosophical Magazine had not answered; not enough German; Einstein translated it, postcard of 2 July, published August with his note; bosons", source: "research/history.md §7", url: "https://physicstoday.aip.org/features/the-man-behind-bose-statistics"}
+    - {what: "Young's card, 24 November 1803", source: "research/history.md §5", url: "https://en.wikipedia.org/wiki/Young%27s_interference_experiment"}
+  computed:
+    - "hc/λ in eV: 940 nm → 1.32; 420 nm → 2.95 (electron 0.24 eV after 2.71); 760 nm → 1.63; 380 nm → 3.26; bulb 10 W / (hc/580 nm) = 2.92e19 photons/s"
+  licence: "CC BY-NC-SA 4.0"
+"story:radiation":
+  openstax:
+    - {book: "Physics", section: "22.2 Nuclear Forces and Radioactivity", url: "https://openstax.org/books/physics/pages/22-2-nuclear-forces-and-radioactivity", took: "Becquerel 1896, uranium ore darkened wrapped plates; nuclear radiation ~1e6 eV per event vs a few eV; alpha shortest range, beta, gamma farthest"}
+    - {book: "College Physics 2e", section: "29.3 Photon Energies and the Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/29-3-photon-energies-and-the-electromagnetic-spectrum", took: "visible 1.63–3.26 eV; molecules bound by ~10 eV; ionisation 10–1000 eV; microwaves and IR hazardous only via huge numbers of photons"}
+    - {book: "College Physics 2e", section: "32.4 Food Irradiation", url: "https://openstax.org/books/college-physics-2e/pages/32-4-food-irradiation", took: "photons and electrons induce no nuclear reactions; neutron irradiation can, and is not used for food"}
+    - {book: "College Physics 2e", section: "32.2 Biological Effects of Ionizing Radiation", url: "https://openstax.org/books/college-physics-2e/pages/32-2-biological-effects-of-ionizing-radiation", took: "cosmic 0.40 mSv/y; 12-hour flight 0.02–0.03 mSv; airline crew 2 mSv/y; ground dose varies up to ten times; 'we are all a little radioactive'"}
+    - {book: "College Physics 2e", section: "31.5 Half-Life and Activity", url: "https://openstax.org/books/college-physics-2e/pages/31-5-half-life-and-activity", took: "half-life 'time in which half of the original number of nuclei decay'; 'purely statistical process'; range 1e-23 s to >1e16 y; C-14 5,730 y (dating to 50,000–60,000 y); Cs-137 30.2 y; U-238 4.5e9 y; 1/1024 after ten half-lives (fetched 2026-10-28)"}
+  research:
+    - {what: "exposed is not contaminated; X-ray example; contamination = radioactive material on skin, hair, clothing or inside", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
+    - {what: "63–75% believe radiation makes things radioactive (three studies)", source: "research/misconceptions.md §13", url: "https://arxiv.org/pdf/2001.07746"}
+  computed:
+    - "1/2^10 = 0.098%; C-14 remaining 100/50/25/12.5/6.25% at 0/5,730/11,460/17,190/22,920 y; 0.025 mSv / 0.40 mSv per y × 52 = 3.2 weeks; 1e6 eV / a few eV ≈ 1e5 (per event); the coin-toss half-life game is ours"
+  licence: "CC BY-NC-SA 4.0"
+"story:sun-fire":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 8, Problems 5–7 (p-p efficiency 0.007)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps8/", took: "efficiency value cross-check"}
+  openstax:
+    - {book: "Astronomy 2e", section: "16.1 Sources of Sunshine: Thermal and Gravitational Energy", url: "https://openstax.org/books/astronomy-2e/pages/16-1-sources-of-sunshine-thermal-and-gravitational-energy", took: "coal Sun lasts a few thousand years; nothing solid survives; contraction ~100 million years; water on Earth nearly 4 billion years ago; L ≈ 4e26 W"}
+    - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "E = mc²; 0.71% of mass converted; 6.4e14 J per kg; 600 million tons/s; 4 million tons/s; protons repel; Sun about 4.5 billion years old; 'most of its protons have not yet been involved'"}
+    - {book: "Astronomy 2e", section: "16.3 The Solar Interior: Theory", url: "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory", took: ">12 million K; centre ~15 million K; fusion at the centre (PH 22.4's 'boundary of the helium core' rejected); photons 100,000–1,000,000 y; neutrinos ~2 s"}
+  research:
+    - {what: "L = 382.8e24 W; mass conversion 4260e6 kg/s; Sun mass 1,988,400e24 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
+    - {what: "Aditya-L1: halo orbit about 1.5 million km sunward, period 177.86 d, arrived 6 Jan 2024", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}
+    - {what: "'E = mc² is only about bombs'", source: "research/misconceptions.md §13", url: "https://www.aapt.org/docdirectory/meetingpresentations/SM14/PST2C37%20A%20Johnson%20Journeys_poster.pdf"}
+  history:
+    - {what: "Kungälv, Christmas 1938: Hahn's letter (barium from uranium); the nucleus splits; about 200 MeV; Nature February 1939; skis, tree trunk and exact day HEDGE (Frisch's memoir); Meitner 1878–1968", source: "research/history.md §7 and cast table", url: "https://inference-review.com/article/the-discovery-of-nuclear-fission"}
+    - {what: "Meitner fled Berlin July 1938 after 31 years there; Strassmann; Frisch named fission", source: "kym-chem story 'meitner' (sister book, gate-checked)", url: "https://saxster.github.io/kym-chem/"}
+  computed:
+    - "3.828e26/c² = 4.259e9 kg/s (NASA 4260e6); /0.0071 = 6.00e11 kg/s hydrogen; helium out ≈ 596 Mt/s; 0.0071c² = 6.38e14 J/kg; ÷ 10 W (ASSUMED LED) = 2.0e6 years; 4.259e9 × 4.5e9 × 3.15576e7 / 1.9884e30 = 0.03%; 200 MeV / 5 eV (ASSUMED molecular energy) ≈ 4e7; Sun mass 1.9884e30 kg = 2e27 tonnes"
+  licence: "CC BY-NC-SA 4.0"
+"story:star-stuff":
+  openstax:
+    - {book: "Astronomy 2e", section: "5.3 Spectroscopy in Astronomy", url: "https://openstax.org/books/astronomy-2e/pages/5-3-spectroscopy-in-astronomy", took: "emission vs absorption; Fraunhofer 1815 ~600 lines; Kirchhoff 1860 sodium; helium found in the Sun first"}
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "different compositions 'turned out to be wrong'; temperature; hydrogen lines missing in hottest (ionised) and coolest (lowest level) stars; Cannon's O B A F G K M"}
+    - {book: "Astronomy 2e", section: "15.1 The Structure and Composition of the Sun", url: "https://openstax.org/books/astronomy-2e/pages/15-1-the-structure-and-composition-of-the-sun", took: "Payne 1925; confirmed three years later; 73% H, 25% He by mass; crust O, Si, Al; plasma"}
+  history:
+    - {what: "Saha 1920 ionisation equation links spectrum to temperature and pressure; Fowler at Imperial helped revise; Payne 1925, Russell 'clearly impossible', 'spurious', Russell 1929, Struve's 'most brilliant PhD thesis'", source: "research/history.md §7", url: "https://www.aps.org/apsnews/2015/01/cecilia-payne-gaposchkin-universe-changed"}
+    - {what: "Saha: Presidency College 1911; lecturer at University College of Science 1916; left India September 1919; 'On Ionization in the Solar Chromosphere', Philosophical Magazine 1920; Fowler and Milne in London (fetched 2026-10-28)", source: "Encyclopedia.com, Meghnad Saha", url: "https://www.encyclopedia.com/people/science-and-technology/physics-biographies/meghnad-saha"}
+  computed:
+    - "100 − 73 − 25 = 2%; 1929 − 1925 = 4"
+  licence: "CC BY-NC-SA 4.0"
+"story:star-distances":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 10, Problem 5 (Leavitt's 1912 table of 25 SMC Cepheids)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps10/", took: "the count of 25 Cepheids"}
+  openstax:
+    - {book: "Astronomy 2e", section: "19.2 Surveying the Stars", url: "https://openstax.org/books/astronomy-2e/pages/19-2-surveying-the-stars", took: "pen demo; parallax = half the total shift; parsec 206,265 AU = 3.26 ly; Bessel 1838, 61 Cygni; Proxima 4.25 ly; Gaia nearly a billion stars to a few millionths of an arcsecond"}
+    - {book: "Astronomy 2e", section: "19.3 Variable Stars: One Key to Cosmic Distances", url: "https://openstax.org/books/astronomy-2e/pages/19-3-variable-stars-one-key-to-cosmic-distances", took: "Cepheids named for Delta Cephei; brighter-appearing Cepheids have longer periods; same distance in the SMC; Leavitt could not calibrate; Hubble used Cepheids in galaxies"}
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "Pickering's women computers paid one-third or one-fourth of men's salaries"}
+  research:
+    - {what: "₹1 coin 22 mm", source: "RBI press release 22 Jul 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
+    - {what: "Bandra–Worli Sea Link 5.6 km", source: "research/history.md §9", url: "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"}
+  history:
+    - {what: "Harvard 1912; Leavitt 1868–1921; 2025 reanalysis says the result holds up (the '$0.30 an hour' wage dropped)", source: "research/history.md §8", url: "https://arxiv.org/pdf/2502.17438"}
+  computed:
+    - "180×3600/π = 206,265; pc/ly = 3.261; ly = 9.461e12 km; Proxima 1.303 pc, parallax 0.767″; 0.022 m × 206,265 = 4,540 m; thumb: atan(6.5/60) = 6.2° (eye separation 6.5 cm and arm 60 cm ASSUMED); AU/c = 8.3 min; 2 AU = 2.99e8 km"
+  licence: "CC BY-NC-SA 4.0"
+"story:star-death":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Calendar Lec 26 (Fermi pressure, white dwarfs, Chandrasekhar limit)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/", took: "sequence position only"}
+  openstax:
+    - {book: "Astronomy 2e", section: "23.1 The Death of Low-Mass Stars", url: "https://openstax.org/books/astronomy-2e/pages/23-1-the-death-of-low-mass-stars", took: "degeneracy pressure ('no two electrons… same place… doing the same thing'; stronger than electrical repulsion); more mass, smaller radius; zero radius at 1.4 MSun; the limit's definition; heavier stars shed mass; born 1910 Lahore, nephew of Raman, college at 19, calculations on the voyage, Eddington 'publicly ridiculed', Nobel 1983"}
+    - {book: "Astronomy 2e", section: "23.2 Evolution of Massive Stars: An Explosive Finish", url: "https://openstax.org/books/astronomy-2e/pages/23-2-evolution-of-massive-stars-an-explosive-finish", took: "core shrinks when degenerate electrons fail; collapse halts above nuclear density; ~1 MSun core into <20 km; neutron-body upper limit about 3 MSun, 'we don't have an exact number'; beyond that a black hole; at least five solar masses ejected in a supernova (fetched 2026-10-28)"}
+  history:
+    - {what: "SS Pilsna out of Bombay, 1930, aged 19; Eddington mocked it in 1935; Nobel 1983", source: "research/history.md §8", url: "https://mathshistory.st-andrews.ac.uk/HistTopics/Chandrasekhar_Eddington/"}
+    - {what: "first limit 0.91 MSun (mean molecular weight 2.5), revised to 1.44; RAS meeting January 1935; Eddington's 'I think there should be a law of Nature to prevent a star from behaving in this absurd way!'; not allowed to reply; wrote to Rosenfeld; rebuttal with Møller; 'has always operated with preconceived ideas' (fetched 2026-10-28)", source: "MacTutor, Chandrasekhar and Eddington", url: "https://mathshistory.st-andrews.ac.uk/HistTopics/Chandrasekhar_Eddington/"}
+  computed:
+    - "1.4 × 1.9884e30 = 2.78e30 kg; 1983 − 1930 = 53; 1983 − 1935 = 48; the mass–radius curve is drawn as 0.6 M^(-1/3) √(1 − (M/1.4)^(4/3)), schematic"
+  licence: "CC BY-NC-SA 4.0"
+"story:expanding":
+  ocw:
+    - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Problem Set 13, Problems 4–6 (distance–redshift; H0; Expanding Balloon Analogy)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps13/", took: "balloon-analogy idea"}
+  openstax:
+    - {book: "Astronomy 2e", section: "5.6 The Doppler Effect", url: "https://openstax.org/books/astronomy-2e/pages/5-6-the-doppler-effect", took: "redshift: lines shifted to longer wavelengths when receding"}
+    - {book: "Astronomy 2e", section: "26.5 The Expanding Universe", url: "https://openstax.org/books/astronomy-2e/pages/26-5-the-expanding-universe", took: "Slipher from 1912, up to 1800 km/s; Hubble 1929 and Hubble–Humason 1931; v = H d; H ≈ 22 km/s per Mly; 100 Mly → 2200 km/s; ruler ants at 2, 4, 7, 12 cm doubling in a minute; raisin bread; galaxies passive participants; no centre; 'must not take them literally'"}
+    - {book: "Astronomy 2e", section: "29.2 A Model of the Universe", url: "https://openstax.org/books/astronomy-2e/pages/29-2-a-model-of-the-universe", took: "light waves stretched by stretching space; z = Δλ/λ0; 'no location… where the Big Bang happened'"}
+    - {book: "Astronomy 2e", section: "29.1 The Age of the Universe", url: "https://openstax.org/books/astronomy-2e/pages/29-1-the-age-of-the-universe", took: "age ≈ 1/H; 13.8 billion years ± about 100 million"}
+  research:
+    - {what: "IGCSE 6.2.3 wording: 'receding', 'supports the Big Bang Theory', 'present at a single point', H0 = v/d; bridge sentence", source: "research/school-wording.md", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Leavitt's Cepheids as Hubble's distance tape (Mount Wilson is not in research/history.md: the observatory's name is standard reference knowledge, flagged in the writer's report)", source: "research/history.md §8", url: "https://astrobites.org/2019/03/08/leavitt-variable-stars/"}
+  computed:
+    - "22 × 100 = 2200 km/s; 22 × 3.2616 = 71.8 km/s per Mpc; H = 2.325e-18 s⁻¹, 1/H = 13.63 Gyr; ants from the 2 cm ant: 2, 5, 10 cm/min; from the 7 cm ant: 5, 3, 5 cm/min; positions after doubling 4, 8, 14, 24 cm"
+  licence: "CC BY-NC-SA 4.0"
+# Figure entries: one per s_ figure, so the ledger check finds "fig:<name>" (the credits page lists redrawn ones).
+"fig:s_bose_scale": {origin: ours, story: "bose-waves", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_em_ladder": {origin: "ours; the band order follows PH 15.1 and CP 24.3, redrawn on a log wavelength scale", story: "maxwell", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_exposure_vs_contamination": {origin: "ours; the exposure/contamination contrast is the CDC infographic's, redrawn", story: "radiation", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_faraday_ring": {origin: "ours; the ring follows CP 23.1 Fig 23.3, redrawn, with our timeline of the needle", story: "induction", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_halflife_c14": {origin: ours, story: "radiation", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_hydrogen_lines_temperature": {origin: "ours, schematic (shape only)", story: "star-stuff", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_oersted_compass": {origin: ours, story: "oersted", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_ohm_line": {origin: "ours, plotting PH 19.1's headlight example", story: "circuits", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_parallax": {origin: "ours; the geometry follows AS Fig 19.x, redrawn", story: "star-distances", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_photon_threshold": {origin: ours, story: "photons", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_rope_loop": {origin: "ours; the rope-loop model is BOOKPLAN 12.3's, not a source's", story: "circuits", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_rub_moves_charge": {origin: ours, story: "static", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_ruler_ants": {origin: "ours; the numbers are AS Fig 26.16's, redrawn", story: "expanding", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_sun_budget": {origin: ours, story: "sun-fire", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_terrella": {origin: ours, story: "earth-magnet", drawn: "figs_stories_fields.py, 2026-10-28"}
+"fig:s_white_dwarf_mass_radius": {origin: "ours, schematic; the shape follows AS Fig 23.2, redrawn", story: "star-death", drawn: "figs_stories_fields.py, 2026-10-28"}
