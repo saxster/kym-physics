@@ -1,0 +1,283 @@
+# Ledger for the stories in the motion and fluids groups (impetus, inertia, third-law, momentum, falling, circular,
+# ocean-of-air, floating) and their s_ figures. Course and book names are the keys in provenance/sources.yml.
+# Numbers quoted in the stories were recomputed with python3 -I (commands in the grounding notes and in the writer's
+# report); inputs marked "guesses" in the text are ASSUMED.
+
+"story:impetus":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 2 Lesson 4.1 (forces always involve a real physical interaction; F = dp/dt)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-1-newtons-first-and-second-laws/"
+      took: "two-object test for a force"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 7 §7.2-7.3 (Newton's Law 1 commentary on projectiles; quantity of motion); §7.2 Galileo first grasped inertia"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf"
+      took: "paraphrase of Newton on projectiles and planets; definition of quantity of motion"
+  openstax:
+    - book: "College Physics 2e"
+      section: "4.2 Newton's First Law of Motion: Inertia (experience says moving things stop; friction the unseen force)"
+      url: "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia"
+      took: "framing"
+  research:
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md §3 and intro"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "65% impetus before / 44% after; 47% slows with no force; n = 478"
+  history:
+    - source: "source/research/history.md §1 (Philoponus, Alexandria 6th c.; Ibn Sina mayl; Buridan impetus; Latin scholars probably did not read Philoponus directly)"
+      url: "https://www.encyclopedia.com/humanities/dictionaries-thesauruses-pictures-and-press-releases/impetus"
+      what: "the Alexandria-Bukhara-Paris chain; impetus grows with speed and quantity of matter"
+    - source: "source/research/history.md §1 (Philoponus entry: Aristotle on falling; the air-pushes-the-arrow idea is Aristotle's, grounding/ch02.md §2.2)"
+      url: "https://www.vaticanobservatory.org/wp-content/uploads/2017/10/Impetus-Philoponus.pdf"
+      what: "Aristotle's rule and his answer for the arrow"
+  figures:
+    - {name: c2_arrow_forces, origin: "reused from Chapter 2"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:inertia":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 2 Lesson 4.1 (isolated body keeps constant velocity; inertial frames); Lesson 4.4 Non-inertial Reference Frames (fictitious force -mA)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-4-non-inertial-reference-frames/"
+      took: "the braking-train lurch from two frames; fictitious force"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 7 §7.2 (Law 1 in the Motte-Cajori translation; the principle of inertia first realized by Galileo, not acknowledged by Newton)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf"
+      took: "statement of the law (paraphrased); the Galileo credit"
+  openstax:
+    - book: "College Physics 2e"
+      section: "4.2 Newton's First Law of Motion: Inertia (talc, oil, frictionless extrapolation; mass measures inertia; cotton vs gold)"
+      url: "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia"
+      took: "the extrapolation sequence; inertia and mass"
+    - book: "Physics"
+      section: "4.2 Newton's First Law of Motion: Inertia (air hockey; inertia definition; mass the same on Earth, in orbit, on the Moon)"
+      url: "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia"
+      took: "air-hockey demonstration; definitions"
+  research:
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md (intro: 84% straight line, 30% constant speed)"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "wrong ideas are bundles: the two halves of the law"
+    - source: "BOOKPLAN.md §2 movability test (Feynman, 'Judging Books by Their Covers')"
+      url: "source/BOOKPLAN.md"
+      what: "the made-up-word test applied to 'inertia'"
+  history:
+    - source: "source/research/history.md §1 (Padua c. 1604 ramps TRUE); grounding/ch02.md §2.3 gap note (two-ramp thought experiment from Galileo, Two New Sciences, 1638)"
+      url: "https://www.teacherplus.org/?p=16841"
+      what: "ramps in Padua; the thought experiment"
+    - source: "Descartes, Principles of Philosophy (1644), via Wikipedia (checked 2026-10-28; not in research/)"
+      url: "https://en.wikipedia.org/wiki/Principles_of_Philosophy"
+      what: "1644; a body left to itself moves uniformly in a straight line"
+  figures:
+    - {name: c2_two_ramps, origin: "reused from Chapter 2"}
+    - {name: c2_train_brake, origin: "reused from Chapter 2"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:third-law":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 2 Lesson 4.2 Newton's Third Law (marble vs train; pairs act on different objects; weight and normal force not a pair; 'most subtle' of the laws)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-2-newtons-third-law/"
+      took: "marble and train; which pairs are not pairs; acceleration ratio = inverse mass ratio"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 7 §7.4 (Law III; finger and stone; interaction pair); Week 2 Lesson 7.1 (tension as interaction pairs)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf"
+      took: "interaction-pair idea; luggage-scale reasoning"
+  openstax:
+    - book: "Physics"
+      section: "4.4 Newton's Third Law of Motion (statement; which is 'action' depends on point of view; swimmer, walking, helicopter, rocket; scale reads force/g in 4.3)"
+      url: "https://openstax.org/books/physics/pages/4-4-newtons-third-law-of-motion"
+      took: "examples of getting about; action/reaction wording caveat"
+    - book: "Physics"
+      section: "1.3 Table 1.3 (mass of the Earth 5.97e24 kg)"
+      url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units"
+      took: "Earth's mass for the recoil computation"
+  research:
+    - source: "Maries & Singh, FCI item 4 (truck hits car), via source/research/misconceptions.md §3"
+      url: "https://arxiv.org/pdf/1307.7177"
+      what: "73% before / 39% after, n about 900"
+    - source: "source/research/misconceptions.md §3 (two luggage scales read equal to about 0.1 kg)"
+      url: "source/research/misconceptions.md"
+      what: "the home demonstration"
+  history:
+    - source: "Newton, Principia, Law III and its scholium, Motte translation (1846 printing), Wikisource (checked 2026-10-28; wording verified)"
+      url: "https://en.wikisource.org/wiki/The_Mathematical_Principles_of_Natural_Philosophy_(1846)/Axioms,_or_Laws_of_Motion"
+      what: "the finger-and-stone sentence and the horse-and-stone clause, quoted"
+    - source: "source/research/history.md §1 (Halley paid to print the Principia; the History of Fishes)"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"
+      what: "the opening scene"
+  figures:
+    - {name: s_two_scales, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_two_scales": {figures: [{name: s_two_scales, origin: ours}], licence: "CC BY-NC-SA 4.0"}
+
+"story:momentum":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 5 Lessons 15.1 Momentum and Impulse, 16.1 Conservation of Momentum; Course notes Ch 10 (isolated system; system + surroundings)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/15-1-momentum-and-impulse/"
+      took: "definition; conservation follows from the third law; choose the system"
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 6 Lesson 19.1 Rocket Problem; Course notes Ch 12 §12.3 Rocket Propulsion"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter12.pdf"
+      took: "rocket pushes exhaust, exhaust pushes rocket; mass decreases"
+  openstax:
+    - book: "Physics"
+      section: "8.1 Linear Momentum, Force, and Impulse; 8.2 Conservation of Momentum (goalpost and Earth recoil; system too small)"
+      url: "https://openstax.org/books/physics/pages/8-2-conservation-of-momentum"
+      took: "definition; the Earth-recoil idea; 'quantity of motion'"
+    - book: "College Physics 2e"
+      section: "8.7 Introduction to Rocket Propulsion (balloon take-home; misconception alert: rockets do not push on air or ground, work better in vacuum)"
+      url: "https://openstax.org/books/college-physics-2e/pages/8-7-introduction-to-rocket-propulsion"
+      took: "balloon demonstration; the misconception"
+  research:
+    - source: "source/research/misconceptions.md §3 (impetus, the force-inside idea the story corrects)"
+      url: "source/research/misconceptions.md"
+      what: "link to the arrow story"
+  history:
+    - source: "source/research/history.md §8 (Thumba, 21 November 1963: Nike-Apache, St Mary Magdalene church as control and assembly building, rockets where the altar had been; bicycle and bullock cart HEDGE)"
+      url: "https://thesouthfirst.com/kerala/60th-anniversary-of-indias-first-rocket-launch-fishworkers-latin-catholic/"
+      what: "the opening scene"
+    - source: "source/research/history.md §4 (Anna Mani built the Thumba met tower for Sarabhai in 1963)"
+      url: "https://en.wikipedia.org/wiki/Anna_Mani"
+      what: "Anna Mani at Thumba"
+    - source: "source/research/history.md §8 (Chandrayaan-3 landed 23 August 2023, 18:04 IST; Shiv Shakti Point named 26 August)"
+      url: "https://www.unoosa.org/documents/pdf/copuos/stsc/2024/ListTechnicalPresentations/2024_STSC_technical_presentations_slides/9_26_--_4_INDIA_Chandrayaan3.pdf"
+      what: "the lander's descent as a rocket in vacuum"
+  figures:
+    - {name: s_rocket_momentum, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_rocket_momentum": {figures: [{name: s_rocket_momentum, origin: ours}], licence: "CC BY-NC-SA 4.0"}
+
+"story:falling":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 5 §5.2 (acceleration independent of mass; weight proportional to mass so mass cancels); Ch 8 §8.6 Drag Forces, Table 8.3 (raindrop 6.5 m/s)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf"
+      took: "the cancellation argument; drag grows with speed squared; raindrop terminal speed"
+  openstax:
+    - book: "College Physics 2e"
+      section: "2.7 Falling Objects (free fall; tennis ball vs baseball in air; Scott on the Moon 1971, 1.67 m/s^2)"
+      url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+      took: "definitions; fall-time arithmetic; Moon g"
+    - book: "College Physics 2e"
+      section: "5.2 Drag Forces (terminal velocity; skydiver head-down 98 m/s about 350 km/h)"
+      url: "https://openstax.org/books/college-physics-2e/pages/5-2-drag-forces"
+      took: "terminal velocity; skydiver number"
+    - book: "Physics"
+      section: "7.2 lab (flat sheet vs crumpled sheet vs double-sheet ball)"
+      url: "https://openstax.org/books/physics/pages/7-2-newtons-law-of-universal-gravitation-and-einsteins-theory-of-general-relativity"
+      took: "the paper demonstration"
+  research:
+    - source: "Halloun & Hestenes 1985, via source/research/misconceptions.md §4"
+      url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"
+      what: "82% believe intrinsic properties affect free fall in a vacuum"
+    - source: "NASA GPM FAQ, via grounding/ch04.md §4.2"
+      url: "https://gpm.nasa.gov/resources/faq/how-fast-do-raindrops-fall"
+      what: "raindrops top out near 10 m/s"
+    - source: "source/research/misconceptions.md §4 (coin drop on a steel plate; one clink)"
+      url: "source/research/misconceptions.md"
+      what: "the home demonstration"
+  history:
+    - source: "source/research/history.md §1 (Delft 1586: Stevin and de Groot, two lead balls one ten times heavier, about 30 ft from the Nieuwe Kerk, one thud, published 1586, three years before Pisa; Pisa LEGEND/HEDGE from Viviani; Philoponus TRUE)"
+      url: "https://en.wikipedia.org/wiki/Delft_tower_experiment"
+      what: "the opening scene; the Pisa legend; Philoponus"
+    - source: "source/research/history.md §2 (Hadley Rille, 2 August 1971, Dave Scott: 'How about that! Mr Galileo was correct in his findings', from a transcription; check the NASA audio) and NASA NSSDC (1.32 kg hammer; falcon feather; about 1.6 m)"
+      url: "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html"
+      what: "the Moon scene and quote"
+  figures:
+    - {name: c4_two_predictions, origin: "reused from Chapter 4"}
+    - {name: c4_moon_strobe, origin: "reused from Chapter 4"}
+  licence: "CC BY-NC-SA 4.0; NASA text cited, not copied"
+
+"story:ocean-of-air":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 Static Fluids §27.3 (atmospheric pressure from the weight of the air; 1 cm^2 column 1.03 kg, 10.1 N; 1 atm = 1.01325e5 Pa; pressure from molecular collisions, so a fluid can only push); Table 27.1 densities"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "weighing the air; air pushes, never pulls"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.4 Variation of Pressure with Depth (10.3 m of water; pressure acts on every surface); 11.6 Gauge Pressure (barometer; fluids push rather than pull); 11.2 Table 11.1 (mercury 13.6e3 kg/m^3)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+      took: "barometer; 76 cm vs 10.3 m; nothing sucks"
+  research:
+    - source: "source/research/misconceptions.md §5 (suction; card on an upside-down glass; straw with a fingertip); source/research/school-wording.md §6 (IGCSE never uses 'suction'; delta p = rho g delta h)"
+      url: "source/research/school-wording.md"
+      what: "home demonstrations; the school bridge"
+  history:
+    - source: "source/research/history.md §3 (Florence 1643-44: pumps stop at about 10 m; Torricelli's 76 cm; letter to Ricci 11 June 1644 with the Italian sentence and its translation)"
+      url: "https://web.lemoyne.edu/Giunta/torr.html"
+      what: "the opening scene and the quotation"
+    - source: "source/research/history.md §3 (Puy de Dome, 19 September 1648: Perier for Pascal, who was too ill; about 3 inches, 8 cm; control tube in Clermont watched by a priest)"
+      url: "https://en.scientificrussia.ru/articles/under-atmospheric-pressure"
+      what: "the mountain experiment"
+    - source: "source/research/history.md §3 (Regensburg 1654 or later; von Guericke; horse count varies 12/16/30, say teams of horses)"
+      url: "https://physicstoday.aip.org/backscatter/magdeburg-hemispheres"
+      what: "the hemispheres, with the hedged count"
+  figures:
+    - {name: s_torricelli, origin: ours}
+    - {name: s_hemispheres, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_torricelli": {figures: [{name: s_torricelli, origin: ours}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_hemispheres": {figures: [{name: s_hemispheres, origin: ours}], licence: "CC BY-NC-SA 4.0"}
+
+"story:floating":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Course notes Ch 27 §27.6 Archimedes' Principle (buoyant force from the pressure difference; why a steel ship floats); Table 27.1 (wood 0.7, ice 0.92)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+      took: "the pressure-difference derivation; ship argument; densities"
+  openstax:
+    - book: "College Physics 2e"
+      section: "11.7 Archimedes' Principle (replace-with-fluid argument; density decides; steel ship; coin 8.630 g in air, 7.800 g in water; clay boat; foil boat; the bath story told as 'as the story goes')"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-7-archimedes-principle"
+      took: "principle; worked coin example; demonstrations"
+    - book: "College Physics 2e"
+      section: "11.2 Density, Table 11.1 (water 1.000, sea water 1.025, steel 7.8, gold 19.32)"
+      url: "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+      took: "densities"
+  research:
+    - source: "source/research/misconceptions.md §5 (heavy sinks / light floats; orange with and without peel; egg needs several spoons of salt); source/research/school-wording.md §1 ('upthrust' not in 0625; density is topic 1.4)"
+      url: "source/research/misconceptions.md"
+      what: "misconception; home demonstrations; school bridge"
+  history:
+    - source: "source/research/history.md §3 (Archimedes' crown LEGEND from Vitruvius about two centuries later; Galileo, aged 22, La Bilancetta 1586: overflow method needs impossible precision, hydrostatic balance proposed)"
+      url: "https://math.nyu.edu/Archimedes/Crown/bilancetta.html"
+      what: "legend handling; Galileo's essay"
+  figures:
+    - {name: s_buoyancy_cube, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+
+"fig:s_buoyancy_cube": {figures: [{name: s_buoyancy_cube, origin: ours}], licence: "CC BY-NC-SA 4.0"}
+
+"story:circular":
+  ocw:
+    - course: "8.01SC Classical Mechanics, Fall 2016"
+      where: "Week 3 Circular Motion (Lessons 9-11; 11.3 Demo: Rotating Bucket); Lesson 4.4 Non-inertial Reference Frames (fictitious and centrifugal terms); Course notes Ch 31 Example 6 (centrifugal correction to g)"
+      url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/"
+      took: "centripetal acceleration; the rotating-frame note; Earth-spin correction recomputed (0.0337 m/s^2 at the equator, 0.0318 at 19.1 degrees, latitude ASSUMED)"
+  openstax:
+    - book: "Physics"
+      section: "6.2 Uniform Circular Motion (acceleration toward the centre; v^2/r; four times at double speed; centripetal force is a role)"
+      url: "https://openstax.org/books/physics/pages/6-2-uniform-circular-motion"
+      took: "sequence, definitions, number"
+    - book: "College Physics 2e"
+      section: "6.4 Fictitious Forces and Non-inertial Frames; Ch 6 Conceptual Questions (what stretches the string: the third law; release along the tangent)"
+      url: "https://openstax.org/books/college-physics-2e/pages/6-4-fictitious-forces-and-non-inertial-frames-the-coriolis-force"
+      took: "the honest note; the taut-string answer; tangent wording"
+  research:
+    - source: "McCloskey, Caramazza & Green 1980, via source/research/misconceptions.md §4 (30% for a ball released from a string, n = 47); the paper-plate marble demonstration"
+      url: "https://www.csmonitor.com/1980/1217/121733.html"
+      what: "prevalence; home demonstration"
+    - source: "source/research/school-wording.md §6 (IGCSE: motion in a circular path due to a force perpendicular to the motion; 'centrifugal' appears 0 times)"
+      url: "source/research/school-wording.md"
+      what: "school bridge"
+  history:
+    - source: "MacTutor, Huygens biography (derived the law of centrifugal force for uniform circular motion; Horologium Oscillatorium 1673) and Wikipedia, History of centrifugal and centripetal forces (De vi centrifuga 1659 coined 'centrifugal'; Newton coined 'centripetal' in the 1684 manuscript sent to Halley); both checked 2026-10-28, neither in research/history.md"
+      url: "https://mathshistory.st-andrews.ac.uk/Biographies/Huygens/"
+      what: "the opening scene; Huygens being in Paris in 1673 is UNSOURCED in the corpus"
+  figures:
+    - {name: c4_whirl, origin: "reused from Chapter 4"}
+  licence: "CC BY-NC-SA 4.0"
