@@ -1,0 +1,168 @@
+# Provenance for the stories in the energy and tools groups (writer: energy lane, 2026-10-28).
+# Numbers were recomputed with python3 -I; see the "took" fields. Course and book names are the keys in sources.yml.
+
+"story:vis-viva":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Week 7 Lesson 20.1 Kinetic Energy; course notes Ch 13 §13.2", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/", took: "definition of kinetic energy; work needed to stop a body"}
+  openstax:
+    - {book: "College Physics 2e", section: "7.2 Kinetic Energy and the Work-Energy Theorem (4x at double speed; car at 50 vs 100 km/h)", url: "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem", took: "KE = ½mv²; 4x ratio (recomputed)"}
+    - {book: "College Physics 2e", section: "7.3 Gravitational Potential Energy (v = √(2gh))", url: "https://openstax.org/books/college-physics-2e/pages/7-3-gravitational-potential-energy", took: "speeds 2.21 and 4.43 m/s from 25 cm and 1 m (recomputed)"}
+    - {book: "Astronomy 2e", section: "3.2 Newton's Great Synthesis (momentum = mass × velocity)", url: "https://openstax.org/books/astronomy-2e/pages/3-2-newtons-great-synthesis", took: "momentum definition"}
+  history:
+    - {what: "'s Gravesande's clay (1722), du Châtelet's Institutions (1740), Descartes as the mv side; 'backed, did not prove'", source: "research/history.md §1", url: "https://spark.iop.org/history-concept-energy-and-work"}
+    - {what: "'s Gravesande biography", source: "research/history.md §1", url: "https://en.wikipedia.org/wiki/Willem_%27s_Gravesande"}
+  research:
+    - {what: "crater depth measures energy only for a roughly constant resisting force", source: "grounding/ch07.md §7.2 fidelity traps", url: "grounding/ch07.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:conservation":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 13 §13.1 (sum of energy changes is zero; a missing form means look again)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter13.pdf", took: "bookkeeping idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "7.6 Conservation of Energy", url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy", took: "law; thermal energy spread out"}
+    - {book: "College Physics 2e", section: "14.1 Heat (Joule's paddle wheel; 1 kcal = 4186 J)", url: "https://openstax.org/books/college-physics-2e/pages/14-1-heat", took: "mechanical equivalent; 43 m fall for 10 kg (recomputed)"}
+    - {book: "College Physics 2e", section: "2.7 Falling Objects (h = gt²/8 for a bounce)", url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects", took: "69% bounce from 0.60 s and 0.50 s clicks (ASSUMED inputs, recomputed)"}
+  history:
+    - {what: "Mayer in Batavia 1840 (reasoning partly reconstructed); Joule's paddle wheel; Chamonix 1847 meeting TRUE; waterfall thermometer HEDGE/LEGEND", source: "research/history.md §4", url: "https://spark.iop.org/unsettling-james-joule"}
+    - {what: "Mayer and Joule", source: "research/history.md §4", url: "https://galileo.phys.virginia.edu/classes/152.mf1i.spring02/MayerJoule.htm"}
+  research:
+    - {what: "Feynman's blocks idea, retold in our own words (idea credited; Lectures are © Caltech, link and cite only)", source: "research/sources.md §6", url: "https://www.feynmanlectures.caltech.edu/"}
+    - {what: "'used up' misconception; IGCSE stores and transfers wording", source: "research/misconceptions.md §6; research/school-wording.md §1, §6", url: "research/school-wording.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:caloric":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slide 3 (thermal energy vs heat)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "definitions"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.1 Heat (no fixed heat content; work and heat both raise internal energy; 4186 J per kg per °C)", url: "https://openstax.org/books/college-physics-2e/pages/14-1-heat", took: "definitions; 335 kJ per kg from 20 to 100 °C (recomputed)"}
+    - {book: "Physics", section: "11.1 Temperature and Thermal Energy (eraser demo)", url: "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy", took: "home demo"}
+  history:
+    - {what: "Munich arsenal 1797–98; blunt borer in water, no fire; boiled at 2 h 30 min (quote wording to be checked at the gate)", source: "research/history.md §4", url: "https://spark.iop.org/revolutionary-rumford"}
+    - {what: "Rumford's 1798 paper", source: "research/history.md §4", url: "https://en.wikipedia.org/wiki/An_Inquiry_Concerning_the_Source_of_the_Heat_Which_Is_Excited_by_Friction"}
+  research:
+    - {what: "heat and cold as substances (misconception)", source: "research/misconceptions.md §7", url: "research/misconceptions.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:latent-heat":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 10 phase-change slides (334 kJ/kg, 2.26 MJ/kg)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec10/", took: "numbers"}
+  openstax:
+    - {book: "College Physics 2e", section: "14.3 Phase Change and Latent Heat (Table 14.2; heating curve; Ex 14.4 soda and ice; orchards; condensation warms)", url: "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat", took: "numbers (79.8 °C equivalent, 3050 kJ curve, 13.3 °C soda recomputed); examples"}
+    - {book: "Physics", section: "11.3 Phase Change and Latent Heat (energy loosens attractions; ice water stays at 0 °C)", url: "https://openstax.org/books/physics/pages/11-3-phase-change-and-latent-heat", took: "mechanism; home demo"}
+  history:
+    - {what: "Black's Glasgow lectures 1761; never properly published; spring-snow argument (check against the LibreTexts edition at the gate)", source: "research/history.md §4", url: "https://chem.libretexts.org/Ancillary_Materials/Exemplars_and_Case_Studies/Exemplars/Culture/Original_Writings_of_Joseph_Black_on_the_Melting_of_Ice"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:matka":
+  ocw:
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 4 slide 7 (sweat evaporation example)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/", took: "idea"}
+  openstax:
+    - {book: "College Physics 2e", section: "13.6 Humidity, Evaporation, and Boiling (RH; 'air does not hold vapour')", url: "https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling", took: "definitions"}
+    - {book: "College Physics 2e", section: "14.6 Convection (fan; Ex 14.8 sweat 2.96 g/min)", url: "https://openstax.org/books/college-physics-2e/pages/14-6-convection", took: "numbers (recomputed)"}
+    - {book: "College Physics 2e", section: "14.3 Phase Change and Latent Heat (Lv at 37 °C = 2430 kJ/kg)", url: "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat", took: "172 g for 10 L by 10 °C (recomputed)"}
+    - {book: "Physics", section: "11.1 (wind chill cannot cool below ambient)", url: "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy", took: "fan argument"}
+  research:
+    - {what: "Stull 2011 wet-bulb fit (coefficients via NCL docs; May 28.7, July 26.7, dry 21.3 °C recomputed); IMD Santacruz normals via Wikipedia (ASSUMED inputs)", source: "grounding/ch08.md §8.6", url: "https://www.ncl.ucar.edu/Document/Functions/Contributed/wetbulb_stull.shtml"}
+    - {what: "matka misconception; measured drops 5–15 °C, 7 °C in Kolkata", source: "research/misconceptions.md §7", url: "https://export.arxiv.org/pdf/1710.00667"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:monsoon":
+  openstax:
+    - {book: "College Physics 2e", section: "14.2 Temperature Change and Heat Capacity (water 4186 J/(kg·°C); land and sea)", url: "https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity", took: "numbers; sand vs water demo"}
+    - {book: "Physics", section: "11.2 Heat, Specific Heat, and Heat Transfer (sand c ≈ 800; convection driven by buoyancy)", url: "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer", took: "5.23x ratio (recomputed); convection definition"}
+    - {book: "College Physics 2e", section: "14.6 Convection", url: "https://openstax.org/books/college-physics-2e/pages/14-6-convection", took: "convection loops"}
+  research:
+    - {what: "sea and land breezes", source: "NOAA JetStream (public domain)", url: "https://www.noaa.gov/jetstream/ocean/sea-breeze"}
+  history:
+    - {what: "Halley 1686 giant sea breeze; Gadgil et al. 2021 challenge; IMD normal onset 11 June (2020 revision)", source: "research/history.md §9", url: "https://eprints.iisc.ac.in/69617/"}
+    - {what: "IMD onset dates", source: "research/history.md §9", url: "https://mausam.imd.gov.in/backend/assets/press_release_pdf/IMD_Press_release_new_onset_and_withdrawal_dates%28Final%29.pdf"}
+    - {what: "Anna Mani: IMD 1948, ~100 instrument drawings, IGY network, ozone 1960, Thumba tower 1963, retired 1976", source: "research/history.md §4", url: "https://en.wikipedia.org/wiki/Anna_Mani"}
+  licence: "CC BY-NC-SA 4.0 (OpenStax); NOAA public domain"
+
+"story:engines":
+  openstax:
+    - {book: "College Physics 2e", section: "7.6 Conservation of Energy (efficiency definition; Table 7.2 representative values)", url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy", took: "17%, 30%, 35%, 42%, 98%; 17/83 and 42/58 splits (recomputed)"}
+    - {book: "College Physics 2e", section: "7.7 Power (cooling towers unavoidable for fuel-burning plants)", url: "https://openstax.org/books/college-physics-2e/pages/7-7-power", took: "idea"}
+  history:
+    - {what: "Carnot 1824: 600 copies, 118 pages, own expense; father's water engines; waterfall framing is the historians' summary, not his words", source: "research/history.md §4", url: "https://sites.pitt.edu/~jdnorton/papers/Analogy_Carnot_online.pdf"}
+  research:
+    - {what: "'whenever energy is turned into a useful form, some always ends up as thermal energy' (true minimal version); never 'lost'", source: "grounding/ch07.md §7.4 fidelity traps; research/school-wording.md §6", url: "grounding/ch07.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:estimation":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.4 Order of Magnitude Estimates – Fermi Problems (method; piano tuners; ocean mass)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "method; 80 tuners (recomputed); ocean depth lesson (3.7 km ASSUMED)"}
+  openstax:
+    - {book: "College Physics 2e", section: "1.4 Approximation", url: "https://openstax.org/books/college-physics-2e/pages/1-4-approximation", took: "one significant figure; compare with gut guess"}
+  research:
+    - {what: "rain on Mumbai: 600 km² (40 × 15 km ASSUMED) × 0.1 m → 6e10 kg (recomputed); breaths estimate (15/min ASSUMED, recomputed 9.5e7)", source: "grounding/ch00.md §0.4", url: "grounding/ch00.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:powers-of-ten":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.4 intro (counting vs estimating)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "idea"}
+  openstax:
+    - {book: "Physics", section: "1.3 The Language of Physics (Table 1.3 benchmarks; prefixes; scientific notation; log scales; Richter)", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "benchmark sizes and masses; 8.64e4 s and 3.16e7 s (recomputed); the source's '0' on a log scale rejected"}
+    - {book: "College Physics 2e", section: "1.2 Physical Quantities and Units (order of magnitude; atom 1e-10 m)", url: "https://openstax.org/books/college-physics-2e/pages/1-2-physical-quantities-and-units", took: "19 steps atom to Sun (recomputed)"}
+    - {book: "College Physics 2e", section: "17.3 Sound Intensity and Sound Level (each 10 dB is 10x)", url: "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level", took: "decibel example"}
+  research:
+    - {what: "powers of ten treated as linear (Tretter 2006); measure 100 pages (page thickness 1e-4 m with 1 cm per 100 pages ASSUMED)", source: "research/misconceptions.md §1", url: "research/misconceptions.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:motion-graphs":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 4 §4.5 (area under v–t graph = displacement); Week 1 Lessons 1.4–1.5 (slope of tangent)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", took: "area rule; tangent slope"}
+  openstax:
+    - {book: "Physics", section: "2.3 Position vs. Time Graphs (slope = velocity; corridor walk activity)", url: "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs", took: "slope rule; home activity"}
+    - {book: "College Physics 2e", section: "2.7 Falling Objects (Misconception Alert: x–t graph is not a path)", url: "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects", took: "trap"}
+  research:
+    - {what: "'same place, same speed' held by over 30% (Halloun & Hestenes 1985)", source: "research/misconceptions.md §2", url: "https://davidhestenes.net/modeling/R&E/Hestenes_CommonSenseConcept.pdf"}
+    - {what: "walk numbers (4 m in 4 s, 2 s stop, 4 m in 2 s) are made up for the model; slopes and areas recomputed", source: "ours", url: "grounding/ch01.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:vectors":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.1 (forces add as vectors); Week 2 Lesson 7.1 (tug of war); notes Ch 11 §11.3 (addition of velocities)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "vector addition; tug of war; train walk 22.2 + 1.4 m/s (80 km/h ASSUMED, recomputed)"}
+  openstax:
+    - {book: "Physics", section: "2.1 Relative Motion, Distance, and Displacement (scalar/vector; cyclist 3 km west, 2 km east)", url: "https://openstax.org/books/physics/pages/2-1-relative-motion-distance-and-displacement", took: "definitions; worked example (recomputed)"}
+    - {book: "Physics", section: "4.1 Force (net force)", url: "https://openstax.org/books/physics/pages/4-1-force", took: "definition"}
+  research:
+    - {what: "tug-of-war forces (ASSUMED, net 0 recomputed); boat 3 and 4 m/s → 5 m/s at 36.9° (recomputed); who wins depends on friction with the ground (gate)", source: "grounding/ch03.md §3.1", url: "grounding/ch03.md"}
+    - {what: "IGCSE 'resultant force' bridge", source: "research/school-wording.md §6", url: "research/school-wording.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:si-units":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.1 (seven base units; derived units N, J, W; 2019 redefinition in force 20 May 2019)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "definitions, date"}
+    - {course: "8.21 The Physics of Energy, Fall 2009", where: "Lecture 2 Units and scales of energy use (kWh = 3.6 MJ; kcal; 100 W labourer)", url: "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/76bb428d6455f6769501ff959cc28fee_MIT8_21s09_lec02.pdf", took: "1 kWh ≈ 860 kcal; 10 h of 100 W per kWh; 2000 kcal/day = 2.3 kWh (recomputed)"}
+  openstax:
+    - {book: "Physics", section: "1.3 The Language of Physics (number times unit; cannot add different units)", url: "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units", took: "idea"}
+    - {book: "Physics", section: "4.3 Newton's Second Law of Motion (newton defined; weight of 1 kg = 9.8 N)", url: "https://openstax.org/books/physics/pages/4-3-newtons-second-law-of-motion", took: "definition, number"}
+    - {book: "College Physics 2e", section: "7.7 Power (watt; kWh; 60 W bulb gives 5 W of light)", url: "https://openstax.org/books/college-physics-2e/pages/7-7-power", took: "definitions; 1 J lifts 1 kg by 10.2 cm (recomputed)"}
+  research:
+    - {what: "LED 10 W × 100 h and mixer 500 W × 2 h = 1 kWh (wattages ASSUMED); biscuit 30 kcal = 35 Wh (ASSUMED)", source: "grounding/ch07.md §7.5; research/misconceptions.md §6", url: "grounding/ch07.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+"story:proportion":
+  ocw:
+    - {course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 4 §4.5 (x = ½at²); Week 2 Lesson 4.1 (a ∝ 1/m)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", took: "1:4:9:16 and 1,3,5,7 (recomputed); inverse proportion"}
+  openstax:
+    - {book: "Astronomy 2e", section: "3.3 Newton's Universal Law of Gravitation (Moon at 60 Earth radii: 1/3600 of g)", url: "https://openstax.org/books/astronomy-2e/pages/3-3-newtons-universal-law-of-gravitation", took: "0.00272 m/s² (recomputed)"}
+    - {book: "College Physics 2e", section: "16.11 Energy in Waves: Intensity (I = P/A; energy ∝ amplitude²)", url: "https://openstax.org/books/college-physics-2e/pages/16-11-energy-in-waves-intensity", took: "inverse square for sound; amplitude squared"}
+    - {book: "College Physics 2e", section: "7.2 Kinetic Energy (∝ v²)", url: "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem", took: "square law example"}
+    - {book: "Physics", section: "4.3 Newton's Second Law of Motion (W = mg)", url: "https://openstax.org/books/physics/pages/4-3-newtons-second-law-of-motion", took: "9.8 N and 19.6 N (recomputed)"}
+  research:
+    - {what: "torch patch areas 1, 4, 9 (geometry, recomputed)", source: "ours", url: "grounding/ch05.md"}
+  licence: "CC BY-NC-SA 4.0"
+
+# ---- figures drawn for these stories (all ours)
+"fig:s_clay_dents": {figures: [{name: s_clay_dents, origin: ours}], history: [{what: "'s Gravesande's dents 1:4", source: "research/history.md §1", url: "https://spark.iop.org/history-concept-energy-and-work"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_energy_bars": {figures: [{name: s_energy_bars, origin: ours}], openstax: [{book: "College Physics 2e", section: "7.6 Conservation of Energy", url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy", took: "stores sum to a constant; 69% bounce made-up model"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_rumford": {figures: [{name: s_rumford, origin: ours}], history: [{what: "Rumford's apparatus in outline; boiled at 2 h 30 min", source: "research/history.md §4", url: "https://spark.iop.org/revolutionary-rumford"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_wetbulb": {figures: [{name: s_wetbulb, origin: ours}], research: [{what: "Stull 2011 wet-bulb values for 34.3/65, 29.4/81, 38/20 (recomputed)", source: "grounding/ch08.md §8.6", url: "https://www.ncl.ucar.edu/Document/Functions/Contributed/wetbulb_stull.shtml"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_monsoon_two_ideas": {figures: [{name: s_monsoon_two_ideas, origin: ours}], history: [{what: "Halley 1686 vs Gadgil et al. 2021, schematic", source: "research/history.md §9", url: "https://eprints.iisc.ac.in/69617/"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_walk_graphs": {figures: [{name: s_walk_graphs, origin: ours}], openstax: [{book: "Physics", section: "2.3 Position vs. Time Graphs", url: "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs", took: "slope = speed; made-up walk"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_vectors": {figures: [{name: s_vectors, origin: ours}], ocw: [{course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 7 §7.1; Ch 11 §11.3", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf", took: "vector addition; ASSUMED tug and boat numbers"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_unit_chain": {figures: [{name: s_unit_chain, origin: ours}], ocw: [{course: "8.01SC Classical Mechanics, Fall 2016", where: "Course notes Ch 2 §2.1 (derived units)", url: "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter2.pdf", took: "N, J, W definitions; kWh = 3.6 MJ"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_engine_fall": {figures: [{name: s_engine_fall, origin: ours}], openstax: [{book: "College Physics 2e", section: "7.6 Conservation of Energy (Table 7.2)", url: "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy", took: "17%, 30%, 42%"}], history: [{what: "waterfall framing is the historians' summary", source: "research/history.md §4", url: "https://sites.pitt.edu/~jdnorton/papers/Analogy_Carnot_online.pdf"}], licence: "CC BY-NC-SA 4.0"}
+"fig:s_torch_patch": {figures: [{name: s_torch_patch, origin: ours}], openstax: [{book: "College Physics 2e", section: "16.11 Energy in Waves: Intensity (I = P/A)", url: "https://openstax.org/books/college-physics-2e/pages/16-11-energy-in-waves-intensity", took: "inverse square geometry"}], licence: "CC BY-NC-SA 4.0"}
