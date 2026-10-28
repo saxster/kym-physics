@@ -64,6 +64,7 @@ Live.register('energytrack', (stage, params, api) => {
   let mu = 0.0;
   let h0 = 1.0;
   let marbleIdx = 0;
+  let viewMode = 0; // 0 = Bars, 1 = Glowing jars
   const say = api.readout();
 
   let x = findReleaseX(h0);
@@ -200,7 +201,11 @@ Live.register('energytrack', (stage, params, api) => {
     updateReadout();
   }, 0);
 
-  api.loop((dt) => {
+  api.tabs(['Bars', 'Glowing jars'], (i) => {
+    viewMode = i;
+  }, 0);
+
+  api.loop((dt, tNow = 0) => {
     if (dt > 0) {
       stepPhysics(dt);
       updateReadout();
@@ -272,12 +277,100 @@ Live.register('energytrack', (stage, params, api) => {
       });
     }
 
-    // ---- Right panel: Energy bars (height, motion, warmth + fixed total outline)
-    // Scale: max possible energy is 0.060 kg * 9.8 * 1.5 m = 0.882 J.
-    // Use one scale across both marbles so switching glass (20 g) <-> steel (60 g) visibly triples the bars!
+    // ---- Right panel: Energy bars or Glowing hatched jars
     const bx0 = 485, bBase = 248, bMaxH = 195;
     const maxRefJ = 0.060 * G * 1.5; // 0.882 J
     const pxPerJ = bMaxH / maxRefJ;
+
+    if (viewMode === 1) {
+      api.draw.text(ctx, 'Glowing jars (full = 1.0 J)', bx0 + 72, 24, { size: 12.5, color: c.ink, align: 'center', weight: 600 });
+      const jars = [
+        { label: 'grav.', val: pe, col: '#8a4dff', hatch: 'bars' },
+        { label: 'kinetic', val: ke, col: '#2f7bff', hatch: 'chevrons' },
+        { label: 'thermal', val: eTherm, col: '#ff7a1c', hatch: 'waves' },
+      ];
+      const jw = 38, jh = 165, jGap = 14, jy = bBase - jh;
+      // Pathway tubes between jars
+      if (v > 0.05) {
+        ctx.save();
+        ctx.strokeStyle = '#5c64ff';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([6, 5]);
+        ctx.lineDashOffset = -tNow * 36 * Math.sign(slope * dir || 1);
+        ctx.beginPath();
+        ctx.moveTo(bx0 + jw, jy + jh * 0.55);
+        ctx.lineTo(bx0 + jw + jGap, jy + jh * 0.55);
+        ctx.stroke();
+        if (mu > 0) {
+          ctx.strokeStyle = '#ff7a1c';
+          ctx.beginPath();
+          ctx.moveTo(bx0 + 2 * jw + jGap, jy + jh * 0.7);
+          ctx.lineTo(bx0 + 2 * (jw + jGap), jy + jh * 0.7);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+      jars.forEach((j, i) => {
+        const jx = bx0 + i * (jw + jGap);
+        const frac = Math.min(1, Math.max(0, j.val / 1.0));
+        const fh = frac * (jh - 8);
+        const fy = jy + jh - 3 - fh;
+        // Jar neck & body
+        api.draw.roundRect(ctx, jx + 6, jy - 7, jw - 12, 7, 2);
+        ctx.fillStyle = c.sheet; ctx.fill();
+        ctx.strokeStyle = c.ink; ctx.lineWidth = 1.3; ctx.stroke();
+        api.draw.roundRect(ctx, jx, jy, jw, jh, 7);
+        ctx.fillStyle = c.sheet; ctx.fill();
+        if (fh > 1) {
+          ctx.save();
+          api.draw.roundRect(ctx, jx + 2, jy + 2, jw - 4, jh - 4, 5);
+          ctx.clip();
+          ctx.fillStyle = j.col;
+          ctx.globalAlpha = 0.28;
+          ctx.fillRect(jx, fy, jw, fh);
+          ctx.globalAlpha = 0.75;
+          ctx.strokeStyle = c.ink;
+          ctx.lineWidth = 1.1;
+          if (j.hatch === 'bars') {
+            for (let y = fy + 4; y < jy + jh; y += 6) {
+              ctx.beginPath(); ctx.moveTo(jx + 4, y); ctx.lineTo(jx + jw - 4, y); ctx.stroke();
+            }
+          } else if (j.hatch === 'chevrons') {
+            for (let y = fy + 6; y < jy + jh; y += 8) {
+              ctx.beginPath();
+              ctx.moveTo(jx + 6, y + 3); ctx.lineTo(jx + jw / 2, y - 2); ctx.lineTo(jx + jw - 6, y + 3);
+              ctx.stroke();
+            }
+          } else {
+            for (let y = fy + 5; y < jy + jh; y += 7) {
+              ctx.beginPath();
+              for (let xx = jx + 4; xx <= jx + jw - 4; xx += 3) {
+                const yy = y + Math.sin((xx + tNow * 15) * 0.4) * 1.8;
+                if (xx === jx + 4) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+              }
+              ctx.stroke();
+            }
+          }
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = j.col;
+          ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(jx + 2, fy); ctx.lineTo(jx + jw - 2, fy); ctx.stroke();
+          ctx.restore();
+        }
+        // Capacity mark for eTot
+        const totY = jy + jh - 3 - Math.min(1, eTot / 1.0) * (jh - 8);
+        ctx.save();
+        ctx.setLineDash([3, 3]);
+        ctx.strokeStyle = c.muted;
+        ctx.beginPath(); ctx.moveTo(jx + 2, totY); ctx.lineTo(jx + jw - 2, totY); ctx.stroke();
+        ctx.restore();
+        api.draw.roundRect(ctx, jx, jy, jw, jh, 7);
+        ctx.strokeStyle = c.ink; ctx.lineWidth = 1.5; ctx.stroke();
+        api.draw.text(ctx, j.label, jx + jw / 2, bBase + 16, { size: 11, color: c.ink, align: 'center', weight: 600 });
+        api.draw.text(ctx, `${j.val.toFixed(2)} J`, jx + jw / 2, bBase + 30, { size: 10.5, color: c.muted, align: 'center' });
+      });
+      return;
+    }
 
     api.draw.text(ctx, 'Energy stores (J)', bx0 + 68, 26, { size: 13, color: c.ink, align: 'center', weight: 600 });
 

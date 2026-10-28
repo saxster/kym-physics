@@ -49,10 +49,11 @@ function animateWhileVisible(el, setup) {
   const start = () => {
     if (!state) state = setup();
     if (!state) return;
-    if (!motionOK()) { state.draw(0, 0); return; }
+    if (!motionOK()) { cancelAnimationFrame(raf); raf = 0; state.draw(0, 0); return; }
     if (raf) return;
     last = performance.now();
     const tick = now => {
+      if (!motionOK()) { raf = 0; state.draw(now, 0); return; }
       const dt = Math.min(64, now - last); last = now;
       state.draw(now, dt);
       raf = visible ? requestAnimationFrame(tick) : 0;
@@ -60,7 +61,7 @@ function animateWhileVisible(el, setup) {
     raf = requestAnimationFrame(tick);
   };
   const io = new IntersectionObserver(es => {
-    for (const e of es) { visible = e.isIntersecting; if (visible) start(); }
+    for (const e of es) { visible = e.isIntersecting; if (visible) start(); else { cancelAnimationFrame(raf); raf = 0; } }
   }, { rootMargin: '80px' });
   io.observe(el);
   return { redraw() { state = null; if (visible) { cancelAnimationFrame(raf); raf = 0; start(); } } };
@@ -462,10 +463,11 @@ function spine() {
 App.ready(() => {
   const parts = [cover(), ...volumes(), medals()].filter(Boolean);
   spine();
-  // redraw the art when the colours change (theme switch) or the window is resized
+  // redraw the art when the colours change (theme switch), Still mode toggles, or the window is resized
   let rt = 0;
   const redraw = () => { clearTimeout(rt); rt = setTimeout(() => parts.forEach(p => p.redraw && p.redraw()), 150); };
   window.addEventListener('resize', redraw);
+  App.on('still:change', () => parts.forEach(p => p.redraw && p.redraw()));
   try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redraw); } catch (e) {}
-  new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'style'] });
+  new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'style', 'class'] });
 });

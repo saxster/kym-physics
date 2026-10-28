@@ -680,14 +680,14 @@ def font_faces(text_chars: str) -> str:
     chars = set(text_chars) | set(''.join(chr(c) for c in range(0x20, 0x7f)))
     css, covered = [], set()
 
-    def embed(path, fam, weight, style, want, keep_var=True):
+    def embed(path, fam, weight, style, want, keep_var=True, features=('*',)):
         font = TTFont(path)
         cmap = font.getBestCmap() or {}
         use = {c for c in want if ord(c) in cmap}
         if not use:
             return set()
         opts = subset.Options()
-        opts.layout_features = ['*']
+        opts.layout_features = list(features)
         opts.flavor = 'woff2'
         opts.notdef_outline = True
         opts.name_IDs = ['*']
@@ -715,6 +715,10 @@ def font_faces(text_chars: str) -> str:
         embed(os.path.join(ROOT, 'fonts', key + '.ttf'), 'Literata Static', w, style, rest)
     for fam, w, style, key in (('Lexend', 400, 'normal', 'Lexend-400'), ('Lexend', 700, 'normal', 'Lexend-600')):
         embed(os.path.join(ROOT, 'fonts', key + '.ttf'), fam, w, style, chars)
+    caveat_f = os.path.join(vdir, 'caveat-latin-wght-normal.woff2')
+    if os.path.exists(caveat_f):
+        hand_chars = set(''.join(chr(c) for c in range(0x20, 0x7f)) + '×÷−±≈≠≤≥°²³¹⁰⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉½¼¾→←↔✓ΔλμρΩ')
+        embed(caveat_f, 'Caveat', '400 700', 'normal', hand_chars, features=('kern',))
     return '\n'.join(css)
 
 

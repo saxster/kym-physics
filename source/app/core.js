@@ -56,7 +56,9 @@ function el(tag, attrs, ...kids) {
   return n;
 }
 
-const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion = () => (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  || document.documentElement.classList.contains('still')
+  || (document.body ? document.body.classList.contains('still') : false);
 function transition(fn) {
   if (document.startViewTransition && !reduceMotion()) { try { return document.startViewTransition(fn); } catch (e) {} }
   fn();

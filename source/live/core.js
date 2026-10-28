@@ -4,6 +4,8 @@
 // In the single-file build every widget is bundled with this runtime; in the --site build each widget is a
 // lazy ES-module chunk (window.BOOK_CHUNKS maps "w_<name>" to its file) imported when the reader taps its button.
 
+import { ENHANCEMENTS } from './enhancements.js';
+
 const EL = {
   H: '#f3f1e8', C: '#3d4a46', N: '#4f74b3', O: '#c4553c', Na: '#8a6bb5', Cl: '#5c9a52', Mg: '#c7a24a',
   Al: '#a7b3b8', S: '#d9b93b', Fe: '#b06a3b', Cu: '#c27a45', Zn: '#8fa2ad', Ag: '#c9cdd0', Li: '#b98bc9',
@@ -186,11 +188,37 @@ function makeAudio() {
 }
 
 // ------------------------------------------------------------------ the per-figure API
+function isReducedMotion() {
+  return !!(reducedQuery.matches
+    || document.documentElement.classList.contains('still')
+    || (document.body && document.body.classList.contains('still')));
+}
+
 function makeApi(fig, stage, controls, state) {
   const loops = new Set();
   const cleanups = [];
   const hides = new Set();     // run when the figure scrolls off screen
+  const sliders = [];          // [{label, input, set, onInput}]
+  const tabGroups = [];        // [{btns, activeIdx, onSelect}]
+  const buttons = [];          // [{label, btn}]
+  const changeListeners = new Set();
+  let readoutText = '';
+  let customChallenge = null;
+  let customNumbers = null;
+  let customWatch = null;
+  let customCutaway = null;
+  let customCutawayCb = null;
+  let customIdealised = null;
+  let interacted = false;
+  let watched = false;
   let audio = null;
+
+  const notifyChange = () => {
+    for (const fn of changeListeners) {
+      try { fn(); } catch (e) { /* ignore */ }
+    }
+  };
+
   const note = (text, cls = '') => {
     const p = document.createElement('p'); p.className = 'live-note ' + cls; p.setAttribute('aria-live', 'polite');
     p.textContent = text; controls.appendChild(p); return p;
@@ -199,7 +227,7 @@ function makeApi(fig, stage, controls, state) {
     cv.style.width = '100%'; cv.style.height = 'auto'; cv.style.aspectRatio = `${W} / ${H}`; cv.style.display = 'block';
   };
   const api = {
-    reduced: reducedQuery.matches,
+    get reduced() { return isReducedMotion(); },
     colors,
     draw, rng, gauss, EL,
     /** true while the figure is on screen */
@@ -230,17 +258,32 @@ function makeApi(fig, stage, controls, state) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'live-ctl'; b.textContent = label;
       if (opts.pressed != null) b.setAttribute('aria-pressed', String(!!opts.pressed));
-      b.addEventListener('click', () => onClick(b));
-      controls.appendChild(b); return b;
+      b.addEventListener('click', () => {
+        interacted = true;
+        onClick(b);
+        notifyChange();
+      });
+      controls.appendChild(b);
+      buttons.push({ label, btn: b });
+      return b;
     },
     tabs(labels, onSelect, start = 0) {
       const wrap = document.createElement('div'); wrap.className = 'live-tabs'; wrap.setAttribute('role', 'group');
+      const grp = { activeIdx: start, btns: [], onSelect };
       const btns = labels.map((l, i) => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'live-ctl'; b.textContent = l;
         b.setAttribute('aria-pressed', String(i === start));
-        b.addEventListener('click', () => { btns.forEach((x, j) => x.setAttribute('aria-pressed', String(j === i))); onSelect(i); });
+        b.addEventListener('click', () => {
+          interacted = true;
+          grp.activeIdx = i;
+          btns.forEach((x, j) => x.setAttribute('aria-pressed', String(j === i)));
+          onSelect(i);
+          notifyChange();
+        });
         wrap.appendChild(b); return b;
       });
+      grp.btns = btns;
+      tabGroups.push(grp);
       controls.appendChild(wrap); return btns;
     },
     slider(label, { min, max, step = 1, value, fmt = (v) => String(v), onInput }) {
@@ -249,17 +292,53 @@ function makeApi(fig, stage, controls, state) {
       const lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = label;
       const inp = document.createElement('input'); inp.type = 'range'; inp.id = id; inp.min = min; inp.max = max; inp.step = step; inp.value = value;
       const out = document.createElement('output'); out.htmlFor = id; out.textContent = fmt(+value);
-      inp.addEventListener('input', () => { out.textContent = fmt(+inp.value); onInput(+inp.value); });
+      const setVal = (v, trigger = false) => {
+        inp.value = v;
+        out.textContent = fmt(+inp.value);
+        if (trigger && onInput) onInput(+inp.value);
+        notifyChange();
+      };
+      inp.addEventListener('input', () => {
+        interacted = true;
+        out.textContent = fmt(+inp.value);
+        onInput(+inp.value);
+        notifyChange();
+      });
       wrap.append(lab, inp, out); controls.appendChild(wrap);
-      return { input: inp, set(v) { inp.value = v; out.textContent = fmt(+v); } };
+      const item = { label, input: inp, set: (v) => setVal(v, false), drive: (v) => setVal(v, true) };
+      sliders.push(item);
+      return item;
     },
     /** A live text readout under the figure, announced politely to screen readers. */
     readout() {
       const r = document.createElement('p'); r.className = 'live-readout'; r.setAttribute('aria-live', 'polite');
       controls.appendChild(r);
       let last = '';
-      return (html) => { if (html !== last) { r.innerHTML = html; last = html; } };
+      return (html) => {
+        if (html !== last) {
+          r.innerHTML = html;
+          last = html;
+          readoutText = r.textContent || '';
+          notifyChange();
+        }
+      };
     },
+    /** Pedagogical challenge: prompt + check(snapshot) */
+    challenge(prompt, check) { customChallenge = { prompt, check }; },
+    /** Live handwritten margin substitution: fn(snapshot) or string; also returns a setter(str) */
+    yourNumbers(fn) {
+      if (fn !== undefined) customNumbers = fn;
+      else if (!customNumbers) customNumbers = '';
+      return (str) => { customNumbers = str; notifyChange(); };
+    },
+    /** 5-shot choreographed Watch tour + optional cutaway description/callback */
+    watch(shots, opts = {}) {
+      customWatch = shots;
+      if (opts.cutaway) customCutaway = opts.cutaway;
+      if (opts.onCutAway) customCutawayCb = opts.onCutAway;
+    },
+    /** 1-sentence "What the model simplifies" honesty footnote */
+    idealised(text) { customIdealised = text; },
     onCleanup(fn) { cleanups.push(fn); },
     /** fn() runs whenever the figure scrolls off screen (the loop pauses by itself; use this for sound, sensors, video). */
     onHide(fn) { hides.add(fn); return () => hides.delete(fn); },
@@ -509,8 +588,254 @@ function makeApi(fig, stage, controls, state) {
       return { ok: true, canvas: cv, set(n, val) { U[n] = val; drawNow(); }, draw: drawNow };
     },
     _loops: loops, _cleanups: cleanups, _hides: hides,
+    _ext: {
+      sliders, tabGroups, buttons, changeListeners,
+      get readoutText() { return readoutText; },
+      get interacted() { return interacted; },
+      get watched() { return watched; },
+      setWatched(v) { watched = v; notifyChange(); },
+      get challenge() { return customChallenge; },
+      get yourNumbers() { return customNumbers; },
+      get watch() { return customWatch; },
+      get cutaway() { return customCutaway; },
+      get cutawayCb() { return customCutawayCb; },
+      get idealised() { return customIdealised; },
+    },
   };
   return api;
+}
+
+function makeSnapshot(ext) {
+  return {
+    num(prefix, fallback = 0) {
+      const p = prefix.toLowerCase();
+      const s = ext.sliders.find((x) => x.label.toLowerCase().includes(p));
+      return s ? +s.input.value : fallback;
+    },
+    setSlider(prefix, val) {
+      const p = prefix.toLowerCase();
+      const s = ext.sliders.find((x) => x.label.toLowerCase().includes(p));
+      if (s) s.drive(val);
+    },
+    tab(groupIdx = 0) {
+      return ext.tabGroups[groupIdx] ? ext.tabGroups[groupIdx].activeIdx : 0;
+    },
+    selectTab(groupIdx = 0, tabIdx = 0) {
+      const g = ext.tabGroups[groupIdx];
+      if (g && g.btns[tabIdx]) g.btns[tabIdx].click();
+    },
+    clickBtn(substr) {
+      const p = substr.toLowerCase();
+      const b = ext.buttons.find((x) => x.label.toLowerCase().includes(p));
+      if (b) b.btn.click();
+    },
+    readout() { return ext.readoutText || ''; },
+    get interacted() { return ext.interacted; },
+    get watched() { return ext.watched; },
+  };
+}
+
+function attachEnhancements(name, fig, stage, controls, api, openBtn) {
+  const def = ENHANCEMENTS[name] || {};
+  const ext = api._ext;
+  const snap = makeSnapshot(ext);
+  const chal = ext.challenge || def.challenge;
+  const hasNum = ext.yourNumbers !== null || !!def.yourNumbers;
+  const shots = ext.watch || def.watch;
+  const cutawayText = ext.cutaway || def.cutaway;
+  const idealText = ext.idealised || def.idealised;
+
+  // 1. Challenge banner + circular rubber stamp at top of stage
+  let stampEl = null;
+  const stampKey = 'mw:stamp:' + name;
+  let stamped = false;
+  try { stamped = localStorage.getItem(stampKey) === '1'; } catch (e) { /* ignore */ }
+
+  if (chal && chal.prompt) {
+    const bar = document.createElement('div');
+    bar.className = 'live-challenge';
+    const txt = document.createElement('span');
+    txt.className = 'live-challenge-text';
+    txt.innerHTML = `<strong>Challenge:</strong> ${chal.prompt}`;
+    stampEl = document.createElement('span');
+    stampEl.className = 'live-stamp' + (stamped ? ' is-stamped' : '');
+    stampEl.setAttribute('role', 'status');
+    stampEl.textContent = stamped ? '✓ Stamped' : '◎ Goal';
+    bar.append(txt, stampEl);
+    stage.insertBefore(bar, stage.firstChild);
+  }
+
+  // 2. Cut-away cross-section overlay card inside stage
+  let cutawayCard = null;
+  let cutawayBtn = null;
+  let cutawayOpen = false;
+  if (cutawayText) {
+    cutawayCard = document.createElement('div');
+    cutawayCard.className = 'live-cutaway-card';
+    cutawayCard.setAttribute('data-glass', '1');
+    cutawayCard.hidden = true;
+    cutawayCard.innerHTML = `<span class="live-cutaway-badge">◐ Cut-away inside view</span><p>${cutawayText}</p>`;
+    stage.appendChild(cutawayCard);
+  }
+  const setCutaway = (on) => {
+    cutawayOpen = !!on;
+    if (cutawayCard) cutawayCard.hidden = !cutawayOpen;
+    if (cutawayBtn) cutawayBtn.setAttribute('aria-pressed', String(cutawayOpen));
+    if (typeof ext.cutawayCb === 'function') {
+      try { ext.cutawayCb(cutawayOpen); } catch (e) { /* ignore */ }
+    }
+  };
+
+  // 3. Live "Your Numbers" handwritten margin substitution strip at top of controls
+  let numEl = null;
+  if (hasNum) {
+    numEl = document.createElement('div');
+    numEl.className = 'live-your-numbers';
+    numEl.setAttribute('aria-live', 'off');
+    const badge = document.createElement('span');
+    badge.className = 'live-yn-badge';
+    badge.textContent = 'Your numbers';
+    const eq = document.createElement('span');
+    eq.className = 'live-yn-eq';
+    numEl.append(badge, eq);
+    controls.insertBefore(numEl, controls.firstChild);
+  }
+
+  // 4. 5-shot choreographed Watch tour bar
+  let watchTimer = 0;
+  if (shots && shots.length) {
+    const wBar = document.createElement('div');
+    wBar.className = 'live-watch-bar';
+
+    const wBtn = document.createElement('button');
+    wBtn.type = 'button';
+    wBtn.className = 'live-ctl live-watch-btn';
+    wBtn.textContent = '▶ Watch 5-shot tour';
+    wBtn.setAttribute('aria-pressed', 'false');
+
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'live-watch-dots';
+    const capEl = document.createElement('span');
+    capEl.className = 'live-watch-caption';
+    capEl.textContent = 'Tap Watch or any step 1–5 for a guided tour.';
+
+    const dotBtns = shots.map((sh, idx) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'live-watch-dot';
+      d.textContent = String(idx + 1);
+      d.title = sh.title || `Shot ${idx + 1}`;
+      d.setAttribute('aria-label', sh.title || `Shot ${idx + 1}`);
+      d.addEventListener('click', () => {
+        stopTour();
+        applyShot(idx);
+      });
+      dotsWrap.appendChild(d);
+      return d;
+    });
+
+    if (cutawayText || ext.cutawayCb) {
+      cutawayBtn = document.createElement('button');
+      cutawayBtn.type = 'button';
+      cutawayBtn.className = 'live-ctl live-cutaway-btn';
+      cutawayBtn.textContent = '◐ Cut-away';
+      cutawayBtn.setAttribute('aria-pressed', 'false');
+      cutawayBtn.addEventListener('click', () => {
+        setCutaway(!cutawayOpen);
+        if (window.__bookSound) window.__bookSound.play('flap');
+      });
+    }
+
+    function applyShot(idx) {
+      const sh = shots[idx];
+      if (!sh) return;
+      dotBtns.forEach((b, j) => b.classList.toggle('is-active', j === idx));
+      capEl.textContent = sh.caption || sh.title || '';
+      if (sh.cutaway != null) setCutaway(!!sh.cutaway);
+      const actFn = sh.act || sh.enter;
+      if (typeof actFn === 'function') {
+        try { actFn(snap); } catch (e) { /* ignore */ }
+      }
+      if (idx === shots.length - 1) ext.setWatched(true);
+    }
+
+    function stopTour() {
+      if (watchTimer) { clearInterval(watchTimer); watchTimer = 0; }
+      wBtn.setAttribute('aria-pressed', 'false');
+      wBtn.textContent = '▶ Watch 5-shot tour';
+    }
+
+    wBtn.addEventListener('click', () => {
+      if (watchTimer) {
+        stopTour();
+        return;
+      }
+      let stepIdx = 0;
+      wBtn.setAttribute('aria-pressed', 'true');
+      wBtn.textContent = '■ Stop tour';
+      applyShot(0);
+      watchTimer = setInterval(() => {
+        stepIdx++;
+        if (stepIdx >= shots.length) {
+          stopTour();
+          return;
+        }
+        applyShot(stepIdx);
+      }, 2100);
+    });
+
+    api.onCleanup(stopTour);
+    api.onHide(stopTour);
+
+    wBar.append(wBtn, dotsWrap);
+    if (cutawayBtn) wBar.appendChild(cutawayBtn);
+    wBar.appendChild(capEl);
+    controls.insertBefore(wBar, numEl ? numEl.nextSibling : controls.firstChild);
+  }
+
+  // 5. "What the model simplifies" 1-sentence honesty footnote
+  if (idealText) {
+    const idEl = document.createElement('p');
+    idEl.className = 'live-idealised';
+    idEl.innerHTML = `<strong>What the model simplifies:</strong> ${idealText}`;
+    controls.appendChild(idEl);
+  }
+
+  // Sync live numbers + challenge check
+  let lastNumStr = '';
+  const evaluate = () => {
+    const curNum = ext.yourNumbers !== null ? ext.yourNumbers : def.yourNumbers;
+    if (numEl && curNum != null) {
+      const val = typeof curNum === 'function' ? curNum(snap) : String(curNum);
+      if (val && val !== lastNumStr) {
+        numEl.querySelector('.live-yn-eq').textContent = val;
+        lastNumStr = val;
+      }
+    }
+    if (!stamped && chal && typeof chal.check === 'function') {
+      let ok = false;
+      try { ok = !!chal.check(snap); } catch (e) { ok = false; }
+      if (ok) {
+        stamped = true;
+        try { localStorage.setItem(stampKey, '1'); } catch (e) { /* ignore */ }
+        if (stampEl) {
+          stampEl.textContent = '✓ Stamped';
+          stampEl.classList.add('is-stamped', 'just-stamped');
+        }
+        if (openBtn && !openBtn.querySelector('.live-open-stamp')) {
+          const b = document.createElement('em');
+          b.className = 'live-open-stamp';
+          b.textContent = '✓';
+          b.title = 'Challenge completed';
+          openBtn.appendChild(b);
+        }
+        if (window.__bookSound) window.__bookSound.play('stamp');
+      }
+    }
+  };
+
+  ext.changeListeners.add(evaluate);
+  evaluate();
 }
 
 // ------------------------------------------------------------------ wiring figures
@@ -540,9 +865,18 @@ function setup(fig) {
   open.type = 'button'; open.className = 'live-open';
   const openLabel = pre.label || (pre.three ? 'Turn it in 3D' : 'Watch it move');
   open.innerHTML = (pre.three ? ICON_3D : ICON_PLAY) + `<span>${openLabel}</span>`;
+  try {
+    if (localStorage.getItem('mw:stamp:' + name) === '1') {
+      const b = document.createElement('em');
+      b.className = 'live-open-stamp';
+      b.textContent = '✓';
+      b.title = 'Challenge completed';
+      open.appendChild(b);
+    }
+  } catch (e) { /* ignore */ }
   fig.insertBefore(open, fig.querySelector('figcaption'));
 
-  let w = null, inst = null, api = null, stage = null, controls = null, playing = false, raf = 0, last = 0;
+  let w = null, inst = null, api = null, stage = null, controls = null, playing = false, raf = 0, last = 0, liftTimer = 0;
   const state = { visible: true, t: 0 };
   const playBtn = document.createElement('button');
   playBtn.type = 'button'; playBtn.className = 'live-ctl live-play';
@@ -578,6 +912,12 @@ function setup(fig) {
     w = widgets[name];
     fig.querySelector('.live-fail')?.remove();
     fig.classList.add('live-on');
+    if (!isReducedMotion()) {
+      fig.classList.add('live-lifting');
+      clearTimeout(liftTimer);
+      liftTimer = setTimeout(() => fig.classList.remove('live-lifting'), 520);
+    }
+    if (window.__bookSound) window.__bookSound.play('flap');
     stage = document.createElement('div'); stage.className = 'live-stage';
     controls = document.createElement('div'); controls.className = 'live-controls';
     fig.insertBefore(stage, open); fig.insertBefore(controls, open);
@@ -585,6 +925,7 @@ function setup(fig) {
     api = makeApi(fig, stage, controls, state);
     if (!w.meta.static) controls.appendChild(playBtn);
     inst = w.factory(stage, params, api) || {};
+    attachEnhancements(name, fig, stage, controls, api, open);
     const close = document.createElement('button');
     close.type = 'button'; close.className = 'live-ctl live-close'; close.textContent = 'Back to the drawing';
     close.addEventListener('click', closeLive);
@@ -595,15 +936,22 @@ function setup(fig) {
     (stage.querySelector('canvas,button,input') || playBtn).focus?.({ preventScroll: true });
   }
   function closeLive() {
+    clearTimeout(liftTimer);
     cancelAnimationFrame(raf);
     inst?.destroy?.();
     api?._cleanups.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
     stage?.remove(); controls?.remove();
-    fig.classList.remove('live-on'); open.hidden = false; open.focus({ preventScroll: true });
+    fig.classList.remove('live-on', 'live-lifting'); open.hidden = false; open.focus({ preventScroll: true });
     inst = api = stage = controls = null; playing = false;
   }
   playBtn.addEventListener('click', () => setPlaying(!playing));
   open.addEventListener('click', openLive);
+  window.addEventListener('still:change', (e) => {
+    if (!api || !w) return;
+    const stillOn = !!(e.detail && e.detail.still);
+    if (stillOn && playing) setPlaying(false);
+    else if (!stillOn && !w.meta.static && !playing) setPlaying(true);
+  });
   // pause while off screen (animation, sound, sensors, video), resume the animation when back
   new IntersectionObserver((ents) => {
     for (const e of ents) {
