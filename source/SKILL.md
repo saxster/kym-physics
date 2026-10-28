@@ -23,6 +23,7 @@ A series of free, non-commercial HTML5 textbooks for one reader: Kym, 12, Mumbai
 - **Mechanism instead of shorthand.** Never "atoms want", "the ball wants", "electricity is used up". Unpack the convenient fiction into the real principle.
 - **Integrity gates are mandatory**, run by independent agents that haven't seen the writing: facts (numbers in Python, sources cited); fidelity against the grounding notes; the **Feynman read** (flags names before things, labels as explanations, skipped steps, convenient falsehoods, plus a three-sentence explain-back); safety and will-it-work for a Mumbai home; licence and provenance. Writers must reject bad research suggestions (see the rejected list in PLAYBOOK §6).
 - **Make it beautiful with everything the web can do.** three.js explorers and 3D figures, WebGL shaders, canvas widgets, Web Audio, and the reader's own phone (microphone, motion sensor, slow-motion video), all opt-in. Every moving thing teaches its section's idea, is physically honest, never autoplays, and has a still SVG behind it. Budget: index.html under 4 MB, lazy widget chunks under 150 KB each, offline via the service worker.
+- **The letter is Amar's voice, not an expert's.** Amar isn't a subject expert; each book is the one he would have loved as a child. Credit the sources for the explanations; never invent his memories.
 - **Understand first, then memorise** with spaced retrieval.
 - **Content first, beauty second.**
 - **Voice:** warm, plain, vivid; no exclamation-mark gush.

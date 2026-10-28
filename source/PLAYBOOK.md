@@ -23,6 +23,8 @@ The series: free, non-commercial books for one reader (Kym, 12, Mumbai), shared 
 11. **Ground first, then adapt.** Before any prose, every section gets a grounding note built from the MIT OCW and OpenStax sources (§3a). A fact may appear in the book only if it traces to a grounding note, a Python computation, or a cited research file.
 12. **Make it beautiful with everything the web can do** (§10): canvas, three.js, WebGL shaders, Web Audio, the phone's own sensors. Every moving thing teaches; nothing moves until she asks.
 
+**The letter to Kym is in Amar's own voice, and Amar is not a subject expert.** He is making the book he would have loved to read as a child. The letter never presents him as the authority: it says the explanations were built from MIT OCW and OpenStax and checked, and that if something doesn't make sense it is the book's fault, not hers. Don't invent memories or a childhood for him.
+
 ## 2. Subject archetypes
 
 The weight of each layer changes with the subject:
