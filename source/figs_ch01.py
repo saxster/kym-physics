@@ -15,7 +15,7 @@ def _ball(f, x, y, r=8):
 
 @figure
 def c1_two_frames():
-    f = Fig(640, 280, 'A ball bounced by someone walking, drawn twice. Seen by a friend walking alongside, the ball goes '
+    f = Fig(640, 296, 'A ball bounced by someone walking, drawn twice. Seen by a friend walking alongside, the ball goes '
                       'straight up and down. Seen by someone standing still, the same ball traces a zigzag.')
     f.text(160, 30, 'Seen by a friend walking alongside', 't b', 'middle', 14)
     f.text(470, 30, 'Seen by someone standing still', 't b', 'middle', 14)
@@ -25,42 +25,45 @@ def c1_two_frames():
     f.line(160, 80, 160, 212, 'ln e dash')
     for y in (80, 120, 165, 212):
         _ball(f, 160, y, 7)
-    f.vector(176, 200, 0, -110, 'up', 13)
-    f.vector(144, 95, 0, 110, 'down', 13)
+    f.vector(184, 200, 0, -110, '', 13)
+    f.vector(136, 92, 0, 110, '', 13)
+    f.text(192, 150, 'up', 't e', 'start', 13)
+    f.text(128, 150, 'down', 't e', 'end', 13)
     f.text(160, 250, 'the ball stays beside you', 't m', 'middle', 13)
     # right: a zigzag, because the bouncer moves along while the ball goes up and down
     pts = [(360, 212), (395, 80), (430, 212), (465, 80), (500, 212), (535, 80), (570, 212)]
     f.path('M' + ' L'.join(f'{x},{y}' for x, y in pts), 'ln e dash')
     for x, y in pts:
         _ball(f, x, y, 7)
-    f.vector(380, 250, 150, 0, 'the bouncer walks this way', 13)
-    f.text(320, 272, 'Same ball, same bounces. Neither picture is "the real one".', 't', 'middle', 13)
+    f.vector(390, 246, 130, 0, '', 13)
+    f.text(460, 266, 'the bouncer walks this way', 't e', 'middle', 13)
+    f.text(320, 290, 'Same ball, same bounces. Neither picture is "the real one".', 't', 'middle', 13)
     return f.svg()
 
 
 @figure
 def c1_graph_walk():
     f = Fig(640, 300, 'A position–time graph of a walk along a corridor: forward 6 metres in 3 seconds, standing still for '
-                      '3 seconds, back 4 metres in 4 seconds, then still again. Steeper means faster; a downward slope means walking back.')
+                      '3 seconds, back 3 metres in 3 seconds, then still again. Steeper means faster; a downward slope means '
+                      'walking back. A dashed line for a friend walking back at half a metre per second crosses it twice.')
     x0, y0, w, h = 70, 240, 520, 190
     px = w / 12          # pixels per second
     py = h / 8           # pixels per metre
     f.axis(x0, y0, w, h, 'time (s)', 'position along the corridor (m)',
            ticks={'x': [(px * k, str(k)) for k in (2, 4, 6, 8, 10, 12)], 'y': [(py * k, str(k)) for k in (2, 4, 6, 8)]})
-    pts = [(0, 0), (3, 6), (6, 6), (10, 2), (12, 2)]
+    pts = [(0, 0), (3, 6), (6, 6), (9, 3), (12, 3)]
     P = [(x0 + t * px, y0 - d * py) for t, d in pts]
-    # a friend who starts at 8.5 m and strolls back at 0.5 m/s: she passes you at t = 5 s (you still) and t = 7 s
-    f.line(x0, y0 - 8.5 * py, x0 + 12 * px, y0 - 2.5 * py, 'ln m dash')
-    f.text(x0 + 12 * px - 4, y0 - 2.5 * py - 10, 'a friend walking back at 0.5 m/s', 't m', 'end', 12)
+    # a friend who starts at 8 m and strolls back at 0.5 m/s: she passes you at t = 4 s (you still) and t = 8 s
+    f.line(x0, y0 - 8 * py, x0 + 12 * px, y0 - 2 * py, 'ln m dash')
     f.path('M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in P), 'ln e')
-    for t, d in ((5, 6), (7, 5)):
+    for t, d in ((4, 6), (8, 4)):
         f.circle(x0 + t * px, y0 - d * py, 5.5, 'ln')
-    f.text(150, 182, 'forward, 2 m/s', 't e b', 'start', 13)
-    f.text(x0 + 3.4 * px, y0 - 6 * py - 10, 'standing still', 't e b', 'start', 13)
-    f.text(395, 200, 'back, 1 m/s', 't e b', 'start', 13)
-    f.text(547, 180, 'still again', 't e b', 'middle', 13)
-    f.text(x0 + 5 * px + 10, y0 - 6 * py + 22, 'same place at 5 s and at 7 s,', 't m', 'start', 12)
-    f.text(x0 + 5 * px + 10, y0 - 6 * py + 37, 'different speeds', 't m', 'start', 12)
+    f.text(105, 150, 'forward, 2 m/s', 't e b', 'start', 13)
+    f.text(x0 + 4.6 * px, y0 - 6 * py - 10, 'standing still', 't e b', 'start', 13)
+    f.text(372, 192, 'back, 1 m/s', 't e b', 'start', 13)
+    f.text(525, 158, 'still again', 't e b', 'middle', 13)
+    f.text(x0 + 12 * px - 4, 212, 'a friend walking back at 0.5 m/s', 't m', 'end', 12)
+    f.text(112, 228, 'circles: same place at 4 s and at 8 s, different speeds', 't m', 'start', 12)
     return f.svg()
 
 
@@ -76,20 +79,20 @@ def c1_four_cars():
     f = Fig(640, 330, 'Four cars on a road with the positive direction to the right. The velocity arrow shows which way each '
                       'car moves; the acceleration arrow shows which way its velocity is changing. When the two arrows point '
                       'the same way the car speeds up; when they point opposite ways it slows down, whatever the signs.')
-    f.vector(260, 28, 120, 0, 'positive direction', 13)
+    f.vector(250, 16, 120, 0, 'positive direction', 13)
     rows = [
-        (78, 1, 1, 'moving right', '(a) speeding up: a is positive'),
-        (143, 1, -1, 'moving right', '(b) slowing down: a is negative'),
-        (208, -1, -1, 'moving left', '(c) speeding up: a is negative'),
-        (273, -1, 1, 'moving left', '(d) slowing down: a is positive'),
+        (68, 1, 1, 'moving right', '(a) speeding up: a is positive'),
+        (140, 1, -1, 'moving right', '(b) slowing down: a is negative'),
+        (212, -1, -1, 'moving left', '(c) speeding up: a is negative'),
+        (284, -1, 1, 'moving left', '(d) slowing down: a is positive'),
     ]
     for y, sv, sa, left, right in rows:
         _car(f, 290, y)
-        f.vector(290 + sv * 44, y - 30, sv * 70, 0, 'v', 13)
+        f.vector(290 + sv * 44, y - 28, sv * 70, 0, 'v', 13)
         f.vector(290 + sa * 44, y + 24, sa * 48, 0, 'a', 13, kind='muted')
         f.text(20, y + 5, left, 't m', 'start', 13)
         f.text(430, y + 5, right, 't', 'start', 13)
-    f.text(320, 320, 'v is the velocity, a the acceleration; opposite arrows always mean slowing down', 't m', 'middle', 12)
+    f.text(320, 324, 'v is the velocity, a the acceleration; opposite arrows always mean slowing down', 't m', 'middle', 12)
     return f.svg()
 
 
@@ -168,7 +171,7 @@ def c1_toss_strobe():
     f.text(320, 46, f'top: only {hs[5] - hs[4]:.1f} cm between 0.4 s and 0.5 s', 't e b', 'middle', 12)
     f.text(xu, 322, 'going up', 't b', 'middle', 13)
     f.text(xd, 322, 'coming down', 't b', 'middle', 13)
-    f.text(320, 322, 'tiles 10 cm apart', 't m', 'middle', 12)
+    f.text(122, base - 50 * scale + 20, 'tiles 10 cm apart', 't m', 'end', 12)
     return f.svg()
 
 
@@ -201,7 +204,7 @@ def c1_toss_graphs():
         f.text(x1 - 9, ym - v * 18 + 4, f'{v:+d}' if v > 0 else str(v), 't m', 'end', 12)
     f.text(x1 - 9, ym + 4, '0', 't m', 'end', 12)
     f.text(x1 + 8, ym - 95 + 4, 'velocity (m/s), up is +', 't m', 'start', 13)
-    f.text(x1 + 270, ym + 18, 'time (s)', 't m', 'end', 13)
+    f.text(x1 + 270, ym + 34, 'time (s)', 't m', 'end', 13)
     for t in (0.5, 1.0):
         f.line(x1 + t * px, ym, x1 + t * px, ym + 5, 'ax')
         f.text(x1 + t * px, ym + 18, f'{t:g}', 't m', 'middle', 12)
@@ -209,7 +212,6 @@ def c1_toss_graphs():
     f.line(x1, ym - va * 18, x1 + T * px, ym - vb * 18, 'ln e', 'stroke-width="2.2"')
     f.line(x1 + 0.452 * px, ym + 90, x1 + 0.452 * px, 50, 'ln m dash')
     f.text(x1 + 0.452 * px + 6, ym - 30, 'zero here, for an instant', 't e', 'start', 12)
-    f.text(x1 + 6, ym - va * 18 - 8, '+4.4 m/s', 't e', 'start', 12)
     f.text(x1 + T * px - 6, ym - vb * 18 + 16, '−4.4 m/s', 't e', 'end', 12)
     # ---- acceleration: zero line near the top, −9.8 below it
     x2, yz = 720, 92
@@ -220,13 +222,14 @@ def c1_toss_graphs():
     f.line(x2 - 5, ya, x2, ya, 'ax')
     f.text(x2 - 9, ya + 4, '−9.8', 't m', 'end', 12)
     f.text(x2 + 8, yz - 36 + 4, 'acceleration (m/s²)', 't m', 'start', 13)
-    f.text(x2 + 270, yz + 18, 'time (s)', 't m', 'end', 13)
+    f.text(x2 + 270, yz + 34, 'time (s)', 't m', 'end', 13)
     for t in (0.5, 1.0):
         f.line(x2 + t * px, yz, x2 + t * px, yz + 5, 'ax')
         f.text(x2 + t * px, yz + 18, f'{t:g}', 't m', 'middle', 12)
     f.line(x2, ya, x2 + T * px, ya, 'ln e', 'stroke-width="2.2"')
     f.line(x2 + 0.452 * px, yz + 150, x2 + 0.452 * px, 50, 'ln m dash')
-    f.text(x2 + 0.452 * px + 6, ya - 10, 'the same −9.8 the whole time, top included', 't e', 'start', 12)
+    f.text(x2 + 0.452 * px + 8, ya - 24, 'the same −9.8', 't e', 'start', 12)
+    f.text(x2 + 0.452 * px + 8, ya - 10, 'the whole time', 't e', 'start', 12)
     return f.svg()
 
 

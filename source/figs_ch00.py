@@ -107,8 +107,6 @@ def c0_ladder():
 
     def pw(e):
         return '10' + ''.join(sup[c] for c in str(e))
-    for e in (-15, -10, -5, 0, 5, 10, 15, 20):
-        f.text(x_of(e), y + 22, pw(e) + ' m', 't m', 'middle', 12)
     above = [(-15, 'proton'), (-6, 'a wave of light'), (0, 'you'), (9, 'the Sun'), (16, 'one light year')]
     below = [(-10, 'hydrogen atom'), (-3, 'grain of sand'), (7, 'Earth'), (11, 'Earth to Sun'), (21, 'Milky Way')]
     for e, name in above:
@@ -126,8 +124,7 @@ def c0_ladder():
         f.text(x if anchor == 'middle' else x + 6, y + 62, name, 't', anchor, 13)
         f.text(x if anchor == 'middle' else x + 6, y + 78, pw(e) + ' m', 't m', anchor, 12)
     f.bracket_label(x_of(-10), x_of(9), 70, '19 steps of ×10 from a hydrogen atom to the Sun', 13)
-    f.bracket_label(x_of(1), x_of(2), 118, '×10', 12)
-    f.text(x_of(21) + 4, y + 22, 'bigger →', 't m', 'end', 12)
+    f.bracket_label(x_of(3), x_of(4), y + 14, 'one step: ×10', 12, up=False)
     return f.svg()
 
 
@@ -146,10 +143,10 @@ def c0_rain():
     f.path(f'M{ax},{ay} L{bx},{by} L{cx},{cy} L{dx},{dy} Z M{ax},{ay} L{ax},{ay + th} L{bx},{by + th} L{bx},{by} '
            f'M{bx},{by + th} L{cx},{cy + th} L{cx},{cy}', 'ln')
     f.bracket_label(ax, bx, ay + th + 10, '40 km', 13, up=False)
-    f.text(cx + 10, (by + cy) / 2 + 16, '15 km', 't', 'start', 13)
-    f.line(cx + 6, cy + 2, cx + 6, cy + th - 2, 'ln m')
-    f.text(cx + 12, cy + th + 2, '0.1 m of rain', 't', 'start', 13)
-    f.text(cx + 12, cy + th + 18, '(drawn far too thick)', 't m', 'start', 12)
+    f.text(cx + 8, cy + 4, '15 km', 't', 'start', 13)
+    f.line(bx + 6, by + 2, bx + 6, by + th - 2, 'ln m')
+    f.text(bx + 12, by + th + 2, '0.1 m of rain', 't', 'start', 13)
+    f.text(bx + 12, by + th + 18, '(drawn far too thick)', 't m', 'start', 12)
     f.text(300, 60, 'the whole city as one flat slab', 't m', 'middle', 13)
     f.lines(60, 222, ['area:  40 km × 15 km = 600 km² = 6 × 10⁸ m²',
                       'volume:  6 × 10⁸ m² × 0.1 m = 6 × 10⁷ m³',
@@ -167,15 +164,16 @@ def c0_eratosthenes():
     f.circle(Cx, Cy, R, 'wash')
     f.circle(Cx, Cy, R, 'ln')
     # parallel sunlight
-    for x in (60, 130, 205, 320, 400, 480, 580):
+    for x in (60, 130, 205, 320, 420, 500, 580):
         top = 18
         y_hit = Cy - math.sqrt(max(R * R - (x - Cx) ** 2, 0)) if abs(x - Cx) < R else 300
         if x == 205:
             y_hit = 131   # this ray stops at the tip of the Alexandria stick
         if x == 320:
             y_hit = 100   # this ray runs down the Syene stick
-        f.ray(x, top, x, y_hit - 4, chevrons=1 if x in (205, 320) else 1)
-    f.text(490, 38, 'sunlight: parallel rays', 't nn', 'start', 13)
+        f.ray(x, top, x, y_hit - 4, chevrons=1)
+    f.text(370, 36, 'sunlight:', 't nn', 'middle', 12)
+    f.text(370, 50, 'parallel rays', 't nn', 'middle', 12)
     # Syene: a stick (the well) with the Sun straight overhead
     sx, sy = Cx, Cy - R
     f.line(sx, sy, sx, sy - 40, 'ln', 'stroke-width="3"')
@@ -197,7 +195,7 @@ def c0_eratosthenes():
     p1 = (tx + r * math.cos(math.radians(a1)), ty + r * math.sin(math.radians(a1)))
     p2 = (tx, ty + r)
     f.path(f'M{p1[0]:.1f},{p1[1]:.1f} A{r},{r} 0 0 1 {p2[0]:.1f},{p2[1]:.1f}', 'ln e')
-    f.text(218, 160, '7.2°', 't e b', 'start', 13)
+    f.text(232, 152, '7.2°', 't e b', 'start', 13)
     # the same angle at the centre of the Earth
     f.line(Cx, Cy, sx, sy, 'ln m dash')
     f.line(Cx, Cy, ax, ay, 'ln m dash')
@@ -208,5 +206,4 @@ def c0_eratosthenes():
     f.text(Cx + 8, Cy - 12, '7.2° again: the same angle,', 't e b', 'start', 13)
     f.text(Cx + 8, Cy + 4, '1/50 of a full turn', 't e', 'start', 12)
     f.text(272, 176, '5,000 stadia', 't', 'middle', 13)
-    f.text(28, 318, 'the angle is drawn at 30°, four times too big, so you can see it', 't m', 'start', 12)
     return f.svg()
