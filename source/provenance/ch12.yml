@@ -1,0 +1,141 @@
+# Chapter 12 ledger: Charge and circuits. One entry per numbered section; the case file's sources sit under 12.4.
+# Course and book names are the exact keys in provenance/sources.yml. Every number in `computed:` was run with
+# python3 -I on 2026-10-28; ASSUMED marks an input we chose because no source gives one. LED and battery numbers come
+# from manufacturer datasheets (research: entries), because OpenStax and OCW never mention LEDs.
+"12.1":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 2 §2.1 Electric Charge (two kinds; Franklin's convention; charge conserved, only transferred; e = 1.602e-19 C)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap2coulomb_law/", took: "definition; conservation of charge; e value"}
+  openstax:
+    - {book: "Physics", section: "18.1 Electrical Charges, Conservation of Charge, and Transfer of Charge", url: "https://openstax.org/books/physics/pages/18-1-electrical-charges-conservation-of-charge-and-transfer-of-charge", took: "sequence; electrons move in solids; tighter-holding material takes electrons, rubbing increases contact; conductor/insulator; polarisation and the tap-water Snap Lab; two-tape Snap Lab and its Grasp Check; 'carried away in humid air' (its 'excess positive charge' paragraph not used)"}
+  research:
+    - {what: "'static is a different kind of electricity'; the balloon-and-tap demo works weakly in monsoon humidity (observation only; no mechanism)", source: "research/misconceptions.md §10", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+    - {what: "'every push has a partner' recalled (Chapter 3)", source: "BOOKPLAN §5 Ch 3; NARRATIVE.md threads", url: ""}
+  history:
+    - {what: "Franklin named the two kinds positive and negative (naming only; the kite is not told)", source: "8.02 course notes §2.1 (Franklin convention); research/history.md §6 rates the kite HEDGE", url: "https://whyy.org/articles/ben-franklins-kite-story-charged-with-confusion/"}
+  computed:
+    - "electrons per coulomb: 1/1.602e-19 = 6.242e18 (text: 'about 6.24 × 10¹⁸')"
+    - "the figure's counts (6+/6− → 6+/9− and 6+/3−; totals 12/12) are illustrative, stated as tiny in the caption"
+  figures:
+    - {name: c12_rubbing, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"12.2":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 7 §7.1–7.2 (open vs closed circuit; emf source moves charge from lower to higher potential)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap7dc_circuits/", took: "closed vs open circuits; the battery as a charge pump in a loop"}
+  openstax:
+    - {book: "Physics", section: "19.1 Ohm's Law", url: "https://openstax.org/books/physics/pages/19-1-ohms-law", took: "current I = ΔQ/Δt, 1 A = 1 C/s; conventional current vs electron flow; pea-straw Snap Lab and its stated limit (electrons repel, peas bump); lightning example 1e20 electrons in 2 ms"}
+    - {book: "Physics", section: "19.2 Series Circuits", url: "https://openstax.org/books/physics/pages/19-2-series-circuits", took: "circuit = complete closed path; current the same at all points including inside the battery (its 'infinite amount of charge' wording about Earth rejected)"}
+    - {book: "College Physics 2e", section: "21.2 Electromotive Force: Terminal Voltage", url: "https://openstax.org/books/college-physics-2e/pages/21-2-electromotive-force-terminal-voltage", took: "quote: the cell reaction 'will not take place unless there is a complete circuit'"}
+  research:
+    - {what: "one-wire model traces to Fredette & Lochhead 1980; 'hollow wires' (MOSART); 'appliances work in incomplete circuits'", source: "research/misconceptions.md §10", url: "https://www.eu-jer.com/how-difficult-are-simple-electrical-circuit-conceptions-new-findings"}
+    - {what: "IGCSE 0625 4.2.2 current 'related to the flow of charge'; conventional current + to −, electrons − to +; Lower Secondary 7Pe.01 'flow of electrons'", source: "research/school-wording.md §1, §6", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "9 V battery nominal 9.0 V (the kit)", source: "Energizer 522 datasheet", url: "https://data.energizer.com/pdfs/522.pdf"}
+  computed:
+    - "lightning: 1e20 × 1.60e-19 C / 2e-3 s = 8000 A"
+    - "two coulombs in ten seconds = 0.2 A (check question)"
+    - "the one-wire vs loop LED demo is ours (grounding/ch12.md 12.2): 9 V, 330 Ω, red LED; the home box asks the reader to turn the LED round rather than relying on leg length, which no source gives"
+  figures:
+    - {name: c12_loop, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"12.3":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 7 §7.2–7.3 (current conservation: same I through each series element; potential rises across the source and falls across each resistor, Fig 7.2.3b; potential energy converted to thermal energy in the resistor, power balance 'required by energy conservation')", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap7dc_circuits/", took: "current conservation; energy delivered in resistors; the potential-round-a-loop picture behind c12_potential_hill"}
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 6 §6.1 (drift velocity defined; I = nqAv_d)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapter6current/", took: "drift velocity"}
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 12 summary (emf = work done per unit charge, J/C)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/summary_w05d1-1/", took: "volt as joule per coulomb"}
+  openstax:
+    - {book: "Physics", section: "19.2 Series Circuits", url: "https://openstax.org/books/physics/pages/19-2-series-circuits", took: "'current neither speeds up in the wires nor slows down in the resistor' or charge would bunch up; current same everywhere including inside the battery; PhET counting activity (idea)"}
+    - {book: "College Physics 2e", section: "20.1 Current", url: "https://openstax.org/books/college-physics-2e/pages/20-1-current", took: "Example 20.3 drift speed (12-gauge copper, 20 A, 4.53e-4 m/s, one free electron per atom, ρ = 8.80e3 kg/m³); drift ~1e-4 m/s vs signal ~1e8 m/s; 'simple drift velocity is not the entire story' (random thermal motion)"}
+    - {book: "Physics", section: "19.4 Electric Power", url: "https://openstax.org/books/physics/pages/19-4-electric-power", took: "P = IV"}
+  research:
+    - {what: "'bulbs use up current' (most pupils, no percentage); IOP quote 'it is clear to most pupils that something must get used up'", source: "IOP Spark 'What gets used', via research/misconceptions.md §10", url: "https://spark.iop.org/what-gets-used"}
+    - {what: "'energy used up' recalled from Chapter 7 (bill 'units consumed' = kWh)", source: "BOOKPLAN §5 Ch 7; research/misconceptions.md §6 (bill unit = kWh)", url: ""}
+    - {what: "do not introduce a bucket model: 'the energy is carried by the circuit's fields' (physics-truth column); the text says only that the battery does work on the charge and the energy is handed over at the LED and resistor", source: "research/school-wording.md §6 ('Electricity flows' row)", url: ""}
+  computed:
+    - "red-LED loop current (9.0 − 2.0)/330 = 21.2 mA (V_F = 2.0 V typical, ASSUMED fixed with current)"
+    - "power: 9 V × 0.0212 A = 0.191 W total; LED 2.0 × 0.0212 = 0.042 W; resistor 0.0212² × 330 = 0.148 W"
+    - "drift at 21.2 mA in 0.5 mm copper (ASSUMED hook-up wire; n = 8.80e3/63.54e-3 × 6.02e23 = 8.34e28 m⁻³, A = π(0.25e-3)² = 1.96e-7 m²): v = I/(neA) = 8.09e-6 m/s; 1 m takes 1.24e5 s = 34 h"
+    - "electrons per second at 21.2 mA: 0.0212/1.602e-19 = 1.32e17"
+    - "signal/drift ratio 1e8/1e-4 = 1e12 ('a million million')"
+    - "CP Example 20.3 re-done: 4.529e-4 m/s, 2208 s ≈ 37 min per metre (not quoted in text; used to check the method)"
+  figures:
+    - {name: c12_potential_hill, origin: "ours; the potential-round-a-loop idea follows MIT 8.02 course notes Fig 7.2.3b, redrawn with our 9 V / 330 Ω / red-LED numbers"}
+  licence: "CC BY-NC-SA 4.0"
+"12.4":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 12 summary (emf as 'charge pump'); course notes ch 6 §6.2 (Ohm's law; non-ohmic materials), ch 7 §7.2 (internal resistance, V = ε − Ir, I = ε/(R + r)), §7.10 conceptual Q2 (headlights dim while starting)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/summary_w05d1-1/", took: "emf; non-ohmic; internal resistance; headlight question"}
+    - {course: "8.02T Electricity and Magnetism, Spring 2005", where: "PRS10 Resistance (R ∝ L/A)", url: "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/resources/prs_w04d2/", took: "longer wire more resistance, thicker less"}
+  openstax:
+    - {book: "Physics", section: "19.1 Ohm's Law", url: "https://openstax.org/books/physics/pages/19-1-ohms-law", took: "resistance 'opposes the flow of charge'; Ohm's empirical law V = IR, 1 Ω = 1 V/A, holds for most materials at common temperatures; headlight example 12 V, 2.50 A → 4.80 Ω; limits of Ohm's law"}
+    - {book: "College Physics 2e", section: "21.2 Electromotive Force: Terminal Voltage", url: "https://openstax.org/books/college-physics-2e/pages/21-2-electromotive-force-terminal-voltage", took: "'emf is not a force at all'; internal resistance; Example 21.2 (12.0 V, r = 0.100 Ω: 11.9 V at 10.0 Ω, 10.0 V at 0.500 Ω; r = 0.500 Ω → 6.00 V); r rises as a battery runs down; battery testers 'really test the internal resistance'"}
+  research:
+    - {what: "'a battery always gives out the same current' (batteries as givers of electricity, MOSART)", source: "research/misconceptions.md §10", url: "https://waps.cfa.harvard.edu/mosart/misconceptions.php"}
+    - {what: "IGCSE 0625 4.2 terms 'e.m.f. and p.d.', 'resistance'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "AA alkaline nominal 1.5 V; internal resistance 150–300 mΩ fresh (case file)", source: "Energizer E91 datasheet", url: "https://data.energizer.com/pdfs/e91.pdf"}
+    - {what: "9 V battery nominal 9.0 V", source: "Energizer 522 datasheet", url: "https://data.energizer.com/pdfs/522.pdf"}
+    - {what: "red LED V_F 1.8/2.0/2.4 V at 20 mA; blue 2.8/3.4/4.0 V; absolute maximum DC forward current 30 mA", source: "OptoSupply OSRB5131AH-C datasheet via Rapid 56-0352", url: "https://static.rapidonline.com/pdf/56-0352.pdf"}
+    - {what: "white LED V_F 2.8/3.3/3.8 V at 20 mA; maximum 30 mA (case file)", source: "OptoSupply OSPW5111A-Z3 datasheet via Rapid 55-2216", url: "https://static.rapidonline.com/pdf/55-2216.pdf"}
+  history:
+    - {what: "Georg Ohm's measurements (no date or biography used; the story card `circuits` carries the history and is the gate's to check)", source: "STORIES.md `circuits` ('research at the gate')", url: ""}
+  computed:
+    - "red LEDs in series on 9 V with 330 Ω (V_F = 2.0 V each, ASSUMED fixed): 1 → 21.2 mA, 2 → 15.2 mA, 3 → 9.1 mA, 4 → 3.0 mA; 5 need 10.0 V (dark)"
+    - "330 Ω alone on 9 V: 27.3 mA (graph endpoint)"
+    - "headlight 12.0/2.50 = 4.8 Ω"
+    - "CP Example 21.2 re-done: [11.88, 10.0, 6.0] V"
+    - "case file: two AA = 3.0 V < white V_F 3.3 V; red with 68 Ω on 3.0 V → (3.0 − 2.0)/68 = 14.7 mA (17.6/14.7/8.8 mA over the V_F spread); white on 9 V with 330 Ω → (9 − 3.3)/330 = 17.3 mA < 30 mA. '68 Ω is a stock value' is ASSUMED (grounding gap)."
+    - "c12_iv_graph: the LED curve is schematic through the single datasheet point (2.0 V, 20 mA); the caption says so"
+  figures:
+    - {name: c12_iv_graph, origin: "ours; resistor line is Ohm's law for 330 Ω, LED curve schematic from one datasheet point"}
+  licence: "CC BY-NC-SA 4.0"
+"12.5":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 7 §7.1 ('Generally, loads are connected in parallel across the power supply'), §7.3, §7.9.4, §7.10 Q1 (largest and smallest total from three resistors)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap7dc_circuits/", took: "quote; series/parallel rules; check question"}
+    - {course: "8.02T Electricity and Magnetism, Spring 2005", where: "PRS10 Bulbs and Batteries (second bulb in parallel: battery current doubles, each as bright; in series: current halves, each ¼ as bright)", url: "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/resources/prs_w04d2/", took: "the predict question and its answers"}
+  openstax:
+    - {book: "Physics", section: "19.2 Series Circuits", url: "https://openstax.org/books/physics/pages/19-2-series-circuits", took: "series: same current, R_eq = sum, drops add to the source; worked example 1.0, 6.0, 13 Ω on 12 V"}
+    - {book: "Physics", section: "19.3 Parallel Circuits", url: "https://openstax.org/books/physics/pages/19-3-parallel-circuits", took: "parallel: same voltage, currents add, more paths lower R; three identical R in parallel = R/3 without calculation"}
+    - {book: "College Physics 2e", section: "21.1 Resistors in Series and Parallel", url: "https://openstax.org/books/college-physics-2e/pages/21-1-resistors-in-series-and-parallel", took: "houses wired in parallel so devices operate independently"}
+  research:
+    - {what: "'¼ as bright' is ideal-resistor physics; real filaments and LEDs are non-ohmic, so the text says 'much dimmer'", source: "grounding/ch12.md 12.5 fidelity trap (PH 19.1 on resistance rising with temperature)", url: "https://openstax.org/books/physics/pages/19-1-ohms-law"}
+  computed:
+    - "PH example: 1.0 + 6.0 + 13 = 20.0 Ω; I = 0.6 A; drops 0.6, 3.6, 7.8 V (sum 12.0)"
+    - "series LEDs: (9 − 4)/330 = 15.2 mA; parallel branches 21.2 mA each, 42.4 mA at the battery"
+    - "halving the current gives 0.5² = 0.25 of the power"
+    - "the two-LED series/parallel demo is ours (grounding 12.5); each parallel branch has its own 330 Ω; the flat's wiring layout is not sourced beyond 'in parallel' (CP 21.1)"
+  figures:
+    - {name: c12_series_parallel, origin: ours}
+  licence: "CC BY-NC-SA 4.0"
+"12.6":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 7 §7.1 (short circuit; fuse or breaker in series opens the circuit)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap7dc_circuits/", took: "short circuit; fuse or breaker in series"}
+  openstax:
+    - {book: "College Physics 2e", section: "20.6 Electric Hazards and the Human Body", url: "https://openstax.org/books/college-physics-2e/pages/20-6-electric-hazards-and-the-human-body", took: "thermal vs shock hazard; short circuit definition; fuse and circuit breaker definitions; Table 20.3 shock thresholds (1 mA sensation, 5 mA max harmless, 10–20 mA can't let go, 100–300 mA fibrillation); body resistance 200 kΩ dry, 10 kΩ wet; 'do not try this at home'"}
+    - {book: "College Physics 2e", section: "23.8 Electrical Safety: Systems and Devices", url: "https://openstax.org/books/college-physics-2e/pages/23-8-electrical-safety-systems-and-devices", took: "three-wire system; earthed case; worn-insulation case with and without earth (Fig 23.32 idea for c12_earth_wire); GFI compares live and neutral currents"}
+    - {book: "College Physics 2e", section: "20.5 Alternating Current versus Direct Current", url: "https://openstax.org/books/college-physics-2e/pages/20-5-alternating-current-versus-direct-current", took: "V_rms = V₀/√2 (peak of 230 V r.m.s.)"}
+  research:
+    - {what: "230/240 V single phase, 50 cycles; band +10%/−15% (Table 1)", source: "MERC Supply Code Regulations 2021 §3.1–3.2", url: "https://merc.gov.in/wp-content/uploads/2022/07/Supply-Code-Regulations-2021-English.pdf"}
+    - {what: "240→230 V changeover 'kept in abeyance'", source: "IS 12360:1988 Amendment 4 (Nov 2011)", url: "https://law.resource.org/pub/in/bis/S05/is.12360.1988.pdf"}
+    - {what: "domestic RCD residual operating current not exceeding 30 mA (reg 44); earthed terminal (reg 18)", source: "CEA (Measures relating to Safety and Electric Supply) Regulations 2023", url: "https://kseb.in/uploads/Downloadtemsuppy/Central%20Electricity%20Authority%20(Measures%20relating%20to%20Safety%20and%20Electric%20Supply)%20Regulations,%202023-1699594973944568556.pdf"}
+    - {what: "NCERT warns never to experiment with mains, generator or inverter supply; 'MCB' is everyday Indian wording with no regulatory source", source: "research/misconceptions.md §10; grounding/ch12.md 12.6", url: "https://ncert.nic.in/textbook/pdf/hesc111.pdf"}
+    - {what: "IGCSE 0625 topic 4.4 Electrical safety (title only quoted)", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  computed:
+    - "230 V through 10 kΩ (wet) = 23.0 mA; through 200 kΩ (dry) = 1.15 mA. CP's body resistances ASSUMED transferable to 230 V; the text says so."
+    - "peak 230 × √2 = 325.3 V; period 1/50 s = 20 ms; 'reverses a hundred times a second' = 2 reversals per cycle × 50 Hz"
+    - "MERC band 230 × 1.10 = 253.0 V, 230 × 0.85 = 195.5 V"
+    - "the RCD's trip speed ('a fraction of a second') is a qualitative statement, not a sourced number"
+  figures:
+    - {name: c12_earth_wire, origin: "ours; the worn-insulation idea follows OpenStax College Physics 2e Fig 23.32, redrawn"}
+  licence: "CC BY-NC-SA 4.0"
+"story:static":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 2 §2.1 (charge conserved and transferred; Franklin's convention)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap2coulomb_law/", took: "conservation; naming"}
+  openstax:
+    - {book: "Physics", section: "18.1 Electrical Charges, Conservation of Charge, and Transfer of Charge", url: "https://openstax.org/books/physics/pages/18-1-electrical-charges-conservation-of-charge-and-transfer-of-charge", took: "electrons move between rubbed materials; conductors and insulators; humid air"}
+  history:
+    - {what: "Gilbert 1600 (TRUE); Franklin's kite HEDGE, told only as 'the story goes' if at all", source: "research/history.md §6", url: "https://whyy.org/articles/ben-franklins-kite-story-charged-with-confusion/"}
+"story:circuits":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 6 §6.1–6.2, ch 7 §7.2–7.3 (drift speed; Ohm's law; current conservation)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapter6current/", took: "laws"}
+  openstax:
+    - {book: "Physics", section: "19.1 Ohm's Law", url: "https://openstax.org/books/physics/pages/19-1-ohms-law", took: "Ohm's law; headlight example"}
+    - {book: "College Physics 2e", section: "20.1 Current", url: "https://openstax.org/books/college-physics-2e/pages/20-1-current", took: "drift is slow, the signal is fast"}
+  history:
+    - {what: "Ohm's 1827 work and its reception: not in research/history.md; STORIES.md says 'research at the gate'", source: "STORIES.md `circuits`", url: ""}

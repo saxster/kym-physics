@@ -1,0 +1,156 @@
+# Chapter 13 ledger: Magnetism and electromagnetism. One entry per numbered section; the case file's sources sit under
+# 13.3 (B of a straight wire) and 13.2 (Colaba/Alibag history, Mumbai field). Course and book names are the exact keys
+# in provenance/sources.yml. Every number in `computed:` was run with python3 -I on 2026-10-28; ASSUMED marks an input
+# we chose because no source gives one. Coin compositions are RBI press releases; stainless-steel metallurgy is a
+# steelmaker's page (Carpenter); Mumbai's field is NOAA's WMM2025 synthesised in grounding/ch13.md.
+"13.1":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Experiment 3: Magnetic Fields of a Bar Magnet and Helmholtz Coil (compass mapping of field lines)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/experiment3/", took: "idea: filings and compasses lie along the field"}
+  openstax:
+    - {book: "Physics", section: "20.1 Magnetic Fields, Field Lines, and Force", url: "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force", took: "ferromagnetic = iron, cobalt, nickel, gadolinium ('after ferrum'); a magnet magnetises unmagnetised iron with unlike poles closest; domains line up and grow; fridge-magnet take-home (idea)"}
+    - {book: "College Physics 2e", section: "22.2 Ferromagnets and Electromagnets", url: "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets", took: "other materials respond weakly, 'detectable only with sensitive instruments'; heat and blows scramble domains; Curie temperature of iron 1043 K"}
+  research:
+    - {what: "₹1/₹2 (and 50 p) ferritic stainless steel, Fe 83% Cr 17%; ₹5 nickel brass Cu 75% Zn 20% Ni 5% (2011 series)", source: "RBI press release 2011-2012/120, 22 July 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
+    - {what: "₹5 ferritic stainless steel coins, 2007 (Fe 83% Cr 17%, 23 mm)", source: "RBI press release 27 Sep 2007", url: "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=17274"}
+    - {what: "2010 set: ₹1 and ₹2 FSS, ₹5 nickel brass", source: "RBI currency press release (Platinum Jubilee coins, 1 Apr 2010)", url: "https://rbi.org.in/scripts/BS_ViewCurrencyPressRelease.aspx?Id=22284"}
+    - {what: "austenitic stainless steels paramagnetic (nonmagnetic) when annealed, cold work can make some weakly ferromagnetic; ferritic grades ferromagnetic", source: "Carpenter Technology, Magnetic Properties of Stainless Steels (industry source, not OCW/OpenStax)", url: "https://www.carpentertechnology.com/blog/magnetic-properties-of-stainless-steels"}
+    - {what: "'magnets attract all metals' (children aged 3–8, Smolleck & Hershberger 2011; IOP Spark); sorting-game demo; magnet vs charge demo", source: "research/misconceptions.md §11", url: "https://spark.iop.org/many-students-expect-all-metals-be-attracted-magnets-and-think-size-magnet-dictates-its-strength"}
+  computed:
+    - "iron's Curie temperature 1043 − 273 = 770 °C"
+    - "nickel-brass composition sums to 75 + 20 + 5 = 100 (iron 0%)"
+    - "UNSOURCED / to test: whether a 5% Ni nickel-brass ₹5 coin is noticeably attracted (text: 'expected not to stick… your magnet is the judge'); whether any given spoon is austenitic (text: 'test it'); the 2019 coin series composition (text says it is unchecked)"
+  figures:
+    - {name: c13_domains, origin: "ours; the before/after domains idea follows OpenStax Physics Fig 20.7, redrawn"}
+  licence: "CC BY-NC-SA 4.0"
+"13.2":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 8 §8.1 Introduction (a compass needle lines up along the field; 'the two magnetic poles always come in a pair', unlike electric charges)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/ch8magneti_field/", took: "compass lines up with B; poles always in pairs"}
+  openstax:
+    - {book: "Physics", section: "20.1 Magnetic Fields, Field Lines, and Force", url: "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force", took: "freely hanging magnet's north-pointing end is its north pole; the pole near geographic north is a magnetic south pole; field direction = where a compass's north end points; lines denser where stronger, closed loops through the magnet; tesla; Grasp Check (which pole attracts the needle)"}
+    - {book: "College Physics 2e", section: "22.1 Magnets", url: "https://openstax.org/books/college-physics-2e/pages/22-1-magnets", took: "cut a magnet and each piece has both poles; 'confusion arises because the geographic term North Pole has come to be used (incorrectly)'; poles are not charges; Earth 'acts like' a magnet (its 'contains a giant magnet' wording not used)"}
+    - {book: "College Physics 2e", section: "22.9 Magnetic Fields Produced by Currents: Ampere's Law", url: "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law", took: "Earth's field 'about 5.0e-5 T'"}
+  research:
+    - {what: "Mumbai (19.08 N, 72.88 E, 2026.82): F ≈ 43,600 nT, H ≈ 38,400 nT, Z ≈ 20,700 nT down, inclination ≈ 28.3°, declination ≈ 0.0°; Alibag (18.64 N, 72.87 E): F ≈ 43,400 nT, I ≈ 27.4°. Synthesised in grounding/ch13.md from the WMM2025 coefficients and checked against NOAA's published test values.", source: "NOAA/NCEI World Magnetic Model 2025", url: "https://www.ncei.noaa.gov/products/world-magnetic-model"}
+    - {what: "'Earth's North Pole is a magnet's north pole'; 'north pole = positive charge' (Maloney 1985); floating-needle compass; phyphox magnetometer", source: "research/misconceptions.md §11", url: "https://dx.doi.org/10.1088/0031-9120/20/6/009"}
+  history:
+    - {what: "Gilbert's terrella and dip needle, London 1600; garlic dismissed as 'fable and falsehood' (TRUE)", source: "research/history.md §6", url: "https://www.theiet.org/membership/library-archives/the-iet-archives/archives-highlights/earth-the-magnet-william-gilberts-terrella"}
+    - {what: "Colaba observatory 1841; hourly readings from 1846; Charles Chambers published in Phil. Trans.; Nanabhoy Moos first Indian director, compiled 1846–1905 volumes; move to Alibag because of electric trams; overlap 1904–1906 (TRUE, peer-reviewed). 'East India Company ran it' is the HGSS paper's framing as recorded in history.md; the gate may check.", source: "research/history.md §6 (HGSS 2015)", url: "https://hgss.copernicus.org/articles/6/107/2015/"}
+  computed:
+    - "F = hypot(38365, 20688) = 43,587 nT; inclination atan2(20688, 38365) = 28.34°; tan 28.3° = 0.538 = Z/H"
+    - "43.587/50 = 0.87 (Mumbai's field is 87% of the textbook round figure)"
+    - "declination ≈ 0.0° (text: 'within a fraction of a degree of true north')"
+    - "phone magnetometer expectation '40 to 45 μT' is the WMM total with room for sensor error; sensor accuracy itself is unsourced and the text says 'rough'"
+  figures:
+    - {name: c13_earth_field, origin: "ours; the Earth-as-bar-magnet loops follow OpenStax Physics Fig 20.9 / College Physics 2e Fig 22.3, redrawn with the WMM numbers for Mumbai"}
+  licence: "CC BY-NC-SA 4.0"
+"13.3":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 17 PRS: Parallel Wires; Free dipoles (questions only); Class 14–15 Biot–Savart and Ampère (sequence)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/prs_w07d1_qonly/", took: "sequence; the parallel-wires question is used in 13.4"}
+  openstax:
+    - {book: "Physics", section: "20.1 Magnetic Fields, Field Lines, and Force", url: "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force", took: "circular field round a straight wire; right-hand rule; B = μ0 I/(2πr); μ0 = 4π × 10⁻⁷ T·m/A"}
+    - {book: "College Physics 2e", section: "22.2 Ferromagnets and Electromagnets", url: "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets", took: "Ørsted 1820 'first significant evidence that the movement of charges had any connection with magnets'; coil's field like a bar magnet's, same filings pattern; electromagnet with iron core; 'Current: the source of all magnetism'; caption 'neither the planetary model nor the image of a spinning electron is completely consistent with modern physics'"}
+    - {book: "College Physics 2e", section: "22.9 Magnetic Fields Produced by Currents: Ampere's Law", url: "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law", took: "B = μ0 I/(2πr) (eq 22.24); Ørsted's currents 'were not large'; Example 22.6 (25 A at 5 cm for 1e-4 T, re-done)"}
+  research:
+    - {what: "Ørsted demo with a phone compass and an AA cell: brief touches only, the wire heats", source: "research/misconceptions.md §11", url: "https://phyphox.org/wiki/index.php/Category:Built-in_experiments"}
+    - {what: "IGCSE 0625 4.5 'magnetic effect of a current'; Lower Secondary 8Pe 'magnetic fields; electromagnets'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "AA cell internal resistance 150–300 mΩ (used only to estimate the short-circuit current as 'some amperes')", source: "Energizer E91 datasheet", url: "https://data.energizer.com/pdfs/e91.pdf"}
+  history:
+    - {what: "Copenhagen, 21 April 1820: needle twitched so slightly the audience did not notice; reversing the current reversed the twitch; four pages in Latin in July (TRUE). Ampère's theory within the year (STORIES.md `oersted`: 'Ampère's week of work')", source: "research/history.md §6", url: "https://aps.org/apsnews/2008/07/1820-oersted-electromagnetism"}
+  computed:
+    - "B at 1 cm from 1 A: 4π×10⁻⁷ × 1/(2π × 0.01) = 20.0 μT; at 2 cm 10 μT; at 3 cm 6.7 μT"
+    - "needle under a N–S wire (ASSUMED geometry: wire field perpendicular to H): atan(20/38.4) = 27.5°; with 2 A: atan(40/38.4) = 46°"
+    - "current to equal Mumbai's H at 1 cm: 2π × 0.01 × 38.4e-6 / μ0 = 1.92 A"
+    - "AA short-circuit estimate (UNSOURCED beyond the datasheet r): 1.5/0.3 = 5 A to 1.5/0.15 = 10 A; with 30 cm of 0.5 mm copper (0.026 Ω) about 4.6 A, 0.56 W in the wire and 6.3 W inside the cell: hence one-second touches. Text says 'some amperes'. Safety gate item."
+    - "CP Example 22.6 re-done: 25.0 A"
+  figures:
+    - {name: c13_wire_field, origin: "ours; the right-hand-rule picture follows OpenStax Physics Fig 20.13, redrawn with the Mumbai numbers"}
+  licence: "CC BY-NC-SA 4.0"
+"13.4":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 15 PRS: Experiment 6 predictions (force on a wire near a magnet); Class 17 PRS: parallel wires 'likes attract?'", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/prs_w06d2_qonly/", took: "predict-the-force structure; the parallel-wires predict question"}
+  openstax:
+    - {book: "Physics", section: "20.2 Motors, Generators, and Transformers", url: "https://openstax.org/books/physics/pages/20-2-motors-generators-and-transformers", took: "F = IℓB sin θ (force at right angles to current and field); motors convert electrical to mechanical energy; torque on a loop τ = NIAB sin θ, zero when flat; brushes reverse the current every half turn; 'double the number of coils' question"}
+    - {book: "College Physics 2e", section: "22.10 Magnetic Force between Two Parallel Conductors", url: "https://openstax.org/books/college-physics-2e/pages/22-10-magnetic-force-between-two-parallel-conductors", took: "same-direction currents attract, opposite repel"}
+    - {book: "College Physics 2e", section: "22.8 Torque on a Current Loop: Motors and Meters", url: "https://openstax.org/books/college-physics-2e/pages/22-8-torque-on-a-current-loop-motors-and-meters", took: "loop between poles; sides pushed opposite ways"}
+  research:
+    - {what: "IGCSE 0625 4.5 'force on a conductor, d.c. motor'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "the homopolar motor (AA cell, neodymium disc, bent copper wire) is in no fetched source; adult-led, brief runs, pinch and swallowing warnings. SAFETY GATE item.", source: "grounding/ch13.md 13.4 (demonstrations)", url: ""}
+  history:
+    - {what: "Royal Institution, 3–4 September 1821: wire spinning round a magnet in mercury, the first motor (TRUE); Faraday a bookbinder's apprentice (research/history.md cast; also used in the chemistry book). 'Never use mercury.'", source: "research/history.md §6", url: "https://www.aps.org/apsnews/2001/08/faraday-electromagnetism"}
+  computed:
+    - "Ørsted (21 Apr 1820) to Faraday's rotation (3 Sep 1821): 17 months"
+    - "order-of-magnitude force (ASSUMED 1 A, 2 cm, B = 0.1 T): F = 1 × 0.02 × 0.1 = 0.002 N ≈ weight of 0.2 g; the text calls the inputs guesses"
+  figures:
+    - {name: c13_motor_force, origin: "ours; the loop-and-brushes idea follows OpenStax Physics Figs 20.23–20.25, redrawn"}
+  licence: "CC BY-NC-SA 4.0"
+"13.5":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Class 20 slides (Faraday's law demos: falling magnet slowed by a copper ring, jumping ring, guitar pickup; 'Ways to Induce EMF': change B, A or θ)", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/presentati_w09d1/", took: "demos described in words; three ways to change the flux"}
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Experiment 5: Faraday's Law ('the system always responds so as to try to keep things the same')", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/experiment5/", took: "Lenz's law wording (quoted)"}
+  openstax:
+    - {book: "Physics", section: "20.3 Electromagnetic Induction", url: "https://openstax.org/books/physics/pages/20-3-electromagnetic-induction", took: "Faraday and Henry 1831; current only while the magnet moves; opposite motion, opposite current; faster, more. Its Queen Victoria anecdote and its '12 years after' slip are NOT used (11 years)."}
+    - {book: "Physics", section: "20.2 Motors, Generators, and Transformers", url: "https://openstax.org/books/physics/pages/20-2-motors-generators-and-transformers", took: "generator = coil rotated in a field, alternating emf; built like a motor; power stations turn it with water, steam or wind; transformers and turns ratio; high-voltage transmission then step-down; Magnetic Rope Memory check (loop twice, voltage doubles)"}
+    - {book: "College Physics 2e", section: "23.1 Induced Emf and Magnetic Flux", url: "https://openstax.org/books/college-physics-2e/pages/23-1-induced-emf-and-magnetic-flux", took: "Faraday's ring: pulse on switching on, opposite pulse on switching off, nothing while steady; 'work done to turn the coil is converted to electric energy'"}
+  research:
+    - {what: "IGCSE 0625 4.5 'induction, a.c. generator… transformer'", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+    - {what: "Tata Power-G installed capacity 930 MW thermal and 447 MW hydro (Bhira 300, Bhivpuri 75, Khopoli 72), contracted to BEST and Tata Power-D for Mumbai (Chapter 7's scoped fact; several licensees supply Mumbai and buy from outside, so the text says 'a large share')", source: "MERC, Executive Summary - Tata Power-G, Case No. 221/MT/2022, via grounding/ch07.md", url: "https://merc.gov.in/wp-content/uploads/2022/12/Tata-Power-G-MTR-2023_Executive-Summary_English_Final.pdf"}
+    - {what: "Indian mains 50 Hz (generator speed statement 'fifty times a second')", source: "MERC Supply Code Regulations 2021 §3.1 ('50 cycles'), via grounding/ch12.md", url: "https://merc.gov.in/wp-content/uploads/2022/07/Supply-Code-Regulations-2021-English.pdf"}
+  history:
+    - {what: "Royal Institution, 29 August 1831: iron ring with two coils, needle jumps on switching (TRUE)", source: "research/history.md §6", url: "https://www.theiet.org/resources/library/archives/biographies/faraday.cfm"}
+  computed:
+    - "1831 − 1820 = 11 years"
+    - "transmission loss (ASSUMED 1 MW over 1 Ω): I²R = 10,000 W at 10 kV, 100 W at 100 kV: ten times the voltage, a hundredth of the loss"
+    - "447 + 930 = 1377 MW; hydro 32.5% of Tata Power-G's capacity (energy share 22.5%, not quoted)"
+    - "UNSOURCED: 'the dams fall through turbines all year' is a plain description of hydro; the stations' storage details are not sourced. 'A hundred thousand volts or more' sits inside PH 20.2's 120–700 kV transmission range."
+  figures:
+    - {name: c13_induction, origin: "ours; the magnet-in-coil-with-meter idea follows OpenStax College Physics 2e Fig 23.4, redrawn as three frames"}
+  licence: "CC BY-NC-SA 4.0"
+"13.6":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 13 §13.3 (c = 1/√(μ0 ε0); Hertz 1887), §13.8 ('Electromagnetic waves are produced when electric charges are accelerated… Radiation cannot be produced by stationary charges or steady currents')", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapte13em_waves/", took: "prediction of EM waves; production by acceleration only (used against PH 15.1's 'by an electric current' wording)"}
+  openstax:
+    - {book: "Physics", section: "15.1 The Electromagnetic Spectrum", url: "https://openstax.org/books/physics/pages/15-1-the-electromagnetic-spectrum", took: "Maxwell's four rules in words; E ⊥ B ⊥ propagation; all EM waves cross empty space; spectrum order; Grasp Check (orientation). Its 'generated by… an electric current' and 'TV remote = radio' wordings rejected."}
+    - {book: "College Physics 2e", section: "24.1 Maxwell's Equations: Electromagnetic Waves Predicted and Observed", url: "https://openstax.org/books/college-physics-2e/pages/24-1-maxwells-equations-electromagnetic-waves-predicted-and-observed", took: "c from μ0 and ε0 matched the measured speed of light; Hertz made and detected the waves, measured their speed, showed reflection, refraction, interference"}
+    - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "visible 400–750 nm; UV 400 nm down to about 10 nm; production table (accelerating charges for radio)"}
+  research:
+    - {what: "a typical TV remote uses about 940 nm infrared", source: "NASA Science, Infrared Waves", url: "https://science.nasa.gov/ems/07_infraredwaves/"}
+    - {what: "'something leaves the eye' recalled (Chapter 10; Winer 2002, 86%)", source: "research/misconceptions.md §9 and ranked table", url: "https://Www.Gwern.net/doc/psychology/cognitive-bias/illusion-of-depth/extramission/2002-winer.pdf"}
+    - {what: "IGCSE 0625 3.3 Electromagnetic spectrum (title only)", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
+  history:
+    - {what: "Maxwell 1861–65, quote 'We can scarcely avoid the inference that light consists in the transverse undulations of the same medium…' (TRUE); speed matched Fizeau's. The 'medium' was later dropped (grounding 13.6 fidelity trap).", source: "research/history.md §6", url: "https://en.wikipedia.org/wiki/On_Physical_Lines_of_Force"}
+    - {what: "Karlsruhe 1887–88, Hertz made and detected the waves; the 'no use' reply has no primary source: told as 'the story goes' (HEDGE)", source: "research/history.md §6; BOOKPLAN §9", url: "https://spark.iop.org/hertzs-useless-discovery"}
+    - {what: "Calcutta 1895, J. C. Bose: waves of about 5 mm through walls about 75 ft away, rang a bell and set off gunpowder; reportedly chaired by Lt-Governor Mackenzie; accounts differ on walls and date (TRUE, details HEDGE); Royal Institution January 1897 at Rayleigh's invitation", source: "research/history.md §6", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
+    - {what: "GMRT near Pune: 30 dishes of 45 m, metrewave telescope (operating bands unsourced; text says 'about a metre long, around 300 MHz' as the wavelength–frequency conversion of 1 m)", source: "research/history.md §9", url: "https://www.ncra.tifr.res.in/research/the-giant-metrewave-radio-telescope"}
+  computed:
+    - "c = 1/√(4π×10⁻⁷ × 8.85×10⁻¹²) = 2.9986e8 m/s (text: 3.00 × 10⁸)"
+    - "5 mm → 2.998e8/5e-3 = 60.0 GHz; 75 ft ≈ 23 m (text: 'some twenty metres')"
+    - "visible 400–750 nm → 400 to 750 THz ('400 to 750 million million wiggles a second')"
+    - "1 m → 299.8 MHz; 50 Hz → 5996 km; 940 nm → 319 THz (not quoted)"
+    - "ladder positions are log10 of wavelength in metres: 6.78 (mains), 0 (GMRT), −2.3 (Bose), −6.03 (remote), −6.12 to −6.40 (visible), −8 (UV limit), −10 (X-rays)"
+    - "'higher than any mobile phone uses today' (60 GHz vs phone bands) is UNSOURCED in the grounding; flag for the fact gate"
+  figures:
+    - {name: c13_em_wave, origin: "ours; the E ⊥ B picture follows OpenStax Physics Fig 15.2, redrawn; the ladder uses our own rungs"}
+  licence: "CC BY-NC-SA 4.0"
+"story:earth-magnet":
+  openstax:
+    - {book: "College Physics 2e", section: "22.1 Magnets", url: "https://openstax.org/books/college-physics-2e/pages/22-1-magnets", took: "Earth acts like a magnet; pole naming"}
+  history:
+    - {what: "Gilbert's terrella and dip needle, 1600; garlic 'fable and falsehood'; della Porta breathed garlic on a lodestone (TRUE)", source: "research/history.md §6", url: "https://www.sciencehistory.org/stories/magazine/laws-of-attraction/"}
+"story:oersted":
+  openstax:
+    - {book: "College Physics 2e", section: "22.2 Ferromagnets and Electromagnets", url: "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets", took: "Ørsted; electromagnets"}
+  history:
+    - {what: "Copenhagen, 21 April 1820 (TRUE)", source: "research/history.md §6", url: "https://aps.org/apsnews/2008/07/1820-oersted-electromagnetism"}
+"story:induction":
+  openstax:
+    - {book: "College Physics 2e", section: "23.1 Induced Emf and Magnetic Flux", url: "https://openstax.org/books/college-physics-2e/pages/23-1-induced-emf-and-magnetic-flux", took: "Faraday's ring"}
+  history:
+    - {what: "3–4 September 1821 rotation; 29 August 1831 ring (TRUE)", source: "research/history.md §6", url: "https://www.aps.org/apsnews/2001/08/faraday-electromagnetism"}
+"story:maxwell":
+  ocw:
+    - {course: "8.02 Physics II: Electricity and Magnetism, Spring 2007", where: "Course notes ch 13 §13.3", url: "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chapte13em_waves/", took: "c = 1/√(μ0 ε0)"}
+  history:
+    - {what: "Maxwell 1865 quote (TRUE); Hertz 1887–88, 'no use' HEDGE", source: "research/history.md §6", url: "https://en.wikipedia.org/wiki/On_Physical_Lines_of_Force"}
+"story:bose-waves":
+  history:
+    - {what: "Calcutta 1895 demonstration (TRUE, details HEDGE); Royal Institution 1897; the patent filed by Sara Bull and Sister Nivedita (HEDGE, needs nuance)", source: "research/history.md §6", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
