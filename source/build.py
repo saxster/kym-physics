@@ -52,8 +52,8 @@ OUT_NAME = 'The-Moving-World'
 # Explorers: (mount name, title, lazy chunk, blurb). Each gets a front-matter page section#explore-<name>.
 EXPLORERS = [
     ('scale', 'Powers of Ten', 'x_scale',
-     'From a proton to a galaxy in one long zoom. Each step makes the view ten times wider, '
-     'and a readout tells you how many times bigger each new thing is than the last.'),
+     'Start with one metre. Travel smaller to a proton or larger to the Milky Way. '
+     'Every step changes the width of your window by ten.'),
     ('sky', 'The Sky', 'x_sky',
      'The Sun, the Earth and the Moon, with the Earth tilted by its real 23.4°. Pick a date and a time '
      'to see how high the noon Sun stands over Mumbai, which phase the Moon is in, and when an eclipse can happen.'),
@@ -1160,6 +1160,19 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
         'predicts': [{'id': k, 'ch': v[0], 'label': v[1]} for k, v in b.predicts.items()],
     }
     data_json = json.dumps(book_data, ensure_ascii=False).replace('</', '<\\/')
+    scale_assets = {}
+    for name in ('neighbourhood', 'coast', 'room'):
+        art_path = os.path.join(ROOT, 'assets', 'scale', name + '.webp')
+        if site_dir:
+            asset_dir = os.path.join(site_dir, 'assets', 'scale')
+            os.makedirs(asset_dir, exist_ok=True)
+            shutil.copy(art_path, os.path.join(asset_dir, name + '.webp'))
+            scale_assets[name] = 'assets/scale/' + name + '.webp'
+            sizes.append((scale_assets[name], os.path.getsize(art_path), 'asset'))
+        else:
+            scale_assets[name] = 'data:image/webp;base64,' + base64.b64encode(open(art_path, 'rb').read()).decode()
+    scale_art_json = json.dumps(scale_assets['neighbourhood'])
+    scale_assets_json = json.dumps(scale_assets)
     chunks_json = json.dumps(chunks).replace('</', '<\\/')
     text_for_fonts = re.sub(r'<[^>]+>', ' ', body) + TITLE + SUBTITLE + '0123456789'
     faces = font_faces(html.unescape(text_for_fonts))
@@ -1186,7 +1199,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
 {body}
 </main>
 {ST.DIALOG_HTML}
-<script>window.BOOK_CHUNKS={chunks_json};</script>
+<script>window.BOOK_CHUNKS={chunks_json};window.BOOK_SCALE_ART={scale_art_json};window.BOOK_SCALE_ASSETS={scale_assets_json};</script>
 <script>{JS}</script>
 <script>{ST.DIALOG_JS}</script>
 <script>{live_js}</script>
