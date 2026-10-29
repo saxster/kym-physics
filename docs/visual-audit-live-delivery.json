@@ -1,0 +1,383 @@
+{
+  "url": "https://saxster.github.io/kym-physics/",
+  "atUTC": "2026-10-29T10:11:33.077265+00:00",
+  "transport": "compressed curl HTTPS, two concurrent supporting requests",
+  "productCommit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+  "cache": "mw-bacfbd2923c0",
+  "rootIndex": {
+    "path": "index.html",
+    "sha256": "56c78a320df99706f9def63238e288bae3e5d6656937201de0e5b750fef2f03a",
+    "bytes": 4151812,
+    "verified": true
+  },
+  "files": [
+    {
+      "path": "assets/scale/coast.webp",
+      "sha256": "ef31cf30a09fb0ff5618d451115bae1121d47089b063b06d849c42d2626144d1",
+      "bytes": 145736,
+      "verified": true
+    },
+    {
+      "path": "assets/scale/neighbourhood.webp",
+      "sha256": "5fb04b846f9b05fc00b9646647b369239bc007dc8b57f88384bcab3d20b4df0d",
+      "bytes": 151126,
+      "verified": true
+    },
+    {
+      "path": "assets/scale/room.webp",
+      "sha256": "fe5eb912033a8eb33ea6942ce0caffa6e34107d11b26dc6bf86cdfa5064f2fb3",
+      "bytes": 86114,
+      "verified": true
+    },
+    {
+      "path": "icon-192.png",
+      "sha256": "71ee4385aafa14b6431e101b74c271b386d5cf437e948e588ed770cf5267d404",
+      "bytes": 3071,
+      "verified": true
+    },
+    {
+      "path": "icon-512.png",
+      "sha256": "b89a97bea1cb232aca38f71c96a97275ce2d523c50d7a5c059bda314fd2f69c6",
+      "bytes": 8695,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-7VZAQJBF.js",
+      "sha256": "6b1069485ac9eba250bf690542b11c8de661b8df048ec7e4361893f70e8a20cb",
+      "bytes": 3479,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-CFOTGZ3T.js",
+      "sha256": "86b597c84567d14df08b8b601d913e3c8e89e37265b28c69490b91f29ad2613e",
+      "bytes": 3060,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-G54ALBCI.js",
+      "sha256": "6856200ea0aecbf11aa1c0762fdee49cf5414e8c25a50f14419ba98c844d8ea5",
+      "bytes": 25530,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-I4KURCN4.js",
+      "sha256": "254b336664acb2dc9a4f8ab823dfcd9429fba87b69bc835cb9ffe4571f5c3c41",
+      "bytes": 2017,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-M4YHM7B4.js",
+      "sha256": "986232ec1387946de9322c91eae741ea4421b66b7459e0a6b82a512e51ac0693",
+      "bytes": 16929,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-TKF4ZEXY.js",
+      "sha256": "0086568bc08d64b78626817e947a2a326b71587528ef61e8160c4ca0a45ecc8b",
+      "bytes": 589,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-UGQNDQER.js",
+      "sha256": "e032fb7825707954c8fa9c1bb429a6e92db54ffef4ff00c7909137bcba90a45d",
+      "bytes": 37,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-WOT6VMZA.js",
+      "sha256": "ff9e0dca4365b7b1581e7275f3c6dbcf1474ffb874d81a3375ecf7a835dbaa6f",
+      "bytes": 106,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-XUAL2ZCV.js",
+      "sha256": "66e7b45685a0b541dd34e1dfa55116636c12210771c572e0998e4145e088abbf",
+      "bytes": 694759,
+      "verified": true
+    },
+    {
+      "path": "live/chunk-YVAPA4BS.js",
+      "sha256": "6bc4826c136a72db8f51ff2491d93c39c486332eed5341933069280076922e8c",
+      "bytes": 110,
+      "verified": true
+    },
+    {
+      "path": "live/three-3K6EQOUE.js",
+      "sha256": "96abe42b0055e379adcb777188adfbfa9c77d26e4913deef6357e45e28af83ab",
+      "bytes": 12824,
+      "verified": true
+    },
+    {
+      "path": "live/w_airfall-SE7Z7CQQ.js",
+      "sha256": "2d5e2353e359114ea540959ffe9edb931f135a83a04a6005097b70bdb2980d2b",
+      "bytes": 6902,
+      "verified": true
+    },
+    {
+      "path": "live/w_buoyancy-IFFGF7K2.js",
+      "sha256": "da9a110bd792d452ec2cc8c03d6a3a329aa756e98b646a04bb275dbd0c3c0148",
+      "bytes": 6552,
+      "verified": true
+    },
+    {
+      "path": "live/w_cannon3d-4TEYI6H4.js",
+      "sha256": "f8fd1df61f322e31f5048f0c2915283f4646e5d4b6a5c0b92063b2e69f83545b",
+      "bytes": 7126,
+      "verified": true
+    },
+    {
+      "path": "live/w_circuit-FVJGQB4O.js",
+      "sha256": "4ea2ea9127f60f2304a9497b8b2bfbf9e1e8c58581cb7fe34fba01992867065b",
+      "bytes": 5872,
+      "verified": true
+    },
+    {
+      "path": "live/w_colourmix-QJI2NLEG.js",
+      "sha256": "5ba0d683cc9e10ebbc268dbf320ae2b7ef73f87f2cdde48bd00e82a7e84536f8",
+      "bytes": 7715,
+      "verified": true
+    },
+    {
+      "path": "live/w_conduction-3JHUQSS6.js",
+      "sha256": "44e500228c10809dec41ba37eefcb2f9fe2524d58f732985bd1cf315af7416c3",
+      "bytes": 6835,
+      "verified": true
+    },
+    {
+      "path": "live/w_doppler-ZZND3U42.js",
+      "sha256": "6a197322eeab4ded6c2709e9cbb2a201232708ab6ca58f7bb63dd783e0473898",
+      "bytes": 5801,
+      "verified": true
+    },
+    {
+      "path": "live/w_energystores-43S4NG6K.js",
+      "sha256": "9d64bf67dcbb1817784e8cd675c463839524de8a59264b6f72fddd1fe943e211",
+      "bytes": 18149,
+      "verified": true
+    },
+    {
+      "path": "live/w_energytrack-KTJNYB62.js",
+      "sha256": "664b490eba54dfe27aa18c3704163408ed9c101c64aaad044cec0986039533ae",
+      "bytes": 8187,
+      "verified": true
+    },
+    {
+      "path": "live/w_expansion-QHRQZBFS.js",
+      "sha256": "e4ba1fd7bd3c7aa86b97255ba0a5c9420eed768dbda929b888596ccc017aab18",
+      "bytes": 5834,
+      "verified": true
+    },
+    {
+      "path": "live/w_eye3d-KNHOT3QY.js",
+      "sha256": "f5073ca2c016ef82d092e3d9e22ac8a0bd722ccebdf743bb90fb0519e66840e9",
+      "bytes": 6848,
+      "verified": true
+    },
+    {
+      "path": "live/w_field3d-6ENI4SZD.js",
+      "sha256": "c371d8139435d307ce528f0fe0b06413cb2a08e2ce9acb241b3d6ca16af94979",
+      "bytes": 6517,
+      "verified": true
+    },
+    {
+      "path": "live/w_fieldslab-D7VBWR52.js",
+      "sha256": "57d3eea81f6637117ad2a233aa5c7e97cabe249f59446dbbab107f87db777c57",
+      "bytes": 116774,
+      "verified": true
+    },
+    {
+      "path": "live/w_forces-WEFDIHSY.js",
+      "sha256": "e85a5d5439344798c87395b02c1377c7befa7d2f2e99153c33e34ce5c4637285",
+      "bytes": 4668,
+      "verified": true
+    },
+    {
+      "path": "live/w_freefall-TOKTISK6.js",
+      "sha256": "ae430d96087471d6c1207510742dbcee2cf5327aca08a197850b8b53e706f067",
+      "bytes": 4316,
+      "verified": true
+    },
+    {
+      "path": "live/w_graphwalk-ZOCRHDS3.js",
+      "sha256": "9b6bf0ec7e117ba4f2236c4f02e44617bb6493dc3aa71b22f8ad037502b972cb",
+      "bytes": 4904,
+      "verified": true
+    },
+    {
+      "path": "live/w_harmonics-6HK7QAUA.js",
+      "sha256": "d7ecc19a44395067f0c3931a6cbf823deba9cfa94834a75dfba2b2b408d7c812",
+      "bytes": 7131,
+      "verified": true
+    },
+    {
+      "path": "live/w_induction-5ZQV4UPP.js",
+      "sha256": "0adfdedf08f003d57142cda1804c2df35b3476a70f231f17bbcac8932673dc0c",
+      "bytes": 6015,
+      "verified": true
+    },
+    {
+      "path": "live/w_interference-ZNGTWL5K.js",
+      "sha256": "dd59c568cd7f71b3c8686b014948d359a099c217044aae224f21150313f5cb2d",
+      "bytes": 4847,
+      "verified": true
+    },
+    {
+      "path": "live/w_magnetometer-GWMA4TJ2.js",
+      "sha256": "818656ed53a4fea36b392e0326f44ff20dac35d4dc45e7d79de8ca69e751a0ac",
+      "bytes": 6862,
+      "verified": true
+    },
+    {
+      "path": "live/w_mechanicslab-T7D5F5PA.js",
+      "sha256": "2d3f95c338f61485bd6507e200010ed38a4f8e60ee53989fbdd4421ddeeb673a",
+      "bytes": 139334,
+      "verified": true
+    },
+    {
+      "path": "live/w_mirror-GECZW2FH.js",
+      "sha256": "2cf88aa624f4d18edb75911a205376cb946015bc2a3310d83a6a00a241857c6c",
+      "bytes": 7214,
+      "verified": true
+    },
+    {
+      "path": "live/w_momentum_carts-65EP2BJN.js",
+      "sha256": "5e1dfa42ff0c198626cef46ad8d4c0a302f94b93a2ac103d6c7edf1a3ca0b7dc",
+      "bytes": 4585,
+      "verified": true
+    },
+    {
+      "path": "live/w_parallax-PLHU2DVK.js",
+      "sha256": "3d79d6613212e7ace76206c333da528c1e0622404f1fd2a3fa24877c03d04969",
+      "bytes": 5876,
+      "verified": true
+    },
+    {
+      "path": "live/w_phases-5UMNCSVO.js",
+      "sha256": "8f0ff2b7d36f5d11aaab35eaa9a703d7bc5f82c7ad370643539f73b13e8dd68f",
+      "bytes": 4680,
+      "verified": true
+    },
+    {
+      "path": "live/w_pressuretank-ST2BNSD2.js",
+      "sha256": "51c1625015511e7745ef41197bfcb2e2a060e36ac55433f134c83591e210a449",
+      "bytes": 5209,
+      "verified": true
+    },
+    {
+      "path": "live/w_projectile-3YQMZ7ZQ.js",
+      "sha256": "7d6f4ae4f54c97685e804a356e61600f2bfa9c1b743929283470661b46c03cd9",
+      "bytes": 4714,
+      "verified": true
+    },
+    {
+      "path": "live/w_ramp-6GLZEA33.js",
+      "sha256": "90253938dd3faec09360c978295b267f7a30c24a383ef74a90b84b35f1537e54",
+      "bytes": 4949,
+      "verified": true
+    },
+    {
+      "path": "live/w_refraction-CYHC7PBE.js",
+      "sha256": "0efdbc4b12c8f7d4a2ed524db4afd3d378420e1f0c0de03a59b8d8da0f017b16",
+      "bytes": 5643,
+      "verified": true
+    },
+    {
+      "path": "live/w_ripple-GAO3NIHK.js",
+      "sha256": "20b8aa8a54c85d9a5cc52181f01ac31570e6eaf5afed73ae667d57e50eeb82cc",
+      "bytes": 8170,
+      "verified": true
+    },
+    {
+      "path": "live/w_scope-WGOF4QP7.js",
+      "sha256": "f53fd6099316a40c9f4f10fa42ae199637ec8df70f87cec2235640cbb9064747",
+      "bytes": 4555,
+      "verified": true
+    },
+    {
+      "path": "live/w_seasons-IEWFJL3F.js",
+      "sha256": "fadc78c2fd1390cad0fd164710a03f7870037845df8fb2a533252b1a054b1bb1",
+      "bytes": 7905,
+      "verified": true
+    },
+    {
+      "path": "live/w_seriesparallel-QNXGOSPS.js",
+      "sha256": "134c124b254b1125f32fcf414bfb5470598b7ffd4a843866c05e640f139ded35",
+      "bytes": 6755,
+      "verified": true
+    },
+    {
+      "path": "live/w_shadow-Y3O6WH43.js",
+      "sha256": "44b768d6f451389d30f65f32f8562ad5a85064c366f283923d952bb3fda44169",
+      "bytes": 5203,
+      "verified": true
+    },
+    {
+      "path": "live/w_skycolour-KFHUOPR2.js",
+      "sha256": "216524d9b3570658d33e1f1ceb38ccecceac726f809f55f0fbf54d5b3cd8a434",
+      "bytes": 9122,
+      "verified": true
+    },
+    {
+      "path": "live/w_tides-S5C2I752.js",
+      "sha256": "9b52fe636b7213320e22064ed9da75f072a1f21e74a6c57a58a942548b901e7b",
+      "bytes": 5954,
+      "verified": true
+    },
+    {
+      "path": "live/w_videotrack-HK7LVJUD.js",
+      "sha256": "1b4a874acb21eb03c00b5ac70f8ae9480393ae444a30b1eb26ccc7171e4a3b8d",
+      "bytes": 7240,
+      "verified": true
+    },
+    {
+      "path": "live/w_waveslab-XH6FWIIK.js",
+      "sha256": "eaf591f82c374d42f73133534fe9ac9f2f254697ff96a46d616adc6b980bf35d",
+      "bytes": 99911,
+      "verified": true
+    },
+    {
+      "path": "live/w_whirl-4LI2VJHN.js",
+      "sha256": "c49e9869e7c2637840a8b05fa6babbc553eb4f120260f935db7372355877245a",
+      "bytes": 4394,
+      "verified": true
+    },
+    {
+      "path": "live/x_map-2T63VRNY.js",
+      "sha256": "d8ad9ec5a8f3c3b89fb621ee934133ad81d71f0dfaf183fee986eedf11f5265b",
+      "bytes": 122635,
+      "verified": true
+    },
+    {
+      "path": "live/x_scale-4ZERKXRF.js",
+      "sha256": "4c5f4964645b06f5fefb4bb1c2369dc1258a946d67166cc96c7424688cc55f49",
+      "bytes": 83320,
+      "verified": true
+    },
+    {
+      "path": "live/x_sky-GIV75YEE.js",
+      "sha256": "7051e70116348702d775d52cdfb11ccbbf58367e84c7d6c2b29c06d3aa437c95",
+      "bytes": 41660,
+      "verified": true
+    },
+    {
+      "path": "live/x_spectrum-OKPVWXHX.js",
+      "sha256": "ec3446ce84872bc88232033471bf48b86ccc491f2825aa466ef7640eb8b09a11",
+      "bytes": 22061,
+      "verified": true
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "625a758ea3860f147fde7aebfdfafb985fdc0736bb464f9179c74b179023cb51",
+      "bytes": 603,
+      "verified": true
+    },
+    {
+      "path": "sw.js",
+      "sha256": "76b16eda7c9dace5253ad28d6656be44ff3eb24c316319bd8f4a4fef805e7f97",
+      "bytes": 3058,
+      "verified": true
+    }
+  ],
+  "allMatch": true,
+  "networkNote": "Earlier uncompressed downloads timed out on a slow connection; superseded by this complete byte-verified compressed transfer."
+}

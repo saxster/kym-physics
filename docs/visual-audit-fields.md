@@ -1,46 +1,48 @@
 # Fresh live visual audit — fields, sky and modern physics
 
-29 October 2026. Scope: all33 added fields lessons at mobile and desktop widths. **Baseline review complete: all 33 lessons personally inspected on mobile and desktop, default and changed states. Final fixed-state visual acceptance remains pending.** Only fresh images from this audit qualify as visual evidence. Prior source/numerical reviews are background, not visual acceptance.
+Final acceptance: **PASS for all 33 fields/sky/modern demonstrations on mobile and desktop.** Publication A covers 31 unchanged lessons; publication B closes the two final visual findings. Historical pending notes below describe earlier audit stages.
+
+29 October 2026. Scope: all 33 added fields lessons at mobile and desktop widths. The baseline diagnosis and final corrected states were personally inspected, including both default and changed states. Only fresh images from this audit qualify as visual evidence; source/numerical checks remain a separate verification layer.
 
 Each lesson must show readable labels/values, usable controls, coherent default and changed states, and a causal explanation suitable for a twelve-year-old. Shared kit issues are coordinated by root.
 
-## Per-lesson review register
+## Final per-lesson review register
 
 | Lesson | Title | Visual status |
 |---|---|---|
-| charge | Charge moves; neutral objects respond | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| cage | Inside a conducting shell | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| circuit-signal | Slow electrons, fast signal | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| circuit-diagnose | Find the dark LED | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| circuit-probes | Measure two branches | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| protection | A fault in the case | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| domains | Domains inside a magnet | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| earth-field | A compass that can dip | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| field-probe | Add wire and Earth fields | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| motor | Step inside a motor | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| generator | Turn a generator | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| transformer | Two coils, one changing field | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| em-wave | Two fields across a gap | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| day-night | Earth turns beneath the sky | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| seasons3d | Tilt, sunlight and daylight | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| moon-rotation | The Moon has to turn | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| eclipses | Find an eclipse by geometry | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| tides3d | Subtract Earth’s central pull | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| photoelectric | Count photons and electrons | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| atom-scale | An atom is mostly space | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| radiation-decay | Exposure, contamination and decay | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| solar-fusion | From the solar core to light | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| halo | A halo around L1 | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| stellar-spectrum | Same hydrogen, different lines | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| distance-ladder | From a blink to a distance | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| white-dwarf | More mass, smaller dwarf | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| cosmos | Choose another galaxy | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| foucault | A pendulum and a turning Earth | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| telescope | An axle parallel to Earth’s | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| tracks | Read a track through emulsion | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| parity | Nature and its mirror | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| bose-counting | Count states, not labels | Inspected mobile + desktop, default + changed; fixes need fresh render |
-| eclipse-evidence | Measure a tiny displaced star | Inspected mobile + desktop, default + changed; fixes need fresh render |
+| charge | Charge moves; neutral objects respond | PASS live A — mobile + desktop, default + changed |
+| cage | Inside a conducting shell | PASS live A — mobile + desktop, default + changed |
+| circuit-signal | Slow electrons, fast signal | PASS live A — mobile + desktop, default + changed |
+| circuit-diagnose | Find the dark LED | PASS live A — mobile + desktop, default + changed |
+| circuit-probes | Measure two branches | PASS live B — mobile + desktop, default + changed |
+| protection | A fault in the case | PASS live A — mobile + desktop, default + changed |
+| domains | Domains inside a magnet | PASS live A — mobile + desktop, default + changed |
+| earth-field | A compass that can dip | PASS live A — mobile + desktop, default + changed |
+| field-probe | Add wire and Earth fields | PASS live A — mobile + desktop, default + changed |
+| motor | Step inside a motor | PASS live A — mobile + desktop, default + changed |
+| generator | Turn a generator | PASS live A — mobile + desktop, default + changed |
+| transformer | Two coils, one changing field | PASS live A — mobile + desktop, default + changed |
+| em-wave | Two fields across a gap | PASS live A — mobile + desktop, default + changed |
+| day-night | Earth turns beneath the sky | PASS live A — mobile + desktop, default + changed |
+| seasons3d | Tilt, sunlight and daylight | PASS live A — mobile + desktop, default + changed |
+| moon-rotation | The Moon has to turn | PASS live A — mobile + desktop, default + changed |
+| eclipses | Find an eclipse by geometry | PASS live A — mobile + desktop, default + changed |
+| tides3d | Subtract Earth’s central pull | PASS live A — mobile + desktop, default + changed |
+| photoelectric | Count photons and electrons | PASS live A — mobile + desktop, default + changed |
+| atom-scale | An atom is mostly space | PASS live B — mobile + desktop, default + changed |
+| radiation-decay | Exposure, contamination and decay | PASS live A — mobile + desktop, default + changed |
+| solar-fusion | From the solar core to light | PASS live A — mobile + desktop, default + changed |
+| halo | A halo around L1 | PASS live A — mobile + desktop, default + changed |
+| stellar-spectrum | Same hydrogen, different lines | PASS live A — mobile + desktop, default + changed |
+| distance-ladder | From a blink to a distance | PASS live A — mobile + desktop, default + changed |
+| white-dwarf | More mass, smaller dwarf | PASS live A — mobile + desktop, default + changed |
+| cosmos | Choose another galaxy | PASS live A — mobile + desktop, default + changed |
+| foucault | A pendulum and a turning Earth | PASS live A — mobile + desktop, default + changed |
+| telescope | An axle parallel to Earth’s | PASS live A — mobile + desktop, default + changed |
+| tracks | Read a track through emulsion | PASS live A — mobile + desktop, default + changed |
+| parity | Nature and its mirror | PASS live A — mobile + desktop, default + changed |
+| bose-counting | Count states, not labels | PASS live A — mobile + desktop, default + changed |
+| eclipse-evidence | Measure a tiny displaced star | PASS live A — mobile + desktop, default + changed |
 
 ## Confirmed paired-board findings
 
@@ -119,3 +121,9 @@ Final candidate `9ff53a303e3f`: all four fresh stable Bose/Foucault default/chan
 All 33 demonstrations were captured at 390×844 and 1440×1000 on the public textbook after commit `6dc2858637e4d80f1419c498c9f873c7ca2ec1dc` (cache `mw-4ae3460b3b81`). Every default and meaningful changed state was personally opened: 132 photos. All 66 action recipes succeeded and both native browser error logs are empty. Each photo records the actual public URL, exact viewport, Sepia theme, opening-animation class absent and stage transform none.
 
 31 lessons pass the live mobile/desktop review. Two require follow-up publication and fresh both-width inspection: the current-probe diagram retained a voltage-probe footer; the atom reference diagram hid its blue ruler beneath inline caption plates. Source fixes now select the footer for the measurement and move both colour-labelled ruler values/units into a normal-flow header. Both original ruler segments and all physics models are unchanged. Actual renderer tests check all five probe selections and the two ruler lengths at 1, 5, 10 units; the 680-state suite passes. The per-ID JSON records the specific observed mechanism and actual readouts, and keeps these two IDs pending until their updated live photos are inspected.
+
+## Published follow-up B: final acceptance
+
+The eight fresh public screenshots for circuit-probes and atom-scale at both widths/default+changed were personally opened after commit `e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e` (cache `mw-bacfbd2923c0`). The current selector now has a current-specific footer, and voltage mode retains the red/black endpoint explanation. Both atom reference rulers are fully visible with a clear red 5 cm/blue 5 km header; no implementation-pixel wording remains. The probability-cloud and common-scale nucleus comparison remain intact.
+
+All eight B photos pass the same actual public URL, viewport, Sepia and stable-stage assertions, with extra DOM checks proving the corrected UI loaded. All four B action recipes succeed and both native browser error logs remain empty. These two findings are closed. Final result: 33/33 accepted, with 31 unchanged demonstrations evidenced at A and two corrected demonstrations evidenced at B. The 132 A photos and 8 B replacement photos remain separately versioned; source models and numerical verification are distinct from this visual review. Product source is frozen.

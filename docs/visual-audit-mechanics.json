@@ -6,7 +6,7 @@
     {
       "id": "m-horizon",
       "title": "Over the sea horizon",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-horizon.png",
@@ -74,7 +74,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -110,13 +110,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-shadow-shapes",
       "title": "A sphere and a disc cast shadows",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadow-shapes.png",
@@ -177,7 +179,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -213,13 +215,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-measurement",
       "title": "Precise can still be wrong",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-measurement.png",
@@ -288,7 +292,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -324,13 +328,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-scale",
       "title": "Length, area and volume",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-scale.png",
@@ -391,11 +397,11 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_REVIEWED_AWAITING_TWO_SCOPED_CORRECTIONS",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
-          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-scale.jpg",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review-b/m-scale.jpg",
           "states": [
             "default",
             "changed with explanation"
@@ -404,12 +410,16 @@
             390,
             844
           ],
-          "judgment": "The unit lattice makes 2-cubed and 3-cubed structure countable. Bars change 2/4/8 to 3/9/27 with a common visual scale and clear physical quantities."
+          "judgment": "Full-range fixed camera leaves every corner/face of the3× cube visible with clear unit-grid divisions; reference cube stays the same size at2× and3×. The2/4/8 and3/9/27 bars remain readable at both widths.",
+          "screenshots": [
+            "source/build/visual-audit-20261029/after-b/m-scale-390-default.jpg",
+            "source/build/visual-audit-20261029/after-b/m-scale-390-changed.jpg"
+          ]
         },
         "desktop": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
-          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-scale.jpg",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review-b/m-scale.jpg",
           "states": [
             "default",
             "changed with explanation"
@@ -418,30 +428,37 @@
             1440,
             1000
           ],
-          "judgment": "The unit lattice makes 2-cubed and 3-cubed structure countable. Bars change 2/4/8 to 3/9/27 with a common visual scale and clear physical quantities."
+          "judgment": "Full-range fixed camera leaves every corner/face of the3× cube visible with clear unit-grid divisions; reference cube stays the same size at2× and3×. The2/4/8 and3/9/27 bars remain readable at both widths.",
+          "screenshots": [
+            "source/build/visual-audit-20261029/after-b/m-scale-1440-default.jpg",
+            "source/build/visual-audit-20261029/after-b/m-scale-1440-changed.jpg"
+          ]
         },
         "captureAssertions": {
           "theme": "sepia",
           "lifting": false,
           "stageTransform": "none",
           "urlPrefix": "https://saxster.github.io/kym-physics/",
-          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
-          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+          "receiptMobile": "source/build/visual-audit-20261029/after-b/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after-b/capture-mechanics-1440.json"
         },
         "findings": [
           {
             "severity": "P2",
             "observation": "Largest3× cube is vertically cropped by the wide desktop stage; phone geometry is clear.",
             "fix": "Authored full-range camera envelope covers reference and all0.5–3 cube corners while keeping comparison scale fixed. Actual-renderer contract passes.",
-            "status": "SOURCE_FIXED_AWAITING_PUBLISHED_RECAPTURE"
+            "status": "CLOSED_BY_PERSONALLY_INSPECTED_PUBLISHED_B_DEFAULT_CHANGED_BOTH_WIDTHS"
           }
-        ]
+        ],
+        "accepted": true,
+        "publicationCommit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+        "cache": "mw-bacfbd2923c0"
       }
     },
     {
       "id": "m-rain",
       "title": "A shallow layer over a city",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-rain.png",
@@ -502,7 +519,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -538,13 +555,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-shadows",
       "title": "Two shadows measure a world",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadows.png",
@@ -605,7 +624,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -641,13 +660,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-frames",
       "title": "One bounce, two observers",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-frames.png",
@@ -708,7 +729,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -744,13 +765,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-trains",
       "title": "Three trains, one clock",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-trains.png",
@@ -811,7 +834,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -847,13 +870,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-graph",
       "title": "A graph is not a road",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-graph.png",
@@ -914,7 +939,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -950,13 +975,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-acceleration",
       "title": "Negative need not mean slowing",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-acceleration.png",
@@ -1017,7 +1044,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1053,13 +1080,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-galileo",
       "title": "Equal beats, unequal gaps",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-galileo.png",
@@ -1120,7 +1149,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1156,13 +1185,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-toss",
       "title": "Stop exactly at the top",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-toss.png",
@@ -1223,7 +1254,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1259,13 +1290,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-inertia",
       "title": "After the hand lets go",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-inertia.png",
@@ -1326,7 +1359,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1362,13 +1395,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-arrow",
       "title": "What pushes an arrow after release?",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-arrow.png",
@@ -1429,7 +1464,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1465,13 +1500,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-braking",
       "title": "Who pushed the passenger?",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-braking.png",
@@ -1532,7 +1569,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1568,13 +1605,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-friction",
       "title": "At the contact",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-friction.png",
@@ -1635,7 +1674,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1671,13 +1710,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-tablecloth",
       "title": "A short push on a plate",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-tablecloth.png",
@@ -1738,7 +1779,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1774,13 +1815,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-vectors",
       "title": "Pulls at an angle",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-vectors.png",
@@ -1841,7 +1884,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1877,13 +1920,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-newton",
       "title": "Change the force; change the mass",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-newton.png",
@@ -1944,7 +1989,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -1980,13 +2025,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-support",
       "title": "A table is a very stiff spring",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-support.png",
@@ -2047,7 +2094,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2083,13 +2130,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-pairs",
       "title": "One interaction, two objects",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-pairs.png",
@@ -2150,7 +2199,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2186,13 +2235,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-rocket",
       "title": "Throw something, move yourself",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-rocket.png",
@@ -2253,7 +2304,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2289,13 +2340,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-fall",
       "title": "Air and gravity are separate controls",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png",
@@ -2370,7 +2423,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2406,13 +2459,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-projectile",
       "title": "Drop from a moving car",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-projectile.png",
@@ -2473,7 +2528,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2509,13 +2564,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-circle",
       "title": "Turning a velocity arrow",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-circle.png",
@@ -2576,7 +2633,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2612,13 +2669,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-gravity",
       "title": "The apple, the Moon and a shared centre",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-gravity.png",
@@ -2679,7 +2738,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2715,13 +2774,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-weightless",
       "title": "A falling room and a relaxed spring",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-weightless.png",
@@ -2782,7 +2843,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2818,13 +2879,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-kepler",
       "title": "Kepler’s equal-time sweeps",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-kepler.png",
@@ -2885,7 +2948,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -2921,13 +2984,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-torsion",
       "title": "A tiny pull twists a wire",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-torsion.png",
@@ -2989,11 +3054,11 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_REVIEWED_AWAITING_TWO_SCOPED_CORRECTIONS",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
-          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-torsion.jpg",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review-b/m-torsion.jpg",
           "states": [
             "default",
             "changed with explanation"
@@ -3002,12 +3067,16 @@
             390,
             844
           ],
-          "judgment": "Large attracting masses visibly switch sides and the separate×800 dial changes sign. Small physical bar rotation remains small, as disclosed. Equilibrium/torque signs and settling curve agree; controls and arcsecond units are readable."
+          "judgment": "Header separates the twist unit and equilibrium caption from the plot. Numeric y ticks read250,0,-250 in the correct vertical order at both widths; default+27.48 and changed−27.48arcsecond equilibria agree with the dial/sign and damped trace.",
+          "screenshots": [
+            "source/build/visual-audit-20261029/after-b/m-torsion-390-default.jpg",
+            "source/build/visual-audit-20261029/after-b/m-torsion-390-changed.jpg"
+          ]
         },
         "desktop": {
           "inspected": true,
-          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
-          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-torsion.jpg",
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review-b/m-torsion.jpg",
           "states": [
             "default",
             "changed with explanation"
@@ -3016,31 +3085,38 @@
             1440,
             1000
           ],
-          "judgment": "Switching attracting masses reverses the dial and signed equilibrium from +27.48 to −27.48 arcseconds; the disturbed trace decays toward the dashed equilibrium. The 800× dial enlargement is explicit. Desktop axis labels are ordered and readable.",
-          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+          "judgment": "Header separates the twist unit and equilibrium caption from the plot. Numeric y ticks read250,0,-250 in the correct vertical order at both widths; default+27.48 and changed−27.48arcsecond equilibria agree with the dial/sign and damped trace.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md",
+          "screenshots": [
+            "source/build/visual-audit-20261029/after-b/m-torsion-1440-default.jpg",
+            "source/build/visual-audit-20261029/after-b/m-torsion-1440-changed.jpg"
+          ]
         },
         "captureAssertions": {
           "theme": "sepia",
           "lifting": false,
           "stageTransform": "none",
           "urlPrefix": "https://saxster.github.io/kym-physics/",
-          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
-          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+          "receiptMobile": "source/build/visual-audit-20261029/after-b/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after-b/capture-mechanics-1440.json"
         },
         "findings": [
           {
             "severity": "P2",
             "observation": "Phone collision layout visually orders y labels0,250,-250 because caption/unit heading displaces the upper tick.",
             "fix": "Moved caption and twist-unit heading into true header gutter without changing axes, tick anchors or data.",
-            "status": "SOURCE_FIXED_AWAITING_PUBLISHED_RECAPTURE"
+            "status": "CLOSED_BY_PERSONALLY_INSPECTED_PUBLISHED_B_DEFAULT_CHANGED_BOTH_WIDTHS"
           }
-        ]
+        ],
+        "accepted": true,
+        "publicationCommit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+        "cache": "mw-bacfbd2923c0"
       }
     },
     {
       "id": "m-perturbation",
       "title": "A small nudge leaves a message",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-perturbation.png",
@@ -3102,7 +3178,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3139,13 +3215,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-mission",
       "title": "Burn here, change the far side",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-mission.png",
@@ -3207,7 +3285,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3244,13 +3322,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-pressure",
       "title": "Pressure has no preferred direction",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-pressure.png",
@@ -3312,7 +3392,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3349,13 +3429,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-suction",
       "title": "The outside air does the pushing",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-suction.png",
@@ -3417,7 +3499,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3454,13 +3536,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-hydrostatic",
       "title": "Same depth, same pressure",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-hydrostatic.png",
@@ -3522,7 +3606,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3559,13 +3643,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-hull",
       "title": "The same steel, a larger hull",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-hull.png",
@@ -3634,7 +3720,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3671,13 +3757,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-energy",
       "title": "Choose what you count",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-energy.png",
@@ -3739,7 +3827,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3776,13 +3864,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-impact",
       "title": "Two ways to stop a moving ball",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-impact.png",
@@ -3844,7 +3934,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3881,13 +3971,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-work",
       "title": "Different routes, the same rise",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-work.png",
@@ -3949,7 +4041,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -3986,13 +4078,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-power",
       "title": "Power is the rate, energy is the amount",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-power.png",
@@ -4054,7 +4148,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -4091,13 +4185,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-station",
       "title": "Follow the shaft and the energy",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-station.png",
@@ -4159,7 +4255,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -4196,13 +4292,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-stevin",
       "title": "Stevin’s wreath of spheres",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-stevin.png",
@@ -4264,7 +4362,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -4301,13 +4399,15 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     },
     {
       "id": "m-engine",
       "title": "A heat engine needs two temperatures",
-      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "status": "LIVE_MOBILE_DESKTOP_PASS",
       "mobile": {
         "inspected": true,
         "screenshot": "source/build/visual-audit-20261029/boards-before/m-engine.png",
@@ -4369,7 +4469,7 @@
       },
       "finalLive": {
         "inspected": true,
-        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "status": "LIVE_MOBILE_DESKTOP_PASS",
         "mobile": {
           "inspected": true,
           "reviewer": "visual_mechanics_audit",
@@ -4406,7 +4506,9 @@
           "urlPrefix": "https://saxster.github.io/kym-physics/",
           "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
           "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
-        }
+        },
+        "accepted": true,
+        "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc"
       }
     }
   ],
@@ -4420,7 +4522,7 @@
   "candidateDiagnosticPhoneInspectedLessons": 42,
   "candidateRefinedDesktopPersonallyInspectedLessons": 28,
   "finalLiveInspectedLessons": 42,
-  "sourceFreeze": "Mechanics source frozen after ruler subtitle relocation into the true header gutter; all three focused mechanics suites pass.",
+  "sourceFreeze": "FROZEN: final published B e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e. All mechanics fixes visually closed at both tested sizes; focused actual-renderer envelope contract passes.",
   "candidateRefinedDesktopJointlyInspectedLessons": 42,
   "candidateDesktopReviewers": {
     "visual_mechanics_audit": 28,
@@ -4437,9 +4539,23 @@
     "actionErrors": 0,
     "consoleWarnings": 0,
     "consoleErrors": 0,
-    "limitation": "Browser viewport emulation; no claim of physical device testing or measured learner comprehension."
+    "limitation": "Browser viewport emulation; no claim of physical device testing or measured learner comprehension.",
+    "followup": {
+      "publicationCommit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+      "cache": "mw-bacfbd2923c0",
+      "ids": [
+        "m-scale",
+        "m-torsion"
+      ],
+      "records": 8,
+      "personallyInspected": 8,
+      "actionErrors": 0,
+      "consoleWarnings": 0,
+      "consoleErrors": 0,
+      "originalAImagesPreserved": true
+    }
   },
-  "finalLiveAcceptedLessons": 40,
+  "finalLiveAcceptedLessons": 42,
   "finalLiveDesktopJointlyInspectedLessons": 42,
   "finalLiveDesktopReviewers": {
     "visual_mechanics_audit": 28,

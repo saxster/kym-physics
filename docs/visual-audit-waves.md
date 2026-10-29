@@ -1,5 +1,7 @@
 # Fresh visual audit: thermal, waves and optics
 
+**Final acceptance: all 34 demonstrations PASS on the live textbook at both reviewed viewport sizes, in default and changed states.** The opening table preserves the baseline diagnosis; final evidence and acceptance are recorded below.
+
 All34 new demonstrations were personally inspected in fresh live default and meaningful changed states at390×844 and1440×1000. Paired evidence is in `source/build/visual-audit-20261029/boards-waves-before/`. These are baseline findings, not acceptance of the rebuilt candidate.
 
 | Lesson | Actual baseline observation | Implemented response |

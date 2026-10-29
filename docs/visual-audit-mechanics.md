@@ -2,7 +2,7 @@
 
 29 October2026. All42 new mechanics, fluids and energy lessons were personally inspected in fresh LIVE default and changed-state screenshots at390×844 and1440×1000 browser viewports. These are browser-size tests, not physical-device measurements.
 
-**Baseline coverage: 42/42 paired boards. Diagnostic candidate phone review: 42/42. Refined candidate desktop review: 42/42 (mechanics agent 28, independent waves agent 14). Final LIVE review: 42/42 at both sizes; acceptance: 40/42, with scale framing and torsion phone-axis labels awaiting the targeted follow-up release.**
+**Baseline coverage: 42/42 paired boards. Diagnostic candidate phone review: 42/42. Refined candidate desktop review: 42/42 (mechanics agent 28, independent waves agent 14). Final LIVE review: 42/42 at both sizes; acceptance: 42/42, with both follow-up corrections freshly closed on the published site.**
 
 Horizontal reading-progress bars and sticky reading toolbar in several clips are capture UI overlays, not physics objects. All39 missing phone recipes completed with zero control-action errors; the initial3 paired cases were captured by the coordinator.
 
@@ -107,3 +107,9 @@ Publication `6dc2858637e4d80f1419c498c9f873c7ca2ec1dc` (cache `mw-4ae3460b3b81`)
 The mechanics reviewer personally opened all42 new phone pairs and the first28 desktop pairs through Kepler. The final14 desktop pairs are assigned for independent review. Two concrete defects were found: the largest3× cube clips the wide desktop stage, and the small torsion plot visually misorders numeric ticks when captions force annotation displacement. Both received scoped authored fixes and require a new published recapture. All other personally viewed pairs retained their clear physical comparison, readable units/labels and functioning controls; per-ID judgments and screenshots are in the JSON ledger.
 
 The independent waves reviewer has now personally opened all14 remaining final LIVE desktop pairs. Their exact per-ID observations are recorded in `docs/visual-review-mechanics-live-tail.md` and integrated into the JSON. All42 mechanics lessons have now been visually reviewed at both tested sizes (mechanics reviewer: all42 phone and first28 desktop; independent reviewer: final14 desktop). Forty are accepted; scale framing and torsion phone-axis labels await publication and targeted fresh evidence. Both scoped corrections and the full-range actual-renderer camera contract are implemented and pass.
+
+## Final acceptance
+
+All42 mechanics lessons pass the reviewed phone and desktop cases. The mechanics reviewer personally opened all42 published phone pairs and first28 desktop pairs; the independent waves reviewer opened the final14 desktop pairs. Follow-up release `e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e`, cache `mw-bacfbd2923c0`, closes both remaining defects. All eight new scale/torsion pictures were personally opened: the3× unit lattice fits completely without camera rescaling, and torsion ticks are correctly ordered250,0,−250 with readable headings. Four default/changed states per width have verified publicURL, exactviewport, sepia, liftingfalse and transformnone receipts. Action errors and warning/error logs are zero.
+
+The original A matrix remains intact under `after/`; the accepted replacement images and receipts are under `after-b/`. Row-level JSON statuses now read `LIVE_MOBILE_DESKTOP_PASS` for every lesson, with the final two pointing to their B evidence. Product source is frozen. These checks demonstrate browser behaviour and visible model fidelity at390×844 and1440×1000; they do not claim testing on physical phones or measured learner comprehension.

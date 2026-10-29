@@ -262,7 +262,7 @@
       "sepia"
     ],
     "browser": "IAB",
-    "finalLiveGate": "PENDING_PUBLICATION"
+    "finalLiveGate": "PASS_ALL_109_BOTH_WIDTHS_DEFAULT_CHANGED"
   },
   "limits": [
     "Viewport emulation; no physical phone claim",
@@ -279,6 +279,24 @@
     ],
     "candidateScreenshots": "source/build/visual-audit-20261029/candidate-b/",
     "tests": "all 11 commands PASS",
-    "finalLive": "awaiting publication and targeted recapture"
+    "finalLive": "PASS: all16 affected live photographs personally inspected; zero action or console errors"
+  },
+  "finalLive": {
+    "result": "PASS",
+    "lessons": 109,
+    "selectedPhotographs": 436,
+    "extraStringModePhotographs": 2,
+    "manifest": "docs/visual-audit-live-manifest.json",
+    "manifestSha256": "f8acba30e765feaf2d1a987edc43d912e78bec6d15098d54c8e7ba4e3587b2e7",
+    "productRevisions": {
+      "after": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+      "after-b": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e"
+    },
+    "allControlsAndConsoleReceipts": "PASS",
+    "physicsTests": "11 commands PASS",
+    "browserCoverage": "IAB fields/waves and coordinator; CUA Edge mechanics final matrix",
+    "deliveryReceipt": "docs/visual-audit-live-delivery.json",
+    "deliveryReceiptSha256": "16df880a7e9521e0e80075eccf5741d506c07c4e97f3ad56bd229ac25fd70054",
+    "all62PublishedFilesMatch": true
   }
 }

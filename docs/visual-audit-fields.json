@@ -1,7 +1,7 @@
 {
   "date": "2026-10-29",
   "scope": "All 33 fields/sky/modern lessons; fresh live IAB mobile and desktop images only",
-  "reviewBoundary": "Source preparation is not a visual inspection. Each lesson remains pending until its fresh images are personally opened.",
+  "reviewBoundary": "Historical diagnosis, source verification and candidate review are retained separately below. Final acceptance now covers all33:31 unchanged lessons personally inspected live at publicationA, and2 corrected lessons personally inspected at publicationB, both widths/default+changed.",
   "lessons": [
     {
       "id": "charge",
@@ -389,7 +389,7 @@
     {
       "id": "circuit-probes",
       "title": "Measure two branches",
-      "status": "PENDING_LIVE_B_CORRECTION",
+      "status": "PASS_LIVE_B_MOBILE_DESKTOP",
       "question": "Do unequal parallel branches have equal current or equal voltage?",
       "expectedObservation": "Change the actual series/parallel topology, then inspect branch/total current or the red–black voltage difference across either load.",
       "changedState": [
@@ -445,6 +445,47 @@
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
       },
       "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_B_MOBILE_DESKTOP",
+        "publication": "B",
+        "commit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+        "cache": "mw-bacfbd2923c0",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after-b/circuit-probes-390-default.jpg",
+          "source/build/visual-audit-20261029/after-b/circuit-probes-390-changed.jpg",
+          "source/build/visual-audit-20261029/after-b/circuit-probes-1440-default.jpg",
+          "source/build/visual-audit-20261029/after-b/circuit-probes-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-b/circuit-probes.png"
+        ],
+        "observation": "Both fresh public viewport pairs personally opened. Current mode now correctly describes the marked current point, while voltage mode retains red/black endpoint account. Both top titles, named selectors, measured values and diagrams agree.",
+        "actualReadouts": {
+          "390-default": "Parallel topology: I₁ 21.21 mA; I₂ 10.61 mA; battery 31.82 mA. Probe branch 1: 21.21 mA. Each load contains resistor + LED.",
+          "390-changed": "Series topology: I₁ 5.05 mA; I₂ 5.05 mA; battery 5.05 mA. Probe red minus black across load 2: 5.33 V. Each load contains resistor + LED.",
+          "1440-default": "Parallel topology: I₁ 21.21 mA; I₂ 10.61 mA; battery 31.82 mA. Probe branch 1: 21.21 mA. Each load contains resistor + LED.",
+          "1440-changed": "Series topology: I₁ 5.05 mA; I₂ 5.05 mA; battery 5.05 mA. Probe red minus black across load 2: 5.33 V. Each load contains resistor + LED."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "newUiContentAssertionsPassed": true,
+        "actionErrors": []
+      },
+      "finalLiveReviewA": {
         "inspected": true,
         "reviewer": "visual_fields_audit",
         "verdict": "PENDING_LIVE_B_CORRECTION",
@@ -1830,7 +1871,7 @@
     {
       "id": "atom-scale",
       "title": "An atom is mostly space",
-      "status": "PENDING_LIVE_B_CORRECTION",
+      "status": "PASS_LIVE_B_MOBILE_DESKTOP",
       "question": "If a nucleus were a 1 cm marble, how large would the atom be?",
       "expectedObservation": "Change the scale and compare a nucleus reference width with the electron-cloud reference width. Electrons are not drawn on planetary tracks.",
       "changedState": [
@@ -1882,6 +1923,47 @@
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
       },
       "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_B_MOBILE_DESKTOP",
+        "publication": "B",
+        "commit": "e7cbe1cc21dfba6213e8ad5e19ba81301a12f36e",
+        "cache": "mw-bacfbd2923c0",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after-b/atom-scale-390-default.jpg",
+          "source/build/visual-audit-20261029/after-b/atom-scale-390-changed.jpg",
+          "source/build/visual-audit-20261029/after-b/atom-scale-1440-default.jpg",
+          "source/build/visual-audit-20261029/after-b/atom-scale-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-b/atom-scale.png"
+        ],
+        "observation": "Both fresh public viewport pairs personally opened. Red nucleus ruler and blue atom ruler are fully visible at equal drawn lengths; colour-labelled header clearly gives5cm versus5km and distinct ruler units. Probability cloud/nucleus modes and ratio account remain correct. No implementation-pixel wording remains.",
+        "actualReadouts": {
+          "390-default": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. The red nucleus marker is enlarged separately. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "390-changed": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. At the common scale the nucleus is too small to resolve. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "1440-default": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. The red nucleus marker is enlarged separately. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "1440-changed": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. At the common scale the nucleus is too small to resolve. The blue cloud is a symbolic probability region, not an electron orbit."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "newUiContentAssertionsPassed": true,
+        "actionErrors": []
+      },
+      "finalLiveReviewA": {
         "inspected": true,
         "reviewer": "visual_fields_audit",
         "verdict": "PENDING_LIVE_B_CORRECTION",
@@ -3249,6 +3331,30 @@
     "browserErrorCount": 0,
     "actionErrorCount": 0,
     "assertions": "Every photo confirms actual public URL, exact requested viewport, Sepia, lifting false and stage transform none. Numeric/source tests are separate.",
-    "publicationVerification": "Parent verified commit 6dc2858637e4d80f1419c498c9f873c7ca2ec1dc published; root SHA e8ad80185bdc04246909cbb8277eea3767833142f236480dabc528ffde094191."
+    "publicationVerification": "Parent verified commit 6dc2858637e4d80f1419c498c9f873c7ca2ec1dc published; root SHA e8ad80185bdc04246909cbb8277eea3767833142f236480dabc528ffde094191.",
+    "closedByPublicationB": [
+      "circuit-probes",
+      "atom-scale"
+    ]
+  },
+  "finalAcceptance": {
+    "verdict": "PASS_ALL_33_FIELDS_MOBILE_DESKTOP",
+    "acceptedLessons": 33,
+    "publicationAUnchangedLessons": 31,
+    "publicationBCorrectedLessons": 2,
+    "personallyOpenedFinalPhotos": 140,
+    "scope": "All33 default and meaningful changed states at390×844 and1440×1000; the8 B replacement photos supersede the8 A photos with final findings. A files remain intact.",
+    "browserErrorCount": 0,
+    "actionErrorCount": 0,
+    "outstandingFindings": [],
+    "publicationBReceiptFiles": [
+      "source/build/visual-audit-20261029/after-b/capture-fields-390.json",
+      "source/build/visual-audit-20261029/after-b/capture-fields-1440.json",
+      "source/build/visual-audit-20261029/after-b/actions-fields-390.json",
+      "source/build/visual-audit-20261029/after-b/actions-fields-1440.json",
+      "source/build/visual-audit-20261029/after-b/console-fields-390.json",
+      "source/build/visual-audit-20261029/after-b/console-fields-1440.json"
+    ],
+    "productSourceFrozen": true
   }
 }
