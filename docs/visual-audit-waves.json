@@ -1,0 +1,1769 @@
+{
+  "scope": "34 thermal/waves/optics lessons; fresh live baseline default+changed at390×844 and1440×1000, all personally inspected.",
+  "date": "2026-10-29",
+  "evidenceRule": "Only screenshots captured during this audit can establish visual findings. Source-derived candidates are not visual closure.",
+  "lessons": [
+    {
+      "id": "w8-joule",
+      "title": "Turn a falling weight into warming",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Drop progress: 0 → 1",
+      "mechanismToJudge": "Weight lowers, paddles turn, equal energy accounts and small thermometer rise.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-joule.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Drop progress",
+          "value": 1
+        }
+      ],
+      "baselineObservation": "Weight falls further and equal gravitational/internal-energy readouts double from980to1960J; temperature rise doubles. Diagram text is very small on mobile; Play is a no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Weight drop and doubled energy/temperature account visible; no-op Play removed.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-00.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-samples",
+      "title": "A hot spoonful and a warm bucket",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Sample mass: 5 g → 10000 g",
+      "mechanismToJudge": "Compare energy released by material amount rather than temperature alone.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-samples.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "Changing selected amount from5g to10kg leaves the containers, marker count and speed curves visually unchanged; only very small energy numbers change. The essential amount/total-energy comparison is not visible.",
+          "fix": "Label equally enlarged sampling windows and add shared-scale amount and cooling-energy bar pairs in3D/diagram. Amount control now has a direct visible account without pretending the marker count is literal.",
+          "modelImpact": "Display account only; unchanged mcΔT and temperature distribution."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Sample mass",
+          "value": 10000
+        }
+      ],
+      "baselineObservation": "Fresh paired board confirmed the previously recorded finding.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Common amount/energy bars visibly reverse comparison at10kg; fixed sampling-window count clearly disclosed.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-00.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-insulation",
+      "title": "Insulation works in both directions",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Room → ice; thickness maximum",
+      "mechanismToJudge": "Arrow and gradient reverse; thicker layer reduces power.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-insulation.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Room → ice"
+        },
+        {
+          "slider": "Wool layer thickness",
+          "value": 0.05
+        }
+      ],
+      "baselineObservation": "Cold/hot endpoints and temperature slope reverse for room-to-ice; thicker wool is visible. Gradient labels are small; Play does not change the image.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Heat arrow and gradient reverse; cold/hot labels readable, no-op Play removed.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-01.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-phase",
+      "title": "Energy enters while the thermometer waits",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Energy 200 → 500 → 1500 kJ",
+      "mechanismToJudge": "Move between melting plateau, warming liquid and boiling plateau; particle arrangement agrees.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-phase.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Energy added to 1 kg",
+          "value": 330
+        }
+      ],
+      "baselineObservation": "200to330kJ moves the marker across the0°C melting plateau and melted fraction47to86%; representative arrangement changes while temperature stays0°C. Axis labels too small on phone.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "0°C plateau marker/fraction changes while temperature remains0; axes readable.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-01.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-evaporation",
+      "title": "The fastest escape from a matka",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "May → July; play",
+      "mechanismToJudge": "Returning energetic candidates increase with humidity; wet-bulb floor distinguishes cases.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-evaporation.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Mumbai July"
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "May-to-July batch changes escaped/returned counts4/2to2/4 and wet-bulb floor28.7to26.7°C. Red candidates are visibly leaving the liquid; phone energy/count labels need the shared readability fix.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Energetic escaping markers and humidity return counts visible; common annotated energy threshold readable.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-02.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-convection",
+      "title": "A coastal circulation loop",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Land air40 →20 →30°C; play",
+      "mechanismToJudge": "Buoyancy/circulation reverses, then thermal drive vanishes.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-convection.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Both widths show only an oval of particles and rectangular loop outline; no arrow indicates which side rises or reverses. Density numbers alone carry the changed mechanism.",
+          "fix": "Added3D/2D direction arrowheads, explicit rising side and reversible/equal-temperature explanation.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Air over land",
+          "value": 20
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Both widths show only an oval of particles and rectangular loop outline; no arrow indicates which side rises or reverses. Density numbers alone carry the changed mechanism.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "2D direction arrows reverse correctly. Remaining top-arrow caption obstruction moved to footer after desktop evidence.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-02.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w8-engine",
+      "title": "An engine needs a cold destination",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Fraction of reversible limit: .5 →1",
+      "mechanismToJudge": "Work rises and rejected energy falls while sum stays100J.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w8-engine.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Work/rejected bars change25/75to50/50 and conserve100J. Three3D boxes have no identity labels; unrelated Joule caption remains under engine.",
+          "fix": "Added identities for hot reservoir, engine, cold reservoir and work; output arrow now scales with calculated work and vanishes at zero, piston explicitly schematic.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Fraction of reversible limit",
+          "value": 1
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Work/rejected bars change25/75to50/50 and conserve100J. Three3D boxes have no identity labels; unrelated Joule caption remains under engine.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Reservoir/engine identities and25/75vs50/50account clear. Work-out label changed to attach to actual variable-length arrow after desktop evidence.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-03.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-pendulum",
+      "title": "What sets a pendulum’s clock?",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Bob mass10 →100kg, then length1 →4m; play",
+      "mechanismToJudge": "Mass changes force but not clock; force arrows must remain visible; length changes period.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-pendulum.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "At the default10kg state, the displayed gravitational-force arrow is6.86 logical pixels long and the tangential component about1px, buried in the bob marker. This prevents the force/clock mechanism from being read. The100kg arrow fits; the initial source-only clipping hypothesis was discarded.",
+          "fix": "Use explicitly labelled fixed-scale gravitational g and tangential acceleration arrows, offset outside the bob, while preserving actual force values in newtons and explaining mass cancellation.",
+          "modelImpact": "No change to force/period equations; arrow quantity changes from force to acceleration and is disclosed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Bob mass",
+          "value": 100
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Fresh paired board confirmed the previously recorded finding.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Equal acceleration arrows and periods remain visible at10vs100kg; actual force readout changes tenfold.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-03.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-resonance",
+      "title": "Push in time, then add damping",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Damping .12 →.03; run; manual push",
+      "mechanismToJudge": "Same drive builds larger response; energy input/loss account remains inspectable.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-resonance.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Damping ratio",
+          "value": 0.03
+        },
+        {
+          "button": "Give one small push now"
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Lower damping visibly raises and narrows the response peak; manual push changes energy readout. Distinguish current transient displacement from steady-response curve; both already named. Phone labels too small.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Damping change raises/narrows steady-response peak while actual oscillator/input account remains distinct.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-04.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-flutter",
+      "title": "A steady flow can feed a twist",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Feedback .6 →0; elapsed12s",
+      "mechanismToJudge": "Steady wind feedback vs loss changes growth to decay; inspect deck twist.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-flutter.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Deck appears edge-on as a flat thin line at both widths and both states; twist is hidden. Growth/decay curve is near the bottom of its fixed0..20energy scale. Play has no effect because elapsed time is manual.",
+          "fix": "Oblique3D deck plus a declared4× angular cross-section and actual-angle readout; manual scrub replaces no-op Play.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Steady-flow feedback",
+          "value": 0
+        },
+        {
+          "slider": "Elapsed time",
+          "value": 12
+        }
+      ],
+      "baselineObservation": "Deck appears edge-on as a flat thin line at both widths and both states; twist is hidden. Growth/decay curve is near the bottom of its fixed0..20energy scale. Play has no effect because elapsed time is manual.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Oblique deck and4× cross-section reveal twist; actual angle and growth/decay energy remain explicit.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-04.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-water",
+      "title": "Follow a parcel beneath a wave",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Wavelength2 →4m; play",
+      "mechanismToJudge": "Crest travels while red parcel returns on a small local orbit; motion needs to be perceivable.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-water.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "At both widths the marked surface parcel is only a small dot on an almost flat sheet. The few-pixel displacement does not visibly form the orbit that answers the question.",
+          "fix": "Add framed3D and calculated2D inspection views of the same parcel, with fixed mean point and explicitly equal40× displacement magnification in both directions. Main physical amplitude and clock stay unchanged.",
+          "modelImpact": "Display transform only; same physical state, dispersion, amplitude limit and clock."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Water wavelength",
+          "value": 4
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Fresh paired board confirmed the previously recorded finding.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "40× same-parcel circle and fixed mean are visible, along with much smaller true-amplitude whole-wave motion.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-05.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-sound",
+      "title": "A compression crosses the air",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Frequency300 →600Hz; play",
+      "mechanismToJudge": "Compression travels, individual particles oscillate locally; pressure probe changes.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-sound.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "Only a pressure curve is shown though header promises a pressure/displacement comparison; identical blue particles offer no individually followable parcel. Frequency increases compression count correctly.",
+          "fix": "Tracked red parcel with fixed black mean and pressure/displacement quadrature curves, each normalised to own amplitude.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Sound frequency",
+          "value": 600
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Only a pressure curve is shown though header promises a pressure/displacement comparison; identical blue particles offer no individually followable parcel. Frequency increases compression count correctly.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Tracked red parcel and black mean are visible; red displacement/blue pressure curves have quarter-cycle offset.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-05.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-echo",
+      "title": "One clap, two legs of the journey",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Round-trip progress0 →.5 →1",
+      "mechanismToJudge": "Pulse reaches wall halfway and returns; elapsed time counts both legs.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-echo.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Round-trip progress",
+          "value": 1
+        }
+      ],
+      "baselineObservation": "At half journey pulse is on wall; at full journey it returns to clapper and delay doubles. Readouts explain both legs. Global Play is a no-op and original sound-compression caption is unrelated.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Pulse returns from wall to clapper and delay doubles; manual journey control is the only timing control.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-06.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-tone",
+      "title": "Two separate sound controls",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Amplitude .3 →.05; frequency220 →800Hz",
+      "mechanismToJudge": "Vertical size and cycle count are independent in one fixed time window; optional audio explicit.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-tone.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Relative amplitude",
+          "value": 0.05
+        },
+        {
+          "slider": "Tone frequency",
+          "value": 800
+        }
+      ],
+      "baselineObservation": "Fixed-time graph visibly has more cycles and smaller height after800Hz/.05amplitude. Explicit tone button exists; extra global Play is a no-op. No audio was started during baseline visual capture.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Graph changes cycle count and height independently; one explicit audio button remains, no redundant global Play.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-06.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-membrane",
+      "title": "A drumhead has nodal lines",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Drum1 then Drum2; central load2; play",
+      "mechanismToJudge": "One/two nodal diameters remain still while other regions oscillate; loading changes frequency.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-membrane.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Two opposite-coloured pairs appear in Drum2, but2D plot has no still nodal lines or sign legend. Header/explanation begins with Bessel jargon. Central loading label also obscures part of the3D skin.",
+          "fix": "Black2D nodal diameters/rim and red-above/blue-below legend; plain explanation defines stationary nodes before formal words.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Drum 2"
+        },
+        {
+          "slider": "Central mass loading",
+          "value": 2
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Two opposite-coloured pairs appear in Drum2, but2D plot has no still nodal lines or sign legend. Header/explanation begins with Bessel jargon. Central loading label also obscures part of the3D skin.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Black still nodal diameters/rim and sign colours clearly separate moving lobes; loading/frequency values readable.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-07.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w9-doppler",
+      "title": "Choose who hears the moving horn",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Platform listener →Driver with horn; play",
+      "mechanismToJudge": "Moving driver receives300Hz while stationary listener sees changed spacing/frequency.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w9-doppler.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "Default and immediate changed pictures show only source/listener dots and at most a tiny ring; no crest train has yet formed, defeating the central spacing comparison. Driver marker nearly covers horn.",
+          "fix": "Initial still state starts after several emitted crests; horn/listener labels and contrasting coincident-driver halo.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Driver with horn"
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Default and immediate changed pictures show only source/listener dots and at most a tiny ring; no crest train has yet formed, defeating the central spacing comparison. Driver marker nearly covers horn.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Several crests visible immediately; driver/source marker and300Hz receipt distinguish platform320.2Hz.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-07.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-seeing",
+      "title": "Light must arrive at the eye",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Lamp off, then on and Block path",
+      "mechanismToJudge": "Signal vanishes while explanatory apparatus stays visible; rays never leave eye.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-seeing.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Clearing/blocking route changes receiving-eye signal as intended. Mango/eye label plates cover sphere halves; authored anchors need clearance. Static Play is a no-op.",
+          "fix": "Mango/eye label anchors moved clear of meshes; shared label placement supplements this.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Block / clear object-to-eye path"
+        }
+      ],
+      "baselineObservation": "Clearing/blocking route changes receiving-eye signal as intended. Mango/eye label plates cover sphere halves; authored anchors need clearance. Static Play is a no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Full spheres and external labels visible; blocked-eye route disappears. Additional source fix clips two illustrative fan rays at actual opaque screen front face.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-08.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-pinhole",
+      "title": "Open the camera and follow the rays",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Hole diameter1 →5mm",
+      "mechanismToJudge": "Geometric blur and admitted light increase while image stays inverted.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-pinhole.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Hole diameter",
+          "value": 0.005
+        }
+      ],
+      "baselineObservation": "Hole1to5mm widens outgoing ray bundle and readout blur1.1to5.5mm, flux1to25. Opened view and lower diagram disclose schematic longitudinal scales. Mobile labels too small; static Play is no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Opened ray bundle and enlarged linked blur comparison remain visible; geometry/flux readouts agree.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-08.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-shadow",
+      "title": "A large lamp softens a shadow",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Source halfheight .35 →.8m",
+      "mechanismToJudge": "Full-shadow width falls and soft penumbra grows without diffraction.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-shadow.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Source half-height",
+          "value": 0.8
+        }
+      ],
+      "baselineObservation": "Source increase removes umbra and broadens brightness ramp; geometric softness is visibly distinct from wave diffraction. Existing pinhole caption is unrelated. Static Play has no effect.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Umbra vanishes and brightness ramp broadens at larger source; geometric softness explanation/caption readable.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-09.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-mirror",
+      "title": "Walk around a mirror image",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Concave spoon with object .2m, compare Convex spoon",
+      "mechanismToJudge": "Real/virtual position, arrow orientation, and ray extensions match actual conjugate.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-mirror.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Default flat-mirror2D view contains only object/image arrows and mirror despite saying backward extensions meet.3D selected path begins at arrow base instead of its tip. Concave .2m state gives upright virtual image correctly.",
+          "fix": "Added actual2D reflection/back-extension;3D and2D paths now start at the arrow tip at y.3m.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Concave spoon"
+        },
+        {
+          "slider": "Object distance",
+          "value": 0.2
+        }
+      ],
+      "baselineObservation": "Default flat-mirror2D view contains only object/image arrows and mirror despite saying backward extensions meet.3D selected path begins at arrow base instead of its tip. Concave .2m state gives upright virtual image correctly.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Flat reflection and dashed back-extension are visible; .2m concave state has upright virtual image.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-09.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-coin",
+      "title": "Bring back the hidden coin",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Water added →Empty tumbler →Water",
+      "mechanismToJudge": "Fixed eye/rim/coin; only path and apparent depth change; rim clearance clear.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-coin.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Filled ray clears rim whereas empty direct route is blocked with fixed eye/rim/coin. The eye and coin labels conceal their small markers; need external anchors. Existing numerical clearance is clear.",
+          "fix": "Moved eye and coin labels outside markers.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Empty tumbler"
+        }
+      ],
+      "baselineObservation": "Filled ray clears rim whereas empty direct route is blocked with fixed eye/rim/coin. The eye and coin labels conceal their small markers; need external anchors. Existing numerical clearance is clear.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Full eye/coin markers visible with external labels; filled ray clears rim, empty route blocked.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-10.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-guide",
+      "title": "Guide light around a bend",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Launch angle5 →60°",
+      "mechanismToJudge": "Below-critical encounter exits rather than reflecting forever.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-guide.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Launch angle from tangent",
+          "value": 60
+        }
+      ],
+      "baselineObservation": "Angle5to60° changes many reflected segments into first subcritical exit. Critical/incident-angle readouts distinguish reason. Caption is unrelated coin figure; mobile graph text too small.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Many reflected paths become one subcritical exit with explicit critical/incidence angles.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-10.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-eye",
+      "title": "Why goggles restore underwater vision",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Eye underwater →Water with goggles",
+      "mechanismToJudge": "Ray focus and blurred retinal image become clear again when air pocket restored.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-eye.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "Underwater focus shifts beyond retina correctly. Right-hand retinal image panel becomes blank: tiny5px arrow is erased by capped30px blur. Needs a visible quantitative point-spread depiction on one common scale.",
+          "fix": "Replaced erased object-arrow inset with one retinal point’s spread using fixed40logicalpx/mm, explicit1mm reference and persistent centre dot.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Eye underwater"
+        }
+      ],
+      "baselineObservation": "Underwater focus shifts beyond retina correctly. Right-hand retinal image panel becomes blank: tiny5px arrow is erased by capped30px blur. Needs a visible quantitative point-spread depiction on one common scale.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Refined desktop shows distinct focused point and2.104mm blur disc with fixed1mm reference; no label occludes disc.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-11.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-delay",
+      "title": "Emission time is not arrival time",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Earth angle0 →180°; journey1",
+      "mechanismToJudge": "Longer path means later reception of same emission; two timestamps explicit.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-delay.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Journey/clock readouts show longer delay34.93to51.56min at opposite Earth position;3D planet dots lack identifying labels. Static Play does nothing.",
+          "fix": "Added Sun, receiving Earth and emitting Io-event labels.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Earth orbital angle",
+          "value": 180
+        },
+        {
+          "slider": "Signal journey progress",
+          "value": 1
+        }
+      ],
+      "baselineObservation": "Journey/clock readouts show longer delay34.93to51.56min at opposite Earth position;3D planet dots lack identifying labels. Static Play does nothing.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Sun/Earth/Io identities visible and changed reception clock51.56min remains distinct from emission0min.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-11.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w10-fizeau",
+      "title": "A cogwheel times a light round trip",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Wheel12.1 →0Hz, full round trip",
+      "mechanismToJudge": "Return marker moves from tooth to gap and averaged transmission changes.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w10-fizeau.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Wheel rotations per second",
+          "value": 0
+        }
+      ],
+      "baselineObservation": "Return marker moves from tooth to gap at zero rotation and transmission rises0.4to100%. Magnified period is explicit; explanation should introduce outgoing gap/return tooth before formula. Static Play is a no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Gap/tooth marker and0vs~100%return state readable; plain outgoing/return explanation precedes timing formula.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-12.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-prism",
+      "title": "Select one colour for the second prism",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Selected narrow wavelength660 →410nm",
+      "mechanismToJudge": "Slit follows selected ray; second prism bends it without adding wavelengths.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-prism.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "The selected410nm outgoing ray remains the same red/brown as660nm, weakening the key one-colour-through-second-prism comparison. Angular close-view fan works and scale enlargement is disclosed.",
+          "fix": "Selected ray and slit marker use nearest sampled wavelength colour; added same-wavelength input/output readout.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Selected narrow wavelength",
+          "value": 410
+        }
+      ],
+      "baselineObservation": "The selected410nm outgoing ray remains the same red/brown as660nm, weakening the key one-colour-through-second-prism comparison. Angular close-view fan works and scale enlargement is disclosed.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "410nm chosen path becomes violet; explicit same-nm in/out label and12×angular fan visible.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-12.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-rainbow",
+      "title": "One drop becomes a rainbow cone",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Wavelength660 →410nm",
+      "mechanismToJudge": "Selected path and antisolar cone angle respond to dispersion; observer at apex.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-rainbow.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Light wavelength",
+          "value": 410
+        }
+      ],
+      "baselineObservation": "Selected internal-reflection/refraction path and antisolar angle42.37to40.78° respond to wavelength. Cone/apex geometry visible but small. Original prism caption is unrelated; static Play does nothing.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "One-reflection drop route and antisolar angle respond to wavelength; observer-cone context preserved.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-13.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-reflectance",
+      "title": "The spectrum an object returns",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Blue illumination, Banana",
+      "mechanismToJudge": "Returned spectrum is overlap; object cannot return absent red/yellow light.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-reflectance.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Blue illumination"
+        }
+      ],
+      "baselineObservation": "Under blue illumination incoming bump and returned near-zero spectrum visibly overlap poorly with banana reflectance. Curves are named in readout. Duplicate ticks and small phone labels need shared diagram annotations; static Play is no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Incoming/reflectance/returned spectra remain distinguishable; blue illumination has near-zero returned banana spectrum.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-13.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-sky",
+      "title": "Direct light and scattered light take different routes",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Sun height60 →0°",
+      "mechanismToJudge": "Longer atmospheric path removes blue from direct beam; scatter route stays in shell.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-sky.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Both widths show almost only a globe; local direct and scattered light routes are too small to compare. Spectral curves change with path length, but causal direction into the eye is hidden.",
+          "fix": "Added local2D direct-versus-scattered routes from exactly the same computed sphere-shell geometry.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Sun height",
+          "value": 0
+        }
+      ],
+      "baselineObservation": "Both widths show almost only a globe; local direct and scattered light routes are too small to compare. Spectral curves change with path length, but causal direction into the eye is hidden.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Local same-geometry route inset clearly separates direct beam from scattered light into eye; globe provides context.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-14.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-polarisation",
+      "title": "Turn the filter and delete the glare",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Water glare; analyser0 →90° at incidence53.1°",
+      "mechanismToJudge": "Glare near Brewster extinguishes for p-axis; body colour constant after analyser.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-polarisation.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Water glare"
+        },
+        {
+          "slider": "Analyser angle from p axis",
+          "value": 0
+        }
+      ],
+      "baselineObservation": "Polarised beam and water-glare presets visibly differ; p-axis near Brewster removes reflected wave, leaving disclosed constant body-colour component. Plot0..0.55 makes glare small; relative sunlight scale is honest, and labels need shared readability.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Near-Brewster p-axis removes reflected wave, with separate constant body-colour account and readable intensity plot.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-14.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-interference",
+      "title": "Probe the path difference",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Probe1.1 →0 or first minimum .55mm",
+      "mechanismToJudge": "Constructive vs destructive path difference linked to intensity.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-interference.png"
+      ],
+      "findings": [
+        {
+          "priority": 1,
+          "finding": "Graph correctly moves from1.000to0.000intensity at one versus half wavelength, but no routes or arrival amplitudes are drawn; the mechanism is only stated.",
+          "fix": "Two enlarged route paths and two equal head-to-tail arrival amplitudes; actual resultant squared equals exact path-intensity curve.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Wavelength",
+          "value": 600
+        },
+        {
+          "slider": "Screen probe position",
+          "value": 0.6
+        }
+      ],
+      "baselineObservation": "Graph correctly moves from1.000to0.000intensity at one versus half wavelength, but no routes or arrival amplitudes are drawn; the mechanism is only stated.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Refined desktop now shows reinforced resultant atwhole wavelength and opposed arrivals at half wavelength; caption no longer covers arrows.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-15.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-diffraction",
+      "title": "Change an opening, a grating or a thin film",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Eight-line grating then Soap film",
+      "mechanismToJudge": "Aperture/phases and intensity are visibly linked, not just different graph names.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-diffraction.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Soap film"
+        }
+      ],
+      "baselineObservation": "One-slit paths feed one probe and amplitude polygon; soap-film mode shows two returns with phase reversal and changed spectrum. Arrow sum is small but returns/routes are present. Explanation had jargon before mechanism; static Play is no-op.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Aperture-to-probe paths, amplitude polygon, film returns and spectra are readable; separate physical modes named.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-15.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-arago",
+      "title": "A bright spot in the middle of a shadow",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Probe0 →.2mm",
+      "mechanismToJudge": "Equal rim phases at centre become unequal off-axis and intensity falls.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-arago.png"
+      ],
+      "findings": [],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "slider": "Probe radius on screen",
+          "value": 0.2
+        }
+      ],
+      "baselineObservation": "Central equal rim arrows give a finite resultant and I1; off-axis arrows differ and resultant nearly cancels with I.0041. Geometry/phasor account is visible. Mobile labels small and old Young caption unrelated; static Play does nothing.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Equal rim arrows yield a resultant atcentre; off-axis arrows nearly cancel and plotted intensity falls.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-16.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    },
+    {
+      "id": "w11-raman",
+      "title": "Account for a changed photon colour",
+      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "captureState": "Stokes then Anti-Stokes",
+      "mechanismToJudge": "Outgoing wavelength, wave period and opposite molecular energy transfer agree.",
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-waves-before/w11-raman.png"
+      ],
+      "findings": [
+        {
+          "priority": 2,
+          "finding": "Selected shifted peak moves and outgoing-energy number changes, but titled energy-balance picture shows no visible molecular-energy transfer or quantitative common-scale energy comparison; spectral axis has no wavelength ticks.",
+          "fix": "Shared-scale incoming/outgoing eV bars, signed molecular-energy-transfer arrow and400/800nm spectral axis.",
+          "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
+        }
+      ],
+      "reviewedWidths": [
+        390,
+        1440
+      ],
+      "captureActions": [
+        {
+          "button": "Stokes"
+        },
+        {
+          "button": "Play"
+        }
+      ],
+      "baselineObservation": "Selected shifted peak moves and outgoing-energy number changes, but titled energy-balance picture shows no visible molecular-energy transfer or quantitative common-scale energy comparison; spectral axis has no wavelength ticks.",
+      "sharedFixes": [
+        "Readable diagram annotations",
+        "Controls next to primary view",
+        "Visible geometry framing and label placement",
+        "Hide original caption while added lesson active",
+        "Hide global Play for parameter-only lessons"
+      ],
+      "candidateReview": {
+        "widths": [
+          390,
+          1440
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "desktopBuild": "7ee903f1d2d5",
+        "observation": "Refined desktop common0..3.2eVbars are unobstructed; Stokes photon loss equals molecular gain, spectral ticks present.",
+        "evidence": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/waves-11.png",
+          "source/build/visual-audit-20261029/boards-desktop-candidate/waves-16.png"
+        ],
+        "finalLiveAcceptance": "PENDING"
+      }
+    }
+  ],
+  "verification": {
+    "command": "node source/tests/test_waves_labs.mjs",
+    "result": "PASS: reference cases, limiting cases, all34mounts/presets/endpoints, Play/motion correspondence and actual-renderer display contracts.",
+    "boundary": "No screenshot acceptance is inferred from these checks."
+  },
+  "baselineComplete": true,
+  "visualAcceptance": "All34candidate default/changed reviewed on390mobile and1440desktop. Final live reload, stable-frame assertions, screenshots and inspection remain pending.",
+  "candidateComplete": true,
+  "candidateConsole": {
+    "mobile": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "desktop": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "controlClosure": "Actual renderer tests cover all mode-relevant disabled controls, equal-temperature no-play state and co-moving listener display/restoration; final live UI validation pending."
+}

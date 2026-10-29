@@ -108,13 +108,113 @@ const widgetSource=(await readFile(new URL('../live/w_fieldslab.js',import.meta.
 let factory;const Live={register(name,fn){factory=fn;}};
 const names=['Group','Mesh','BoxGeometry','SphereGeometry','TorusGeometry','CylinderGeometry','ConeGeometry','BufferGeometry','Float32BufferAttribute','Line','LineBasicMaterial','MeshStandardMaterial','MeshBasicMaterial','ArrowHelper','Vector3','DoubleSide'];
 let active;
-const makeLab=()=>{const root=active.gpu?new THREE.Group():undefined;active.root=root;let draw=()=>{};const kit=root?{root,label(t,p){active.labels.push(p);},spinSpeed:0}:null;return {kit,canvas:{ctx:active.ctx,W:640,H:240,clear(){}},say:s=>active.readout=s,redraw(fn){draw=fn;},refresh(){draw();for(const p of active.labels){const q=typeof p==='function'?p():p;assert.ok(q.every(Number.isFinite),'finite scene label');}}};};
+const makeLab=()=>{const root=active.gpu?new THREE.Group():undefined;active.root=root;let draw=()=>{};const kit=root?{root,label(t,p){active.labels.push(p);},spinSpeed:0}:null;return {kit,canvas:{ctx:active.ctx,W:640,H:240,clear(){}},say:s=>active.readout=s,teach:o=>active.teaching=o.explanation,redraw(fn){draw=fn;},refresh(){active.canvasOps=[];draw();for(const p of active.labels){const q=typeof p==='function'?p():p;assert.ok(q.every(Number.isFinite),'finite scene label');}}};};
 new Function('Live','makeLab','LESSONS','P',...names,widgetSource)(Live,makeLab,catalog,G,...names.map(n=>THREE[n]));
 let sceneChecks=0;
 for(const gpu of [true,false])for(const lesson of catalog){
- active={gpu,root:null,labels:[],sliders:[],tabs:[],buttons:[],loops:[],readout:'',ctx:new Proxy({},{get:(_,key)=>key==='measureText'?s=>({width:String(s).length*7}):String(key).includes('Gradient')?()=>({addColorStop(){}}):(...args)=>{for(const a of args)if(typeof a==='number')assert.ok(Number.isFinite(a),`${lesson.id}: finite Canvas ${String(key)}`);},set:()=>true})};
- const api={colors:()=>new Proxy({},{get:()=> '#667788'}),slider(label,o){const input={value:o.value,min:o.min,max:o.max,disabled:false,setAttribute(){}};const control={label,input,set(v){input.value=Math.max(+input.min,Math.min(+input.max,v));},drive(v){this.set(v);o.onInput(+input.value);}};active.sliders.push(control);return control;},tabs(labels,fn,start=0){active.tabs.push({labels,fn,start});return [];},button(label,fn){const o={label,fn};active.buttons.push(o);return o;},rng(seed){let n=seed;return()=>((n=(1664525*n+1013904223)>>>0)/2**32);},loop(fn){active.loops.push(fn);},onCleanup(){},play(){},pause(){}};
+ active={gpu,root:null,labels:[],sliders:[],tabs:[],buttons:[],loops:[],canvasOps:[],readout:'',ctx:new Proxy({},{get:(_,key)=>key==='measureText'?s=>({width:String(s).length*7}):String(key).includes('Gradient')?()=>({addColorStop(){}}):(...args)=>{for(const a of args)if(typeof a==='number')assert.ok(Number.isFinite(a),`${lesson.id}: finite Canvas ${String(key)}`);if(['arc','fillText','moveTo','lineTo','fillRect'].includes(key))active.canvasOps.push({key,args});},set:()=>true})};
+ const api={colors:()=>new Proxy({},{get:()=> '#667788'}),slider(label,o){const input={value:o.value,min:o.min,max:o.max,disabled:false,setAttribute(){}};const control={label,input,fmt:o.fmt,set(v){input.value=Math.max(+input.min,Math.min(+input.max,v));},drive(v){this.set(v);o.onInput(+input.value);}};active.sliders.push(control);return control;},tabs(labels,fn,start=0){const group={labels,fn,start,selected:start};active.tabs.push(group);const result=[];result.setActive=i=>group.selected=i;return result;},button(label,fn){const o={label,fn};active.buttons.push(o);return o;},rng(seed){let n=seed;return()=>((n=(1664525*n+1013904223)>>>0)/2**32);},loop(fn){active.loops.push(fn);},onCleanup(){},playback(enabled){active.playback=enabled;},play(){},pause(){active.pauses=(active.pauses||0)+1;}};
  factory({}, {lesson:lesson.id},api);
+ const staticLessons=['charge','cage','circuit-diagnose','circuit-probes','protection','domains','earth-field','field-probe','atom-scale','solar-fusion','stellar-spectrum','distance-ladder','white-dwarf','cosmos','telescope','tracks','parity','bose-counting','eclipse-evidence'];
+ assert.equal(active.playback,!staticLessons.includes(lesson.id),lesson.id+' has meaningful initial Play availability');
+ const step=dt=>{for(const loop of active.loops)loop(dt);};
+ const clockRates={
+  'day-night':['Solar time',1],
+  'seasons3d':['Day in ideal year',10],
+  'moon-rotation':['Lunar angle from Sun',15],
+  'eclipses':['Lunar angle from Sun',15],
+  'tides3d':['Moon orbital angle',15],
+  'radiation-decay':['Elapsed model time',1],
+  'halo':['Halo model day',5],
+  'foucault':['Elapsed time',.5]
+ };
+ if(clockRates[lesson.id]){
+  const [label,rate]=clockRates[lesson.id],clock=active.sliders.find(c=>c.label===label);
+  assert.ok(clock,lesson.id+' exposes its clock');
+  const before=+clock.input.value;step(.1);near(+clock.input.value,before+.1*rate);clock.drive(before);
+ }
+ if(lesson.id==='foucault'){
+  const latitude=active.sliders.find(c=>c.label==='Latitude');latitude.drive(30);
+  assert.equal(active.tabs[0].selected,-1,'manual Foucault latitude clears the city/pole preset');
+  assert.match(active.readout,/latitude 30.00/);active.tabs[0].fn(0);
+ }
+ if(lesson.id==='photoelectric'){
+  const bars=active.canvasOps.filter(o=>o.key==='fillRect'&&o.args[3]===14),values=[G.photoelectric(380,500,0).energy,2.71,G.photoelectric(380,500,0).maxKE,0];
+  assert.equal(bars.length,8);for(let j=0;j<4;j++)near(bars[2*j+1].args[2],values[j]/4.2*240);
+ }
+ if(lesson.id==='solar-fusion'){
+  const stage=active.sliders.find(c=>c.label==='Transport stage');
+  assert.equal(stage.fmt(2),'Convective transport');stage.drive(2);assert.equal(active.playback,true);stage.drive(0);assert.equal(active.playback,false);
+ }
+ if(lesson.id==='tides3d'){
+  active.tabs[0].fn(1);assert.match(active.teaching,/every part of Earth towards itself/);
+  assert.equal(active.buttons.find(b=>b.label==='Include / remove Sun').disabled,true);
+  active.tabs[0].fn(0);
+ }
+ if(lesson.id==='moon-rotation'){
+  const phase=active.sliders.find(c=>c.label==='Lunar angle from Sun');phase.drive(90);
+  for(const mode of [0,1]){
+   active.tabs[0].fn(mode);const q=G.lunarGeometry(90,0,0),a=mode?Math.PI:q.moonAngle+Math.PI;
+   const mx=330+110*Math.cos(q.moonAngle),my=120-78*Math.sin(q.moonAngle);
+   const start=active.canvasOps.findIndex(o=>o.key==='moveTo'&&Math.abs(o.args[0]-mx)<1e-7&&Math.abs(o.args[1]-my)<1e-7);
+   assert.ok(start>=0,'Moon fallback draws its face direction');const end=active.canvasOps[start+1];
+   assert.equal(end.key,'lineTo');near(end.args[0],mx+27*Math.cos(a));near(end.args[1],my-27*Math.sin(a));
+   if(gpu){const expected=q.moon.map(v=>v/384400*2.1);expected[0]+=.24*Math.cos(a);expected[2]+=.24*Math.sin(a);
+    const markers=[];active.root.traverse(o=>{if(o.geometry?.type==='SphereGeometry'&&o.geometry.parameters.radius===.055)markers.push(o);});
+    assert.ok(markers.some(o=>o.position.toArray().every((v,j)=>Math.abs(v-expected[j])<1e-7)),'3D and fallback mark the same lunar face');
+   }
+  }active.tabs[0].fn(0);phase.drive(45);
+ }
+ if(lesson.id==='circuit-signal'){
+  active.tabs[0].fn(1);active.sliders.find(c=>c.label==='Drift elapsed time').drive(5000);
+  const p=G.loopPoint(-.5),project=[70+(p[0]+2)*100,125-p[1]*65];
+  assert.ok(active.canvasOps.some(o=>o.key==='arc'&&o.args[2]===5&&Math.abs(o.args[0]-project[0])<1e-7&&Math.abs(o.args[1]-project[1])<1e-7),'distinguished electron reaches half loop');
+  if(gpu){const marker=active.root.getObjectByName('signal-tracked-electron');near(marker.position.x,p[0]);near(marker.position.y,p[1]);}
+  const drift=active.sliders.find(c=>c.label==='Drift elapsed time');drift.drive(9990);step(.1);near(drift.input.value,10000);assert.ok(active.pauses);
+  active.tabs[0].fn(0);
+ }
+ if(lesson.id==='circuit-probes'){
+  const probe=active.sliders.find(c=>c.label==='Probe selection');
+  assert.equal(probe.fmt(4),'Load 2 voltage','probe choice has a readable name');
+ }
+ if(lesson.id==='transformer'){
+  active.tabs[0].fn(1);assert.equal(active.playback,false,'steady DC has no no-op Play');
+  assert.match(active.teaching,/unchanging flux/);
+  active.tabs[0].fn(0);assert.equal(active.playback,true);
+ }
+ if(lesson.id==='distance-ladder'){
+  active.tabs[0].fn(1);assert.equal(active.playback,true);
+  const clock=active.sliders.find(c=>c.label==='Cepheid elapsed time');
+  step(.5);near(clock.input.value,1);clock.drive(79.9);step(.5);near(clock.input.value,80);assert.ok(active.pauses);
+  active.tabs[0].fn(0);assert.equal(active.playback,false);
+ }
+ if(lesson.id==='radiation-decay'){
+  active.tabs[0].fn(1);assert.equal(active.playback,false);
+  assert.match(active.teaching,/no continuing radioactive source/);
+  assert.ok(!active.canvasOps.some(o=>o.key==='fillText'&&String(o.args[0]).includes('ensemble expectation')),'beam-only exposure has no false decay curve');
+  active.tabs[0].fn(2);assert.equal(active.playback,true);
+  assert.match(active.readout,/of 24 parent/);
+  active.tabs[0].fn(0);
+ }
+ if(lesson.id==='circuit-diagnose'){
+  // The visible operating-point marker must agree with the measured readout,
+  // including reversed/open states; checking pure diode values alone misses this.
+  for(let mode=0;mode<4;mode++){
+   active.tabs[0].fn(mode);
+   const current=Number(active.readout.match(/current ([\d.]+) mA/)[1])/1000;
+   const marker=active.canvasOps.find(o=>o.key==='arc'&&o.args[2]===4);
+   assert.ok(marker,'diagnostic operating point is drawn');
+   near(marker.args[1],195-current/.04*145,.025);
+  }
+  active.tabs[0].fn(0);
+ }
+ if(lesson.id==='motor'){
+  // The shared Play clock must animate the rotor without a second run switch.
+  const angle=active.sliders.find(s=>s.label==='Coil angle'),before=angle.input.value;
+  for(let i=0;i<20;i++)for(const loop of active.loops)loop(.05);
+  assert.notEqual(angle.input.value,before,'ordinary Play clock turns the motor');
+  angle.drive(45);
+ }
  if(lesson.id==='cage')assert.equal(active.tabs[0].start,2,'initial Sum button agrees with displayed net field');
  if(lesson.id==='em-wave'){
   assert.equal(active.tabs[0].start,0);
@@ -132,7 +232,22 @@ for(const gpu of [true,false])for(const lesson of catalog){
      const moon=objects.find(o=>o.geometry?.type==='CylinderGeometry'&&o.geometry.parameters.height===2.1),mp=G.lunarGeometry(45).moon.map(x=>x/384400*2.1);
      new THREE.Vector3(0,1.05,0).applyQuaternion(moon.quaternion).add(moon.position).toArray().forEach((v,i)=>near(v,mp[i]));assert.ok(moon.geometry.parameters.radiusBottom>moon.geometry.parameters.radiusTop);
    }
+   if(lesson.id==='distance-ladder'){
+     active.tabs[0].fn(1);const stars=objects.filter(o=>o.geometry?.type==='SphereGeometry'&&o.geometry.parameters.radius===.18);
+     assert.equal(stars.length,1);stars[0].position.toArray().forEach(v=>near(v,0));
+     assert.ok(objects.some(o=>o.type==='Line'&&o.visible===false),'Cepheid view hides the parallax triangle');active.tabs[0].fn(0);
+   }
    if(lesson.id==='generator'){const rings=objects.filter(o=>o.geometry?.type==='TorusGeometry'&&o.visible);assert.equal(rings.length,2);rings.forEach(o=>near(o.geometry.parameters.arc,2*Math.PI));}
+   if(lesson.id==='motor'){
+     active.tabs[0].fn(1);
+     const rings=objects.filter(o=>o.geometry?.type==='TorusGeometry'&&o.visible);
+     assert.equal(rings.length,2);rings.forEach(o=>near(o.geometry.parameters.arc,2*Math.PI));
+     active.tabs[0].fn(2);
+     const blade=objects.find(o=>o.name==='motor-supply-switch');
+     assert.ok(blade,'open motor has an inspectable supply switch');
+     assert.ok(blade.geometry.attributes.position.array[4]>blade.geometry.attributes.position.array[1]+.15,'open switch blade leaves its contact');
+     active.tabs[0].fn(0);
+   }
    if(lesson.id==='field-probe'){active.sliders.find(v=>v.label==='Probe distance').drive(6);const marker=objects.find(o=>o.geometry?.type==='SphereGeometry'&&o.geometry.parameters.radius===.08);near(marker.position.x,2.1);}
    if(lesson.id==='bose-counting'){const particles=objects.filter(o=>o.geometry?.type==='SphereGeometry'&&o.geometry.parameters.radius===.15),control=active.sliders.find(v=>v.label==='Arrangement');control.drive(2);near(particles[0].position.x,-.9);control.drive(3);near(particles[0].position.x,.9);near(particles[1].position.x,-.9);}
    if(lesson.id==='protection'){active.sliders.find(v=>v.label==='Prospective leakage').drive(40);assert.ok(active.readout.includes('OPEN'));const blade=objects.find(o=>o.type==='Line'&&o.geometry.attributes.position.count===2&&Math.abs(o.geometry.attributes.position.array[0]+1.6)<1e-5);near(blade.geometry.attributes.position.array[4],1.15,1e-6);}

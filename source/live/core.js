@@ -5,6 +5,7 @@
 // lazy ES-module chunk (window.BOOK_CHUNKS maps "w_<name>" to its file) imported when the reader taps its button.
 
 import { ENHANCEMENTS } from './enhancements.js';
+import { makeColourResolver } from './css_colour.mjs';
 
 const EL = {
   H: '#f3f1e8', C: '#3d4a46', N: '#4f74b3', O: '#c4553c', Na: '#8a6bb5', Cl: '#5c9a52', Mg: '#c7a24a',
@@ -84,8 +85,9 @@ export const Live = {
 };
 window.Live = Live;
 
+const resolveCanvasColour = makeColourResolver(() => document.createElement('canvas'));
 function cssVar(name) {
-  return getComputedStyle(document.body).getPropertyValue(name).trim() || '#888';
+  return resolveCanvasColour(getComputedStyle(document.body).getPropertyValue(name).trim() || '#888');
 }
 
 export function colors() {
@@ -306,6 +308,10 @@ function makeApi(fig, stage, controls, state) {
     /** Start/pause from an explicit lesson button (for example, Run a motor). */
     play() { state.setPlaying?.(true); },
     pause() { state.setPlaying?.(false); },
+    /** Parameter-only lessons do not offer a Play action with no visible effect. */
+    playback(enabled) { state.setPlaybackSupported?.(!!enabled); },
+    /** Keep a lesson's controls beside its primary visual. */
+    placeControls(slot) { slot.appendChild(controls); },
     /** A canvas that fills the stage at a fixed logical size (W x H); drawing uses logical units. */
     canvas(W, H, label) {
       const cv = document.createElement('canvas');
@@ -358,6 +364,10 @@ function makeApi(fig, stage, controls, state) {
       });
       grp.btns = btns;
       tabGroups.push(grp);
+      btns.setActive = (index) => {
+        grp.activeIdx = index;
+        btns.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+      };
       controls.appendChild(wrap); return btns;
     },
     slider(label, { min, max, step = 1, value, fmt = (v) => String(v), onInput }) {
@@ -379,7 +389,8 @@ function makeApi(fig, stage, controls, state) {
         notifyChange();
       });
       wrap.append(lab, inp, out); controls.appendChild(wrap);
-      const item = { label, input: inp, set: (v) => setVal(v, false), drive: (v) => setVal(v, true) };
+      const item = { label, input: inp, set: (v) => setVal(v, false), drive: (v) => setVal(v, true),
+        setLabel(text) { lab.textContent = text; item.label = text; } };
       sliders.push(item);
       return item;
     },
@@ -388,7 +399,7 @@ function makeApi(fig, stage, controls, state) {
       const r = document.createElement('p'); r.className = 'live-readout'; r.setAttribute('aria-live', 'polite');
       controls.appendChild(r);
       let last = '';
-      return (html) => {
+      const write = (html) => {
         if (html !== last) {
           r.innerHTML = html;
           last = html;
@@ -396,6 +407,8 @@ function makeApi(fig, stage, controls, state) {
           notifyChange();
         }
       };
+      write.element = r;
+      return write;
     },
     /** Pedagogical challenge: prompt + check(snapshot) */
     challenge(prompt, check) { customChallenge = { prompt, check }; },
@@ -1051,19 +1064,31 @@ function setup(fig) {
   let w = null, inst = null, api = null, stage = null, controls = null, playing = false, raf = 0, last = 0, liftTimer = 0;
   const state = { visible: true, t: 0 };
   state.setPlaying = setPlaying;
+  state.setPlaybackSupported = (enabled) => {
+    state.playbackSupported = enabled;
+    playBtn.hidden = !enabled;
+    if (!enabled && playing) setPlaying(false);
+  };
+  const originalFigureName = { label: fig.getAttribute('aria-label'), by: fig.getAttribute('aria-labelledby') };
   const playBtn = document.createElement('button');
   playBtn.type = 'button'; playBtn.className = 'live-ctl live-play';
 
   function frame(ts) {
     const dt = Math.min(0.05, last ? (ts - last) / 1000 : 0.016);
     last = ts; state.t += dt;
-    for (const fn of api._loops) fn(dt, state.t);
-    raf = requestAnimationFrame(frame);
+    const activeApi = api;
+    for (const fn of activeApi._loops) {
+      fn(dt, state.t);
+      if (api !== activeApi || !playing) break;
+    }
+    if (api === activeApi && playing && state.visible) raf = requestAnimationFrame(frame);
   }
   function setPlaying(p) {
+    p = !!p && state.playbackSupported !== false;
     playing = p;
     playBtn.textContent = p ? 'Pause' : 'Play';
     playBtn.setAttribute('aria-pressed', String(p));
+    fig.querySelectorAll('.live-readout').forEach(node => node.setAttribute('aria-live', p ? 'off' : 'polite'));
     cancelAnimationFrame(raf); last = 0;
     if (p && state.visible) raf = requestAnimationFrame(frame);
     else if (api) for (const fn of api._loops) fn(0, state.t); // draw one still frame
@@ -1094,6 +1119,11 @@ function setup(fig) {
     w = widgets[name];
     fig.querySelector('.live-fail')?.remove();
     fig.classList.add('live-on');
+    if (params.lesson) {
+      fig.dataset.activeLesson = params.lesson;
+      fig.setAttribute('aria-label', option.label.replace(/^Explore:\s*/, ''));
+      fig.removeAttribute('aria-labelledby');
+    }
     if (!isReducedMotion()) {
       fig.classList.add('live-lifting');
       clearTimeout(liftTimer);
@@ -1104,6 +1134,8 @@ function setup(fig) {
     controls = document.createElement('div'); controls.className = 'live-controls';
     fig.insertBefore(stage, open); fig.insertBefore(controls, open);
     state.t = 0;
+    state.playbackSupported = !w.meta.static;
+    playBtn.hidden = !state.playbackSupported;
     api = makeApi(fig, stage, controls, state);
     if (!w.meta.static) controls.appendChild(playBtn);
     try { inst = w.factory(stage, params, api) || {}; }
@@ -1124,14 +1156,18 @@ function setup(fig) {
     detail.textContent = 'Full-size drawing'; detail.setAttribute('aria-pressed', 'false');
     const detailHint = document.createElement('p');
     detailHint.className = 'live-detail-hint'; detailHint.hidden = true;
-    detailHint.textContent = 'Scroll sideways to see the full drawing. The controls below still work.';
+    detailHint.textContent = params.lesson ? 'Scroll sideways in the drawing to see all of it.' : 'Scroll sideways to see the full drawing. The controls below still work.';
     controls.append(detail, detailHint);
     detail.addEventListener('click', () => {
       const full = stage.classList.toggle('live-inspect');
       detail.setAttribute('aria-pressed', String(full));
       detail.textContent = full ? 'Fit drawing' : 'Full-size drawing';
       detailHint.hidden = !full;
-      if (full) {
+      if (params.lesson) {
+        const diagram = stage.querySelector('.lab-diagram-scroll');
+        diagram?.setAttribute('aria-label', full ? 'Full-size calculated drawing. Scroll horizontally to inspect it.' : 'Calculated drawing and measurements.');
+        diagram?.focus();
+      } else if (full) {
         stage.tabIndex = 0;
         stage.setAttribute('role', 'region');
         stage.setAttribute('aria-label', 'Full-size live drawing. Scroll horizontally to explore.');
@@ -1145,7 +1181,7 @@ function setup(fig) {
     setPlaying(!params.lesson && !api.reduced && !w.meta.static);
     if (params.lesson) for (const fn of api._loops) fn(0, 0);
     if (w.meta.static) for (const fn of api._loops) fn(0, 0);
-    (stage.querySelector('canvas,button,input') || playBtn).focus?.({ preventScroll: true });
+    (stage.querySelector('.live-3d[tabindex],canvas[tabindex],button,input') || playBtn).focus?.({ preventScroll: true });
   }
   function closeLive(restoreFocus = true) {
     ++generation; // Also cancels a story experiment whose module is still loading.
@@ -1155,6 +1191,10 @@ function setup(fig) {
     api?._cleanups.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
     stage?.remove(); controls?.remove();
     fig.classList.remove('live-on', 'live-lifting');
+    delete fig.dataset.activeLesson;
+    for (const [attribute, value] of [['aria-label', originalFigureName.label], ['aria-labelledby', originalFigureName.by]]) {
+      if (value === null) fig.removeAttribute(attribute); else fig.setAttribute(attribute, value);
+    }
     available.forEach(o => { o.button.hidden = false;o.button.disabled=false;const span=o.button.querySelector('span');if(span)span.textContent=o.label;else o.button.textContent=o.label; });
     if (restoreFocus) open?.focus({ preventScroll: true });
     inst = api = stage = controls = null; playing = false;
@@ -1169,7 +1209,7 @@ function setup(fig) {
     if (!api || !w) return;
     const stillOn = !!(e.detail && e.detail.still);
     if (stillOn && playing) setPlaying(false);
-    else if (!stillOn && !w.meta.static && !playing) setPlaying(true);
+    else if (!stillOn && !params.lesson && state.playbackSupported && !playing) setPlaying(true);
   });
   // pause while off screen (animation, sound, sensors, video), resume the animation when back
   new IntersectionObserver((ents) => {

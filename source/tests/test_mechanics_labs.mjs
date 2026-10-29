@@ -164,18 +164,21 @@ console.log('PASS independent mechanism constraints: force/flux/contact/orbit/eg
 // Instantiate actual renderers without WebGL. These checks inspect their meshes,
 // not a duplicate drawing function, and exercise extrema through the real controls.
 const {Group,Vector3}=await import('../node_modules/three/build/three.module.js');
+const {build}=await import('../node_modules/esbuild/lib/main.js');
+const textbook=await build({entryPoints:[new URL('../live/w_mechanicslab.js',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node',plugins:[{name:'headless-widget-shell',setup(b){b.onLoad({filter:/\/core\.js$/},()=>({contents:'export const Live={register(){}};'}));b.onLoad({filter:/\/lab_kit\.js$/},()=>({contents:'export function makeLab(){}'}));}}]});
+const {RENDERERS}=await import('data:text/javascript;base64,'+Buffer.from(textbook.outputFiles[0].contents).toString('base64'));
 const Space=await import('../live/mechanics_space.js'),Fluids=await import('../live/mechanics_fluids.js'),Energy=await import('../live/mechanics_energy.js');
-const palette={ink:'#202020',proton:'#cc4444',electron:'#4477cc',neutron:'#bb9922',muted:'#888888',rule:'#cccccc',green:'#228855'};
+const palette={paper:'#fbfaf5',ink:'#202020',proton:'#cc4444',electron:'#4477cc',neutron:'#bb9922',muted:'#888888',rule:'#cccccc',green:'#228855'};
 function apparatus(builder,webgl=true){
- const sliders=[],tabs=[],buttons=[],loops=[],calls=[],root=new Group();let draw=()=>{},speech='';
+ const sliders=[],tabs=[],buttons=[],loops=[],calls=[],root=new Group();let draw=()=>{},speech='',teaching={},playback=null,frameRadius=null,frameCalls=0;
  const ctx=new Proxy({measureText:t=>({width:String(t).length*7})},{get:(obj,key)=>key in obj?obj[key]:(...args)=>{calls.push({method:key,args});},set:(obj,key,v)=>{obj[key]=v;return true;}});
- const api={slider(label,options){const record={label,...options,input:{disabled:false},set(v){record.value=v;}};sliders.push(record);return record;},tabs(labels,fn){tabs.push({labels,fn});},button(label,fn){buttons.push({label,fn});},loop(fn){loops.push(fn);}};
- const lab={kit:webgl?{root}:null,redraw(fn){draw=fn;draw(ctx,640,240);},refresh(){draw(ctx,640,240);},say(text){speech=text;}};
- builder(lab,api,palette);return {root,sliders,tabs,buttons,loops,calls,lab,get speech(){return speech;}};
+ const api={playback(enabled){playback=enabled;},slider(label,options){const record={label,...options,input:{disabled:false,min:String(options.min),max:String(options.max),step:String(options.step),value:String(options.value)},set(v){record.value=v;record.input.value=String(v);},setLabel(text){record.label=text;},drive(v){record.set(v);options.onInput(v);}};sliders.push(record);return record;},tabs(labels,fn,start=0){const record={labels,activeIdx:start},items=labels.map((label,i)=>({label,pressed:i===start}));items.setActive=i=>{record.activeIdx=i;items.forEach((b,j)=>b.pressed=i===j);};record.fn=i=>{items.setActive(i);fn(i);};record.items=items;tabs.push(record);return items;},button(label,fn){buttons.push({label,fn});},loop(fn){loops.push(fn);}};
+ const lab={kit:webgl?{root,label(){}}:null,frame(r){frameRadius=r;frameCalls++;},redraw(fn){draw=fn;draw(ctx,640,240);},refresh(){draw(ctx,640,240);},say(text){speech=text;},teach(next){teaching={...teaching,...next};}};
+ builder(lab,api,palette);return {root,sliders,tabs,buttons,loops,calls,lab,get speech(){return speech;},get teaching(){return teaching;},get playback(){return playback;},get frameRadius(){return frameRadius;},get frameCalls(){return frameCalls;}};
 }
 function actualMeshes(a){const out=[];a.root.traverse(o=>{if(o.isMesh)out.push(o);});return out;}
 function finiteApparatus(a){a.root.traverse(o=>{for(const value of [...o.position.toArray(),...o.scale.toArray(),o.rotation.x,o.rotation.y,o.rotation.z])assert.ok(Number.isFinite(value),`nonfinite transform ${value}`);for(const attr of Object.values(o.geometry?.attributes??{}))for(const value of attr.array)assert.ok(Number.isFinite(value));});assert.ok(!a.speech.includes('NaN'));}
-for(const group of [Space,Fluids,Energy])for(const [name,builder] of Object.entries(group)){
+for(const group of [Space,Fluids,Energy,RENDERERS])for(const [name,builder] of Object.entries(group)){
  const a=apparatus(builder);finiteApparatus(a);
  for(const control of a.sliders){for(const value of [control.min,control.max]){control.onInput(value);finiteApparatus(a);}}
  for(const control of a.tabs){for(let i=0;i<control.labels.length;i++){control.fn(i);finiteApparatus(a);}}
@@ -187,7 +190,7 @@ near(- (envelope.position.y-.3*envelope.scale.y)/(.6*envelope.scale.y),.5); // a
 ship.sliders.find(c=>c.label==='Sealed outer volume').onInput(5);ship.sliders.find(c=>c.label.startsWith('Cargo')).onInput(20);
 near(envelope.position.y-.3*envelope.scale.y,-1.5); // hull touches actual floor when sunk
 const floor=actualMeshes(ship).find(m=>m.geometry.parameters.width===5&&m.geometry.parameters.height===.06);near(floor.position.y+.03,-1.5);
-ship.tabs[0].fn(2);ship.sliders.find(c=>c.label.startsWith('Cargo')).onInput(10);
+ship.tabs[0].fn(2);ship.sliders.find(c=>c.label==='Egg density').onInput(1100);
 const eggMesh=actualMeshes(ship).find(m=>m.geometry.type==='LatheGeometry');near(eggMesh.position.y,-M.eggInterface(1100).interfaceU*.55);
 assert.ok(Math.abs(eggMesh.position.y)>.02); // actual mesh changes height from volume calculation
 const gauge=apparatus(Fluids.suction),column=actualMeshes(gauge).find(m=>m.geometry.parameters.width===.26&&m.geometry.parameters.height===1),reservoir=actualMeshes(gauge).find(m=>m.geometry.parameters.width===1.4&&m.geometry.parameters.height===.22);
@@ -220,8 +223,59 @@ const outsideLabel=canvasLabel(pressureFallback,'p outside A'),weightLabel=canva
 const outsidePixels=175-outsideLabel[2]-6,weightPixels=weightLabel[2]+6-columnTop,gasPixels=gasLabel[2]+6-(columnTop-30);near(outsidePixels,weightPixels+gasPixels);
 pressureFallback.calls.length=0;pressureFallback.sliders[0].onInput(101000);assert.equal(canvasLabel(pressureFallback,'weight'),undefined,'zero-height column must have no weight arrow');
 const orbitLabel=apparatus(Space.kepler,false);orbitLabel.tabs[0].fn(0);orbitLabel.calls.length=0;orbitLabel.sliders.find(c=>c.label==='Teaching eccentricity').onInput(.3);assert.ok(orbitLabel.calls.some(c=>c.method==='fillText'&&String(c.args[0]).startsWith('User-selected eccentricity')));
+assert.equal(orbitLabel.tabs[0].activeIdx,-1,'custom eccentricity clears the named planet preset');
+const powerPreset=apparatus(Energy.power,false);powerPreset.sliders[0].drive(1000);assert.equal(powerPreset.tabs[0].activeIdx,-1);powerPreset.tabs[0].fn(1);powerPreset.sliders[1].drive(12);assert.equal(powerPreset.tabs[0].activeIdx,-1);powerPreset.tabs[0].fn(2);powerPreset.sliders[1].drive(6);assert.equal(powerPreset.tabs[0].activeIdx,2,'household time belongs to the same schedule');
 const hemisphere=apparatus(Fluids.suction);hemisphere.sliders[0].onInput(101000);hemisphere.calls.length=0;hemisphere.tabs.find(t=>t.labels.includes('Hemispheres cutaway')).fn(2);
 const pressureGroups=[];hemisphere.root.traverse(o=>{if(o.isGroup&&o.visible&&o.children[1]?.geometry?.type==='ConeGeometry')pressureGroups.push(o);});assert.equal(pressureGroups.length,12);pressureGroups.forEach(g=>near(drawnVector(g).length(),.45));
 function canvasSegment(a,x,y){const i=a.calls.findIndex(c=>c.method==='moveTo'&&c.args[0]===x&&c.args[1]===y);assert.ok(i>=0);assert.equal(a.calls[i+1].method,'lineTo');return Math.hypot(a.calls[i+1].args[0]-x,a.calls[i+1].args[1]-y);}
 near(canvasSegment(hemisphere,48,130),canvasSegment(hemisphere,135,130));
 console.log('PASS closure renderer limits: downward shared fall, common pressure scale/zero weight, preset identity');
+
+// The learner's visible time/progress control must follow resets and playback,
+// rather than describing a different state from the actual scene/readout.
+const fallControls=apparatus(Space.fall),fallTime=fallControls.sliders.find(c=>c.label==='Replay time');
+fallTime.drive(4);fallControls.tabs.find(t=>t.labels.includes('Hammer and feather')).fn(2);
+near(fallTime.value,0);assert.equal(fallControls.tabs.find(t=>t.labels.includes('Feather')).activeIdx,2);
+fallControls.tabs.find(t=>t.labels.includes('Edit blue body')).fn(1);
+assert.equal(fallControls.tabs.find(t=>t.labels.includes('Feather')).activeIdx,3);
+fallControls.sliders.find(c=>c.label==='Selected body mass').drive(.02);
+assert.equal(fallControls.tabs.find(t=>t.labels.includes('Hammer and feather')).activeIdx,-1);
+const twistControls=apparatus(Space.torsion),twistTime=twistControls.sliders.find(c=>c.label==='Replay time');
+twistTime.drive(1000);twistControls.buttons[0].fn();near(twistTime.value,0);
+twistTime.drive(1000);twistControls.sliders.find(c=>c.label==='Initial disturbance').drive(40);near(twistTime.value,0);
+const missionControls=apparatus(Space.mission),coast=missionControls.sliders.find(c=>c.label.startsWith('Incoming'));
+coast.drive(1);missionControls.tabs[0].fn(1);near(coast.value,0);missionControls.loops.forEach(fn=>fn(.5));assert.ok(coast.value>0);
+const workControls=apparatus(Energy.work),routeTime=workControls.sliders.find(c=>c.label.startsWith('Route progress'));
+routeTime.drive(.8);workControls.tabs[0].fn(1);near(routeTime.value,0);workControls.loops.forEach(fn=>fn(1));near(routeTime.value,.15);
+const stationControls=apparatus(Energy.station),stationTime=stationControls.sliders.find(c=>c.label==='Elapsed time');
+stationTime.drive(30);stationControls.tabs[0].fn(2);near(stationTime.value,0);stationControls.loops.forEach(fn=>fn(1));near(stationTime.value,1);
+stationTime.drive(30);stationControls.buttons[0].fn();near(stationTime.value,0);
+stationTime.drive(30);stationControls.sliders.find(c=>c.label==='Wheel load at initial speed').drive(50);near(stationTime.value,0);
+
+const unitHull=apparatus(Fluids.hull),outerVolume=unitHull.sliders.find(c=>c.label==='Sealed outer volume'),cargoDensity=unitHull.sliders.find(c=>c.label==='Cargo mass');
+const displacedCube=actualMeshes(unitHull).find(m=>m.geometry.parameters.width===1&&m.geometry.parameters.height===1&&m.geometry.parameters.depth===1&&m.material.opacity===.6);
+near(displacedCube.scale.x*displacedCube.scale.y*displacedCube.scale.z,.6); // 10 L, same .06 scene³/L as the 20 L hull
+cargoDensity.drive(5);unitHull.tabs[0].fn(2);
+assert.equal(cargoDensity.label,'Egg density');assert.equal(cargoDensity.input.min,'1000');assert.equal(cargoDensity.input.max,'1200');assert.equal(cargoDensity.value,1100);assert.equal(outerVolume.input.disabled,true);
+assert.match(unitHull.teaching.question,/egg/i);assert.match(unitHull.teaching.explanation,/each layer/);assert.doesNotMatch(unitHull.teaching.limits,/rectangular/);
+cargoDensity.drive(1150);unitHull.tabs[0].fn(0);assert.equal(cargoDensity.label,'Cargo mass');near(cargoDensity.value,5);assert.equal(outerVolume.input.disabled,false);
+unitHull.tabs[0].fn(2);near(cargoDensity.value,1150);assert.match(unitHull.speech,/1150 kg\/m³/);
+console.log('PASS actual control/model agreement: replay resets/playback, shape/preset selection, independent hull/egg units and teaching, common displacement volume scale');
+
+function visibleVectors(a){const groups=[];a.root.traverse(o=>{if(o.isGroup&&o.visible&&o.children[1]?.geometry?.type==='ConeGeometry')groups.push(o);});return groups;}
+const pairScene=apparatus(RENDERERS.pairs);assert.equal(visibleVectors(pairScene).length,2,'two-body mode must show only its two interaction forces');
+pairScene.tabs[0].fn(1);assert.equal(visibleVectors(pairScene).length,1);pairScene.tabs[0].fn(3);assert.equal(visibleVectors(pairScene).length,4);pairScene.tabs[0].fn(0);assert.equal(visibleVectors(pairScene).length,2);
+const contactPressure=apparatus(Fluids.pressure);assert.equal(visibleVectors(contactPressure).length,1);contactPressure.tabs[0].fn(1);assert.equal(visibleVectors(contactPressure).length,6);contactPressure.tabs[0].fn(0);assert.equal(visibleVectors(contactPressure).length,1);
+const zeroGas=apparatus(Fluids.suction);assert.equal(visibleVectors(zeroGas).length,2,'vacuum contributes no gas pressure arrow');zeroGas.sliders[0].drive(101000);assert.equal(visibleVectors(zeroGas).length,2,'zero liquid height contributes no weight arrow');
+const horizontalWork=apparatus(Energy.work,false);assert.ok(horizontalWork.calls.some(c=>c.method==='fillText'&&String(c.args[0]).startsWith('Total route work: mgh')));assert.ok(!horizontalWork.calls.some(c=>c.method==='fillText'&&String(c.args[0]).startsWith('work = F s cos')));
+const walkTrail=apparatus(RENDERERS.frames,false);walkTrail.calls.length=0;walkTrail.sliders[0].drive(.4);assert.ok(walkTrail.calls.filter(c=>c.method==='lineTo').length>=61,'2D frame comparison includes the same accumulated trajectory');
+console.log('PASS all actual textbook renderers plus force visibility, zero-force limits, local/route work distinction and frame trajectory');
+
+const accelScene=apparatus(RENDERERS.vectors),accelVector=visibleVectors(accelScene).find(g=>g.children[0].material.color.getHexString()==='bb9922');
+near(drawnVector(accelVector).length(),Math.sqrt(50)/8);const beforeForces=visibleVectors(accelScene).filter(g=>g!==accelVector).map(g=>drawnVector(g).length());accelScene.sliders.find(c=>c.label==='Mass').drive(5);near(drawnVector(accelVector).length(),Math.sqrt(50)/40);visibleVectors(accelScene).filter(g=>g!==accelVector).forEach((g,i)=>near(drawnVector(g).length(),beforeForces[i]));
+const pressureRatios=apparatus(Fluids.pressure);pressureRatios.tabs[0].fn(1);near(drawnVector(visibleVectors(pressureRatios)[2]).length()/drawnVector(visibleVectors(pressureRatios)[3]).length(),.8);assert.equal(pressureRatios.sliders[0].input.disabled,true);assert.equal(pressureRatios.sliders[1].input.disabled,false);
+const tangentRelease=apparatus(Space.circle),releaseTime=tangentRelease.sliders.find(c=>c.label==='Time after release');assert.equal(tangentRelease.playback,false);assert.equal(releaseTime.input.disabled,true);tangentRelease.buttons[0].fn();releaseTime.drive(.35);assert.equal(tangentRelease.playback,false);assert.equal(releaseTime.input.disabled,false);assert.equal(visibleVectors(tangentRelease).length,1);const orbitBall=actualMeshes(tangentRelease).find(m=>m.geometry.type==='SphereGeometry'&&m.geometry.parameters.radius===.13);near(orbitBall.position.x,.8*(Math.SQRT2-.35*2*Math.SQRT2));near(orbitBall.position.y,.8*(Math.SQRT2+.35*2*Math.SQRT2));tangentRelease.buttons[0].fn();near(releaseTime.value,0);assert.equal(releaseTime.input.disabled,true);
+const stillCabin=apparatus(Space.weightless,false);stillCabin.tabs[0].fn(1);assert.equal(stillCabin.playback,false);assert.ok(stillCabin.calls.some(c=>c.method==='fillText'&&String(c.args[0]).startsWith('Supported cabin:')));
+const zeroEngine=apparatus(Energy.engine);assert.equal(zeroEngine.playback,true);zeroEngine.sliders.find(c=>c.label==='Hot reservoir').drive(400);zeroEngine.sliders.find(c=>c.label==='Cold reservoir').drive(400);assert.equal(zeroEngine.playback,false);
+const landing=apparatus(RENDERERS.projectile),flightEnd=landing.sliders.find(c=>c.label==='Replay time');flightEnd.drive(Math.sqrt(1.5/9.8));const landingBall=actualMeshes(landing).find(m=>m.geometry.type==='SphereGeometry'&&m.geometry.parameters.radius===.12),landingFloor=actualMeshes(landing).find(m=>m.geometry.parameters.width===2.5);near(landingBall.position.y-.12,landingFloor.position.y+.03);const fixedRadius=landing.frameRadius,numberOfFits=landing.frameCalls;flightEnd.drive(0);flightEnd.drive(.2);near(landing.frameRadius,fixedRadius);assert.equal(landing.frameCalls,numberOfFits,'replay time never refits the motion envelope');landing.tabs[0].fn(1);assert.equal(landing.frameCalls,numberOfFits,'observer switch keeps the same physical view scale');
+console.log('PASS visible acceleration scales, proportional pressure vectors, tangent release clock, supported/zero-gradient playback and exact landing contact with fixed replay framing');

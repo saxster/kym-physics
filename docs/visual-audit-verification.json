@@ -1,0 +1,284 @@
+{
+  "scope": "109 new lessons; fresh baseline, candidate and final live evidence remain distinct",
+  "productCache": "mw-4ae3460b3b81",
+  "indexBytes": 4151660,
+  "indexSha256": "e8ad80185bdc04246909cbb8277eea3767833142f236480dabc528ffde094191",
+  "filesSha256": {
+    "live/w_field3d-6ENI4SZD.js": "c371d8139435d307ce528f0fe0b06413cb2a08e2ce9acb241b3d6ca16af94979",
+    "live/chunk-XUAL2ZCV.js": "66e7b45685a0b541dd34e1dfa55116636c12210771c572e0998e4145e088abbf",
+    "live/chunk-I4KURCN4.js": "254b336664acb2dc9a4f8ab823dfcd9429fba87b69bc835cb9ffe4571f5c3c41",
+    "live/w_ramp-6GLZEA33.js": "90253938dd3faec09360c978295b267f7a30c24a383ef74a90b84b35f1537e54",
+    "live/chunk-WOT6VMZA.js": "ff9e0dca4365b7b1581e7275f3c6dbcf1474ffb874d81a3375ecf7a835dbaa6f",
+    "assets/scale/neighbourhood.webp": "5fb04b846f9b05fc00b9646647b369239bc007dc8b57f88384bcab3d20b4df0d",
+    "live/chunk-YVAPA4BS.js": "6bc4826c136a72db8f51ff2491d93c39c486332eed5341933069280076922e8c",
+    "live/chunk-TKF4ZEXY.js": "0086568bc08d64b78626817e947a2a326b71587528ef61e8160c4ca0a45ecc8b",
+    "live/w_projectile-3YQMZ7ZQ.js": "7d6f4ae4f54c97685e804a356e61600f2bfa9c1b743929283470661b46c03cd9",
+    "live/w_seasons-IEWFJL3F.js": "fadc78c2fd1390cad0fd164710a03f7870037845df8fb2a533252b1a054b1bb1",
+    "live/w_colourmix-QJI2NLEG.js": "5ba0d683cc9e10ebbc268dbf320ae2b7ef73f87f2cdde48bd00e82a7e84536f8",
+    "live/w_mirror-GECZW2FH.js": "2cf88aa624f4d18edb75911a205376cb946015bc2a3310d83a6a00a241857c6c",
+    "live/x_scale-4ZERKXRF.js": "4c5f4964645b06f5fefb4bb1c2369dc1258a946d67166cc96c7424688cc55f49",
+    "live/w_airfall-SE7Z7CQQ.js": "2d5e2353e359114ea540959ffe9edb931f135a83a04a6005097b70bdb2980d2b",
+    "live/w_cannon3d-4TEYI6H4.js": "f8fd1df61f322e31f5048f0c2915283f4646e5d4b6a5c0b92063b2e69f83545b",
+    "live/w_magnetometer-GWMA4TJ2.js": "818656ed53a4fea36b392e0326f44ff20dac35d4dc45e7d79de8ca69e751a0ac",
+    "live/w_videotrack-HK7LVJUD.js": "1b4a874acb21eb03c00b5ac70f8ae9480393ae444a30b1eb26ccc7171e4a3b8d",
+    "assets/scale/room.webp": "fe5eb912033a8eb33ea6942ce0caffa6e34107d11b26dc6bf86cdfa5064f2fb3",
+    "live/w_energystores-43S4NG6K.js": "9d64bf67dcbb1817784e8cd675c463839524de8a59264b6f72fddd1fe943e211",
+    "live/w_forces-WEFDIHSY.js": "e85a5d5439344798c87395b02c1377c7befa7d2f2e99153c33e34ce5c4637285",
+    "live/w_eye3d-KNHOT3QY.js": "f5073ca2c016ef82d092e3d9e22ac8a0bd722ccebdf743bb90fb0519e66840e9",
+    "live/w_interference-ZNGTWL5K.js": "dd59c568cd7f71b3c8686b014948d359a099c217044aae224f21150313f5cb2d",
+    "live/chunk-7VZAQJBF.js": "6b1069485ac9eba250bf690542b11c8de661b8df048ec7e4361893f70e8a20cb",
+    "manifest.webmanifest": "625a758ea3860f147fde7aebfdfafb985fdc0736bb464f9179c74b179023cb51",
+    "live/x_sky-GIV75YEE.js": "7051e70116348702d775d52cdfb11ccbbf58367e84c7d6c2b29c06d3aa437c95",
+    "live/w_shadow-Y3O6WH43.js": "44b768d6f451389d30f65f32f8562ad5a85064c366f283923d952bb3fda44169",
+    "live/chunk-UGQNDQER.js": "e032fb7825707954c8fa9c1bb429a6e92db54ffef4ff00c7909137bcba90a45d",
+    "live/w_scope-WGOF4QP7.js": "f53fd6099316a40c9f4f10fa42ae199637ec8df70f87cec2235640cbb9064747",
+    "sw.js": "72c6a513d4bc635652992fbcd5702b7e94fddc46fd5f9d45587400a552fddf57",
+    "live/chunk-M4YHM7B4.js": "986232ec1387946de9322c91eae741ea4421b66b7459e0a6b82a512e51ac0693",
+    "live/x_spectrum-OKPVWXHX.js": "ec3446ce84872bc88232033471bf48b86ccc491f2825aa466ef7640eb8b09a11",
+    "live/w_energytrack-KTJNYB62.js": "664b490eba54dfe27aa18c3704163408ed9c101c64aaad044cec0986039533ae",
+    "live/w_graphwalk-ZOCRHDS3.js": "9b6bf0ec7e117ba4f2236c4f02e44617bb6493dc3aa71b22f8ad037502b972cb",
+    "live/w_ripple-GAO3NIHK.js": "20b8aa8a54c85d9a5cc52181f01ac31570e6eaf5afed73ae667d57e50eeb82cc",
+    "live/w_expansion-QHRQZBFS.js": "e4ba1fd7bd3c7aa86b97255ba0a5c9420eed768dbda929b888596ccc017aab18",
+    "live/x_map-2T63VRNY.js": "d8ad9ec5a8f3c3b89fb621ee934133ad81d71f0dfaf183fee986eedf11f5265b",
+    "live/w_mechanicslab-LHEGVNIF.js": "c86a3644453ea3450b150b38f7beda5c737109b6777df00c8fa9b6638ace3972",
+    "live/chunk-CFOTGZ3T.js": "86b597c84567d14df08b8b601d913e3c8e89e37265b28c69490b91f29ad2613e",
+    "assets/scale/coast.webp": "ef31cf30a09fb0ff5618d451115bae1121d47089b063b06d849c42d2626144d1",
+    "live/three-3K6EQOUE.js": "96abe42b0055e379adcb777188adfbfa9c77d26e4913deef6357e45e28af83ab",
+    "live/w_induction-5ZQV4UPP.js": "0adfdedf08f003d57142cda1804c2df35b3476a70f231f17bbcac8932673dc0c",
+    "live/w_momentum_carts-65EP2BJN.js": "5e1dfa42ff0c198626cef46ad8d4c0a302f94b93a2ac103d6c7edf1a3ca0b7dc",
+    "live/w_freefall-TOKTISK6.js": "ae430d96087471d6c1207510742dbcee2cf5327aca08a197850b8b53e706f067",
+    "live/w_fieldslab-2UOK7UEQ.js": "e1d781e9084a5a9a34b3aed541bd190ba899a1173362ab5697e6119aad6a8380",
+    "live/w_buoyancy-IFFGF7K2.js": "da9a110bd792d452ec2cc8c03d6a3a329aa756e98b646a04bb275dbd0c3c0148",
+    "live/w_conduction-3JHUQSS6.js": "44e500228c10809dec41ba37eefcb2f9fe2524d58f732985bd1cf315af7416c3",
+    "index.html": "e8ad80185bdc04246909cbb8277eea3767833142f236480dabc528ffde094191",
+    "live/w_harmonics-6HK7QAUA.js": "d7ecc19a44395067f0c3931a6cbf823deba9cfa94834a75dfba2b2b408d7c812",
+    "live/w_phases-5UMNCSVO.js": "8f0ff2b7d36f5d11aaab35eaa9a703d7bc5f82c7ad370643539f73b13e8dd68f",
+    "live/w_seriesparallel-QNXGOSPS.js": "134c124b254b1125f32fcf414bfb5470598b7ffd4a843866c05e640f139ded35",
+    "icon-192.png": "71ee4385aafa14b6431e101b74c271b386d5cf437e948e588ed770cf5267d404",
+    "live/chunk-G54ALBCI.js": "6856200ea0aecbf11aa1c0762fdee49cf5414e8c25a50f14419ba98c844d8ea5",
+    "live/w_doppler-ZZND3U42.js": "6a197322eeab4ded6c2709e9cbb2a201232708ab6ca58f7bb63dd783e0473898",
+    "live/w_refraction-CYHC7PBE.js": "0efdbc4b12c8f7d4a2ed524db4afd3d378420e1f0c0de03a59b8d8da0f017b16",
+    "live/w_skycolour-KFHUOPR2.js": "216524d9b3570658d33e1f1ceb38ccecceac726f809f55f0fbf54d5b3cd8a434",
+    "live/w_circuit-FVJGQB4O.js": "4ea2ea9127f60f2304a9497b8b2bfbf9e1e8c58581cb7fe34fba01992867065b",
+    "live/w_tides-S5C2I752.js": "9b52fe636b7213320e22064ed9da75f072a1f21e74a6c57a58a942548b901e7b",
+    "icon-512.png": "b89a97bea1cb232aca38f71c96a97275ce2d523c50d7a5c059bda314fd2f69c6",
+    "live/w_pressuretank-ST2BNSD2.js": "51c1625015511e7745ef41197bfcb2e2a060e36ac55433f134c83591e210a449",
+    "live/w_parallax-PLHU2DVK.js": "3d79d6613212e7ace76206c333da528c1e0622404f1fd2a3fa24877c03d04969",
+    "live/w_waveslab-XH6FWIIK.js": "eaf591f82c374d42f73133534fe9ac9f2f254697ff96a46d616adc6b980bf35d",
+    "live/w_whirl-4LI2VJHN.js": "c49e9869e7c2637840a8b05fa6babbc553eb4f120260f935db7372355877245a"
+  },
+  "sourceSha256": {
+    "source/live/waves_motion.js": "ba79190c8b170aec7b8dc012daaf1f2e59eec14a8b4262be26e24366f3970362",
+    "source/live/mechanics_fluids.js": "f1737944343b926b8e59a79a1c7181b45d9b6543261f317f24fcd47ceeb2a768",
+    "source/live/w_conduction.js": "a0a67e89c080f9e11d51bb99cb85e8d8f3a3aedd4b6b75701d4a51e2c74f305d",
+    "source/live/w_field3d.js": "7b47e016122791ddf5b3caa33e0556085e79f6f80ce9c5e9fb7db638bc4b1f5d",
+    "source/live/w_ramp.js": "61c682af66fc36335e010ca6d68640dd57d6baedf21f0a1f629c6d9bc3eab2e9",
+    "source/live/mechanics_space.js": "cde32a04475234aeda05e4cdc4a47647ad42d147c7b636ae2ac7b458aa436d24",
+    "source/live/w_phases.js": "2aeb1eec215af8c26c6176ec1762084b612730e1a121f7ba6a5242ec4e6ec201",
+    "source/live/w_selftest3d.js": "f054f706c7d80baed1b18978c4828895bc8bb357513b01f7c0fa81bae92216bb",
+    "source/live/w_circuit.js": "6ad9f07e8eafcaf2177ef7cfaf97255cc0c52285a40c731de9b19900f7d97398",
+    "source/live/three_kit.js": "1ac9c4b383d21a5759dde861dc014336891be5e7a9cb7f95c52e8da182f9a46e",
+    "source/live/w_skycolour.js": "9cdc446b79a24b653e415d5a3394dd9491f628ca687e3c85952b02bef6a102d1",
+    "source/live/w_graphwalk.js": "b236b568da61616aeb052618a89279c60da5100c78c89c0e7be7298d17aae42f",
+    "source/live/core.js": "1565a78b83d4daba8b4e52373f7b392c2ef969a04b2085cd20889f347a45adea",
+    "source/live/w_energytrack.js": "0c595e716937087fb878b2d1127d1baa5c4e17aaff1761a7a146f3097aa34d5f",
+    "source/live/w_doppler.js": "b886a6b9e90a07768fc635e45b76aa21f2ff0a55e9074a76a51dfdc434d7ef3a",
+    "source/live/waves_draw.js": "469a48992bc1c3933ad11c312ac9c27bac8b0a239a855d7e22bf32adeacbae10",
+    "source/live/art_mechanics.js": "d7ae70942708159145e85df60e207df42e67ab05bc7272593310026e0b376252",
+    "source/live/w_seasons.js": "5605aedf5ba3d591cf759f33bd2b570121e8b2e9634b385dc910407a78dbee86",
+    "source/live/w_shadow.js": "e23a1381a028374645a2dbc677bd0586218c2be02aba7dc4adb7eca6ee095fe2",
+    "source/live/w_ripple.js": "18f988e0496f2776104805c71a26edf0e84d56bdf59d8175e6263e98f68aec7c",
+    "source/live/w_seriesparallel.js": "46782356cd4d47cbefea15ca8d21c28a57d8578aef3a0935e2965de672a9dcf2",
+    "source/live/w_freefall.js": "42f40701d305e34fec4ed0e52181b43211e97ca437d594cf5e75d91a5482cd04",
+    "source/live/w_parallax.js": "992bdcc5d72810085c302542588546f943563eb45e22fb945fd9eeb9e910e32e",
+    "source/live/w_cannon3d.js": "3e94520b9eef44d97f1adb476b640271fb55e9ae426076d187084b2720f926c0",
+    "source/live/w_induction.js": "396b369f82a21d0660ca863b5f86eb4b3ee9ee57e4b3689fba033a00d9963156",
+    "source/live/w_buoyancy.js": "c12613ea40c7e29d705ac220ec32a4985f729b719bcce67fb151ab87f392465c",
+    "source/live/w_waveslab.js": "22f2fef8fd2d446e32fe5541e418a2dbedfa6a297086769bf03598cb097072e7",
+    "source/live/waves_colour.js": "421b32eb01cc2b2a581ff3facad904428b3cad4a34aca68d7f0385fb6adcb9a2",
+    "source/live/waves_optics.js": "86e37ec06761f5eb2d62e850c7083b0f01e3e6903affa47df0a0436ea0133b27",
+    "source/live/mechanics_energy.js": "f735e394775b98e98e4354b9bca7115e4cd0947833a7591411047713c015c64a",
+    "source/live/w_interference.js": "c08253cfea9a2629295d53ed999c039761cd1886845f2569ad75d993c620ca1e",
+    "source/live/annotations.js": "be4016659a53aa14936e6bdf95e9e52bb4d0c74d2297df095c777cb3f2f03bba",
+    "source/live/w_mechanicslab.js": "2f6f6221c39cb684b0f2874ddc4ad61d0345afb44f697f218bae433fc0905b03",
+    "source/live/w_pressuretank.js": "92ce8f453da752293f773c2373f631253a0eb3ab75d42f959842aaa8ff01642e",
+    "source/live/w_energystores.js": "94eb5b3ee1cc1933dc37317a4b8244d4b7c868975791b393ab40599ee48f012f",
+    "source/live/w_harmonics.js": "31e517ddbc1fa2722681c708f61649e88702b9a96fd95ae4dd2e860d68db1cba",
+    "source/live/w_colourmix.js": "634a9b78c19b920623188dc9076be97ccff49a85704cae0ffc4fb5ed548ce285",
+    "source/live/w_videotrack.js": "46e1894d33954e79e2a9bef37241cdf3e06a3216548d23a35beba19cb64e42d6",
+    "source/live/w_momentum_carts.js": "345237be283f730419e8bd4b97a43f14adb6ec410c33190519e9530bb6f16cbe",
+    "source/live/waves_thermal.js": "d9120394be1123c1e55d9d163479dd608ad7c28738411184591090d70e7da345",
+    "source/live/w_selftest.js": "2c52b9112a57d49e076c59d60402417ac474007f5ecc447ddd88ca5fc46392f7",
+    "source/live/w_mirror.js": "1c617196be594d0a1adb3c9540e331354396a649f3873fd8ba20ff09cb0c5fc1",
+    "source/live/w_whirl.js": "dfd37b2a7e6bcda10d4d0326f746b59b9211d76b1576f1bc00a635fd27f3dd49",
+    "source/live/mechanics_render.js": "530b37e4138a1ec112dae9cfd5e42440eba7ed30d133ff3a1ee5c3c874196912",
+    "source/live/w_projectile.js": "62f082d993d4bf3a4792fef775ab4ba961f3f0fd7ed506510fc5ffe18c3c90aa",
+    "source/live/w_scope.js": "85698ebbf45f22c9df75d3ec1fce9ee78a7bed5c7831daf2e56cdef78c7884fc",
+    "source/live/w_fieldslab.js": "a15ca2e445a55e28d1a07dc38f638f7c9253154e1ce59ed88b4c574d51cc9640",
+    "source/live/w_eye3d.js": "0bd8ae15971f8930e7b165a45a30059c0b348f8ac39c1236f819d1274e37a59a",
+    "source/live/w_refraction.js": "ca21a654e80e3a62d0958fd3893a716713b8db044f828831dcc71780aac8dace",
+    "source/live/enhancements.js": "3cded891f0f3fdf3b15b4fe45e46e526ea4465eb5669ec82a62bbd4296d32aae",
+    "source/live/w_selftestapi.js": "50f1fc37b5934027474994b88577cb5483ed32317ec854094ed68a794f4e32b7",
+    "source/live/lab_kit.js": "d681b27a49c48b80bd4b9174aae51feb6942e6979498b036686261430f302b42",
+    "source/live/art_waves.js": "1c5e6f77d65b34ccfdd2b1b7d71b1f2c45a96bbbd435933e18178d2efb8d8c21",
+    "source/live/w_forces.js": "728361481580ef4f95ca8249f1611c7e64e097b88d02f66f89626be8588126cf",
+    "source/live/w_tides.js": "b80a90e4d95f7c007c3e4e8faaa0796a0baefe3ca09870fcadbcb9d7b84f15b8",
+    "source/live/w_magnetometer.js": "ca3b6b25adc5934b6ff19ee4ac66484b62bbd0ffa1fd35c3019f0ca8df7b1c3b",
+    "source/live/w_expansion.js": "415beaa741efffa7bf5bcc46d6dd294b8b87d10d902b8029a04824b38de7d4a1",
+    "source/live/w_airfall.js": "4f09d315382343dea87cfdc0488f4993edbb99695292e208853441e7862cf48e",
+    "source/live/mechanics_models.mjs": "912a18c0ac4b41c1770429b493adec93e29f8eee3f4ef1adea0ca5d67ff8429c",
+    "source/live/mechanics_geometry.mjs": "77ac0bea85cd1ba607cda64183f2ad681b98cd983e665176f71428d2f52cb455",
+    "source/live/energy_scenarios.mjs": "617cee5c319fd974d40061de6219c03e937b246eefb12485fb4ef7b34a385f41",
+    "source/live/doppler_model.mjs": "a39018fa9e4a006f147b4868f67b1eff14f24e1df501f412270d9cec976fcc14",
+    "source/live/scene_bounds.mjs": "028fb1b7da5972cb565e1e09a812e740cb137db28f58f1fd6abe6d56ff997c07",
+    "source/live/mechanics_motion_models.mjs": "ba3ff87adf627f24cffe62ee88ce30f641330af02e89c3600c5b509f09fa908c",
+    "source/live/waves_models.mjs": "0ffee4462f82c9088c2b2a4b028e800df7dd4e0af0de56d8cf50133397ddd237",
+    "source/live/fields_models.mjs": "b0080ce343175f0767494643015b8a186732537b3c1268d0ef3b20e03500eee3",
+    "source/live/label_layout.mjs": "99b07d440bd98a6001246726ea1731e5b62523a0f6afd946ff3a090e3683c27d",
+    "source/live/css_colour.mjs": "67f0b435992a5dfed4fdc621dfb53417e77fce9210882f7304f463df914cf631",
+    "source/lessons/waves.json": "0128551845555d86dd39299f88e020b442176d18cee1e347db5f3ccb39387a16",
+    "source/lessons/fields.json": "482e4fae2bd878148064b34f991d8d4ad2444d903f0aa05b76a6282ec594965b",
+    "source/lessons/mechanics.json": "31d3ea5c8107f04589e9e09723f1a4962d42917c1646a74c9fbff8defa0f2538",
+    "source/app/o_labs.css": "e7e653d6d21bef2157bfe8c924fca6744e21318df2af364b7b98dee39bac9dde"
+  },
+  "tests": [
+    {
+      "command": [
+        "node",
+        "tests/test_css_colour.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "CSS colour: native sRGB readback contract, lazy allocation, memoisation and actual Three parser PASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_visual_layout.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "Visual layout: collision avoidance, active geometry bounds, instances and perspective framing PASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_live_annotations.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS annotation fidelity: LED threshold/current, coil turns, eye distances and sensor/phase limitations\nPASS challenge boundaries: ordinary reflection and an unbroken circuit do not earn completion\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_mechanics_controls.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS literal visible physical quantities: half/quarter steps, units, scientific notation and bounded replay precision\n",
+      "stderr": "(node:70074) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/amarsukhi/src/MyCode/kym_physics/source/live/mechanics_render.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to /Users/amarsukhi/src/MyCode/kym_physics/source/package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_mechanics_geometry.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS mechanics: conserved hull mass, supported sinking body, trajectory bounds, velocity tangent\nPASS equal-time flashes: exact 0.1 s grid across irregular samples\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_mechanics_motion_geometry.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS ray/tangent intersections, flight-force directions, shared-frame rigid torso and exact support contacts\nPASS common unit lattice with complete and partial edge units\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_mechanics_labs.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS mechanics lesson models: geometry, motion, force, orbit, fluids and energy\nPASS independent mechanism constraints: force/flux/contact/orbit/egg/rolling/schedule/generator/chain\nPASS actual renderer states: mesh contacts/draft/egg/column/hemispheres/silhouettes and control extrema\nPASS actual chain force-vector decomposition closes\nPASS closure renderer limits: downward shared fall, common pressure scale/zero weight, preset identity\nPASS actual control/model agreement: replay resets/playback, shape/preset selection, independent hull/egg units and teaching, common displacement volume scale\nPASS all actual textbook renderers plus force visibility, zero-force limits, local/route work distinction and frame trajectory\nPASS visible acceleration scales, proportional pressure vectors, tangent release clock, supported/zero-gradient playback and exact landing contact with fixed replay framing\n",
+      "stderr": "(node:70077) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/amarsukhi/src/MyCode/kym_physics/source/live/mechanics_space.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to /Users/amarsukhi/src/MyCode/kym_physics/source/package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_waves_labs.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS waves/thermal/optical reference cases and limiting behaviours\nPASS work/energy integration, thermal distributions, return orbits and computed ray limits\nPASS renderer-shared mirror/eye/sky/glare geometry, energetic escape, phase convergence and Raman propagation\nPASS all34 real renderer mounts, story first-frame controls, endpoint/preset redraws and finite geometry\nPASS Play/motion correspondence, mass-independent acceleration arrows, shared energy bars and same-parcel40x display contracts\nPASS visible sound phase, mirror-tip paths, reversible circulation, coherent resultant and Raman energy accounting\nPASS fixed retinal point-blur scale at near/far objects in air, water and goggles\nPASS Raman shared-scale energy bars at all offered laser/shift/mode extrema\nPASS actual seeing scattering rays stop at the opaque screen and restore when cleared\nPASS selected-mode control relevance, convection equilibrium playback and honest co-moving listener display\nPASS membrane callouts follow the visible drum rim/loading in all string/drum states\n",
+      "stderr": "(node:70100) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/amarsukhi/src/MyCode/kym_physics/source/live/waves_thermal.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to /Users/amarsukhi/src/MyCode/kym_physics/source/package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "tests/test_fields_labs.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS fields/sky lesson public models: independent reference values, limiting cases, conservation and geometry\nPASS renderer geometry: tangent fields, topology/no bypass, frame transforms, shadow endpoints, Faraday phases, reflection/exchange and ray extrapolation\nPASS instantiated scene/control smoke: 33 lessons \u00d7 scene/fallback, 680 finite state checks (no browser or GPU claims)\nPASS shared probe polarity/current selection and continuous coherent-domain rotation\nPASS scene/fallback shared load leads connect wires to resistor and both diode ends\nPASS eclipse close-up: shared state, umbra/penumbra/antumbra radii, target misses, common cross-section scale and default visibility\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "tests/test_lesson_catalog.py"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "tests/test_graphics_physics.py"
+      ],
+      "exitCode": 0,
+      "stdout": "water jets: Bernoulli speed, ballistic paths and common-floor ranges agree\nsound: pressure maxima align with particle compressions; minima with rarefactions\nYoung: true source paths agree with zero and half-wavelength interference\nEye: two points focus inverted and all model rays clear the pupil\n",
+      "stderr": ""
+    }
+  ],
+  "testSha256": {
+    "tests/test_css_colour.mjs": "7b322a3e86bb90047db201d5241a75aea634b2cd28b67c6fc01bf4b591ba3913",
+    "tests/test_visual_layout.mjs": "213050170a6f7186a437e401085b1b0fea6ec9d2256fc8f86302dd7f7840eb26",
+    "tests/test_live_annotations.mjs": "c3db6f8b89164a8d0a66eed4cced4e0fc05669e2d39ee0855cf4b9599602f2e4",
+    "tests/test_mechanics_controls.mjs": "8785719339dd5bf673f0653d4b700ba71e1ddf4219ac8587b6926c8f6f1cdfea",
+    "tests/test_mechanics_geometry.mjs": "30f46c8e1a8ac90494e5dc200d7091c15324c8e9471df4df3f342b4a4e359070",
+    "tests/test_mechanics_motion_geometry.mjs": "7e92951bbf13e267b57d6b59bad8a56b80ab5f128800c076daf6651ebc4e2501",
+    "tests/test_mechanics_labs.mjs": "d23cfb1df0d284d6cd095e32ef3ee0b379e2f1f48da4b72c57171a1b624c9ac2",
+    "tests/test_waves_labs.mjs": "091e06a4643f6394fa7995a50e02f1f9efdfaf017de5eeab9a404f37fc653531",
+    "tests/test_fields_labs.mjs": "f11e4c34180f534e455e20cd418b3ecc378df04d746860d895ae23cd6827b417",
+    "tests/test_lesson_catalog.py": "aa660fbe3c8bdbc6aa40ad2ce85e4ba3f49cb0bd7db56598d2a905e851d5a8b6",
+    "tests/test_graphics_physics.py": "7f45dd2469bf09081c71067a601455e5c71732654b7dd1ab727553059da01fda"
+  },
+  "candidateCoverage": {
+    "mobileLessons": 109,
+    "desktopLessons": 109,
+    "strictFinalPreflightImages": 23,
+    "themeResponsiveCases": 27,
+    "widths": [
+      390,
+      820,
+      1024,
+      1180,
+      1440
+    ],
+    "themes": [
+      "dark",
+      "light",
+      "sepia"
+    ],
+    "browser": "IAB",
+    "finalLiveGate": "PENDING_PUBLICATION"
+  },
+  "limits": [
+    "Viewport emulation; no physical phone claim",
+    "Renderer adapters do not imply browser/GPU acceptance",
+    "No full accessibility conformance claim"
+  ],
+  "rollbackReference": "d2b7562ec2a5b8af33472451a13a274f0b209efa"
+}

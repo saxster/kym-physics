@@ -294,3 +294,61 @@ New sources checked directly on 29 October 2026:
 - [OpenStax electric generators](https://openstax.org/books/college-physics-2e/pages/23-5-electric-generators),
   changing flux and induced emf; combining emf∝ω with a fixed resistive load
   supplies the stated cycle-averaged P∝ω² wheel model.
+
+## 29 October fresh visual-audit corrections
+
+The audit distinguishes personally viewed live screenshots from automated
+control checks in `docs/visual-audit-mechanics.{md,json}`. Baseline visual evidence
+currently covers only horizon, fall and hull; final visual acceptance remains open.
+
+- Quantities on sliders use the actual decimal step: 0.25 h stays 0.25 h and
+  2.5 kg stays 2.5 kg. A derived replay step uses at most four decimal places for
+  its visible output. Independent literal-output regressions cover these cases.
+- A replay reset or advancing clock changes both the model time and the visible
+  slider. A manually changed body/eccentricity/appliance parameter clears the
+  incompatible named preset. Static comparison scenes hide no-op playback.
+- Fall silhouettes are enlarged visual representations. White dots mark matching
+  reference points and grey release marks/trails compare the travelled distance;
+  different silhouette tops must not imply unequal free-fall motion. A dashed
+  second speed trace makes coincident vacuum curves identifiable.
+- Hull dimensions at 20 L are 2 × 0.6 × 1 scene units, so every litre occupies
+  0.06 scene³. A 10 L displaced-water cube must therefore have volume 0.6 scene³,
+  independently of hull shape. This common scale now also matches the steel
+  reference. The prior cube divisor implied a different physical volume scale.
+- The layered egg is a separate experiment: its density is directly adjustable
+  from 1000 to 1200 kg/m³, independent of cargo and sealed outer hull volume.
+  Volume fractions in the two layers determine average displaced-liquid density;
+  at equilibrium it equals egg density. Geometry remains the integrated
+  egg-shaped solid at a sharp liquid interface, not a rectangular egg. Mixing,
+  surface tension, hull stability and flooding are excluded as stated by each
+  mode. No physical model equation or empirical parameter changed in this audit.
+
+Further baseline findings and actual-renderer checks from all42 fresh boards:
+
+- A visible acceleration arrow now changes inversely with cart mass while the
+  force arrows remain fixed. Force and acceleration have explicitly separate
+  units/scales; they are never added as if they were the same quantity.
+- Equal-area immersed-face force arrows share one scale proportional to gauge
+  pressure. The previous arbitrary additive length is removed; at top depth2 m,
+  top/bottom force-arrow ratio is2/2.5=0.8. The contact-load view has its own
+  labelled force scale. Standing-person forces are hidden in two-object mode;
+  zero gas-pressure and zero-column-weight vectors remain absent.
+- Work on a horizontal stair segment is locally zero. The full route’s mgh
+  account is now labelled separately, replacing a misleading F s cosθ label
+  next to the local90° construction. Slide/roll/horizontal modes get their own
+  explanations and fidelity limits. Rolling has static contact friction and no
+  dissipative loss; it is not the frictionless sliding model.
+- Frame/projectile sphere surfaces now meet the actual floor at zero height in
+  both3D and the linked drawing. Trajectory history is shown in both views.
+  Authored complete motion/force envelopes centre the apparatus and fix camera
+  scale during replay and observer switching. Circle release has a scrubbed
+ 0–0.35 s clock so the tangent continuation is observable without timing a click.
+- The geyser/lamp energies are compared by bars on the same0–0.5 kWh scale. A
+  dashed full-range energy line is explicitly a continuation if the selected
+  power were left on; the solid segment ends at the actual operating duration.
+- All actual textbook renderers are now exercised through their real public
+  controls with a headless DOM/WebGL shell, including the functions in
+  w_mechanicslab.js. New tests check literal acceleration scaling, proportional
+  pressure arrows, force visibility/zero limits, landing contact, fixed replay
+  framing and meaningful playback. This is computational evidence, not a claim
+  of final visual or human-learning acceptance.

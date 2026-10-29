@@ -12,6 +12,13 @@ Live.register("fieldslab", (stage, params, api) => {
   }, draw = () => {
   }, advance = () => {
   }, lastReport = "";
+  let lastTeaching = "", motionAllowed;
+  const teach = explanation => {
+    if (explanation !== lastTeaching) { lastTeaching = explanation; lab.teach?.({ explanation }); }
+  };
+  const playback = enabled => {
+    if (enabled !== motionAllowed) { motionAllowed = enabled; api.playback?.(enabled); }
+  };
   const label3 = (text2, position, color = c.ink) => lab.kit?.label?.(text2, position, { color });
   const report = (s) => {
     if (s !== lastReport) {
@@ -117,10 +124,26 @@ Live.register("fieldslab", (stage, params, api) => {
     pts.forEach((p, i) => i ? ctx.lineTo(...p) : ctx.moveTo(...p));
     ctx.stroke();
   };
-  const axes = (xl = "selected quantity", yl = "response") => {
+  const axes = (xl = "selected quantity", yl = "response", scale = null) => {
     stroke([[55, 35], [55, 195], [605, 195]], c.rule, 1);
-    text(xl, 605, 229, c.muted, 12, "right");
+    text(xl, 605, 237, c.muted, 12, "right");
     text(yl, 55, 22, c.muted, 12);
+    if (!scale) return;
+    const fmt = v => Number(v.toFixed(3)).toLocaleString('en-GB');
+    for (const v of scale.xticks || [scale.x[0], (scale.x[0]+scale.x[1])/2, scale.x[1]]) {
+      const x = 55 + (v-scale.x[0])/(scale.x[1]-scale.x[0])*550;
+      stroke([[x,195],[x,200]],c.rule,1); text(fmt(v),x,216,c.ink,13,'center');
+    }
+    for (const v of scale.yticks || [scale.y[0], (scale.y[0]+scale.y[1])/2, scale.y[1]]) {
+      const y = 195 - (v-scale.y[0])/(scale.y[1]-scale.y[0])*145;
+      stroke([[50,y],[55,y]],c.rule,1);
+      text((v>0&&scale.y[0]<0?'+':'')+fmt(v),45,y+4,c.ink,13,'right');
+    }
+    const reference = scale.reference ?? (scale.y[0]<0&&scale.y[1]>0?0:null);
+    if (reference !== null) {
+      const y=195-(reference-scale.y[0])/(scale.y[1]-scale.y[0])*145;
+      stroke([[55,y],[605,y]],c.muted,1);
+    }
   };
   const curve = (fn, col = c.electron) => stroke(Array.from({ length: 151 }, (_, i) => [55 + i / 150 * 550, 195 - fn(i / 150) * 145]), col);
   const bar = (label, value, max, x, y, color = c.electron, width = 240) => {
@@ -200,7 +223,7 @@ Live.register("fieldslab", (stage, params, api) => {
       report(`At r = ${Math.abs(probe).toFixed(1)} shell radii, total field ${Math.hypot(...f.total).toFixed(2)}\xD7 applied field. ${Math.abs(probe) < 1 ? "Inside the empty closed shell, induced and external fields cancel." : "Outside, the conductor distorts the applied field."}`);
     };
     draw = () => {
-      axes("position / shell radius", "total field / applied field");
+      axes("position / shell radius", "total field / applied field",{x:[-2.5,2.5],y:[0,4]});
       curve((u) => Math.min(1, P.length(P.sphereConductorField([-2.5 + 5 * u, 0, 0]).total) / 4));
       ctx.fillStyle = c.mark_soft;
       ctx.fillRect(220, 38, 220, 157);
@@ -216,11 +239,15 @@ Live.register("fieldslab", (stage, params, api) => {
     const componentLeads=Array.from({length:6},()=>line([[0,0,0],[0,0,0]],c.ink));
     const redProbe=ball(0,0,.18,.09,c.proton),blackProbe=ball(0,0,.18,.09,c.ink),probeLead=line([[0,0,0],[0,0,0]],c.proton),signal=ball(0,0,.1,.1,c.neutron),dots=Array.from({length:16},()=>ball(0,0,.05,.055,c.electron));
     const caseBox=box(.6,0,0,1.1,1.1,.7,c.muted,root,.25),fault=line([[.6,.8,0],[.6,0,0]],c.proton),earth=line([[.6,0,0],[.6,-1.1,0],[-2,-1.1,0],[-2,-.4,0]],c.green),person=line([[.6,0,0],[1.6,-.2,0],[1.6,-1.1,0],[-2,-1.1,0],[-2,-.4,0]],c.proton),switchBlade=line([[-1.6,.8,0],[-1,.8,0]],c.ink);
-    label3("red / black voltage probes",()=>redProbe?.visible?[0,1.2,0]:[0,-10,0],c.proton);
+    label3("red / black voltage probes",()=>d.id==='circuit-probes'&&probe>=3?[0,1.2,0]:[0,-10,0],c.proton);
+    label3("current measurement point",()=>d.id==='circuit-probes'&&probe<3?[0,1.2,0]:[0,-10,0],c.proton);
+    const trackedElectron=ball(0,0,.1,.085,c.electron);if(trackedElectron)trackedElectron.name='signal-tracked-electron';
+    label3("tracked electron",()=>d.id==='circuit-signal'?P.add(P.loopPoint(-(mode?driftSeconds:clock*1e-9)*.0001),[0,.28,.1]):[0,-20,0],c.electron);
     let signalControl,driftControl;
     if(d.id==='circuit-signal'){
       signalControl=scalar("Signal elapsed time",0,20,clock,v=>clock=v,.1," ns");driftControl=scalar("Drift elapsed time",0,10000,driftSeconds,v=>driftSeconds=v,10," s");driftControl.input.disabled=true;
       tabs(["Fast signal clock","Slow drift clock"],i=>{mode=i;signalControl.input.disabled=!!i;driftControl.input.disabled=!i;});
+      button("Replay selected clock",()=>{if(mode){driftSeconds=0;driftControl.set(0);}else{clock=0;signalControl.set(0);}api.pause?.();});
     }else if(d.id==='protection'){
       scalar("Prospective leakage",0,60,r=0,v=>{r=v;latched=false;},1," mA");
       tabs(["Earth fault","No earth: isolated case","No earth: virtual touch","Balanced overload"],i=>{mode=i;latched=false;});
@@ -229,16 +256,19 @@ Live.register("fieldslab", (stage, params, api) => {
       scalar("Battery voltage",0,12,V,v=>V=v,.5," V");
       if(d.id==='circuit-probes'){
         scalar("Second resistance",100,1000,r,v=>r=v,10," Ω");tabs(["Parallel","Series"],i=>mode=i);
-        const pc=scalar("Probe selection",0,4,probe,v=>probe=v,1);pc.input.setAttribute('aria-description','0 branch 1 current; 1 branch 2 current; 2 battery current; 3 load 1 voltage; 4 load 2 voltage');
+        const names=['Branch 1 current','Branch 2 current','Battery current','Load 1 voltage','Load 2 voltage'];
+        const pc=api.slider('Probe selection',{min:0,max:4,value:probe,step:1,fmt:v=>names[Math.round(v)],onInput:v=>{probe=v;pc.input.setAttribute('aria-valuetext',names[v]);refresh();}});
+        pc.input.setAttribute('aria-valuetext',names[probe]);
       }else{scalar("Internal resistance",0,500,internal,v=>internal=v,10," Ω");tabs(["Red LED","White LED","Reversed LED","Open wire"],i=>mode=i);}
     }
     const setEdges=edges=>geometry.forEach((o,j)=>{o.object.visible=j<edges.length;if(j<edges.length)o.set(edges[j]);});
     const circuitState=()=>P.circuit(V,[330,r],2,0,mode===1);
-    advance=dt=>{if(d.id==='circuit-signal'){if(mode){driftSeconds=(driftSeconds+dt*500)%10000;driftControl.set(driftSeconds);}else{clock=(clock+dt*2)%20;signalControl.set(clock);}}};
+    advance=dt=>{if(dt>0&&d.id==='circuit-signal'){if(mode){driftSeconds=Math.min(10000,driftSeconds+dt*500);driftControl.set(driftSeconds);if(driftSeconds===10000)api.pause?.();}else{clock=Math.min(20,clock+dt*2);signalControl.set(clock);if(clock===20)api.pause?.();}}};
     update=()=>{
       const safety=d.id==='protection',signalMode=d.id==='circuit-signal',probes=d.id==='circuit-probes';
+      if(d.id==='circuit-diagnose')teach(mode===2?'Reversing the LED blocks forward conduction in this model: the current dot must sit at zero even when the battery has a voltage. A voltage alone cannot make current flow through a blocked path.':mode===3?'The visible break removes the complete route through the circuit. No sustained current flows, although the disconnected battery still has a voltage.':d.explanation);
       if(caseBox)caseBox.visible=safety;fault.object.visible=safety&&mode!==3;earth.object.visible=safety&&mode===0;person.object.visible=safety&&mode===2;switchBlade.object.visible=safety;
-      signal&&(signal.visible=signalMode);redProbe&&(redProbe.visible=probes);blackProbe&&(blackProbe.visible=probes);probeLead.object.visible=probes;
+      signal&&(signal.visible=signalMode);trackedElectron&&(trackedElectron.visible=signalMode);if(signalMode)trackedElectron?.position.set(...P.add(P.loopPoint(-(mode?driftSeconds:clock*1e-9)*.0001),[0,0,.1]));redProbe&&(redProbe.visible=probes);blackProbe&&(blackProbe.visible=probes&&probe>=3);probeLead.object.visible=probes&&probe>=3;
       leds.forEach(o=>o&&(o.visible=!safety));loads.forEach((o,j)=>o&&(o.visible=!safety&&(probes||j===0)));
       componentLeads.forEach((o,j)=>{const active=!safety&&(probes||j<3);o.object.visible=active;if(active){const load=j<3?0:1,y=probes?P.circuitTopology(mode===1).loads[load].center[1]:signalMode?.8:.6,segment=P.loadLeads({a:[-.8,y,0],b:[.8,y,0],center:[0,y,0]})[j%3];o.set(segment);}});
       if(safety){
@@ -256,7 +286,7 @@ Live.register("fieldslab", (stage, params, api) => {
         const gap=d.id==='circuit-diagnose'&&mode===3,edge=[...P.circuitTopology(true).edges.slice(0,4),[[2,.6,0],[2,-.8,0]],[[2,-.8,0],[-2,-.8,0]]];if(gap)edge[2]=[[-2,.6,0],[-1.4,.6,0]];
         setEdges(edge);loads[0]?.position.set(0,.6,0);leds[0]?.position.set(.55,.6,0);leds[1]&&(leds[1].visible=false);leds[0]?.rotation.set(0,0,mode===2?Math.PI/2:-Math.PI/2);
         const q=P.diodeOperatingPoint(V,330,internal,mode===1,!gap,mode===2);leds[0]?.material.color.set(q.current>.0001?c.proton:c.muted);
-        if(signalMode){setEdges([[[-2,-.8,0],[-2,-.4,0]],[[-2,.4,0],[-2,.8,0]],[[-2,.8,0],[-.8,.8,0]],[[.8,.8,0],[2,.8,0]],[[2,.8,0],[2,-.8,0]],[[2,-.8,0],[-2,-.8,0]]]);loads[0]?.position.set(0,.8,0);leds[0]?.position.set(.55,.8,0);const elapsed=mode?driftSeconds:clock*1e-9;dots.forEach((o,j)=>{o?.position.set(...P.loopPoint(j/16-elapsed*.0001));if(o)o.visible=true;});signal?.position.set(...P.loopPoint(P.clamp(clock/10,0,.999999)));report(`${mode?driftSeconds.toFixed(0)+' s drift clock':clock.toFixed(1)+' ns signal clock'}. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels ${(elapsed*.0001).toPrecision(3)} m. Play advances only the selected clock; icons enlarged, spatial path is the same.`);}
+        if(signalMode){setEdges([[[-2,-.8,0],[-2,-.4,0]],[[-2,.4,0],[-2,.8,0]],[[-2,.8,0],[-.8,.8,0]],[[.8,.8,0],[2,.8,0]],[[2,.8,0],[2,-.8,0]],[[2,-.8,0],[-2,-.8,0]]]);loads[0]?.position.set(0,.8,0);leds[0]?.position.set(.55,.8,0);const elapsed=mode?driftSeconds:clock*1e-9;dots.forEach((o,j)=>{o?.position.set(...P.loopPoint(j/16-elapsed*.0001));if(o)o.visible=true;});signal?.position.set(...P.loopPoint(P.clamp(clock/10,0,.999999)));report(`${mode?driftSeconds.toFixed(0)+' s drift clock':clock.toFixed(1)+' ns signal clock'}. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels ${(elapsed*.0001).toPrecision(3)} m. Large blue dot follows one electron; outlined start stays fixed. Play advances only the selected clock (2 ns/s or 500 drift s/s); each clock stops at its limit; Replay returns it to zero. Icons enlarged, spatial path is the same.`);}
         else report(`Supply ${V.toFixed(1)} V, terminal ${q.terminalV.toFixed(2)} V, LED ${q.diodeV.toFixed(2)} V, current ${(q.current*1000).toFixed(2)} mA. ${gap?'Visible gap: open loop.':mode===2?'Reversed triangle polarity: blocked current.':'Dot is the intersection of nonlinear LED-plus-resistor response and the source load line.'} Exponential ideal-diode teaching model, not a component specification.`);
       }
       if(!signalMode)dots.forEach(o=>o&&(o.visible=false));
@@ -264,12 +294,12 @@ Live.register("fieldslab", (stage, params, api) => {
     draw=()=>{
       const project=p=>[70+(p[0]+2)*100,125-p[1]*65];
       const paintCircuit=(edges,loads=[],series=false)=>{edges.forEach(e=>stroke(e.map(project),c.ink));loads.forEach((v,j)=>{const [x,y]=project(v.center),base=x+(series&&j===1?69:41),tip=x+(series&&j===1?41:69);P.loadLeads(v).forEach(e=>stroke(e.map(project),c.ink));ctx.strokeStyle=c.ink;ctx.strokeRect(x-27.5,y-7,55,14);stroke([[base,y-8],[tip,y],[base,y+8],[base,y-8]],c.proton);});stroke([[64,99],[76,99]],c.electron,3);stroke([[61,151],[79,151]],c.electron,3);};
-      if(d.id==='circuit-signal'){const elapsed=mode?driftSeconds:clock*1e-9;paintCircuit([[[-2,-.8,0],[-2,.8,0]],[[-2,.8,0],[2,.8,0]],[[2,.8,0],[2,-.8,0]],[[2,-.8,0],[-2,-.8,0]]]);for(let j=0;j<16;j++)plotDot(...project(P.loopPoint(j/16-elapsed*.0001)),c.electron,3);plotDot(...project(P.loopPoint(P.clamp(clock/10,0,.999999))),c.neutron,7);text(mode?`Drift clock ${driftSeconds.toFixed(0)} s`:`Signal clock ${clock.toFixed(1)} ns`,320,24,c.ink,14,'center');text(`Drift ${(elapsed*.0001).toPrecision(3)} m · 1 m wire path · charge icons enlarged`,320,222,c.muted,12,'center');}
+      if(d.id==='circuit-signal'){const elapsed=mode?driftSeconds:clock*1e-9;paintCircuit([[[-2,-.8,0],[-2,.8,0]],[[-2,.8,0],[2,.8,0]],[[2,.8,0],[2,-.8,0]],[[2,-.8,0],[-2,-.8,0]]]);for(let j=0;j<16;j++)plotDot(...project(P.loopPoint(j/16-elapsed*.0001)),c.electron,3);plotDot(...project(P.loopPoint(P.clamp(clock/10,0,.999999))),c.neutron,7);ctx.strokeStyle=c.electron;ctx.beginPath();ctx.arc(...project(P.loopPoint(0)),6,0,2*Math.PI);ctx.stroke();plotDot(...project(P.loopPoint(-elapsed*.0001)),c.electron,5);text(mode?`Drift clock ${driftSeconds.toFixed(0)} s`:`Signal clock ${clock.toFixed(1)} ns`,320,24,c.ink,14,'center');text('Large blue dot: tracked electron; ring: its starting point.',320,46,c.muted,12,'center');text(`Drift ${(elapsed*.0001).toPrecision(3)} m · 1 m wire path · charge icons enlarged`,320,222,c.muted,12,'center');}
       else if(d.id==='protection'){const q=P.protectionState(r,mode===0,mode===2,mode===3,latched);paintCircuit([[[-2,-.8,0],[-2,.8,0]],[[-2,.8,0],[-1.2,.8,0]],[[-.5,.8,0],[1,.8,0]],[[1,.8,0],[1,-.8,0]],[[1,-.8,0],[-2,-.8,0]]]);stroke([project([-1.2,.8,0]),project([-.5,q.trip?1.2:.8,0])],c.ink,3);ctx.strokeStyle=c.rule;ctx.strokeRect(300,95,65,60);if(mode!==3)stroke([[330,73],[330,120]],c.proton);if(mode===0||mode===2)stroke([[330,120],[mode===0?330:410,185],[70,185],[70,151]],mode===0?c.green:c.proton);text(q.trip?'OPEN / current stopped':'CLOSED',320,24,c.ink,15,'center');text(`Live ${q.liveA.toFixed(3)} A · neutral ${q.neutralA.toFixed(3)} A`,320,213,c.ink,12,'center');text(mode===3?'Balanced overload trips breaker':`Separate return: ${q.faultPath}`,320,235,c.muted,11,'center');}
       else if(d.id==='circuit-probes'){const g=P.circuitTopology(mode===1),q=circuitState();paintCircuit(g.edges,g.loads,mode===1);const connection=P.circuitProbe(mode===1,probe),j=connection.load,pa=connection.red,pb=connection.black;plotDot(...project(pa),c.proton,5);if(probe>=3){plotDot(...project(pb),c.ink,5);stroke([project(pa).map((v,k)=>v+(k===1?-22:0)),project(pb).map((v,k)=>v+(k===1?-22:0))],c.proton);}
         text(`${mode?'Series':'Parallel'} · I₁ ${(q.currents[0]*1000).toFixed(1)} / I₂ ${(q.currents[1]*1000).toFixed(1)} mA`,320,24,c.ink,13,'center');text(`Probe ${probe>=3?'ΔV load '+(j+1)+' = '+(mode?q.currents[j]*[330,r][j]+2:q.terminalV).toFixed(2)+' V':['I₁','I₂','I battery'][probe]+' = '+((probe===2?q.totalI:q.currents[probe])*1000).toFixed(2)+' mA'}`,320,213,c.ink,13,'center');text('Red/black endpoints measure a voltage difference; no wire bypasses a load.',320,235,c.muted,11,'center');}
 
-      else{const q=P.diodeOperatingPoint(V,330,internal,mode===1,mode!==3,mode!==2);axes('LED + resistor voltage 0–12 V','current 0–40 mA');
+      else{const q=P.diodeOperatingPoint(V,330,internal,mode===1,mode!==3,mode===2);axes('LED + resistor voltage / V','current / mA',{x:[0,12],y:[0,40]});
         const g=P.diodeOperatingPoint(V,330,internal,mode===1);curve(u=>P.diodeOperatingPoint(u*12,330,0,mode===1,mode<2).current/.04,c.proton);
         if(internal>0)curve(u=>P.clamp((V-u*12)/internal/.04,0,1),c.electron);else stroke([[55+V/12*550,45],[55+V/12*550,195]],c.electron);
         plotDot(55+q.terminalV/12*550,195-q.current/.04*145);text('Red: nonlinear load · blue: source/internal-R · dot: operating point',320,43,c.muted,11,'center');const y=218;stroke([[70,y],[115,y]],c.ink);stroke([[mode===3?150:115,y],[190,y]],c.ink);const tip=mode===2?215:235,base=mode===2?235:215;stroke([[base,y-8],[tip,y],[base,y+8],[base,y-8]],c.proton);stroke([[235,y],[280,y]],c.ink);text(mode===3?'open gap':mode===2?'reversed LED':'forward LED',300,222,c.muted,11);}
@@ -343,7 +373,7 @@ Live.register("fieldslab", (stage, params, api) => {
       let tip=[...q.position];contributions.forEach((o,j)=>{if(o)o.visible=coil&&j<turns;if(coil&&j<turns){const next=P.add(tip,P.scale(q.contributions[j],1/q.arrowScale));moveArrow(o,tip,next);tip=next;}});
       report(`${kind==='tram'?'Locked tram example: 500 A at 200 m. ':''}Source ${P.length(q.source).toFixed(2)} μT; Earth north 38.4 μT; resultant ${P.length(q.total).toFixed(2)} μT. ${coil?'Green head-to-tail arrows add each turn along the coil axis.':'Current +y makes a tangent field −z at the +x probe; reversing current reverses it.'} Arrow scale ${q.arrowScale} μT/unit. ${kind==='tram'?'Distance drawing schematic; return-current geometry omitted.':`Probe ${coil?'at centre':r.toFixed(1)+' cm from wire'}.`}`);
     };
-    draw=()=>{const q=P.wireProbeGeometry(I,r,kind,turns);axes(kind==='coil'?"axial distance 0–6 cm":"distance 0.5–6 cm",kind==='coil'?"source / 2000 μT":"source / 120 μT");
+    draw=()=>{const q=P.wireProbeGeometry(I,r,kind,turns);axes(kind==='coil'?"axial distance / cm":"distance / cm","source strength / μT",{x:kind==='coil'?[0,6]:[.5,6],y:[0,kind==='coil'?2000:120]});
       curve(u=>kind==='coil'?Math.abs(P.coilField(I,turns,.01,u*.06)*1e6)/2000:kind==='tram'?.5/120:Math.abs(20*I/(.5+u*5.5))/120);
       text(`Blue source (${q.source.map(x=>x.toFixed(1)).join(',')}) μT · red north · dark sum`,320,48,c.ink,12,"center");
       ctx.fillStyle=c.plate;ctx.fillRect(440,60,175,120);const o=[495,155],project=v=>[o[0]-v[2]/q.arrowScale*70,o[1]-v[1]/q.arrowScale*70];[q.source,q.background,q.total].forEach((v,j)=>{const p=project(v);stroke([o,p],[c.electron,c.proton,c.ink][j],j===2?3:2);plotDot(...p,[c.electron,c.proton,c.ink][j],3);});text('north ↑ / −z →',525,83,c.muted,11,'center');
@@ -371,16 +401,18 @@ Live.register("fieldslab", (stage, params, api) => {
     }
     const brushes = [box(-0.3, -1, 0.08, 0.12, 0.23, 0.15, c.ink), box(0.3, -1, 0.08, 0.12, 0.23, 0.15, c.ink)];
     const fluxArrows=Array.from({length:8},()=>arrow([0,0,0],[0,0,0],c.green));
-    const supplyLeads=[line([[-.36,-1,.08],[-.7,-1.5,.08],[.7,-1.5,.08],[.36,-1,.08]],c.ink)];
+    const supplyLeads=[line([[-.36,-1,.08],[-.7,-1.5,.08],[-.4,-1.5,.08]],c.ink),line([[.18,-1.5,.08],[.7,-1.5,.08],[.36,-1,.08]],c.ink)];
+    const supplySwitch=line([[-.4,-1.5,.08],[-.18,-1.5,.08]],c.ink);
+    supplySwitch.object.name='motor-supply-switch';
     const supply=box(0,-1.5,.08,.35,.22,.2,c.electron);
-    if(d.id==='generator'){
-      if(comm1)comm1.visible=false;if(comm2)comm2.visible=false;
-      for(const [j,y] of [-1,-1.3].entries()){const ring=mesh(new TorusGeometry(.22,.035,8,36),j?c.electron:c.proton,rotor);if(ring){ring.rotation.x=Math.PI/2;ring.position.y=y;}brushes[j]?.position.set(.3,y,0);}
-      rotorLeads[0].set([[-.12,-.65,0],[-.12,-.85,0],[.22,-1,0]]);rotorLeads[1].set([[.12,-.65,0],[.12,-1.15,0],[.22,-1.3,0]]);
-      supplyLeads[0].set([[.36,-1,0],[.8,-1,0],[.8,-1.3,0],[.36,-1.3,0]]);supply?.position.set(.8,-1.15,0);label3('AC voltmeter',[1.1,-1.4,0]);label3('separate slip rings',[0,-1.65,0]);
+    const slipRings=[];
+    if(d.id!=='transformer')for(const [j,y] of [-1,-1.3].entries()){
+      const ring=mesh(new TorusGeometry(.22,.035,8,36),j?c.electron:c.proton,rotor);
+      if(ring){ring.rotation.x=Math.PI/2;ring.position.y=y;ring.visible=d.id==='generator';}slipRings.push(ring);
     }
+    if(d.id==='generator'){label3('AC voltmeter',[1.1,-1.4,0]);label3('separate slip rings',[0,-1.4,0]);}
     if (d.id === "transformer") {
-      supplyLeads[0].object.visible=false;if(supply)supply.visible=false;
+      supplyLeads.forEach(o=>o.object.visible=false);supplySwitch.object.visible=false;if(supply)supply.visible=false;
       scalar("Secondary / primary turns", 0.5, 4, ratio, (v) => ratio = v, 0.5, "\xD7");
       scalar("Primary input (AC RMS / DC)", 0, 24, I = 12, (v) => I = v, 0.5, " V");
       tabs(["Alternating input", "Steady DC"], (i) => dc = !!i);
@@ -389,6 +421,7 @@ Live.register("fieldslab", (stage, params, api) => {
         angle = v;
         running = false;
         velocity = 0;
+        api.pause?.();
       }, 1, "\xB0");
       if (d.id === "motor") {
         currentControl = scalar("Current", -3, 3, I, (v) => I = v, 0.1, " A");
@@ -409,6 +442,7 @@ Live.register("fieldslab", (stage, params, api) => {
           velocity = 0;
           angle = (angle + 90) % 360;
           angleControl.set(angle);
+          api.pause?.();
         });
         button("Reverse supply", () => {
           I = -I;
@@ -428,11 +462,13 @@ Live.register("fieldslab", (stage, params, api) => {
       arrow([-1.2, 1.2, 0], [1.2, 1.2, 0], c.ink);
       label3("B \u2192", [0, 1.45, 0]);
       if (d.id === "motor") {
-        label3("current I", () => [-0.7 * Math.sin(angle * P.DEG), 0.6, 0.7 * Math.cos(angle * P.DEG)], c.electron);
-        label3("force F", () => [-0.7 * Math.sin(angle * P.DEG), -0.2, 0.7 * Math.cos(angle * P.DEG) + 0.7], c.proton);
+        label3("current I", () => connected&&I!==0?[-0.7 * Math.sin(angle * P.DEG), 0.6, 0.7 * Math.cos(angle * P.DEG)]:[0,-20,0], c.electron);
+        label3("force F", () => connected&&I!==0?[-0.7 * Math.sin(angle * P.DEG), -0.2, 0.7 * Math.cos(angle * P.DEG) + 0.7]:[0,-20,0], c.proton);
         label3("coil normal",()=>[Math.cos(angle*P.DEG)*.9,0,Math.sin(angle*P.DEG)*.9],c.green);
-        label3("split ring", [0, -1.32, 0]);
-        label3("brushes", [0.5, -1.15, 0.1]);
+        label3("split ring",()=>commute?[0,-1.2,0]:[0,-20,0]);
+        label3("slip rings: no reversal",()=>!commute?[0,-1.4,0]:[0,-20,0]);
+        label3("brushes",()=>commute?[.5,-1.15,.1]:[.5,-1.1,.1]);
+        label3("open switch",()=>!connected?[-.35,-1.5,.08]:[0,-20,0]);
       }
     }
     if (d.id === "transformer") {
@@ -460,11 +496,14 @@ Live.register("fieldslab", (stage, params, api) => {
       }
     }
     advance = (dt) => {
-      if (d.id === "motor" && running && dt > 0) {
-        const q = P.motor(angle, connected ? I : 0, 0.5, 10, 0.04, commute);
-        velocity += (q.torque / 0.08 - 0.35 * velocity) * Math.min(dt, 0.05);
-        angle = ((angle - velocity * dt / P.DEG) % 360 + 360) % 360;
-        angleControl.set(Math.round(angle));
+      if (d.id === "motor") {
+        running = dt > 0;
+        if (running) {
+          const q = P.motor(angle, connected ? I : 0, 0.5, 10, 0.04, commute);
+          velocity += (q.torque / 0.08 - 0.35 * velocity) * Math.min(dt, 0.05);
+          angle = ((angle - velocity * dt / P.DEG) % 360 + 360) % 360;
+          angleControl.set(Math.round(angle));
+        }
       } else if (d.id === "generator" && dt > 0) {
         angle = (angle + omega * dt / P.DEG) % 360;
         angleControl.set(Math.round(angle));
@@ -473,6 +512,8 @@ Live.register("fieldslab", (stage, params, api) => {
     update = () => {
       fluxArrows.forEach(o=>o&&(o.visible=d.id==='transformer'));
       if (d.id === "transformer") {
+        playback(!dc);
+        teach(dc?'After the switching transient, steady direct current makes a steady magnetic flux. An unchanging flux produces no induced secondary voltage. The primary still draws current through its winding resistance; this is different from the ideal AC power comparison.':d.explanation);
         const phase=P.transformerPhase(dc?I:Math.SQRT2*I,ratio,tick,dc),route=[[-.9,-.7,.28],[-.9,0,.28],[-.9,.7,.28],[0,.85,.28],[.9,.7,.28],[.9,0,.28],[.9,-.7,.28],[0,-.85,.28]];
         route.forEach((v,j)=>{const next=route[(j+1)%route.length],delta=P.scale(P.add(next,P.scale(v,-1)),.7*phase.flux);moveArrow(fluxArrows[j],v,P.add(v,delta));});
         secondary.traverse((o) => {
@@ -483,6 +524,21 @@ Live.register("fieldslab", (stage, params, api) => {
         return;
       }
       rotor.rotation.y = (90 - angle) * P.DEG;
+      const slip=d.id==='generator'||!commute;
+      if(d.id==='motor')teach(!connected?'Opening the visible supply switch breaks the current path, so magnetic torque becomes zero. A moving rotor can coast while friction slows it; zero torque does not mean instant rest.':commute?d.explanation:'The continuous slip rings keep the same coil connections throughout a turn. The coil current therefore does not swap direction after half a turn, so its turning effect reverses. Compare the negative part of the signed torque graph with the split-ring case.');
+      if(comm1)comm1.visible=!slip;if(comm2)comm2.visible=!slip;
+      slipRings.forEach(o=>o&&(o.visible=slip));
+      if(slip){
+        brushes.forEach((o,j)=>o?.position.set(.3,-1-j*.3,0));
+        rotorLeads[0].set([[-.12,-.65,0],[-.12,-.85,0],[.22,-1,0]]);rotorLeads[1].set([[.12,-.65,0],[.12,-1.15,0],[.22,-1.3,0]]);
+        supplyLeads[0].set([[.36,-1,0],[.8,-1,0],[.8,-1.04,0]]);supplyLeads[1].set([[.8,-1.26,0],[.8,-1.3,0],[.36,-1.3,0]]);
+        supplySwitch.object.visible=false;supply?.position.set(.8,-1.15,0);
+      }else{
+        brushes.forEach((o,j)=>o?.position.set(j?.3:-.3,-1,.08));
+        rotorLeads[0].set([[-.12,-.65,0],[-.12,-.85,0],[-.22,-1,0]]);rotorLeads[1].set([[.12,-.65,0],[.12,-.85,0],[.22,-1,0]]);
+        supplyLeads[0].set([[-.36,-1,.08],[-.7,-1.5,.08],[-.4,-1.5,.08]]);supplyLeads[1].set([[.18,-1.5,.08],[.7,-1.5,.08],[.36,-1,.08]]);
+        supplySwitch.object.visible=true;supplySwitch.set([[-.4,-1.5,.08],[-.18,connected?-1.5:-1.22,.08]]);supply?.position.set(0,-1.5,.08);
+      }
       const q = P.motor(angle, connected ? I : 0, 0.5, 10, 0.04, commute), g = P.generator(angle, omega, 0.5, 10, 0.04);
       forces.forEach((a, j) => {
         const x = (j ? 0.7 : -0.7) * Math.sin(angle * P.DEG), z = -(j ? 0.7 : -0.7) * Math.cos(angle * P.DEG);
@@ -493,25 +549,25 @@ Live.register("fieldslab", (stage, params, api) => {
         forces.forEach((o) => o && (o.visible = false));
         flow.forEach((o) => o && (o.visible = false));
       }
-      report(d.id === "motor" ? `Angle ${Math.round(angle)}\xB0; signed coil current ${q.current.toFixed(1)} A; torque ${q.torque.toFixed(3)} N\xB7m. ${!connected ? "Open circuit: torque is zero; an already moving rotor coasts with damping." : commute ? "The commutator flips current each half-turn; torque retains its sense." : "Without commutation, torque reverses after half a turn."} ${running ? "Rotor running; speed " + velocity.toFixed(2) + " rad/s." : "Rotor held for inspection."}` : `Angle ${angle}\xB0; linked flux ${g.flux.toFixed(3)} Wb-turn; induced voltage ${g.voltage.toFixed(3)} V at ${omega.toFixed(1)} rad/s. Peak flux gives zero rate of change and zero voltage.`);
+      report(d.id === "motor" ? `Angle ${Math.round(angle)}\xB0; signed coil current ${q.current.toFixed(1)} A; torque ${q.torque.toFixed(3)} N\xB7m. ${!connected ? "Open circuit: torque is zero; an already moving rotor coasts with damping." : commute ? "The commutator flips current each half-turn; torque retains its sense." : "Continuous slip rings do not swap the coil connections: torque reverses after half a turn."} ${running ? "Rotor running; speed " + velocity.toFixed(2) + " rad/s." : "Rotor paused for inspection."}` : `Angle ${angle.toFixed(1)}\xB0; linked flux ${g.flux.toFixed(3)} Wb-turn; induced voltage ${g.voltage.toFixed(3)} V at ${omega.toFixed(1)} rad/s. Peak flux gives zero rate of change and zero voltage.`);
     };
     draw = () => {
       if (d.id === "transformer") {
-        axes('one slowed AC cycle','green flux · blue V₁ · red V₂');
+        axes('one slowed AC cycle','blue V₁ / red V₂ in volts',{x:[0,1],y:[-150,150]});
         curve(u=>.5+.35*P.transformerPhase(dc?I:Math.SQRT2*I,ratio,u*2*Math.PI/1.5,dc).flux,c.green);
-        curve(u=>.5+P.transformerPhase(dc?I:Math.SQRT2*I,ratio,u*2*Math.PI/1.5,dc).primaryV/(96*Math.SQRT2)*.4,c.electron);
-        curve(u=>.5+P.transformerPhase(dc?I:Math.SQRT2*I,ratio,u*2*Math.PI/1.5,dc).secondaryV/(96*Math.SQRT2)*.4,c.proton);
-        const q=P.transformerPhase(dc?I:Math.SQRT2*I,ratio,tick,dc);plotDot(55+(q.phase/(2*Math.PI)%1)*550,195-(.5+q.secondaryV/(96*Math.SQRT2)*.4)*145,c.proton);
-        text(dc?'DC: nonzero steady flux, zero sustained emf':'V₂/V₁ = N₂/N₁; shared flux, common phase clock',320,45,c.ink,13,'center');
+        curve(u=>.5+P.transformerPhase(dc?I:Math.SQRT2*I,ratio,u*2*Math.PI/1.5,dc).primaryV/300,c.electron);
+        curve(u=>.5+P.transformerPhase(dc?I:Math.SQRT2*I,ratio,u*2*Math.PI/1.5,dc).secondaryV/300,c.proton);
+        const q=P.transformerPhase(dc?I:Math.SQRT2*I,ratio,tick,dc);plotDot(55+(q.phase/(2*Math.PI)%1)*550,195-(.5+q.secondaryV/300)*145,c.proton);
+        text(dc?'DC: steady green flux; both emf curves zero':'Green flux uses its own scale; compare zero crossings.',320,45,c.ink,13,'center');
       } else {
-        axes("coil angle 0\u2013360\xB0", d.id === "motor" ? "torque / 0.6 N\xB7m" : "flux and induced voltage");
+        axes("coil angle / degrees",d.id==='motor'?"torque / N·m":"relative display scale (see key)",{x:[0,360],y:d.id==='motor'?[-.6,.6]:[-1,1]});
         if(d.id==='motor')curve((u) => 0.5 + P.motor(u * 360, connected?I:0, 0.5, 10, 0.04, commute).torque / 1.2, c.proton);
         if (d.id === "generator") {
-          curve((u) => 0.5 + 0.45 * Math.cos(u * 2 * Math.PI), c.electron);
-          curve((u) => 0.5 + P.generator(u*360,omega).voltage/1.4*.45, c.proton);
+          curve((u) => 0.5 + P.generator(u*360,omega).flux/.4, c.electron);
+          curve((u) => 0.5 + P.generator(u*360,omega).voltage/2.8, c.proton);
         }
-        plotDot(55 + angle / 360 * 550, 195 - (0.5 + (d.id === "motor" ? P.motor(angle, connected?I:0, 0.5, 10, 0.04, commute).torque / 1.2 : P.generator(angle,omega).voltage/1.4*.45)) * 145);
-        text(d.id === "motor" ? "Brushes contact split-ring halves; the rotor angle is controlled." : "Blue: flux ±0.2 Wb-turn. Red: emf ±1.4 V. Rotation needs work.", 320, 47, c.muted, 12, "center");
+        plotDot(55 + angle / 360 * 550, 195 - (0.5 + (d.id === "motor" ? P.motor(angle, connected?I:0, 0.5, 10, 0.04, commute).torque / 1.2 : P.generator(angle,omega).voltage/2.8)) * 145);
+        text(d.id === "motor" ? !connected?'Supply open: zero electrical torque.':commute?'Split ring: current swaps; torque retains its sense.':'Continuous slip rings: torque reverses after half a turn.' : "Blue 1 = 0.2 Wb-turn; red 1 = 1.4 V. Turning needs work.", 320, 47, c.muted, 12, "center");
       }
     };
   }
@@ -565,13 +621,14 @@ Live.register("fieldslab", (stage, params, api) => {
     const toLocal=v=>[v[0]*1.4,v[2]*1.4,-v[1]*1.4];
     label3('E',()=>local?[1.65,0,0]:[0,-10,0]);label3('N',()=>local?[0,0,-1.65]:[0,-10,0]);label3('up',()=>local?[0,1.6,0]:[0,-10,0]);
     for(const [name,j] of [['E',0],['N',1],['up',2]])label3(name,()=>{const f=P.observerFrame(lat,hour-12);return local?[0,-20,0]:P.add(P.scale(f.up,.74),P.scale([f.east,f.north,f.up][j],.5));});
-    scalar('Solar time',0,24,hour,v=>hour=v,.25,' h');scalar('Latitude',-75,75,lat,v=>lat=v,1,'°');tabs(['Space view','Local horizon'],i=>local=!!i);
+    const clock=scalar('Solar time',0,24,hour,v=>hour=v,.25,' h');scalar('Latitude',-75,75,lat,v=>lat=v,1,'°');tabs(['Space view','Local horizon'],i=>local=!!i);
+    advance=dt=>{if(dt>0){hour=(hour+dt)%24;clock.set(hour);}};
     update=()=>{const f=P.observerFrame(lat,hour-12),pos=P.scale(f.up,.74),sun=f.project([1,0,0]);world.visible=!local;surface.visible=local;observer?.position.set(...pos);meridian.object.rotation.y=f.longitude;
       tangent.set([[-1,-1],[1,-1],[1,1],[-1,1],[-1,-1]].map(([x,y])=>P.add(pos,P.add(P.scale(f.east,x*.32),P.scale(f.north,y*.32)))));
       [f.east,f.north,f.up].forEach((v,j)=>moveArrow(basis[j],pos,P.add(pos,P.scale(v,.4))));
       localStars.forEach((o,j)=>{const v=f.project(starDirections[j]);o?.position.set(...toLocal(v));o?.material.color.set(v[2]>=0?c.sheet:c.muted);});localSun?.position.set(...toLocal(sun));
       sunPath.set(Array.from({length:97},(_,j)=>toLocal(P.observerFrame(lat,j/96*24-12).project([1,0,0]))));
-      report(`Solar time ${hour.toFixed(2)} h, latitude ${lat.toFixed(1)}°; Sun altitude ${(Math.asin(P.clamp(sun[2],-1,1))/P.DEG).toFixed(1)}°. The tangent horizon and east/north/up basis turn with the same observer. Fixed illustrative stars project into that basis; pale above / muted below horizon. Morning Sun is east, evening Sun west. Switching views preserves time and latitude.`);
+      report(`Solar time ${hour.toFixed(2)} h, latitude ${lat.toFixed(1)}°; Sun altitude ${(Math.asin(P.clamp(sun[2],-1,1))/P.DEG).toFixed(1)}°. Play advances 1 solar hour per animation second. The tangent horizon and east/north/up basis turn with the observer. Morning Sun is east, evening Sun west; pale stars are above the horizon. Switching views preserves the same state.`);
     };
     draw=()=>{const f=P.observerFrame(lat,hour-12),project=v=>[320-f.project(v)[0]*180,125-f.project(v)[2]*85];stroke([[75,125],[565,125]],c.rule);text('E',75,145);text('W',565,145);text('Horizon: up above the line',320,25,c.ink,13,'center');
       stroke(Array.from({length:97},(_,j)=>{const v=P.observerFrame(lat,j/96*24-12).project([1,0,0]);return [320-v[0]*180,125-v[2]*85];}),c.neutron);
@@ -580,8 +637,8 @@ Live.register("fieldslab", (stage, params, api) => {
   }
   function sky() {
     if(d.id === "day-night"){dayNight();return;}
-    let day = 172, lat = 19.08, tilt = 23.44, hour = 12, phase = 45, year = 0, sync = true, shadowBody="earth", centralZoom=false;
-    const earth = sphereDay(d.id === "seasons3d" ? 0.35 : 0.7), geo = group(), moon = sphereDay(0.22), mark = ball(0, 0, 0, 0.065, c.proton), axis = line([[0, -1.2, 0], [0, 1.2, 0]], c.ink), sun = ball(-2.4, 0, 0, 0.35, c.neutron);
+    let day = 172, lat = 19.08, tilt = 23.44, hour = 12, phase = 45, year = 0, sync = true, shadowBody="earth", centralZoom=false,dayControl,phaseControl;
+    const earth = sphereDay(d.id === "seasons3d" ? 0.6 : 0.7), geo = group(), moon = sphereDay(0.22), mark = ball(0, 0, 0, 0.065, c.proton), axis = line([[0, -1.2, 0], [0, 1.2, 0]], c.ink), sun = ball(-2.4, 0, 0, 0.35, c.neutron);
     const orbit = circle(2.1, c.electron), ecliptic = circle(2.1, c.rule);
     const nodes = [ball(-2.1, 0, 0, 0.045, c.proton), ball(2.1, 0, 0, 0.045, c.proton)];
     const sunlight = [-1, 0, 1].map((y) => arrow([2.8, y, 0], [2.4, y, 0], c.neutron));
@@ -595,7 +652,8 @@ Live.register("fieldslab", (stage, params, api) => {
     nodes.forEach((o) => o && (o.visible = d.id === "eclipses"));
     if (moonShadow) moonShadow.visible = d.id === "eclipses";
     sunlight.forEach((o) => o && (o.visible = d.id === "eclipses"));
-    label3("Earth", () => [earth.position.x, earth.position.y + 0.22, earth.position.z]);
+    label3("Earth", () => [earth.position.x, earth.position.y + (d.id==='eclipses'?.22:.8), earth.position.z]);
+    if(d.id==='seasons3d')label3("axis stays parallel",()=>[earth.position.x,earth.position.y+1,earth.position.z]);
     if (["moon-rotation", "eclipses"].includes(d.id)) label3("Moon", () => [moon.position.x, moon.position.y + 0.28, moon.position.z]);
     if (d.id === "eclipses") {
       label3("node", [-2.1, -0.25, 0], c.proton);
@@ -611,14 +669,15 @@ Live.register("fieldslab", (stage, params, api) => {
     const daylightArcs=[line(Array.from({length:97},()=>[0,0,0]),c.proton),line(Array.from({length:97},()=>[0,0,0]),c.green)],opposite=ball(0,0,0,.055,c.green);
     daylightArcs.forEach(o=>o.object.visible=d.id==='seasons3d');if(opposite)opposite.visible=d.id==='seasons3d';
     if (d.id === "seasons3d") {
-      scalar("Day in ideal year", 1, 365, day, (v) => day = v, 1);
+      dayControl=scalar("Day in ideal year", 1, 365, day, (v) => day = v, 1);
       scalar("Latitude", -75, 75, lat, (v) => lat = v, 1, "\xB0");
       scalar("Axial tilt", 0, 30, tilt, (v) => tilt = v, 1, "\xB0");
+      button('Restart ideal year',()=>{day=1;dayControl.set(day);api.pause?.();});
     } else if (d.id === "day-night") {
       scalar("Solar time", 0, 24, hour, (v) => hour = v, 0.25, " h");
       scalar("Latitude", -75, 75, lat, (v) => lat = v, 1, "\xB0");
     } else {
-      scalar("Lunar angle from Sun", 0, 360, phase, (v) => phase = v, 2, "\xB0");
+      phaseControl=scalar("Lunar angle from Sun", 0, 360, phase, (v) => phase = v, 1, "\xB0");
       if (d.id === "eclipses") {
         scalar("Year position", 0, 360, year, (v) => year = v, 5, "\xB0");
         scalar("Lunar orbit inclination", 0, 10, tilt = 5.145, (v) => tilt = v, 0.1, "\xB0");
@@ -626,6 +685,7 @@ Live.register("fieldslab", (stage, params, api) => {
         tabs(["Whole shadow cross-section", "Central detail ×20"],i=>centralZoom=!!i);
       } else tabs(["Synchronous rotation", "No axial rotation"], (i) => sync = i === 0);
     }
+    advance=dt=>{if(dt<=0)return;if(d.id==='seasons3d'){day=Math.min(365,day+dt*10);dayControl.set(day);if(day===365)api.pause?.();}else if(phaseControl){phase=(phase+dt*15)%360;phaseControl.set(phase);}};
     update = () => {
       if (d.id === "seasons3d") {
         const L = 2 * Math.PI * (day - 80) / 365.25, E = [-2.1 * Math.cos(L), 0, -2.1 * Math.sin(L)], dir = [Math.cos(L), 0, Math.sin(L)], q = P.solarGeometry(day, lat, tilt);
@@ -635,14 +695,14 @@ Live.register("fieldslab", (stage, params, api) => {
         moon.visible = false;
         if (shadow) shadow.visible = false;
         const a = tilt * P.DEG;
-        axis.set([E.map((x, j) => x - [0, Math.cos(a), Math.sin(a)][j] * 0.65), E.map((x, j) => x + [0, Math.cos(a), Math.sin(a)][j] * 0.65)]);
-        const sunLocal = new Vector3(...dir).applyAxisAngle(new Vector3(1, 0, 0), -a), lon = Math.atan2(sunLocal.z, sunLocal.x), p = lat * P.DEG, observer = new Vector3(Math.cos(p) * Math.cos(lon), Math.sin(p), Math.cos(p) * Math.sin(lon)).applyAxisAngle(new Vector3(1, 0, 0), a).multiplyScalar(0.37).add(new Vector3(...E));
+        axis.set([E.map((x, j) => x - [0, Math.cos(a), Math.sin(a)][j] * .95), E.map((x, j) => x + [0, Math.cos(a), Math.sin(a)][j] * .95)]);
+        const sunLocal = new Vector3(...dir).applyAxisAngle(new Vector3(1, 0, 0), -a), lon = Math.atan2(sunLocal.z, sunLocal.x), p = lat * P.DEG, observer = new Vector3(Math.cos(p) * Math.cos(lon), Math.sin(p), Math.cos(p) * Math.sin(lon)).applyAxisAngle(new Vector3(1, 0, 0), a).multiplyScalar(.62).add(new Vector3(...E));
         mark?.position.copy(observer);
-        const sunL=lon,rot=v=>new Vector3(...v).applyAxisAngle(new Vector3(1,0,0),a).multiplyScalar(.365).add(new Vector3(...E));
+        const sunL=lon,rot=v=>new Vector3(...v).applyAxisAngle(new Vector3(1,0,0),a).multiplyScalar(.615).add(new Vector3(...E));
         opposite?.position.copy(rot([Math.cos(-p)*Math.cos(lon),Math.sin(-p),Math.cos(-p)*Math.sin(lon)]));
         [lat,-lat].forEach((latitude,j)=>{const h=P.solarGeometry(day,latitude,tilt).dayHours/24*Math.PI,ph=latitude*P.DEG;daylightArcs[j].set(Array.from({length:97},(_,k)=>{const l=sunL-h+2*h*k/96;return rot([Math.cos(ph)*Math.cos(l),Math.sin(ph),Math.cos(ph)*Math.sin(l)]).toArray();}));});
         nearMark && (nearMark.visible = false);
-        report(`Latitude ${lat.toFixed(1)}\xB0; tilt ${tilt}\xB0; noon Sun ${q.noonAltitude.toFixed(1)}\xB0 high; daylight ${q.dayHours.toFixed(2)} h. The axis stays parallel to itself around the circular orbit. ${tilt === 0 ? "Zero tilt removes seasonal changes in this model." : "Compare the opposite hemisphere at the same orbital position."}`);
+        report(`Day ${day.toFixed(1)}; latitude ${lat.toFixed(1)}\xB0; tilt ${tilt}\xB0; noon Sun ${q.noonAltitude.toFixed(1)}\xB0 high; daylight ${q.dayHours.toFixed(2)} h. Play advances 10 model days per animation second, stopping at day 365. Bodies are enlarged schematically; the axis stays parallel to itself. ${tilt === 0 ? "Zero tilt removes seasonal changes." : "Compare the opposite hemisphere at the same date."}`);
       } else if (d.id === "day-night") {
         orbit.object.visible = false;
         moon.visible = false;
@@ -679,7 +739,7 @@ Live.register("fieldslab", (stage, params, api) => {
           const cone=P.shadowGeometry(q.sun,mp,1737.4*earthScale,2.1,(695700+1737.4)/149597870);
           moonShadow.position.set(...cone.center);
         }
-        report(d.id === "eclipses" ? `Illuminated fraction ${(q.lit * 100).toFixed(1)}%; Moon ${q.perpendicularKm.toFixed(0)} km from the Sun\u2013Earth axis. ${q.eclipse === "none" ? "No solar or umbral lunar intersection." : `${q.eclipse === "solar" ? "Solar" : "Lunar"} eclipse geometry: shadow intersection is possible.`} Blue inclined orbit meets the grey ecliptic at red node markers. Bodies and shadow widths share a scale; the Sun is outside the displayed volume. Solar intersection uses a mean-distance small-angle approximation, not exact contact times. The linked cut shows penumbral boundaries as well as the central shadow; overview bodies retain their true common scale.` : `Illuminated fraction ${(q.lit * 100).toFixed(1)}%. ${sync ? "The red near-side marker turns once per orbit and stays directed at Earth." : "The red marker keeps one direction in space; Earth sees changing sides."} The unlit portion is the Moon\u2019s own night side.`);
+        report(d.id === "eclipses" ? `Illuminated fraction ${(q.lit * 100).toFixed(1)}%; Moon ${q.perpendicularKm.toFixed(0)} km from the Sun\u2013Earth axis. ${q.eclipse === "none" ? "No solar or umbral lunar intersection." : `${q.eclipse === "solar" ? "Solar" : "Lunar"} shadow intersection is possible.`} Play advances lunar angle 15° per animation second with the year fixed. Red nodes mark where the orbital planes meet. Overview bodies and shadow widths share a scale; the finite Sun is outside the view. The linked cut enlarges transverse distances as labelled; this is not a dated contact prediction.` : `Illuminated fraction ${(q.lit * 100).toFixed(1)}%. ${sync ? "The red near-side marker turns once per orbit and stays directed at Earth." : "The red marker keeps one direction in space; Earth sees changing sides."} Play advances lunar angle 15° per animation second. The unlit portion is the Moon\u2019s own night side.`);
       }
     };
     draw = () => {
@@ -708,10 +768,9 @@ Live.register("fieldslab", (stage, params, api) => {
         ctx.strokeStyle=c.proton;ctx.beginPath();ctx.ellipse(targetX,targetY,section.targetRadiusKm/axialScale,section.targetRadiusKm/transverseScale,0,0,2*Math.PI);ctx.stroke();
         if(section.targetDownstreamKm>0)stroke([[px(section.planeKm),42],[px(section.planeKm),185]],c.proton,1);
         ctx.restore();
-        text(sourceName,x0+6,axisY+5,c.electron,10);
-        text('penumbra',287,51,c.muted,10);text('central shadow',265,86,c.ink,10);
+        text('Pale outer band: penumbra. Inner solid edges: central shadow.',320,260,c.muted,12,'center');
         // When a target is outside this narrow cut, an edge marker reports its true offset.
-        if(targetY-section.targetRadiusKm/transverseScale<41||targetX<35){const edgeX=P.clamp(targetX,48,345);stroke([[edgeX,59],[edgeX,44],[edgeX-4,50]],c.proton);text(section.targetDownstreamKm<=0?'target upstream':`${targetName} off frame ↑`,edgeX,71,c.proton,10,'center');}
+        if(targetY-section.targetRadiusKm/transverseScale<41||targetX<35){const edgeX=P.clamp(targetX,48,345);stroke([[edgeX,59],[edgeX,44],[edgeX-4,50]],c.proton);}
         text(`0`,x0,201,c.muted,10);text('450,000 km anti-Sun →',farX,201,c.muted,10,'right');
         // Cross-section: target and every shadow radius use ONE transverse scale.
         ctx.save();ctx.beginPath();ctx.rect(403,41,206,146);ctx.clip();
@@ -731,6 +790,16 @@ Live.register("fieldslab", (stage, params, api) => {
         text(`penumbra r=${section.penumbraRadiusKm.toFixed(0)} km`,506,219,c.muted,10,'center');
         text(`Target offset ${section.targetOffsetKm.toFixed(0)} km; ${section.targetDownstreamKm<=0?'upstream of shadow':section.intersects?'shadow intersection':'misses shadow'}`,35,219,c.proton,11);
         text(`${section.targetDownstreamKm>0?'Target plane':'Reference plane (target upstream)'} ${section.planeKm.toFixed(0)} km; red target r=${section.targetRadiusKm.toFixed(0)} km. Cropped edges stay at stated scale.`,320,237,c.muted,10,'center');
+      } else if(d.id==='moon-rotation') {
+        const u=P.lunarGeometry(phase,year,0).moonAngle,a=sync?u+Math.PI:Math.PI;
+        const mx=330+110*Math.cos(u),my=120-78*Math.sin(u);
+        text(sync?'Marked face turns once per orbit':'No axial turn: marked face keeps one direction',320,22,c.ink,14,'center');
+        stroke(Array.from({length:97},(_,j)=>[330+110*Math.cos(j/96*2*Math.PI),120-78*Math.sin(j/96*2*Math.PI)]),c.rule);
+        plotDot(330,120,c.electron,18);text('Earth',330,180,c.ink,13,'center');
+        plotDot(mx,my,c.muted,9);stroke([[mx,my],[mx+27*Math.cos(a),my-27*Math.sin(a)]],c.proton,4);
+        plotDot(mx+10*Math.cos(a),my-10*Math.sin(a),c.proton,4);
+        text('Red mark: same lunar face',40,58,c.proton,12);text('Sunlight ←',565,120,c.neutron,13,'center');
+        text('Top-down orbital view; body sizes and orbit gap are schematic.',320,218,c.muted,12,'center');
       } else {
         const q = P.lunarGeometry(phase, year, d.id === "eclipses" ? tilt : 0);
         text("Side view: actual Earth/Moon size ratio; gap compressed", 320, 25, c.muted, 12, "center");
@@ -746,17 +815,20 @@ Live.register("fieldslab", (stage, params, api) => {
   }
   function tides() {
     label3("Earth", [0, 1.1, 0]);
-    label3("differential arrows", [0, -1.2, 0], c.proton);
     let phase = 0, relative = true, sunOn = true;
+    label3("differential arrows",()=>relative?[0,-1.2,0]:[0,-20,0],c.proton);
+    label3("absolute lunar pull",()=>relative?[0,-20,0]:[0,-1.2,0],c.proton);
     ball(0, 0, 0, 0.85, c.electron);
     const moon = ball(2.6, 0, 0, 0.2, c.muted), points = Array.from({ length: 72 }, (_, i) => {
       const a = i % 24 / 24 * 2 * Math.PI, l = (Math.floor(i / 24) - 1) * 45 * P.DEG;
       return [0.92 * Math.cos(a) * Math.cos(l), 0.92 * Math.sin(l), 0.92 * Math.sin(a) * Math.cos(l)];
     }), as = points.map((p) => arrow(p, p, c.proton));
-    scalar("Moon orbital angle", 0, 360, phase, (v) => phase = v, 5, "\xB0");
+    const clock=scalar("Moon orbital angle", 0, 360, phase, (v) => phase = v, 5, "\xB0");
     tabs(["Relative to Earth\u2019s centre", "Absolute lunar pull"], (i) => relative = i === 0);
-    button("Include / remove Sun", () => sunOn = !sunOn);
+    const sunControl=button("Include / remove Sun", () => sunOn = !sunOn);
+    advance=dt=>{if(dt>0){phase=(phase+dt*15)%360;clock.set(phase);}};
     update = () => {
+      sunControl.disabled=!relative;teach(relative?d.explanation:'The Moon pulls every part of Earth towards itself. The near side is pulled harder than the centre; the far side less hard. Subtract the centre’s acceleration to reveal the two outward relative pulls. The graph below always shows the differential equilibrium pattern.');
       const a = phase * P.DEG, M = [3844e5 * Math.cos(a), 3844e5 * Math.sin(a), 0];
       moon?.position.set(2.6 * Math.cos(a), 2.6 * Math.sin(a), 0);
       points.forEach((p, j) => {
@@ -769,11 +841,11 @@ Live.register("fieldslab", (stage, params, api) => {
         moveArrow(as[j], p, p.map((x, k) => x + v[k] * scale));
       });
       const near = P.tidalAcceleration(M.map((x) => x / P.length(M) * 6371e3), M);
-      report(`${relative ? "Differential" : "Absolute"} pull shown. Near-side differential acceleration ${P.length(near).toExponential(2)} m/s\xB2. ${sunOn ? "Sun contribution included in differential view." : "Sun contribution omitted."} Arrows use separately enlarged scales; the diagram does not predict Haji Ali\u2019s sea level or time.`);
+      report(`${relative ? "Differential" : "Absolute"} pull shown. Near-side differential acceleration ${P.length(near).toExponential(2)} m/s\xB2. ${sunOn ? "Sun contribution included in differential view." : "Sun contribution omitted."} Play advances the Moon 15° per animation second. Arrows use separately enlarged scales; this is not a Haji Ali tide forecast.`);
     };
     draw = () => {
-      axes("angle around Earth 0\u2013360\xB0", "ideal equilibrium tide, relative");
-      curve((u) => 0.5 + 0.25 * (Math.cos(4 * Math.PI * u - 2 * phase * P.DEG) + (sunOn ? 0.46 * Math.cos(4 * Math.PI * u) : 0)));
+      axes("angle around Earth / degrees", "differential tide: Moon-only peak = 1",{x:[0,360],y:[-1.5,1.5]});
+      curve((u) => 0.5 + (Math.cos(4 * Math.PI * u - 2 * phase * P.DEG) + (sunOn ? 0.46 * Math.cos(4 * Math.PI * u) : 0))/3);
       text("Aligned solar and lunar patterns add; quarter-phase patterns reduce.", 320, 47, c.ink, 12, "center");
     };
   }
@@ -807,11 +879,11 @@ Live.register("fieldslab", (stage, params, api) => {
     };
     draw = () => {
       const q = P.photoelectric(nm, flux, V);
-      bar("Photon energy", q.energy, 4.2, 45, 65, c.neutron);
+      bar(`Photon energy: ${q.energy.toFixed(2)} eV`, q.energy, 4.2, 45, 65, c.neutron);
       bar("Work function: 2.71 eV", 2.71, 4.2, 350, 65, c.muted);
-      bar(`Maximum KE: ${q.maxKE.toFixed(2)} eV`, q.maxKE, 1.5, 45, 150, c.electron);
-      text(`Retarding barrier: ${V.toFixed(2)} eV per electron`, 350, 160);
-      text("Flux changes counts; wavelength changes energy per photon.", 320, 220, c.ink, 13, "center");
+      bar(`Maximum KE: ${q.maxKE.toFixed(2)} eV`, q.maxKE, 4.2, 45, 150, c.electron);
+      bar(`Retarding barrier: ${V.toFixed(2)} eV/electron`, V, 4.2, 350, 150, c.proton);
+      text("All bars share one energy scale. Flux changes counts, not energy per photon.", 320, 220, c.ink, 13, "center");
     };
   }
   function atomRadiation() {
@@ -820,14 +892,19 @@ Live.register("fieldslab", (stage, params, api) => {
     const cloud = ball(0, 0, 0, 1.3, c.electron, root, 0.1), nucleus = ball(0, 0, 0, 0.1, c.proton);
     const dots = Array.from({ length: 100 }, (_, j) => ball(-1.5 + j % 10 * 0.33, -0.8 + Math.floor(j / 10) * 0.17, 0, 0.055, c.proton));
     const rng = api.rng(1939), death = Array.from({ length: 100 }, () => -2 * Math.log(Math.max(rng(), 1e-12)) / Math.LN2);
-    let survived = 100;
+    let survived = 100,clock,beamControl;
+    label3("beam source",()=>d.id==='radiation-decay'&&mode>0?[-2,.6,0]:[0,-20,0]);
+    label3("radioactive dust",()=>d.id==='radiation-decay'&&mode===2?[0,.9,0]:[0,-20,0],c.proton);
     if (d.id === "atom-scale") {
+      label3('electron probability cloud',[0,1.6,0],c.electron);
       scalar("Nucleus displayed diameter", 1, 10, ratio, (v) => ratio = v, 0.5, " cm");
       tabs(["Compare reference lengths", "Common scale: nucleus unresolved"], (i) => mode = i);
     } else {
-      scalar("Elapsed model time", 0, 12, time, (v) => time = v, 0.1, " s");
+      clock=scalar("Elapsed model time", 0, 12, time, (v) => time = v, 0.1, " s");
       tabs(["Radioactive material", "External beam", "Dust on surface"], (i) => mode = i);
-      button("Switch beam on / off", () => source = !source);
+      beamControl=button("Switch beam on / off", () => source = !source);
+      button('Replay decay sample',()=>{time=0;clock.set(time);api.pause?.();});
+      advance=dt=>{if(dt>0&&mode!==1){time=Math.min(12,time+dt);clock.set(time);if(time===12)api.pause?.();}};
     }
     update = () => {
       if (d.id === "atom-scale") {
@@ -842,10 +919,12 @@ Live.register("fieldslab", (stage, params, api) => {
       }
       cloud && (cloud.visible = false);
       nucleus && (nucleus.visible = false);
+      playback(mode!==1);clock.input.disabled=mode===1;beamControl.disabled=mode===0;
+      teach(mode===1?'Radiation arriving from a distant beam can transfer energy to an object without leaving radioactive material on it. In this exposure-only model, switching the beam off ends the exposure; the object has no continuing radioactive source.':mode===2?'Radioactive dust leaves unstable parent nuclei on the surface. Switching off a distant beam does not remove those nuclei: they can keep emitting until they decay or the dust is removed. The count falls randomly, while the curve shows an ensemble expectation.':d.explanation);
       if (sample) sample.visible = mode > 0;
-      if (beamSource) beamSource.visible = mode === 1;
-      beam.object.visible = mode === 1 && source;
-      survived = death.filter((x) => x > time).length;
+      if (beamSource) beamSource.visible = mode > 0;
+      beam.object.visible = mode > 0 && source;
+      survived = death.slice(0,mode===2?24:100).filter((x) => x > time).length;
       dots.forEach((o, j) => {
         if (o) {
           o.visible = mode === 0 || mode === 2 && j < 24;
@@ -854,7 +933,7 @@ Live.register("fieldslab", (stage, params, api) => {
           o.material.color.set(death[j] > time ? c.proton : c.rule);
         }
       });
-      report(mode === 0 ? `Simulated sample: ${survived} of 100 nuclei remain at ${time.toFixed(1)} s; expectation ${P.decay(100, 2, time).toFixed(1)}. Each nucleus has a random decay time, not an appointment at one half-life.` : mode === 1 ? `External beam ${source ? "on: exposure while radiation arrives" : "off: no continuing source remains on the object"}. Exposure alone is different from carrying radioactive material.` : `Radioactive dust remains on the surface: turning a distant beam ${source ? "on" : "off"} does not remove it. The remaining sample continues emitting as it decays.`);
+      report(mode === 0 ? `Simulated sample: ${survived} of 100 radioactive nuclei remain at ${time.toFixed(1)} model s; expectation ${P.decay(100, 2, time).toFixed(1)}. Play advances 1 model second per animation second and stops at 12; Replay repeats this seeded sample. Individual decay times are random, not appointments at one half-life.` : mode === 1 ? `External beam ${source ? "on: exposure while radiation arrives" : "off: no continuing source remains on the object"}. Exposure alone does not leave radioactive material; no decay curve is assigned to this object.` : `Radioactive dust stays on the surface when the distant beam is switched ${source ? "on" : "off"}. ${survived} of 24 parent nuclei remain at ${time.toFixed(1)} model s. ${survived?'They can continue emitting as they decay.':'This simulated sample has no radioactive parent nuclei left.'} Play advances the labelled decay clock; Replay repeats the same sample.`);
     };
     draw = () => {
       if (d.id === "atom-scale") {
@@ -863,11 +942,18 @@ Live.register("fieldslab", (stage, params, api) => {
         stroke([[55,75],[55+nucleusPx,75]],c.proton,5);text(`Nucleus reference: ${ratio.toFixed(1)} cm`,55,105,c.ink,13);
         stroke([[55,145],[55+atomKm*24,145]],c.electron,5);text(`Atom reference: ${atomKm.toFixed(1)} km (different ruler unit)`,55,175,c.ink,13);
         text('Ruler units differ by 10⁵; common-scale mode leaves nucleus unresolved.',320,220,c.muted,12,'center');
+      } else if(mode===1){
+        text(source?'External beam on: radiation reaches the object':'External beam off: exposure stops',320,28,c.ink,15,'center');
+        ctx.strokeStyle=c.ink;ctx.strokeRect(75,80,65,95);ctx.strokeRect(435,80,110,95);
+        text('source',108,200,c.ink,14,'center');text('object',490,200,c.ink,14,'center');
+        if(source){stroke([[150,125],[425,125]],c.neutron,4);stroke([[412,117],[425,125],[412,133]],c.neutron,3);}
+        text('No radioactive material is left on the object in this comparison.',320,235,c.muted,12,'center');
       } else {
-        axes("model time 0\u201312 s", "remaining nuclei / 100");
-        curve((u) => P.decay(100, 2, u * 12) / 100);
-        plotDot(55 + time / 12 * 550, 195 - survived / 100 * 145);
-        text("Curve: ensemble expectation. Dot: one deterministic simulated sample.", 320, 45, c.muted, 12, "center");
+        const n=mode===2?24:100;
+        axes("model time / seconds", "radioactive parent nuclei remaining",{x:[0,12],y:[0,n]});
+        curve((u) => P.decay(n, 2, u * 12) / n);
+        plotDot(55 + time / 12 * 550, 195 - survived / n * 145);
+        text(mode===2?`Dust remains; distant beam ${source?'on':'off'}. Dot: seeded sample.`:"Curve: ensemble expectation. Dot: this seeded sample.", 320, 45, c.muted, 12, "center");
       }
     };
   }
@@ -885,7 +971,7 @@ Live.register("fieldslab", (stage, params, api) => {
       label3("radiative layer", [0.7, 0.8, 0]);
       label3("convective layer", [-0.6, 1.3, 0]);
     }
-    let amount = 1, progress = 0, distance = 1.5, days = 0;
+    let amount = 1, progress = 0, distance = 1.5, days = 0, haloClock;
     const shell = mesh(new SphereGeometry(1.4, 30, 22, 0, Math.PI), c.neutron, root, 0.35), radiative = mesh(new SphereGeometry(1, 26, 20, 0, Math.PI), c.proton, root, 0.35), core = ball(0, 0, 0, 0.4, c.proton);
     const craft = box(0, 0, 0, 0.18, 0.15, 0.16, c.ink);
     const random = api.rng(1938), walkPoints = [[0.15, 0, 0]];
@@ -898,10 +984,11 @@ Live.register("fieldslab", (stage, params, api) => {
     const haloPoints=Array.from({length:181},(_,j)=>P.haloPoint(j/180*177.86)),halo=line(haloPoints,c.electron);
     if (d.id === "halo") {
       scalar("Distance from Earth", 1.2, 1.8, distance, (v) => distance = v, 0.01, " million km");
-      scalar("Halo model day", 0, 178, days, (v) => days = v, 1);
+      haloClock=scalar("Halo model day", 0, 177.86, days, (v) => days = v, .01);
+      advance=dt=>{days=(days+5*dt)%177.86;haloClock.set(days);};
     } else {
       scalar("Hydrogen fused", 0.1, 10, amount, (v) => amount = v, 0.1, " kg");
-      scalar("Transport stage", 0, 3, progress, (v) => progress = v, 1);
+      api.slider("Transport stage", {min:0,max:3,value:progress,step:1,fmt:v=>['Core production','Radiative transport','Convective transport','Surface emission'][Math.round(v)],onInput:v=>{progress=v;refresh();}});
     }
     update = () => {
       randomWalk.object.visible = d.id === "solar-fusion" && progress === 1;
@@ -915,8 +1002,9 @@ Live.register("fieldslab", (stage, params, api) => {
         const a = days / 177.86 * 2 * Math.PI;
         craft?.position.set(...P.haloPoint(days));
         const q = P.l1Balance(distance * 1e9);
-        report(`At ${distance.toFixed(2)} million km sunward of Earth: Sun pull ${q.sunPull.toFixed(6)} m/s\xB2, Earth\u2019s opposing pull ${q.earthPull.toFixed(6)}; net ${q.netInward.toFixed(6)} versus ${q.needed.toFixed(6)} needed for Earth\u2019s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day ${days}: schematic 3D path with the same selected point in all projections.`);
+        report(`At ${distance.toFixed(2)} million km sunward of Earth: Sun pull ${q.sunPull.toFixed(6)} m/s\xB2, Earth\u2019s opposing pull ${q.earthPull.toFixed(6)}; net ${q.netInward.toFixed(6)} versus ${q.needed.toFixed(6)} needed for Earth\u2019s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day ${days.toFixed(1)}: linked projections share the same craft point. Play advances 5 model days/s around this repeating 177.86-day schematic path, not a mission ephemeris.`);
       } else {
+        playback(progress>0);
         halo.object.visible = false;
         if (craft) craft.visible = false;
         const q = P.massEnergy(amount);
@@ -955,7 +1043,7 @@ Live.register("fieldslab", (stage, params, api) => {
   }
   function spectrum() {
     label3("hydrogen nuclei", [0, 1.2, 0], c.proton);
-    label3("bound or free electrons", [0, -1.2, 0], c.electron);
+    label3("bound: paired icons / free: lower row", [0, -1.8, 0], c.electron);
     let T = 9e3, abundance = 1;
     const ions = Array.from({ length: 32 }, (_, j) => ball((j % 8 - 3.5) * 0.4, (Math.floor(j / 8) - 1.5) * 0.45, 0, 0.1, c.proton)), electrons = ions.map((_, j) => ball((j % 8 - 3.5) * 0.4 + 0.15, (Math.floor(j / 8) - 1.5) * 0.45, 0.1, 0.035, c.electron));
     scalar("Temperature", 3500, 25e3, T, (v) => T = v, 250, " K");
@@ -965,11 +1053,11 @@ Live.register("fieldslab", (stage, params, api) => {
       electrons.forEach((o, j) => {
         if (o) {
           const bound = j / 32 < q.neutral;
-          o.position.x = (j % 8 - 3.5) * 0.4 + (bound ? 0.15 : 0.3 * Math.sin(j + tick));
-          o.position.y = (Math.floor(j / 8) - 1.5) * 0.45 + (bound ? 0 : 0.2 * Math.cos(j + tick));
+          o.position.x = bound ? (j % 8 - 3.5) * .4 + .15 : (j % 16 - 7.5) * .19;
+          o.position.y = bound ? (Math.floor(j / 8) - 1.5) * .45 : -1.1-Math.floor(j / 16)*.2;
         }
       });
-      report(`At ${T} K, neutral hydrogen ${(100 * q.neutral).toFixed(2)}%; ionised ${(100 * q.ionised).toFixed(2)}%. Fraction in the n=2 lower level ${q.n2.toExponential(2)}; abundance ${abundance.toFixed(1)}\xD7. Line strength depends on both population and abundance.`);
+      report(`At ${T} K, neutral hydrogen ${(100 * q.neutral).toFixed(2)}%; ionised ${(100 * q.ionised).toFixed(2)}%. Fraction in the n=2 lower level ${q.n2.toExponential(2)}; abundance ${abundance.toFixed(1)}\xD7. Line strength depends on both population and abundance. Static population icons are not electron trajectories; lower-row electrons are unbound.`);
     };
     draw = () => {
       const q = P.hydrogenLinePopulation(T, 1e20, abundance), strength = P.clamp(q.lineProxy / 7e-6, 0, 1), grad = ctx.createLinearGradient(55, 0, 605, 0);
@@ -983,41 +1071,42 @@ Live.register("fieldslab", (stage, params, api) => {
       }
       text("750 nm", 55, 139);
       text("400 nm", 605, 139, c.ink, 14, "right");
-      text("Balmer line-depth proxy, with a normalised colour background", 320, 170, c.muted, 12, "center");
+      text("Balmer line-depth proxy, with a normalised colour background", 320, 260, c.muted, 12, "center");
       stroke(Array.from({ length: 101 }, (_, i) => [55 + i * 5.5, 220 - P.clamp(P.hydrogenLinePopulation(3500 + i * 215).lineProxy / 7e-6, 0, 1) * 35]), c.electron);
+      plotDot(55+(T-3500)/21500*550,220-P.clamp(P.hydrogenLinePopulation(T).lineProxy/7e-6,0,1)*35,c.proton,4);
+      text('3500 K',55,239,c.muted,11);text('Temperature → 25000 K; abundance fixed at 1',605,239,c.muted,11,'right');
     };
   }
   function distances() {
-    label3("baseline / Earth", [-1.8, -0.8, 0], c.electron);
-    label3("star", [1.8, 0.5, 0], c.neutron);
     let pc = 10, period = 10, mode = 0, baseline = 1, timeDays=0;
+    label3("baseline / Earth",()=>mode?[0,-20,0]:[-1.8,-.8,0],c.electron);
+    label3("star",()=>mode?[0,.5,0]:[1.8,.5,0],c.neutron);
     const earth = ball(-1.8, 0, 0, 0.13, c.electron), star = ball(1.8, 0, 0, 0.18, c.neutron);
     const triangle=line(P.distanceGeometry(pc,baseline,period,timeDays).positions,c.rule);
     scalar("Distance", 1, 200, pc, (v) => pc = v, 1, " pc");
-    scalar("Cepheid period", 2, 40, period, (v) => period = v, 1, " days");
-    scalar("Parallax baseline", 0.1, 2, baseline, (v) => baseline = v, 0.1, " AU");
+    const periodControl=scalar("Cepheid period", 2, 40, period, (v) => period = v, 1, " days");
+    const baselineControl=scalar("Parallax baseline", 0.1, 2, baseline, (v) => baseline = v, 0.1, " AU");
     const timeControl=scalar("Cepheid elapsed time",0,80,timeDays,v=>timeDays=v,.1," days");
     tabs(["Parallax and uncertainty", "Cepheid brightness"], (i) => mode = i);
-    advance=dt=>{timeDays=(timeDays+dt*2)%80;timeControl.set(timeDays);};
+    button("Replay Cepheid clock",()=>{timeDays=0;timeControl.set(0);api.pause?.();});
+    advance=dt=>{if(dt>0&&mode){timeDays=Math.min(80,timeDays+dt*2);timeControl.set(timeDays);if(timeDays===80)api.pause?.();}};
     update = () => {
+      playback(!!mode);periodControl.input.disabled=!mode;timeControl.input.disabled=!mode;baselineControl.input.disabled=!!mode;
       const q = P.parallax(pc, baseline), cph = P.cepheid(period, pc);
-      const geometry=P.distanceGeometry(pc,baseline,period,timeDays);triangle.set(geometry.positions);star?.position.set(...geometry.star);
+      const geometry=P.distanceGeometry(pc,baseline,period,timeDays);triangle.object.visible=!mode;if(earth)earth.visible=!mode;triangle.set(geometry.positions);star?.position.set(...(mode?[0,0,0]:geometry.star));
       if(star){star.scale.setScalar(mode?1+.1*Math.sin(2*Math.PI*geometry.phase):1);star.material.color.set(c.neutron);if(mode)star.material.color.multiplyScalar(.55+.45*geometry.normalisedFlux/1.3);}
-      report(mode ? `Cepheid period ${period} days gives illustrative absolute magnitude ${cph.absoluteMagnitude.toFixed(2)}; at ${pc} pc, apparent magnitude ${cph.apparentMagnitude.toFixed(2)}. Elapsed ${timeDays.toFixed(1)} days, phase ${geometry.phase.toFixed(3)}, received flux ${geometry.flux.toPrecision(3)}. Mean flux gives d = sqrt(calibrated luminosity / mean flux). Star pulse and graph share this clock; icon radius and colour are schematic, while the flux readout is quantitative. Doubling distance quarters received flux.` : `At ${pc} pc, parallax ${q.arcsec.toFixed(4)} arcseconds; with \xB10.001\u2033 uncertainty the relative distance uncertainty is about ${(q.relativeError * 100).toFixed(1)}%. Beyond a small enough angle, measurement noise dominates. The responsive triangle uses exaggerated angles and logarithmic distance for visibility; numerical parallax uses the actual AU/pc ratio.`);
+      report(mode ? `Cepheid period ${period} days gives illustrative absolute magnitude ${cph.absoluteMagnitude.toFixed(2)}; at ${pc} pc, apparent magnitude ${cph.apparentMagnitude.toFixed(2)}. Elapsed ${timeDays.toFixed(1)} days, phase ${geometry.phase.toFixed(3)}, received flux ${geometry.flux.toPrecision(3)}. Mean flux gives d = sqrt(calibrated luminosity / mean flux). Star pulse and graph share this clock; icon radius and colour are schematic, while the flux readout is quantitative. Doubling distance quarters received flux. Play advances 2 model days/s and stops at day 80; Replay returns to day 0.` : `At ${pc} pc, parallax ${q.arcsec.toFixed(4)} arcseconds; with \xB10.001\u2033 uncertainty the relative distance uncertainty is about ${(q.relativeError * 100).toFixed(1)}%. Beyond a small enough angle, measurement noise dominates. The responsive triangle uses exaggerated angles and logarithmic distance for visibility; numerical parallax uses the actual AU/pc ratio.`);
     };
     draw = () => {
       if (mode) {
         const q = P.cepheid(period, pc);
-        axes(`time: 0 to ${period} days`, "flux / selected mean (normalised)");
+        axes('time / days', "flux / selected mean",{x:[0,period],y:[.5,1.5],reference:1});
         curve((u) => 0.5 + 0.3 * Math.sin(2 * Math.PI * u));
         const geometry=P.distanceGeometry(pc,baseline,period,timeDays);plotDot(55+geometry.phase*550,195-(.5+.3*Math.sin(2*Math.PI*geometry.phase))*145,c.proton);
         text(`Mean received flux ${q.relativeFlux.toPrecision(3)} relative units`, 320, 47, c.ink, 13, "center");
-        text(`Peak ${(q.relativeFlux * 1.3).toPrecision(3)} \xB7 minimum ${(q.relativeFlux * 0.7).toPrecision(3)}`, 320, 74, c.muted, 12, "center");
-        text(`0 d`, 55, 214, c.muted, 12);
-        text(`${period / 2} d`, 330, 214, c.muted, 12, "center");
-        text(`${period} d`, 605, 214, c.muted, 12, "right");
+        text(`Peak ${(q.relativeFlux * 1.3).toPrecision(3)} \xB7 minimum ${(q.relativeFlux * 0.7).toPrecision(3)}`, 320, 260, c.muted, 12, "center");
       } else {
-        axes("distance 1\u2013200 parsecs", "parallax angle 0\u20132 arcseconds");
+        axes("distance / parsecs", "parallax / arcseconds",{x:[1,200],y:[0,2],xticks:[1,100,200]});
         curve((u) => baseline / (1 + u * 199) / 2);
         const p = P.parallax(pc, baseline);
         plotDot(55 + (pc - 1) / 199 * 550, 195 - p.arcsec / 2 * 145);
@@ -1029,6 +1118,7 @@ Live.register("fieldslab", (stage, params, api) => {
     let mass = 0.6, initial = 1, scale = 1, home = 0, wavelengthView = false;
     const dwarf = ball(0, 0, 0, 1, c.sheet), points = [[-1, -1, -1], [1, 0, 0], [0, 1, 1], [-1, 1, 0], [1, -1, 1], [0, 0, -1]], galaxies = points.map((p) => ball(...p, 0.18, c.neutron));
     fixedViewRadius=d.id==='cosmos'?Math.max(...[0,1,2].flatMap(home=>P.expansion(points,home,3).relative.map(p=>P.length(p)*.65)))+.2:P.whiteDwarf(.2).radiusKm/1e4+.2;
+    if(d.id==='cosmos')label3('observer galaxy',[0,.4,0],c.proton);
     if (d.id === "white-dwarf") {
       scalar("Final core mass", 0.2, 1.5, mass, (v) => mass = v, 0.02, " solar masses");
       scalar("Initial star mass (comparison)", 1, 20, initial, (v) => initial = v, 1, " solar masses");
@@ -1050,24 +1140,24 @@ Live.register("fieldslab", (stage, params, api) => {
         if (dwarf) dwarf.visible = false;
         const q = P.expansion(points, home, scale);
         galaxies.forEach((o, j) => {
-          if (o) o.position.set(...q.relative[j].map((x) => x * 0.65));
+          if (o) {o.position.set(...q.relative[j].map((x) => x * 0.65));o.material.color.set(j===home?c.proton:c.neutron);}
         });
         report(`Observer galaxy ${home + 1}; scale factor ${scale.toFixed(2)}. Each separation is multiplied by ${scale.toFixed(2)}; individual galaxy sizes stay fixed. The camera scale also stays fixed; markers are enlarged for visibility. With H = 70 km/s/Mpc, all observers find v = H d. Wavelength ratio \u03BB/\u03BB\u2080 = ${scale.toFixed(2)}, redshift z = ${(scale - 1).toFixed(2)}.`);
       }
     };
     draw = () => {
       if (d.id === "white-dwarf") {
-        axes("core mass 0.2\u20131.44 solar masses", "radius / 20,000 km");
+        axes("core mass / solar masses", "radius / km",{x:[.2,1.44],y:[0,20000],xticks:[.2,.8,1.44]});
         curve((u) => P.whiteDwarf(0.2 + 1.239 * u).radiusKm / 2e4);
         if (mass < 1.44) plotDot(55 + (mass - 0.2) / 1.24 * 550, 195 - P.whiteDwarf(mass).radiusKm / 2e4 * 145);
         text("The limiting zero radius is a breakdown of the stable model.", 320, 47, c.muted, 12, "center");
       } else if (wavelengthView) {
-        axes("fixed distance window", "wave displacement (schematic)");
-        curve((u) => 0.5 + 0.3 * Math.sin(u * 8 * Math.PI / scale), c.electron);
+        axes("distance / initial wavelength", "schematic unit-amplitude displacement",{x:[0,4],y:[-1,1]});
+        curve((u) => 0.5 + 0.5 * Math.sin(u * 8 * Math.PI / scale), c.electron);
         text(`Wavelength ratio ${scale.toFixed(2)} \xB7 z = ${(scale - 1).toFixed(2)}`, 320, 47, c.ink, 16, "center");
         text("The fixed viewing window contains fewer crests as wavelength stretches.", 320, 225, c.muted, 12, "center");
       } else {
-        axes("distance / Mpc", "recession / km s\u207B\xB9");
+        axes("distance / Mpc", "recession / km s\u207B\xB9",{x:[0,9],y:[0,630]});
         curve((u) => u);
         const q = P.expansion(points, home, scale);
         q.distances.forEach((x) => plotDot(55 + x / 9 * 550, 195 - x / 9 * 145, c.electron));
@@ -1082,12 +1172,15 @@ Live.register("fieldslab", (stage, params, api) => {
     const site=ball(0,0,0,.06,c.proton),globalSwing=arrow([0,0,0],[0,0,0],c.proton),basis=Array.from({length:3},()=>arrow([0,0,0],[0,0,0],c.green));
     box(.9,-.6,0,2,.05,2,c.rule);const trace=line([[0,0,0],[0,0,0]],c.proton),bob=ball(0,0,0,.1,c.ink),string=line([[0,0,0],[0,0,0]],c.ink);
     label3('Earth axis',[-1.8,1.05,0]);label3('same swing: world',[.3,1.4,0],c.proton);label3('local N',[.9,-.55,-1.2]);
-    const latitudeControl=scalar('Latitude',-90,90,lat,v=>lat=v,1,'°');scalar('Elapsed sidereal clock',0,48,hours,v=>hours=v,.25,' h');tabs(['Mumbai 19.08°','Equator','North pole'],i=>{lat=[19.08,0,90][i];latitudeControl.set(lat);});
+    let latitudeTabs;
+    const latitudeControl=scalar('Latitude',-90,90,lat,v=>{lat=v;latitudeTabs?.setActive?.(-1);},1,'°');const clock=scalar('Elapsed time',0,48,hours,v=>hours=v,.25,' h');latitudeTabs=tabs(['Mumbai 19.08°','Equator','North pole'],i=>{lat=[19.08,0,90][i];latitudeControl.set(lat);});
+    button('Replay precession clock',()=>{hours=0;clock.set(0);api.pause?.();});
+    advance=dt=>{if(dt>0){hours=Math.min(48,hours+.5*dt);clock.set(hours);if(hours===48)api.pause?.();}};
     update=()=>{const q=P.foucaultGeometry(lat,hours),pos=P.add([-1.8,0,0],P.scale(q.up,.69));site?.position.set(...pos);meridian.object.rotation.y=q.longitude;
       [q.east,q.north,q.up].forEach((v,j)=>moveArrow(basis[j],pos,P.add(pos,P.scale(v,.3))));moveArrow(globalSwing,P.add(pos,P.scale(q.world,-.45)),P.add(pos,P.scale(q.world,.45)));
       const swing=[q.local[0],0,-q.local[1]],centre=[.9,-.55,0];trace.set([P.add(centre,P.scale(swing,-.85)),P.add(centre,P.scale(swing,.85))]);
       const displacement=.4*Math.sin(tick*2),pivot=[.9,1.2,0],bobPosition=P.add(pivot,[swing[0]*displacement,-Math.sqrt(1.5**2-displacement**2),swing[2]*displacement]);bob?.position.set(...bobPosition);string.set([pivot,bobPosition]);
-      report(`One state at latitude ${lat.toFixed(2)}°, ${hours.toFixed(2)} sidereal-clock h: Earth rotation ${(q.longitude/P.DEG).toFixed(1)}°, local precession ${(q.angle/P.DEG).toFixed(1)}°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Bob oscillation is a slowed independent seconds display; string length stays fixed.`);
+      report(`One state at latitude ${lat.toFixed(2)}°, ${hours.toFixed(2)} elapsed h (3600 s each): Earth rotation ${(q.longitude/P.DEG).toFixed(1)}°, local precession ${(q.angle/P.DEG).toFixed(1)}°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Earth turns once in 23.93447 h, a sidereal day. Play advances the labelled clock by 0.5 model hours per animation second and stops at 48 h. Bob oscillation uses a separate schematic 3.14-animation-second period; it does not share the accelerated Earth clock. String length stays fixed.`);
     };
     draw=()=>{const q=P.foucaultGeometry(lat,hours);text('Same clock: pole / Mumbai / equator',320,22,c.ink,13,'center');[90,19.08,0].forEach((p,j)=>{const a=P.foucaultGeometry(p,hours).angle,x=110+j*210;ctx.strokeStyle=c.rule;ctx.beginPath();ctx.arc(x,115,60,0,2*Math.PI);ctx.stroke();stroke([[x-55*Math.sin(a),115-55*Math.cos(a)],[x+55*Math.sin(a),115+55*Math.cos(a)]],c.proton);text(`${p}°: ${(a/P.DEG).toFixed(1)}°`,x,205,c.ink,12,'center');});};
   }
@@ -1166,7 +1259,7 @@ Live.register("fieldslab", (stage, params, api) => {
     draw=()=>{
       if(d.id==='tracks'){const q=P.trackGeometry(mass,momentum,noise,resolution),inf=P.trackInference(momentum,observed*P.DEG,resolution,4*q.magnification);text('Microscope x–y projection: depth hidden; circles are resolved grains',320,22,c.ink,12,'center');stroke(q.points.map(v=>[55+(v[0]+2)/4*550,105-v[1]*55]),c.electron);q.grains.forEach(v=>{const y=Math.round(v[1]/resolution)*resolution;plotDot(55+(Math.round(v[0]/resolution)*resolution+2)/4*550,105-y*55,c.proton,2);ctx.strokeStyle=c.rule;ctx.beginPath();ctx.arc(55+(Math.round(v[0]/resolution)*resolution+2)/4*550,105-y*55,Math.max(2,resolution*55),0,2*Math.PI);ctx.stroke();});text(`Observed ${observed.toFixed(1)}° ± ${(inf.uncertainty/P.DEG).toFixed(2)}° → mass ${inf.massRange.map(x=>x.toFixed(0)).join('–')} MeV/c²`,320,197,c.ink,12,'center');text('Resolution rings and mass range change together; model/material assumptions matter.',320,225,c.muted,11,'center');
       }else if(d.id==='parity'){const q=P.parityGeometry(spin,alignment,mode===1);bar(`Up ${q.counts.up}`,q.counts.up,100,45,55,c.proton);bar(`Down ${q.counts.down}`,q.counts.down,100,350,55,c.electron);[q.spin,q.reflectedSpin].forEach((v,j)=>{const x=180+j*280;stroke([[x,150],[x,150-v[1]*40]],c.proton,4);const vel=(j?q.reflectedVelocity:q.velocity)[1];if(vel)stroke([[x+35,150],[x+35,150-vel*40]],c.electron,4);text(j?(mode?'mirror R = diag(−1,1,1)':'repeat'):'actual',x,205,c.ink,12,'center');});text('Red spin axis · blue mean emission (vanishes at zero alignment)',320,235,c.muted,11,'center');
-      }else if(d.id==='bose-counting'){const states=P.boseStates(['labelled','boson','fermion'][mode]);text('Two particles / two states / no fixed total energy or probability assumption',320,25,c.ink,12,'center');states.forEach((state,j)=>{ctx.strokeStyle=j===arrangement?c.proton:c.rule;ctx.strokeRect(45+j*145,55,130,110);text(`(${state[0]},${state[1]})`,110+j*145,103,c.ink,18,'center');text(state[2],110+j*145,139,c.muted,13,'center');});text('A|B and B|A exchange actual red A and blue B locations.',320,219,c.muted,12,'center');
+      }else if(d.id==='bose-counting'){const states=P.boseStates(['labelled','boson','fermion'][mode]);text('Two particles / two states / no fixed total energy or probability assumption',320,25,c.ink,12,'center');states.forEach((state,j)=>{ctx.strokeStyle=j===arrangement?c.proton:c.rule;ctx.strokeRect(45+j*145,55,130,110);text(`(${state[0]},${state[1]})`,110+j*145,103,c.ink,18,'center');text(state[2],110+j*145,139,c.muted,13,'center');});text(mode===0?'A|B and B|A exchange actual red A and blue B locations.':'Identical particles: exchange gives no extra state.',320,219,c.muted,12,'center');
       }else{const prediction=P.lensDeflection(impact),measured=prediction+.12,min=-2.1,max=4.1,x=v=>65+(v-min)/(max-min)*510;text('Apparent angular shift / arcseconds (simulated evidence)',320,23,c.ink,13,'center');const g=P.deflectionGeometry(impact,[1,.5,0][mode]),proj=v=>[320+v[0]*105,85-(v[1]+.1)*22];plotDot(320,85,c.neutron,10);stroke(g.ray.map(proj),c.electron);stroke(g.backward.map(proj),c.proton);plotDot(...proj(g.observer),c.ink,4);plotDot(...proj(g.trueStar),c.ink,3);plotDot(...proj(g.apparentStar),c.proton,3);text('true / apparent',105,103,c.muted,10);text('observer',530,103,c.muted,10);stroke([[65,195],[575,195]],c.rule);[0,prediction/2,prediction].forEach((v,j)=>{stroke([[x(v),128],[x(v),195]],[c.muted,c.electron,c.proton][j]);text(['0','half','Einstein'][j],x(v),215,c.ink,11,'center');});stroke([[x(measured-resolution),155],[x(measured+resolution),155]],c.ink,3);plotDot(x(measured),155,c.ink,5);text(`Full uncertainty interval: ${(measured-resolution).toFixed(2)} to ${(measured+resolution).toFixed(2)}″`,320,238,c.muted,11,'center');}
     };
   }
@@ -1190,6 +1283,9 @@ Live.register("fieldslab", (stage, params, api) => {
   else if (id === "foucault") foucault();
   else if (id === "telescope") telescope();
   else tracksParityBoseEvidence();
+  playback(new Set(["circuit-signal","motor","generator","transformer","em-wave","day-night","seasons3d","moon-rotation","eclipses","tides3d","photoelectric","radiation-decay","halo","foucault"]).has(id));
+  // Establish selected visibility before the lab measures its first scene bounds.
+  update();
   lab.redraw(() => {
     cv.clear(c.plate);
     draw();

@@ -240,3 +240,11 @@ A beautiful book gets read. Use everything the browser offers, but every moving 
 - Link each diagram to evidence: actual source paths must generate the same interference strip; a lens’s central ray and focus must agree; calibration must not rescale physical gravity. Label a display horizon separately from escape.
 - Verify the paused first frame after ResizeObserver and theme changes. A clear canvas is not evidence of a working fallback. Start animation time deltas at zero if the first RAF timestamp predates the synchronous setup clock.
 - Additional original static art can stay within the existing document budget by minifying CSS whitespace and deferring heavy map data to the existing precached explorer-chunk mechanism. Measure SVG labels using actual font bounds when culling map labels.
+
+### Demonstration audit lessons (29 October 2026)
+
+- Numerical and renderer tests do not establish visual acceptance. Inspect every added lesson in default and meaningful changed states on mobile and desktop; retain a per-lesson record. Record actual viewport dimensions and wait for the opening transition to finish before accepting screenshots.
+- Readable text must leave the evidence visible. Keep long headings and bottom captions outside the calculated geometry, retain numeric ticks at their measured anchors, and use callouts where labels would cover a body, force arrow or ray. Preserve the diagram's aspect ratio and disclose enlarged insets.
+- Frame the visible apparatus rather than hidden alternatives or unused buffer capacity. For a replay, author an envelope that contains its motion and keep that camera fixed through the replay.
+- Match controls to the model: hide playback when time changes nothing; synchronise clocks, resets and preset selection; derive displayed precision from the actual slider step. A loop that pauses at an endpoint must not schedule another animation frame afterwards.
+- Check light, dark and sepia on a wide-gamut display. Convert CSS Color 4 palette values through the browser's sRGB canvas before passing them to a renderer that cannot parse that syntax; otherwise coloured evidence can become white. Cache the conversion rather than reading pixels every frame.

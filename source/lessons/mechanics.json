@@ -503,7 +503,7 @@
       "p-halley"
     ],
     "question": "Does a planet cover equal distances in equal times?",
-    "explanation": "Mean anomaly advances uniformly, giving equal swept areas. The planet is faster near the focus; changing orbit size changes period according to a³.",
+    "explanation": "For equal amounts of time, the line joining the planet to the central body sweeps equal areas. The planet moves faster near the central body. Bigger orbits take longer: the square of the period is proportional to the cube of the semi-major axis.",
     "limits": "Two-body Newtonian ellipses; normalized units with GM=1. Eccentricity is user-selected, not necessarily a real planet.",
     "sources": [
       "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf",
@@ -583,7 +583,7 @@
     "stories": [],
     "question": "What changes when the same load is turned onto a smaller face?",
     "explanation": "Force stays fixed while force per area changes. In the immersed mode, forces are perpendicular to every face and pressure increases with depth.",
-    "limits": "Uniform fresh-water density; rectangular body. Arrows for very different pressures are magnified independently and values are printed. The immersed cube is held while pressure forces are measured; the arrows are not a complete free-body diagram. The solid has fixed 0.20 × 0.10 × 0.05 m dimensions and is turned onto one of three faces.",
+    "limits": "Uniform fresh-water density; rectangular body. Contact and immersed views use different arrow scales. Within the immersed view, equal-area face arrows share one gauge-pressure scale; values are printed. The immersed cube is held while pressure forces are measured; the arrows are not a complete free-body diagram. The solid has fixed 0.20 × 0.10 × 0.05 m dimensions and is turned onto one of three faces.",
     "sources": [
       "https://openstax.org/books/college-physics-2e/pages/11-3-pressure",
       "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
@@ -637,7 +637,7 @@
     ],
     "question": "Can adding enclosed air change the steel’s weight?",
     "explanation": "The steel’s mass is fixed. A larger watertight envelope displaces more liquid before submerging. Cargo changes weight; salinity changes the displaced volume needed.",
-    "limits": "Ideal rectangular watertight hull, calm liquid, no stability/flooding model. The layered mode uses a rectangular body at a sharp density interface.",
+    "limits": "Ideal rectangular watertight hull in calm liquid, with no stability or flooding model. The layered case uses an egg-shaped solid at a sharp density interface; no mixing, surface tension or real-egg variability.",
     "sources": [
       "https://openstax.org/books/college-physics-2e/pages/11-7-archimedes-principle",
       "https://openstax.org/books/college-physics-2e/pages/11-2-density"

@@ -28,3 +28,17 @@ export function supportContact(angle,displayDeflection){
  const a=angle*Math.PI/180,n=[Math.sin(a),Math.cos(a),0],t=[Math.cos(a),-Math.sin(a),0],at=(normal,tangent=0)=>n.map((x,k)=>normal*x+tangent*t[k]);
  return {normal:n,tangent:t,at,contact:at(-displayDeflection),plate:at(-displayDeflection-.06),load:at(-displayDeflection+.2),base:at(-1.2),height:1.2-displayDeflection};
 }
+
+// Unit-spaced lines across a scaled cube, including any partial final unit.
+export function unitCubeLattice(length) {
+ const cuts=[0];
+ for(let n=1;n<length-1e-8;n++) cuts.push(n);
+ cuts.push(length);
+ const lines=[];
+ for(let axis=0;axis<3;axis++) for(const a of cuts) for(const b of cuts){
+  const cross=[0,1,2].filter(n=>n!==axis),start=[0,0,0],end=[0,0,0];
+  end[axis]=length;start[cross[0]]=end[cross[0]]=a;start[cross[1]]=end[cross[1]]=b;
+  lines.push([start,end]);
+ }
+ return lines;
+}

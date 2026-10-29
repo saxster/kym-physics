@@ -1,7 +1,7 @@
 import { Group } from "three";
 import * as M from "./mechanics_models.mjs";
 import * as R from "./mechanics_render.js";
-const fmt = (x, n = 2) => Number.isFinite(x) ? x.toFixed(n) : "unbounded";
+const fmt = (x, n = 2) => Number.isFinite(x) ? (Math.abs(x)<.5*10**(-n)?0:x).toFixed(n) : "unbounded";
 const point = (m, x, y, z = 0) => m?.position.set(x, y, z);
 const scaled = (m, x, y, z = 1) => m?.scale.set(x, y, z);
 const show = (m, on) => {
@@ -26,15 +26,23 @@ function fall(lab, api, c) {
       const y = -0.24 + j * 0.085;
       for (const sign of [-1, 1]) R.wire(feather, i ? c.electron : c.proton, [[0, y, 0], [sign * 0.17, y + 0.14, 0]]);
     }
-    sets.push({ g, meshes: [sphere, disc, hammer, feather], weight: R.vector(root, c.proton), drag: R.vector(root, c.electron) });
+    const marker = R.ball(g, c.paper || '#fbfaf5', 0.065, 0, 0, 0.1);
+    if (marker) { marker.material.depthTest = false; marker.material.emissive.set(c.paper || '#fbfaf5'); marker.renderOrder = 20; }
+    const release = R.ball(root, c.muted, 0.035, i ? 1 : -1, 1.5, 0.1);
+    const drop = R.wire(root, c.muted, [[i ? 1 : -1, 1.5, 0.1], [i ? 1 : -1, 1.5, 0.1]]);
+    sets.push({ g, marker, release, drop, meshes: [sphere, disc, hammer, feather], weight: R.vector(root, c.proton), drag: R.vector(root, c.electron) });
   }
   R.wire(root, c.rule, [[-1.7, 1.5, 0], [-1.7, -1.5, 0], [-1.5, -1.5, 0]]);
-  let selected = 0;
+  let selected = 0, replay = null, shapeTabs = null, bodyPresets = null;
+  const customBodies = () => bodyPresets?.setActive?.(-1);
+  const selectShape = () => shapeTabs?.setActive?.(params[selected].shape);
   const update = () => lab.refresh(), mass = R.slider(api, s, "mass", "Selected body mass", 1e-3, 1, 1e-3, 0.1, "kg", () => {
     params[selected].mass = s.mass;
+    customBodies();
     update();
   }), area = R.slider(api, s, "area", "Selected projected area", 1e-4, 0.02, 1e-4, 1e-3, "m\xB2", () => {
     params[selected].area = s.area;
+    customBodies();
     update();
   });
   R.slider(api, s, "air", "Air density multiplier", 0, 1, 0.05, 1, "", update);
@@ -44,29 +52,36 @@ function fall(lab, api, c) {
     s.area = params[i].area;
     mass.set(s.mass);
     area.set(s.area);
+    selectShape();
     update();
   });
-  api.tabs(names, (i) => {
+  shapeTabs = api.tabs(names, (i) => {
     params[selected].shape = i;
+    customBodies();
     update();
+    lab.fit?.();
   });
-  api.tabs(["Two dense spheres", "Equal mass, different shape", "Hammer and feather"], (i) => {
+  bodyPresets = api.tabs(["Two dense spheres", "Equal mass, different shape", "Hammer and feather"], (i) => {
     const presets = [[{ mass: 0.1, area: 1e-3, shape: 0 }, { mass: 1, area: 1e-3, shape: 0 }], [{ mass: 0.01, area: 1e-3, shape: 0 }, { mass: 0.01, area: 0.01, shape: 1 }], [{ mass: 0.5, area: 4e-3, shape: 2 }, { mass: 1e-3, area: 0.01, shape: 3 }]];
     params.splice(0, 2, ...presets[i]);
     s.mass = params[selected].mass;
     s.area = params[selected].area;
     mass.set(s.mass);
     area.set(s.area);
+    selectShape();
     s.time = 0;
+    replay?.set(0);
     update();
+    lab.fit?.();
   });
   R.tabs(api, s, ["Earth gravity", "Moon gravity"], update);
-  R.clock(api, s, update, 6, 0.45, 0.8);
+  replay = R.clock(api, s, update, 6, 0.45, 0.8);
   lab.redraw((ctx) => {
     const g = s.mode ? 1.67 : 9.8, values = params.map((p) => M.fallingBody(s.time, p.mass, p.area, cds[p.shape], s.air, g)), forceScale = 1 / Math.max(...values.map((v) => v.weight));
     sets.forEach((set, i) => {
       const p = params[i], v = values[i], y = 1.5 - v.distance * 3 / 200, k = Math.sqrt(p.area / 1e-3);
       point(set.g, i ? 1 : -1, y);
+      R.path(set.drop, [[i ? 1 : -1, 1.5, 0.1], [i ? 1 : -1, y, 0.1]]);
       set.meshes.forEach((m, j) => {
         show(m, p.shape === j);
         scaled(m, k, k, k);
@@ -75,7 +90,7 @@ function fall(lab, api, c) {
       set.drag.set([(i ? 1 : -1) + 0.3, y, 0.3], [(i ? 1 : -1) + 0.3, y + v.drag * forceScale, 0.3]);
     });
     primary(ctx, c, "Gravity on body mg; air on body cv\xB2; net / mass = acceleration");
-    const maxV = 60, plots = values.map((v, i) => ({ color: i ? c.electron : c.proton, values: R.samples(61, (u) => [u * 6, M.fallingBody(u * 6, params[i].mass, params[i].area, cds[params[i].shape], s.air, g).v]) }));
+    const maxV = 60, plots = values.map((v, i) => ({ color: i ? c.electron : c.proton, dash: i ? [5, 4] : [], values: R.samples(61, (u) => [u * 6, M.fallingBody(u * 6, params[i].mass, params[i].area, cds[params[i].shape], s.air, g).v]) }));
     const ax = R.plot(ctx, c, plots, { x: 45, y: 180, w: 255, h: 115, xmax: 6, ymax: maxV, ylabel: "speed (m/s)", xlabel: "seconds" });
     values.forEach((v, i) => {
       R.dot(ctx, i ? c.electron : c.proton, ax.X(s.time), ax.Y(v.v), 4);
@@ -84,14 +99,15 @@ function fall(lab, api, c) {
       R.text(ctx, c.ink, `mg ${fmt(v.weight, 3)} N; drag ${fmt(v.drag, 3)} N`, 330, 83 + i * 73, 13);
       R.text(ctx, c.ink, `a = (mg \u2212 drag)/m = ${fmt(v.a)} m/s\xB2`, 330, 104 + i * 73, 13);
     });
-    R.text(ctx, c.ink, "Vertical path: 200 m; silhouettes enlarged. Dashed = terminal speed.", 20, 231, 13);
-    lab.say(`t=${fmt(s.time)} s, g=${g} m/s\xB2. In vacuum mg/m=g for both independently adjustable masses. Red/blue distances ${values.map((v) => fmt(v.distance)).join(" / ")} m; acceleration ${values.map((v) => fmt(v.a)).join(" / ")} m/s\xB2. Weight arrows share ${fmt(1 / forceScale, 3)} N per scene unit. Drag balances weight at terminal speed ${values.map((v) => Number.isFinite(v.terminal) ? fmt(v.terminal) : "unbounded in vacuum").join(" / ")} m/s. Projected area and shape coefficient are independent of mass; coefficients are illustrative constant values.`);
+    R.text(ctx, c.ink, "Path:200 m; silhouettes enlarged. Dashed blue:body 2; dashed horizontal:terminal speeds.", 20, 231, 13);
+    lab.say(`t=${fmt(s.time)} s, g=${g} m/s\xB2. In vacuum mg/m=g for both independently adjustable masses. Red/blue distances ${values.map((v) => fmt(v.distance)).join(" / ")} m; acceleration ${values.map((v) => fmt(v.a)).join(" / ")} m/s\xB2. White dots track corresponding points; grey marks show their release heights. Weight arrows share ${fmt(1 / forceScale, 3)} N per scene unit. Drag balances weight at terminal speed ${values.map((v) => Number.isFinite(v.terminal) ? fmt(v.terminal) : "unbounded in vacuum").join(" / ")} m/s. Silhouettes are enlarged; projected area and shape coefficient are independent of mass.`);
   });
 }
 function circle(lab, api, c) {
   const s = { elapsed: 0, released: false }, root = R.scene(lab);
   R.ring(root, c.ink, 1.6);
-  const body = R.ball(root, c.proton, 0.13), velocity = R.vector(root, c.electron), inward = R.vector(root, c.proton), update = () => lab.refresh();
+  let elapsedControl=null;
+  const body = R.ball(root, c.proton, 0.13), velocity = R.vector(root, c.electron), inward = R.vector(root, c.proton), update = () => {elapsedControl?.set(s.elapsed);lab.refresh();};
   R.slider(api, s, "speed", "Speed", 1, 6, 0.5, 4, "m/s", () => {
     s.released = false;
     s.elapsed = 0;
@@ -102,6 +118,7 @@ function circle(lab, api, c) {
     s.elapsed = 0;
     update();
   });
+  elapsedControl=R.slider(api,s,"elapsed","Time after release",0,.35,.01,0,"s",update);
   api.button("Release / reset", () => {
     s.released = !s.released;
     s.elapsed = 0;
@@ -114,6 +131,9 @@ function circle(lab, api, c) {
     }
   });
   lab.redraw((ctx) => {
+    api.playback?.(s.released && s.elapsed<.35);
+    R.frame(lab,root,{min:[-3.5,-3.5,-.5],max:[3.5,3.5,.5]},3.5);
+    elapsedControl.input.disabled=!s.released;
     const th = s.angle * Math.PI / 180, p = M.circle(2, s.speed, th), x = p.x + (s.released ? p.vx * s.elapsed : 0), y = p.y + (s.released ? p.vy * s.elapsed : 0);
     point(body, x * 0.8, y * 0.8);
     velocity.set([x * 0.8, y * 0.8, 0], [x * 0.8 + p.vx * 0.2, y * 0.8 + p.vy * 0.2, 0]);
@@ -130,8 +150,12 @@ function circle(lab, api, c) {
 }
 function gravity(lab, api, c) {
   const s = {}, root = R.scene(lab), earth = R.ball(root, c.electron, 0.55), moon = R.ball(root, c.muted, 0.12), centre = R.ball(root, c.proton, 0.05), shells = [1, 2, 3].map((r) => ({ r, surface: R.ball(root, c.electron, 1, 0, 0, 0, 0.055), points: M.sphericalField(r, 18).points.map(() => R.ball(root, c.proton, 0.025)), vectors: Array.from({ length: 8 }, () => R.vector(root, c.electron)) })), probeShell = R.ball(root, c.proton, 1, 0, 0, 0, 0.025), field = R.vector(root, c.proton), tangent = R.wire(root, c.ink, [[0, 0, 0], [1, 0, 0]]), curve = R.wire(root, c.proton, R.samples(61, () => [0, 0, 0])), update = () => lab.refresh();
+  if (centre) {centre.material.depthTest=false;centre.renderOrder=30;}
+  lab.kit?.label?.("Earth",earth,{color:c.electron});
+  lab.kit?.label?.("Moon",moon,{color:c.muted});
+  lab.kit?.label?.("shared centre of mass",centre,{color:c.proton,offset:[100,0]});
   const distance = R.slider(api, s, "distance", "Distance from Earth centre", 1, 60, 1, 2, "Earth radii", update);
-  R.slider(api, s, "angle", "Orbital position", 0, 360, 5, 45, "\xB0", update);
+  const orbitAngle=R.slider(api, s, "angle", "Orbital position", 0, 360, 5, 45, "\xB0", update);
   R.tabs(api, s, ["Inverse-square surfaces", "Shared centre of mass", "Apple and Moon"], () => {
     if (s.mode === 2) {
       s.distance = 60;
@@ -141,7 +165,8 @@ function gravity(lab, api, c) {
   });
   lab.redraw((ctx) => {
     const p = M.gravity(s.distance), a = s.angle * Math.PI / 180, k = 2 / Math.max(3, s.distance), sep = 2.7, b = sep * 0.0123 / 1.0123;
-    distance.input.disabled = s.mode === 2;
+    distance.input.disabled = s.mode !== 0;
+    orbitAngle.input.disabled=s.mode!==1;
     show(tangent, s.mode === 2);
     show(curve, s.mode === 2);
     show(centre, s.mode === 1);
@@ -216,7 +241,7 @@ function weightless(lab, api, c) {
   R.block(astronaut, c.ink, 0.36, 0.1, 0.25, 0, -0.09);
   const springs = [R.wire(cabin, c.electron, R.samples(40, () => [0, 0, 0])), R.wire(cabin, c.electron, R.samples(40, () => [0, 0, 0]))], gravity2 = R.vector(root, c.proton), support = R.vector(root, c.electron), external = R.ball(root, c.electron, 0.18, 2, 1), trail = R.wire(root, c.rule, [[2, 1, 0], [2, -1, 0]]), update = () => lab.refresh();
   R.slider(api, s, "height", "Altitude", 0, 500, 10, 400, "km", update);
-  R.tabs(api, s, ["Freely falling together", "Supported cabin"], update);
+  R.tabs(api, s, ["Freely falling together", "Supported cabin"],()=>{lab.teach?.({explanation:s.mode?"In a held cabin the spring supports the astronaut’s weight. Gravity pulls down and support balances it. Releasing the cabin lets both fall together: support vanishes while gravity remains.":"A freely falling room and astronaut have the same gravitational acceleration. With no support force, the spring-mass sensor relaxes even though gravity remains strong."});update();});
   R.clock(api, s, update, 0.65, 0.12, 0);
   lab.redraw((ctx) => {
     const p = M.cabinFall(s.time, s.height, s.mode === 0), compression = p.compression * 2, deck = -0.63 - compression, fallY = p.displacement * 0.8;
@@ -227,13 +252,14 @@ function weightless(lab, api, c) {
     springs.forEach((wire, i) => R.path(wire, R.samples(40, (u) => [-0.8 + i * 0.5 + 0.04 * Math.sin(u * 12 * Math.PI), -0.96 + u * (deck + 0.93), 0.1])));
     gravity2.set([-0.95, fallY + deck + 0.55, 0.5], [-0.95, fallY + deck + 0.55 - p.g * 0.07, 0.5]);
     support.set([-0.6, fallY + deck, 0.5], [-0.6, fallY + deck + p.sensor * 0.07, 0.5]);
-    primary(ctx, c, "External view: cabin and astronaut fall together");
+    api.playback?.(s.mode===0);
+    primary(ctx, c, s.mode ? "Supported cabin: spring supplies an upward force" : "External view: cabin and astronaut fall together");
     const y = 70 - p.displacement * 30;
     R.rectangle(ctx, c.ink, 55, y, 165, 90);
     R.dot(ctx, c.proton, 105, y + 35, 9);
     R.dot(ctx, c.electron, 175, 70 - p.displacement * 30 + 35, 7);
     R.line(ctx, c.rule, [[30, 185], [255, 185]], 1);
-    R.text(ctx, c.ink, "Same displacement in external frame", 30, 215, 13);
+    R.text(ctx, c.ink, s.mode ? "No falling displacement while supported" : "Same displacement in external frame", 30, 215, 13);
     R.text(ctx, c.proton, `gravity ${fmt(p.g)} m/s\xB2`, 300, 76, 18);
     R.text(ctx, c.electron, `scale: ${fmt(p.support)} N`, 300, 115, 18);
     R.text(ctx, c.ink, `spring compression: ${fmt(p.compression * 1e3, 1)} mm`, 300, 155, 15);
@@ -243,14 +269,19 @@ function weightless(lab, api, c) {
 }
 function kepler(lab, api, c) {
   const s = {}, root = R.scene(lab);
-  R.ball(root, c.neutron, 0.16, 0, 0);
+  const focus=R.ball(root, c.neutron, 0.16, 0, 0);
   const body = R.ball(root, c.proton, 0.1), other = R.ball(root, c.electron, 0.08), orbit = R.wire(root, c.ink, R.samples(121, () => [0, 0, 0])), outer = R.wire(root, c.rule, R.samples(121, () => [0, 0, 0])), wedges = [R.wire(root, c.proton, R.samples(22, () => [0, 0, 0])), R.wire(root, c.proton, R.samples(22, () => [0, 0, 0]))], vel = R.vector(root, c.proton), update = () => lab.refresh();
-  let planet = "Earth, nominal e";
+  const sectorAnchors=root?[new Group(),new Group()]:[];sectorAnchors.forEach((anchor,i)=>{root.add(anchor);lab.kit?.label?.(`equal time ${i+1}`,anchor,{color:c.proton,offset:i?[ -25,-35]:[25,35]});});
+  lab.kit?.label?.("central body: focus",focus,{color:c.neutron,offset:[0,-45]});
+  lab.kit?.label?.("inner planet",body,{color:c.proton,offset:[-20,45]});
+  lab.kit?.label?.("outer planet",other,{color:c.electron,offset:[25,-25]});
+  let planet = "Earth, nominal e", orbitPresets = null;
   const eccentricity = R.slider(api, s, "e", "Teaching eccentricity", 0, 0.8, 1e-4, 0.0167, "", () => {
     planet = "User-selected eccentricity";
+    orbitPresets?.setActive?.(-1);
     update();
   });
-  api.tabs(["Earth: e=0.0167", "Mars: e=0.0935", "Enlarged: e=0.5"], (i) => {
+  orbitPresets = api.tabs(["Earth: e=0.0167", "Mars: e=0.0935", "Enlarged: e=0.5"], (i) => {
     s.e = [0.0167, 0.0935, 0.5][i];
     planet = ["Earth, nominal e", "Mars, nominal e", "Enlarged teaching orbit"][i];
     eccentricity.set(s.e);
@@ -269,7 +300,10 @@ function kepler(lab, api, c) {
     point(body, p.x * k, p.y * k);
     point(other, q.x * k, q.y * k);
     vel.set([p.x * k, p.y * k, 0.03], [p.x * k + p.vx * 0.3, p.y * k + p.vy * 0.3, 0.03]);
-    [0, Math.PI].forEach((m, i) => R.path(wedges[i], [[0, 0, 0], ...R.samples(20, (u) => pt(s.e, s.a, m + (u - 0.5) * 0.4)), [0, 0, 0]]));
+    [0, Math.PI].forEach((m, i) => {
+      const arc=R.samples(20,u=>pt(s.e,s.a,m+(u-.5)*.4));R.path(wedges[i],[[0,0,0],...arc,[0,0,0]]);
+      point(sectorAnchors[i],arc.reduce((sum,p)=>sum+p[0],0)/(arc.length*2),arc.reduce((sum,p)=>sum+p[1],0)/(arc.length*2));
+    });
     primary(ctx, c, `${planet}; e=${fmt(s.e, 4)}; focus at central body`);
     R.text(ctx, c.ink, `r = ${fmt(p.radius)} model units`, 25, 72, 16);
     R.text(ctx, c.proton, `speed = ${fmt(p.speed)} units / time`, 25, 108, 16);
@@ -281,6 +315,7 @@ function kepler(lab, api, c) {
 }
 function torsion(lab, api, c) {
   const s = { sign: 1 }, root = R.scene(lab);
+  let replay = null;
   R.rod(root, c.ink, 0.015, 2, 0, 0.9);
   const bar = root ? new Group() : null;
   if (root) root.add(bar);
@@ -289,16 +324,21 @@ function torsion(lab, api, c) {
   R.ball(bar, c.electron, 0.04, 1, 0);
   const large = [R.ball(root, c.proton, 0.08, -1, 0.6), R.ball(root, c.proton, 0.08, 1, -0.6)], equilibrium = R.wire(root, c.rule, [[-1, 0, 0], [1, 0, 0]]), dial = R.vector(root, c.proton), update = () => lab.refresh();
   R.ring(root, c.ink, 0.5, "z", 2, 0, 0);
+  lab.kit?.label?.("suspended small masses",bar,{color:c.ink,offset:[0,55]});
+  lab.kit?.label?.("large attracting mass",large[0],{color:c.proton,offset:[-20,-40]});
+  lab.kit?.label?.("twist dial ×800",dial.group,{color:c.proton});
   R.slider(api, s, "mass", "Each large mass", 0, 10, 0.5, 5, "kg", update);
   R.slider(api, s, "distance", "Closest separation", 0.06, 0.2, 0.01, 0.1, "m", update);
   R.slider(api, s, "disturbance", "Initial disturbance", 0, 60, 5, 20, "arcseconds", () => {
     s.time = 0;
+    replay?.set(0);
     update();
   });
-  R.clock(api, s, update, 5e3, 250, 0);
+  replay = R.clock(api, s, update, 5e3, 250, 0);
   api.button("Switch large masses to the other side", () => {
     s.sign *= -1;
     s.time = 0;
+    replay.set(0);
     update();
   });
   lab.redraw((ctx) => {
@@ -356,16 +396,19 @@ function perturbation(lab, api, c) {
 }
 function mission(lab, api, c) {
   const s = {}, root = R.scene(lab), planet = R.ball(root, c.electron, 0.4), craft = R.ball(root, c.proton, 0.07), track = R.wire(root, c.proton, R.samples(151, () => [0, 0, 0])), beforeTrack = R.wire(root, c.rule, R.samples(151, () => [0, 0, 0])), before = R.vector(root, c.rule), after = R.vector(root, c.electron), impulse = R.vector(root, c.proton), scaleBar = R.wire(root, c.ink, [[0, 0, 0], [1, 0, 0]]), update = () => lab.refresh();
+  let progressControl = null;
   R.slider(api, s, "dv", "Earth forward burn", 0, 0.7, 0.02, 0.1, "km/s", update);
   R.slider(api, s, "brake", "Moon retrograde burn", 0, 0.9, 0.05, 0.5, "km/s", update);
   R.tabs(api, s, ["Earth impulse \u2192 later apogee", "Moon flyby \u2192 burn \u2192 capture"], () => {
     s.progress = 0;
+    progressControl?.set(0);
     update();
   });
-  R.slider(api, s, "progress", "Incoming \u2190 burn at 0 \u2192 coast", -1, 1, 0.01, 0, "", update);
+  progressControl = R.slider(api, s, "progress", "Incoming \u2190 burn at 0 \u2192 coast", -1, 1, 0.01, 0, "", update);
   api.loop((dt) => {
     if (dt > 0) {
       s.progress = Math.min(1, s.progress + dt * 0.07);
+      progressControl.set(s.progress);
       update();
     }
   });

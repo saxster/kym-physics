@@ -29,8 +29,8 @@
     "section": "8.2",
     "figure": "c8_bucket_spoon",
     "question": "Which sample can transfer more energy while reaching room temperature?",
-    "explanation": "Temperature characterises a distribution of particle energies. The energy released on cooling also depends on how much material is present.",
-    "limits": "Both samples are liquid water with constant specific heat 4186 J/(kg K). Each visible marker represents a different amount of water; particle counts are not literal. The plotted Maxwell curves describe classical translational speeds; water heat capacity also includes other motion and interactions.",
+    "explanation": "Temperature changes the spread of particle speeds; it does not tell you how much water there is. Follow the amount bars when you change mass, then compare the energy bars for cooling to 30 °C. A tiny hot sample can release less energy than a warm bucket; enough hot water reverses that comparison. The equally enlarged marker windows show motion, not literal amounts.",
+    "limits": "Both samples are liquid water with constant specific heat 4186 J/(kg K). Equal-size sampling windows and 64 markers per window are not physical volumes or molecule counts. The 3D amount bars and each diagram bar pair have a common linear scale; very small quantities make hairline bars. Maxwell curves describe classical translation, while water heat capacity includes interactions and other motion.",
     "stories": [
       "latent-heat"
     ],
@@ -114,7 +114,7 @@
     "section": "8.6",
     "figure": "c8_sea_breeze",
     "question": "What pushes warm air up above the land?",
-    "explanation": "At equal pressure warm air is less dense. Cooler surrounding air provides buoyancy; pressure differences complete a circulation with cooler inflow near the surface.",
+    "explanation": "Warm air has fewer kilograms in the same volume at equal pressure. Cooler, denser surrounding air provides a buoyant upward push. The arrows show rising air over the warmer side, a return flow aloft and cooler air flowing in near the surface. Cool the land below the sea temperature to reverse the loop; equal temperatures remove this thermal drive.",
     "limits": "An illustrative sea-breeze loop, not a weather or monsoon forecast. Density uses the ideal-gas relation at a common pressure.",
     "stories": [
       "monsoon"
@@ -137,7 +137,7 @@
     "figure": "c8_joule",
     "question": "Can all the energy from a hot reservoir become work in one cycle?",
     "explanation": "A cyclic heat engine transfers some incoming energy into work and rejects the rest to a colder reservoir. Even a reversible engine has the limit 1 − cold temperature / hot temperature, in kelvin.",
-    "limits": "The animated piston illustrates a cyclic engine, not a pressure-volume calculation for a particular gas. Efficiency is a chosen fraction of the Carnot limit.",
+    "limits": "The animated piston illustrates a cyclic engine, not a pressure-volume calculation for a particular gas. Efficiency is a chosen fraction of the Carnot limit. The piston marks a repeated cycle schematically; its stroke is not a work measurement. The green output arrow vanishes at zero work; the paired energy bars supply the quantitative account.",
     "stories": [
       "engines"
     ],
@@ -157,8 +157,8 @@
     "section": "9.1",
     "figure": "c9_pendulum",
     "question": "Does increasing the mass shorten the period?",
-    "explanation": "Gravity and inertia both grow with mass, so mass cancels. Length and gravity determine the small-angle period; larger starting angles make the period slightly longer.",
-    "limits": "Point bob and massless string; no damping. The amplitude correction is an expansion valid for the offered angles up to 40 degrees.",
+    "explanation": "A heavier bob feels a larger gravitational pull, but it is harder to accelerate by the same factor. Dividing tangential force by mass gives the same acceleration at the same angle. Red arrows show gravitational g; green arrows show the acceleration along the arc. The string also keeps the bob on its circular path. The readout keeps actual forces in newtons. Length changes the clock; mass does not.",
+    "limits": "Point bob and massless string; no damping. The amplitude correction is valid for the offered angles up to 40 degrees. The displayed swing is a harmonic motion at the corrected period, rather than an exact nonlinear integration. Red gravitational g and green tangential-acceleration arrows use one fixed scale for both bobs; they do not depict total acceleration or force. Their tails are offset outside the bob for visibility.",
     "stories": [],
     "three": false,
     "auditIds": [
@@ -198,8 +198,8 @@
     "section": "9.2",
     "figure": "c9_flutter",
     "question": "Does the wind need to arrive in rhythmic gusts?",
-    "explanation": "When aerodynamic torque is correlated with deck angular velocity, a steady flow can do positive work on each cycle. Damping removes energy; instability occurs when input exceeds loss.",
-    "limits": "A prescribed small-amplitude torsional energy model, not a CFD model or reconstruction of Tacoma’s collapse. It shows feedback separately from externally timed resonance. The plotted energy is a cycle-averaged envelope.",
+    "explanation": "A twisting deck changes how the steady wind pushes on it. If the wind’s turning push tends to act in the same direction as the deck’s motion, it adds energy on average. Damping removes energy. When input wins, the twist grows without the wind needing rhythmic gusts.",
+    "limits": "A prescribed small-amplitude torsional energy model, not a CFD model or reconstruction of Tacoma’s collapse. It shows feedback separately from externally timed resonance. The plotted energy is a cycle-averaged envelope. The side inset enlarges the central twist angle fourfold and states the actual angle; the 3D deck uses the unscaled angle.",
     "stories": [
       "tacoma",
       "wobbly-bridge"
@@ -220,8 +220,8 @@
     "section": "9.3",
     "figure": "c9_wave_carries",
     "question": "Does a marked parcel travel with the crest?",
-    "explanation": "In this linear deep-water model, the crest advances while each parcel follows a small orbit. Motion shrinks with depth.",
-    "limits": "Linear deep-water gravity wave; controls maintain kA ≤ 0.189. Small displacements are shown at the stated scale. No Stokes drift, breaking or finite-depth dispersion.",
+    "explanation": "Watch the red parcel circle the black mean-position mark in the enlarged inset. A crest travels onward, but that parcel returns near its starting place. The inset is the same surface motion enlarged40× in both directions. The whole-wave view keeps the smaller physical displacement; deeper parcels move less.",
+    "limits": "Linear deep-water gravity wave; controls keep kA≤0.189. The framed 3D local copy and the right-hand calculated inset magnify displacement40× in both directions, with the same clock and the same parcel state as the main view. No Stokes drift, breaking or finite-depth dispersion.",
     "stories": [],
     "three": true,
     "auditIds": [
@@ -240,7 +240,7 @@
     "section": "9.4",
     "figure": "c9_compressions",
     "question": "Will one air particle travel from the speaker to your ear?",
-    "explanation": "A longitudinal displacement pattern travels through the air. Pressure is highest where neighbouring particles crowd together; individual particles move locally.",
+    "explanation": "Watch the red air parcel: it moves back and forth near the black mean position while the pattern travels on. Blue shows pressure; red shows local displacement, each divided by its own maximum. Pressure is highest where neighbouring parcels crowd together, not where one parcel is furthest from its mean. Those two peaks are a quarter of a wavelength apart.",
     "limits": "A one-dimensional plane sound wave shown inside a volume. Regular marker rows represent mean positions, not a frozen molecular lattice; random thermal motion is omitted. Motion and time are magnified/slowed.",
     "stories": [],
     "three": true,
@@ -299,7 +299,7 @@
     "section": "9.6",
     "figure": "c9_harmonics",
     "question": "How does a circular skin differ from a string?",
-    "explanation": "Fixed edges permit particular modes. A plain circular membrane has Bessel-function shapes and non-integer frequency ratios. Central mass changes different modes by different amounts.",
+    "explanation": "A node is a line or point that stays still while nearby parts of the skin move. The clamped rim must stay still too, so only certain vibration patterns fit. A circular skin does not give the evenly spaced frequencies of a string. Added central mass slows each pattern according to how much that part of the skin moves.",
     "limits": "Uniform membrane modes are calculated. The central-load case uses a Rayleigh trial-shape estimate, not an exact tabla simulation; it does not force the frequencies onto integer multiples. The same calculated frequency drives optional audio.",
     "stories": [
       "tabla",
@@ -333,7 +333,7 @@
     "figure": "c9_doppler",
     "question": "What does the driver hear compared with the platform listener?",
     "explanation": "Each wavefront expands from its emission position through the air. A listener moving with the source receives the emitted frequency; a stationary listener ahead receives crests more often.",
-    "limits": "One-dimensional radial Doppler relation in still air; offered speeds remain subsonic. Drawn crests sparsely sample the actual sound wave.",
+    "limits": "One-dimensional radial Doppler relation in still air; offered speeds remain subsonic. Drawn crests sparsely sample the actual sound wave. The still view begins after several crests have already been emitted. The repeating animation resets its time window.",
     "stories": [
       "doppler"
     ],
@@ -477,7 +477,7 @@
     "figure": "c10_eye",
     "question": "Why does water blur an eye that works in air?",
     "explanation": "The air–cornea index jump supplies much of the focusing. Water reduces this jump. Goggles restore an air layer and the cornea’s refracting power.",
-    "limits": "Reduced thin-lens teaching eye, not a prescription. Rays, focus and retinal intercepts use one physical conjugate state. Incoming rays are clipped near the eye; transverse scale is enlarged independently. The retinal image uses the calculated angular scale and pupil blur diameter; the Gaussian blur rendering is illustrative.",
+    "limits": "Reduced thin-lens teaching eye, not a prescription. Rays, focus and retinal intercepts use one physical conjugate state. Incoming rays are clipped near the eye; transverse scale is enlarged independently. The retinal image uses the calculated angular scale and pupil blur diameter; the Gaussian blur rendering is illustrative. The retinal inset shows one point’s spread on a fixed 1 mm reference scale, with a small centre marker kept visible at zero blur.",
     "stories": [],
     "three": true,
     "auditIds": [
@@ -517,7 +517,7 @@
     "section": "10.6",
     "figure": "c10_romer",
     "question": "How fast must the next tooth replace the outgoing gap?",
-    "explanation": "At first extinction the wheel turns through one gap-to-tooth interval during the round trip: c = 4 × distance × tooth count × rotations per second.",
+    "explanation": "Light leaves through a gap and makes the journey to the distant mirror and back. Meanwhile the wheel turns. At the first fully dark return, the neighbouring tooth has replaced that gap and blocks the returning light. The known tooth spacing, wheel speed and round-trip distance tell us how long the light took.",
     "limits": "Equal-width teeth and gaps; transmission averages launch and return openings over a wheel cycle. The marker follows one ray launched at the gap centre. Full extinction occurs at gap-to-tooth centre alignment. Predicts timing with modern c; Fizeau’s approximate observed speed was 12.6 Hz. Apparatus and tiny phase advance are separately magnified.",
     "stories": [
       "fizeau-wheel"
@@ -671,8 +671,8 @@
     "section": "11.5",
     "figure": "c11_young",
     "question": "What path difference makes a dark point on the screen?",
-    "explanation": "The two coherent waves add as amplitudes. Equal path lengths reinforce; half-integer wavelength differences cancel in this equal-amplitude model.",
-    "limits": "Exact source-to-probe distances; point-like coherent slits with equal amplitudes. The single-slit envelope and coherence loss are separate effects.",
+    "explanation": "When crests arrive together, the two waves reinforce. If one route is half a wavelength longer, its crest arrives with the other wave’s trough and equal amplitudes cancel. Adding whole wavelengths brings them back into step. Move the probe to connect that route difference with bright and dark points.",
+    "limits": "Exact source-to-probe distances; point-like coherent slits with equal amplitudes. The single-slit envelope and coherence loss are separate effects. The route sketch enlarges transverse distances independently. Each blue/yellow arrival arrow has half the common normalised amplitude; their red resultant has squared length equal to the plotted intensity.",
     "stories": [
       "light-wave"
     ],
@@ -692,7 +692,7 @@
     "section": "11.5",
     "figure": "c11_young",
     "question": "Does every rainbow-coloured object use a prism?",
-    "explanation": "A slit has a diffraction envelope, a grating combines many coherent paths, and a thin film combines reflections from its two boundaries. They have different wavelength-dependent patterns.",
+    "explanation": "Waves leaving different parts of an opening reach the same screen point by different routes. They reinforce or cancel according to those route differences. A grating repeats the openings; a thin film supplies two reflected routes, including a phase reversal at one boundary. Changing spacing or thickness therefore selects different bright directions or colours.",
     "limits": "Fraunhofer model: 64 equal midpoint samples across one slit, eight equal grating sources, or two equal reflected film amplitudes. Plots and visible phasors use identical sums. Film one-reflection phase reversal is included; longitudinal and transverse apparatus scales are framed separately.",
     "stories": [],
     "three": false,
@@ -742,7 +742,7 @@
     "section": "11.6",
     "figure": "c11_raman",
     "question": "If the outgoing photon loses energy, what gains it?",
-    "explanation": "Elastic scattering leaves photon energy unchanged. In Stokes scattering a molecular vibration gains energy; anti-Stokes scattering removes an existing vibrational excitation.",
+    "explanation": "Compare the two bars on one energy scale. When the outgoing photon has less energy, the molecule gains exactly the difference as vibration: this is Stokes scattering. In anti-Stokes scattering the vibration supplies energy to the outgoing photon. Elastic scattering transfers no net vibrational energy. A longer outgoing wavelength means a smaller photon energy.",
     "limits": "Schematic vibrational energy levels and selectable Raman shift. Shifted peaks are magnified; no assertion of an actual molecule’s spectrum or classical photon path.",
     "stories": [
       "raman",

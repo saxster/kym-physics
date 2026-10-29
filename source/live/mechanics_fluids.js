@@ -1,20 +1,21 @@
 import { Mesh, SphereGeometry, MeshStandardMaterial, CylinderGeometry, DoubleSide, LatheGeometry, Vector2 } from "three";
 import * as M from "./mechanics_models.mjs";
 import * as R from "./mechanics_render.js";
-const fmt = (x, n = 2) => x.toFixed(n), point = (m, x, y, z = 0) => m?.position.set(x, y, z), scaled = (m, x, y, z = 1) => m?.scale.set(x, y, z), show = (m, on) => {
+const fmt = (x, n = 2) => (Math.abs(x)<.5*10**(-n)?0:x).toFixed(n), point = (m, x, y, z = 0) => m?.position.set(x, y, z), scaled = (m, x, y, z = 1) => m?.scale.set(x, y, z), show = (m, on) => {
   if (m) m.visible = on;
 };
 const title = (ctx, c, t) => R.text(ctx, c.ink, t, 20, 25, 16);
 function pressure(lab, api, c) {
   const s = { face: 1 }, root = R.scene(lab), body = R.block(root, c.proton, 2, 1, 0.5, 0, 0, 0, 0.6), floor = R.block(root, c.ink, 4, 0.06, 2, 0, -0.6), arrows = Array.from({ length: 6 }, () => R.vector(root, c.electron)), update = () => lab.refresh();
-  api.slider("Turn the same solid onto a face", { min: 0, max: 2, step: 1, value: 1, fmt: (v) => ["small: 0.005 m\xB2", "middle: 0.010 m\xB2", "large: 0.020 m\xB2"][v], onInput: (v) => {
+  const faceControl=api.slider("Turn the same solid onto a face", { min: 0, max: 2, step: 1, value: 1, fmt: (v) => ["small: 0.005 m\xB2", "middle: 0.010 m\xB2", "large: 0.020 m\xB2"][v], onInput: (v) => {
     s.face = v;
     update();
   } });
-  R.slider(api, s, "depth", "Immersed top depth", 0.5, 4, 0.25, 2, "m", update);
-  R.tabs(api, s, ["Same weight, different area", "Water on all six faces"], update);
+  const depthControl=R.slider(api, s, "depth", "Immersed top depth", 0.5, 4, 0.25, 2, "m", update);
+  R.tabs(api, s, ["Same weight, different area", "Water on all six faces"],()=>{lab.teach?.({question:s.mode?"How can a liquid push upward on an immersed object?":"What changes when the same load is turned onto a smaller face?",explanation:s.mode?"Liquid pressure pushes perpendicular to every face and increases with depth. Opposite horizontal pushes cancel. The bottom is deeper than the top, so its upward push exceeds the downward push on top.":"The load keeps the same weight while its contact area changes. The same force spread over a smaller area gives greater pressure."});update();});
   lab.redraw((ctx) => {
     const area = [5e-3, 0.01, 0.02][s.face], p = M.pressure(98, area);
+    faceControl.input.disabled=!!s.mode;depthControl.input.disabled=!s.mode;
     show(floor, s.mode === 0);
     if (body) {
       body.rotation.set(0, 0, 0);
@@ -31,13 +32,13 @@ function pressure(lab, api, c) {
     const directions = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
     directions.forEach((d, i) => {
       if (s.mode) {
-        const depth = s.depth + (1 - d[1]) * 0.25, gauge = 1e3 * 9.8 * depth, len = 0.35 + gauge / 98e3;
+        const depth = s.depth + (1 - d[1]) * 0.25, gauge = 1e3 * 9.8 * depth, len = gauge / 49e3;
         arrows[i].set(d.map((x) => x * (0.55 + len)), d.map((x) => x * 0.55));
         show(arrows[i].group, true);
       } else {
-        show(arrows[i].group, i === 2);
         const top = -0.57 + [2, 1, 0.5][s.face];
         arrows[i].set([0, top + 0.6, 0], [0, top, 0]);
+        show(arrows[i].group, i === 2);
       }
     });
     title(ctx, c, s.mode ? "Pressure is scalar; face forces have directions" : "A fixed 98 N spread over different areas");
@@ -52,6 +53,7 @@ function pressure(lab, api, c) {
       R.text(ctx, c.ink, `bottom: ${fmt(bottom / 1e3)} kPa gauge`, 25, 113, 16);
       R.text(ctx, c.electron, `bottom \u2212 top force = ${fmt((bottom - top) * 0.25, 0)} N up`, 25, 157, 16);
       R.text(ctx, c.ink, "Left/right and front/back forces cancel.", 25, 201, 15);
+      R.text(ctx,c.ink,"Equal faces: arrow lengths follow gauge pressure",25,232,13);
     }
     lab.say(s.mode ? `A half-metre cube has gauge pressure ${fmt(9.8 * s.depth)} kPa at its top and ${fmt(9.8 * (s.depth + 0.5))} kPa at its bottom. Multiplying the difference by each face\u2019s 0.25 m\xB2 area gives 1225 N upward. Ambient pressure adds equally on opposite faces.` : `The same 0.20 \xD7 0.10 \xD7 0.05 m solid is turned, keeping its 98 N weight. Pressure = 98 N \xF7 ${fmt(area, 3)} m\xB2 = ${fmt(p.pressure / 1e3)} kPa. It changes orientation, not shape or mass.`);
   });
@@ -71,13 +73,14 @@ function suction(lab, api, c) {
   }
   R.slider(api, s, "inside", "Gas / mouth / interior pressure", 0, 101e3, 1e3, 0, "Pa", update);
   let liquid = 0;
-  api.tabs(["Water", "Mercury"], (i) => {
+  const liquidButtons=api.tabs(["Water", "Mercury"], (i) => {
     liquid = i;
     update();
   });
   R.tabs(api, s, ["Barometer", "Straw and mouth", "Hemispheres cutaway", "Sealed glass"], update);
   lab.redraw((ctx) => {
     const rho = liquid ? 13600 : 1e3, p = M.suction(101e3, s.inside, rho), k = 0.27, h = p.height, hem = s.mode === 2, glass = s.mode === 3, straw = s.mode === 1, A = glass ? 0.01 : 1e-4, W = rho * 9.8 * (glass ? 0.1 : h) * A;
+    liquidButtons.forEach(button=>{button.disabled=hem;});
     [column, tube, gas].forEach((m) => show(m, !hem));
     [reservoir, dish].forEach((m) => show(m, !hem && !glass));
     show(card, glass);
@@ -96,7 +99,9 @@ function suction(lab, api, c) {
     up.set([-0.65, base, 0], [-0.65, base + 101e3 * A * forceScale, 0]);
     down.set([-0.15, base + 0.7, 0], [-0.15, base + 0.7 - W * forceScale, 0]);
     gasForce.set([-1.35, glass ? 0.2 : -1.4 + visualHeight, 0], [-1.35, (glass ? 0.2 : -1.4 + visualHeight) - s.inside * A * forceScale, 0]);
-    [up, down, gasForce].forEach((v) => show(v.group, !hem));
+    show(up.group,!hem);
+    show(down.group,!hem && W>0);
+    show(gasForce.group,!hem && s.inside>0);
     outside.forEach(({ sign, a, v }) => {
       const n = [sign * Math.cos(a), Math.sin(a), 0], face = [1 + sign * 0.05 + n[0] * 0.68, n[1] * 0.68, 0];
       v.set(face.map((x, j) => x + n[j] * 0.45), face);
@@ -163,6 +168,9 @@ function suction(lab, api, c) {
 }
 function hydrostatic(lab, api, c) {
   const s = {}, root = R.scene(lab), narrow = R.block(root, c.electron, 0.4, 2, 0.5, -1.7, 0, 0, 0.3), wide = R.block(root, c.electron, 2.4, 2, 1.3, 0.8, 0, 0, 0.3), wall = R.block(root, c.ink, 0.08, 2, 1.3, 2.04, 0), probes = [R.ball(root, c.proton, 0.07, -1.7, -1), R.ball(root, c.proton, 0.07, 0.8, -1)], forces = Array.from({ length: 5 }, () => R.vector(root, c.proton)), update = () => lab.refresh();
+  lab.kit?.label?.("narrow tube",narrow,{color:c.electron});
+  lab.kit?.label?.("wide reservoir",wide,{color:c.electron});
+  lab.kit?.label?.("dam wall",wall,{color:c.ink});
   const pipe = R.rod(root, c.electron, 0.1, 2.5, -0.45, -0.9, 0);
   if (pipe) pipe.rotation.z = Math.PI / 2;
   R.slider(api, s, "depth", "Water depth", 0.5, 4, 0.25, 2, "m", update);
@@ -170,6 +178,7 @@ function hydrostatic(lab, api, c) {
   R.slider(api, s, "extra", "Added piston pressure", 0, 5e4, 5e3, 0, "Pa", update);
   lab.redraw((ctx) => {
     const p = M.hydrostatic(s.depth, s.width, s.extra);
+    R.frame(lab,root,{min:[-2,-1.15,-1.4],max:[4.15,3.15,1.4]});
     scaled(narrow, 1, s.depth / 2, 1);
     scaled(wide, 1, s.depth / 2, s.width / 5);
     scaled(wall, 1, s.depth / 2, s.width / 5);
@@ -199,9 +208,37 @@ function hull(lab, api, c) {
     egg = new Mesh(new LatheGeometry(profile, 48), new MeshStandardMaterial({ color: c.proton, roughness: 0.7 }));
     root.add(egg);
   }
-  R.slider(api, s, "volume", "Sealed outer volume", 5, 40, 1, 20, "litres", update);
-  R.slider(api, s, "cargo", "Cargo mass / egg density adjustment", 0, 20, 1, 0, "kg / steps", update);
-  R.tabs(api, s, ["Sealed hull: fresh water", "Sealed hull: sea water", "Egg at liquid interface"], update);
+  lab.kit?.label?.('sealed hull: air inside', outer, { color: c.ink });
+  lab.kit?.label?.('same steel, solid', solid, { color: c.ink });
+  lab.kit?.label?.('displaced water', displaced, { color: c.electron });
+  if (egg) lab.kit?.label?.('egg', egg, { color: c.proton });
+  const volumeControl = R.slider(api, s, "volume", "Sealed outer volume", 5, 40, 1, 20, "litres", update);
+  s.cargo = 0;
+  s.eggDensity = 1100;
+  const cargoControl = api.slider('Cargo mass', { min: 0, max: 20, step: 1, value: 0,
+    fmt: v => `${Number(v).toFixed(0)} ${s.mode === 2 ? 'kg/m³' : 'kg'}`,
+    onInput: v => { if (s.mode === 2) s.eggDensity = v; else s.cargo = v; update(); }
+  });
+  const modeTeaching = () => {
+    const eggMode = s.mode === 2;
+    volumeControl.input.disabled = eggMode;
+    const volumeWrap = volumeControl.input.closest?.('.live-slider');
+    if (volumeWrap) volumeWrap.hidden = eggMode;
+    Object.assign(cargoControl.input, { min: eggMode ? '1000' : '0', max: eggMode ? '1200' : '20', step: eggMode ? '10' : '1' });
+    cargoControl.setLabel?.(eggMode ? 'Egg density' : 'Cargo mass');
+    cargoControl.set(eggMode ? s.eggDensity : s.cargo);
+    lab.teach?.(eggMode ? {
+      question: 'Can an egg float between fresh water and a denser liquid?',
+      explanation: 'The egg displaces some liquid from each layer. It settles where the weight of all that displaced liquid equals its own weight. Count the volume in each layer, not the height of the egg.',
+      limits: 'Illustrative egg-shaped solid; upper and lower liquid densities are fixed at 1000 and 1200 kg/m³. The model omits mixing, surface tension and real-egg variability.'
+    } : {
+      question: 'Can adding enclosed air change the steel’s weight?',
+      explanation: 'The steel’s mass is fixed. A larger watertight envelope displaces more liquid before submerging. Cargo changes weight; salinity changes the displaced volume needed.',
+      limits: 'Ideal rectangular watertight hull in calm liquid; no stability or flooding model. The solid steel reference and displaced-water cube share the hull’s volume scale.'
+    });
+  };
+  R.tabs(api, s, ["Sealed hull: fresh water", "Sealed hull: sea water", "Egg at liquid interface"], () => { modeTeaching(); update(); lab.fit?.(); });
+  modeTeaching();
   lab.redraw((ctx) => {
     const eggMode = s.mode === 2, rho = s.mode === 1 ? 1025 : 1e3, mass = 10 + s.cargo, p = M.buoyancy(mass, s.volume / 1e3, rho), f = Math.cbrt(s.volume / 20), height = 0.6 * f, draft = height * p.fraction, bottomY = p.support > 0 ? -1.5 : -draft;
     [outer, bottom, roof, ...walls, cargo, solid, displaced].forEach((m) => show(m, !eggMode));
@@ -223,13 +260,13 @@ function hull(lab, api, c) {
     point(cargo, 0, bottomY + height + 0.15 * cargoScale);
     scaled(cargo, 1, cargoScale, 1);
     show(cargo, !eggMode && s.cargo > 0);
-    const d = Math.cbrt(p.displaced * 1e3) / 3;
+    const d = Math.cbrt(p.displaced * 1e3 * (2 * 0.6 * 1 / 20));
     scaled(displaced, d, d, d);
     title(ctx, c, eggMode ? "Egg volume sets the displaced-liquid weight" : "Sealed hull: draft / depth = displaced fraction");
     if (eggMode) {
-      const density = 1e3 + s.cargo * 10, e = M.eggInterface(density);
+      const density = s.eggDensity, e = M.eggInterface(density);
       point(egg, 0, -e.interfaceU * 0.55);
-      const topForce = 1e3 * 9.8 * (1 - e.fraction), lowerForce = 1200 * 9.8 * e.fraction;
+      const displacedDensity = 1000 * (1 - e.fraction) + 1200 * e.fraction;
       R.rectangle(ctx, c.neutron, 30, 40, 195, 90, true);
       R.rectangle(ctx, c.electron, 30, 130, 195, 90, true);
       const outline = R.samples(81, (t) => {
@@ -240,8 +277,8 @@ function hull(lab, api, c) {
       R.text(ctx, c.ink, "upper 1000; lower 1200 kg/m\xB3", 260, 75, 15);
       R.text(ctx, c.proton, `egg density ${density} kg/m\xB3`, 260, 113, 18);
       R.text(ctx, c.ink, `lower volume ${fmt(e.fraction * 100, 1)}%`, 260, 154, 16);
-      R.text(ctx, c.electron, `buoyancy/m\xB3 ${fmt(topForce + lowerForce, 0)} N`, 260, 195, 16);
-      lab.say(`The displayed egg is a surface of revolution with radius proportional to sqrt(1\u2212u\xB2)(1\u22120.2u). Integrating its circular slices places ${fmt(e.fraction * 100, 1)}% of its volume below the interface, not that percentage of its height. The upper and lower buoyancies sum to ${fmt(topForce + lowerForce, 0)} N per m\xB3, matching density ${density} kg/m\xB3 \xD7 g. Endpoint densities imply neutral buoyancy in one layer.`);
+      R.text(ctx, c.electron, `liquid average ${fmt(displacedDensity, 0)} kg/m³`, 260, 195, 16);
+      lab.say(`Egg density ${density} kg/m³. ${fmt(e.fraction * 100, 1)}% of its volume displaces the lower 1200 kg/m³ liquid; the rest displaces the upper 1000 kg/m³ liquid. The displaced liquid averages ${fmt(displacedDensity, 0)} kg/m³, matching the egg, so its upward force equals the egg’s weight. Volume fractions differ from height fractions because the egg is curved. At either endpoint the egg is neutrally buoyant within one layer.`);
     } else {
       R.bars(ctx, c, [{ label: "weight", value: p.weight, text: `${fmt(p.weight)} N`, color: c.proton }, { label: "buoyancy", value: p.buoyancy, text: `${fmt(p.buoyancy)} N`, color: c.electron }, { label: "floor if sunk", value: p.support, text: `${fmt(p.support)} N`, color: c.muted }], { max: 300, width: 250, y: 50, gap: 45 });
       R.text(ctx, c.ink, `draft ${fmt(draft, 3)} / depth ${fmt(height, 3)} scene units`, 25, 201, 15);

@@ -109,3 +109,58 @@ Additional presentation corrections: the deep-water controls now keep kA≤0.189
 ### Final Fizeau phase check
 
 The strip marker begins at the centre of the launch gap. Its tooth/gap position is computed from the same phase as the selected midpoint ray. This individual-ray state is distinct from detector transmission averaged over launch phase: for equal-width tooth and gap, the overlap fraction is 1−|wrapped phase|/π, first zero at π. The numerical test independently samples both square-wave apertures over 4,000 wheel phases and compares the overlap with the displayed model. Thus the full-extinction reference is not confused with the earlier disappearance of a single midpoint ray.
+
+## Fresh visual refinement, 29 October 2026
+
+The fresh live paired boards `source/build/visual-audit-20261029/boards-before/w9-pendulum.png`, `w9-water.png` and `w8-samples.png` exposed teaching/readability gaps at both 390 and 1440 px. These changes retain the underlying models and explicitly distinguish display quantities:
+
+- **Pendulum:** the default newton-scaled vectors were smaller than, or buried in, the bob marker. The diagram now depicts gravitational **g** and the **tangential acceleration Ftan/m**, using one fixed 5.2 logical pixels per m/s² for both bobs, with arrow tails offset outside the marker. Actual weight and tangential pull remain in newtons in the readout. Red g is not the bob's total constrained acceleration; the green arrow is only its tangential component. The explanation states that the string also keeps the bob on a circular path. The unchanged displayed oscillation is harmonic at the corrected period, not an exact nonlinear time integration. At equal length/angle, 10→100 kg changes weight 98→980 N while the depicted acceleration and clock remain unchanged.
+- **Water:** the physical 3 cm orbit occupied only a few pixels and was not perceptible as a loop. The main view retains its physical amplitude. A framed 3D copy and a calculated right-hand inset show the **same** surface parcel at **40× displacement magnification in both directions**, using the same physical state and clock. At 3 cm amplitude the 2D inset radius is 60 logical px while the main side-view radius is 1.5 px. The copy is an inspection view, not another particle leaving the liquid. Mean position stays fixed. Wave dispersion, depth decay, kA bound and 0.4× physical-time mapping are unchanged.
+- **Samples:** the equal marker counts alone did not make a 2000-fold amount change visible. The enlarged marker windows are now explicitly statistical sampling windows. Thin 3D amount bars, plus separate amount and cooling-energy bar pairs, use shared linear scales. For 5 g at 90 °C versus 10 kg at 40 °C, the amount ratio is 0.0005 and energy ratio is 1255.8/418600 = 0.003. For 10 kg at 90 °C the energy ratio is 6. The temperature distributions remain unchanged when only amount changes. No container volume or literal particle count is inferred from the equally enlarged windows.
+- **Playback:** 21 pure-parameter wave/optics lessons hide the no-op global Play control. The 13 time-varying lessons retain it; the separate opt-in synthetic tone action remains. A real-renderer test compares actual canvas/geometry state at two times and requires the Play flag to match observed motion, rather than trusting a copied ID list.
+
+`node source/tests/test_waves_labs.mjs` passes all previous physics references/limits, 34 real mounts and source-level endpoint/preset checks, plus actual-renderer mass-independent acceleration geometry, amount/energy bar ratios, same-parcel40× mappings in both views and playback/motion correspondence. Rebuilt visual inspection and independent closure are still required; these source tests do not certify that the new layout is readable.
+
+Further fresh-screen findings, 29 October 2026:
+
+- Sound shows both `sin(phase)` relative pressure and `cos(phase)` displacement
+  divided by its own amplitude. The red tracked parcel follows the same
+  displacement model, around a fixed black mean. The two curves’ quarter-cycle
+  difference represents pressure from local crowding, not a particle travelling
+  to the listener.
+- Convection arrows reverse with the common-pressure density contrast and
+  disappear at equal temperature. The circulation remains a schematic; no
+  weather speed prediction is implied.
+- Flat-mirror selected paths now originate at the drawn arrow tip, not its base.
+  Adding0.3m to the existing point-source construction preserves the equal-angle
+  relation and places the virtual tip at equal height behind the mirror.
+- Young’s two arrival amplitudes each have normalised length1/2; their actual
+  resultant is `(1+exp(i2πΔ/λ))/2`, so its squared length equals the existing exact
+  path-distance intensity. The transverse route sketch is explicitly enlarged.
+- Raman incoming/outgoing bars use one0..3.2eV scale. Their difference is exactly
+  the opposite signed molecular vibrational-energy change. Spectral peak heights
+  remain enlarged and wavelength ticks are explicit.
+- The retinal inset now depicts one point’s spread, with40logicalpx/mm in every
+  mode and distance. The blur-disc radius is20,000times its SI diameter, and its
+  centre uses40,000times its signed SI image height. A2px centre mark remains at
+  zero blur. Offered near/far object states stay inside the panel; no saturated
+  blur filter erases the whole comparison.
+- Flutter’s3D deck uses the model angle. A separate side view multiplies that
+  angle by4 and prints the unscaled angle. Doppler’s initial still picture starts
+  after0.14s of simulated emission so a crest train is visible immediately; the
+  existing subsonic source/listener formula and repeating time window remain.
+
+Actual renderer traces/geometry verify these display contracts in
+`source/tests/test_waves_labs.mjs`. The independent root reviewer checked their
+physics and the waves agent independently checked the mechanics patch. Fresh
+candidate/live screenshot acceptance is tracked separately in the per-ID ledger.
+
+Mode-specific controls were closed against actual renderer state: equal30°C
+sea/land temperatures hide playback; string modes disable drum loading; a linear
+polarised-beam comparison disables water incidence; film wavelength is active
+only for the soap-film calculation, and screen position only for aperture/grating
+calculations; curved mirrors disable the flat-mirror observer control. In the
+Doppler driver case the disabled listener control displays the source velocity,
+while the independent platform-listener value is retained and restored on return.
+Actual renderer tests exercise every mode and a22→60m/s source change with300Hz
+receipt, followed by restoration of a−15m/s independent listener.

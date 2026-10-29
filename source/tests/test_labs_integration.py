@@ -58,6 +58,7 @@ try:
         expect(old.locator('.live-3d')).to_be_visible()
         old.get_by_role('button', name='Back to the drawing', exact=True).click()
         fig = open_lesson(page, 'field-probe')
+        fig.locator('.lab-prediction > summary').click()
         fig.get_by_label('My prediction', exact=True).fill('The resultant includes both fields.')
         fig.get_by_text('Explain what happened', exact=True).click()
         fig.get_by_label('My explanation', exact=True).fill('The compass follows their vector sum.')

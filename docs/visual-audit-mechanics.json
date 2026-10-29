@@ -1,0 +1,2942 @@
+{
+  "scope": "All 42 mechanics/fluids/energy demonstrations; fresh live visual review at mobile and desktop sizes",
+  "date": "2026-10-29",
+  "inspectedLessons": 42,
+  "lessons": [
+    {
+      "id": "m-horizon",
+      "title": "Over the sea horizon",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-horizon.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-horizon.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V01",
+          "severity": "P1",
+          "observation": "The globe, eye and ship occupy a small part of the tall 3D stage; the eye and hull cannot be identified readily.",
+          "fix": "Tight visible-apparatus framing and anchored eye/ship labels; awaiting new visual validation.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-horizon.png"
+        },
+        {
+          "id": "M-V02",
+          "severity": "P1",
+          "observation": "Canvas text is legible on desktop but shrinks to roughly 7–10 CSS pixels on the phone, including the horizon diagram labels.",
+          "fix": "Shared readable DOM annotations and controls placement; awaiting new validation.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-horizon.png"
+        }
+      ],
+      "expectedVisibleCause": "Higher eyes move the grazing sight line and reveal more of the hull; the flat-sea comparison hides none.",
+      "physicsVerdict": "Default and raised-eye hidden-height changes agree with the grazing-line model; globe display is explicitly enlarged curvature.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-horizon.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-horizon.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Eye and ship labels identify the globe apparatus; the linked hidden-height strip changes from 1.92 m to zero at 40 m eye height. Curvature enlargement remains explicit."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-shadow-shapes",
+      "title": "A sphere and a disc cast shadows",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadow-shapes.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadow-shapes.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-shadow-shapes",
+          "severity": "P2",
+          "observation": "3D bodies have no direct identity labels; phone projection labels are very small. Static Play offers no useful physical time change.",
+          "fix": "Added sphere/disc scene labels; shared readable annotations, framing, adjacent controls and static playback removal.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadow-shapes.png"
+        }
+      ],
+      "expectedVisibleCause": "The sphere keeps a circular projected outline while a disc narrows towards an edge-on line.",
+      "physicsVerdict": "The sphere outline stays round while the 90° disc narrows to a line, with projected area falling from 100% to 0%.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-shadow-shapes.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-shadow-shapes.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Sphere/disc labels are clear; the 90-degree disc becomes an edge-on line and projected area reaches zero while the sphere stays round. Static Play is absent."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-measurement",
+      "title": "Precise can still be wrong",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-measurement.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-measurement.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-measurement",
+          "severity": "P2",
+          "observation": "The dashed true-reference line is unlabelled and phone ruler ticks/numbers are too small to decode reliably.",
+          "fix": "Added explicit known-length label; shared annotation sizing and static playback removal.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-measurement.png"
+        }
+      ],
+      "expectedVisibleCause": "Agreement of repeated readings must remain visibly separate from common zero error and ruler resolution.",
+      "physicsVerdict": "At +3 mm bias and zero scatter all five readings agree at 39.5 mm while the true reference remains 36.5 mm.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-measurement.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-measurement.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The known 36.5 mm reference and biased 39.5 mm repeated values are readable. A long ruler subtitle still covered graduations 32–37; authored y moved 158 to 45 for the header gutter. Fresh post-fix capture remains required.",
+          "refined": {
+            "inspected": true,
+            "screenshots": [
+              "source/build/visual-audit-20261029/candidate-refined/m-measurement-1440-default.jpg",
+              "source/build/visual-audit-20261029/candidate-refined/m-measurement-1440-changed.jpg"
+            ],
+            "judgment": "Fresh final candidate: ruler subtitle is above the readings and graduations 32–42 are unobstructed. Known 36.5 mm line and all five biased 39.5 mm points remain clear. Actual 1440×1000, sepia, live-lifting false, stage transform none."
+          }
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-scale",
+      "title": "Length, area and volume",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-scale.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-scale.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-scale",
+          "severity": "P2",
+          "observation": "The explanation asks the learner to count squares/cubes, but both solids have unmarked faces and opaque interiors; phone bar values shrink severely.",
+          "fix": "Added translucent scaled cube with original-unit lattice and partial-edge explanation; shared readable annotations and framing.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-scale.png"
+        }
+      ],
+      "expectedVisibleCause": "One length multiplier must create squared face-area and cubed volume ratios that can be counted.",
+      "physicsVerdict": "2× gives 4× face area and 8× volume; 3× gives 9× and 27×, matching the bars.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-scale.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-scale.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The unit lattice makes 2-cubed and 3-cubed structure countable. Bars change 2/4/8 to 3/9/27 with a common visual scale and clear physical quantities."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-rain",
+      "title": "A shallow layer over a city",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-rain.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-rain.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-rain",
+          "severity": "P2",
+          "observation": "The shallow city slab occupies little stage height and the calculation is tiny on phone; raised water depth is visible but needs the printed enlargement caveat.",
+          "fix": "Shared framing and readable annotations; keep explicit exaggerated depth in readout and model limits; remove static Play.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-rain.png"
+        }
+      ],
+      "expectedVisibleCause": "Rain depth times footprint area must visibly produce volume and water mass, without implying a forecast.",
+      "physicsVerdict": "Doubling rainfall from100 to200 mm doubles volume/mass from60 to120 million m³/tonnes at600 km².",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-rain.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-rain.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The doubled exaggerated water depth accompanies doubled volume and mass; units, city area and explicit enlargement caveat are readable."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-shadows",
+      "title": "Two shadows measure a world",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadows.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadows.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-shadows",
+          "severity": "P2",
+          "observation": "At7.2° the sticks, local verticals and short shadow are hard to separate in the small globe; phone angle labels are tiny.",
+          "fix": "Added city labels; shared framing/annotations. Candidate contrast should include30° angle as well as Unknown length.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-shadows.png"
+        }
+      ],
+      "expectedVisibleCause": "Parallel rays meet different local verticals; the shared angle and known city separation determine circumference, but unknown stadia cannot determine kilometres.",
+      "physicsVerdict": "Unknown stadion preserves250,000 stadia and correctly changes kilometres to undetermined.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-shadows.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-shadows.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The moved header leaves gnomons and the angle construction clear. At 30 degrees, unknown stadion length preserves stadia while kilometres are explicitly undetermined."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-frames",
+      "title": "One bounce, two observers",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-frames.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-frames.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-frames",
+          "severity": "P2",
+          "observation": "The main vehicle/ball is very small; the 2D event view shows only the current dot, so the claimed curved-versus-vertical history is not drawn there.",
+          "fix": "Added the existing sampled 3D history to the2D comparison; shared framing/labels and controls placement.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-frames.png"
+        }
+      ],
+      "expectedVisibleCause": "The same bounce at the same clock time must be vertical relative to the vehicle and curved relative to the ground.",
+      "physicsVerdict": "At0.4 s the same event is1.19 m from the ground origin and0 m relative to the vehicle.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-frames.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-frames.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Ball and vehicle labels clear their geometry. One physical event at 0.396 s gives x=1.19 m on the ground and zero relative to the vehicle; the linked trail and unchanged camera preserve the comparison."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-trains",
+      "title": "Three trains, one clock",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-trains.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-trains.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-trains",
+          "severity": "P2",
+          "observation": "The three 3D rectangular carriages have no labels; phone velocity labels and the small+10 arrow are hard to read. Reading toolbar crosses the changed capture.",
+          "fix": "Shared framing/annotation sizing and optional carriage labels; toolbar/progress line is capture UI overlay, not a force or track.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-trains.png"
+        }
+      ],
+      "expectedVisibleCause": "Observer velocity is subtracted from each unchanged track velocity; positions may wrap only with an explicit disclosure.",
+      "physicsVerdict": "Changing to the60 km/h observer changes relative velocities from60,70,−60 to0,10,−120 km/h.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-trains.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-trains.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "All three carriages have identities. Relative velocity arrows change from 60/70/-60 to 0/10/-120 km/h; the small +10 arrow and long -120 arrow follow their shared scale."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-graph",
+      "title": "A graph is not a road",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-graph.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-graph.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-graph",
+          "severity": "P1",
+          "observation": "Default time0 falsely reports average speed/velocity0 although no elapsed interval exists; phone slope interval output rounds0.05 to0.1 s.",
+          "fix": "Changed time0 prose to undefined averages; corrected slider decimal precision; shared readable graph labels.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-graph.png"
+        }
+      ],
+      "expectedVisibleCause": "The x–t graph is not a road; displacement, accumulated distance, finite secant slope and instantaneous velocity must be distinguished.",
+      "physicsVerdict": "Smooth motion at8.04 s gives positive displacement5.16 m but negative slope−0.7996 m/s; short secant agrees with derivative.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-graph.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-graph.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Position, time and interval labels are readable. At zero time averages are explicitly undefined. Smooth negative slope at 8.04 s is distinguished from positive displacement and distance."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-acceleration",
+      "title": "Negative need not mean slowing",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-acceleration.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-acceleration.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-acceleration",
+          "severity": "P2",
+          "observation": "Tiny single-letter arrow labels on phone weaken the decisive same/opposite direction comparison; the original caption describes four cars while this lab shows one.",
+          "fix": "Shared readable annotations and original-caption hiding; keep right-positive heading and printed units beside the vectors.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-acceleration.png"
+        }
+      ],
+      "expectedVisibleCause": "Velocity and acceleration in the same direction increase speed; opposite directions reduce it, regardless of which sign is negative.",
+      "physicsVerdict": "Default v=−4,a=−1 grows speed; changed v=−2,a=+2 decreases it, matching arrow directions.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-acceleration.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-acceleration.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Left-pointing velocity and acceleration increase speed by default; opposite arrows decrease speed in the changed state. Printed m/s and m/s² distinguish arrow quantities."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-galileo",
+      "title": "Equal beats, unequal gaps",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-galileo.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-galileo.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-galileo",
+          "severity": "P2",
+          "observation": "Equal-time0,1,4,9,16 labels, rotating sphere marker and physical axes are tiny on phone; all useful controls sit below the explanation folds.",
+          "fix": "Shared readable annotations and adjacent controls; preserve common time/graph scales and explicit ramp display exaggeration.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-galileo.png"
+        }
+      ],
+      "expectedVisibleCause": "Equal-time distance grows as t² while velocity grows linearly; a rolling sphere accelerates less on common physical graph scales.",
+      "physicsVerdict": "At5° a rolling sphere has0.610 m/s² and4.88 m after4 s, versus the sliding acceleration0.854; both plots retain their scales.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-galileo.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-galileo.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Both plots retain physical scales; equal-time 0,1,4,9,16 ramp marks and enlarged rolling marker are clear. Y labels and numeric ticks are separated after the authored axis-clearance changes."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-toss",
+      "title": "Stop exactly at the top",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-toss.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-toss.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-toss",
+          "severity": "P2",
+          "observation": "The top velocity prints−0.00 m/s, and phone time/height/acceleration labels are too small; one visible graph requires mode switching.",
+          "fix": "Normalised displayed rounded zero; shared readable labels and adjacent mode controls preserve the shared clock.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-toss.png"
+        }
+      ],
+      "expectedVisibleCause": "At the apex velocity is zero but downward acceleration persists; all graph views share the same instant.",
+      "physicsVerdict": "At the top0.452 s height1 m and velocity zero coexist with acceleration−9.80 m/s².",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-toss.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-toss.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Acceleration remains -9.80 m/s² at the marked top while velocity reads 0.00; clock, graph axes and h/v/a readout agree and are readable."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-inertia",
+      "title": "After the hand lets go",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-inertia.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-inertia.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-inertia",
+          "severity": "P2",
+          "observation": "The hand and book are extremely flat/small and unlabelled in3D; no-force state must remain clear when arrows vanish.",
+          "fix": "Shared framing/readable labels; add apparatus identity labels where needed, retain explicit force-source readout and velocity graph.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-inertia.png"
+        }
+      ],
+      "expectedVisibleCause": "A departing hand supplies zero force; table friction can remain, and removing friction leaves constant velocity.",
+      "physicsVerdict": "Removing friction after release leaves a4 m/s plateau and no hand/table horizontal force at2 s.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-inertia.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-inertia.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The book and hand are identified; after release with zero friction the force arrows vanish and velocity graph plateaus at 4 m/s. Force-source text remains explicit."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-arrow",
+      "title": "What pushes an arrow after release?",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-arrow.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-arrow.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-arrow",
+          "severity": "P2",
+          "observation": "Released-bow label is clipped at the phone’s left edge; unlabelled small3D arrows can be confused with the arrow object itself.",
+          "fix": "Shared collision-safe in-bounds labels/framing; anchor force-source labels and keep velocity distinct from force in explanation.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-arrow.png"
+        }
+      ],
+      "expectedVisibleCause": "After release only Earth and air supply the shown forces; no forward bow force remains.",
+      "physicsVerdict": "Removing air leaves only Earth’s0.98 N downward force while horizontal speed stays12 m/s.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-arrow.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-arrow.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Released bow, air and Earth labels identify causes without covering force shafts. Removing drag leaves only downward gravity and unchanged 12 m/s horizontal speed."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-braking",
+      "title": "Who pushed the passenger?",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-braking.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-braking.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-braking",
+          "severity": "P2",
+          "observation": "The stick passenger and bag are small unlabelled objects, and the phone floor-force explanation is tiny.",
+          "fix": "Shared framing/readable annotations; identify bag/person/floor contact, retain short-time rigid-torso limits.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-braking.png"
+        }
+      ],
+      "expectedVisibleCause": "Floor contact slows the feet; the upper body tips and a loose bag keeps its ground velocity, in both coordinate frames.",
+      "physicsVerdict": "At0.60 s in the train frame the feet stay at0 while head advances0.43 m and bag0.36 m; floor force is backward.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-braking.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-braking.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Passenger, loose bag and floor-force labels clear torso/bag geometry. In the train frame at 0.6 s feet remain at zero while head and bag advance; the backward floor contact arrow is visible."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-friction",
+      "title": "At the contact",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-friction.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-friction.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-friction",
+          "severity": "P2",
+          "observation": "The junction enlargement is visible, but force bars and model-versus-molecule caveat are tiny on phone; no-op Play in sticking state is unclear.",
+          "fix": "Shared readable annotations/framing; Play is useful only for the sliding junction cycle; retain schematic contact caveat.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-friction.png"
+        }
+      ],
+      "expectedVisibleCause": "Sticking junctions shear while force balances; exceeding the static limit gives sliding with schematic junction break/reform.",
+      "physicsVerdict": "At20 N static friction matches20 N below49 N limit; at100 N sliding friction is34.3 N and net65.7 N.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-friction.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-friction.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Sticking has balanced 20 N force bars and no no-op Play; sliding has 100 N push against 34.3 N friction and a visible schematic junction deformation. Molecular-model limits remain explicit."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-tablecloth",
+      "title": "A short push on a plate",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-tablecloth.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-tablecloth.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-tablecloth",
+          "severity": "P2",
+          "observation": "Plate and cloth nearly merge edge-on; phone impulse/force/time labels are hard to read. Original caption describes another friction figure.",
+          "fix": "Shared framing/readable annotations and caption hiding; label plate/cloth-motion arrow; static snapshot modes hide no-op Play.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-tablecloth.png"
+        }
+      ],
+      "expectedVisibleCause": "A shorter friction interval has smaller impulse and displacement; the plate moves with the pull rather than receiving an opposite impulse.",
+      "physicsVerdict": "Increasing contact0.10→0.50 s grows impulse0.294→1.470 N·s and total travel2.94→73.50 cm at1 kg.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-tablecloth.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-tablecloth.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Plate and cloth direction are identified. Duration 0.10 to 0.50 s increases force-time area fivefold and total travel twenty-fivefold; phase text matches before/during/after snapshots."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-vectors",
+      "title": "Pulls at an angle",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-vectors.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-vectors.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-vectors",
+          "severity": "P2",
+          "observation": "3D blue pulls/red resultant lack names, and the small head-to-tail triangle is hard to interpret on phone.",
+          "fix": "Shared readable annotations/framing; label force1/force2/resultant and preserve zero-resultant disappearance; static Play removed.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-vectors.png"
+        }
+      ],
+      "expectedVisibleCause": "Head-to-tail addition gives one resultant; equal opposite pulls cancel even though each force is nonzero.",
+      "physicsVerdict": "Two5 N pulls at90° give7.07 N; at180° they cancel to0, matching the disappearing resultant.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-vectors.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-vectors.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Named pulls and resultant are readable. At 180 degrees equal 5 N pulls cancel; resultant and acceleration disappear rather than retaining false arrows."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-newton",
+      "title": "Change the force; change the mass",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-newton.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-newton.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-newton",
+          "severity": "P1",
+          "observation": "The entire3D drawing is unchanged when mass changes: the only acceleration change is tiny text. The central F/m concept has no acceleration vector.",
+          "fix": "Add separately scaled and explicitly labelled acceleration vector; keep force geometry fixed; shared readable annotations and static Play removal.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-newton.png"
+        }
+      ],
+      "expectedVisibleCause": "The same resultant accelerates a larger mass less; force is not equated directly with velocity.",
+      "physicsVerdict": "At fixed7.07 N resultant increasing mass1→5 kg changes acceleration7.07→1.41 m/s².",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-newton.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-newton.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The force geometry remains fixed while increasing mass 1 to 5 kg reduces the separately scaled acceleration arrow to one fifth. Force versus acceleration units and scales are printed."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-support",
+      "title": "A table is a very stiff spring",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-support.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-support.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-support",
+          "severity": "P2",
+          "observation": "Scene labels identify forces, but spring/table examples remain very small and stiffness/compression text tiny on phone.",
+          "fix": "Shared framing and readable annotations; preserve real compression readout and enlarged-displacement/material schematic caveat.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-support.png"
+        }
+      ],
+      "expectedVisibleCause": "A material deforms to supply its normal force; weight, normal and uphill static friction have distinct directions on an incline.",
+      "physicsVerdict": "A45° table carries196 N weight with138.59 N normal and equal downhill/static-friction component; compression0.0139 mm is magnified.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-support.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-support.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Weight, uphill friction and normal labels clear the support. At 45 degrees the two perpendicular components are 138.59 N for 196 N weight; real compression is printed separately from schematic displacement."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-pairs",
+      "title": "One interaction, two objects",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-pairs.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-pairs.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-pairs",
+          "severity": "P1",
+          "observation": "Default Both objects incorrectly includes all four standing vertical forces, creating six arrows around two objects.",
+          "fix": "Moved standing visibility after vector updates; actual renderer tests assert2/1/4/2 visible vectors across modes. Shared labels/framing.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-pairs.png"
+        }
+      ],
+      "expectedVisibleCause": "Each interaction pair acts on different objects; the balanced forces on one standing person belong to different pairs.",
+      "physicsVerdict": "Two-body accelerations10 and−1 m/s² differ despite equal10 N forces; standing mode has four9.8 N forces on three bodies.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-pairs.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-pairs.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Default has exactly the two opposite interaction forces; standing mode has four forces on person/floor/Earth. Disabled irrelevant controls and prose separate balanced forces from interaction partners."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-rocket",
+      "title": "Throw something, move yourself",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-rocket.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-rocket.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-rocket",
+          "severity": "P2",
+          "observation": "Changed exhaust clips the left boundary; the spanner is hidden by the enlarged astronaut at time0; COM prints negative zero.",
+          "fix": "Fixed motion envelope needed; add identity/COM labels, normalised rounded zero, retain enlarged body-size caveat.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-rocket.png"
+        }
+      ],
+      "expectedVisibleCause": "Backward ejected momentum balances forward craft momentum; no air is required and the total centre of mass stays fixed.",
+      "physicsVerdict": "Six parcels carry−7.04 kg·m/s while craft carries+7.04; centre of mass remains zero.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-rocket.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-rocket.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The full six-parcel cloud stays inside the fixed view. Forward/backward momentum sums to zero, centre of mass prints zero and the enlarged-body caveat is readable."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-fall",
+      "title": "Air and gravity are separate controls",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V05",
+          "severity": "P1",
+          "observation": "After Hammer and feather is selected, Dense sphere remains pressed, contradicting the actual silhouettes on both widths.",
+          "fix": "Synchronise body/shape preset state and clear custom preset state. Implemented and actual-renderer regression passed; candidate screenshot pending.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png"
+        },
+        {
+          "id": "M-V06",
+          "severity": "P2",
+          "observation": "Corresponding fall positions are hard to compare when hammer and feather have different silhouettes, and equal vacuum speed curves cover one another.",
+          "fix": "White corresponding tracking points, release marks and drop traces; second speed curve dashed. Implemented; awaiting candidate evidence.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png"
+        },
+        {
+          "id": "M-V07",
+          "severity": "P1",
+          "observation": "Long controls and tiny phone chart labels separate the visible event from its useful explanation.",
+          "fix": "Shared controls placement and readable DOM annotations; candidate screenshot pending.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-fall.png"
+        }
+      ],
+      "expectedVisibleCause": "Mass cancellation in vacuum must be separable from area/shape-dependent air drag and weaker lunar gravity.",
+      "physicsVerdict": "Vacuum speeds match despite different masses/shapes; air and gravity controls are distinct. The selected-shape interface contradicted the visible apparatus.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-fall.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-fall.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Preset, selected body and hammer shape agree. Brighter white tracking points compare equivalent positions, equal vacuum speed curves use distinct dashed/solid styles, and the legend distinguishes body 2 from terminal-speed lines."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-projectile",
+      "title": "Drop from a moving car",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-projectile.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-projectile.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-projectile",
+          "severity": "P2",
+          "observation": "The vehicle/ball are small and the2D comparison lacks a drawn trail, weakening the parabola-versus-vertical explanation.",
+          "fix": "Added sampled trail to2D; shared framing and adjacent time/frame controls; physical flight ends at sqrt(1.5/9.8).",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-projectile.png"
+        }
+      ],
+      "expectedVisibleCause": "A released body retains horizontal speed while falling; the moving observer changes its path description, not its fall time.",
+      "physicsVerdict": "At0.30 s ground displacement0.60 m becomes0 in the car frame; release retains2 m/s horizontal velocity.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-projectile.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-projectile.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The released ball stays aligned with the car horizontally in the car frame while the ground displacement reaches 0.60 m at 0.3012 s. Labels and the sampled vertical trail clear the ball."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-circle",
+      "title": "Turning a velocity arrow",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-circle.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-circle.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-circle",
+          "severity": "P2",
+          "observation": "Changed screenshot is only0.01–0.02 s past release, so the tangent departure is barely visible; tiny difference triangle lacks useful mobile scale.",
+          "fix": "Added deterministic Time after release slider and synced clock/reset; frame full release range; shared readable annotations and hide Play before release.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-circle.png"
+        }
+      ],
+      "expectedVisibleCause": "Equal speed can still require inward acceleration because direction changes; release removes the constraint and leaves tangent motion.",
+      "physicsVerdict": "Release removes inward acceleration while velocity remains tangent; equal-speed neighbouring arrows have an inward difference.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-circle.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-circle.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "After release at 45 degrees the ball visibly departs along the tangent at 0.35 s, without an inward or outward force arrow. Reset/time controls agree and the fixed motion envelope keeps it visible."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-gravity",
+      "title": "The apple, the Moon and a shared centre",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-gravity.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-gravity.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-gravity",
+          "severity": "P2",
+          "observation": "Barycentre marker is buried inside the enlarged opaque Earth; changed scene shows two tiny unlabelled balls without a visible shared centre.",
+          "fix": "Make COM marker depth-independent and label Earth/Moon/shared centre; shared fit and readable annotations; disable irrelevant mode controls.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-gravity.png"
+        }
+      ],
+      "expectedVisibleCause": "Inverse-square field strength must link to enlarging spherical area; both bodies move around a shared centre of mass.",
+      "physicsVerdict": "Surface areas scale1:4:9 while g scales1:1/4:1/9; COM mode reports barycentre4671 km from Earth centre.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-gravity.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-gravity.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Inverse-square surface areas and field strengths are readable. The shared-centre marker is visible on Earth with an offset label; inactive controls are disabled by mode."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-weightless",
+      "title": "A falling room and a relaxed spring",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-weightless.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-weightless.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-weightless",
+          "severity": "P1",
+          "observation": "Supported mode still headlines 'cabin and astronaut fall together' and shows a Play control although supported geometry is static.",
+          "fix": "Mode-specific supported heading/reference text and playback; shared labels/framing and readable account.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-weightless.png"
+        }
+      ],
+      "expectedVisibleCause": "Cabin and occupant falling together need no supporting spring force even though gravity remains.",
+      "physicsVerdict": "Free fall has gravity8.68 m/s² but scale0; supported mode reads607.34 N and86.8 mm compression.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-weightless.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-weightless.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "Supported mode visibly compresses the spring and reads 607.34 N while gravity stays 8.68 m/s². Free-fall mode reads zero support and zero compression; supported mode hides no-op Play."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-kepler",
+      "title": "Kepler’s equal-time sweeps",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-kepler.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-kepler.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-kepler",
+          "severity": "P2",
+          "observation": "Sectors and planets are unlabelled and small; manual eccentricity can retain an incompatible named planet preset. Phone units/model labels are tiny.",
+          "fix": "Clear named preset on manual eccentricity; label focus/equal-time sectors and shared framing/annotation sizing; static Play removed.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-kepler.png"
+        }
+      ],
+      "expectedVisibleCause": "Equal physical time intervals sweep equal areas; the marker moves faster near the Sun, with a clearly enlarged-eccentricity option.",
+      "physicsVerdict": "At e=.5 near apoapsis r1.50 and speed0.58 match constant areal rate; larger orbit period ratio1.657.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-kepler.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-kepler.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_mechanics_audit",
+          "judgment": "The enlarged eccentric orbit visibly shifts focus/near-far speed while equal-time sector outlines remain uncovered. Named preset and eccentricity agree; inner/outer periods preserve the 1.657 ratio."
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-torsion",
+      "title": "A tiny pull twists a wire",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-torsion.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-torsion.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-torsion",
+          "severity": "P2",
+          "observation": "Real bar twist is almost invisible and the separate dial’s×800 enlargement appears only in tiny footer text; apparatus identities are missing.",
+          "fix": "Added bar/mass/dial×800 scene labels, synchronised replay reset, shared framing/readable annotations. Do not magnify actual bar angle.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-torsion.png"
+        }
+      ],
+      "expectedVisibleCause": "Masses produce a small torque opposed by the fibre; disturbances decay about an equilibrium, with only the separate dial magnifying angle.",
+      "physicsVerdict": "Switching masses reverses equilibrium+27.48→−27.48 arcsec and torque; disturbed response settles toward new equilibrium.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-torsion.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-torsion.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Large attracting masses visibly switch sides and the separate×800 dial changes sign. Small physical bar rotation remains small, as disclosed. Equilibrium/torque signs and settling curve agree; controls and arcsecond units are readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-perturbation",
+      "title": "A small nudge leaves a message",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-perturbation.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-perturbation.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-perturbation",
+          "severity": "P2",
+          "observation": "Main orbit differences are tiny by design, but phone residual axes, legend and RMS error are also tiny; coincident dashed trace is hard to identify.",
+          "fix": "Shared readable annotations/framing; retain separate residual graph, different stroke styles and synthetic-model caveat.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-perturbation.png"
+        }
+      ],
+      "expectedVisibleCause": "The hidden mass changes a computed residual; a prediction can be checked against its two-component signal before revealing the body.",
+      "physicsVerdict": "Guess60° matches the revealed synthetic planet and drives vector RMS error to0; observed/predicted residual curves coincide.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-perturbation.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-perturbation.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Initial mismatched residual curves become coincident when predicted starting angle60° matches the disclosed model. Hidden-planet control and synthetic-inference limits are present. Residual graph communicates the small difference that cannot be seen on the main orbit.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-mission",
+      "title": "Burn here, change the far side",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-mission.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-mission.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-mission",
+          "severity": "P2",
+          "observation": "Preburn/postburn/impulse arrows and scale bar are too small and faint on phone; default0.1 label is rounded differently from control value.",
+          "fix": "Corrected precision and visible progress sync; shared labels/framing. Add bound0.2 km/s coast comparison to explicitly show later apogee.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-mission.png"
+        }
+      ],
+      "expectedVisibleCause": "The impulse changes velocity and orbit immediately, but the craft must coast in time to the altered apogee; lunar retro-burn can turn a flyby into capture.",
+      "physicsVerdict": "0.7 km/s forward impulse gives positive energy/unbound trajectory to labelled400,000 km horizon; velocity change is tangential.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-mission.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-mission.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Changed0.2km/s burn gives a visibly larger coast orbit and craft at its later apogee. Before/after tangential arrows remain at the burn position, rather than pushing the craft radially. Native text clearly distinguishes29.05h coast from instantaneous burn; scale reference and bound-energy account are readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-pressure",
+      "title": "Pressure has no preferred direction",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-pressure.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-pressure.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-pressure",
+          "severity": "P2",
+          "observation": "Water mode leaves face-turn control active although it does nothing, and contact mode leaves immersed-depth active. Overlapping contact arrows are internally six duplicate vectors.",
+          "fix": "Correct visibility ordering to one contact/six fluid vectors; disable mode-irrelevant controls, shared labels/framing and static Play removal.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-pressure.png"
+        }
+      ],
+      "expectedVisibleCause": "Pressure is scalar while face forces are normal; a deeper bottom force exceeds the top force and produces buoyancy.",
+      "physicsVerdict": "98 N/0.010 m² gives9.80 kPa; immersed4 m cube has39.20/44.10 kPa top/bottom and1225 N upward difference.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-pressure.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-pressure.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Contact load has one downward force; immersed mode shows inward forces on faces, a larger bottom push and39.20/44.10kPa values. Nonapplicable controls are disabled. Explanation explicitly distinguishes scalar pressure from directed face force.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-suction",
+      "title": "The outside air does the pushing",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-suction.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-suction.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-suction",
+          "severity": "P1",
+          "observation": "Default vacuum3D retains a ghost gas-force arrow due zero-vector being re-enabled; active liquid selector is irrelevant in hemisphere mode.",
+          "fix": "Hide zero gas/weight vectors after set, actual renderer zero-limit test; mode-specific controls and shared labels/framing.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-suction.png"
+        }
+      ],
+      "expectedVisibleCause": "The outside fluid pushes when interior pressure is lower; equalising pressures removes the resultant without inventing a vacuum pull.",
+      "physicsVerdict": "Vacuum supports10.306 m water; equal inside/outside101 kPa makes each hemisphere resultant0.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-suction.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-suction.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Vacuum barometer depicts external upward pressure balanced by column weight. Changed equal-pressure hemispheres show inward/outward arrows and each net0N; no vacuum pulling arrow appears. Cutaway explanation prevents reading the separated halves as a vacuum force.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-hydrostatic",
+      "title": "Same depth, same pressure",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-hydrostatic.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-hydrostatic.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-hydrostatic",
+          "severity": "P2",
+          "observation": "Changed force arrowheads clip at the right edge; pressure probes and shape identities are unlabelled; phone bars/readouts are small.",
+          "fix": "Fixed maximum force/depth framing envelope, labelled tube/reservoir/dam, shared readable annotations; static Play removed.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-hydrostatic.png"
+        }
+      ],
+      "expectedVisibleCause": "Equal depths give equal pressure in narrow and wide vessels; dam force accumulates over face area and added surface pressure is transmitted.",
+      "physicsVerdict": "Equal-depth narrow/wide probes read19.60 kPa; depth4 m plus50 kPa surface pressure gives89.20 kPa and1392 kN dam force.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-hydrostatic.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-hydrostatic.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Two different-width containers retain equal bottom pressure bars,19.60kPa initially and89.20kPa after depth/piston changes. Dam force increases and arrows lengthen. Labels identify tube, reservoir and wall without obscuring them; text separates depth pressure from added uniform pressure.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-hull",
+      "title": "The same steel, a larger hull",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-hull.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-hull.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V03",
+          "severity": "P1",
+          "observation": "Egg mode keeps the steel/hull question and explanation, an unrelated sealed-volume control and ambiguous cargo/density kg/steps label.",
+          "fix": "Independent native Egg density control in kg/m³, hide irrelevant volume control, mode-specific question/explanation/limits. Implemented; awaiting fresh candidate evidence.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-hull.png"
+        },
+        {
+          "id": "M-V04",
+          "severity": "P1",
+          "observation": "Hull, solid steel reference and displaced-water cube are small unlabelled shapes; phone chart labels shrink too far.",
+          "fix": "Anchored apparatus labels, shared framing and readable annotations. Common volume scale corrected from independent dimensional calculation. Awaiting candidate evidence.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-hull.png"
+        }
+      ],
+      "expectedVisibleCause": "A sealed larger hull displaces more water for the same steel mass; an egg shares displaced volume between liquids rather than matching a height percentage.",
+      "physicsVerdict": "Draft and layered egg fraction readouts agree with the stated buoyancy model; common displaced-volume scene scale needed correction.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-hull.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-hull.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Hull, solid-steel reference and displaced-water reference are identified. Changed egg mode shows the curved egg at the interface, density1150kg/m³ and75% lower-layer volume; irrelevant hull-volume control is disabled. Weight/buoyancy equality and average displaced density are explicit.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-energy",
+      "title": "Choose what you count",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-energy.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-energy.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-energy",
+          "severity": "P2",
+          "observation": "The boundary changes visibly, but small3D ball/floor and phone energy bars need clearer labels and scale; static Play implies nonexistent time replay.",
+          "fix": "Shared framing/readable annotations and static playback removal; preserve boundary-dependent grey bars and full account sum.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-energy.png"
+        }
+      ],
+      "expectedVisibleCause": "Changing the accounting boundary reveals transfers across it; the enlarged full account retains dissipated energy in internal stores.",
+      "physicsVerdict": "Surroundings account retains0.980 J while mechanical stores decrease and internal stores grow; grey bars exclude outside stores.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-energy.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-energy.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Boundary expands from ball-only to ball/Earth/surroundings. Grey excluded-store bars become included thermal accounts; changed values sum to0.980J. The explanation correctly assigns gravitational energy to the interaction and tracks energy spread into ball/floor/air.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-impact",
+      "title": "Two ways to stop a moving ball",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-impact.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-impact.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-impact",
+          "severity": "P2",
+          "observation": "Default narrow force-area rectangles and all unit labels are tiny on phone; Play cannot change the static comparison.",
+          "fix": "Shared readable annotations and static playback removal; fixed physical axes preserve2× impulse and4× work areas.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-impact.png"
+        }
+      ],
+      "expectedVisibleCause": "Doubling speed doubles force-time area but quadruples force-distance area on physical common axes.",
+      "physicsVerdict": "At speed5 m/s and force0.5 N doubling speed doubles stopping time0.2→0.4 s but quadruples distance0.5→2 m.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-impact.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-impact.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Blue/red rectangle widths show double stopping time and quadruple stopping distance with fixed force. Changed5m/s/.5N state retains the fixed physical axes and reaches.2/.4s and.5/2m. Force, time, distance and area meanings remain readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-work",
+      "title": "Different routes, the same rise",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-work.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-work.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-work",
+          "severity": "P1",
+          "observation": "Default local90° force/displacement drawing falsely labels58.8 J as F s cosθ, confusing zero local horizontal work with total route mgh.",
+          "fix": "Relabelled total-route mgh work; actual renderer assertion prevents false local formula. Synced progress resets/playback; shared readable annotations.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-work.png"
+        }
+      ],
+      "expectedVisibleCause": "Force and distance trade off for the same rise; rolling partitions kinetic energy, while horizontal carrying has force perpendicular to displacement.",
+      "physicsVerdict": "Roll-down energy58.8 J divides42 J translation and16.8 J rotation, with uphill static friction doing zero contact work.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-work.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-work.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Default horizontal stair segment has vertical support and horizontal displacement with90° angle, while total route is separately labelledmgh. Changed rolling descent gives42.00J translation plus16.80J rotation after58.80J drop. Mode-specific question/explanation distinguishes static friction from dissipative loss.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-power",
+      "title": "Power is the rate, energy is the amount",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-power.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-power.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-power",
+          "severity": "P1",
+          "observation": "Default graph collapses into a near-origin dot on24 h/48 kWh axes; slider mislabels0.25 as0.3 h; manual edits retain preset identity.",
+          "fix": "Corrected precision and preset clearing; added common-scale fixed-example energy bars and dashed continued-running slope; shared readable annotations.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-power.png"
+        }
+      ],
+      "expectedVisibleCause": "Power changes the slope of an energy–time graph, and duration changes the total energy.",
+      "physicsVerdict": "Preset0.25 h×2 kW gives0.500 kWh; whole schedule sums1.370 kWh from four appliances.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-power.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-power.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Geyser/lamp example bars visibly compare.500/.240kWh on one scale. Dashed continuation is explicitly hypothetical, whereas the solid segment stops at actual time. Household changed view shows cumulative1.370kWh and separate appliance contributions on its declared2kWh axis.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-station",
+      "title": "Follow the shaft and the energy",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-station.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-station.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-station",
+          "severity": "P2",
+          "observation": "Boiler, turbine, magnet/coil and lamp are tiny unlabelled components; finite-wheel mode leaves station-efficiency control active despite no effect.",
+          "fix": "Added component labels, synced elapsed controls/reset; disable irrelevant efficiency control and update load label by mode; shared framing/annotation sizing.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-station.png"
+        }
+      ],
+      "expectedVisibleCause": "Source energy drives the shaft/generator; a loaded magnet wheel drains its initial kinetic store rather than creating energy.",
+      "physicsVerdict": "Connected finite wheel retains606.53 J and transfers393.47 J after5 s, summing1000 J; current power falls60.65 W.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-station.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-station.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Boiler, shaft/turbine, stationary coil and lamp are identifiable.100W Sankey divides into40W electrical plus60W rejected. Changed finite-wheel view disables irrelevant efficiency and accounts606.53J remaining plus393.47J transferred after5s; no inexhaustible generator is implied.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-stevin",
+      "title": "Stevin’s wreath of spheres",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-stevin.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-stevin.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-stevin",
+          "severity": "P2",
+          "observation": "Force legend is disconnected from unlabelled3D arrows and tiny on phone; original caption describes Galileo’s ramp rather than this chain.",
+          "fix": "Shared readable labels/framing and caption hiding; identify weight/downhill/normal arrows on both slopes, preserve common force scale.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-stevin.png"
+        }
+      ],
+      "expectedVisibleCause": "The longer slope holds more chain but each unit has a smaller downhill component, so the closed uniform wreath balances.",
+      "physicsVerdict": "4 m side has4 kg and2 m side2 kg, yet both downhill components are9.8 N; removing symmetric lower loop leaves balance.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-stevin.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-stevin.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "Four versus two slope beads and their unequal weights are visible. Resolved red downhill components have equal magnitudes. Removing the symmetric lower loop leaves those components unchanged. Linked numbers state both9.80N pulls and explanation connects chain length with slope angle.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    },
+    {
+      "id": "m-engine",
+      "title": "A heat engine needs two temperatures",
+      "status": "BASELINE_INSPECTED_FIXES_AWAIT_CANDIDATE",
+      "mobile": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-engine.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "desktop": {
+        "inspected": true,
+        "screenshot": "source/build/visual-audit-20261029/boards-before/m-engine.png",
+        "states": [
+          "default",
+          "changed with explanation"
+        ]
+      },
+      "findings": [
+        {
+          "id": "M-V-engine",
+          "severity": "P2",
+          "observation": "Hot reservoir/piston/cold reservoir are unlabelled; phone energy labels are very small; no temperature gradient must not imply an operating piston.",
+          "fix": "Added component labels, keep real schematic motion only for positive work and show Play there; shared framing/readable annotations.",
+          "screenshot": "source/build/visual-audit-20261029/boards-before/m-engine.png"
+        }
+      ],
+      "expectedVisibleCause": "A heat engine needs temperature difference and must reject some heat; equal reservoir temperatures give no ideal available work.",
+      "physicsVerdict": "600/300 K gives50% reversible limit, selected30% efficiency,300 J work+700 J rejected; equal400 K gives0 work.",
+      "candidate": {
+        "inspected": true,
+        "status": "DESKTOP_CANDIDATE_REVIEW_COMPLETE_FINAL_LIVE_PENDING",
+        "mobile": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/phone-candidate-review/m-engine.jpg",
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "limitation": "Diagnostic phone build preceded final shared header/footer/label-offset fixes; not final acceptance."
+        },
+        "desktop": {
+          "inspected": true,
+          "screenshot": "source/build/visual-audit-20261029/desktop-candidate-review/m-engine.jpg",
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "judgment": "600/300K case splits1000J into300J work plus700J rejected. Equal400K state shows0J work,1000J rejected and no Play control. Reservoir labels, conservation bars and explicit schematic-piston limit make the zero-gradient case clear.",
+          "reviewReceipt": "docs/visual-review-mechanics-desktop-tail.md"
+        }
+      },
+      "finalLive": {
+        "inspected": false,
+        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+      }
+    }
+  ],
+  "sourceFindingsAwaitingLiveConfirmation": [
+    {
+      "id": "M-S01",
+      "severity": "P1",
+      "lessons": [
+        "m-work",
+        "m-mission",
+        "m-station",
+        "m-fall",
+        "m-torsion"
+      ],
+      "finding": "Internal replay/progress resets or play advancement are not reflected in range-control thumbs/outputs.",
+      "source": [
+        "source/live/mechanics_energy.js:65",
+        "source/live/mechanics_energy.js:73",
+        "source/live/mechanics_energy.js:181",
+        "source/live/mechanics_energy.js:198",
+        "source/live/mechanics_space.js:60",
+        "source/live/mechanics_space.js:295",
+        "source/live/mechanics_space.js:301",
+        "source/live/mechanics_space.js:362",
+        "source/live/mechanics_space.js:368"
+      ],
+      "liveReproduction": "Advance a replay/progress slider, then choose another preset or reset action. Also Play→Pause work/mission/station and compare visible input against changed scene/readout."
+    },
+    {
+      "id": "M-S02",
+      "severity": "P1",
+      "lessons": [
+        "m-power",
+        "m-work",
+        "m-impact",
+        "m-mission",
+        "m-engine"
+      ],
+      "finding": "The rounded-logarithm decimal formatter misrepresents fractional slider steps:0.25h→0.3h,2.5kg→3kg,.55km/s→.6km/s. The physics uses the unrounded values.",
+      "source": [
+        "source/live/mechanics_render.js:162"
+      ],
+      "liveReproduction": "Open default m-power; inspect0.25h/15-minute preset output. Set work mass2.5kg or impact speed2.25m/s and compare its output with the numerical account."
+    },
+    {
+      "id": "M-S03",
+      "severity": "P2",
+      "lessons": [
+        "m-hull"
+      ],
+      "finding": "Egg mode keeps a dual cargo-mass/density-adjustment label in kg/steps, and retains a hull-volume control that does not affect the egg.",
+      "source": [
+        "source/live/mechanics_fluids.js:202",
+        "source/live/mechanics_fluids.js:203"
+      ],
+      "liveReproduction": "Select Egg at liquid interface and inspect the labels, units and whether Sealed outer volume does anything."
+    }
+  ],
+  "candidateInspectedLessons": 0,
+  "captureNotes": [
+    "All42 fresh live baseline boards were personally opened. Horizontal reading-progress bars and sticky reading toolbar in clips are capture UI overlays, not physics geometry. Controls were operated with supported keyboard actions in the live phone capture; all39 missing-phone recipes completed with zero action errors.",
+    "All 42 diagnostic candidate phone pairs personally inspected after overwriting an incorrect-width diagnostic matrix; retained phone metadata is uniformly actual 390×844.",
+    "Refined candidate desktop captures are uniformly actual 1440×1000, with live-lifting hidden before defaults; all 84 control-state captures succeeded. First 28 through m-kepler personally visually reviewed by mechanics agent; independent waves agent owns remaining 14.",
+    "No candidate image is counted as final LIVE acceptance. Final LIVE phase must assert viewport, sepia theme, no live-lifting class and stage transform none for each record."
+  ],
+  "candidateDiagnosticPhoneInspectedLessons": 42,
+  "candidateRefinedDesktopPersonallyInspectedLessons": 28,
+  "finalLiveInspectedLessons": 0,
+  "sourceFreeze": "Mechanics source frozen after ruler subtitle relocation into the true header gutter; all three focused mechanics suites pass.",
+  "candidateRefinedDesktopJointlyInspectedLessons": 42,
+  "candidateDesktopReviewers": {
+    "visual_mechanics_audit": 28,
+    "visual_waves_audit": 14
+  }
+}

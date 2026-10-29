@@ -130,7 +130,8 @@ try:
                         expect(stage.locator('.lab-title')).to_have_text(lesson['title'])
                         expect(figure.locator('.live-readout')).not_to_be_empty()
                         assert page.evaluate('JSON.stringify(resourceStarts)') == resources, 'Opening started audio or sensor'
-                        assert figure.get_by_role('button', name='Play', exact=True).get_attribute('aria-pressed') == 'false'
+                        play = figure.locator('.live-play')
+                        assert not play.count() or play.get_attribute('aria-pressed') == 'false', 'Opening must not start motion'
                         diagram = stage.locator('canvas[data-logical-width]').last
                         assert diagram_painted(diagram), 'Blank calculated diagram'
                         assert diagram.evaluate('e=>e.clientWidth<=e.parentElement.clientWidth+1'), 'Diagram does not fit its opening view'
@@ -184,13 +185,13 @@ try:
                             assert not re.search(r'NaN|undefined', figure.locator('.live-readout').inner_text())
                             case['controls'] += 1
                         play = figure.locator('.live-play')
-                        if play.count():
+                        if play.count() and play.is_visible():
                             if play.inner_text() == 'Play':
                                 if not args.smoke: snapshot(figure, out / f'{prefix}-play-before.png')
                                 play.tap() if width<600 else play.click()
                             page.wait_for_timeout(100)
                             assert not re.search(r'NaN|undefined', figure.locator('.live-readout').inner_text())
-                            if play.inner_text() == 'Pause':
+                            if play.is_visible() and play.inner_text() == 'Pause':
                                 play.tap() if width<600 else play.click()
                         # A useful explanation survives resizing and live theme changes while paused.
                         page.evaluate("document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'")

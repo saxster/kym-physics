@@ -8,6 +8,21 @@ function scene(lab) {
   lab.kit.root.add(root);
   return root;
 }
+// Fit one authored envelope, keeping the same camera throughout a replay.
+// Bounds are in the lesson scene's physical drawing coordinates.
+function frame(lab,root,bounds,radius=null) {
+ if(!root||!lab.frame)return;
+ const key=JSON.stringify([bounds,radius]);if(root.userData.mechanicsFrame===key)return;
+ const lo=new Vector3(...bounds.min),hi=new Vector3(...bounds.max),centre=lo.clone().add(hi).multiplyScalar(.5);
+ root.position.copy(centre).multiply(root.scale).multiplyScalar(-1).applyQuaternion(root.quaternion);
+ const scale=Math.max(...root.scale.toArray());
+ lab.frame((radius??hi.sub(lo).length()*.5)*scale);
+ root.userData.mechanicsFrame=key;
+}
+function anchor(parent,x=0,y=0,z=0) {
+ if(!parent)return null;
+ const point=new Group();point.position.set(x,y,z);parent.add(point);return point;
+}
 const material = (color, opacity = 1) => new MeshStandardMaterial({ color, roughness: 0.76, transparent: opacity < 1, opacity, side: DoubleSide });
 function block(root, c, w = 1, h = 1, d = 0.5, x = 0, y = 0, z = 0, opacity = 1) {
   if (!root) return null;
@@ -132,7 +147,7 @@ function rectangle(ctx, c, x, y, w, h, fill = false) {
 function axes(ctx, c, { x = 52, y = 193, w = 530, h = 145, xlabel = "", ylabel = "" }) {
   line(ctx, c, [[x, y - h], [x, y], [x + w, y]], 1);
   text(ctx, c, xlabel, x + w, y + 28, 13, "right");
-  text(ctx, c, ylabel, x, y - h - 12, 13);
+  text(ctx, c, ylabel, x, y - h - 24, 13);
   return { X: (v) => x + w * v, Y: (v) => y - h * v };
 }
 function bars(ctx, c, rows, { x = 200, y = 30, width = 350, max = 1, gap = 41 } = {}) {
@@ -156,10 +171,18 @@ function plot(ctx, c, series, { xlabel = "time (s)", ylabel = "", xmin = 0, xmax
   return { X, Y };
 }
 const samples = (n, fn) => Array.from({ length: n }, (_, i) => fn(i / (n - 1)));
+function stepDecimals(step) {
+  for (let digits = 0; digits < 4; digits++) {
+    const scaledStep = step * 10 ** digits;
+    if (Math.abs(scaledStep - Math.round(scaledStep)) < 1e-8) return digits;
+  }
+  return 4; // Derived replay intervals need bounded, readable precision.
+}
 function slider(api, state, key, label, min, max, step, value, unit = "", update = () => {
 }) {
   state[key] = value;
-  return api.slider(label, { min, max, step, value, fmt: (v) => `${Number(v).toFixed(step < 1 ? Math.max(0, Math.round(-Math.log10(step))) : 0)}${unit ? " " + unit : ""}`, onInput: (v) => {
+  const digits = stepDecimals(step);
+  return api.slider(label, { min, max, step, value, fmt: (v) => `${Number(v).toFixed(digits)}${unit ? " " + unit : ""}`, onInput: (v) => {
     state[key] = v;
     update();
   } });
@@ -183,6 +206,7 @@ function tabs(api, state, labels, update, start = 0) {
   }, start);
 }
 export {
+  anchor,
   arrow,
   axes,
   ball,
@@ -191,6 +215,7 @@ export {
   clock,
   disc,
   dot,
+  frame,
   line,
   path,
   plot,

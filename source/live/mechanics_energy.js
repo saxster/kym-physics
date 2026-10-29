@@ -1,12 +1,14 @@
 import { Group, Mesh, BufferGeometry, Float32BufferAttribute, MeshStandardMaterial, DoubleSide } from "three";
 import * as M from "./mechanics_models.mjs";
 import * as R from "./mechanics_render.js";
-const fmt = (x, n = 2) => x.toFixed(n), point = (m, x, y, z = 0) => m?.position.set(x, y, z), scaled = (m, x, y, z = 1) => m?.scale.set(x, y, z), show = (m, on) => {
+const fmt = (x, n = 2) => (Math.abs(x)<.5*10**(-n)?0:x).toFixed(n), point = (m, x, y, z = 0) => m?.position.set(x, y, z), scaled = (m, x, y, z = 1) => m?.scale.set(x, y, z), show = (m, on) => {
   if (m) m.visible = on;
 };
 const title = (ctx, c, t) => R.text(ctx, c.ink, t, 20, 25, 16);
 function energy(lab, api, c) {
   const s = {}, root = R.scene(lab), ball = R.ball(root, c.proton, 0.14, -0.8, 1), floor = R.block(root, c.ink, 4, 0.12, 1.5, 0, -1), boundary = R.wire(root, c.electron, [[-1, -1, 0], [-1, 1, 0], [1, 1, 0], [1, -1, 0], [-1, -1, 0]]), update = () => lab.refresh();
+  lab.kit?.label?.("ball",ball,{color:c.proton});
+  lab.kit?.label?.("Earth / floor",floor,{color:c.ink});
   R.slider(api, s, "progress", "Flight and bounce progress", 0, 4, 0.02, 0.5, "", update);
   R.slider(api, s, "height", "Release height", 0.5, 2, 0.1, 1, "m", update);
   R.tabs(api, s, ["Ball only", "Ball and Earth", "Surroundings included"], update);
@@ -54,6 +56,7 @@ function impact(lab, api, c) {
 }
 function work(lab, api, c) {
   const s = { time: 0 }, root = R.scene(lab), route = R.wire(root, c.ink, [[0, 0, 0], [1, 1, 0]]), load = R.block(root, c.proton, 0.22, 0.22, 0.22), sphere = root ? new Group() : null;
+  let progressControl = null;
   if (root) root.add(sphere);
   R.ball(sphere, c.proton, 0.13);
   R.wire(sphere, c.ink, [[-0.13, 0, 0.03], [0.13, 0, 0.03]]);
@@ -61,15 +64,23 @@ function work(lab, api, c) {
   const force = R.vector(root, c.electron), normal = R.vector(root, c.neutron), friction = R.vector(root, c.muted), displacement = R.vector(root, c.proton), update = () => lab.refresh();
   R.slider(api, s, "mass", "Load mass", 1, 10, 0.5, 2, "kg", update);
   R.slider(api, s, "height", "Endpoint height", 1, 4, 0.5, 3, "m", update);
+  const teachRoute=()=>{
+    if(s.mode===3)lab.teach?.({question:"Does upward support do work during a horizontal carry?",explanation:"The support force points upward while the load moves horizontally. Their dot product is zero, so this support adds no mechanical energy. Energy used by muscles is outside this account.",limits:"Constant height and quasistatic motion; no sliding friction, air drag or physiological energy account."});
+    else if(s.mode>=4)lab.teach?.({question:s.mode===5?"Why is rolling slower than frictionless sliding down the same drop?":"Where does gravitational energy go during a frictionless slide?",explanation:s.mode===5?"The same lost gravitational energy becomes both forward motion and spin. Static friction supplies the turning effect, but the point touching the stationary ramp does not move, so this contact does no work.":"Gravitational energy becomes the slider’s kinetic energy. The normal force is perpendicular to its motion and does no work.",limits:"Uniform solid sphere rolling without slip, or frictionless point slider; no air resistance or energy loss. Descent progress represents elapsed time divided by calculated descent time."});
+    else lab.teach?.({question:"Does a longer ramp store more gravitational energy than a lift to the same floor?",explanation:"Only the rise changes the gravitational store. A ramp needs less force along a longer route. Upward support does no work during a horizontal stair segment; the total route work is mgh.",limits:"Quasistatic motion, no sliding friction or physiological energy costs. Force and displacement directions share the same geometric x/y scales."});
+  };
   R.tabs(api, s, ["Stairs", "Ramp up", "Lift", "Horizontal carry", "Slide down", "Roll down"], () => {
+    teachRoute();
     s.time = 0;
+    progressControl?.set(0);
     update();
   });
-  R.slider(api, s, "time", "Route progress / descent time fraction", 0, 1, 0.01, 0, "", update);
+  progressControl = R.slider(api, s, "time", "Route progress / descent time fraction", 0, 1, 0.01, 0, "", update);
   api.loop((dt) => {
     if (dt > 0) {
       const L = Math.hypot(3, s.height), duration = s.mode >= 4 ? Math.sqrt(2 * L * L / (9.8 * s.height * (s.mode === 5 ? 5 / 7 : 1))) : 1 / 0.15;
       s.time = (s.time + dt / duration) % 1;
+      progressControl.set(s.time);
       update();
     }
   });
@@ -123,7 +134,7 @@ function work(lab, api, c) {
       ctx.strokeStyle = c.ink;
       ctx.stroke();
       R.text(ctx, c.ink, `angle ${fmt(theta * 180 / Math.PI, 1)}\xB0`, 275, 80, 16);
-      R.text(ctx, c.proton, `work = F s cos\u03B8 = ${fmt(F * h)} J`, 275, 125, 17);
+      R.text(ctx, c.proton, `Total route work: mgh = ${fmt(F * h)} J`, 275, 125, 17);
       R.text(ctx, c.ink, `rise ${fmt(h)} m; weight ${fmt(F)} N`, 275, 170, 15);
       R.text(ctx, c.ink, "Upward support does zero work on a horizontal segment.", 25, 230, 14);
       lab.say(`The selected quasistatic route reaches rise ${fmt(h)} m and gains ${fmt(F * h)} J. The shown applied force ${fmt(forceMag)} N makes angle ${fmt(theta * 180 / Math.PI, 1)}\xB0 with local displacement. At horizontal carry or a horizontal stair segment their dot product is zero. Force and displacement directions use identical x/y scales; metabolic energy use is outside this mechanical account.`);
@@ -132,9 +143,10 @@ function work(lab, api, c) {
 }
 function power(lab, api, c) {
   const s = {}, update = () => lab.refresh();
-  let household = false;
-  const ps = R.slider(api, s, "power", "Power", 10, 2e3, 10, 2e3, "W", update), ts = R.slider(api, s, "hours", "Elapsed / operating time", 0.25, 24, 0.25, 0.25, "h", update);
-  api.tabs(["Geyser 2 kW \xD7 15 min", "Lamp 10 W \xD7 24 h", "Whole household schedule"], (i) => {
+  let household = false, presets = null;
+  const custom = () => { if (!household) presets?.setActive?.(-1); update(); };
+  const ps = R.slider(api, s, "power", "Power", 10, 2e3, 10, 2e3, "W", custom), ts = R.slider(api, s, "hours", "Elapsed / operating time", 0.25, 24, 0.25, 0.25, "h", custom);
+  presets = api.tabs(["Geyser 2 kW \xD7 15 min", "Lamp 10 W \xD7 24 h", "Whole household schedule"], (i) => {
     household = i === 2;
     s.power = i === 1 ? 10 : 2e3;
     s.hours = i === 0 ? 0.25 : 24;
@@ -155,10 +167,16 @@ function power(lab, api, c) {
       lab.say(`At hour ${fmt(s.hours)}, household total is ${fmt(values.kWh, 3)} kWh = ${values.appliances.map((a2) => `${a2.name} ${fmt(a2.kWh, 3)}`).join(" + ")} kWh. The black curve is the sum, with slope set by all appliances currently on. Fixed scales are 0\u201324 hours and 0\u20132 kWh. Schedule is illustrative; slider changes the time through this schedule.`);
     } else {
       const p = M.power(s.power, s.hours);
-      const a = R.plot(ctx, c, [{ color: c.proton, values: [[0, 0], [s.hours, p.kWh]] }], { xmax: 24, ymax: 48, xlabel: "operating time (h)", ylabel: "energy (kWh)" });
+      const a = R.plot(ctx, c, [{color:c.muted,dash:[4,4],values:[[0,0],[24,s.power*24/1000]]},{ color: c.proton, width:3, values: [[0, 0], [s.hours, p.kWh]] }], {x:52,y:176,w:250,h:108,xmax: 24, ymax: 48, xlabel: "operating time (h)", ylabel: "energy (kWh)" });
       R.dot(ctx, c.electron, a.X(s.hours), a.Y(p.kWh));
-      R.text(ctx, c.ink, `${s.power} W \xD7 ${fmt(s.hours)} h = ${fmt(p.kWh, 3)} kWh; scale 0\u201348 kWh`, 25, 235, 15);
-      lab.say(`${s.power} W for ${fmt(s.hours)} h transfers ${fmt(p.kWh, 3)} kWh. Axes stay at 24 hours and 48 kWh, so changing power changes the actual slope. The household preset uses its own explicitly labelled 2 kWh scale to reveal individual contributions.`);
+      R.text(ctx,c.ink,"Fixed examples; same energy scale",340,65,13);
+      [["Geyser: 15 min",.5,c.proton],["Lamp: 24 h",.24,c.electron]].forEach(([label,value,color],i)=>{
+        R.text(ctx,c.ink,`${label}: ${fmt(value,3)} kWh`,340,94+i*52,13);
+        ctx.fillStyle=color;ctx.fillRect(340,103+i*52,210*value/.5,17);
+      });
+      R.text(ctx,c.muted,"Bars: 0–0.5 kWh; dashed line: if left on",340,203,12);
+      R.text(ctx, c.ink, `${s.power} W \xD7 ${fmt(s.hours)} h = ${fmt(p.kWh, 3)} kWh; plot scale 0\u201348 kWh`, 25, 235, 15);
+      lab.say(`${s.power} W for ${fmt(s.hours)} h transfers ${fmt(p.kWh, 3)} kWh. Axes stay at 24 hours and 48 kWh. The dashed extension shows the energy if this power were left on; the solid segment ends at the actual operating time. Fixed example bars compare the geyser’s 0.500 kWh with the lamp’s 0.240 kWh on the same 0–0.5 kWh scale. The household preset uses its own explicitly labelled 2 kWh scale to reveal individual contributions.`);
     }
   });
 }
@@ -176,30 +194,39 @@ function station(lab, api, c) {
   R.block(magnet, c.proton, 0.16, 0.3, 0.14, 1.2, 0.15);
   R.block(magnet, c.electron, 0.16, 0.3, 0.14, 1.2, -0.15);
   const lamp = R.ball(root, c.neutron, 0.21, 2.25, 0.65), base = R.block(root, c.ink, 0.23, 0.16, 0.23, 2.25, 0.36), lead = R.wire(root, c.ink, [[1.6, 0.3, 0], [1.9, 0.3, 0], [1.9, 0.65, 0], [2.25, 0.65, 0], [2.25, 0.3, 0], [2.1, 0.3, 0], [2.1, -0.3, 0], [1.6, -0.3, 0]]), torque = R.vector(root, c.proton), update = () => lab.refresh();
-  let loaded = true;
-  R.slider(api, s, "input", "Source power / electrical wheel load", 10, 100, 10, 100, "W", () => {
-    s.time = 0;
+  lab.kit?.label?.("steam boiler",boiler,{color:c.proton});
+  lab.kit?.label?.("raised water",reservoir,{color:c.electron});
+  lab.kit?.label?.("turning turbine / wheel",rotor,{color:c.electron});
+  lab.kit?.label?.("stationary coil",coil,{color:c.ink});
+  lab.kit?.label?.("lamp",lamp,{color:c.neutron});
+  let loaded = true, elapsedControl = null;
+  const restart = () => { s.time = 0; elapsedControl?.set(0); };
+  const inputPowerControl=R.slider(api, s, "input", "Source power / electrical wheel load", 10, 100, 10, 100, "W", () => {
+    restart();
     update();
   });
-  R.slider(api, s, "efficiency", "Station efficiency", 0.2, 0.8, 0.05, 0.4, "", update);
+  const efficiencyControl=R.slider(api, s, "efficiency", "Station efficiency", 0.2, 0.8, 0.05, 0.4, "", update);
   R.tabs(api, s, ["Steam drives turbine", "Water drives turbine", "Magnet wheel and lamp"], () => {
-    s.time = 0;
+    restart();
     update();
   });
   api.button("Connect / disconnect electrical load", () => {
     loaded = !loaded;
-    s.time = 0;
+    restart();
     update();
   });
-  R.slider(api, s, "time", "Elapsed time", 0, 120, 0.5, 0, "s", update);
+  elapsedControl = R.slider(api, s, "time", "Elapsed time", 0, 120, 0.5, 0, "s", update);
   api.loop((dt) => {
     if (dt > 0) {
       s.time = Math.min(120, s.time + dt);
+      elapsedControl.set(s.time);
       update();
     }
   });
   lab.redraw((ctx) => {
     const finite = s.mode === 2, p = M.station(s.input, s.efficiency), load = loaded ? s.input : 0, w = M.generatorWheel(1e3, load, s.time), angle = finite ? w.angle * 0.04 : s.time * 2, power2 = finite ? w.power : loaded ? p.electrical : 0;
+    efficiencyControl.input.disabled=finite;
+    inputPowerControl.setLabel?.(finite?"Wheel load at initial speed":"Source power");
     show(reservoir, s.mode === 1);
     show(boiler, s.mode === 0);
     show(fire, s.mode === 0);
@@ -240,6 +267,7 @@ function station(lab, api, c) {
 }
 function stevin(lab, api, c) {
   const s = {}, root = R.scene(lab), chain = R.wire(root, c.ink, [[0, 0, 0], [1, 1, 0], [2, 0, 0]]), lower = R.wire(root, c.ink, R.samples(121, () => [0, 0, 0])), beads = Array.from({ length: 36 }, () => R.ball(root, c.proton, 0.06)), forces = Array.from({ length: 6 }, (_, i) => R.vector(root, [c.electron, c.proton, c.neutron][i % 3])), update = () => lab.refresh();
+  for(let side=0;side<2;side++) ["weight","downhill component","into-slope component"].forEach((name,i)=>lab.kit?.label?.(name,forces[side*3+i].group?.children[1],{color:[c.electron,c.proton,c.neutron][i],offset:i===0?[0,50]:i===1?[0,-45]:[side?50:-35,40]}));
   let wedge = null;
   if (root) {
     const geo = new BufferGeometry();
@@ -289,6 +317,9 @@ function stevin(lab, api, c) {
 }
 function engine(lab, api, c) {
   const s = { time: 0 }, root = R.scene(lab), hot = R.block(root, c.proton, 1, 1.3, 1, -2, 0), cold = R.block(root, c.electron, 1, 1.3, 1, 2, 0), cylinder = R.block(root, c.ink, 0.7, 1.4, 0.7, 0, 0, 0, 0.15), piston = R.block(root, c.ink, 0.68, 0.1, 0.68), update = () => lab.refresh();
+  lab.kit?.label?.("hot reservoir",hot,{color:c.proton});
+  lab.kit?.label?.("piston: work output",piston,{color:c.ink});
+  lab.kit?.label?.("cold reservoir",cold,{color:c.electron});
   R.slider(api, s, "hot", "Hot reservoir", 400, 900, 20, 600, "K", update);
   R.slider(api, s, "cold", "Cold reservoir", 280, 400, 10, 300, "K", update);
   R.slider(api, s, "fraction", "Fraction of reversible limit", 0.2, 1, 0.05, 0.6, "", update);
@@ -300,6 +331,7 @@ function engine(lab, api, c) {
   });
   lab.redraw((ctx) => {
     const p = M.heatEngine(s.hot, s.cold, s.fraction);
+    api.playback?.(p.work>0);
     point(piston, 0, Math.sin(s.time * 2) * p.efficiency * 0.8);
     scaled(hot, 1, s.hot / 600, 1);
     scaled(cold, 1, s.cold / 600, 1);

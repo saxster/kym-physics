@@ -7,6 +7,8 @@ import {
   CanvasTexture, Color, ConeGeometry, Raycaster, SRGBColorSpace, LineDashedMaterial, BufferGeometry, Line, Box3,
 } from 'three';
 import { Live, colors } from './core.js';
+import { visibleSceneBounds, framingDistance } from './scene_bounds.mjs';
+import { leaderLayer, arrangeAnnotations } from './annotations.js';
 
 export const RADIUS = { H: 0.30, C: 0.42, N: 0.42, O: 0.44, Na: 0.40, Cl: 0.62, S: 0.5, Li: 0.38, X: 0.4 };
 const DARK_TEXT = Live.DARK_TEXT;
@@ -100,6 +102,7 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = SRGBColorSpace;
   wrap.appendChild(renderer.domElement);
+  const labelGuides = leaderLayer(wrap);
   const scene = new Scene();
   const camera = new PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.set(0, 0, distance);
@@ -113,34 +116,43 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
     spinSpeed: 0.35, // radians per second while playing
     dirty: true,
     labels: [],
-    label(text, position, { color = c.ink } = {}) {
+    closed: false,
+    label(text, position, { color = c.ink, offset = null } = {}) {
       const node = document.createElement('span'); node.className = 'lab-scene-label';
       node.textContent = text;
       const semantic = Object.keys(c).find(k => c[k] === color);
       node.style.color = semantic ? `var(--${semantic.replace('_', '-')})` : color; wrap.append(node);
-      const item = { node, position }; kit.labels.push(item); kit.dirty = true;
+      const item = { node, position, offset }; kit.labels.push(item); kit.dirty = true;
       return node;
     },
     fit(radius) {
       if (!Number.isFinite(radius) || radius <= 0) return;
+      kit.frameBounds = null;
       kit.fitRadius = radius;
       camera.position.z = Math.max(2, radius / Math.sin(camera.fov * Math.PI / 360) / Math.min(1, camera.aspect) * 1.08);
       camera.far = Math.max(100, camera.position.z + radius * 4);
       camera.updateProjectionMatrix(); kit.dirty = true;
     },
     fitContents() {
-      root.updateMatrixWorld(true);
-      const bounds = new Box3().setFromObject(root);
+      const bounds = visibleSceneBounds(root);
       if (!bounds.isEmpty()) {
-        const size = bounds.getSize(new Vector3()), centre = bounds.getCenter(new Vector3());
-        kit.fit(size.length() / 2 + centre.length());
+        kit.frameBounds = bounds;
+        kit.fitRadius = null;
+        kit.fitBounds();
       }
     },
+    fitBounds() {
+      if (!kit.frameBounds) return;
+      camera.position.z = framingDistance(kit.frameBounds, camera.fov, camera.aspect);
+      camera.far = Math.max(100, camera.position.z + kit.frameBounds.getSize(new Vector3()).length() * 4);
+      camera.updateProjectionMatrix(); kit.dirty = true;
+    },
     render() {
-      if (kit.contextLost) return;
+      if (kit.contextLost || kit.closed) return;
       // keep every atom label on the side of its sphere that faces the camera
       root.updateMatrixWorld(true);
       camera.updateMatrixWorld(true);
+      const annotations = [];
       for (const item of kit.labels) {
         const source = typeof item.position === 'function' ? item.position() : item.position;
         let visible = !!source;
@@ -149,9 +161,24 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
         const point = source?.isObject3D ? source.getWorldPosition(new Vector3()) : root.localToWorld(new Vector3(...source));
         point.project(camera);
         item.node.hidden = point.z < -1 || point.z > 1 || Math.abs(point.x) > .98 || Math.abs(point.y) > .98;
-        item.node.style.left = (point.x + 1) * wrap.clientWidth / 2 + 'px';
-        item.node.style.top = (1 - point.y) * wrap.clientHeight / 2 + 'px';
+        if (!item.node.hidden) {
+          const entry={node:item.node,x:(point.x+1)*wrap.clientWidth/2,y:(1-point.y)*wrap.clientHeight/2,color:item.node.style.color};
+          if(source?.isObject3D){
+            const bounds=visibleSceneBounds(source);
+            if(!bounds.isEmpty()){
+              let top=Infinity;
+              for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){
+                const edge=new Vector3(x,y,z).project(camera);
+                top=Math.min(top,(1-edge.y)*wrap.clientHeight/2);
+              }
+              entry.preferredY=top-6;
+            }
+          }
+          if(item.offset){entry.preferredX=entry.x+item.offset[0];entry.preferredY=entry.y+item.offset[1];}
+          annotations.push(entry);
+        }
       }
+      arrangeAnnotations(annotations, wrap.clientWidth, wrap.clientHeight, labelGuides);
       const atoms = [];
       root.traverse((m) => { if (m.userData && m.userData.label) atoms.push(m); });
       for (const m of atoms) {
@@ -166,10 +193,12 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
       renderer.render(scene, camera); kit.dirty = false;
     },
     resize() {
+      if (kit.closed) return;
       const w = wrap.clientWidth || 600, h = wrap.clientHeight || height;
       renderer.setSize(w, h, false); renderer.domElement.style.width = '100%'; renderer.domElement.style.height = '100%';
       camera.aspect = w / h; camera.updateProjectionMatrix(); kit.render();
       if (kit.fitRadius) { kit.fit(kit.fitRadius); kit.render(); }
+      else if (kit.frameBounds) { kit.fitBounds(); kit.render(); }
     },
     clear() { clearGroup(root); kit.dirty = true; },
     cutaway(planes = []) { renderer.localClippingEnabled = true; renderer.clippingPlanes = planes; kit.dirty = true; },
@@ -203,7 +232,8 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
     wrap.after(notice); kit.contextLost = true;
   };
   renderer.domElement.addEventListener('webglcontextlost', lost);
-  api.onCleanup(() => { ro.disconnect(); theme.disconnect(); clearGroup(root); scene.clear(); renderer.domElement.removeEventListener('webglcontextlost', lost); releaseRenderer(renderer,kit.contextLost); if(activeStage===stage)activeStage=null; });
+  api.onCleanup(() => { kit.closed=true; ro.disconnect(); theme.disconnect(); clearGroup(root); scene.clear(); renderer.domElement.removeEventListener('webglcontextlost', lost); releaseRenderer(renderer,kit.contextLost); if(activeStage===stage)activeStage=null; });
+  document.fonts?.ready.then(() => { if (!kit.closed) kit.render(); });
   kit.resize();
 
   // drag to rotate (pointer), arrows to rotate (keyboard)
@@ -213,6 +243,7 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
     const q1 = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), dx);
     const q2 = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), dy);
     root.quaternion.premultiply(q1).premultiply(q2);
+    if (kit.frameBounds) kit.fitContents();
     kit.render(); userTurned = 2.5;
   };
   wrap.addEventListener('pointerdown', (e) => { if (e.pointerType === 'touch' && !touchRotation) return; drag = { x: e.clientX, y: e.clientY }; wrap.setPointerCapture(e.pointerId); });
@@ -235,12 +266,19 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
       root.quaternion.copy(home);
       root.quaternion.premultiply(new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), angles[0]));
       root.quaternion.premultiply(new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), angles[1]));
+      camera.zoom = 1;
+      camera.updateProjectionMatrix();
+      if (kit.frameBounds) kit.fitContents();
       userTurned = Infinity; kit.render();
     }); views.append(button);
   }
   const touch = document.createElement('button'); touch.type = 'button'; touch.className = 'live-ctl'; touch.textContent = 'Turn with touch: off'; touch.setAttribute('aria-pressed', 'false');
   touch.addEventListener('click', () => { touchRotation = !touchRotation; touch.setAttribute('aria-pressed', String(touchRotation)); touch.textContent = 'Turn with touch: ' + (touchRotation ? 'on' : 'off'); wrap.style.touchAction = touchRotation ? 'none' : 'pan-y'; });
   views.append(touch); wrap.after(views);
+  for (const [label, factor] of [['Zoom in',1.25],['Zoom out',.8]]) {
+    const button=document.createElement('button');button.type='button';button.className='live-ctl';button.textContent=label;
+    button.addEventListener('click',()=>{camera.zoom=Math.max(.5,Math.min(4,camera.zoom*factor));camera.updateProjectionMatrix();kit.render();});views.append(button);
+  }
   const viewNote=document.createElement('p');viewNote.textContent='Opening another 3D figure returns this one to its drawing.';views.append(viewNote);
   api.loop((dt) => {
     if (userTurned > 0) userTurned -= dt;

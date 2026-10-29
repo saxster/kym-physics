@@ -1,0 +1,1880 @@
+{
+  "date": "2026-10-29",
+  "scope": "All 33 fields/sky/modern lessons; fresh live IAB mobile and desktop images only",
+  "reviewBoundary": "Source preparation is not a visual inspection. Each lesson remains pending until its fresh images are personally opened.",
+  "lessons": [
+    {
+      "id": "charge",
+      "title": "Charge moves; neutral objects respond",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "If both objects start neutral, can rubbing create net charge?",
+      "expectedObservation": "Electrons move between objects; count the equal positive deficit and negative excess. A nearby neutral object can polarise.",
+      "changedState": [
+        {
+          "button": "Polarise a conductor"
+        },
+        {
+          "slider": "Electrons transferred",
+          "value": 8
+        },
+        {
+          "slider": "Separation",
+          "value": 0.5
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/charge.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Transferred and polarised charges conserve the visible count; changed conductor remains neutral, with removed electrons at far left.",
+          "fix": "Cause-first charge-transfer/polarisation account; hide static Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/charge.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/charge.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "cage",
+      "title": "Inside a conducting shell",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does a metal shell merely weaken the external electric field?",
+      "expectedObservation": "Inspect external and induced fields separately, then add them: the empty cavity is field-free in electrostatic equilibrium.",
+      "changedState": [
+        {
+          "button": "External field"
+        },
+        {
+          "slider": "Probe position",
+          "value": 0
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/cage.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Default total field vanishes inside; selecting external arrows leaves total graph/readout unchanged, requiring clear total-versus-selected wording.",
+          "fix": "Numeric field/position axes; explain cancellation; hide static Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/cage.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/cage.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "circuit-signal",
+      "title": "Slow electrons, fast signal",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Must an electron travel from the battery to the LED before the LED responds?",
+      "expectedObservation": "The wire already contains mobile charge. A signal travels through the circuit much faster than the average electron drift.",
+      "changedState": [
+        {
+          "button": "Slow drift clock"
+        },
+        {
+          "slider": "Drift elapsed time",
+          "value": 5000
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/circuit-signal.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "At 5000 s drift the identical evenly spaced dots produce the same snapshot as the initial arrangement.",
+          "fix": "Add one distinguished tracked electron plus fixed start ring in 3D/diagram; state independent clock rates.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/circuit-signal.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/circuit-signal.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "circuit-diagnose",
+      "title": "Find the dark LED",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Can a battery show its normal voltage and still fail under load?",
+      "expectedObservation": "An exponential LED model and source load line meet at the measured operating point. Open and reverse states alter the visible circuit.",
+      "changedState": [
+        {
+          "button": "Reversed LED"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/circuit-diagnose.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Default readout reports 21.20 mA while the graph dot is at zero; reversed mode reports zero but the dot floats at roughly 21 mA.",
+          "fix": "Use the same reversed-polarity boolean for plotted dot and measured readout; actual-factory marker regression verifies all four modes.",
+          "owner": "fields",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Explanation names an exponential model/load line rather than explaining why a weak battery can have normal unloaded voltage.",
+          "fix": "Explain the internal voltage drop and agreement of source/load current, with separate reversed/open explanations.",
+          "owner": "fields",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Graph labels are tiny on phone and desktop; scene has excessive blank space and controls follow the explanatory card.",
+          "fix": "Readable plot annotations, tighter framing and adjacent controls.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        },
+        {
+          "priority": "P2",
+          "finding": "Original caption describes a separate straight resistor curve and 27 mA that do not match this LED-plus-resistor plot.",
+          "fix": "Hide original caption in the added interactive view.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/circuit-diagnose.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/circuit-diagnose.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "circuit-probes",
+      "title": "Measure two branches",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Do unequal parallel branches have equal current or equal voltage?",
+      "expectedObservation": "Change the actual series/parallel topology, then inspect branch/total current or the red–black voltage difference across either load.",
+      "changedState": [
+        {
+          "button": "Series"
+        },
+        {
+          "slider": "Probe selection",
+          "value": 4
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/circuit-probes.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Bare probe values 0 and 4 conceal what is selected; current mode is incorrectly labelled voltage probes.",
+          "fix": "Name all five measurement choices; separate current/voltage local labels and hide black voltage endpoint in current mode.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/circuit-probes.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Footer legend plate covers lower load/LED; shared bottom gutter fix pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/circuit-probes.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "refinedMobileReview": {
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-refined-fields/circuit-probes.png"
+        ],
+        "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      }
+    },
+    {
+      "id": "protection",
+      "title": "A fault in the case",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does a small current leaking to earth look like an overload?",
+      "expectedObservation": "Compare a protective-earth fault, isolated live case, virtual touch return and balanced overload. A trip opens the actual switch and stops current until reset.",
+      "changedState": [
+        {
+          "button": "Earth fault"
+        },
+        {
+          "slider": "Prospective leakage",
+          "value": 40
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/protection.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Changed fault visibly opens switch and current goes to zero; original caption/control remoteness obscures the mechanism.",
+          "fix": "Explain return imbalance versus balanced overload; static Play hidden; shared layout changes.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/protection.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/protection.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "domains",
+      "title": "Domains inside a magnet",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "When a magnet is cut, can one half contain only a north pole?",
+      "expectedObservation": "Domain orientations and their net moment change with the applied field. Cutting the sample leaves complete dipoles on both pieces.",
+      "changedState": [
+        {
+          "slider": "Applied field",
+          "value": 100
+        },
+        {
+          "button": "Cut / join magnet"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/domains.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Separated pieces each show N/S and complete dipoles; no-op Play and explanatory instructions add friction.",
+          "fix": "Explain cancellation, domain-wall growth and complete magnets; hide static Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/domains.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Footer plate overlays region/wall bar; shared bottom gutter fix pending."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/domains.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "earth-field",
+      "title": "A compass that can dip",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does a compass reveal the complete direction of Earth’s field?",
+      "expectedObservation": "A free needle aligns in three dimensions. A level compass can show only the horizontal projection; device axes rotate while the world field stays fixed.",
+      "changedState": [
+        {
+          "slider": "Latitude",
+          "value": 60
+        },
+        {
+          "button": "Held level"
+        },
+        {
+          "slider": "Device rotation",
+          "value": 90
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/earth-field.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Held-level needle projects horizontally while world field keeps its downward component; tiny vectors/labels weaken the comparison.",
+          "fix": "Shared larger framing/labels plus causal account of mechanical constraint versus full field.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/earth-field.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/earth-field.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "field-probe",
+      "title": "Add wire and Earth fields",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Will reversing the wire current turn a compass exactly 180 degrees?",
+      "expectedObservation": "Move the probe and add the wire field to a fixed northward background. Compare the separate vectors and their sum.",
+      "changedState": [
+        {
+          "slider": "Current",
+          "value": -2
+        },
+        {
+          "slider": "Probe distance",
+          "value": 1
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/field-probe.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Reversed wire contribution changes the resultant while north component remains; small 3D resultant and unnumbered strength curve are hard to compare.",
+          "fix": "Numeric magnetic field/distance axes, causal vector-sum explanation, shared framing.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/field-probe.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/field-probe.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "motor",
+      "title": "Step inside a motor",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Why must the current reverse every half-turn?",
+      "expectedObservation": "Opposite coil sides carry opposite currents and feel opposite forces. The split ring reverses current so torque keeps the same rotational sense.",
+      "changedState": [
+        {
+          "button": "No reversal"
+        },
+        {
+          "slider": "Coil angle",
+          "value": 225
+        },
+        {
+          "slider": "Current",
+          "value": 2
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/motor.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "No reversal still shows split-ring commutator hardware, although its readout claims fixed-sign coil current.",
+          "fix": "Display two continuous slip rings in this mode; retain split halves only in commutated mode; show an open switch in open mode.",
+          "owner": "fields",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Changed state shows negative torque readout but a curve wholly above its only horizontal axis. No marked zero or signed numeric scale teaches the torque reversal.",
+          "fix": "Add middle zero reference and numeric signed torque ticks.",
+          "owner": "fields",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "The changed-mode explanation still says the split ring reverses current, contradicting the selected No reversal mode.",
+          "fix": "Mode-dependent explanation accounts for slip rings, split rings and open circuit.",
+          "owner": "fields",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Small apparatus, overlapping split-ring/brush labels and tiny graph lettering reduce readability on both screens; controls are below the scene and explanation.",
+          "fix": "Tight visible-object framing, collision labels, readable DOM graph annotations and adjacent controls.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        },
+        {
+          "priority": "P2",
+          "finding": "Original static left/right caption describes absent views underneath the new apparatus.",
+          "fix": "Hide original caption while the interactive view is active; retain original drawing/print caption.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/motor.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Long plot caption hides positive curve/marker; shared normal-flow header fix pending."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/motor.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "refinedMobileReview": {
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-refined-fields/motor.png"
+        ],
+        "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      }
+    },
+    {
+      "id": "generator",
+      "title": "Turn a generator",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does the largest flux always mean the largest induced voltage?",
+      "expectedObservation": "Rotating a coil changes flux. The voltage tracks the rate of flux change, reaching zero at maximum or minimum flux.",
+      "changedState": [
+        {
+          "slider": "Coil angle",
+          "value": 90
+        },
+        {
+          "slider": "Angular speed",
+          "value": 3
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/generator.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Maximum flux and emf extrema differ, but the signed graph has no zero line and slip-ring/voltmeter labels overlap.",
+          "fix": "Signed numerical relative display scale with explicit two-unit key; shared collision layout.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/generator.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Long plot key hides crossing/curve; shared normal-flow header fix pending."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/generator.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "transformer",
+      "title": "Two coils, one changing field",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Can a steady direct current keep inducing voltage in a second coil?",
+      "expectedObservation": "Both coils link the same reversing flux. Blue primary and red secondary emf follow its time derivative; changing turns changes their amplitude ratio.",
+      "changedState": [
+        {
+          "button": "Steady DC"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/transformer.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Steady DC still has Play and an explanation referring to reversing flux; graph lacks zero/numeric voltage references.",
+          "fix": "Disable steady-state Play, mode-dependent causal account, zero reference and signed numeric voltage scale.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/transformer.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/transformer.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "em-wave",
+      "title": "Two fields across a gap",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does either field point along the wave’s travel direction?",
+      "expectedObservation": "Inspect electric and magnetic field vectors at fixed points. Both are transverse, perpendicular to one another and in phase.",
+      "changedState": [
+        {
+          "button": "Green light"
+        },
+        {
+          "slider": "Polarisation direction",
+          "value": 90
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/em-wave.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Green-light preset changes the spectrum marker and transverse orientation; spectrum/field labels are tiny.",
+          "fix": "Shared readable annotations and causal field-pattern account; retain explicit slowed clock.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/em-wave.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/em-wave.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "day-night",
+      "title": "Earth turns beneath the sky",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Which way must Earth turn for stars to seem to move west?",
+      "expectedObservation": "A marked surface observer crosses the lit and dark hemispheres. Change from a space camera to a surface-direction diagram.",
+      "changedState": [
+        {
+          "button": "Local horizon"
+        },
+        {
+          "slider": "Solar time",
+          "value": 6
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/day-night.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Local horizon shows morning Sun east; globe, observer and stars are tiny in the space view.",
+          "fix": "Meaningful labelled solar-time playback and tighter framing; explain opposite apparent sky motion.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/day-night.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/day-night.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "seasons3d",
+      "title": "Tilt, sunlight and daylight",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "If tilt is zero but the orbit remains, do the seasons remain?",
+      "expectedObservation": "Keep the axis fixed in space as Earth moves round its orbit. Link latitude, local noon altitude, daylight arc and a beam footprint.",
+      "changedState": [
+        {
+          "slider": "Day in ideal year",
+          "value": 355
+        },
+        {
+          "slider": "Latitude",
+          "value": 45
+        },
+        {
+          "slider": "Axial tilt",
+          "value": 23
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/seasons3d.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Globe is too small to inspect tilt or daylight arcs; footprint values are tiny and explanation is instructions.",
+          "fix": "Enlarge schematic globe consistently with its axis/arcs; disclose size scale, add causal sunlight/daylength account and explicit advancing year clock.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/seasons3d.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/seasons3d.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "moon-rotation",
+      "title": "The Moon has to turn",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Would a Moon that never rotated always show us the same face?",
+      "expectedObservation": "Keep a marked face directed towards Earth by rotating it once per orbit. Compare with a non-rotating sphere and follow its illuminated half.",
+      "changedState": [
+        {
+          "button": "No axial rotation"
+        },
+        {
+          "slider": "Lunar angle from Sun",
+          "value": 180
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/moon-rotation.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Fallback diagram only shows two dots on a line and never draws the marked face, so it fails to explain axial rotation.",
+          "fix": "Top-down orbit plus same marked-face vector as 3D; disclose schematic sizes; explicit lunar clock.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/moon-rotation.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Earth text clips lower diagram disk; domain moved label below disk pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/moon-rotation.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "eclipses",
+      "title": "Find an eclipse by geometry",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Why can a new Moon miss the Sun–Earth line?",
+      "expectedObservation": "Advance orbital longitude and the year. The inclined lunar plane meets the ecliptic at two nodes; shadow intersections are calculated from these positions.",
+      "changedState": [
+        {
+          "slider": "Lunar angle from Sun",
+          "value": 0
+        },
+        {
+          "slider": "Year position",
+          "value": 0
+        },
+        {
+          "button": "Moon shadow → Earth"
+        },
+        {
+          "button": "Central detail ×20"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/eclipses.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Physical-scale bodies are unresolved and labels collide; actual shadow cut is the useful inspection view but its labels are tiny.",
+          "fix": "Shared readable annotations/nonoverlap; keep physical overview, explicit scaled cut, causal node/alignment account and labelled phase playback.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/eclipses.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Enlarged inline cone labels obscure physical boundaries; moved/reduced legends plus shared header/footer pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/eclipses.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "refinedMobileReview": {
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-refined-fields/eclipses.png"
+        ],
+        "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      }
+    },
+    {
+      "id": "tides3d",
+      "title": "Subtract Earth’s central pull",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Why is there an outward relative pull on the far side?",
+      "expectedObservation": "Inspect the Moon’s absolute pull and subtract the pull at Earth’s centre at each surface point. Add the Sun’s differential pull.",
+      "changedState": [
+        {
+          "button": "Absolute lunar pull"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/tides3d.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Absolute lunar pull is still labelled differential arrows, contradicting the chosen mode; signed equilibrium graph has no zero.",
+          "fix": "Separate mode labels/explanations; label differential graph independently, add zero and numeric scale; disable Sun toggle in lunar-only absolute mode.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/tides3d.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/tides3d.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "photoelectric",
+      "title": "Count photons and electrons",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Can bright red light beat the threshold by pooling its photons?",
+      "expectedObservation": "Frequency sets energy per photon and maximum electron kinetic energy; photon flux sets the number available. Retarding voltage reveals the stopping potential.",
+      "changedState": [
+        {
+          "slider": "Wavelength",
+          "value": 650
+        },
+        {
+          "slider": "Photon flux",
+          "value": 1000
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/photoelectric.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Bright-red state correctly emits no electrons, but photon/work bars and KE bar secretly use different energy scales. This prevents a faithful visual energy subtraction.",
+          "fix": "Give photon energy, work function, maximum KE and retarding barrier one common 4.2 eV scale, with numeric labels and an explicit same-scale caption.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/photoelectric.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/photoelectric.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      }
+    },
+    {
+      "id": "atom-scale",
+      "title": "An atom is mostly space",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "If a nucleus were a 1 cm marble, how large would the atom be?",
+      "expectedObservation": "Change the scale and compare a nucleus reference width with the electron-cloud reference width. Electrons are not drawn on planetary tracks.",
+      "changedState": [
+        {
+          "button": "Common scale: nucleus unresolved"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/atom-scale.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Common-scale nucleus becomes unresolved as intended, but cloud/nucleus have no local labels and original caption discusses radiation.",
+          "fix": "Add local probability-cloud/enlarged-nucleus labels; cause-first size-ratio account; static Play hidden.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/atom-scale.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "New opaque nucleus plate hides nucleus/cuts cloud; domain removed this plate pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/atom-scale.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "refinedMobileReview": {
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-refined-fields/atom-scale.png"
+        ],
+        "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      }
+    },
+    {
+      "id": "radiation-decay",
+      "title": "Exposure, contamination and decay",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does switching off a beam remove radioactive dust?",
+      "expectedObservation": "Compare a controlled beam with radioactive material left on a surface. Individual random decay times produce a smooth exponential expectation only in a large ensemble.",
+      "changedState": [
+        {
+          "button": "Dust on surface"
+        },
+        {
+          "button": "Switch beam on / off"
+        },
+        {
+          "slider": "Elapsed model time",
+          "value": 6
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/radiation-decay.png"
+      ],
+      "findings": [
+        {
+          "priority": "P1",
+          "finding": "Dust state contains 24 displayed nuclei but plot uses 100-nucleus expectation/dot; apparatus shrinks markedly.",
+          "fix": "Match N24 count/expectation, beam-only diagram rather than decay curve, visible distant-beam source for dust comparison; explicit finite decay clock/replay.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/radiation-decay.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/radiation-decay.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Changed dust mode retains radioactive dust with the distant beam off; 3 of 24 visible nuclei, graph dot and six-second readout agree. N100 initial sample remains distinct."
+      }
+    },
+    {
+      "id": "solar-fusion",
+      "title": "From the solar core to light",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does the Sun’s light come from chemical burning at its surface?",
+      "expectedObservation": "Open a solar cutaway, inspect the net fusion account and compare the released mass fraction with the total. Energy crosses radiative and convective layers.",
+      "changedState": [
+        {
+          "slider": "Transport stage",
+          "value": 2
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/solar-fusion.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Transport selector gives only 0/2 although the stages represent different mechanisms; Stage0 Play does nothing.",
+          "fix": "Named stage values; enable Play only for actual transport; explain fusion account and transport causes.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/solar-fusion.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/solar-fusion.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Core and convective-stage selector names are readable; changed stage shows red/blue parcels. Net reaction, enlarged released-fraction bar and neutrino-versus-transport account agree."
+      }
+    },
+    {
+      "id": "halo",
+      "title": "A halo around L1",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Is L1 a place where gravity is zero?",
+      "expectedObservation": "Inspect linked xy/xz/yz projections of the same craft point. Independently compare Sun/Earth force balance at the selected distance.",
+      "changedState": [
+        {
+          "slider": "Halo model day",
+          "value": 45
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/halo.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Three projections share the changed craft point, but small 3D path/readout and instruction-only explanation obscure why gravity is nonzero.",
+          "fix": "Cause-first required-inward-acceleration account, explicit schematic halo clock; shared framing/annotations.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/halo.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "finalCaptureRationale": "35.58 model days is about one fifth of the 177.86-day schematic orbit; it visibly changes the shared craft point in all projections and can be selected with two coarse PageUp steps.",
+      "finalChangedState": [
+        {
+          "slider": "Halo model day",
+          "value": 35.58
+        }
+      ],
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/halo.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "35.58-day craft point changes consistently in all three linked projections. The net inward-acceleration account says gravity is nonzero and discloses schematic path/time."
+      }
+    },
+    {
+      "id": "stellar-spectrum",
+      "title": "Same hydrogen, different lines",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does a weak hydrogen line mean little hydrogen?",
+      "expectedObservation": "Hold composition fixed and change temperature; hydrogen ionisation and excitation compete. Then change abundance separately.",
+      "changedState": [
+        {
+          "slider": "Temperature",
+          "value": 20000
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/stellar-spectrum.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Temperature change removes visible line depth but free-electron icons remain clustered around nuclei; curve lacks temperature mapping/selected point.",
+          "fix": "Static unbound population region, labelled temperature range and selected-temperature marker; hide unrelated Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/stellar-spectrum.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Midplot caption hides temperature peak and dot; moved to footer pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/stellar-spectrum.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "9000 K versus 20000 K changes bound/free population and line depth; selected-temperature curve dot and axes are visible; unbound electrons occupy lower rows."
+      }
+    },
+    {
+      "id": "distance-ladder",
+      "title": "From a blink to a distance",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Can a star look faint because it is distant rather than weak?",
+      "expectedObservation": "Change the exaggerated-angle baseline/triangle and uncertainty, then follow one shared Cepheid time/phase through the star and flux curve.",
+      "changedState": [
+        {
+          "button": "Cepheid brightness"
+        },
+        {
+          "slider": "Cepheid period",
+          "value": 40
+        },
+        {
+          "slider": "Cepheid elapsed time",
+          "value": 10
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/distance-ladder.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Cepheid selected state retains the irrelevant parallax triangle; all controls stay active in both modes.",
+          "fix": "Hide parallax apparatus during star pulse, disable unrelated controls, explicit finite clock/replay and numeric mean-flux axis.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/distance-ladder.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Peak/minimum text at74 hides selected peak dot; moved to footer pending new capture."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/distance-ladder.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Parallax triangle changes to isolated centred Cepheid; irrelevant sliders disable. At period 40/day 10 the dot reaches peak, flux/mean graph and readout agree."
+      },
+      "refinedMobileReview": {
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-refined-fields/distance-ladder.png"
+        ],
+        "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      }
+    },
+    {
+      "id": "white-dwarf",
+      "title": "More mass, smaller dwarf",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does adding material always make a star bigger?",
+      "expectedObservation": "Move along an ideal white-dwarf mass–radius relation. Compare core mass with initial stellar mass and stop at the stable-model limit.",
+      "changedState": [
+        {
+          "slider": "Final core mass",
+          "value": 1.4
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/white-dwarf.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Fixed camera makes the radius shrink clearly, but plot has no numeric ticks and explanation names a relation rather than its support.",
+          "fix": "Retain fixed camera; add numeric radius/mass axes and accurate complete-quantum-state explanation.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/white-dwarf.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/white-dwarf.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Fixed camera shows 0.6 to1.4 solar-mass radius shrinkage; graph and numeric radii agree; limiting zero radius is explicitly model breakdown."
+      }
+    },
+    {
+      "id": "cosmos",
+      "title": "Choose another galaxy",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "If every distant galaxy recedes, are we at the centre?",
+      "expectedObservation": "Select any galaxy and expand separations. Every observer finds the same distance–recession relation while individual bound-galaxy sizes stay fixed.",
+      "changedState": [
+        {
+          "slider": "Cosmic scale factor",
+          "value": 3
+        },
+        {
+          "button": "Observe galaxy 2"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/cosmos.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Fixed camera preserves expansion visibly, but all six galaxies look identical so selected observer is not identified.",
+          "fix": "Colour/label the observer at origin; numeric Hubble axes and causal equal-fractional-separation account.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/cosmos.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/cosmos.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Red observer remains identified after switching observer and scale factor 1 to 3. Fixed scale shows separation growth; Hubble graph retains slope."
+      }
+    },
+    {
+      "id": "foucault",
+      "title": "A pendulum and a turning Earth",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Would a Foucault pendulum precess equally in Mumbai and at the equator?",
+      "expectedObservation": "Compare local floor traces as latitude changes. The precession rate is Earth’s rotation projected onto the local vertical.",
+      "changedState": [
+        {
+          "button": "North pole"
+        },
+        {
+          "slider": "Elapsed sidereal clock",
+          "value": 6
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/foucault.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Pole/Mumbai/equator circles differ correctly; globe and bob apparatus are small and Play does not advance precession clock.",
+          "fix": "Label and advance sidereal clock at disclosed rate; separate bob display clock, stop/replay; causal latitude dependence.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/foucault.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/foucault.png"
+        ],
+        "verdict": "SOURCE_CORRECTION_AWAITING_FRESH_RENDER",
+        "finding": "Pole/Mumbai/equator traces display expected relative precession. Independent mechanics reviewer identified ordinary-hour model incorrectly labelled sidereal hours; selector/account corrected, fresh render pending.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalChangedState": [
+        {
+          "button": "North pole"
+        },
+        {
+          "slider": "Elapsed time",
+          "value": 6
+        }
+      ],
+      "finalCandidateCaptionReview": {
+        "cache": "9ff53a303e3f",
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/candidate-final/foucault-1440-default.jpg",
+          "source/build/visual-audit-20261029/candidate-final/foucault-1440-changed.jpg"
+        ],
+        "finding": "Fresh stable default/changed screenshots personally opened. Elapsed time uses3600-second hours;23.93447-hour sidereal day correctly explains90.2 degrees at6h. Selector, readout and diagrams consistent."
+      }
+    },
+    {
+      "id": "telescope",
+      "title": "An axle parallel to Earth’s",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Why does Ooty’s latitude match the telescope’s slope?",
+      "expectedObservation": "Tilt the telescope axle to the selected latitude, then compare it with Earth’s axis. Change mesh spacing relative to wavelength.",
+      "changedState": [
+        {
+          "slider": "Axle angle above horizontal",
+          "value": 50
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/telescope.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Changing axle produces visible misalignment, while instruction-only explanation does not connect latitude to Earth-axis elevation.",
+          "fix": "Cause-first alignment/mesh explanation; hide static Play and shared framing/annotations.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/telescope.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/telescope.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "11.4 to50 degree axle visibly misaligns with Earth-axis vector; 38.6 degree readout and wavelength/mesh comparison remain readable.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      }
+    },
+    {
+      "id": "tracks",
+      "title": "Read a track through emulsion",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Can a flat microscope image hide motion through the plate?",
+      "expectedObservation": "Compare simulated resolved grains with the matching projection. Independently select observed RMS scattering and finite position resolution to infer a mass/speed interval at known momentum.",
+      "changedState": [
+        {
+          "slider": "Candidate rest mass",
+          "value": 938
+        },
+        {
+          "slider": "Microscope resolution",
+          "value": 0.08
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/tracks.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Resolution enlargement makes grains visibly larger and widens inferred interval; dense readout/diagram type is hard to read.",
+          "fix": "Causal scattering/resolution account, hide static Play, shared readable measurements; retain uncertainty and identification limits.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/tracks.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/tracks.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Changed candidate and larger resolution make grains/rings larger and broaden conditional inference interval; projection/identification limits remain explicit.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      }
+    },
+    {
+      "id": "parity",
+      "title": "Nature and its mirror",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does a mirror image of the weak-decay pattern remain an allowed pattern?",
+      "expectedObservation": "Reverse spin alignment and compare electron counts. In a mirror, spin is an axial vector while electron velocity is a polar vector; their correlation changes.",
+      "changedState": [
+        {
+          "button": "Actual and spatial mirror"
+        },
+        {
+          "button": "Reverse spin"
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/parity.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Selected mirror reverses red spin while blue polar-velocity pattern remains; explanatory jargon hides why comparison matters.",
+          "fix": "Cause-first mirror/correlation explanation; hide static Play, readable vector/count labels.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/parity.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/parity.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Changed x mirror reverses red axial spin while retaining blue polar-y velocity; toy-event counts and actual-versus-comparison labels agree.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      }
+    },
+    {
+      "id": "bose-counting",
+      "title": "Count states, not labels",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does exchanging two identical photons produce a new state?",
+      "expectedObservation": "Exchange actual red A/blue B positions, then remove labels for bosons and apply the same-spin fermion exclusion.",
+      "changedState": [
+        {
+          "button": "Identical bosons"
+        },
+        {
+          "slider": "Arrangement",
+          "value": 3
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/bose-counting.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Labelled-to-boson selection reduces four cards to three and removes A/B identities; one-particle-state labels overlap.",
+          "fix": "Shared label collision fix; causal identity/exclusion account and hide static Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/bose-counting.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/bose-counting.png"
+        ],
+        "verdict": "SOURCE_CORRECTION_AWAITING_FRESH_RENDER",
+        "finding": "Four labelled arrangements reduce to three bosonic occupations and identities disappear. Independent mechanics reviewer found stale A/B footer; caption now mode-specific, fresh render pending.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalCandidateCaptionReview": {
+        "cache": "9ff53a303e3f",
+        "inspected": true,
+        "verdict": "PASS_TARGETED_FIX_FINAL_LIVE_PENDING",
+        "screenshots": [
+          "source/build/visual-audit-20261029/candidate-final/bose-counting-1440-default.jpg",
+          "source/build/visual-audit-20261029/candidate-final/bose-counting-1440-changed.jpg"
+        ],
+        "finding": "Fresh stable default/changed screenshots personally opened. Mode-specific exchange caption correct."
+      }
+    },
+    {
+      "id": "eclipse-evidence",
+      "title": "Measure a tiny displaced star",
+      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "question": "Does one noisy measurement prove a theory?",
+      "expectedObservation": "Change angular resolution and compare apparent positions against zero, half-Einstein and Einstein deflection predictions, with uncertainty shown explicitly.",
+      "changedState": [
+        {
+          "slider": "Solar impact parameter",
+          "value": 4
+        },
+        {
+          "slider": "Angular uncertainty",
+          "value": 2
+        }
+      ],
+      "screenshots": [
+        "source/build/visual-audit-20261029/boards-fields-before/eclipse-evidence.png"
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "finding": "Larger uncertainty spans all three predictions, but small graph reference labels and instruction-only explanation obscure evidence limits.",
+          "fix": "Causal uncertainty/discrimination account and readable references; hide static Play.",
+          "state": "SOURCE_FIXED_AWAITING_FRESH_RENDER"
+        },
+        {
+          "priority": "P1",
+          "finding": "Diagram text is too small at mobile scale and controls follow the explanatory card. The original drawing caption remains visible and can describe a different state.",
+          "fix": "Shared readable DOM annotations, adjacent controls/readout, correct active-view caption and tighter apparatus framing where appropriate.",
+          "owner": "shared",
+          "state": "COORDINATED_WITH_ROOT"
+        }
+      ],
+      "candidateMobileReview": {
+        "inspected": true,
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-mobile-candidate/eclipse-evidence.png"
+        ],
+        "verdict": "DIAGNOSTIC_ONLY_FINAL_REBUILD_AND_LIVE_PENDING",
+        "finding": "Readability/control proximity and selected physics account improved. Final shared annotation changes and source freeze still require rebuilt/live recheck."
+      },
+      "candidateDesktopReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "screenshots": [
+          "source/build/visual-audit-20261029/boards-desktop-candidate/eclipse-evidence.png"
+        ],
+        "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
+        "finding": "Larger impact reduces predicted deflection; wider interval spans the theory references. Full uncertainty bounds and explanation correctly limit discrimination.",
+        "additionalIndependentReviewer": "visual_mechanics_audit"
+      }
+    }
+  ],
+  "sourceFindingsAwaitingVisualEvidence": [
+    {
+      "id": "FVIS-S01",
+      "lesson": "circuit-diagnose",
+      "priority": 1,
+      "source": "source/live/w_fieldslab.js circuits.draw",
+      "description": "Operating-point marker passes reversed=mode!==2, opposite to readout/scene mode===2. At 9V forward red readout21.198mA but marker0; reversed readout0 but marker21.198mA.",
+      "status": "CONFIRMED_SOURCE_PENDING_NEW_IMAGE"
+    },
+    {
+      "id": "FVIS-S02",
+      "lesson": "circuit-probes",
+      "priority": 2,
+      "description": "Probe selection output is an opaque integer0–4; mapping is only in aria-description.",
+      "status": "PENDING_NEW_IMAGE"
+    },
+    {
+      "id": "FVIS-S03",
+      "lesson": "motor",
+      "priority": 2,
+      "description": "Signed torque is vertically centred but graph has no zero-baseline/ticks, leaving negative torque visually above its only horizontal axis.",
+      "status": "PENDING_NEW_IMAGE"
+    }
+  ],
+  "baselineReview": "All 33 four-state fresh live paired boards personally opened. Source fixes and numeric checks do not imply final visual acceptance.",
+  "captureNote": "Horizontal green line is fixed reading-progress chrome in full-figure clips; translucent toolbar likewise overlays viewport scroll position. Gold outline is keyboard focus. Neither is physics geometry.",
+  "independentSharedSourceReview": {
+    "reviewer": "visual_fields_audit (did not author shared code)",
+    "verdict": "PASS: independently reviewed final shared source including CSS Color4 resolver; no source-level blocker. Root reports actual light/dark/sepia browser matrix passes; final per-lesson LIVE remains separate.",
+    "checks": [
+      "Hidden-ancestor/material/drawRange/instance bounds",
+      "Perspective-frustum fit and retained explicit fixed radius",
+      "Pause-in-loop prevents frame rescheduling; close/change API breaks loop",
+      "Controls/readout DOM ordering, active caption and accessible-name restoration",
+      "Nonoverlap placement and separate object label preference/leader anchor",
+      "Canvas text keeps physical geometry transforms and obtains min12 CSSpx labels",
+      "Normal-flow top headers shift canvas and body anchors together; bottom minY keeps enlarged legends outside geometry",
+      "Playback support false does not recurse through draw loops while already paused",
+      "Numeric axis ticks excluded from generic footer relocation",
+      "Existing annotation parent retained on animation frames",
+      "Author screen offsets preserve original leader anchor",
+      "View reset updates projection immediately after camera zoom resets",
+      "Native sRGB canvas converts opaque CSS Color4 P3 palette once per value before Three parser; hex/rgba unchanged"
+    ],
+    "tests": [
+      "node source/tests/test_visual_layout.mjs PASS",
+      "node source/tests/test_live_annotations.mjs PASS",
+      "node source/tests/test_css_colour.mjs PASS (independently rerun)",
+      "node source/tests/test_visual_layout.mjs PASS (independently rerun after final changes)"
+    ],
+    "visualRisksPending": [
+      "Final published default and changed pairs must prove stable opening, exact viewport and sepia theme before per-ID acceptance."
+    ],
+    "hashes": {
+      "source/live/core.js": "1565a78b83d4daba8b4e52373f7b392c2ef969a04b2085cd20889f347a45adea",
+      "source/live/lab_kit.js": "d681b27a49c48b80bd4b9174aae51feb6942e6979498b036686261430f302b42",
+      "source/live/three_kit.js": "1ac9c4b383d21a5759dde861dc014336891be5e7a9cb7f95c52e8da182f9a46e",
+      "source/live/annotations.js": "be4016659a53aa14936e6bdf95e9e52bb4d0c74d2297df095c777cb3f2f03bba",
+      "source/live/label_layout.mjs": "99b07d440bd98a6001246726ea1731e5b62523a0f6afd946ff3a090e3683c27d",
+      "source/live/scene_bounds.mjs": "028fb1b7da5972cb565e1e09a812e740cb137db28f58f1fd6abe6d56ff997c07",
+      "source/app/o_labs.css": "e7e653d6d21bef2157bfe8c924fca6744e21318df2af364b7b98dee39bac9dde",
+      "source/live/css_colour.mjs": "67f0b435992a5dfed4fdc621dfb53417e77fce9210882f7304f463df914cf631",
+      "source/tests/test_css_colour.mjs": "7b322a3e86bb90047db201d5241a75aea634b2cd28b67c6fc01bf4b591ba3913"
+    }
+  },
+  "candidateBuildLimit": "Candidate390 image set predates final shared header/footer, playback recursion fix, Foucault manual selection fix and final field annotation/initial-frame fixes. No final acceptance is asserted.",
+  "candidateDesktopReview": "All 33 default/changed paired boards personally opened. Last 6 additionally reviewed independently by mechanics agent. Foucault ordinary-hour wording and Bose mode caption corrected and personally verified in four stable final-candidate screenshots (cache9ff53a303e3f). Final LIVE recheck pending."
+}
