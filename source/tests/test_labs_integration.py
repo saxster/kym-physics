@@ -49,7 +49,8 @@ try:
         if args.url:
             page.set_default_navigation_timeout(180000)
             expect.set_options(timeout=60000)
-        page.goto(url, wait_until='networkidle')
+        page.goto(url, wait_until='domcontentloaded' if args.url else 'networkidle')
+        page.wait_for_function('window.App && App.data && App.data.lessons && document.querySelector("[data-lesson-id]")')
         # The original field demo remains usable alongside its alternative.
         old = page.locator('figure[data-live="field3d"]')
         page.evaluate('(id)=>location.hash=id', old.get_attribute('id'))
@@ -84,9 +85,9 @@ try:
         # Restore through the public file picker, after removing only the test's journal entry.
         page.evaluate("App.store.set('lab:field-probe',null)")
         page.locator('#tb-notebook').click()
-        notebook.locator('input[type=file]').set_input_files(str(OUT/'notebook.json'))
-        page.wait_for_timeout(1000)
-        page.wait_for_load_state('networkidle')
+        with page.expect_navigation(wait_until='domcontentloaded' if args.url else 'networkidle'):
+            notebook.locator('input[type=file]').set_input_files(str(OUT/'notebook.json'))
+        page.wait_for_function('window.App && App.data && App.data.lessons && document.querySelector("[data-lesson-id]")')
         fig=open_lesson(page,'field-probe')
         expect(fig.get_by_label('My prediction',exact=True)).to_have_value('The resultant includes both fields.')
         fig.get_by_role('button',name='Back to the drawing',exact=True).click()

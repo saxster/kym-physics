@@ -936,5 +936,5 @@
     "Actual microphone/motion/magnetic sensor calibration",
     "Controlled learner-comprehension or retention outcomes"
   ],
-  "publication": "Local preview/build only; no production publication performed"
+  "publication": "Initial local verification receipt; subsequent authorised publication and live checks are recorded in docs/threejs-publication.md"
 }

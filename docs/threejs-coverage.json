@@ -1434,6 +1434,13 @@
       "Physical Android/iOS GPU, battery, thermal and real-device frame-rate performance",
       "Actual microphone/motion/magnetic sensor calibration",
       "Controlled learner-comprehension or retention outcomes"
-    ]
+    ],
+    "publication": {
+      "status": "LIVE_VERIFIED_IN_BROWSER_EMULATION",
+      "url": "https://saxster.github.io/kym-physics/",
+      "releaseCommit": "d89871115f2f705c87c94a09e694c3cbee013bbd",
+      "cache": "mw-5539b5376f34",
+      "manifest": "docs/threejs-publication.json"
+    }
   }
 }

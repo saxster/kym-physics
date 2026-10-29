@@ -1,6 +1,6 @@
 # Living physics — implementation and verification
 
-29 October 2026. Final local build: **`mw-5539b5376f34`**. All 108 software acceptance obligations in the [implementation plan](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-implementation-plan.md) are implemented and verified within the evidence boundaries below. The [coverage register](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-coverage.json) maps every obligation to its lessons and evidence; the [verification manifest](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-verification.json) records exact receipt hashes, source hashes, browser versions, cases and results.
+29 October 2026. Initial local verification, completed before publication. Verified build: **`mw-5539b5376f34`**. All 108 software acceptance obligations in the [implementation plan](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-implementation-plan.md) are implemented and verified within the evidence boundaries below. The [coverage register](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-coverage.json) maps every obligation to its lessons and evidence; the [verification manifest](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-verification.json) records exact receipt hashes, source hashes, browser versions, cases and results.
 
 ## Delivered behaviour
 
@@ -74,4 +74,6 @@ The build embeds fonts whose binary metadata can vary on an unchanged rebuild. R
 
 Mobile and tablet tests are **browser emulation, not physical-device tests**. Actual Android/iOS GPU frame rates, battery/thermal behaviour, physical microphone/motion/magnetic calibration and controlled learner-comprehension/retention outcomes remain unverified. No 60 fps real-device performance claim or guarantee of an error-free textbook is made. The reviewed numerical models remain subject to their stated approximations.
 
-The complete source and reviewable site are local. The production root `index.html` has not been replaced and no publication has occurred. The local preview is available at [the motor lesson](http://127.0.0.1:63176/#fig-13-4).
+At the end of this initial verification, the source and reviewable site were local and the production root had not been replaced. Amar subsequently authorised publication. See [publication and live verification](/Users/amarsukhi/src/MyCode/kym_physics/docs/threejs-publication.md) for that separate release and its actual public-site results.
+
+The publication work added remote-URL support to the browser/integration runners and a deployment/cache-upgrade runner. The initial source hashes above remain historical snapshots of the original local runs; the publication receipt identifies the updated verification tools. The textbook build bytes were retained exactly.

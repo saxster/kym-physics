@@ -71,18 +71,6 @@ def snapshot(figure, path):
 
 try:
     with sync_playwright() as pw:
-        if args.url:
-            request = pw.request.new_context()
-            try:
-                response = request.get(url, timeout=180000)
-                assert response.ok, f'Live index HTTP {response.status}'
-                assert hashlib.sha256(response.body()).hexdigest() == receipt['indexSha256'], 'Live index differs from the verified build'
-                response = request.get(url + 'sw.js', timeout=60000)
-                assert response.ok, f'Live service worker HTTP {response.status}'
-                assert response.body() == (site / 'sw.js').read_bytes(), 'Live service worker differs from the verified build'
-                receipt['deployedBytesVerified'] = True
-            finally:
-                request.dispose()
         opts = {'headless': True}
         if args.engine == 'chromium':
             opts['args'] = ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--mute-audio']
@@ -90,10 +78,13 @@ try:
         if args.url:
             expect.set_options(timeout=60000)
         for width in [int(w) for w in args.widths.split(',')]:
+            # A reader changes themes within one device session. Keep its HTTP
+            # cache/offline worker while using a fresh page for each theme.
+            context = browser.new_context(viewport={'width': width, 'height': 844 if width < 600 else 1000},
+                                          is_mobile=width<600, has_touch=width<900,
+                                          device_scale_factor=2 if width<600 else 1, reduced_motion='reduce')
             for theme in args.themes.split(','):
-                page = browser.new_page(viewport={'width': width, 'height': 844 if width < 600 else 1000},
-                                        is_mobile=width<600, has_touch=width<900,
-                                        device_scale_factor=2 if width<600 else 1, reduced_motion='reduce')
+                page = context.new_page()
                 page.add_init_script(MONITOR)
                 if args.fallback:
                     page.add_init_script(FALLBACK)
@@ -102,7 +93,16 @@ try:
                 page.on('pageerror', lambda e: errors.append(str(e)))
                 page.on('console', lambda m: errors.append('console: '+m.text) if m.type=='error' else None)
                 page.on('request', lambda r: scripts.append(r.url) if r.resource_type == 'script' and '/live/' in r.url else None)
-                page.goto(url, wait_until='networkidle', timeout=180000 if args.url else 30000)
+                response = page.goto(url, wait_until='domcontentloaded' if args.url else 'networkidle', timeout=180000 if args.url else 30000)
+                if args.url:
+                    assert response.ok, f'Live index HTTP {response.status}'
+                    assert hashlib.sha256(response.body()).hexdigest() == receipt['indexSha256'], 'Live index differs from the verified build'
+                    worker = page.request.get(url + 'sw.js', timeout=60000)
+                    assert worker.ok and worker.body() == (site / 'sw.js').read_bytes(), 'Live service worker differs from the verified build'
+                    receipt['deployedBytesVerified'] = True
+                    receipt.setdefault('navigations', []).append({'width': width, 'theme': theme, 'indexSha256': receipt['indexSha256']})
+                    page.wait_for_function('window.App && App.data && App.data.lessons && document.querySelector("[data-lesson-id]")')
+                    page.evaluate('document.fonts.ready.then(()=>true)')
                 page.evaluate('(theme)=>document.documentElement.dataset.theme=theme', theme)
                 lessons = page.evaluate('App.data.lessons || []')
                 assert lessons, 'No catalog lessons were published'
@@ -227,6 +227,7 @@ try:
                     (out / 'receipt.json').write_text(json.dumps(receipt, indent=2))
                 receipt['errors'].extend(errors)
                 page.close()
+            context.close()
         browser.close()
 finally:
     if server:

@@ -20,6 +20,7 @@ p.add_argument('--site', default='build/site')
 p.add_argument('--out', default='build/publish/browser-trail/health')
 p.add_argument('--wait-for-publish', help='Wait for this flag after capturing a real old-reader cache')
 p.add_argument('--old-cache')
+p.add_argument('--replay-old-cache', help='Seed this saved prior index in an old cache before real live-worker installation')
 a = p.parse_args()
 site, out = ROOT / a.site, ROOT / a.out
 out.mkdir(parents=True, exist_ok=True)
@@ -30,6 +31,16 @@ cache = re.search(rb"const CACHE = '([^']+)'", sw).group(1).decode()
 files = json.loads(re.search(rb'const FILES = (.*?);', sw).group(1))
 expected = {f: hashlib.sha256((site / ('index.html' if f == './' else f[2:])).read_bytes()).hexdigest() for f in files}
 receipt = {'url': url, 'expectedCache': cache, 'expectedIndexSha256': hashlib.sha256(html).hexdigest(), 'cases': [], 'errors': []}
+
+def wait_async(page, expression, arg, timeout=180):
+    # Playwright wait_for_function treats an async predicate's Promise as truthy,
+    # even when that Promise resolves false. Poll its resolved value explicitly.
+    deadline = time.monotonic() + timeout
+    while True:
+        if page.evaluate(expression, arg):
+            return
+        assert time.monotonic() < deadline, 'Live service-worker/cache readiness timed out'
+        page.wait_for_timeout(250)
 
 def log(message):
     with (out / 'log.md').open('a') as f:
@@ -46,6 +57,19 @@ try:
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True, args=['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--mute-audio'])
         context = browser.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, device_scale_factor=2, reduced_motion='reduce')
+        if a.replay_old_cache:
+            assert a.old_cache and not a.wait_for_publish, 'Replay requires --old-cache and cannot wait for another publication'
+            prior = (ROOT / a.replay_old_cache).read_bytes()
+            payload = json.dumps({'cache': a.old_cache, 'body': prior.decode('utf-8')})
+            context.add_init_script('''(() => {
+              if(sessionStorage.getItem('cacheReplaySeeded'))return;
+              sessionStorage.setItem('cacheReplaySeeded','1');
+              const p=''' + payload + ''';
+              const seed=caches.open(p.cache).then(c=>c.put(new URL('index.html',location.href),new Response(p.body)));
+              const register=navigator.serviceWorker.register.bind(navigator.serviceWorker);
+              navigator.serviceWorker.register=(...args)=>seed.then(()=>register(...args));
+            })();''')
+            receipt['controlledOldCacheReplay'] = {'cache': a.old_cache, 'indexSha256': hashlib.sha256(prior).hexdigest(), 'fixture': a.replay_old_cache}
         page = context.new_page(); monitor(page)
         page.set_default_navigation_timeout(180000)
         expect.set_options(timeout=60000)
@@ -54,7 +78,7 @@ try:
         if a.wait_for_publish:
             assert a.old_cache, '--old-cache is required to prove an old-reader upgrade'
             page.wait_for_function('navigator.serviceWorker.controller !== null', timeout=180000)
-            page.wait_for_function('(k)=>caches.has(k)', arg=a.old_cache, timeout=180000)
+            wait_async(page, '(k)=>caches.has(k)', a.old_cache)
             old = {'url': url, 'cache': a.old_cache, 'indexSha256': hashlib.sha256(response.body()).hexdigest()}
             page.screenshot(path=str(out / 'old-reader-before-publish.png'))
             (out / 'upgrade-ready.json').write_text(json.dumps(old, indent=2))
@@ -70,10 +94,10 @@ try:
         r = page.request.get(url + 'sw.js', timeout=60000)
         assert r.ok and r.body() == sw, 'Live service worker differs from the verified build'
         page.evaluate('async()=>{const r=await navigator.serviceWorker.ready;await r.update();}')
-        page.wait_for_function('(k)=>caches.has(k)', arg=cache, timeout=180000)
-        page.wait_for_function('(k)=>navigator.serviceWorker.controller!==null && caches.keys().then(ks=>ks.filter(x=>x.startsWith("mw-")).every(x=>x===k))', arg=cache, timeout=180000)
+        wait_async(page, '(k)=>caches.has(k)', cache)
+        wait_async(page, '(k)=>navigator.serviceWorker.controller!==null && caches.keys().then(ks=>ks.filter(x=>x.startsWith("mw-")).every(x=>x===k))', cache)
         # Installation may have created the cache before addAll has completed.
-        page.wait_for_function('async({cache,files})=>{const c=await caches.open(cache);return (await Promise.all(files.map(f=>c.match(new URL(f,location.href).href)))).every(Boolean);}', arg={'cache': cache, 'files': files}, timeout=180000)
+        wait_async(page, 'async({cache,files})=>{const c=await caches.open(cache);return (await Promise.all(files.map(f=>c.match(new URL(f,location.href).href)))).every(Boolean);}', {'cache': cache, 'files': files})
         actual = page.evaluate('''async({cache,files})=>{
           const c=await caches.open(cache),out={};
           for(const f of files){const r=await c.match(new URL(f,location.href).href);
