@@ -47,3 +47,16 @@ Verification passed with `node source/tests/test_waves_labs.mjs`. Added tests in
 
 
 All34 candidate demonstrations were subsequently personally reviewed at390mobile and1440desktop in default/changed states. The refined desktop build7ee903f1d2d5 resolved annotation obstruction: the Young resultant, Raman energy bars and retinal blur disc were visibly clear. Two final authored placements move the convection caption out of its arrow path and anchor the engine output label to the actual variable-length arrow. A final blocked-seeing correction clips the two fan rays intersecting the opaque screen; renderer tests verify clipping/restoration. These final source changes and the final published site still require screenshot validation. Candidate console receipts show0warnings and0errors at both widths.
+
+
+## Final published verification
+
+All 34 thermal, waves and optics demonstrations passed personal visual inspection on the published textbook at 390×844 and 1440×1000. This covers default and meaningful changed states for each lesson: 136 fresh screenshots, plus two extra String 1 screenshots confirming disabled mass loading and no stale drum labels. The published release was `6dc2858637e4d80f1419c498c9f873c7ca2ec1dc`, cache `mw-4ae3460b3b81`, at https://saxster.github.io/kym-physics/.
+
+Each screenshot receipt records the public URL, actual viewport, sepia theme, `live-lifting=false` and stage transform `none`. All 68 changed-state recipes succeeded. Both console receipts contain zero warnings and zero errors. A first navigation selector timed out after opening the Joule lab; fresh DOM inspection confirmed the settled state and capture resumed successfully. No failed or transient capture was accepted.
+
+Fresh boards are in `source/build/visual-audit-20261029/boards-mobile-live/` and `boards-desktop-live/`. Per-lesson observations and evidence links are in `docs/visual-audit-waves.json`; raw images, strict metadata, action results and console receipts are in `source/build/visual-audit-20261029/after/`.
+
+The final views visibly confirm the causal mechanisms: reversed convection arrows, mass-independent pendulum acceleration and period, the enlarged copy of the same water parcel, pressure/displacement quadrature, visible nodal lines, co-moving Doppler display, rays stopping at the opaque screen, mirror backward extensions, underwater point spread, separated light routes, unobstructed arrival amplitudes, and energy conserved in the Raman bars. Relevant sliders enable and disable with their selected mode. Labels, plotted quantities and controls are readable at both tested widths. No unresolved visual blocker remains in these 34 lessons.
+
+This is responsive browser verification at the stated CSS dimensions, not a physical-device claim. Audio playback was not started during the visual audit.

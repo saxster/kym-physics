@@ -73,8 +73,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-horizon.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Eye and ship labels identify the globe apparatus; the linked hidden-height strip changes from 1.92 m to zero at 40 m eye height. Curvature enlargement remains explicit."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-horizon.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Eye and ship labels identify the globe apparatus; the linked hidden-height strip changes from 1.92 m to zero at 40 m eye height. Curvature enlargement remains explicit."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -140,8 +176,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-shadow-shapes.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Sphere/disc labels are clear; the 90-degree disc becomes an edge-on line and projected area reaches zero while the sphere stays round. Static Play is absent."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-shadow-shapes.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Sphere/disc labels are clear; the 90-degree disc becomes an edge-on line and projected area reaches zero while the sphere stays round. Static Play is absent."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -215,8 +287,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-measurement.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The relocated ruler header is above all five readings; graduations32–42 are unobstructed. Known36.5mm line and the five coincident39.5mm biased readings distinguish repeatability from accuracy. Controls, decimal units and explanation are readable at both sizes."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-measurement.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The relocated ruler header is above all five readings; graduations32–42 are unobstructed. Known36.5mm line and the five coincident39.5mm biased readings distinguish repeatability from accuracy. Controls, decimal units and explanation are readable at both sizes."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -282,8 +390,52 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_REVIEWED_AWAITING_TWO_SCOPED_CORRECTIONS",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-scale.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The unit lattice makes 2-cubed and 3-cubed structure countable. Bars change 2/4/8 to 3/9/27 with a common visual scale and clear physical quantities."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-scale.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The unit lattice makes 2-cubed and 3-cubed structure countable. Bars change 2/4/8 to 3/9/27 with a common visual scale and clear physical quantities."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        },
+        "findings": [
+          {
+            "severity": "P2",
+            "observation": "Largest3× cube is vertically cropped by the wide desktop stage; phone geometry is clear.",
+            "fix": "Authored full-range camera envelope covers reference and all0.5–3 cube corners while keeping comparison scale fixed. Actual-renderer contract passes.",
+            "status": "SOURCE_FIXED_AWAITING_PUBLISHED_RECAPTURE"
+          }
+        ]
       }
     },
     {
@@ -349,8 +501,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-rain.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The doubled exaggerated water depth accompanies doubled volume and mass; units, city area and explicit enlargement caveat are readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-rain.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The doubled exaggerated water depth accompanies doubled volume and mass; units, city area and explicit enlargement caveat are readable."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -416,8 +604,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-shadows.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The moved header leaves gnomons and the angle construction clear. At 30 degrees, unknown stadion length preserves stadia while kilometres are explicitly undetermined."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-shadows.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The moved header leaves gnomons and the angle construction clear. At 30 degrees, unknown stadion length preserves stadia while kilometres are explicitly undetermined."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -483,8 +707,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-frames.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Ball and vehicle labels clear their geometry. One physical event at 0.396 s gives x=1.19 m on the ground and zero relative to the vehicle; the linked trail and unchanged camera preserve the comparison."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-frames.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Ball and vehicle labels clear their geometry. One physical event at 0.396 s gives x=1.19 m on the ground and zero relative to the vehicle; the linked trail and unchanged camera preserve the comparison."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -550,8 +810,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-trains.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "All three carriages have identities. Relative velocity arrows change from 60/70/-60 to 0/10/-120 km/h; the small +10 arrow and long -120 arrow follow their shared scale."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-trains.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "All three carriages have identities. Relative velocity arrows change from 60/70/-60 to 0/10/-120 km/h; the small +10 arrow and long -120 arrow follow their shared scale."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -617,8 +913,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-graph.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Position, time and interval labels are readable. At zero time averages are explicitly undefined. Smooth negative slope at 8.04 s is distinguished from positive displacement and distance."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-graph.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Position, time and interval labels are readable. At zero time averages are explicitly undefined. Smooth negative slope at 8.04 s is distinguished from positive displacement and distance."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -684,8 +1016,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-acceleration.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Left-pointing velocity and acceleration increase speed by default; opposite arrows decrease speed in the changed state. Printed m/s and m/s² distinguish arrow quantities."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-acceleration.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Left-pointing velocity and acceleration increase speed by default; opposite arrows decrease speed in the changed state. Printed m/s and m/s² distinguish arrow quantities."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -751,8 +1119,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-galileo.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Both plots retain physical scales; equal-time 0,1,4,9,16 ramp marks and enlarged rolling marker are clear. Y labels and numeric ticks are separated after the authored axis-clearance changes."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-galileo.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Both plots retain physical scales; equal-time 0,1,4,9,16 ramp marks and enlarged rolling marker are clear. Y labels and numeric ticks are separated after the authored axis-clearance changes."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -818,8 +1222,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-toss.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Acceleration remains -9.80 m/s² at the marked top while velocity reads 0.00; clock, graph axes and h/v/a readout agree and are readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-toss.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Acceleration remains -9.80 m/s² at the marked top while velocity reads 0.00; clock, graph axes and h/v/a readout agree and are readable."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -885,8 +1325,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-inertia.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The book and hand are identified; after release with zero friction the force arrows vanish and velocity graph plateaus at 4 m/s. Force-source text remains explicit."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-inertia.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The book and hand are identified; after release with zero friction the force arrows vanish and velocity graph plateaus at 4 m/s. Force-source text remains explicit."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -952,8 +1428,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-arrow.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Released bow, air and Earth labels identify causes without covering force shafts. Removing drag leaves only downward gravity and unchanged 12 m/s horizontal speed."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-arrow.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Released bow, air and Earth labels identify causes without covering force shafts. Removing drag leaves only downward gravity and unchanged 12 m/s horizontal speed."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1019,8 +1531,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-braking.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Passenger, loose bag and floor-force labels clear torso/bag geometry. In the train frame at 0.6 s feet remain at zero while head and bag advance; the backward floor contact arrow is visible."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-braking.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Passenger, loose bag and floor-force labels clear torso/bag geometry. In the train frame at 0.6 s feet remain at zero while head and bag advance; the backward floor contact arrow is visible."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1086,8 +1634,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-friction.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Sticking has balanced 20 N force bars and no no-op Play; sliding has 100 N push against 34.3 N friction and a visible schematic junction deformation. Molecular-model limits remain explicit."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-friction.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Sticking has balanced 20 N force bars and no no-op Play; sliding has 100 N push against 34.3 N friction and a visible schematic junction deformation. Molecular-model limits remain explicit."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1153,8 +1737,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-tablecloth.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Plate and cloth direction are identified. Duration 0.10 to 0.50 s increases force-time area fivefold and total travel twenty-fivefold; phase text matches before/during/after snapshots."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-tablecloth.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Plate and cloth direction are identified. Duration 0.10 to 0.50 s increases force-time area fivefold and total travel twenty-fivefold; phase text matches before/during/after snapshots."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1220,8 +1840,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-vectors.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Named pulls and resultant are readable. At 180 degrees equal 5 N pulls cancel; resultant and acceleration disappear rather than retaining false arrows."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-vectors.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Named pulls and resultant are readable. At 180 degrees equal 5 N pulls cancel; resultant and acceleration disappear rather than retaining false arrows."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1287,8 +1943,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-newton.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The force geometry remains fixed while increasing mass 1 to 5 kg reduces the separately scaled acceleration arrow to one fifth. Force versus acceleration units and scales are printed."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-newton.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The force geometry remains fixed while increasing mass 1 to 5 kg reduces the separately scaled acceleration arrow to one fifth. Force versus acceleration units and scales are printed."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1354,8 +2046,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-support.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Weight, uphill friction and normal labels clear the support. At 45 degrees the two perpendicular components are 138.59 N for 196 N weight; real compression is printed separately from schematic displacement."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-support.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Weight, uphill friction and normal labels clear the support. At 45 degrees the two perpendicular components are 138.59 N for 196 N weight; real compression is printed separately from schematic displacement."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1421,8 +2149,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-pairs.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Default has exactly the two opposite interaction forces; standing mode has four forces on person/floor/Earth. Disabled irrelevant controls and prose separate balanced forces from interaction partners."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-pairs.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Default has exactly the two opposite interaction forces; standing mode has four forces on person/floor/Earth. Disabled irrelevant controls and prose separate balanced forces from interaction partners."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1488,8 +2252,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-rocket.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The full six-parcel cloud stays inside the fixed view. Forward/backward momentum sums to zero, centre of mass prints zero and the enlarged-body caveat is readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-rocket.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The full six-parcel cloud stays inside the fixed view. Forward/backward momentum sums to zero, centre of mass prints zero and the enlarged-body caveat is readable."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1569,8 +2369,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-fall.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Preset, selected body and hammer shape agree. Brighter white tracking points compare equivalent positions, equal vacuum speed curves use distinct dashed/solid styles, and the legend distinguishes body 2 from terminal-speed lines."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-fall.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Preset, selected body and hammer shape agree. Brighter white tracking points compare equivalent positions, equal vacuum speed curves use distinct dashed/solid styles, and the legend distinguishes body 2 from terminal-speed lines."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1636,8 +2472,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-projectile.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The released ball stays aligned with the car horizontally in the car frame while the ground displacement reaches 0.60 m at 0.3012 s. Labels and the sampled vertical trail clear the ball."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-projectile.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The released ball stays aligned with the car horizontally in the car frame while the ground displacement reaches 0.60 m at 0.3012 s. Labels and the sampled vertical trail clear the ball."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1703,8 +2575,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-circle.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "After release at 45 degrees the ball visibly departs along the tangent at 0.35 s, without an inward or outward force arrow. Reset/time controls agree and the fixed motion envelope keeps it visible."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-circle.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "After release at 45 degrees the ball visibly departs along the tangent at 0.35 s, without an inward or outward force arrow. Reset/time controls agree and the fixed motion envelope keeps it visible."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1770,8 +2678,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-gravity.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Inverse-square surface areas and field strengths are readable. The shared-centre marker is visible on Earth with an offset label; inactive controls are disabled by mode."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-gravity.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Inverse-square surface areas and field strengths are readable. The shared-centre marker is visible on Earth with an offset label; inactive controls are disabled by mode."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1837,8 +2781,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-weightless.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Supported mode visibly compresses the spring and reads 607.34 N while gravity stays 8.68 m/s². Free-fall mode reads zero support and zero compression; supported mode hides no-op Play."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-weightless.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Supported mode visibly compresses the spring and reads 607.34 N while gravity stays 8.68 m/s². Free-fall mode reads zero support and zero compression; supported mode hides no-op Play."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1904,8 +2884,44 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-kepler.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "The enlarged eccentric orbit visibly shifts focus/near-far speed while equal-time sector outlines remain uncovered. Named preset and eccentricity agree; inner/outer periods preserve the 1.657 ratio."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-kepler.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The enlarged eccentric orbit visibly shifts focus/near-far speed while equal-time sector outlines remain uncovered. Named preset and eccentricity agree; inner/outer periods preserve the 1.657 ratio."
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -1972,8 +2988,53 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_REVIEWED_AWAITING_TWO_SCOPED_CORRECTIONS",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-torsion.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Large attracting masses visibly switch sides and the separate×800 dial changes sign. Small physical bar rotation remains small, as disclosed. Equilibrium/torque signs and settling curve agree; controls and arcsecond units are readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-torsion.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Switching attracting masses reverses the dial and signed equilibrium from +27.48 to −27.48 arcseconds; the disturbed trace decays toward the dashed equilibrium. The 800× dial enlargement is explicit. Desktop axis labels are ordered and readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        },
+        "findings": [
+          {
+            "severity": "P2",
+            "observation": "Phone collision layout visually orders y labels0,250,-250 because caption/unit heading displaces the upper tick.",
+            "fix": "Moved caption and twist-unit heading into true header gutter without changing axes, tick anchors or data.",
+            "status": "SOURCE_FIXED_AWAITING_PUBLISHED_RECAPTURE"
+          }
+        ]
       }
     },
     {
@@ -2040,8 +3101,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-perturbation.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Initial mismatched residual curves become coincident when predicted starting angle60° matches the disclosed model. Hidden-planet control and synthetic-inference limits are present. Residual graph communicates the small difference that cannot be seen on the main orbit."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-perturbation.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Wrong 180° prediction gives different solid/dashed residuals and RMS error 1.92e−3; the 60° prediction overlays the residuals and gives zero error. The title and account identify synthetic inference rather than historical observations.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2108,8 +3206,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-mission.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Changed0.2km/s burn gives a visibly larger coast orbit and craft at its later apogee. Before/after tangential arrows remain at the burn position, rather than pushing the craft radially. Native text clearly distinguishes29.05h coast from instantaneous burn; scale reference and bound-energy account are readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-mission.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "At the burn, paired tangent velocity arrows share a scale. The changed state reaches the later apogee at 29.05 h and 145707 km after a 0.200 km/s impulse; the drawing shows the craft at that far side. Before/after velocities and delayed-coast explanation are readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2176,8 +3311,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-pressure.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Contact load has one downward force; immersed mode shows inward forces on faces, a larger bottom push and39.20/44.10kPa values. Nonapplicable controls are disabled. Explanation explicitly distinguishes scalar pressure from directed face force."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-pressure.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Solid-face mode preserves 98 N and names the 0.010 m² contact area. Six-face water mode shows inward face forces, top/bottom pressures 39.20/44.10 kPa and 1225 N net upward force; irrelevant controls disable.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2244,8 +3416,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-suction.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Vacuum barometer depicts external upward pressure balanced by column weight. Changed equal-pressure hemispheres show inward/outward arrows and each net0N; no vacuum pulling arrow appears. Cutaway explanation prevents reading the separated halves as a vacuum force."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-suction.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Water barometer has a visible supported column and pressure/weight arrows. Equal-pressure hemispheres show both outside inward and inside outward arrows, with net force zero explicitly printed. Labels distinguish pressure support from vacuum pulling.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2312,8 +3521,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-hydrostatic.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Two different-width containers retain equal bottom pressure bars,19.60kPa initially and89.20kPa after depth/piston changes. Dam force increases and arrows lengthen. Labels identify tube, reservoir and wall without obscuring them; text separates depth pressure from added uniform pressure."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-hydrostatic.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Narrow tube and wide reservoir have equal bottom-pressure bars at both states: 19.60 kPa initially and 89.20 kPa with deeper water plus added pressure. Dam arrows grow with depth; total force changes from 98 to 1392 kN.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2387,8 +3633,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-hull.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Hull, solid-steel reference and displaced-water reference are identified. Changed egg mode shows the curved egg at the interface, density1150kg/m³ and75% lower-layer volume; irrelevant hull-volume control is disabled. Weight/buoyancy equality and average displaced density are explicit."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-hull.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The sealed hull floats at half depth with equal 98 N weight/buoyancy bars. Egg mode disables hull volume, identifies the two liquid densities and shows 75% of volume in the denser liquid at egg density 1150 kg/m³. The volume-versus-height distinction is readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2455,8 +3738,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-energy.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Boundary expands from ball-only to ball/Earth/surroundings. Grey excluded-store bars become included thermal accounts; changed values sum to0.980J. The explanation correctly assigns gravitational energy to the interaction and tracks energy spread into ball/floor/air."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-energy.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "The visible boundary expands from ball only to ball/Earth/surroundings. The default gravitational bar is grey outside the boundary; the final account includes kinetic, pair potential and three internal/absorbed accounts summing to 0.980 J.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2523,8 +3843,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-impact.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Blue/red rectangle widths show double stopping time and quadruple stopping distance with fixed force. Changed5m/s/.5N state retains the fixed physical axes and reaches.2/.4s and.5/2m. Force, time, distance and area meanings remain readable."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-impact.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Fixed physical axes show doubled stopping time and quadrupled stopping distance. Changed rectangles extend to 0.200/0.400 s and 0.500/2.000 m at 0.5 N; impulse/work areas and their units remain readable.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2591,8 +3948,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-work.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Default horizontal stair segment has vertical support and horizontal displacement with90° angle, while total route is separately labelledmgh. Changed rolling descent gives42.00J translation plus16.80J rotation after58.80J drop. Mode-specific question/explanation distinguishes static friction from dissipative loss."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-work.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Stairs show upward applied force perpendicular to horizontal displacement while total endpoint work is 58.80 J. Rolling state shows uphill static friction and downhill components; translational 42.00 J plus rotational 16.80 J equals the lost gravitational energy.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2659,8 +4053,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-power.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Geyser/lamp example bars visibly compare.500/.240kWh on one scale. Dashed continuation is explicitly hypothetical, whereas the solid segment stops at actual time. Household changed view shows cumulative1.370kWh and separate appliance contributions on its declared2kWh axis."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-power.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Fixed examples compare 0.500 kWh geyser with 0.240 kWh lamp on a common bar scale. Household mode disables fixed power, uses an explicitly different 2 kWh plot and sums four schedules to 1.370 kWh.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2727,8 +4158,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-station.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Boiler, shaft/turbine, stationary coil and lamp are identifiable.100W Sankey divides into40W electrical plus60W rejected. Changed finite-wheel view disables irrelevant efficiency and accounts606.53J remaining plus393.47J transferred after5s; no inexhaustible generator is implied."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-station.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Boiler, turbine, stationary coil and lamp are identifiable. The 100 W Sankey divides visibly into 40 W electrical and 60 W rejected. Wheel mode removes the replenishing source and shows 606.53 J remaining plus 393.47 J delivered to the lamp.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2795,8 +4263,45 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-stevin.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "Four versus two slope beads and their unequal weights are visible. Resolved red downhill components have equal magnitudes. Removing the symmetric lower loop leaves those components unchanged. Linked numbers state both9.80N pulls and explanation connects chain length with slope angle."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-stevin.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Removing the symmetric lower chain leaves the same two slope sections and equal downhill components. The 4 kg versus 2 kg masses are distinct while both parallel forces remain 9.80 N; weight/normal-component labels have clear leaders.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     },
     {
@@ -2863,12 +4368,84 @@
         }
       },
       "finalLive": {
-        "inspected": false,
-        "status": "AWAITING_PUBLISHED_BUILD_AND_FRESH_LIVE_MOBILE_DESKTOP_EVIDENCE"
+        "inspected": true,
+        "status": "LIVE_MOBILE_DESKTOP_INSPECTED",
+        "mobile": {
+          "inspected": true,
+          "reviewer": "visual_mechanics_audit",
+          "screenshot": "source/build/visual-audit-20261029/phone-live-review/m-engine.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            390,
+            844
+          ],
+          "judgment": "600/300K case splits1000J into300J work plus700J rejected. Equal400K state shows0J work,1000J rejected and no Play control. Reservoir labels, conservation bars and explicit schematic-piston limit make the zero-gradient case clear."
+        },
+        "desktop": {
+          "inspected": true,
+          "reviewer": "visual_waves_audit (independent mechanics tail reviewer)",
+          "screenshot": "source/build/visual-audit-20261029/desktop-live-review/m-engine.jpg",
+          "states": [
+            "default",
+            "changed with explanation"
+          ],
+          "viewport": [
+            1440,
+            1000
+          ],
+          "judgment": "Named hot/cold reservoirs change to equal 400 K. Work bar disappears, rejected energy becomes the full 1000 J and Play hides; the default 300 J + 700 J account is conserved. Piston motion is disclosed as schematic.",
+          "reviewReceipt": "docs/visual-review-mechanics-live-tail.md"
+        },
+        "captureAssertions": {
+          "theme": "sepia",
+          "lifting": false,
+          "stageTransform": "none",
+          "urlPrefix": "https://saxster.github.io/kym-physics/",
+          "receiptMobile": "source/build/visual-audit-20261029/after/capture-mechanics-390.json",
+          "receiptDesktop": "source/build/visual-audit-20261029/after/capture-mechanics-1440.json"
+        }
       }
     }
   ],
-  "sourceFindingsAwaitingLiveConfirmation": [
+  "candidateInspectedLessons": 0,
+  "captureNotes": [
+    "All42 fresh live baseline boards were personally opened. Horizontal reading-progress bars and sticky reading toolbar in clips are capture UI overlays, not physics geometry. Controls were operated with supported keyboard actions in the live phone capture; all39 missing-phone recipes completed with zero action errors.",
+    "All 42 diagnostic candidate phone pairs personally inspected after overwriting an incorrect-width diagnostic matrix; retained phone metadata is uniformly actual 390×844.",
+    "Refined candidate desktop captures are uniformly actual 1440×1000, with live-lifting hidden before defaults; all 84 control-state captures succeeded. First 28 through m-kepler personally visually reviewed by mechanics agent; independent waves agent owns remaining 14.",
+    "No candidate image is counted as final LIVE acceptance. Final LIVE phase must assert viewport, sepia theme, no live-lifting class and stage transform none for each record."
+  ],
+  "candidateDiagnosticPhoneInspectedLessons": 42,
+  "candidateRefinedDesktopPersonallyInspectedLessons": 28,
+  "finalLiveInspectedLessons": 42,
+  "sourceFreeze": "Mechanics source frozen after ruler subtitle relocation into the true header gutter; all three focused mechanics suites pass.",
+  "candidateRefinedDesktopJointlyInspectedLessons": 42,
+  "candidateDesktopReviewers": {
+    "visual_mechanics_audit": 28,
+    "visual_waves_audit": 14
+  },
+  "finalLiveMobileInspectedLessons": 42,
+  "finalLiveDesktopPersonallyInspectedLessons": 28,
+  "finalLiveCaptureSummary": {
+    "publicationCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+    "cache": "mw-4ae3460b3b81",
+    "browser": "Edge extension1 (IAB unavailable in this child browser inventory)",
+    "mobileRecords": 84,
+    "desktopRecords": 84,
+    "actionErrors": 0,
+    "consoleWarnings": 0,
+    "consoleErrors": 0,
+    "limitation": "Browser viewport emulation; no claim of physical device testing or measured learner comprehension."
+  },
+  "finalLiveAcceptedLessons": 40,
+  "finalLiveDesktopJointlyInspectedLessons": 42,
+  "finalLiveDesktopReviewers": {
+    "visual_mechanics_audit": 28,
+    "visual_waves_audit": 14
+  },
+  "sourceFindingsResolved": [
     {
       "id": "M-S01",
       "severity": "P1",
@@ -2891,7 +4468,8 @@
         "source/live/mechanics_space.js:362",
         "source/live/mechanics_space.js:368"
       ],
-      "liveReproduction": "Advance a replay/progress slider, then choose another preset or reset action. Also Play→Pause work/mission/station and compare visible input against changed scene/readout."
+      "liveReproduction": "Advance a replay/progress slider, then choose another preset or reset action. Also Play→Pause work/mission/station and compare visible input against changed scene/readout.",
+      "status": "SOURCE_FIXED_ACTUAL_RENDERER_REGRESSION_PASSED_AND_LIVE_DEFAULT_CHANGED_STATES_REVIEWED"
     },
     {
       "id": "M-S02",
@@ -2907,7 +4485,8 @@
       "source": [
         "source/live/mechanics_render.js:162"
       ],
-      "liveReproduction": "Open default m-power; inspect0.25h/15-minute preset output. Set work mass2.5kg or impact speed2.25m/s and compare its output with the numerical account."
+      "liveReproduction": "Open default m-power; inspect0.25h/15-minute preset output. Set work mass2.5kg or impact speed2.25m/s and compare its output with the numerical account.",
+      "status": "SOURCE_FIXED_ACTUAL_RENDERER_REGRESSION_PASSED_AND_LIVE_DEFAULT_CHANGED_STATES_REVIEWED"
     },
     {
       "id": "M-S03",
@@ -2920,23 +4499,8 @@
         "source/live/mechanics_fluids.js:202",
         "source/live/mechanics_fluids.js:203"
       ],
-      "liveReproduction": "Select Egg at liquid interface and inspect the labels, units and whether Sealed outer volume does anything."
+      "liveReproduction": "Select Egg at liquid interface and inspect the labels, units and whether Sealed outer volume does anything.",
+      "status": "SOURCE_FIXED_ACTUAL_RENDERER_REGRESSION_PASSED_AND_LIVE_DEFAULT_CHANGED_STATES_REVIEWED"
     }
-  ],
-  "candidateInspectedLessons": 0,
-  "captureNotes": [
-    "All42 fresh live baseline boards were personally opened. Horizontal reading-progress bars and sticky reading toolbar in clips are capture UI overlays, not physics geometry. Controls were operated with supported keyboard actions in the live phone capture; all39 missing-phone recipes completed with zero action errors.",
-    "All 42 diagnostic candidate phone pairs personally inspected after overwriting an incorrect-width diagnostic matrix; retained phone metadata is uniformly actual 390×844.",
-    "Refined candidate desktop captures are uniformly actual 1440×1000, with live-lifting hidden before defaults; all 84 control-state captures succeeded. First 28 through m-kepler personally visually reviewed by mechanics agent; independent waves agent owns remaining 14.",
-    "No candidate image is counted as final LIVE acceptance. Final LIVE phase must assert viewport, sepia theme, no live-lifting class and stage transform none for each record."
-  ],
-  "candidateDiagnosticPhoneInspectedLessons": 42,
-  "candidateRefinedDesktopPersonallyInspectedLessons": 28,
-  "finalLiveInspectedLessons": 0,
-  "sourceFreeze": "Mechanics source frozen after ruler subtitle relocation into the true header gutter; all three focused mechanics suites pass.",
-  "candidateRefinedDesktopJointlyInspectedLessons": 42,
-  "candidateDesktopReviewers": {
-    "visual_mechanics_audit": 28,
-    "visual_waves_audit": 14
-  }
+  ]
 }

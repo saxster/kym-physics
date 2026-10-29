@@ -95,6 +95,8 @@ function measurement(lab, api, c) {
 }
 function scale(lab, api, c) {
   const s = {}, root = R.scene(lab), reference = R.block(root, c.ink, 0.75, 0.75, 0.75, -1.6, 0), cube = R.block(root, c.electron, 0.75, 0.75, 0.75, 1.1, 0, 0, .24), grid = Array.from({length:48}, () => R.wire(root,c.electron,[[0,0,0],[0,0,0]])), update = () => lab.refresh();
+  // Include the full 0.5–3 multiplier range without changing the comparison scale.
+  R.frame(lab,root,{min:[-2,-1.2,-1.2],max:[2.3,1.2,1.2]});
   lab.kit?.label?.("one unit cube", reference, {color:c.ink});
   lab.kit?.label?.("same unit grid", cube, {color:c.electron});
   R.slider(api, s, "scale", "Length multiplier", 0.5, 3, 0.1, 2, "", update);

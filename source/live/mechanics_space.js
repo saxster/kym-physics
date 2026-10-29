@@ -351,9 +351,10 @@ function torsion(lab, api, c) {
     R.path(equilibrium, [[-Math.cos(a), -Math.sin(a), 0.05], [Math.cos(a), Math.sin(a), 0.05]]);
     primary(ctx, c, "A disturbed balance settles towards gravity equilibrium");
     const unit = 180 * 3600 / Math.PI, max = 250;
-    const ax = R.plot(ctx, c, [{ color: c.proton, values: R.samples(151, (u) => [u * 5e3, M.torsionResponse(p.angle, u * 5e3, s.disturbance / unit).angle * unit]) }, { color: c.rule, values: [[0, p.angle * unit], [5e3, p.angle * unit]], dash: [4, 4] }], { x: 55, y: 185, w: 500, h: 105, xmax: 5e3, ymin: -max, ymax: max, ylabel: "twist (arcsec)", xlabel: "time (s)" });
+    const ax = R.plot(ctx, c, [{ color: c.proton, values: R.samples(151, (u) => [u * 5e3, M.torsionResponse(p.angle, u * 5e3, s.disturbance / unit).angle * unit]) }, { color: c.rule, values: [[0, p.angle * unit], [5e3, p.angle * unit]], dash: [4, 4] }], { x: 55, y: 185, w: 500, h: 105, xmax: 5e3, ymin: -max, ymax: max, xlabel: "time (s)" });
     R.dot(ctx, c.electron, ax.X(s.time), ax.Y(d.angle * unit), 5);
-    R.text(ctx, c.ink, `equilibrium ${fmt(p.angle * unit)} arcsec; torque ${p.torque.toExponential(2)} N\xB7m`, 25, 54, 14);
+    R.text(ctx, c.ink, "twist (arcsec)", 25, 35, 14);
+    R.text(ctx, c.ink, `equilibrium ${fmt(p.angle * unit)} arcsec; torque ${p.torque.toExponential(2)} N\xB7m`, 25, 45, 14);
     R.text(ctx, c.ink, "k=10\u207B\u2075 N\xB7m/rad, I=.016 kg\xB7m\xB2, damping ratio .12; separate dial \xD7800", 25, 230, 13);
     lab.say(`The gravitational torque ${p.torque.toExponential(3)} N\xB7m sets equilibrium ${fmt(p.angle * unit)} arcseconds. A ${s.disturbance} arcsecond disturbance starts at rest and decays with damping ratio .12, period ${fmt(d.period, 0)} s. Current twist ${fmt(d.angle * unit)} arcseconds; the grey reference is equilibrium. The bar uses its physical angle on a common 2.5 scene-unit/metre apparatus scale; only the separate dial amplifies angle 800\xD7, and ball markers are schematic. Damping removes oscillation energy, not gravity torque. Apparatus values are illustrative.`);
   });

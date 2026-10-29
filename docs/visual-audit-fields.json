@@ -6,7 +6,7 @@
     {
       "id": "charge",
       "title": "Charge moves; neutral objects respond",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "If both objects start neutral, can rubbing create net charge?",
       "expectedObservation": "Electrons move between objects; count the equal positive deficit and negative excess. A nearby neutral object can polarise.",
       "changedState": [
@@ -56,12 +56,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/charge-390-default.jpg",
+          "source/build/visual-audit-20261029/after/charge-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/charge-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/charge-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/charge.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/charge.png"
+        ],
+        "observation": "Transferred counts conserve zero; changed conductor stays neutral with visible internal charge separation.",
+        "actualReadouts": {
+          "390-default": "Transferred 3 electrons: left +3, right −3. Total charge remains 0. Positive nuclei stay in their material; negative charge is transferred. Separation 1.0× reference.",
+          "390-changed": "Charged source +8; neutral sample 0; removed electrons −8 shown at far left. Total charge remains 0. Mobile electrons redistribute while positive nuclei remain fixed. Separation 0.5× reference.",
+          "1440-default": "Transferred 3 electrons: left +3, right −3. Total charge remains 0. Positive nuclei stay in their material; negative charge is transferred. Separation 1.0× reference.",
+          "1440-changed": "Charged source +8; neutral sample 0; removed electrons −8 shown at far left. Total charge remains 0. Mobile electrons redistribute while positive nuclei remain fixed. Separation 0.5× reference."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "cage",
       "title": "Inside a conducting shell",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does a metal shell merely weaken the external electric field?",
       "expectedObservation": "Inspect external and induced fields separately, then add them: the empty cavity is field-free in electrostatic equilibrium.",
       "changedState": [
@@ -107,12 +148,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/cage-390-default.jpg",
+          "source/build/visual-audit-20261029/after/cage-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/cage-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/cage-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/cage.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/cage.png"
+        ],
+        "observation": "Total cavity arrows vanish; external-only arrows enter while the explicitly total readout stays zero.",
+        "actualReadouts": {
+          "390-default": "At r = 0.3 shell radii, total field 0.00× applied field. Inside the empty closed shell, induced and external fields cancel.",
+          "390-changed": "At r = 0.0 shell radii, total field 0.00× applied field. Inside the empty closed shell, induced and external fields cancel.",
+          "1440-default": "At r = 0.3 shell radii, total field 0.00× applied field. Inside the empty closed shell, induced and external fields cancel.",
+          "1440-changed": "At r = 0.0 shell radii, total field 0.00× applied field. Inside the empty closed shell, induced and external fields cancel."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "circuit-signal",
       "title": "Slow electrons, fast signal",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Must an electron travel from the battery to the LED before the LED responds?",
       "expectedObservation": "The wire already contains mobile charge. A signal travels through the circuit much faster than the average electron drift.",
       "changedState": [
@@ -158,12 +240,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/circuit-signal-390-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-signal-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/circuit-signal-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-signal-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/circuit-signal.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/circuit-signal.png"
+        ],
+        "observation": "Tracked electron moves half a loop at 5000 drift seconds while its start ring and independent fast clock stay fixed.",
+        "actualReadouts": {
+          "390-default": "5.0 ns signal clock. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels 5.00e-13 m. Large blue dot follows one electron; outlined start stays fixed. Play advances only the selected clock (2 ns/s or 500 drift s/s); each clock stops at its limit; Replay returns it to zero. Icons enlarged, spatial path is the same.",
+          "390-changed": "5000 s drift clock. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels 0.500 m. Large blue dot follows one electron; outlined start stays fixed. Play advances only the selected clock (2 ns/s or 500 drift s/s); each clock stops at its limit; Replay returns it to zero. Icons enlarged, spatial path is the same.",
+          "1440-default": "5.0 ns signal clock. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels 5.00e-13 m. Large blue dot follows one electron; outlined start stays fixed. Play advances only the selected clock (2 ns/s or 500 drift s/s); each clock stops at its limit; Replay returns it to zero. Icons enlarged, spatial path is the same.",
+          "1440-changed": "5000 s drift clock. Complete rectangular wire path represents 1 m. Signal 10⁸ m/s reaches one loop in 10 ns; electron drift 0.1 mm/s travels 0.500 m. Large blue dot follows one electron; outlined start stays fixed. Play advances only the selected clock (2 ns/s or 500 drift s/s); each clock stops at its limit; Replay returns it to zero. Icons enlarged, spatial path is the same."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "circuit-diagnose",
       "title": "Find the dark LED",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Can a battery show its normal voltage and still fail under load?",
       "expectedObservation": "An exponential LED model and source load line meet at the measured operating point. Open and reverse states alter the visible circuit.",
       "changedState": [
@@ -220,12 +343,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/circuit-diagnose-390-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-diagnose-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/circuit-diagnose-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-diagnose-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/circuit-diagnose.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/circuit-diagnose.png"
+        ],
+        "observation": "Reversed LED orientation and zero-current plotted dot agree; forward mode dot agrees with measured current.",
+        "actualReadouts": {
+          "390-default": "Supply 9.0 V, terminal 9.00 V, LED 2.00 V, current 21.20 mA. Dot is the intersection of nonlinear LED-plus-resistor response and the source load line. Exponential ideal-diode teaching model, not a component specification.",
+          "390-changed": "Supply 9.0 V, terminal 9.00 V, LED 9.00 V, current 0.00 mA. Reversed triangle polarity: blocked current. Exponential ideal-diode teaching model, not a component specification.",
+          "1440-default": "Supply 9.0 V, terminal 9.00 V, LED 2.00 V, current 21.20 mA. Dot is the intersection of nonlinear LED-plus-resistor response and the source load line. Exponential ideal-diode teaching model, not a component specification.",
+          "1440-changed": "Supply 9.0 V, terminal 9.00 V, LED 9.00 V, current 0.00 mA. Reversed triangle polarity: blocked current. Exponential ideal-diode teaching model, not a component specification."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "circuit-probes",
       "title": "Measure two branches",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PENDING_LIVE_B_CORRECTION",
       "question": "Do unequal parallel branches have equal current or equal voltage?",
       "expectedObservation": "Change the actual series/parallel topology, then inspect branch/total current or the red–black voltage difference across either load.",
       "changedState": [
@@ -279,12 +443,53 @@
           "source/build/visual-audit-20261029/boards-refined-fields/circuit-probes.png"
         ],
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PENDING_LIVE_B_CORRECTION",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/circuit-probes-390-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-probes-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/circuit-probes-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/circuit-probes-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/circuit-probes.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/circuit-probes.png"
+        ],
+        "observation": "Default current readout/title agree, but diagram footer incorrectly describes voltage endpoints. Source conditional footer fixed; published recheck required.",
+        "actualReadouts": {
+          "390-default": "Parallel topology: I₁ 21.21 mA; I₂ 10.61 mA; battery 31.82 mA. Probe branch 1: 21.21 mA. Each load contains resistor + LED.",
+          "390-changed": "Series topology: I₁ 5.05 mA; I₂ 5.05 mA; battery 5.05 mA. Probe red minus black across load 2: 5.33 V. Each load contains resistor + LED.",
+          "1440-default": "Parallel topology: I₁ 21.21 mA; I₂ 10.61 mA; battery 31.82 mA. Probe branch 1: 21.21 mA. Each load contains resistor + LED.",
+          "1440-changed": "Series topology: I₁ 5.05 mA; I₂ 5.05 mA; battery 5.05 mA. Probe red minus black across load 2: 5.33 V. Each load contains resistor + LED."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "protection",
       "title": "A fault in the case",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does a small current leaking to earth look like an overload?",
       "expectedObservation": "Compare a protective-earth fault, isolated live case, virtual touch return and balanced overload. A trip opens the actual switch and stops current until reset.",
       "changedState": [
@@ -330,12 +535,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/protection-390-default.jpg",
+          "source/build/visual-audit-20261029/after/protection-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/protection-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/protection-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/protection.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/protection.png"
+        ],
+        "observation": "40 mA leakage visibly opens switch and stops current; imbalance and balanced overload are distinguished.",
+        "actualReadouts": {
+          "390-default": "Switch closed. Live 1.000 A, neutral 1.000 A. Return path: protective earth. A prescribed prospective fault; virtual demonstration only.",
+          "390-changed": "OPEN / current stopped: 40 mA imbalance exceeds 30 mA. Live 0.000 A, neutral 0.000 A. Return path: protective earth. A prescribed prospective fault; virtual demonstration only.",
+          "1440-default": "Switch closed. Live 1.000 A, neutral 1.000 A. Return path: protective earth. A prescribed prospective fault; virtual demonstration only.",
+          "1440-changed": "OPEN / current stopped: 40 mA imbalance exceeds 30 mA. Live 0.000 A, neutral 0.000 A. Return path: protective earth. A prescribed prospective fault; virtual demonstration only."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "domains",
       "title": "Domains inside a magnet",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "When a magnet is cut, can one half contain only a north pole?",
       "expectedObservation": "Domain orientations and their net moment change with the applied field. Cutting the sample leaves complete dipoles on both pieces.",
       "changedState": [
@@ -381,12 +627,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/domains-390-default.jpg",
+          "source/build/visual-audit-20261029/after/domains-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/domains-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/domains-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/domains.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/domains.png"
+        ],
+        "observation": "Both cut pieces retain visible N/S ends and complete domain moments.",
+        "actualReadouts": {
+          "390-default": "Applied field 100; relative net moment 1.00: favourable regions grow; their moments rotate toward the applied field at high field. The whole sample’s magnetic moment is the vector sum of its domains.",
+          "390-changed": "Applied field 100; relative net moment 1.00: favourable regions grow; their moments rotate toward the applied field at high field. Both separated pieces still contain north–south dipoles.",
+          "1440-default": "Applied field 100; relative net moment 1.00: favourable regions grow; their moments rotate toward the applied field at high field. The whole sample’s magnetic moment is the vector sum of its domains.",
+          "1440-changed": "Applied field 100; relative net moment 1.00: favourable regions grow; their moments rotate toward the applied field at high field. Both separated pieces still contain north–south dipoles."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "earth-field",
       "title": "A compass that can dip",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does a compass reveal the complete direction of Earth’s field?",
       "expectedObservation": "A free needle aligns in three dimensions. A level compass can show only the horizontal projection; device axes rotate while the world field stays fixed.",
       "changedState": [
@@ -436,12 +723,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/earth-field-390-default.jpg",
+          "source/build/visual-audit-20261029/after/earth-field-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/earth-field-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/earth-field-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/earth-field.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/earth-field.png"
+        ],
+        "observation": "Held-level needle follows horizontal projection; rotating device basis changes components while world field remains unchanged.",
+        "actualReadouts": {
+          "390-default": "Latitude 19.1°; dip 34.7°. World east/north/up B = (0.00, 0.95, -0.65). Rotating device x/y/z = (0.00, 0.95, -0.65), in relative units. Blue device basis rotates; green components add to unchanged dark world B. Free needle follows full B. Globe red arrow is the same local field.",
+          "390-changed": "Latitude 60.0°; dip 73.9°. World east/north/up B = (0.00, 0.50, -1.73). Rotating device x/y/z = (0.50, 0.00, -1.73), in relative units. Blue device basis rotates; green components add to unchanged dark world B. Level needle follows only its horizontal projection. Globe red arrow is the same local field.",
+          "1440-default": "Latitude 19.1°; dip 34.7°. World east/north/up B = (0.00, 0.95, -0.65). Rotating device x/y/z = (0.00, 0.95, -0.65), in relative units. Blue device basis rotates; green components add to unchanged dark world B. Free needle follows full B. Globe red arrow is the same local field.",
+          "1440-changed": "Latitude 60.0°; dip 73.9°. World east/north/up B = (0.00, 0.50, -1.73). Rotating device x/y/z = (0.50, 0.00, -1.73), in relative units. Blue device basis rotates; green components add to unchanged dark world B. Level needle follows only its horizontal projection. Globe red arrow is the same local field."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "field-probe",
       "title": "Add wire and Earth fields",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Will reversing the wire current turn a compass exactly 180 degrees?",
       "expectedObservation": "Move the probe and add the wire field to a fixed northward background. Compare the separate vectors and their sum.",
       "changedState": [
@@ -488,12 +816,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/field-probe-390-default.jpg",
+          "source/build/visual-audit-20261029/after/field-probe-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/field-probe-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/field-probe-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/field-probe.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/field-probe.png"
+        ],
+        "observation": "Current reversal changes the wire contribution while northward background persists; resultant vector and graph agree.",
+        "actualReadouts": {
+          "390-default": "Source 20.00 μT; Earth north 38.4 μT; resultant 43.30 μT. Current +y makes a tangent field −z at the +x probe; reversing current reverses it. Arrow scale 80 μT/unit. Probe 1.0 cm from wire.",
+          "390-changed": "Source 40.00 μT; Earth north 38.4 μT; resultant 55.45 μT. Current +y makes a tangent field −z at the +x probe; reversing current reverses it. Arrow scale 80 μT/unit. Probe 1.0 cm from wire.",
+          "1440-default": "Source 20.00 μT; Earth north 38.4 μT; resultant 43.30 μT. Current +y makes a tangent field −z at the +x probe; reversing current reverses it. Arrow scale 80 μT/unit. Probe 1.0 cm from wire.",
+          "1440-changed": "Source 40.00 μT; Earth north 38.4 μT; resultant 55.45 μT. Current +y makes a tangent field −z at the +x probe; reversing current reverses it. Arrow scale 80 μT/unit. Probe 1.0 cm from wire."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "motor",
       "title": "Step inside a motor",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Why must the current reverse every half-turn?",
       "expectedObservation": "Opposite coil sides carry opposite currents and feel opposite forces. The split ring reverses current so torque keeps the same rotational sense.",
       "changedState": [
@@ -573,12 +942,53 @@
           "source/build/visual-audit-20261029/boards-refined-fields/motor.png"
         ],
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/motor-390-default.jpg",
+          "source/build/visual-audit-20261029/after/motor-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/motor-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/motor-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/motor.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/motor.png"
+        ],
+        "observation": "Continuous slip rings and negative signed torque at 225 degrees visibly differ from commutated mode; zero reference and labels are readable.",
+        "actualReadouts": {
+          "390-default": "Angle 45°; signed coil current 2.0 A; torque 0.283 N·m. The commutator flips current each half-turn; torque retains its sense. Rotor paused for inspection.",
+          "390-changed": "Angle 225°; signed coil current 2.0 A; torque -0.283 N·m. Continuous slip rings do not swap the coil connections: torque reverses after half a turn. Rotor paused for inspection.",
+          "1440-default": "Angle 45°; signed coil current 2.0 A; torque 0.283 N·m. The commutator flips current each half-turn; torque retains its sense. Rotor paused for inspection.",
+          "1440-changed": "Angle 225°; signed coil current 2.0 A; torque -0.283 N·m. Continuous slip rings do not swap the coil connections: torque reverses after half a turn. Rotor paused for inspection."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "generator",
       "title": "Turn a generator",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does the largest flux always mean the largest induced voltage?",
       "expectedObservation": "Rotating a coil changes flux. The voltage tracks the rate of flux change, reaching zero at maximum or minimum flux.",
       "changedState": [
@@ -625,12 +1035,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/generator-390-default.jpg",
+          "source/build/visual-audit-20261029/after/generator-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/generator-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/generator-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/generator.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/generator.png"
+        ],
+        "observation": "At 90 degrees flux is zero and induced voltage maximal; distinct physical units of the shared relative plot are explicit.",
+        "actualReadouts": {
+          "390-default": "Angle 45.0°; linked flux 0.141 Wb-turn; induced voltage 0.283 V at 2.0 rad/s. Peak flux gives zero rate of change and zero voltage.",
+          "390-changed": "Angle 90.0°; linked flux 0.000 Wb-turn; induced voltage 0.600 V at 3.0 rad/s. Peak flux gives zero rate of change and zero voltage.",
+          "1440-default": "Angle 45.0°; linked flux 0.141 Wb-turn; induced voltage 0.283 V at 2.0 rad/s. Peak flux gives zero rate of change and zero voltage.",
+          "1440-changed": "Angle 90.0°; linked flux 0.000 Wb-turn; induced voltage 0.600 V at 3.0 rad/s. Peak flux gives zero rate of change and zero voltage."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "transformer",
       "title": "Two coils, one changing field",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Can a steady direct current keep inducing voltage in a second coil?",
       "expectedObservation": "Both coils link the same reversing flux. Blue primary and red secondary emf follow its time derivative; changing turns changes their amplitude ratio.",
       "changedState": [
@@ -672,12 +1123,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/transformer-390-default.jpg",
+          "source/build/visual-audit-20261029/after/transformer-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/transformer-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/transformer-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/transformer.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/transformer.png"
+        ],
+        "observation": "Steady DC removes Play, keeps steady flux and puts both induced-emf curves at zero; winding current account is separate.",
+        "actualReadouts": {
+          "390-default": "Instantaneous primary 0.00 V; secondary 0.00 V; common flux 0.113 Wb. Slow AC clock; voltage follows −N dΦ/dt. Primary 100 turns, secondary 200 turns: 24.0 V RMS out, 2.00 A RMS in for 1 A RMS secondary. Input/output mean power 24.0 W with an ideal resistive load; core losses and saturation omitted.",
+          "390-changed": "Steady DC comparison after its transient: applied 12.0 V, illustrative winding resistance 10 Ω gives 1.20 A. Nonzero steady common flux (strength schematic); induced primary and secondary emf both 0 V. Winding resistance limits DC current; the AC ideal lossless power rule does not apply to this separate steady-state comparison.",
+          "1440-default": "Instantaneous primary 0.00 V; secondary 0.00 V; common flux 0.113 Wb. Slow AC clock; voltage follows −N dΦ/dt. Primary 100 turns, secondary 200 turns: 24.0 V RMS out, 2.00 A RMS in for 1 A RMS secondary. Input/output mean power 24.0 W with an ideal resistive load; core losses and saturation omitted.",
+          "1440-changed": "Steady DC comparison after its transient: applied 12.0 V, illustrative winding resistance 10 Ω gives 1.20 A. Nonzero steady common flux (strength schematic); induced primary and secondary emf both 0 V. Winding resistance limits DC current; the AC ideal lossless power rule does not apply to this separate steady-state comparison."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "em-wave",
       "title": "Two fields across a gap",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does either field point along the wave’s travel direction?",
       "expectedObservation": "Inspect electric and magnetic field vectors at fixed points. Both are transverse, perpendicular to one another and in phase.",
       "changedState": [
@@ -723,12 +1215,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/em-wave-390-default.jpg",
+          "source/build/visual-audit-20261029/after/em-wave-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/em-wave-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/em-wave-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/em-wave.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/em-wave.png"
+        ],
+        "observation": "Polarisation changes transverse orientation; E/B remain mutually perpendicular and in phase. Green-light spectrum marker and numerical wavelength agree.",
+        "actualReadouts": {
+          "390-default": "Wavelength 2.998e+0 m; frequency 1.000e+8 Hz, f = c/λ. View spans five selected wavelengths. Time is slowed: visible angular rate 1.4 rad/s; physical angular rate 6.28e+8 rad/s. E and B are in phase, mutually perpendicular and transverse to travel (+x). At a fixed point each field oscillates; no material travels with the drawn curves.",
+          "390-changed": "Wavelength 5.500e-7 m; frequency 5.451e+14 Hz, f = c/λ. View spans five selected wavelengths. Time is slowed: visible angular rate 1.4 rad/s; physical angular rate 3.42e+15 rad/s. E and B are in phase, mutually perpendicular and transverse to travel (+x). At a fixed point each field oscillates; no material travels with the drawn curves.",
+          "1440-default": "Wavelength 2.998e+0 m; frequency 1.000e+8 Hz, f = c/λ. View spans five selected wavelengths. Time is slowed: visible angular rate 1.4 rad/s; physical angular rate 6.28e+8 rad/s. E and B are in phase, mutually perpendicular and transverse to travel (+x). At a fixed point each field oscillates; no material travels with the drawn curves.",
+          "1440-changed": "Wavelength 5.500e-7 m; frequency 5.451e+14 Hz, f = c/λ. View spans five selected wavelengths. Time is slowed: visible angular rate 1.4 rad/s; physical angular rate 3.42e+15 rad/s. E and B are in phase, mutually perpendicular and transverse to travel (+x). At a fixed point each field oscillates; no material travels with the drawn curves."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "day-night",
       "title": "Earth turns beneath the sky",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Which way must Earth turn for stars to seem to move west?",
       "expectedObservation": "A marked surface observer crosses the lit and dark hemispheres. Change from a space camera to a surface-direction diagram.",
       "changedState": [
@@ -774,12 +1307,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/day-night-390-default.jpg",
+          "source/build/visual-audit-20261029/after/day-night-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/day-night-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/day-night-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/day-night.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/day-night.png"
+        ],
+        "observation": "Six-hour local view places Sun on east horizon, preserving state and agreeing with east-up calculated diagram.",
+        "actualReadouts": {
+          "390-default": "Solar time 12.00 h, latitude 19.1°; Sun altitude 70.9°. Play advances 1 solar hour per animation second. The tangent horizon and east/north/up basis turn with the observer. Morning Sun is east, evening Sun west; pale stars are above the horizon. Switching views preserves the same state.",
+          "390-changed": "Solar time 6.00 h, latitude 19.1°; Sun altitude 0.0°. Play advances 1 solar hour per animation second. The tangent horizon and east/north/up basis turn with the observer. Morning Sun is east, evening Sun west; pale stars are above the horizon. Switching views preserves the same state.",
+          "1440-default": "Solar time 12.00 h, latitude 19.1°; Sun altitude 70.9°. Play advances 1 solar hour per animation second. The tangent horizon and east/north/up basis turn with the observer. Morning Sun is east, evening Sun west; pale stars are above the horizon. Switching views preserves the same state.",
+          "1440-changed": "Solar time 6.00 h, latitude 19.1°; Sun altitude 0.0°. Play advances 1 solar hour per animation second. The tangent horizon and east/north/up basis turn with the observer. Morning Sun is east, evening Sun west; pale stars are above the horizon. Switching views preserves the same state."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "seasons3d",
       "title": "Tilt, sunlight and daylight",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "If tilt is zero but the orbit remains, do the seasons remain?",
       "expectedObservation": "Keep the axis fixed in space as Earth moves round its orbit. Link latitude, local noon altitude, daylight arc and a beam footprint.",
       "changedState": [
@@ -830,12 +1404,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/seasons3d-390-default.jpg",
+          "source/build/visual-audit-20261029/after/seasons3d-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/seasons3d-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/seasons3d-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/seasons3d.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/seasons3d.png"
+        ],
+        "observation": "Day 355 northern winter has lower flux/shorter daylight than opposite hemisphere; fixed axis and schematic body scale are explicit.",
+        "actualReadouts": {
+          "390-default": "Day 172.0; latitude 19.1°; tilt 23.44°; noon Sun 85.6° high; daylight 13.15 h. Play advances 10 model days per animation second, stopping at day 365. Bodies are enlarged schematically; the axis stays parallel to itself. Compare the opposite hemisphere at the same date.",
+          "390-changed": "Day 355.0; latitude 45.0°; tilt 23°; noon Sun 22.0° high; daylight 8.65 h. Play advances 10 model days per animation second, stopping at day 365. Bodies are enlarged schematically; the axis stays parallel to itself. Compare the opposite hemisphere at the same date.",
+          "1440-default": "Day 172.0; latitude 19.1°; tilt 23.44°; noon Sun 85.6° high; daylight 13.15 h. Play advances 10 model days per animation second, stopping at day 365. Bodies are enlarged schematically; the axis stays parallel to itself. Compare the opposite hemisphere at the same date.",
+          "1440-changed": "Day 355.0; latitude 45.0°; tilt 23°; noon Sun 22.0° high; daylight 8.65 h. Play advances 10 model days per animation second, stopping at day 365. Bodies are enlarged schematically; the axis stays parallel to itself. Compare the opposite hemisphere at the same date."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "moon-rotation",
       "title": "The Moon has to turn",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Would a Moon that never rotated always show us the same face?",
       "expectedObservation": "Keep a marked face directed towards Earth by rotating it once per orbit. Compare with a non-rotating sphere and follow its illuminated half.",
       "changedState": [
@@ -881,12 +1496,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/moon-rotation-390-default.jpg",
+          "source/build/visual-audit-20261029/after/moon-rotation-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/moon-rotation-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/moon-rotation-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/moon-rotation.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/moon-rotation.png"
+        ],
+        "observation": "No-axial-turn marked face remains fixed in space and points away at 180 degrees; top-down diagram makes this clear.",
+        "actualReadouts": {
+          "390-default": "Illuminated fraction 14.6%. The red near-side marker turns once per orbit and stays directed at Earth. Play advances lunar angle 15° per animation second. The unlit portion is the Moon’s own night side.",
+          "390-changed": "Illuminated fraction 100.0%. The red marker keeps one direction in space; Earth sees changing sides. Play advances lunar angle 15° per animation second. The unlit portion is the Moon’s own night side.",
+          "1440-default": "Illuminated fraction 14.6%. The red near-side marker turns once per orbit and stays directed at Earth. Play advances lunar angle 15° per animation second. The unlit portion is the Moon’s own night side.",
+          "1440-changed": "Illuminated fraction 100.0%. The red marker keeps one direction in space; Earth sees changing sides. Play advances lunar angle 15° per animation second. The unlit portion is the Moon’s own night side."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "eclipses",
       "title": "Find an eclipse by geometry",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Why can a new Moon miss the Sun–Earth line?",
       "expectedObservation": "Advance orbital longitude and the year. The inclined lunar plane meets the ecliptic at two nodes; shadow intersections are calculated from these positions.",
       "changedState": [
@@ -947,12 +1603,53 @@
           "source/build/visual-audit-20261029/boards-refined-fields/eclipses.png"
         ],
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/eclipses-390-default.jpg",
+          "source/build/visual-audit-20261029/after/eclipses-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/eclipses-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/eclipses-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/eclipses.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/eclipses.png"
+        ],
+        "observation": "Selected alignment gives solar intersection; scaled central detail and target coverage expose antumbra/penumbra with readable separate legends.",
+        "actualReadouts": {
+          "390-default": "Illuminated fraction 14.6%; Moon 271812 km from the Sun–Earth axis. No solar or umbral lunar intersection. Play advances lunar angle 15° per animation second with the year fixed. Red nodes mark where the orbital planes meet. Overview bodies and shadow widths share a scale; the finite Sun is outside the view. The linked cut enlarges transverse distances as labelled; this is not a dated contact prediction.",
+          "390-changed": "Illuminated fraction 0.0%; Moon 0 km from the Sun–Earth axis. Solar shadow intersection is possible. Play advances lunar angle 15° per animation second with the year fixed. Red nodes mark where the orbital planes meet. Overview bodies and shadow widths share a scale; the finite Sun is outside the view. The linked cut enlarges transverse distances as labelled; this is not a dated contact prediction.",
+          "1440-default": "Illuminated fraction 14.6%; Moon 271812 km from the Sun–Earth axis. No solar or umbral lunar intersection. Play advances lunar angle 15° per animation second with the year fixed. Red nodes mark where the orbital planes meet. Overview bodies and shadow widths share a scale; the finite Sun is outside the view. The linked cut enlarges transverse distances as labelled; this is not a dated contact prediction.",
+          "1440-changed": "Illuminated fraction 0.0%; Moon 0 km from the Sun–Earth axis. Solar shadow intersection is possible. Play advances lunar angle 15° per animation second with the year fixed. Red nodes mark where the orbital planes meet. Overview bodies and shadow widths share a scale; the finite Sun is outside the view. The linked cut enlarges transverse distances as labelled; this is not a dated contact prediction."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "tides3d",
       "title": "Subtract Earth’s central pull",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Why is there an outward relative pull on the far side?",
       "expectedObservation": "Inspect the Moon’s absolute pull and subtract the pull at Earth’s centre at each surface point. Add the Sun’s differential pull.",
       "changedState": [
@@ -994,12 +1691,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/tides3d-390-default.jpg",
+          "source/build/visual-audit-20261029/after/tides3d-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/tides3d-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/tides3d-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/tides3d.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/tides3d.png"
+        ],
+        "observation": "Absolute arrows point toward Moon while differential near/far arrows oppose; signed graph is explicitly differential.",
+        "actualReadouts": {
+          "390-default": "Differential pull shown. Near-side differential acceleration 1.13e-6 m/s². Sun contribution included in differential view. Play advances the Moon 15° per animation second. Arrows use separately enlarged scales; this is not a Haji Ali tide forecast.",
+          "390-changed": "Absolute pull shown. Near-side differential acceleration 1.13e-6 m/s². Sun contribution included in differential view. Play advances the Moon 15° per animation second. Arrows use separately enlarged scales; this is not a Haji Ali tide forecast.",
+          "1440-default": "Differential pull shown. Near-side differential acceleration 1.13e-6 m/s². Sun contribution included in differential view. Play advances the Moon 15° per animation second. Arrows use separately enlarged scales; this is not a Haji Ali tide forecast.",
+          "1440-changed": "Absolute pull shown. Near-side differential acceleration 1.13e-6 m/s². Sun contribution included in differential view. Play advances the Moon 15° per animation second. Arrows use separately enlarged scales; this is not a Haji Ali tide forecast."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "photoelectric",
       "title": "Count photons and electrons",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Can bright red light beat the threshold by pooling its photons?",
       "expectedObservation": "Frequency sets energy per photon and maximum electron kinetic energy; photon flux sets the number available. Retarding voltage reveals the stopping potential.",
       "changedState": [
@@ -1046,12 +1784,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Personally opened default and meaningful changed desktop pair. Controls, numeric graph/readout and causal explanation are readable and consistent; final live stability gate remains separate."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/photoelectric-390-default.jpg",
+          "source/build/visual-audit-20261029/after/photoelectric-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/photoelectric-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/photoelectric-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/photoelectric.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/photoelectric.png"
+        ],
+        "observation": "Brighter 650 nm light still emits no electrons below threshold; all energy bars use a common stated scale.",
+        "actualReadouts": {
+          "390-default": "Each photon 3.26 eV; calcium threshold 2.71 eV. Maximum electron KE 0.55 eV; stopping potential 0.55 V. 500 electrons/s collected (0.080 fA in the ideal model).",
+          "390-changed": "Each photon 1.91 eV; calcium threshold 2.71 eV. Maximum electron KE 0.00 eV; stopping potential 0.00 V. 0 electrons/s collected (0.000 fA in the ideal model).",
+          "1440-default": "Each photon 3.26 eV; calcium threshold 2.71 eV. Maximum electron KE 0.55 eV; stopping potential 0.55 V. 500 electrons/s collected (0.080 fA in the ideal model).",
+          "1440-changed": "Each photon 1.91 eV; calcium threshold 2.71 eV. Maximum electron KE 0.00 eV; stopping potential 0.00 V. 0 electrons/s collected (0.000 fA in the ideal model)."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "atom-scale",
       "title": "An atom is mostly space",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PENDING_LIVE_B_CORRECTION",
       "question": "If a nucleus were a 1 cm marble, how large would the atom be?",
       "expectedObservation": "Change the scale and compare a nucleus reference width with the electron-cloud reference width. Electrons are not drawn on planetary tracks.",
       "changedState": [
@@ -1101,12 +1880,53 @@
           "source/build/visual-audit-20261029/boards-refined-fields/atom-scale.png"
         ],
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PENDING_LIVE_B_CORRECTION",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/atom-scale-390-default.jpg",
+          "source/build/visual-audit-20261029/after/atom-scale-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/atom-scale-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/atom-scale-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/atom-scale.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/atom-scale.png"
+        ],
+        "observation": "Cloud/nucleus modes work, but inline captions hide the blue reference ruler on both widths. Source header fixed; published recheck required.",
+        "actualReadouts": {
+          "390-default": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. The red nucleus marker is enlarged separately. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "390-changed": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. At the common scale the nucleus is too small to resolve. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "1440-default": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. The red nucleus marker is enlarged separately. The blue cloud is a symbolic probability region, not an electron orbit.",
+          "1440-changed": "A nucleus 5.0 cm across corresponds to an atom about 5000 m across at the chosen 10⁵ diameter ratio. At the common scale the nucleus is too small to resolve. The blue cloud is a symbolic probability region, not an electron orbit."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "radiation-decay",
       "title": "Exposure, contamination and decay",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does switching off a beam remove radioactive dust?",
       "expectedObservation": "Compare a controlled beam with radioactive material left on a surface. Individual random decay times produce a smooth exponential expectation only in a large ensemble.",
       "changedState": [
@@ -1155,12 +1975,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Changed dust mode retains radioactive dust with the distant beam off; 3 of 24 visible nuclei, graph dot and six-second readout agree. N100 initial sample remains distinct."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/radiation-decay-390-default.jpg",
+          "source/build/visual-audit-20261029/after/radiation-decay-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/radiation-decay-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/radiation-decay-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/radiation-decay.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/radiation-decay.png"
+        ],
+        "observation": "Three of 24 dust parents remain at six seconds with beam off; visible sample and plotted point agree.",
+        "actualReadouts": {
+          "390-default": "Simulated sample: 100 of 100 radioactive nuclei remain at 0.0 model s; expectation 100.0. Play advances 1 model second per animation second and stops at 12; Replay repeats this seeded sample. Individual decay times are random, not appointments at one half-life.",
+          "390-changed": "Radioactive dust stays on the surface when the distant beam is switched off. 3 of 24 parent nuclei remain at 6.0 model s. They can continue emitting as they decay. Play advances the labelled decay clock; Replay repeats the same sample.",
+          "1440-default": "Simulated sample: 100 of 100 radioactive nuclei remain at 0.0 model s; expectation 100.0. Play advances 1 model second per animation second and stops at 12; Replay repeats this seeded sample. Individual decay times are random, not appointments at one half-life.",
+          "1440-changed": "Radioactive dust stays on the surface when the distant beam is switched off. 3 of 24 parent nuclei remain at 6.0 model s. They can continue emitting as they decay. Play advances the labelled decay clock; Replay repeats the same sample."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "solar-fusion",
       "title": "From the solar core to light",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does the Sun’s light come from chemical burning at its surface?",
       "expectedObservation": "Open a solar cutaway, inspect the net fusion account and compare the released mass fraction with the total. Energy crosses radiative and convective layers.",
       "changedState": [
@@ -1203,12 +2064,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Core and convective-stage selector names are readable; changed stage shows red/blue parcels. Net reaction, enlarged released-fraction bar and neutrino-versus-transport account agree."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/solar-fusion-390-default.jpg",
+          "source/build/visual-audit-20261029/after/solar-fusion-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/solar-fusion-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/solar-fusion-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/solar-fusion.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/solar-fusion.png"
+        ],
+        "observation": "Named convective stage shows red/blue parcels; reaction, enlarged mass-defect bar and neutrino/heat transport account agree.",
+        "actualReadouts": {
+          "390-default": "Fusing 1.0 kg of hydrogen: 0.712% of the starting atomic mass becomes released energy, 6.398e+14 J. Stage 0: core production. The account includes the net reaction, not chemical burning. Transport times and particle sizes are schematic.",
+          "390-changed": "Fusing 1.0 kg of hydrogen: 0.712% of the starting atomic mass becomes released energy, 6.398e+14 J. Stage 2: convective transport. Red outward parcels and blue return parcels show schematic convection. Transport times and particle sizes are schematic.",
+          "1440-default": "Fusing 1.0 kg of hydrogen: 0.712% of the starting atomic mass becomes released energy, 6.398e+14 J. Stage 0: core production. The account includes the net reaction, not chemical burning. Transport times and particle sizes are schematic.",
+          "1440-changed": "Fusing 1.0 kg of hydrogen: 0.712% of the starting atomic mass becomes released energy, 6.398e+14 J. Stage 2: convective transport. Red outward parcels and blue return parcels show schematic convection. Transport times and particle sizes are schematic."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "halo",
       "title": "A halo around L1",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Is L1 a place where gravity is zero?",
       "expectedObservation": "Inspect linked xy/xz/yz projections of the same craft point. Independently compare Sun/Earth force balance at the selected distance.",
       "changedState": [
@@ -1258,12 +2160,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "35.58-day craft point changes consistently in all three linked projections. The net inward-acceleration account says gravity is nonzero and discloses schematic path/time."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/halo-390-default.jpg",
+          "source/build/visual-audit-20261029/after/halo-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/halo-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/halo-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/halo.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/halo.png"
+        ],
+        "observation": "35.58-day point changes consistently across all linked projections; nonzero required acceleration and schematic path/time are explicit.",
+        "actualReadouts": {
+          "390-default": "At 1.50 million km sunward of Earth: Sun pull 0.006051 m/s², Earth’s opposing pull 0.000177; net 0.005874 versus 0.005871 needed for Earth’s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day 0.0: linked projections share the same craft point. Play advances 5 model days/s around this repeating 177.86-day schematic path, not a mission ephemeris.",
+          "390-changed": "At 1.50 million km sunward of Earth: Sun pull 0.006051 m/s², Earth’s opposing pull 0.000177; net 0.005874 versus 0.005871 needed for Earth’s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day 35.6: linked projections share the same craft point. Play advances 5 model days/s around this repeating 177.86-day schematic path, not a mission ephemeris.",
+          "1440-default": "At 1.50 million km sunward of Earth: Sun pull 0.006051 m/s², Earth’s opposing pull 0.000177; net 0.005874 versus 0.005871 needed for Earth’s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day 0.0: linked projections share the same craft point. Play advances 5 model days/s around this repeating 177.86-day schematic path, not a mission ephemeris.",
+          "1440-changed": "At 1.50 million km sunward of Earth: Sun pull 0.006051 m/s², Earth’s opposing pull 0.000177; net 0.005874 versus 0.005871 needed for Earth’s year. Gravity is not zero. Distance control independently inspects the force account; it does not relocate the schematic halo. Halo day 35.6: linked projections share the same craft point. Play advances 5 model days/s around this repeating 177.86-day schematic path, not a mission ephemeris."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "stellar-spectrum",
       "title": "Same hydrogen, different lines",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does a weak hydrogen line mean little hydrogen?",
       "expectedObservation": "Hold composition fixed and change temperature; hydrogen ionisation and excitation compete. Then change abundance separately.",
       "changedState": [
@@ -1306,12 +2249,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "9000 K versus 20000 K changes bound/free population and line depth; selected-temperature curve dot and axes are visible; unbound electrons occupy lower rows."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/stellar-spectrum-390-default.jpg",
+          "source/build/visual-audit-20261029/after/stellar-spectrum-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/stellar-spectrum-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/stellar-spectrum-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/stellar-spectrum.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/stellar-spectrum.png"
+        ],
+        "observation": "High temperature removes line depth and moves electrons to free lower rows; selected-temperature curve marker stays visible.",
+        "actualReadouts": {
+          "390-default": "At 9000 K, neutral hydrogen 66.69%; ionised 33.31%. Fraction in the n=2 lower level 5.18e-6; abundance 1.0×. Line strength depends on both population and abundance. Static population icons are not electron trajectories; lower-row electrons are unbound.",
+          "390-changed": "At 20000 K, neutral hydrogen 0.00%; ionised 100.00%. Fraction in the n=2 lower level 4.21e-7; abundance 1.0×. Line strength depends on both population and abundance. Static population icons are not electron trajectories; lower-row electrons are unbound.",
+          "1440-default": "At 9000 K, neutral hydrogen 66.69%; ionised 33.31%. Fraction in the n=2 lower level 5.18e-6; abundance 1.0×. Line strength depends on both population and abundance. Static population icons are not electron trajectories; lower-row electrons are unbound.",
+          "1440-changed": "At 20000 K, neutral hydrogen 0.00%; ionised 100.00%. Fraction in the n=2 lower level 4.21e-7; abundance 1.0×. Line strength depends on both population and abundance. Static population icons are not electron trajectories; lower-row electrons are unbound."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "distance-ladder",
       "title": "From a blink to a distance",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Can a star look faint because it is distant rather than weak?",
       "expectedObservation": "Change the exaggerated-angle baseline/triangle and uncertainty, then follow one shared Cepheid time/phase through the star and flux curve.",
       "changedState": [
@@ -1369,12 +2353,53 @@
           "source/build/visual-audit-20261029/boards-refined-fields/distance-ladder.png"
         ],
         "finding": "Fresh refined default/changed mobile pair personally opened; prior geometry occlusion/caption/control issue resolved."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/distance-ladder-390-default.jpg",
+          "source/build/visual-audit-20261029/after/distance-ladder-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/distance-ladder-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/distance-ladder-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/distance-ladder.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/distance-ladder.png"
+        ],
+        "observation": "Cepheid view isolates star, disables parallax baseline and places day-ten point at period-forty peak; mean/peak flux agree.",
+        "actualReadouts": {
+          "390-default": "At 10 pc, parallax 0.1000 arcseconds; with ±0.001″ uncertainty the relative distance uncertainty is about 1.0%. Beyond a small enough angle, measurement noise dominates. The responsive triangle uses exaggerated angles and logarithmic distance for visibility; numerical parallax uses the actual AU/pc ratio.",
+          "390-changed": "Cepheid period 40 days gives illustrative absolute magnitude -5.82; at 10 pc, apparent magnitude -5.82. Elapsed 10.0 days, phase 0.250, received flux 2.77. Mean flux gives d = sqrt(calibrated luminosity / mean flux). Star pulse and graph share this clock; icon radius and colour are schematic, while the flux readout is quantitative. Doubling distance quarters received flux. Play advances 2 model days/s and stops at day 80; Replay returns to day 0.",
+          "1440-default": "At 10 pc, parallax 0.1000 arcseconds; with ±0.001″ uncertainty the relative distance uncertainty is about 1.0%. Beyond a small enough angle, measurement noise dominates. The responsive triangle uses exaggerated angles and logarithmic distance for visibility; numerical parallax uses the actual AU/pc ratio.",
+          "1440-changed": "Cepheid period 40 days gives illustrative absolute magnitude -5.82; at 10 pc, apparent magnitude -5.82. Elapsed 10.0 days, phase 0.250, received flux 2.77. Mean flux gives d = sqrt(calibrated luminosity / mean flux). Star pulse and graph share this clock; icon radius and colour are schematic, while the flux readout is quantitative. Doubling distance quarters received flux. Play advances 2 model days/s and stops at day 80; Replay returns to day 0."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "white-dwarf",
       "title": "More mass, smaller dwarf",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does adding material always make a star bigger?",
       "expectedObservation": "Move along an ideal white-dwarf mass–radius relation. Compare core mass with initial stellar mass and stop at the stable-model limit.",
       "changedState": [
@@ -1417,12 +2442,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Fixed camera shows 0.6 to1.4 solar-mass radius shrinkage; graph and numeric radii agree; limiting zero radius is explicitly model breakdown."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/white-dwarf-390-default.jpg",
+          "source/build/visual-audit-20261029/after/white-dwarf-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/white-dwarf-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/white-dwarf-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/white-dwarf.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/white-dwarf.png"
+        ],
+        "observation": "Fixed-scale sphere shrinks with mass; numeric graph/readout agree and limiting zero radius is model breakdown.",
+        "actualReadouts": {
+          "390-default": "Selected initial mass 1 Suns; independently selected final core mass 0.60 Suns. Ideal white-dwarf radius 8654 km; mean density 4.40e+8 kg/m³. More core mass gives a smaller radius. Initial mass is not the final core mass.",
+          "390-changed": "Selected initial mass 1 Suns; independently selected final core mass 1.40 Suns. Ideal white-dwarf radius 1509 km; mean density 1.93e+11 kg/m³. More core mass gives a smaller radius. Initial mass is not the final core mass.",
+          "1440-default": "Selected initial mass 1 Suns; independently selected final core mass 0.60 Suns. Ideal white-dwarf radius 8654 km; mean density 4.40e+8 kg/m³. More core mass gives a smaller radius. Initial mass is not the final core mass.",
+          "1440-changed": "Selected initial mass 1 Suns; independently selected final core mass 1.40 Suns. Ideal white-dwarf radius 1509 km; mean density 1.93e+11 kg/m³. More core mass gives a smaller radius. Initial mass is not the final core mass."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "cosmos",
       "title": "Choose another galaxy",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "If every distant galaxy recedes, are we at the centre?",
       "expectedObservation": "Select any galaxy and expand separations. Every observer finds the same distance–recession relation while individual bound-galaxy sizes stay fixed.",
       "changedState": [
@@ -1468,12 +2534,53 @@
         ],
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Red observer remains identified after switching observer and scale factor 1 to 3. Fixed scale shows separation growth; Hubble graph retains slope."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/cosmos-390-default.jpg",
+          "source/build/visual-audit-20261029/after/cosmos-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/cosmos-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/cosmos-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/cosmos.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/cosmos.png"
+        ],
+        "observation": "Red observer remains identified after switching galaxy; fixed-camera expansion and unchanged Hubble slope are visible.",
+        "actualReadouts": {
+          "390-default": "Observer galaxy 1; scale factor 1.00. Each separation is multiplied by 1.00; individual galaxy sizes stay fixed. The camera scale also stays fixed; markers are enlarged for visibility. With H = 70 km/s/Mpc, all observers find v = H d. Wavelength ratio λ/λ₀ = 1.00, redshift z = 0.00.",
+          "390-changed": "Observer galaxy 2; scale factor 3.00. Each separation is multiplied by 3.00; individual galaxy sizes stay fixed. The camera scale also stays fixed; markers are enlarged for visibility. With H = 70 km/s/Mpc, all observers find v = H d. Wavelength ratio λ/λ₀ = 3.00, redshift z = 2.00.",
+          "1440-default": "Observer galaxy 1; scale factor 1.00. Each separation is multiplied by 1.00; individual galaxy sizes stay fixed. The camera scale also stays fixed; markers are enlarged for visibility. With H = 70 km/s/Mpc, all observers find v = H d. Wavelength ratio λ/λ₀ = 1.00, redshift z = 0.00.",
+          "1440-changed": "Observer galaxy 2; scale factor 3.00. Each separation is multiplied by 3.00; individual galaxy sizes stay fixed. The camera scale also stays fixed; markers are enlarged for visibility. With H = 70 km/s/Mpc, all observers find v = H d. Wavelength ratio λ/λ₀ = 3.00, redshift z = 2.00."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "foucault",
       "title": "A pendulum and a turning Earth",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Would a Foucault pendulum precess equally in Mumbai and at the equator?",
       "expectedObservation": "Compare local floor traces as latitude changes. The precession rate is Earth’s rotation projected onto the local vertical.",
       "changedState": [
@@ -1539,12 +2646,53 @@
           "source/build/visual-audit-20261029/candidate-final/foucault-1440-changed.jpg"
         ],
         "finding": "Fresh stable default/changed screenshots personally opened. Elapsed time uses3600-second hours;23.93447-hour sidereal day correctly explains90.2 degrees at6h. Selector, readout and diagrams consistent."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/foucault-390-default.jpg",
+          "source/build/visual-audit-20261029/after/foucault-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/foucault-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/foucault-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/foucault.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/foucault.png"
+        ],
+        "observation": "Pole/Mumbai/equator traces differ correctly; ordinary 3600-second hours and sidereal-day rotation are explicitly distinguished.",
+        "actualReadouts": {
+          "390-default": "One state at latitude 19.08°, 6.00 elapsed h (3600 s each): Earth rotation -90.2°, local precession -29.5°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Earth turns once in 23.93447 h, a sidereal day. Play advances the labelled clock by 0.5 model hours per animation second and stops at 48 h. Bob oscillation uses a separate schematic 3.14-animation-second period; it does not share the accelerated Earth clock. String length stays fixed.",
+          "390-changed": "One state at latitude 90.00°, 6.00 elapsed h (3600 s each): Earth rotation -90.2°, local precession -90.2°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Earth turns once in 23.93447 h, a sidereal day. Play advances the labelled clock by 0.5 model hours per animation second and stops at 48 h. Bob oscillation uses a separate schematic 3.14-animation-second period; it does not share the accelerated Earth clock. String length stays fixed.",
+          "1440-default": "One state at latitude 19.08°, 6.00 elapsed h (3600 s each): Earth rotation -90.2°, local precession -29.5°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Earth turns once in 23.93447 h, a sidereal day. Play advances the labelled clock by 0.5 model hours per animation second and stops at 48 h. Bob oscillation uses a separate schematic 3.14-animation-second period; it does not share the accelerated Earth clock. String length stays fixed.",
+          "1440-changed": "One state at latitude 90.00°, 6.00 elapsed h (3600 s each): Earth rotation -90.2°, local precession -90.2°. Global arrow is the local swing transformed by the rotating east/north/up frame. At the pole it stays fixed in space; at other latitudes only the local precession law applies. Earth turns once in 23.93447 h, a sidereal day. Play advances the labelled clock by 0.5 model hours per animation second and stops at 48 h. Bob oscillation uses a separate schematic 3.14-animation-second period; it does not share the accelerated Earth clock. String length stays fixed."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "telescope",
       "title": "An axle parallel to Earth’s",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Why does Ooty’s latitude match the telescope’s slope?",
       "expectedObservation": "Tilt the telescope axle to the selected latitude, then compare it with Earth’s axis. Change mesh spacing relative to wavelength.",
       "changedState": [
@@ -1588,12 +2736,53 @@
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "11.4 to50 degree axle visibly misaligns with Earth-axis vector; 38.6 degree readout and wavelength/mesh comparison remain readable.",
         "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/telescope-390-default.jpg",
+          "source/build/visual-audit-20261029/after/telescope-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/telescope-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/telescope-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/telescope.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/telescope.png"
+        ],
+        "observation": "Changing axle to 50 degrees visibly misaligns it with Earth axis; numeric mismatch and wavelength/mesh account agree.",
+        "actualReadouts": {
+          "390-default": "Earth-axis elevation 11.4°, telescope axle 11.4°: misalignment 0.0°. Mesh openings 2 cm versus a 100 cm radio wavelength: much smaller openings favour reflection. The optical/mesh response is qualitative.",
+          "390-changed": "Earth-axis elevation 11.4°, telescope axle 50.0°: misalignment 38.6°. Mesh openings 2 cm versus a 100 cm radio wavelength: much smaller openings favour reflection. The optical/mesh response is qualitative.",
+          "1440-default": "Earth-axis elevation 11.4°, telescope axle 11.4°: misalignment 0.0°. Mesh openings 2 cm versus a 100 cm radio wavelength: much smaller openings favour reflection. The optical/mesh response is qualitative.",
+          "1440-changed": "Earth-axis elevation 11.4°, telescope axle 50.0°: misalignment 38.6°. Mesh openings 2 cm versus a 100 cm radio wavelength: much smaller openings favour reflection. The optical/mesh response is qualitative."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "tracks",
       "title": "Read a track through emulsion",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Can a flat microscope image hide motion through the plate?",
       "expectedObservation": "Compare simulated resolved grains with the matching projection. Independently select observed RMS scattering and finite position resolution to infer a mass/speed interval at known momentum.",
       "changedState": [
@@ -1641,12 +2830,53 @@
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Changed candidate and larger resolution make grains/rings larger and broaden conditional inference interval; projection/identification limits remain explicit.",
         "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/tracks-390-default.jpg",
+          "source/build/visual-audit-20261029/after/tracks-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/tracks-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/tracks-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/tracks.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/tracks.png"
+        ],
+        "observation": "Larger resolution enlarges grain rings and widens conditional inference; projection/identification limits remain explicit.",
+        "actualReadouts": {
+          "390-default": "Simulated grains: density proxy 1/β² = 2.12; candidate β 0.687, expected RMS 0.94°. Chosen observation 1.0° ± 0.02° from finite resolution over a 4-unit lever with ×11.9 transverse display magnification. At known 100 MeV/c this gives mass 114.2–124.0 MeV/c², speed 0.628–0.659 c. Compare candidate with the interval; a projection and one track cannot uniquely identify a particle. Grain positions are quantised to the chosen resolution; grain sizes enlarged; Highland material x/X₀=.01.",
+          "390-changed": "Simulated grains: density proxy 1/β² = 88.93; candidate β 0.106, expected RMS 6.06°. Chosen observation 1.0° ± 0.62° from finite resolution over a 4-unit lever with ×1.8 transverse display magnification. At known 100 MeV/c this gives mass 0.0–231.6 MeV/c², speed 0.396–1.000 c. Compare candidate with the interval; a projection and one track cannot uniquely identify a particle. Grain positions are quantised to the chosen resolution; grain sizes enlarged; Highland material x/X₀=.01.",
+          "1440-default": "Simulated grains: density proxy 1/β² = 2.12; candidate β 0.687, expected RMS 0.94°. Chosen observation 1.0° ± 0.02° from finite resolution over a 4-unit lever with ×11.9 transverse display magnification. At known 100 MeV/c this gives mass 114.2–124.0 MeV/c², speed 0.628–0.659 c. Compare candidate with the interval; a projection and one track cannot uniquely identify a particle. Grain positions are quantised to the chosen resolution; grain sizes enlarged; Highland material x/X₀=.01.",
+          "1440-changed": "Simulated grains: density proxy 1/β² = 88.93; candidate β 0.106, expected RMS 6.06°. Chosen observation 1.0° ± 0.62° from finite resolution over a 4-unit lever with ×1.8 transverse display magnification. At known 100 MeV/c this gives mass 0.0–231.6 MeV/c², speed 0.396–1.000 c. Compare candidate with the interval; a projection and one track cannot uniquely identify a particle. Grain positions are quantised to the chosen resolution; grain sizes enlarged; Highland material x/X₀=.01."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "parity",
       "title": "Nature and its mirror",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does a mirror image of the weak-decay pattern remain an allowed pattern?",
       "expectedObservation": "Reverse spin alignment and compare electron counts. In a mirror, spin is an axial vector while electron velocity is a polar vector; their correlation changes.",
       "changedState": [
@@ -1692,12 +2922,53 @@
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Changed x mirror reverses red axial spin while retaining blue polar-y velocity; toy-event counts and actual-versus-comparison labels agree.",
         "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/parity-390-default.jpg",
+          "source/build/visual-audit-20261029/after/parity-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/parity-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/parity-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/parity.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/parity.png"
+        ],
+        "observation": "Mirror reverses axial red spin while preserving polar-y velocity; comparison counts and explanation agree.",
+        "actualReadouts": {
+          "390-default": "Toy 100-event distribution: up 30, down 70; zero alignment gives equal populations and zero blue mean-asymmetry vector. Actual versus identical repeat. Mirror reverses axial y spin while preserving polar y velocity; it is not a second independent decay measurement. Counts are illustrative, not historical Wu data.",
+          "390-changed": "Toy 100-event distribution: up 70, down 30; zero alignment gives equal populations and zero blue mean-asymmetry vector. Actual versus x-reflected experiment: polar v → Rv, axial spin → det(R)R spin. Mirror reverses axial y spin while preserving polar y velocity; it is not a second independent decay measurement. Counts are illustrative, not historical Wu data.",
+          "1440-default": "Toy 100-event distribution: up 30, down 70; zero alignment gives equal populations and zero blue mean-asymmetry vector. Actual versus identical repeat. Mirror reverses axial y spin while preserving polar y velocity; it is not a second independent decay measurement. Counts are illustrative, not historical Wu data.",
+          "1440-changed": "Toy 100-event distribution: up 70, down 30; zero alignment gives equal populations and zero blue mean-asymmetry vector. Actual versus x-reflected experiment: polar v → Rv, axial spin → det(R)R spin. Mirror reverses axial y spin while preserving polar y velocity; it is not a second independent decay measurement. Counts are illustrative, not historical Wu data."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "bose-counting",
       "title": "Count states, not labels",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does exchanging two identical photons produce a new state?",
       "expectedObservation": "Exchange actual red A/blue B positions, then remove labels for bosons and apply the same-spin fermion exclusion.",
       "changedState": [
@@ -1754,12 +3025,53 @@
           "source/build/visual-audit-20261029/candidate-final/bose-counting-1440-changed.jpg"
         ],
         "finding": "Fresh stable default/changed screenshots personally opened. Mode-specific exchange caption correct."
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/bose-counting-390-default.jpg",
+          "source/build/visual-audit-20261029/after/bose-counting-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/bose-counting-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/bose-counting-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/bose-counting.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/bose-counting.png"
+        ],
+        "observation": "Four labelled states become three bosonic occupations; identities disappear and corrected exchange footer matches mode.",
+        "actualReadouts": {
+          "390-default": "Two particles, two available one-particle states, no fixed-total-energy constraint: 4 arrangements for labelled. Selected AB, occupation (2,0). A/B identities are removed for identical particles. State counting alone does not assert probabilities.",
+          "390-changed": "Two particles, two available one-particle states, no fixed-total-energy constraint: 3 arrangements for boson. Selected 0|2, occupation (0,2). A/B identities are removed for identical particles. State counting alone does not assert probabilities.",
+          "1440-default": "Two particles, two available one-particle states, no fixed-total-energy constraint: 4 arrangements for labelled. Selected AB, occupation (2,0). A/B identities are removed for identical particles. State counting alone does not assert probabilities.",
+          "1440-changed": "Two particles, two available one-particle states, no fixed-total-energy constraint: 3 arrangements for boson. Selected 0|2, occupation (0,2). A/B identities are removed for identical particles. State counting alone does not assert probabilities."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     },
     {
       "id": "eclipse-evidence",
       "title": "Measure a tiny displaced star",
-      "status": "INSPECTED_DEFAULT_AND_CHANGED_MOBILE_DESKTOP_CHANGES_REQUIRED",
+      "status": "PASS_LIVE_A_MOBILE_DESKTOP",
       "question": "Does one noisy measurement prove a theory?",
       "expectedObservation": "Change angular resolution and compare apparent positions against zero, half-Einstein and Einstein deflection predictions, with uncertainty shown explicitly.",
       "changedState": [
@@ -1807,6 +3119,47 @@
         "verdict": "PASS_CANDIDATE_FINAL_LIVE_PENDING",
         "finding": "Larger impact reduces predicted deflection; wider interval spans the theory references. Full uncertainty bounds and explanation correctly limit discrimination.",
         "additionalIndependentReviewer": "visual_mechanics_audit"
+      },
+      "finalLiveReview": {
+        "inspected": true,
+        "reviewer": "visual_fields_audit",
+        "verdict": "PASS_LIVE_A_MOBILE_DESKTOP",
+        "publication": "A",
+        "commit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            1440,
+            1000
+          ]
+        ],
+        "states": [
+          "default",
+          "changed"
+        ],
+        "screenshots": [
+          "source/build/visual-audit-20261029/after/eclipse-evidence-390-default.jpg",
+          "source/build/visual-audit-20261029/after/eclipse-evidence-390-changed.jpg",
+          "source/build/visual-audit-20261029/after/eclipse-evidence-1440-default.jpg",
+          "source/build/visual-audit-20261029/after/eclipse-evidence-1440-changed.jpg"
+        ],
+        "boards": [
+          "source/build/visual-audit-20261029/boards-fields-live-mobile/eclipse-evidence.png",
+          "source/build/visual-audit-20261029/boards-fields-live-desktop/eclipse-evidence.png"
+        ],
+        "observation": "Larger impact reduces deflection; larger uncertainty includes alternatives and explanatory text correctly limits discrimination.",
+        "actualReadouts": {
+          "390-default": "Impact 1.0 solar radii: physical blue ray bends toward Sun. Red backward extrapolation places apparent star farther outward than true star. Angles magnified for visibility. Einstein 1.750″; selected 1.750″; simulated measurement 1.870″ ± 0.50″. Interval includes selected prediction.",
+          "390-changed": "Impact 4.0 solar radii: physical blue ray bends toward Sun. Red backward extrapolation places apparent star farther outward than true star. Angles magnified for visibility. Einstein 0.438″; selected 0.438″; simulated measurement 0.557″ ± 2.00″. Interval includes selected prediction.",
+          "1440-default": "Impact 1.0 solar radii: physical blue ray bends toward Sun. Red backward extrapolation places apparent star farther outward than true star. Angles magnified for visibility. Einstein 1.750″; selected 1.750″; simulated measurement 1.870″ ± 0.50″. Interval includes selected prediction.",
+          "1440-changed": "Impact 4.0 solar radii: physical blue ray bends toward Sun. Red backward extrapolation places apparent star farther outward than true star. Angles magnified for visibility. Einstein 0.438″; selected 0.438″; simulated measurement 0.557″ ± 2.00″. Interval includes selected prediction."
+        },
+        "stableCaptureAssertionsPassed": true,
+        "actionErrors": []
       }
     }
   ],
@@ -1876,5 +3229,26 @@
     }
   },
   "candidateBuildLimit": "Candidate390 image set predates final shared header/footer, playback recursion fix, Foucault manual selection fix and final field annotation/initial-frame fixes. No final acceptance is asserted.",
-  "candidateDesktopReview": "All 33 default/changed paired boards personally opened. Last 6 additionally reviewed independently by mechanics agent. Foucault ordinary-hour wording and Bose mode caption corrected and personally verified in four stable final-candidate screenshots (cache9ff53a303e3f). Final LIVE recheck pending."
+  "candidateDesktopReview": "All 33 default/changed paired boards personally opened. Last 6 additionally reviewed independently by mechanics agent. Foucault ordinary-hour wording and Bose mode caption corrected and personally verified in four stable final-candidate screenshots (cache9ff53a303e3f). Final LIVE recheck pending.",
+  "finalLiveAReview": {
+    "inspectedLessons": 33,
+    "personallyOpenedPhotos": 132,
+    "acceptedUnchangedLessons": 31,
+    "pendingFollowup": [
+      "circuit-probes",
+      "atom-scale"
+    ],
+    "receiptFiles": [
+      "source/build/visual-audit-20261029/after/capture-fields-390.json",
+      "source/build/visual-audit-20261029/after/capture-fields-1440.json",
+      "source/build/visual-audit-20261029/after/actions-fields-390.json",
+      "source/build/visual-audit-20261029/after/actions-fields-1440.json",
+      "source/build/visual-audit-20261029/after/console-fields-390.json",
+      "source/build/visual-audit-20261029/after/console-fields-1440.json"
+    ],
+    "browserErrorCount": 0,
+    "actionErrorCount": 0,
+    "assertions": "Every photo confirms actual public URL, exact requested viewport, Sepia, lifting false and stage transform none. Numeric/source tests are separate.",
+    "publicationVerification": "Parent verified commit 6dc2858637e4d80f1419c498c9f873c7ca2ec1dc published; root SHA e8ad80185bdc04246909cbb8277eea3767833142f236480dabc528ffde094191."
+  }
 }

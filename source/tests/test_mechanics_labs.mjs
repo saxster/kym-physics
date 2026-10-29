@@ -279,3 +279,17 @@ const stillCabin=apparatus(Space.weightless,false);stillCabin.tabs[0].fn(1);asse
 const zeroEngine=apparatus(Energy.engine);assert.equal(zeroEngine.playback,true);zeroEngine.sliders.find(c=>c.label==='Hot reservoir').drive(400);zeroEngine.sliders.find(c=>c.label==='Cold reservoir').drive(400);assert.equal(zeroEngine.playback,false);
 const landing=apparatus(RENDERERS.projectile),flightEnd=landing.sliders.find(c=>c.label==='Replay time');flightEnd.drive(Math.sqrt(1.5/9.8));const landingBall=actualMeshes(landing).find(m=>m.geometry.type==='SphereGeometry'&&m.geometry.parameters.radius===.12),landingFloor=actualMeshes(landing).find(m=>m.geometry.parameters.width===2.5);near(landingBall.position.y-.12,landingFloor.position.y+.03);const fixedRadius=landing.frameRadius,numberOfFits=landing.frameCalls;flightEnd.drive(0);flightEnd.drive(.2);near(landing.frameRadius,fixedRadius);assert.equal(landing.frameCalls,numberOfFits,'replay time never refits the motion envelope');landing.tabs[0].fn(1);assert.equal(landing.frameCalls,numberOfFits,'observer switch keeps the same physical view scale');
 console.log('PASS visible acceleration scales, proportional pressure vectors, tangent release clock, supported/zero-gradient playback and exact landing contact with fixed replay framing');
+
+const fullScaleScene=apparatus(RENDERERS.scale),scaleControl=fullScaleScene.sliders.find(c=>c.label==='Length multiplier');
+assert.ok(fullScaleScene.frameRadius>0,'cube comparison declares its full-range camera envelope');
+const scaleRadius=fullScaleScene.frameRadius,scaleFits=fullScaleScene.frameCalls;
+for(const multiplier of [.5,2,3]){
+  scaleControl.drive(multiplier);fullScaleScene.root.updateMatrixWorld(true);
+  for(const mesh of actualMeshes(fullScaleScene)){
+    mesh.geometry.computeBoundingBox();const bounds=mesh.geometry.boundingBox;
+    for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z])
+      assert.ok(new Vector3(x,y,z).applyMatrix4(mesh.matrixWorld).length()<=scaleRadius+1e-8,'every cube corner remains inside the authored envelope');
+  }
+  near(fullScaleScene.frameRadius,scaleRadius);assert.equal(fullScaleScene.frameCalls,scaleFits,'changing length never changes the camera comparison scale');
+}
+console.log('PASS cube comparison keeps all corners inside one fixed camera envelope across the full multiplier range');

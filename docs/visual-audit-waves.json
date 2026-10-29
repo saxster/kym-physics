@@ -1,13 +1,13 @@
 {
-  "scope": "34 thermal/waves/optics lessons; fresh live baseline default+changed at390×844 and1440×1000, all personally inspected.",
+  "scope": "34 thermal/waves/optics lessons; fresh live baseline and final published release default+changed at 390\u00d7844 and 1440\u00d71000, all personally inspected.",
   "date": "2026-10-29",
   "evidenceRule": "Only screenshots captured during this audit can establish visual findings. Source-derived candidates are not visual closure.",
   "lessons": [
     {
       "id": "w8-joule",
       "title": "Turn a falling weight into warming",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Drop progress: 0 → 1",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Drop progress: 0 \u2192 1",
       "mechanismToJudge": "Weight lowers, paddles turn, equal energy accounts and small thermometer rise.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-joule.png"
@@ -46,14 +46,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-00.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The weight sits lower after the full drop; equal 1960 J energy bars and 0.468 \u00b0C rise are legible; manual progress has no misleading Play.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-00.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The weight sits lower after the full drop; equal 1960 J energy bars and 0.468 \u00b0C rise are legible; manual progress has no misleading Play. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-00.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-samples",
       "title": "A hot spoonful and a warm bucket",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Sample mass: 5 g → 10000 g",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Sample mass: 5 g \u2192 10000 g",
       "mechanismToJudge": "Compare energy released by material amount rather than temperature alone.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-samples.png"
@@ -63,7 +105,7 @@
           "priority": 1,
           "finding": "Changing selected amount from5g to10kg leaves the containers, marker count and speed curves visually unchanged; only very small energy numbers change. The essential amount/total-energy comparison is not visible.",
           "fix": "Label equally enlarged sampling windows and add shared-scale amount and cooling-energy bar pairs in3D/diagram. Amount control now has a direct visible account without pretending the marker count is literal.",
-          "modelImpact": "Display account only; unchanged mcΔT and temperature distribution."
+          "modelImpact": "Display account only; unchanged mc\u0394T and temperature distribution."
         }
       ],
       "reviewedWidths": [
@@ -99,14 +141,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-00.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Amount bars distinguish 5 g from 10 kg; energy bars reverse the comparison while the speed curves stay unchanged, with equal marker-window caveat readable.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-00.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Amount bars distinguish 5 g from 10 kg; energy bars reverse the comparison while the speed curves stay unchanged, with equal marker-window caveat readable. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-01.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-insulation",
       "title": "Insulation works in both directions",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Room → ice; thickness maximum",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Room \u2192 ice; thickness maximum",
       "mechanismToJudge": "Arrow and gradient reverse; thicker layer reduces power.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-insulation.png"
@@ -118,7 +202,7 @@
       ],
       "captureActions": [
         {
-          "button": "Room → ice"
+          "button": "Room \u2192 ice"
         },
         {
           "slider": "Wool layer thickness",
@@ -148,14 +232,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-00.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-01.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Room-to-ice reverses the arrow and temperature slope; thicker wool and the cold/hot labels remain clear.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-01.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Room-to-ice reverses the arrow and temperature slope; thicker wool and the cold/hot labels remain clear. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-01.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-phase",
       "title": "Energy enters while the thermometer waits",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Energy 200 → 500 → 1500 kJ",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Energy 200 \u2192 500 \u2192 1500 kJ",
       "mechanismToJudge": "Move between melting plateau, warming liquid and boiling plateau; particle arrangement agrees.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-phase.png"
@@ -171,7 +297,7 @@
           "value": 330
         }
       ],
-      "baselineObservation": "200to330kJ moves the marker across the0°C melting plateau and melted fraction47to86%; representative arrangement changes while temperature stays0°C. Axis labels too small on phone.",
+      "baselineObservation": "200to330kJ moves the marker across the0\u00b0C melting plateau and melted fraction47to86%; representative arrangement changes while temperature stays0\u00b0C. Axis labels too small on phone.",
       "sharedFixes": [
         "Readable diagram annotations",
         "Controls next to primary view",
@@ -189,19 +315,61 @@
           "changed"
         ],
         "desktopBuild": "7ee903f1d2d5",
-        "observation": "0°C plateau marker/fraction changes while temperature remains0; axes readable.",
+        "observation": "0\u00b0C plateau marker/fraction changes while temperature remains0; axes readable.",
         "evidence": [
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-01.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The marker remains on the 0 \u00b0C plateau while the readable melted fraction changes from 47% to 86%.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-01.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The marker remains on the 0 \u00b0C plateau while the readable melted fraction changes from 47% to 86%. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-02.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-evaporation",
       "title": "The fastest escape from a matka",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "May → July; play",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "May \u2192 July; play",
       "mechanismToJudge": "Returning energetic candidates increase with humidity; wet-bulb floor distinguishes cases.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-evaporation.png"
@@ -219,7 +387,7 @@
           "button": "Play"
         }
       ],
-      "baselineObservation": "May-to-July batch changes escaped/returned counts4/2to2/4 and wet-bulb floor28.7to26.7°C. Red candidates are visibly leaving the liquid; phone energy/count labels need the shared readability fix.",
+      "baselineObservation": "May-to-July batch changes escaped/returned counts4/2to2/4 and wet-bulb floor28.7to26.7\u00b0C. Red candidates are visibly leaving the liquid; phone energy/count labels need the shared readability fix.",
       "sharedFixes": [
         "Readable diagram annotations",
         "Controls next to primary view",
@@ -242,14 +410,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-02.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Red surface candidates are distinguishable from blue liquid; July changes escaped/returned counts to 2/4 and wet-bulb limit to 26.7 \u00b0C.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-01.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Red surface candidates are distinguishable from blue liquid; July changes escaped/returned counts to 2/4 and wet-bulb limit to 26.7 \u00b0C. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-02.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-convection",
       "title": "A coastal circulation loop",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Land air40 →20 →30°C; play",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Land air40 \u219220 \u219230\u00b0C; play",
       "mechanismToJudge": "Buoyancy/circulation reverses, then thermal drive vanishes.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-convection.png"
@@ -298,14 +508,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-01.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-02.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Four 2D arrowheads visibly reverse between warm-land and cool-land states; the rising-side caption is below the arrows.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-02.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Four 2D arrowheads visibly reverse between warm-land and cool-land states; the rising-side caption is below the arrows. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-03.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w8-engine",
       "title": "An engine needs a cold destination",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Fraction of reversible limit: .5 →1",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Fraction of reversible limit: .5 \u21921",
       "mechanismToJudge": "Work rises and rejected energy falls while sum stays100J.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w8-engine.png"
@@ -354,14 +606,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-03.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Hot, engine and cold boxes are named; work arrow is visibly longer at the reversible limit and account bars change 25/75 to 50/50 J.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-00.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Hot, engine and cold boxes are named; work arrow is visibly longer at the reversible limit and account bars change 25/75 to 50/50 J. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-00.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-pendulum",
-      "title": "What sets a pendulum’s clock?",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Bob mass10 →100kg, then length1 →4m; play",
+      "title": "What sets a pendulum\u2019s clock?",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Bob mass10 \u2192100kg, then length1 \u21924m; play",
       "mechanismToJudge": "Mass changes force but not clock; force arrows must remain visible; length changes period.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-pendulum.png"
@@ -410,14 +704,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-03.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Both clocks retain 2.013 s despite 10 to 100 kg; red gravity and small green tangential-acceleration arrows stay outside the bobs, with actual force readouts.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-02.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Both clocks retain 2.013 s despite 10 to 100 kg; red gravity and small green tangential-acceleration arrows stay outside the bobs, with actual force readouts. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-03.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-resonance",
       "title": "Push in time, then add damping",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Damping .12 →.03; run; manual push",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Damping .12 \u2192.03; run; manual push",
       "mechanismToJudge": "Same drive builds larger response; energy input/loss account remains inspectable.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-resonance.png"
@@ -462,14 +798,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-02.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-04.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Reduced damping visibly raises and narrows the response peak; current displacement and injected energy are distinct from the steady response.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-02.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Reduced damping visibly raises and narrows the response peak; current displacement and injected energy are distinct from the steady response. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-04.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-flutter",
       "title": "A steady flow can feed a twist",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Feedback .6 →0; elapsed12s",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Feedback .6 \u21920; elapsed12s",
       "mechanismToJudge": "Steady wind feedback vs loss changes growth to decay; inspect deck twist.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-flutter.png"
@@ -478,7 +856,7 @@
         {
           "priority": 2,
           "finding": "Deck appears edge-on as a flat thin line at both widths and both states; twist is hidden. Growth/decay curve is near the bottom of its fixed0..20energy scale. Play has no effect because elapsed time is manual.",
-          "fix": "Oblique3D deck plus a declared4× angular cross-section and actual-angle readout; manual scrub replaces no-op Play.",
+          "fix": "Oblique3D deck plus a declared4\u00d7 angular cross-section and actual-angle readout; manual scrub replaces no-op Play.",
           "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
         }
       ],
@@ -514,19 +892,61 @@
           "changed"
         ],
         "desktopBuild": "7ee903f1d2d5",
-        "observation": "Oblique deck and4× cross-section reveal twist; actual angle and growth/decay energy remain explicit.",
+        "observation": "Oblique deck and4\u00d7 cross-section reveal twist; actual angle and growth/decay energy remain explicit.",
         "evidence": [
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-04.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The deck is oblique and the 4\u00d7 cross-section shows twist; feedback removal lowers relative energy from 1.52 to 0.49 without no-op playback.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-03.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The deck is oblique and the 4\u00d7 cross-section shows twist; feedback removal lowers relative energy from 1.52 to 0.49 without no-op playback. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-04.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-water",
       "title": "Follow a parcel beneath a wave",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Wavelength2 →4m; play",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Wavelength2 \u21924m; play",
       "mechanismToJudge": "Crest travels while red parcel returns on a small local orbit; motion needs to be perceivable.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-water.png"
@@ -535,7 +955,7 @@
         {
           "priority": 1,
           "finding": "At both widths the marked surface parcel is only a small dot on an almost flat sheet. The few-pixel displacement does not visibly form the orbit that answers the question.",
-          "fix": "Add framed3D and calculated2D inspection views of the same parcel, with fixed mean point and explicitly equal40× displacement magnification in both directions. Main physical amplitude and clock stay unchanged.",
+          "fix": "Add framed3D and calculated2D inspection views of the same parcel, with fixed mean point and explicitly equal40\u00d7 displacement magnification in both directions. Main physical amplitude and clock stay unchanged.",
           "modelImpact": "Display transform only; same physical state, dispersion, amplitude limit and clock."
         }
       ],
@@ -570,19 +990,61 @@
           "changed"
         ],
         "desktopBuild": "7ee903f1d2d5",
-        "observation": "40× same-parcel circle and fixed mean are visible, along with much smaller true-amplitude whole-wave motion.",
+        "observation": "40\u00d7 same-parcel circle and fixed mean are visible, along with much smaller true-amplitude whole-wave motion.",
         "evidence": [
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-05.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The red parcel and its 40\u00d7 inset remain identifiable; longer wavelength flattens the wave while the same 3 cm orbit radius remains printed.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-03.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The red parcel and its 40\u00d7 inset remain identifiable; longer wavelength flattens the wave while the same 3 cm orbit radius remains printed. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-05.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-sound",
       "title": "A compression crosses the air",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Frequency300 →600Hz; play",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Frequency300 \u2192600Hz; play",
       "mechanismToJudge": "Compression travels, individual particles oscillate locally; pressure probe changes.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-sound.png"
@@ -631,14 +1093,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-03.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-05.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The red parcel and black mean are distinct; doubling frequency doubles curve/compression cycles and red displacement is in quadrature with blue pressure.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-03.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The red parcel and black mean are distinct; doubling frequency doubles curve/compression cycles and red displacement is in quadrature with blue pressure. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-05.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-echo",
       "title": "One clap, two legs of the journey",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Round-trip progress0 →.5 →1",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Round-trip progress0 \u2192.5 \u21921",
       "mechanismToJudge": "Pulse reaches wall halfway and returns; elapsed time counts both legs.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-echo.png"
@@ -677,14 +1181,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-06.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The pulse moves from wall to clapper as round-trip progress reaches one; elapsed time and total distance both double.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-04.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The pulse moves from wall to clapper as round-trip progress reaches one; elapsed time and total distance both double. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-06.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-tone",
       "title": "Two separate sound controls",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Amplitude .3 →.05; frequency220 →800Hz",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Amplitude .3 \u2192.05; frequency220 \u2192800Hz",
       "mechanismToJudge": "Vertical size and cycle count are independent in one fixed time window; optional audio explicit.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-tone.png"
@@ -727,13 +1273,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-06.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The 800 Hz curve has more cycles and smaller amplitude than 220 Hz; the separate explicit audio button remains readable and was not started.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-04.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The 800 Hz curve has more cycles and smaller amplitude than 220 Hz; the separate explicit audio button remains readable and was not started. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-06.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-membrane",
       "title": "A drumhead has nodal lines",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Drum1 then Drum2; central load2; play",
       "mechanismToJudge": "One/two nodal diameters remain still while other regions oscillate; loading changes frequency.",
       "screenshots": [
@@ -786,14 +1374,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-04.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-07.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Unloaded Drum 0 has only a rim label; loaded Drum 2 adds the visible patch label and two fixed nodal diameters, with signed region legend clear.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-04.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Unloaded Drum 0 has only a rim label; loaded Drum 2 adds the visible patch label and two fixed nodal diameters, with signed region legend clear. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-07.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w9-doppler",
       "title": "Choose who hears the moving horn",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Platform listener →Driver with horn; play",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Platform listener \u2192Driver with horn; play",
       "mechanismToJudge": "Moving driver receives300Hz while stationary listener sees changed spacing/frequency.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w9-doppler.png"
@@ -841,13 +1471,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-07.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Several wavefronts are visible immediately; Driver mode shows coincident horn/listener and a disabled listener slider correctly reading 22 m/s with 300 Hz received.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-05.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Several wavefronts are visible immediately; Driver mode shows coincident horn/listener and a disabled listener slider correctly reading 22 m/s with 300 Hz received. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-07.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-seeing",
       "title": "Light must arrive at the eye",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Lamp off, then on and Block path",
       "mechanismToJudge": "Signal vanishes while explanatory apparatus stays visible; rays never leave eye.",
       "screenshots": [
@@ -893,14 +1565,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-08.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Lamp, mango and eye labels are clear of spheres; blocking removes eye route and clips the intersecting fan rays at the opaque wall.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-05.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Lamp, mango and eye labels are clear of spheres; blocking removes eye route and clips the intersecting fan rays at the opaque wall. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-08.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-pinhole",
       "title": "Open the camera and follow the rays",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Hole diameter1 →5mm",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Hole diameter1 \u21925mm",
       "mechanismToJudge": "Geometric blur and admitted light increase while image stays inverted.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-pinhole.png"
@@ -939,14 +1653,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-05.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-08.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The wider aperture gives a wider outgoing bundle; blur grows 1.1 to 5.5 mm and relative admitted light 1 to 25, with schematic scale disclosed.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-05.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The wider aperture gives a wider outgoing bundle; blur grows 1.1 to 5.5 mm and relative admitted light 1 to 25, with schematic scale disclosed. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-08.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-shadow",
       "title": "A large lamp softens a shadow",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Source halfheight .35 →.8m",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Source halfheight .35 \u2192.8m",
       "mechanismToJudge": "Full-shadow width falls and soft penumbra grows without diffraction.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-shadow.png"
@@ -985,13 +1741,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-09.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The bigger source removes the flat umbra and broadens the partial-brightness ramp; rays remain separated from labels.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-06.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The bigger source removes the flat umbra and broadens the partial-brightness ramp; rays remain separated from labels. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-09.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-mirror",
       "title": "Walk around a mirror image",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Concave spoon with object .2m, compare Convex spoon",
       "mechanismToJudge": "Real/virtual position, arrow orientation, and ray extensions match actual conjugate.",
       "screenshots": [
@@ -1041,14 +1839,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-09.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Flat reflected route and dashed backward extension meet behind the mirror; concave near-object virtual image is upright and observer slider is visibly disabled.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-06.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Flat reflected route and dashed backward extension meet behind the mirror; concave near-object virtual image is upright and observer slider is visibly disabled. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-09.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-coin",
       "title": "Bring back the hidden coin",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Water added →Empty tumbler →Water",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Water added \u2192Empty tumbler \u2192Water",
       "mechanismToJudge": "Fixed eye/rim/coin; only path and apparent depth change; rim clearance clear.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-coin.png"
@@ -1093,14 +1933,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-06.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-10.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Fixed coin and eye labels remain clear; water route bends past the rim while empty route crosses the blocking rim.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-06.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Fixed coin and eye labels remain clear; water route bends past the rim while empty route crosses the blocking rim. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-10.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-guide",
       "title": "Guide light around a bend",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Launch angle5 →60°",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Launch angle5 \u219260\u00b0",
       "mechanismToJudge": "Below-critical encounter exits rather than reflecting forever.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-guide.png"
@@ -1116,7 +1998,7 @@
           "value": 60
         }
       ],
-      "baselineObservation": "Angle5to60° changes many reflected segments into first subcritical exit. Critical/incident-angle readouts distinguish reason. Caption is unrelated coin figure; mobile graph text too small.",
+      "baselineObservation": "Angle5to60\u00b0 changes many reflected segments into first subcritical exit. Critical/incident-angle readouts distinguish reason. Caption is unrelated coin figure; mobile graph text too small.",
       "sharedFixes": [
         "Readable diagram annotations",
         "Controls next to primary view",
@@ -1139,14 +2021,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-10.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The default repeated reflections become a first subcritical exit at 60\u00b0; incident/critical angles and boundary-transmission caption agree.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-07.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The default repeated reflections become a first subcritical exit at 60\u00b0; incident/critical angles and boundary-transmission caption agree. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-10.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-eye",
       "title": "Why goggles restore underwater vision",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Eye underwater →Water with goggles",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Eye underwater \u2192Water with goggles",
       "mechanismToJudge": "Ray focus and blurred retinal image become clear again when air pocket restored.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-eye.png"
@@ -1155,7 +2079,7 @@
         {
           "priority": 1,
           "finding": "Underwater focus shifts beyond retina correctly. Right-hand retinal image panel becomes blank: tiny5px arrow is erased by capped30px blur. Needs a visible quantitative point-spread depiction on one common scale.",
-          "fix": "Replaced erased object-arrow inset with one retinal point’s spread using fixed40logicalpx/mm, explicit1mm reference and persistent centre dot.",
+          "fix": "Replaced erased object-arrow inset with one retinal point\u2019s spread using fixed40logicalpx/mm, explicit1mm reference and persistent centre dot.",
           "modelImpact": "Existing physical formulas retained; display mechanism/annotation changed."
         }
       ],
@@ -1191,14 +2115,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-11.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Sharp default centre point becomes a clearly visible underwater blur disc; both use the same 1 mm reference and the focus beyond retina is visible.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-07.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Sharp default centre point becomes a clearly visible underwater blur disc; both use the same 1 mm reference and the focus beyond retina is visible. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-11.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-delay",
       "title": "Emission time is not arrival time",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Earth angle0 →180°; journey1",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Earth angle0 \u2192180\u00b0; journey1",
       "mechanismToJudge": "Longer path means later reception of same emission; two timestamps explicit.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-delay.png"
@@ -1248,14 +2214,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-07.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-11.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Sun, receiving Earth and emitting Io event are identified; changed flight/arrival clocks increase to 51.56 min at the opposite Earth position.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-07.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Sun, receiving Earth and emitting Io event are identified; changed flight/arrival clocks increase to 51.56 min at the opposite Earth position. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-11.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w10-fizeau",
       "title": "A cogwheel times a light round trip",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Wheel12.1 →0Hz, full round trip",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Wheel12.1 \u21920Hz, full round trip",
       "mechanismToJudge": "Return marker moves from tooth to gap and averaged transmission changes.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w10-fizeau.png"
@@ -1294,14 +2302,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-12.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The return marker changes from a tooth to a gap at zero rotation; the magnified tooth strip and 100% transmission statement are legible.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-08.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The return marker changes from a tooth to a gap at zero rotation; the magnified tooth strip and 100% transmission statement are legible. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-12.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-prism",
       "title": "Select one colour for the second prism",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Selected narrow wavelength660 →410nm",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Selected narrow wavelength660 \u2192410nm",
       "mechanismToJudge": "Slit follows selected ray; second prism bends it without adding wavelengths.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-prism.png"
@@ -1342,19 +2392,61 @@
           "changed"
         ],
         "desktopBuild": "7ee903f1d2d5",
-        "observation": "410nm chosen path becomes violet; explicit same-nm in/out label and12×angular fan visible.",
+        "observation": "410nm chosen path becomes violet; explicit same-nm in/out label and12\u00d7angular fan visible.",
         "evidence": [
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-12.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Selected output ray changes from red to violet and the input/output wavelength statement stays equal through the second prism.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-08.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Selected output ray changes from red to violet and the input/output wavelength statement stays equal through the second prism. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-12.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-rainbow",
       "title": "One drop becomes a rainbow cone",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Wavelength660 →410nm",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Wavelength660 \u2192410nm",
       "mechanismToJudge": "Selected path and antisolar cone angle respond to dispersion; observer at apex.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-rainbow.png"
@@ -1370,7 +2462,7 @@
           "value": 410
         }
       ],
-      "baselineObservation": "Selected internal-reflection/refraction path and antisolar angle42.37to40.78° respond to wavelength. Cone/apex geometry visible but small. Original prism caption is unrelated; static Play does nothing.",
+      "baselineObservation": "Selected internal-reflection/refraction path and antisolar angle42.37to40.78\u00b0 respond to wavelength. Cone/apex geometry visible but small. Original prism caption is unrelated; static Play does nothing.",
       "sharedFixes": [
         "Readable diagram annotations",
         "Controls next to primary view",
@@ -1393,13 +2485,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-08.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-13.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The single-drop refract/reflect/refract route and observer cone are visible; wavelength changes the named antisolar angle from 42.37\u00b0 to 40.78\u00b0.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-08.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The single-drop refract/reflect/refract route and observer cone are visible; wavelength changes the named antisolar angle from 42.37\u00b0 to 40.78\u00b0. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-13.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-reflectance",
       "title": "The spectrum an object returns",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Blue illumination, Banana",
       "mechanismToJudge": "Returned spectrum is overlap; object cannot return absent red/yellow light.",
       "screenshots": [
@@ -1438,14 +2572,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-13.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Blue incoming spectrum overlaps poorly with banana reflectance, leaving a near-zero returned blue curve; curves are named in the readable account.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-09.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Blue incoming spectrum overlaps poorly with banana reflectance, leaving a near-zero returned blue curve; curves are named in the readable account. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-13.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-sky",
       "title": "Direct light and scattered light take different routes",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Sun height60 →0°",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Sun height60 \u21920\u00b0",
       "mechanismToJudge": "Longer atmospheric path removes blue from direct beam; scatter route stays in shell.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-sky.png"
@@ -1491,14 +2667,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-14.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The local inset exposes straight sunlight and the blue scattered route into the eye; long sunset path visibly changes direct/all-removed spectra.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-09.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The local inset exposes straight sunlight and the blue scattered route into the eye; long sunset path visibly changes direct/all-removed spectra. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-14.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-polarisation",
       "title": "Turn the filter and delete the glare",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Water glare; analyser0 →90° at incidence53.1°",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Water glare; analyser0 \u219290\u00b0 at incidence53.1\u00b0",
       "mechanismToJudge": "Glare near Brewster extinguishes for p-axis; body colour constant after analyser.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-polarisation.png"
@@ -1540,14 +2758,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-09.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-14.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Linear-beam incidence control is disabled; Water glare enables it and the near-Brewster p component vanishes while the constant body-colour contribution is stated.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-09.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Linear-beam incidence control is disabled; Water glare enables it and the near-Brewster p component vanishes while the constant body-colour contribution is stated. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-14.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-interference",
       "title": "Probe the path difference",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Probe1.1 →0 or first minimum .55mm",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Probe1.1 \u21920 or first minimum .55mm",
       "mechanismToJudge": "Constructive vs destructive path difference linked to intensity.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-interference.png"
@@ -1597,13 +2857,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-15.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The two route lines and arrival arrows are unobstructed; bright aligned arrows become opposed at half-wavelength difference with intensity 0.000.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-10.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "The two route lines and arrival arrows are unobstructed; bright aligned arrows become opposed at half-wavelength difference with intensity 0.000. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-15.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-diffraction",
       "title": "Change an opening, a grating or a thin film",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Eight-line grating then Soap film",
       "mechanismToJudge": "Aperture/phases and intensity are visibly linked, not just different graph names.",
       "screenshots": [
@@ -1642,14 +2944,56 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-15.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Single-slit amplitude polygon and film reflection routes are visible; film wavelength and screen-probe controls switch enabled states correctly.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-10.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Single-slit amplitude polygon and film reflection routes are visible; film wavelength and screen-probe controls switch enabled states correctly. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-15.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-arago",
       "title": "A bright spot in the middle of a shadow",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
-      "captureState": "Probe0 →.2mm",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
+      "captureState": "Probe0 \u2192.2mm",
       "mechanismToJudge": "Equal rim phases at centre become unequal off-axis and intensity falls.",
       "screenshots": [
         "source/build/visual-audit-20261029/boards-waves-before/w11-arago.png"
@@ -1688,13 +3032,55 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-10.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-16.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "At centre the rim arrows sum to a long resultant and I=1; off axis their directions differ and the resultant is near zero, I=0.0041.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-10.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "At centre the rim arrows sum to a long resultant and I=1; off axis their directions differ and the resultant is near zero, I=0.0041. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-16.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     },
     {
       "id": "w11-raman",
       "title": "Account for a changed photon colour",
-      "status": "CANDIDATE_BOTH_WIDTHS_PERSONALLY_REVIEWED_AWAITING_PUBLISHED_LIVE_VERIFICATION",
+      "status": "FINAL_LIVE_BOTH_WIDTHS_PERSONALLY_VERIFIED_PASS",
       "captureState": "Stokes then Anti-Stokes",
       "mechanismToJudge": "Outgoing wavelength, wave period and opposite molecular energy transfer agree.",
       "screenshots": [
@@ -1743,7 +3129,49 @@
           "source/build/visual-audit-20261029/boards-mobile-candidate/waves-11.png",
           "source/build/visual-audit-20261029/boards-desktop-candidate/waves-16.png"
         ],
-        "finalLiveAcceptance": "PENDING"
+        "finalLiveAcceptance": "PASS: fresh published default/changed screenshots personally opened at both widths; see liveReview."
+      },
+      "liveReview": {
+        "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+        "cache": "mw-4ae3460b3b81",
+        "url": "https://saxster.github.io/kym-physics/",
+        "mobile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Incoming/outgoing energy bars share the printed 3.2 eV scale; Stokes shortens outgoing bar and shows +0.124 eV molecular gain, with spectral peak shift clear.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-mobile-live/waves-11.png"
+          ]
+        },
+        "desktop": {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "states": [
+            "default",
+            "changed"
+          ],
+          "status": "PERSONALLY_INSPECTED_PASS",
+          "observation": "Incoming/outgoing energy bars share the printed 3.2 eV scale; Stokes shortens outgoing bar and shows +0.124 eV molecular gain, with spectral peak shift clear. Desktop labels, controls and linked diagram are also clear in the fresh paired screenshots.",
+          "evidence": [
+            "source/build/visual-audit-20261029/boards-desktop-live/waves-16.png"
+          ]
+        },
+        "strictCaptureChecks": [
+          "public URL",
+          "actual viewport",
+          "sepia",
+          "live-lifting=false",
+          "stage transform=none"
+        ]
       }
     }
   ],
@@ -1765,5 +3193,34 @@
       "warnings": 0
     }
   },
-  "controlClosure": "Actual renderer tests cover all mode-relevant disabled controls, equal-temperature no-play state and co-moving listener display/restoration; final live UI validation pending."
+  "controlClosure": "Actual renderer tests cover all mode-relevant disabled controls, equal-temperature no-play state and co-moving listener display/restoration; final live UI validation pending.",
+  "finalLiveMobile": {
+    "pairs": 34,
+    "extraMembraneString": true,
+    "consoleWarnings": 0,
+    "consoleErrors": 0,
+    "metadata": "source/build/visual-audit-20261029/after/capture-waves-390.json",
+    "actions": "source/build/visual-audit-20261029/after/actions-waves-390.json",
+    "extraEvidence": "source/build/visual-audit-20261029/after/w9-membrane-390-string-control.jpg"
+  },
+  "finalLiveDesktop": {
+    "pairs": 34,
+    "extraMembraneString": true,
+    "consoleWarnings": 0,
+    "consoleErrors": 0,
+    "metadata": "source/build/visual-audit-20261029/after/capture-waves-1440.json",
+    "actions": "source/build/visual-audit-20261029/after/actions-waves-1440.json",
+    "extraEvidence": "source/build/visual-audit-20261029/after/w9-membrane-1440-string-control.jpg"
+  },
+  "finalAcceptance": {
+    "status": "PASS",
+    "releaseCommit": "6dc2858637e4d80f1419c498c9f873c7ca2ec1dc",
+    "cache": "mw-4ae3460b3b81",
+    "reviewer": "visual_waves_audit",
+    "pairedStates": 136,
+    "extraStringStates": 2,
+    "totalPersonallyInspectedFinalLiveScreenshots": 138,
+    "newUnresolvedVisualBlockers": 0,
+    "limitations": "Responsive in-app browser at specified CSS viewports, not physical iOS/Android hardware. Audio playback was not started in this visual audit."
+  }
 }

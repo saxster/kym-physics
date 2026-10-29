@@ -138,6 +138,10 @@ for(const gpu of [true,false])for(const lesson of catalog){
   assert.equal(active.tabs[0].selected,-1,'manual Foucault latitude clears the city/pole preset');
   assert.match(active.readout,/latitude 30.00/);active.tabs[0].fn(0);
  }
+ if(lesson.id==='atom-scale'){
+  const ruler=active.sliders.find(c=>c.label==='Nucleus displayed diameter');
+  for(const size of [1,5,10]){ruler.drive(size);for(const y of [75,145]){const start=active.canvasOps.findIndex(o=>o.key==='moveTo'&&o.args[0]===55&&o.args[1]===y);assert.ok(start>=0,'both physical reference rulers are retained');assert.deepEqual(active.canvasOps[start+1],{key:'lineTo',args:[55+size*24,y]});}const captions=active.canvasOps.filter(o=>o.key==='fillText');assert.ok(captions.some(o=>String(o.args[0]).includes('Red nucleus reference:')&&String(o.args[0]).includes(' cm; blue atom reference:')&&String(o.args[0]).includes(' km. Ruler units differ.')&&o.args[2]===25),'separate ruler units are stated in the normal-flow header');assert.ok(!captions.some(o=>o.args[2]>50&&o.args[2]<200),'no enlarged inline caption plate can hide a reference ruler');}ruler.drive(5);
+ }
  if(lesson.id==='photoelectric'){
   const bars=active.canvasOps.filter(o=>o.key==='fillRect'&&o.args[3]===14),values=[G.photoelectric(380,500,0).energy,2.71,G.photoelectric(380,500,0).maxKE,0];
   assert.equal(bars.length,8);for(let j=0;j<4;j++)near(bars[2*j+1].args[2],values[j]/4.2*240);
@@ -176,6 +180,8 @@ for(const gpu of [true,false])for(const lesson of catalog){
  if(lesson.id==='circuit-probes'){
   const probe=active.sliders.find(c=>c.label==='Probe selection');
   assert.equal(probe.fmt(4),'Load 2 voltage','probe choice has a readable name');
+  for(let choice=0;choice<5;choice++){probe.drive(choice);const captions=active.canvasOps.filter(o=>o.key==='fillText').map(o=>String(o.args[0])).join('\n');if(choice<3){assert.match(captions,/marked point selects current/);assert.doesNotMatch(captions,/endpoints measure a voltage/);}else{assert.match(captions,/endpoints measure a voltage difference/);assert.doesNotMatch(captions,/marked point selects current/);}}
+  probe.drive(0);
  }
  if(lesson.id==='transformer'){
   active.tabs[0].fn(1);assert.equal(active.playback,false,'steady DC has no no-op Play');

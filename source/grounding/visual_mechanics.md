@@ -352,3 +352,8 @@ Further baseline findings and actual-renderer checks from all42 fresh boards:
   pressure arrows, force visibility/zero limits, landing contact, fixed replay
   framing and meaningful playback. This is computational evidence, not a claim
   of final visual or human-learning acceptance.
+
+### Final published visual closure
+
+- The scale comparison uses a single authored camera envelope covering the reference cube and the complete 0.5–3 length range. It must not zoom while a multiplier changes, since that would conceal the size comparison. An actual-renderer check transforms every cube corner to scene coordinates and confirms that the same envelope contains all corners at 0.5, 2 and 3.
+- The torsion plot retains its physical axes, ticks and response data. The equilibrium/torque caption and twist-unit heading sit in the readable header, preventing the phone annotation layout from displacing the upper numeric tick below zero. This is a label-placement correction; gravitational torque, arcsecond conversion and damping are unchanged.

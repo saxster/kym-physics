@@ -2,7 +2,7 @@
 
 29 October2026. All42 new mechanics, fluids and energy lessons were personally inspected in fresh LIVE default and changed-state screenshots at390×844 and1440×1000 browser viewports. These are browser-size tests, not physical-device measurements.
 
-**Baseline coverage: 42/42 paired boards. Diagnostic candidate phone review: 42/42. Refined candidate desktop review: 42/42 (mechanics agent 28, independent waves agent 14). Final LIVE acceptance: 0/42, pending publication and fresh screenshots.**
+**Baseline coverage: 42/42 paired boards. Diagnostic candidate phone review: 42/42. Refined candidate desktop review: 42/42 (mechanics agent 28, independent waves agent 14). Final LIVE review: 42/42 at both sizes; acceptance: 40/42, with scale framing and torsion phone-axis labels awaiting the targeted follow-up release.**
 
 Horizontal reading-progress bars and sticky reading toolbar in several clips are capture UI overlays, not physics objects. All39 missing phone recipes completed with zero control-action errors; the initial3 paired cases were captured by the coordinator.
 
@@ -99,3 +99,11 @@ Fresh final-candidate ruler verification closed the subtitle obstruction: both d
 ## Independent candidate desktop completion
 
 The independent waves reviewer personally opened both default and changed desktop captures for the final 14 lessons. Their per-ID judgments are integrated into the JSON ledger and recorded in `docs/visual-review-mechanics-desktop-tail.md`. Combined refined candidate desktop coverage is 42/42. No further blocking defects were found. Final published LIVE mobile and desktop acceptance remains pending.
+
+## Published LIVE verification, first pass
+
+Publication `6dc2858637e4d80f1419c498c9f873c7ca2ec1dc` (cache `mw-4ae3460b3b81`) was exercised through a fresh public browser tab. The child browser inventory exposed Edge only, so this pass used the documented Edge extension API. Both actual390×844 and1440×1000 matrices contain84 successful default/changed screenshots each, with zero control errors and no warning/error console messages. Every image receipt asserts the public URL, sepia theme, no lifting animation and stage transform none. These are browser viewport tests, not physical-device or measured learner-outcome claims.
+
+The mechanics reviewer personally opened all42 new phone pairs and the first28 desktop pairs through Kepler. The final14 desktop pairs are assigned for independent review. Two concrete defects were found: the largest3× cube clips the wide desktop stage, and the small torsion plot visually misorders numeric ticks when captions force annotation displacement. Both received scoped authored fixes and require a new published recapture. All other personally viewed pairs retained their clear physical comparison, readable units/labels and functioning controls; per-ID judgments and screenshots are in the JSON ledger.
+
+The independent waves reviewer has now personally opened all14 remaining final LIVE desktop pairs. Their exact per-ID observations are recorded in `docs/visual-review-mechanics-live-tail.md` and integrated into the JSON. All42 mechanics lessons have now been visually reviewed at both tested sizes (mechanics reviewer: all42 phone and first28 desktop; independent reviewer: final14 desktop). Forty are accepted; scale framing and torsion phone-axis labels await publication and targeted fresh evidence. Both scoped corrections and the full-range actual-renderer camera contract are implemented and pass.
