@@ -1,0 +1,940 @@
+{
+  "date": "2026-10-29T05:25:05.892508+00:00",
+  "scope": {
+    "sections": 90,
+    "acceptanceRows": 108,
+    "newLessons": 109,
+    "originalWidgets": 36,
+    "chapters": 16,
+    "linkedStories": 90,
+    "totalStories": 95
+  },
+  "build": {
+    "site": "source/build/site",
+    "cache": "mw-5539b5376f34",
+    "indexSha256": "66496ef4fb739221dfadb89840f1ec7e7d5dfb69cd45d9e487a96e83022b9dde",
+    "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+    "indexBytes": 4147435,
+    "largestOrdinaryChunk": "w_mechanicslab-UDYZSIJU.js",
+    "largestOrdinaryChunkBytes": 127191,
+    "sharedThreeChunkBytes": 694759,
+    "chunksSha256": {
+      "chunk-CFOTGZ3T.js": "86b597c84567d14df08b8b601d913e3c8e89e37265b28c69490b91f29ad2613e",
+      "chunk-G54ALBCI.js": "6856200ea0aecbf11aa1c0762fdee49cf5414e8c25a50f14419ba98c844d8ea5",
+      "chunk-I4KURCN4.js": "254b336664acb2dc9a4f8ab823dfcd9429fba87b69bc835cb9ffe4571f5c3c41",
+      "chunk-NF5KS5B4.js": "b84cbc76bb7d687d1a3964adeb99a3f8c39062e8b677daa25680a532192ab9da",
+      "chunk-TKF4ZEXY.js": "0086568bc08d64b78626817e947a2a326b71587528ef61e8160c4ca0a45ecc8b",
+      "chunk-UGQNDQER.js": "e032fb7825707954c8fa9c1bb429a6e92db54ffef4ff00c7909137bcba90a45d",
+      "chunk-UMG2STQR.js": "8f3cb98a3d8f6ef31d9f164d8ff16ecd926070db711b76b0c1ca5f46e5549260",
+      "chunk-WOT6VMZA.js": "ff9e0dca4365b7b1581e7275f3c6dbcf1474ffb874d81a3375ecf7a835dbaa6f",
+      "chunk-XUAL2ZCV.js": "66e7b45685a0b541dd34e1dfa55116636c12210771c572e0998e4145e088abbf",
+      "chunk-YVAPA4BS.js": "6bc4826c136a72db8f51ff2491d93c39c486332eed5341933069280076922e8c",
+      "three-3K6EQOUE.js": "96abe42b0055e379adcb777188adfbfa9c77d26e4913deef6357e45e28af83ab",
+      "w_airfall-SE7Z7CQQ.js": "2d5e2353e359114ea540959ffe9edb931f135a83a04a6005097b70bdb2980d2b",
+      "w_buoyancy-IFFGF7K2.js": "da9a110bd792d452ec2cc8c03d6a3a329aa756e98b646a04bb275dbd0c3c0148",
+      "w_cannon3d-TJ6FUA7D.js": "6c2db968f117e7dd543aaf2d68eaf1d73c46fb6fa17af826586dd5b833c4a571",
+      "w_circuit-FVJGQB4O.js": "4ea2ea9127f60f2304a9497b8b2bfbf9e1e8c58581cb7fe34fba01992867065b",
+      "w_colourmix-QJI2NLEG.js": "5ba0d683cc9e10ebbc268dbf320ae2b7ef73f87f2cdde48bd00e82a7e84536f8",
+      "w_conduction-3JHUQSS6.js": "44e500228c10809dec41ba37eefcb2f9fe2524d58f732985bd1cf315af7416c3",
+      "w_doppler-ZZND3U42.js": "6a197322eeab4ded6c2709e9cbb2a201232708ab6ca58f7bb63dd783e0473898",
+      "w_energystores-43S4NG6K.js": "9d64bf67dcbb1817784e8cd675c463839524de8a59264b6f72fddd1fe943e211",
+      "w_energytrack-KTJNYB62.js": "664b490eba54dfe27aa18c3704163408ed9c101c64aaad044cec0986039533ae",
+      "w_expansion-QHRQZBFS.js": "e4ba1fd7bd3c7aa86b97255ba0a5c9420eed768dbda929b888596ccc017aab18",
+      "w_eye3d-3P6ETXHR.js": "1fd996332d004078739efd15eee3afa29f1a4485beedb70f9dcb39a219996ef6",
+      "w_field3d-LKL7AHCU.js": "029092a8a660bbf353cbbb6371d12e78efc13390283ab8cbdb0d5b44d7ecfe8c",
+      "w_fieldslab-E7IP2GH7.js": "ef652c5d32128fe41dce36fb95dfe2ccbbaf23eb1ac63d2389473bb5769d4da0",
+      "w_forces-WEFDIHSY.js": "e85a5d5439344798c87395b02c1377c7befa7d2f2e99153c33e34ce5c4637285",
+      "w_freefall-TOKTISK6.js": "ae430d96087471d6c1207510742dbcee2cf5327aca08a197850b8b53e706f067",
+      "w_graphwalk-ZOCRHDS3.js": "9b6bf0ec7e117ba4f2236c4f02e44617bb6493dc3aa71b22f8ad037502b972cb",
+      "w_harmonics-6HK7QAUA.js": "d7ecc19a44395067f0c3931a6cbf823deba9cfa94834a75dfba2b2b408d7c812",
+      "w_induction-5ZQV4UPP.js": "0adfdedf08f003d57142cda1804c2df35b3476a70f231f17bbcac8932673dc0c",
+      "w_interference-ZNGTWL5K.js": "dd59c568cd7f71b3c8686b014948d359a099c217044aae224f21150313f5cb2d",
+      "w_magnetometer-GWMA4TJ2.js": "818656ed53a4fea36b392e0326f44ff20dac35d4dc45e7d79de8ca69e751a0ac",
+      "w_mechanicslab-UDYZSIJU.js": "fe80900e876466296f16f83ea95b09265f2e8b0f068b63b02ebffd711dcfb54e",
+      "w_mirror-GECZW2FH.js": "2cf88aa624f4d18edb75911a205376cb946015bc2a3310d83a6a00a241857c6c",
+      "w_momentum_carts-65EP2BJN.js": "5e1dfa42ff0c198626cef46ad8d4c0a302f94b93a2ac103d6c7edf1a3ca0b7dc",
+      "w_parallax-PLHU2DVK.js": "3d79d6613212e7ace76206c333da528c1e0622404f1fd2a3fa24877c03d04969",
+      "w_phases-I2AV3DMD.js": "b8530b07899fbe587aeb30be9bbf40355942b284d753c0dc54c1bd0b6b6e30a7",
+      "w_pressuretank-ST2BNSD2.js": "51c1625015511e7745ef41197bfcb2e2a060e36ac55433f134c83591e210a449",
+      "w_projectile-3YQMZ7ZQ.js": "7d6f4ae4f54c97685e804a356e61600f2bfa9c1b743929283470661b46c03cd9",
+      "w_ramp-6GLZEA33.js": "90253938dd3faec09360c978295b267f7a30c24a383ef74a90b84b35f1537e54",
+      "w_refraction-CYHC7PBE.js": "0efdbc4b12c8f7d4a2ed524db4afd3d378420e1f0c0de03a59b8d8da0f017b16",
+      "w_ripple-GAO3NIHK.js": "20b8aa8a54c85d9a5cc52181f01ac31570e6eaf5afed73ae667d57e50eeb82cc",
+      "w_scope-WGOF4QP7.js": "f53fd6099316a40c9f4f10fa42ae199637ec8df70f87cec2235640cbb9064747",
+      "w_seasons-IEWFJL3F.js": "fadc78c2fd1390cad0fd164710a03f7870037845df8fb2a533252b1a054b1bb1",
+      "w_seriesparallel-QNXGOSPS.js": "134c124b254b1125f32fcf414bfb5470598b7ffd4a843866c05e640f139ded35",
+      "w_shadow-Y3O6WH43.js": "44b768d6f451389d30f65f32f8562ad5a85064c366f283923d952bb3fda44169",
+      "w_skycolour-KFHUOPR2.js": "216524d9b3570658d33e1f1ceb38ccecceac726f809f55f0fbf54d5b3cd8a434",
+      "w_tides-S5C2I752.js": "9b52fe636b7213320e22064ed9da75f072a1f21e74a6c57a58a942548b901e7b",
+      "w_videotrack-HK7LVJUD.js": "1b4a874acb21eb03c00b5ac70f8ae9480393ae444a30b1eb26ccc7171e4a3b8d",
+      "w_waveslab-AO77T5P3.js": "4f2be4c5ab0012ef09e941736d5dc977101f4e75128e4f1a048053b0ba16f7e1",
+      "w_whirl-4LI2VJHN.js": "c49e9869e7c2637840a8b05fa6babbc553eb4f120260f935db7372355877245a",
+      "x_map-2T63VRNY.js": "d8ad9ec5a8f3c3b89fb621ee934133ad81d71f0dfaf183fee986eedf11f5265b",
+      "x_scale-4ZERKXRF.js": "4c5f4964645b06f5fefb4bb1c2369dc1258a946d67166cc96c7424688cc55f49",
+      "x_sky-GIV75YEE.js": "7051e70116348702d775d52cdfb11ccbbf58367e84c7d6c2b29c06d3aa437c95",
+      "x_spectrum-OKPVWXHX.js": "ec3446ce84872bc88232033471bf48b86ccc491f2825aa466ef7640eb8b09a11"
+    },
+    "buildLog": "source/build/verification/release-build.log"
+  },
+  "tools": {
+    "playwright": "1.64.1",
+    "chromium": "156.0.8078.4",
+    "webkit": "27.2",
+    "three": "0.180.0"
+  },
+  "finalMatrices": [
+    {
+      "receipt": "source/build/labs-release-chromium/receipt.json",
+      "receiptSha256": "c8b206949a50be1756bce0588f02f7649b1d8a5213e96ef025617d711eab5038",
+      "cache": "mw-5539b5376f34",
+      "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+      "engine": "chromium",
+      "mode": "smoke",
+      "fallback": false,
+      "passedCases": 654,
+      "errors": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "themes": [
+        "dark",
+        "light",
+        "sepia"
+      ],
+      "lessonIds": [
+        "atom-scale",
+        "bose-counting",
+        "cage",
+        "charge",
+        "circuit-diagnose",
+        "circuit-probes",
+        "circuit-signal",
+        "cosmos",
+        "day-night",
+        "distance-ladder",
+        "domains",
+        "earth-field",
+        "eclipse-evidence",
+        "eclipses",
+        "em-wave",
+        "field-probe",
+        "foucault",
+        "generator",
+        "halo",
+        "m-acceleration",
+        "m-arrow",
+        "m-braking",
+        "m-circle",
+        "m-energy",
+        "m-engine",
+        "m-fall",
+        "m-frames",
+        "m-friction",
+        "m-galileo",
+        "m-graph",
+        "m-gravity",
+        "m-horizon",
+        "m-hull",
+        "m-hydrostatic",
+        "m-impact",
+        "m-inertia",
+        "m-kepler",
+        "m-measurement",
+        "m-mission",
+        "m-newton",
+        "m-pairs",
+        "m-perturbation",
+        "m-power",
+        "m-pressure",
+        "m-projectile",
+        "m-rain",
+        "m-rocket",
+        "m-scale",
+        "m-shadow-shapes",
+        "m-shadows",
+        "m-station",
+        "m-stevin",
+        "m-suction",
+        "m-support",
+        "m-tablecloth",
+        "m-torsion",
+        "m-toss",
+        "m-trains",
+        "m-vectors",
+        "m-weightless",
+        "m-work",
+        "moon-rotation",
+        "motor",
+        "parity",
+        "photoelectric",
+        "protection",
+        "radiation-decay",
+        "seasons3d",
+        "solar-fusion",
+        "stellar-spectrum",
+        "telescope",
+        "tides3d",
+        "tracks",
+        "transformer",
+        "w10-coin",
+        "w10-delay",
+        "w10-eye",
+        "w10-fizeau",
+        "w10-guide",
+        "w10-mirror",
+        "w10-pinhole",
+        "w10-seeing",
+        "w10-shadow",
+        "w11-arago",
+        "w11-diffraction",
+        "w11-interference",
+        "w11-polarisation",
+        "w11-prism",
+        "w11-rainbow",
+        "w11-raman",
+        "w11-reflectance",
+        "w11-sky",
+        "w8-convection",
+        "w8-engine",
+        "w8-evaporation",
+        "w8-insulation",
+        "w8-joule",
+        "w8-phase",
+        "w8-samples",
+        "w9-doppler",
+        "w9-echo",
+        "w9-flutter",
+        "w9-membrane",
+        "w9-pendulum",
+        "w9-resonance",
+        "w9-sound",
+        "w9-tone",
+        "w9-water",
+        "white-dwarf"
+      ],
+      "finished": "2026-10-29T05:24:58Z"
+    },
+    {
+      "receipt": "source/build/labs-release-webkit/receipt.json",
+      "receiptSha256": "e406683a59581d5fb107d7ded409996789576ebc4d7271c14f7afd83efb3e4d1",
+      "cache": "mw-5539b5376f34",
+      "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+      "engine": "webkit",
+      "mode": "smoke",
+      "fallback": false,
+      "passedCases": 218,
+      "errors": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "themes": [
+        "sepia"
+      ],
+      "lessonIds": [
+        "atom-scale",
+        "bose-counting",
+        "cage",
+        "charge",
+        "circuit-diagnose",
+        "circuit-probes",
+        "circuit-signal",
+        "cosmos",
+        "day-night",
+        "distance-ladder",
+        "domains",
+        "earth-field",
+        "eclipse-evidence",
+        "eclipses",
+        "em-wave",
+        "field-probe",
+        "foucault",
+        "generator",
+        "halo",
+        "m-acceleration",
+        "m-arrow",
+        "m-braking",
+        "m-circle",
+        "m-energy",
+        "m-engine",
+        "m-fall",
+        "m-frames",
+        "m-friction",
+        "m-galileo",
+        "m-graph",
+        "m-gravity",
+        "m-horizon",
+        "m-hull",
+        "m-hydrostatic",
+        "m-impact",
+        "m-inertia",
+        "m-kepler",
+        "m-measurement",
+        "m-mission",
+        "m-newton",
+        "m-pairs",
+        "m-perturbation",
+        "m-power",
+        "m-pressure",
+        "m-projectile",
+        "m-rain",
+        "m-rocket",
+        "m-scale",
+        "m-shadow-shapes",
+        "m-shadows",
+        "m-station",
+        "m-stevin",
+        "m-suction",
+        "m-support",
+        "m-tablecloth",
+        "m-torsion",
+        "m-toss",
+        "m-trains",
+        "m-vectors",
+        "m-weightless",
+        "m-work",
+        "moon-rotation",
+        "motor",
+        "parity",
+        "photoelectric",
+        "protection",
+        "radiation-decay",
+        "seasons3d",
+        "solar-fusion",
+        "stellar-spectrum",
+        "telescope",
+        "tides3d",
+        "tracks",
+        "transformer",
+        "w10-coin",
+        "w10-delay",
+        "w10-eye",
+        "w10-fizeau",
+        "w10-guide",
+        "w10-mirror",
+        "w10-pinhole",
+        "w10-seeing",
+        "w10-shadow",
+        "w11-arago",
+        "w11-diffraction",
+        "w11-interference",
+        "w11-polarisation",
+        "w11-prism",
+        "w11-rainbow",
+        "w11-raman",
+        "w11-reflectance",
+        "w11-sky",
+        "w8-convection",
+        "w8-engine",
+        "w8-evaporation",
+        "w8-insulation",
+        "w8-joule",
+        "w8-phase",
+        "w8-samples",
+        "w9-doppler",
+        "w9-echo",
+        "w9-flutter",
+        "w9-membrane",
+        "w9-pendulum",
+        "w9-resonance",
+        "w9-sound",
+        "w9-tone",
+        "w9-water",
+        "white-dwarf"
+      ],
+      "finished": "2026-10-29T05:13:58Z"
+    },
+    {
+      "receipt": "source/build/labs-release-fallback/receipt.json",
+      "receiptSha256": "6d5e2323db73695764532c29d1811710ddae9292ff7c5b3745e5779ec80a316e",
+      "cache": "mw-5539b5376f34",
+      "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+      "engine": "chromium",
+      "mode": "smoke",
+      "fallback": true,
+      "passedCases": 218,
+      "errors": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "themes": [
+        "sepia"
+      ],
+      "lessonIds": [
+        "atom-scale",
+        "bose-counting",
+        "cage",
+        "charge",
+        "circuit-diagnose",
+        "circuit-probes",
+        "circuit-signal",
+        "cosmos",
+        "day-night",
+        "distance-ladder",
+        "domains",
+        "earth-field",
+        "eclipse-evidence",
+        "eclipses",
+        "em-wave",
+        "field-probe",
+        "foucault",
+        "generator",
+        "halo",
+        "m-acceleration",
+        "m-arrow",
+        "m-braking",
+        "m-circle",
+        "m-energy",
+        "m-engine",
+        "m-fall",
+        "m-frames",
+        "m-friction",
+        "m-galileo",
+        "m-graph",
+        "m-gravity",
+        "m-horizon",
+        "m-hull",
+        "m-hydrostatic",
+        "m-impact",
+        "m-inertia",
+        "m-kepler",
+        "m-measurement",
+        "m-mission",
+        "m-newton",
+        "m-pairs",
+        "m-perturbation",
+        "m-power",
+        "m-pressure",
+        "m-projectile",
+        "m-rain",
+        "m-rocket",
+        "m-scale",
+        "m-shadow-shapes",
+        "m-shadows",
+        "m-station",
+        "m-stevin",
+        "m-suction",
+        "m-support",
+        "m-tablecloth",
+        "m-torsion",
+        "m-toss",
+        "m-trains",
+        "m-vectors",
+        "m-weightless",
+        "m-work",
+        "moon-rotation",
+        "motor",
+        "parity",
+        "photoelectric",
+        "protection",
+        "radiation-decay",
+        "seasons3d",
+        "solar-fusion",
+        "stellar-spectrum",
+        "telescope",
+        "tides3d",
+        "tracks",
+        "transformer",
+        "w10-coin",
+        "w10-delay",
+        "w10-eye",
+        "w10-fizeau",
+        "w10-guide",
+        "w10-mirror",
+        "w10-pinhole",
+        "w10-seeing",
+        "w10-shadow",
+        "w11-arago",
+        "w11-diffraction",
+        "w11-interference",
+        "w11-polarisation",
+        "w11-prism",
+        "w11-rainbow",
+        "w11-raman",
+        "w11-reflectance",
+        "w11-sky",
+        "w8-convection",
+        "w8-engine",
+        "w8-evaporation",
+        "w8-insulation",
+        "w8-joule",
+        "w8-phase",
+        "w8-samples",
+        "w9-doppler",
+        "w9-echo",
+        "w9-flutter",
+        "w9-membrane",
+        "w9-pendulum",
+        "w9-resonance",
+        "w9-sound",
+        "w9-tone",
+        "w9-water",
+        "white-dwarf"
+      ],
+      "finished": "2026-10-29T05:21:33Z"
+    },
+    {
+      "receipt": "source/build/labs-release-extra-widths/receipt.json",
+      "receiptSha256": "39123bba7e03cdd7646ee1772493bd0a0cd0cb0f1aeacc6452c5b470cc9417e0",
+      "cache": "mw-5539b5376f34",
+      "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+      "engine": "chromium",
+      "mode": "smoke",
+      "fallback": false,
+      "passedCases": 40,
+      "errors": 0,
+      "widths": [
+        320,
+        768,
+        820,
+        1024,
+        1180
+      ],
+      "themes": [
+        "sepia"
+      ],
+      "lessonIds": [
+        "eclipses",
+        "m-horizon",
+        "m-hull",
+        "m-mission",
+        "m-stevin",
+        "motor",
+        "w10-eye",
+        "w9-membrane"
+      ],
+      "finished": "2026-10-29T05:16:55Z"
+    },
+    {
+      "receipt": "source/build/labs-release-extra-themes/receipt.json",
+      "receiptSha256": "412785c91aa4d1eb4338ba2b3f484ddf52bde739086d37b4ad48605b5dea3fcb",
+      "cache": "mw-5539b5376f34",
+      "runtimeSha256": "133e1b11ef32fce243d6c1264a0c6a88d94bcbf0c19bb0d6414600d2ef912f01",
+      "engine": "chromium",
+      "mode": "smoke",
+      "fallback": false,
+      "passedCases": 80,
+      "errors": 0,
+      "widths": [
+        320,
+        768,
+        820,
+        1024,
+        1180
+      ],
+      "themes": [
+        "dark",
+        "light"
+      ],
+      "lessonIds": [
+        "eclipses",
+        "m-horizon",
+        "m-hull",
+        "m-mission",
+        "m-stevin",
+        "motor",
+        "w10-eye",
+        "w9-membrane"
+      ],
+      "finished": "2026-10-29T05:20:07Z"
+    }
+  ],
+  "finalMatrixCases": 1210,
+  "allControlAndTargetedPhysicsMatrices": [
+    {
+      "receipt": "source/build/labs-mechanics-final/receipt.json",
+      "receiptSha256": "1fdb90196b5b5895bbc461b03b2268e9b255378d955884714d176c84184e75f8",
+      "cache": "mw-81c12a9235dc",
+      "passedCases": 84,
+      "mode": "all-controls",
+      "errors": 0,
+      "finished": "2026-10-29T04:48:32Z"
+    },
+    {
+      "receipt": "source/build/labs-waves-corrected/receipt.json",
+      "receiptSha256": "f4b2c345de6a84e031efd6f291cd3ead92176ae2859c5b4362e625abd8c360f4",
+      "cache": null,
+      "passedCases": 68,
+      "mode": "all-controls",
+      "errors": 0,
+      "finished": "2026-10-29T04:36:18Z"
+    },
+    {
+      "receipt": "source/build/labs-fields-final/receipt.json",
+      "receiptSha256": "c3550a37972d3bec67d5cd55325297391b3841f308e2c5ee1bcbf3f801ff2bd8",
+      "cache": "mw-81c12a9235dc",
+      "passedCases": 66,
+      "mode": "all-controls",
+      "errors": 0,
+      "finished": "2026-10-29T04:47:12Z"
+    },
+    {
+      "receipt": "source/build/labs-fields-postreview/receipt.json",
+      "receiptSha256": "6bfa2018470b6b322aee85ed61c9de9e303cceee543e6106c7b03555cf5b01a5",
+      "cache": "mw-d525f79a4244",
+      "passedCases": 16,
+      "mode": "all-controls",
+      "errors": 0,
+      "finished": "2026-10-29T04:52:56Z"
+    },
+    {
+      "receipt": "source/build/waves-independent-final/receipt.json",
+      "receiptSha256": "0dfe988a1859c2f4fa449ee363acb0432326d84e6276600345fe5d2d82757214",
+      "cache": "mw-81c12a9235dc",
+      "passedCases": 4,
+      "mode": "all-controls",
+      "errors": 0,
+      "finished": "2026-10-29T04:42:38Z"
+    }
+  ],
+  "lifecycle": [
+    {
+      "receipt": "source/build/labs-lifecycle-chromium/receipt.json",
+      "receiptSha256": "bcee64ea3861d3af2932664c7d702afc1bc33c9f77e3ed81885b9d96c1157bc3",
+      "cache": "mw-5539b5376f34",
+      "engine": "chromium",
+      "passedOpenings": 98,
+      "maxContextsCreated": 3,
+      "errors": 0,
+      "rawContextLossGestures": [
+        "ripple tap",
+        "ripple long press",
+        "sky drag"
+      ],
+      "retryRequests": [
+        "http://127.0.0.1:62013/live/w_mechanicslab-UDYZSIJU.js",
+        "http://127.0.0.1:62013/live/w_mechanicslab-UDYZSIJU.js?retry=1"
+      ],
+      "cancelledPendingStory": true,
+      "newerFigureWins": true,
+      "sourceSha256": {
+        "live/core.js": "24aa1573e4393ef357a7a5d1722893f3183f2b34608f55df63aaf235380f7b03",
+        "live/three_kit.js": "40c49bfd17a33954a07cf3fa8e8fb1810d829ce97c65664281fe22ba68e36c51",
+        "live/w_ripple.js": "18f988e0496f2776104805c71a26edf0e84d56bdf59d8175e6263e98f68aec7c",
+        "live/w_skycolour.js": "9cdc446b79a24b653e415d5a3394dd9491f628ca687e3c85952b02bef6a102d1"
+      }
+    },
+    {
+      "receipt": "source/build/labs-lifecycle-webkit/receipt.json",
+      "receiptSha256": "77ea0473d0b7811380bb2726ad8decf6c65d1bf0e2b874af29770cb24de96156",
+      "cache": "mw-5539b5376f34",
+      "engine": "webkit",
+      "passedOpenings": 98,
+      "maxContextsCreated": 3,
+      "errors": 0,
+      "rawContextLossGestures": [
+        "ripple tap",
+        "ripple long press",
+        "sky drag"
+      ],
+      "retryRequests": [
+        "http://127.0.0.1:62008/live/w_mechanicslab-UDYZSIJU.js",
+        "http://127.0.0.1:62008/live/w_mechanicslab-UDYZSIJU.js?retry=1"
+      ],
+      "cancelledPendingStory": true,
+      "newerFigureWins": true,
+      "sourceSha256": {
+        "live/core.js": "24aa1573e4393ef357a7a5d1722893f3183f2b34608f55df63aaf235380f7b03",
+        "live/three_kit.js": "40c49bfd17a33954a07cf3fa8e8fb1810d829ce97c65664281fe22ba68e36c51",
+        "live/w_ripple.js": "18f988e0496f2776104805c71a26edf0e84d56bdf59d8175e6263e98f68aec7c",
+        "live/w_skycolour.js": "9cdc446b79a24b653e415d5a3394dd9491f628ca687e3c85952b02bef6a102d1"
+      }
+    }
+  ],
+  "models": [
+    {
+      "command": [
+        "node",
+        "source/tests/test_doppler_model.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_energy_scenarios.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_fields_labs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_live_annotations.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_mechanics_geometry.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_mechanics_labs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_mechanics_motion_geometry.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_mission_orbit.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_orbit_model.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_phase_shape.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_rawgl_pool.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_scale_catalog.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_scale_model.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "source/tests/test_waves_labs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_figs_core.py"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_graphics_physics.py"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_story_graphics_geometry.py"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_lesson_catalog.py"
+      ],
+      "exit": 0
+    }
+  ],
+  "originalRegression": [
+    {
+      "name": "test_live_wave_graphics",
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_live_wave_graphics.py"
+      ],
+      "exit": 0,
+      "log": "source/build/verification/test_live_wave_graphics-release.log"
+    },
+    {
+      "name": "test_live_detail_browser",
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_live_detail_browser.py"
+      ],
+      "exit": 0,
+      "log": "source/build/verification/test_live_detail_browser-release.log"
+    },
+    {
+      "name": "test_live_annotations_browser",
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/tests/test_live_annotations_browser.py"
+      ],
+      "exit": 0,
+      "log": "source/build/verification/test_live_annotations_browser-release.log"
+    },
+    {
+      "name": "livetest-3",
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/livetest.py",
+        "source/build/site/index.html",
+        "source/build/originals-release-390",
+        "--w",
+        "390",
+        "--wait",
+        "120"
+      ],
+      "exit": 0,
+      "log": "source/build/verification/livetest-3-release.log"
+    },
+    {
+      "name": "livetest-4",
+      "command": [
+        "/Users/amarsukhi/src/MyCode/kym_physics/.venv/bin/python",
+        "source/livetest.py",
+        "source/build/site/index.html",
+        "source/build/originals-release-1440",
+        "--w",
+        "1440",
+        "--wait",
+        "120"
+      ],
+      "exit": 0,
+      "log": "source/build/verification/livetest-4-release.log"
+    }
+  ],
+  "explorers": [
+    {
+      "name": "test_explorer_scenes.py",
+      "exit": 0
+    },
+    {
+      "name": "test_scale_plan.py",
+      "exit": 0
+    },
+    {
+      "name": "test_scale_contrast.py",
+      "exit": 0
+    }
+  ],
+  "integration": {
+    "log": "source/build/verification/labs-integration-release.log",
+    "sha256": "1dca4b5a845222a3384a06748c72d524c1964bd3c0416d0da0e71b1af180e2bd",
+    "status": "PASS"
+  },
+  "fixture": {
+    "log": "source/build/verification/fixture-release.log",
+    "sha256": "d6fa95a8ad877f96767c1a771a6956fc8e610277cbffa62f11ca32aa49c9c1b8",
+    "status": "PASS"
+  },
+  "independentGates": [
+    {
+      "file": "source/gates/visual-mechanics-independent.md",
+      "sha256": "2d9016fdb0525cfa0f927806ba35176980026be48ff9c5883a0d83243328169d",
+      "finalVerdict": "PASS"
+    },
+    {
+      "file": "source/gates/visual-waves-independent.md",
+      "sha256": "c43f51ad8c398e8a1189e2c2c7ec78102a61118976df34d2004510358c598665",
+      "finalVerdict": "PASS"
+    },
+    {
+      "file": "source/gates/visual-fields-independent.md",
+      "sha256": "561ce720a4bb48c84eb0aa3d3aab96ef88576e7a5bfd445efcc3b61503fb57e6",
+      "finalVerdict": "PASS"
+    },
+    {
+      "file": "source/gates/visual-lifecycle-independent.md",
+      "sha256": "19b3997e49ba2354708965e2e510a8781c228e43f22e78f46d8044c0a0ea5a31",
+      "finalVerdict": "PASS"
+    }
+  ],
+  "sourceSha256": {
+    "source/app/m_labs.js": "dca942014e8a767d0daaf4940cadc6df3e9a81cf911dfb02ee3c961e8001f6cc",
+    "source/app/m_notebook.js": "f13a59ef8ddab4677abda54e324b33c68fc0b82b22a6b8e9baaf7ba1ca0a7b6f",
+    "source/app/o_labs.css": "029d631c110780e73b5aba09c76c8dfc94a0bb8c4cd1facf3bd525a6ed2646e4",
+    "source/build.py": "41309eef5baf3b3409fdc59fbb3f8fed2d6b4631e7317babeee8b879bea742c6",
+    "source/gates/visual-fields-independent.md": "561ce720a4bb48c84eb0aa3d3aab96ef88576e7a5bfd445efcc3b61503fb57e6",
+    "source/gates/visual-lifecycle-independent.md": "19b3997e49ba2354708965e2e510a8781c228e43f22e78f46d8044c0a0ea5a31",
+    "source/gates/visual-mechanics-independent.md": "2d9016fdb0525cfa0f927806ba35176980026be48ff9c5883a0d83243328169d",
+    "source/gates/visual-waves-independent.md": "c43f51ad8c398e8a1189e2c2c7ec78102a61118976df34d2004510358c598665",
+    "source/grounding/visual_fields.md": "268fb71f7771d2d7d3162daca7d80c24afa4b3b770a0f9a0924345d4f94ca9d7",
+    "source/grounding/visual_mechanics.md": "bb56b6a775c133f81e61706c86a151dcc410241740d79b1f1be126c92af8d8af",
+    "source/grounding/visual_motion_geometry.md": "93d04175a27264da495b332835b0abd65aee9dac4aacc6162bb299e27bfe86ec",
+    "source/grounding/visual_waves.md": "299ab6b7531e25b4db93edaf2c53ad009eb9d948f041889b124ded832a891278",
+    "source/lesson_catalog.py": "fab6fba1f64db6211e64cf9ff8722835b01d064eda505e555d68b9d01c648f87",
+    "source/lessons/fields.json": "2cb999a8c008d33b3e0503dfd01e0a9de151e66b5852810a473e9565b57077de",
+    "source/lessons/mechanics.json": "1561f2418064ac781941711998586534ccacaca47145cd8f76bd6be52c31fe48",
+    "source/lessons/waves.json": "1b4e7b73e09b06aa3d37db058d3bc97e2a7371d80c8b8f20f6c6fa2d9101b70a",
+    "source/live/core.js": "24aa1573e4393ef357a7a5d1722893f3183f2b34608f55df63aaf235380f7b03",
+    "source/live/fields_models.mjs": "b0080ce343175f0767494643015b8a186732537b3c1268d0ef3b20e03500eee3",
+    "source/live/lab_kit.js": "1dd51b73af41d43d57302ceda6692df2666c397aa371b97e9d98b8f0a37641c6",
+    "source/live/mechanics_energy.js": "2ccf9bbefd7158b2e83c49daeb62d301ea0dc11a40c5b1b1ebc3656b026f281a",
+    "source/live/mechanics_fluids.js": "75c9675c2494d5a74220d52ae165f5d39e742a0bc7a49195cb8f04d4b9745ead",
+    "source/live/mechanics_models.mjs": "912a18c0ac4b41c1770429b493adec93e29f8eee3f4ef1adea0ca5d67ff8429c",
+    "source/live/mechanics_motion_models.mjs": "0c2a19bdb9302cfc2e3dabbb9d903a1ce5bfc8ac291a0fd34912e944e2237281",
+    "source/live/mechanics_render.js": "9a9f0da0ff8556667844ece63c84b3d411db2c864fdae7cf16494a63215ba56a",
+    "source/live/mechanics_space.js": "2aa54e32b91baad8177edf7fd71a0d10666c7a7bc66cdec82670eeaf72dac4dd",
+    "source/live/three_kit.js": "40c49bfd17a33954a07cf3fa8e8fb1810d829ce97c65664281fe22ba68e36c51",
+    "source/live/w_cannon3d.js": "3e94520b9eef44d97f1adb476b640271fb55e9ae426076d187084b2720f926c0",
+    "source/live/w_eye3d.js": "0bd8ae15971f8930e7b165a45a30059c0b348f8ac39c1236f819d1274e37a59a",
+    "source/live/w_field3d.js": "7b47e016122791ddf5b3caa33e0556085e79f6f80ce9c5e9fb7db638bc4b1f5d",
+    "source/live/w_fieldslab.js": "4a6ecf17bec80bf48edd1ef00755f4494005a3aa1d5e3c74fa0bbcb493e8541b",
+    "source/live/w_mechanicslab.js": "3609531dc84f34f73ad41c3db7860723e4949517a8527e3648b1f5d1ae472580",
+    "source/live/w_phases.js": "2aeb1eec215af8c26c6176ec1762084b612730e1a121f7ba6a5242ec4e6ec201",
+    "source/live/w_ripple.js": "18f988e0496f2776104805c71a26edf0e84d56bdf59d8175e6263e98f68aec7c",
+    "source/live/w_skycolour.js": "9cdc446b79a24b653e415d5a3394dd9491f628ca687e3c85952b02bef6a102d1",
+    "source/live/w_waveslab.js": "22f2fef8fd2d446e32fe5541e418a2dbedfa6a297086769bf03598cb097072e7",
+    "source/live/waves_colour.js": "0fa241f54505783010e72814069fcf05c9caf5da7bc17d8dd81d565146d14d3a",
+    "source/live/waves_draw.js": "469a48992bc1c3933ad11c312ac9c27bac8b0a239a855d7e22bf32adeacbae10",
+    "source/live/waves_models.mjs": "0ffee4462f82c9088c2b2a4b028e800df7dd4e0af0de56d8cf50133397ddd237",
+    "source/live/waves_motion.js": "3a32383aaf0e7b249bfcbb576e9af7c1fa86e4965c9acd8b7f0b959265f65473",
+    "source/live/waves_optics.js": "f25333b837df8e6fb9d0c8e835331a9074f40312e1291237011dcdf41cc31bfd",
+    "source/live/waves_thermal.js": "af11dcf06d485f0d737051d02249ef27bd8dc98663434d0804ea2884150de8aa",
+    "source/src/ch08.md": "5abff6976262267deb21a9c52e38ed38973bf351f252e10b8b6d70ef5090bfe8",
+    "source/src/ch14.md": "18322c956533f2a16f183d9969bebe4bf6ce6aff1a7b07639bacc164868335e2",
+    "source/stories.py": "e8a9fca73a3fae749db68d1aab9920cf706df9a8c01719bb772a37c026d919d2",
+    "source/tests/test_fields_labs.mjs": "577ff239867e7b89eae0a0aeac065db6cfef27f76b4a2043653a5ab4070fc3c5",
+    "source/tests/test_labs_browser.py": "2ef8b81d30040f1acf014735a6570ad6e7ca9f53ef2119d6a09d8a24dba07017",
+    "source/tests/test_labs_integration.py": "6415144636540879e51d9102242fed73cf30daa8481651cd74a3e708d4cf6a1a",
+    "source/tests/test_labs_lifecycle.py": "2f7dd6602ef21bb335af32a6eb91c3c59beae0006ddcb05239fbd2a5c73998bc",
+    "source/tests/test_lesson_catalog.py": "aa660fbe3c8bdbc6aa40ad2ce85e4ba3f49cb0bd7db56598d2a905e851d5a8b6",
+    "source/tests/test_mechanics_labs.mjs": "fd686445d38ccf1994cfc93a6abf7fa52413eeabd1b3d46724590a17ea4300ad",
+    "source/tests/test_mechanics_motion_geometry.mjs": "517384c8532cd9dcc522eabc98d95430363abac092453079f84fae9c7ce0e5b4",
+    "source/tests/test_rawgl_pool.mjs": "8321cffa3f945fbd8bbbbaebf34a770ef706cbe13793acae6747784f85fb7870",
+    "source/tests/test_waves_labs.mjs": "1393ceada39f2b20621ea04e351cb26e825e826fbac57aa1dbfae81dd52f6ec5"
+  },
+  "unverifiedBoundaries": [
+    "Physical Android/iOS GPU, battery, thermal and real-device frame-rate performance",
+    "Actual microphone/motion/magnetic sensor calibration",
+    "Controlled learner-comprehension or retention outcomes"
+  ],
+  "publication": "Local preview/build only; no production publication performed"
+}

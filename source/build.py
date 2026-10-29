@@ -23,6 +23,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 from figs_core import FIGS, DEFS  # noqa: E402
 import stories as ST  # noqa: E402
+from lesson_catalog import load_catalog, lesson_attributes, widgets_from_html
 
 SRC = os.path.join(ROOT, 'src')
 PROV = os.path.join(ROOT, 'provenance')
@@ -253,6 +254,8 @@ class Builder:
         self.figs_used = [] # (ch n, figure function name)
         self.fig_anchor = {}  # figure function name -> (anchor, number)
         self.linker = ST.Linker([])
+        self.lessons = []
+        self.lesson_targets = {}
 
     def uid(self, base):
         u, k = base, 2
@@ -357,7 +360,16 @@ class Builder:
         anchor = f'fig-{sid(num)}'
         self.figs_used.append((ch.n, name))
         self.fig_anchor.setdefault(name, (anchor, num))
-        return f'<figure{cls} id="{anchor}">{svg}{capt}</figure>'
+        selected = []
+        if isinstance(ch.n, int):
+            for lesson in self.lessons:
+                if lesson['id'] in self.lesson_targets or lesson['chapter'] != ch.n:
+                    continue
+                if (lesson.get('figure') == name if lesson.get('figure') else lesson.get('section') == sec):
+                    selected.append(lesson)
+                    self.lesson_targets[lesson['id']] = anchor
+        labs = f' data-labs="{html.escape(lesson_attributes(selected), quote=True)}"' if selected else ''
+        return f'<figure{cls} id="{anchor}"{labs}>{svg}{capt}</figure>'
 
     def block(self, kind, arg, inner, ch, sec):
         label = sec or str(ch.n)
@@ -795,7 +807,7 @@ def iife(entry_src, tag, folder):
 
 
 def used_widgets(body):
-    names = sorted(set(re.findall(r'data-live="([\w-]+)"', body)))
+    names = widgets_from_html(body)
     for n in names:
         if not os.path.exists(os.path.join(ROOT, 'live', f'w_{n}.js')):
             raise SystemExit(f'live widget {n!r} has no file live/w_{n}.js')
@@ -1080,6 +1092,7 @@ def front_title(html_, default):
 def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     load_figures()
     b = Builder()
+    b.lessons = load_catalog(os.path.join(os.path.dirname(os.path.abspath(SRC)), 'lessons'))
     stories = ST.load(SRC)
     b.stories = {s.id: s for s in stories}
     b.linker = ST.Linker(stories)
@@ -1119,6 +1132,16 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
                 parts.append(b.chapter_html(c, ledger))
     for s in stories:
         s.html = b.linker.link(b.render_blocks(s.src, s, None), exclude=s.id)
+        experiments = [r for r in b.lessons if s.id in r.get('stories', []) and r['id'] in b.lesson_targets]
+        if experiments:
+            links = ''.join(f'<li><a href="#{b.lesson_targets[r["id"]]}" data-open-lesson="{html.escape(r["id"], quote=True)}">{html.escape(r["title"])}</a></li>' for r in experiments)
+            s.html += f'<aside class="lab-story-links"><b>Try the experiment</b><ul>{links}</ul></aside>'
+    missing = [r['id'] for r in b.lessons if r['chapter'] in {c.n for c in chapters} and r['id'] not in b.lesson_targets]
+    if missing:
+        raise SystemExit(f'Lessons have no matching chapter figure: {", ".join(missing)}')
+    unknown_stories = sorted({sid for r in b.lessons for sid in r.get('stories', []) if sid not in b.stories})
+    if unknown_stories:
+        raise SystemExit(f'Unknown lesson story targets: {", ".join(unknown_stories)}')
     parts.insert(toc_at, b.toc_html(chapters, front_titles))
     errors, warns = ledger.check(chapters, stories, b.figs_used)
     for w in warns:
@@ -1140,6 +1163,9 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     if 'further' in front:
         back.append(f'<section class="flow" id="further">{b.render_blocks(front["further"], dummy, None)}</section>')
     back.append(b.credits_html(chapters, stories, ledger))
+    if b.lessons:
+        citations = ''.join(f'<li><b>{html.escape(r["title"])}</b>: ' + ', '.join(f'<a href="{html.escape(u, quote=True)}">source {i+1}</a>' for i, u in enumerate(r['sources'])) + '</li>' for r in b.lessons if r['id'] in b.lesson_targets)
+        back.append(f'<section class="flow" id="experiment-sources"><h2>Sources for the live experiments</h2><p>Original calculated illustrations. The accompanying source notes explain the models, assumptions and checks.</p><ul class="lab-source-list">{citations}</ul></section>')
     parts.append('<div class="backmatter">' + ''.join(f'<div class="front-ish">{x}</div>' for x in back) + '</div>')
 
     body = mark_scripts('\n'.join(parts))
@@ -1170,6 +1196,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
         'scenes': b.scenes,
         'checks': [{'anchor': a[4], 'label': a[1], 'ch': a[0]} for a in b.answers],
         'predicts': [{'id': k, 'ch': v[0], 'label': v[1]} for k, v in b.predicts.items()],
+        'lessons': [{'id': r['id'], 'title': r['title'], 'chapter': r['chapter'], 'target': b.lesson_targets[r['id']], 'stories': r.get('stories', [])} for r in b.lessons if r['id'] in b.lesson_targets],
     }
     data_json = json.dumps(book_data, ensure_ascii=False).replace('</', '<\\/')
     scale_assets = {}

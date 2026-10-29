@@ -5,7 +5,7 @@ import {
 } from 'three';
 import { Live } from './core.js';
 import { label, note } from './art_waves.js';
-import { makeStage, addArrow, webglOK } from './three_kit.js';
+import { makeStage, addArrow, clearGroup, webglOK } from './three_kit.js';
 
 Live.register('eye3d', (stage, params, api) => {
   const c = api.colors();
@@ -198,10 +198,7 @@ Live.register('eye3d', (stage, params, api) => {
   kit.root.add(iris);
 
   function rebuild() {
-    while (dynGroup.children.length) {
-      const ch = dynGroup.children.pop();
-      ch.traverse?.((m) => m.geometry?.dispose?.());
-    }
+    clearGroup(dynGroup);
     const o = computeOptics();
 
     // Crystalline lens at x = 0.20, fattening with accommodation (accomFrac 0..1)

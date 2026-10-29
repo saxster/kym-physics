@@ -1,0 +1,776 @@
+[
+  {
+    "id": "m-horizon",
+    "widget": "mechanicslab",
+    "title": "Over the sea horizon",
+    "chapter": 0,
+    "section": "0.1",
+    "figure": "c0_hull_down",
+    "stories": [
+      "p-bhaskara"
+    ],
+    "question": "Will raising your eyes recover a ship hidden below the horizon?",
+    "explanation": "The eye height changes the tangent to a spherical sea. The lowest visible part of a distant ship therefore changes. A flat model does not hide the hull.",
+    "limits": "Geometric horizon on a smooth spherical Earth; no atmospheric refraction. Curvature is magnified in the 3D overview.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/2-2-ancient-astronomy"
+    ],
+    "renderer": "horizon"
+  },
+  {
+    "id": "m-shadow-shapes",
+    "widget": "mechanicslab",
+    "title": "A sphere and a disc cast shadows",
+    "chapter": 0,
+    "section": "0.1",
+    "figure": "c0_hull_down",
+    "stories": [],
+    "question": "If a disc turns edge-on to the light, does its shadow stay circular?",
+    "explanation": "Parallel projection preserves a sphere’s circular outline in every orientation. A disc’s projection narrows to a line as it turns edge-on.",
+    "limits": "Parallel geometric projection of an opaque sphere and thin circular disc. No diffraction or extended light source.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/2-2-ancient-astronomy"
+    ],
+    "renderer": "shadowshapes"
+  },
+  {
+    "id": "m-measurement",
+    "widget": "mechanicslab",
+    "title": "Precise can still be wrong",
+    "chapter": 0,
+    "section": "0.2",
+    "figure": "c0_rulers",
+    "stories": [
+      "si-units",
+      "estimation",
+      "kilogram",
+      "p-mani"
+    ],
+    "question": "If five readings agree, must their average be correct?",
+    "explanation": "Scatter measures repeatability; an offset shifts every reading together. Compare both with the marked reference length.",
+    "limits": "Five deterministic illustrative readings, not a statistical confidence interval. The reference is assumed known.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/1-3-accuracy-precision-and-significant-figures"
+    ],
+    "renderer": "measurement"
+  },
+  {
+    "id": "m-scale",
+    "widget": "mechanicslab",
+    "title": "Length, area and volume",
+    "chapter": 0,
+    "section": "0.3",
+    "figure": "c0_ladder",
+    "stories": [
+      "powers-of-ten",
+      "proportion"
+    ],
+    "question": "A cube becomes twice as wide. How do its face area and volume change?",
+    "explanation": "Count the unit lengths, squares and cubes: scaling multiplies length by s, area by s² and volume by s³.",
+    "limits": "Dimensionless unit cubes; the logarithmic Powers of Ten explorer remains the authority for physical sizes.",
+    "sources": [
+      "https://openstax.org/books/physics/pages/1-3-the-language-of-physics-physical-quantities-and-units"
+    ],
+    "renderer": "scale"
+  },
+  {
+    "id": "m-rain",
+    "widget": "mechanicslab",
+    "title": "A shallow layer over a city",
+    "chapter": 0,
+    "section": "0.4",
+    "figure": "c0_rain",
+    "stories": [
+      "estimation"
+    ],
+    "question": "Can ankle-deep rain add up to millions of tonnes of water?",
+    "explanation": "Volume is footprint area times rainfall depth. One cubic metre of fresh water has about one tonne of mass.",
+    "limits": "A rectangular, illustrative city footprint; no drainage, infiltration or forecast. The rain depth in the overview is enormously enlarged.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/1-4-approximation",
+      "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+    ],
+    "renderer": "rain"
+  },
+  {
+    "id": "m-shadows",
+    "widget": "mechanicslab",
+    "title": "Two shadows measure a world",
+    "chapter": 0,
+    "section": "0.4",
+    "figure": "c0_eratosthenes",
+    "stories": [],
+    "question": "Why can two parallel sunbeams make different stick shadows?",
+    "explanation": "Local verticals point in different directions on a sphere. The shadow angle equals the central angle in this two-city meridian model.",
+    "limits": "Parallel rays, cities on one meridian, spherical Earth. Stadion length remains an explicit assumption.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/2-2-ancient-astronomy"
+    ],
+    "renderer": "shadows"
+  },
+  {
+    "id": "m-frames",
+    "widget": "mechanicslab",
+    "title": "One bounce, two observers",
+    "chapter": 1,
+    "section": "1.1",
+    "figure": "c1_two_frames",
+    "stories": [
+      "earth-turns",
+      "p-aryabhata"
+    ],
+    "question": "Does the ball travel vertically or along an arc?",
+    "explanation": "Subtract the chosen observer’s position from every event. Changing frame changes the drawn path, not which events occur together.",
+    "limits": "Steady nonrelativistic motion; identical ideal bounces. Train and ball sizes are schematic; distances are metres.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-3-reference-frames/"
+    ],
+    "renderer": "frames"
+  },
+  {
+    "id": "m-trains",
+    "widget": "mechanicslab",
+    "title": "Three trains, one clock",
+    "chapter": 1,
+    "section": "1.1",
+    "figure": "c1_trains",
+    "stories": [
+      "vectors"
+    ],
+    "question": "Which train is really going backwards?",
+    "explanation": "A velocity is always measured relative to an observer. The 70 km/h train passes the 60 km/h train at 10 km/h; the opposite train passes at 120 km/h.",
+    "limits": "Illustrative constant speeds, no timetable data; carriage sizes enlarged.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-3-reference-frames/"
+    ],
+    "renderer": "trains"
+  },
+  {
+    "id": "m-graph",
+    "widget": "mechanicslab",
+    "title": "A graph is not a road",
+    "chapter": 1,
+    "section": "1.2",
+    "figure": "c1_graph_walk",
+    "stories": [
+      "motion-graphs"
+    ],
+    "question": "After an out-and-back walk, can average velocity be zero while average speed is positive?",
+    "explanation": "Distance adds every segment travelled. Displacement compares only start and finish. The slope of position against time gives velocity. On the smooth-motion preset, reduce the secant interval to approach instantaneous velocity.",
+    "limits": "Piecewise ideal walking velocities change instantaneously at the marked times; a real walker takes time to turn.",
+    "sources": [
+      "https://openstax.org/books/physics/pages/2-2-speed-and-velocity",
+      "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs"
+    ],
+    "renderer": "graph"
+  },
+  {
+    "id": "m-acceleration",
+    "widget": "mechanicslab",
+    "title": "Negative need not mean slowing",
+    "chapter": 1,
+    "section": "1.3",
+    "figure": "c1_four_cars",
+    "stories": [],
+    "question": "Can a negative acceleration make something go faster?",
+    "explanation": "Compare velocity and acceleration directions. The same direction increases speed; opposite directions decrease it, regardless of coordinate signs.",
+    "limits": "One-dimensional constant acceleration; arrows for different quantities use separate labelled scales.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/2-4-acceleration"
+    ],
+    "renderer": "acceleration"
+  },
+  {
+    "id": "m-galileo",
+    "widget": "mechanicslab",
+    "title": "Equal beats, unequal gaps",
+    "chapter": 1,
+    "section": "1.4",
+    "figure": "c1_ramp",
+    "stories": [
+      "p-galileo"
+    ],
+    "question": "Does twice the elapsed time mean twice the distance?",
+    "explanation": "Constant acceleration gives distances proportional to t². A rolling solid sphere has smaller acceleration than a frictionless sliding particle because some energy becomes rotation.",
+    "limits": "Uniform solid sphere rolls without slipping; slider is an ideal particle. No rolling resistance. Markers are equal-time samples.",
+    "sources": [
+      "https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs",
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-12-rotations-and-translation-rolling/"
+    ],
+    "renderer": "galileo"
+  },
+  {
+    "id": "m-toss",
+    "widget": "mechanicslab",
+    "title": "Stop exactly at the top",
+    "chapter": 1,
+    "section": "1.5",
+    "figure": "c1_toss_graphs",
+    "stories": [],
+    "question": "At the highest point, which graph reaches zero?",
+    "explanation": "The height has a maximum while velocity passes through zero. Acceleration remains −9.8 m/s² throughout the ideal flight.",
+    "limits": "No air. The horizontal graph axis is time; it is not a horizontal flight direction.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+    ],
+    "renderer": "toss"
+  },
+  {
+    "id": "m-inertia",
+    "widget": "mechanicslab",
+    "title": "After the hand lets go",
+    "chapter": 2,
+    "section": "2.1",
+    "figure": "c2_book_slide",
+    "stories": [
+      "impetus",
+      "inertia"
+    ],
+    "question": "What happens when friction approaches zero?",
+    "explanation": "After release there is no forward hand force. A backward contact force changes velocity; when it is removed, the same velocity continues.",
+    "limits": "A 1 kg book is pushed for 0.40 s to a selected release speed, then slides with constant kinetic friction and no air. Hand departure is visible; replay restarts after five seconds.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia",
+      "https://openstax.org/books/college-physics-2e/pages/5-1-friction"
+    ],
+    "renderer": "inertia"
+  },
+  {
+    "id": "m-arrow",
+    "widget": "mechanicslab",
+    "title": "What pushes an arrow after release?",
+    "chapter": 2,
+    "section": "2.2",
+    "figure": "c2_arrow_forces",
+    "stories": [],
+    "question": "Once the string leaves the arrow, what supplies a forward force?",
+    "explanation": "The bow supplied a contact force before release. After release gravity and air drag change the arrow’s velocity; no stored forward force is needed to keep it moving.",
+    "limits": "Point-particle flight with linear drag, no lift or wind; the arrow is aligned with velocity. Body size is enlarged; no quantitative archery prediction.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/4-3-newtons-second-law-of-motion-concept-of-a-system",
+      "https://openstax.org/books/college-physics-2e/pages/3-4-projectile-motion"
+    ],
+    "renderer": "arrowflight"
+  },
+  {
+    "id": "m-braking",
+    "widget": "mechanicslab",
+    "title": "Who pushed the passenger?",
+    "chapter": 2,
+    "section": "2.4",
+    "figure": "c2_train_brake",
+    "stories": [
+      "inertia"
+    ],
+    "question": "From the platform, what slows first when the train brakes?",
+    "explanation": "The floor slows the passenger’s feet. An initially unrestrained upper-body marker keeps its old motion, so it advances relative to the braking carriage.",
+    "limits": "Short-time rigid hinged-torso model with floor-driven feet and no muscle response or stepping. A separate loose bag slides on an ideal frictionless floor; no injury prediction. Coordinates transform using the same train clock.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter11.pdf"
+    ],
+    "renderer": "braking"
+  },
+  {
+    "id": "m-friction",
+    "widget": "mechanicslab",
+    "title": "At the contact",
+    "chapter": 2,
+    "section": "2.5",
+    "figure": "c2_friction_closeup",
+    "stories": [],
+    "question": "Does friction always equal its maximum value?",
+    "explanation": "Static friction matches the applied force up to a limit. Once sliding begins, deforming and breaking contact junctions resist relative sliding.",
+    "limits": "Schematic contact junctions; constant coefficients μs=0.50 and μk=0.35. Real contacts also involve adhesion and deformation.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/5-1-friction"
+    ],
+    "renderer": "friction"
+  },
+  {
+    "id": "m-tablecloth",
+    "widget": "mechanicslab",
+    "title": "A short push on a plate",
+    "chapter": 2,
+    "section": "2.5",
+    "figure": "c2_friction_graph",
+    "stories": [],
+    "question": "Will doubling the plate’s mass stop it moving?",
+    "explanation": "Friction grows with mass, but so does inertia. Pull duration controls the impulse and the resulting displacement; mass cancels in this ideal model.",
+    "limits": "Constant sliding friction μ=0.30 on both cloth and bare table, no hem or tipping. This is a virtual experiment.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/5-1-friction",
+      "https://openstax.org/books/college-physics-2e/pages/8-2-impulse"
+    ],
+    "renderer": "tablecloth"
+  },
+  {
+    "id": "m-vectors",
+    "widget": "mechanicslab",
+    "title": "Pulls at an angle",
+    "chapter": 3,
+    "section": "3.1",
+    "figure": "c3_tug_cart",
+    "stories": [
+      "vectors"
+    ],
+    "question": "Do two 5 N pulls always add up to 10 N?",
+    "explanation": "Add vectors head to tail. The resultant depends on their directions; acceleration is the resultant divided by mass.",
+    "limits": "Point-mass cart on a frictionless horizontal surface; force and acceleration scales differ.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/3-2-vector-addition-and-subtraction-graphical-methods",
+      "https://openstax.org/books/college-physics-2e/pages/4-3-newtons-second-law-of-motion-concept-of-a-system"
+    ],
+    "renderer": "vectors"
+  },
+  {
+    "id": "m-newton",
+    "widget": "mechanicslab",
+    "title": "Change the force; change the mass",
+    "chapter": 3,
+    "section": "3.2",
+    "figure": "c3_f_ma",
+    "stories": [],
+    "question": "If the same resultant acts on twice the mass, how does its acceleration change?",
+    "explanation": "Add vectors head to tail. The resultant depends on their directions; acceleration is the resultant divided by mass.",
+    "limits": "Point-mass cart on a frictionless horizontal surface; force and acceleration scales differ.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/3-2-vector-addition-and-subtraction-graphical-methods",
+      "https://openstax.org/books/college-physics-2e/pages/4-3-newtons-second-law-of-motion-concept-of-a-system"
+    ],
+    "renderer": "vectors"
+  },
+  {
+    "id": "m-support",
+    "widget": "mechanicslab",
+    "title": "A table is a very stiff spring",
+    "chapter": 3,
+    "section": "3.3",
+    "figure": "c3_bridging_chain",
+    "stories": [],
+    "question": "If a tabletop hardly moves, how can it push?",
+    "explanation": "A small deformation produces a restoring force. Stiffer supports need less deformation for the same force. On a slope, the normal balances the perpendicular part of weight. The table preset exposes schematic material sites whose small relative displacements are enlarged.",
+    "limits": "Hooke-law support analogies; all deformation magnified. On the inclined support, separate static friction balances the downhill component.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/4-5-normal-tension-and-other-examples-of-forces",
+      "https://openstax.org/books/college-physics-2e/pages/5-3-elasticity-stress-and-strain"
+    ],
+    "renderer": "support"
+  },
+  {
+    "id": "m-pairs",
+    "widget": "mechanicslab",
+    "title": "One interaction, two objects",
+    "chapter": 3,
+    "section": "3.4",
+    "figure": "c3_pairs_person",
+    "stories": [
+      "third-law"
+    ],
+    "question": "Can equal opposite forces give very different accelerations?",
+    "explanation": "An interaction gives equal and opposite forces on two different objects. Their accelerations differ inversely with their masses. Selecting one object leaves its own force visible. The standing-person preset separates the two balanced forces on the person from their partners on Earth and floor.",
+    "limits": "Two isolated bodies with a prescribed mutual force for a short instant; not a collision damage model.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/4-4-newtons-third-law-of-motion-symmetry-in-forces"
+    ],
+    "renderer": "pairs"
+  },
+  {
+    "id": "m-rocket",
+    "widget": "mechanicslab",
+    "title": "Throw something, move yourself",
+    "chapter": 3,
+    "section": "3.5",
+    "figure": "c3_rocket_momentum",
+    "stories": [
+      "momentum",
+      "p-sarabhai"
+    ],
+    "question": "What can an astronaut push on in empty space?",
+    "explanation": "The astronaut and thrown object receive equal and opposite momentum. Repeated ejections use the same two-body accounting; there is no external air.",
+    "limits": "Discrete ideal ejections, no gravity or drag; exhaust icons are parcels of finite mass, not literal molecules.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/8-3-conservation-of-momentum",
+      "https://openstax.org/books/college-physics-2e/pages/8-7-introduction-to-rocket-propulsion"
+    ],
+    "renderer": "rocket"
+  },
+  {
+    "id": "m-fall",
+    "widget": "mechanicslab",
+    "title": "Air and gravity are separate controls",
+    "chapter": 4,
+    "section": "4.1",
+    "figure": "c4_two_predictions",
+    "stories": [
+      "falling",
+      "hammer-feather",
+      "p-stevin",
+      "pisa"
+    ],
+    "question": "Would a feather fall slowly on the Moon because there is no air?",
+    "explanation": "Gravity sets the initial acceleration. Drag grows with speed, shape and air density. Removing air restores equal acceleration regardless of mass.",
+    "limits": "Vertical quadratic drag with assumed effective drag areas; fixed g, no tumbling, wind or changing atmosphere.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects",
+      "https://openstax.org/books/college-physics-2e/pages/5-2-drag-forces"
+    ],
+    "renderer": "fall"
+  },
+  {
+    "id": "m-projectile",
+    "widget": "mechanicslab",
+    "title": "Drop from a moving car",
+    "chapter": 4,
+    "section": "4.4",
+    "figure": "c4_two_coins",
+    "stories": [],
+    "question": "Where does the ball land relative to the car?",
+    "explanation": "The released ball retains the car’s horizontal velocity. It falls vertically in the car frame and along a parabola in the ground frame.",
+    "limits": "Level constant-speed car; no air or rotation. Start height 0.75 m.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/3-4-projectile-motion",
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-3-reference-frames/"
+    ],
+    "renderer": "projectile"
+  },
+  {
+    "id": "m-circle",
+    "widget": "mechanicslab",
+    "title": "Turning a velocity arrow",
+    "chapter": 4,
+    "section": "4.5",
+    "figure": "c4_whirl",
+    "stories": [
+      "circular"
+    ],
+    "question": "How can speed stay constant while velocity changes?",
+    "explanation": "Equal-length velocity arrows turn. Their vector difference points towards the centre. Releasing the constraint continues along the tangent.",
+    "limits": "Planar circle of radius 2 m; release removes only the inward constraint. Floor view neglects vertical motion.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/6-2-centripetal-acceleration"
+    ],
+    "renderer": "circle"
+  },
+  {
+    "id": "m-gravity",
+    "widget": "mechanicslab",
+    "title": "The apple, the Moon and a shared centre",
+    "chapter": 5,
+    "section": "5.1",
+    "figure": "c5_moon_fall",
+    "stories": [
+      "gravity",
+      "proportion"
+    ],
+    "question": "Does the Moon move around an Earth that is perfectly fixed?",
+    "explanation": "The two bodies orbit a common centre of mass. A separate comparison shows the inverse-square change in gravitational acceleration. The apple/Moon preset compares 4.90 m in one second with the gap below a lunar tangent in one minute.",
+    "limits": "Circular two-body teaching orbit; Earth/Moon sizes and orbital separation enlarged independently for visibility. No tidal or solar perturbations.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter9.pdf",
+      "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+    ],
+    "renderer": "gravity"
+  },
+  {
+    "id": "m-weightless",
+    "widget": "mechanicslab",
+    "title": "A falling room and a relaxed spring",
+    "chapter": 5,
+    "section": "5.2",
+    "figure": "c5_phone_drop",
+    "stories": [
+      "orbits",
+      "p-chawla"
+    ],
+    "question": "Does a zero accelerometer reading mean zero gravity?",
+    "explanation": "A freely falling room and astronaut have the same gravitational acceleration. With no support force, the spring-mass sensor relaxes even though gravity remains strong.",
+    "limits": "Ideal local free fall, ignoring gravity gradients and station rotation. Sensor is a spring analogy; no device is connected.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft",
+      "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation"
+    ],
+    "renderer": "weightless"
+  },
+  {
+    "id": "m-kepler",
+    "widget": "mechanicslab",
+    "title": "Kepler’s equal-time sweeps",
+    "chapter": 5,
+    "section": "5.3",
+    "figure": "c5_ellipse",
+    "stories": [
+      "kepler",
+      "p-halley"
+    ],
+    "question": "Does a planet cover equal distances in equal times?",
+    "explanation": "Mean anomaly advances uniformly, giving equal swept areas. The planet is faster near the focus; changing orbit size changes period according to a³.",
+    "limits": "Two-body Newtonian ellipses; normalized units with GM=1. Eccentricity is user-selected, not necessarily a real planet.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf",
+      "https://openstax.org/books/astronomy-2e/pages/3-1-the-laws-of-planetary-motion",
+      "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+      "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+    ],
+    "renderer": "kepler"
+  },
+  {
+    "id": "m-torsion",
+    "widget": "mechanicslab",
+    "title": "A tiny pull twists a wire",
+    "chapter": 5,
+    "section": "5.4",
+    "figure": "c5_cavendish",
+    "stories": [
+      "cavendish-shed"
+    ],
+    "question": "What changes when the large lead balls switch sides?",
+    "explanation": "Both gravitational torques change sign. The wire twists until its restoring torque matches the tiny gravitational torque.",
+    "limits": "Assumed small-angle apparatus; includes attraction of both large balls on both small ones. The displayed twist is enormously enlarged. Not a reconstruction of Cavendish’s measured trace.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation",
+      "https://openstax.org/books/college-physics-2e/pages/9-2-the-second-condition-for-equilibrium",
+      "https://openstax.org/books/university-physics-volume-1/pages/15-5-damped-oscillations"
+    ],
+    "renderer": "torsion"
+  },
+  {
+    "id": "m-perturbation",
+    "widget": "mechanicslab",
+    "title": "A small nudge leaves a message",
+    "chapter": 5,
+    "section": "5.5",
+    "figure": "c5_comet",
+    "stories": [
+      "planet-from-a-pen",
+      "p-halley"
+    ],
+    "question": "Does adding one small planet leave the same predicted orbit?",
+    "explanation": "Compare the two-body path with a restricted three-body calculation. The separate residual view reveals the small difference that is hard to see on the main orbit.",
+    "limits": "Illustrative planet mass and prescribed circular orbit; not historical Neptune or Halley data. Heliocentric indirect acceleration is included.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf",
+      "https://openstax.org/books/astronomy-2e/pages/3-4-orbits-in-the-solar-system"
+    ],
+    "renderer": "perturbation"
+  },
+  {
+    "id": "m-mission",
+    "widget": "mechanicslab",
+    "title": "Burn here, change the far side",
+    "chapter": 5,
+    "section": "5.6",
+    "figure": "c5_chandrayaan",
+    "stories": [
+      "chandrayaan"
+    ],
+    "question": "Does a forward burn at perigee push the spacecraft radially outwards?",
+    "explanation": "An impulse along the path immediately changes velocity; the larger apogee appears later. A retrograde lunar flyby burn can change positive orbital energy to a bound orbit.",
+    "limits": "Educational impulsive two-body burns, separate Earth and Moon panels. The original mission explorer retains the published ISRO orbit sequence; this is not a flight trajectory reconstruction.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter25new.pdf",
+      "https://openstax.org/books/astronomy-2e/pages/3-5-motions-of-satellites-and-spacecraft",
+      "https://www.isro.gov.in/Chandrayaan3.html"
+    ],
+    "renderer": "mission"
+  },
+  {
+    "id": "m-pressure",
+    "widget": "mechanicslab",
+    "title": "Pressure has no preferred direction",
+    "chapter": 6,
+    "section": "6.1",
+    "figure": "c6_pressure",
+    "stories": [],
+    "question": "What changes when the same load is turned onto a smaller face?",
+    "explanation": "Force stays fixed while force per area changes. In the immersed mode, forces are perpendicular to every face and pressure increases with depth.",
+    "limits": "Uniform fresh-water density; rectangular body. Arrows for very different pressures are magnified independently and values are printed. The immersed cube is held while pressure forces are measured; the arrows are not a complete free-body diagram. The solid has fixed 0.20 × 0.10 × 0.05 m dimensions and is turned onto one of three faces.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/11-3-pressure",
+      "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
+    ],
+    "renderer": "pressure"
+  },
+  {
+    "id": "m-suction",
+    "widget": "mechanicslab",
+    "title": "The outside air does the pushing",
+    "chapter": 6,
+    "section": "6.2",
+    "figure": "c6_barometer",
+    "stories": [
+      "ocean-of-air"
+    ],
+    "question": "Can an empty space pull water up a tube?",
+    "explanation": "A pressure difference supports a liquid column. Change the gas pressure at the top, the liquid density or the apparatus to see the same balance.",
+    "limits": "Static columns, negligible liquid vapour pressure and capillary forces. Hemispheres use projected circular area; no hazardous apparatus is proposed. The glass inset is enlarged and shows initial forces only, not subsequent water flow.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+    ],
+    "renderer": "suction"
+  },
+  {
+    "id": "m-hydrostatic",
+    "widget": "mechanicslab",
+    "title": "Same depth, same pressure",
+    "chapter": 6,
+    "section": "6.4",
+    "figure": "c6_tank",
+    "stories": [],
+    "question": "Does a wide lake make more pressure than a narrow tube at the same depth?",
+    "explanation": "Pressure at a point depends on depth, density and surface pressure. A dam’s total force adds a triangular distribution; a piston adds the same pressure everywhere.",
+    "limits": "Static incompressible fresh water; vertical dam. Vessel shapes are illustrative and pressure probes are compared at equal depths.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid",
+      "https://openstax.org/books/college-physics-2e/pages/11-5-pascals-principle"
+    ],
+    "renderer": "hydrostatic"
+  },
+  {
+    "id": "m-hull",
+    "widget": "mechanicslab",
+    "title": "The same steel, a larger hull",
+    "chapter": 6,
+    "section": "6.5",
+    "figure": "c6_buoyancy",
+    "stories": [
+      "floating"
+    ],
+    "question": "Can adding enclosed air change the steel’s weight?",
+    "explanation": "The steel’s mass is fixed. A larger watertight envelope displaces more liquid before submerging. Cargo changes weight; salinity changes the displaced volume needed.",
+    "limits": "Ideal rectangular watertight hull, calm liquid, no stability/flooding model. The layered mode uses a rectangular body at a sharp density interface.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/11-7-archimedes-principle",
+      "https://openstax.org/books/college-physics-2e/pages/11-2-density"
+    ],
+    "renderer": "hull"
+  },
+  {
+    "id": "m-energy",
+    "widget": "mechanicslab",
+    "title": "Choose what you count",
+    "chapter": 7,
+    "section": "7.1",
+    "figure": "c7_ledger",
+    "stories": [
+      "conservation"
+    ],
+    "question": "If the ball loses mechanical energy, must the total account fall?",
+    "explanation": "Choose the ball alone, ball plus Earth, or the surroundings too. Thermal accounts reveal where the mechanical energy went; gravitational energy belongs to the ball–Earth interaction.",
+    "limits": "Ideal flights and instantaneous lossy impacts; 64% mechanical-energy retention per bounce. Thermal allocations 30/40/30% are illustrative, sound counted after absorption.",
+    "sources": [
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter14.pdf",
+      "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy"
+    ],
+    "renderer": "energy"
+  },
+  {
+    "id": "m-impact",
+    "widget": "mechanicslab",
+    "title": "Two ways to stop a moving ball",
+    "chapter": 7,
+    "section": "7.2",
+    "figure": "c7_dent",
+    "stories": [
+      "vis-viva",
+      "p-du-chatelet"
+    ],
+    "question": "When speed doubles, what happens to stopping time and stopping distance?",
+    "explanation": "At fixed resisting force, impulse determines stopping time and work determines stopping distance. Momentum doubles, kinetic energy quadruples.",
+    "limits": "Constant resisting force; no universal claim about real flour or clay crater depths.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem",
+      "https://openstax.org/books/college-physics-2e/pages/8-2-impulse"
+    ],
+    "renderer": "impact"
+  },
+  {
+    "id": "m-work",
+    "widget": "mechanicslab",
+    "title": "Different routes, the same rise",
+    "chapter": 7,
+    "section": "7.3",
+    "figure": "c7_track",
+    "stories": [],
+    "question": "Does a longer ramp store more gravitational energy than a lift to the same floor?",
+    "explanation": "Only the rise changes the gravitational store. A ramp needs less force along a longer route. A perpendicular support force does no mechanical work during a horizontal move.",
+    "limits": "Quasistatic motion, no friction or physiological energy costs. Ramp/stairs geometry is schematic.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/7-1-work-the-scientific-definition",
+      "https://openstax.org/books/college-physics-2e/pages/7-3-gravitational-potential-energy"
+    ],
+    "renderer": "work"
+  },
+  {
+    "id": "m-power",
+    "widget": "mechanicslab",
+    "title": "Power is the rate, energy is the amount",
+    "chapter": 7,
+    "section": "7.5",
+    "figure": "c7_bill",
+    "stories": [
+      "si-units"
+    ],
+    "question": "Which uses more energy: a 2 kW geyser for 15 minutes or a 10 W lamp all day?",
+    "explanation": "Power is the slope of cumulative energy. Duration matters as well as the wattage. One kWh is 3.6 MJ.",
+    "limits": "Constant label power; ignores appliance duty cycles and billing tariffs.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/7-7-power"
+    ],
+    "renderer": "power"
+  },
+  {
+    "id": "m-station",
+    "widget": "mechanicslab",
+    "title": "Follow the shaft and the energy",
+    "chapter": 7,
+    "section": "7.6",
+    "figure": "c7_city",
+    "stories": [],
+    "question": "Where does the rest of a power station’s input go?",
+    "explanation": "A turbine turns a generator while the account splits electrical output from rejected energy. A finite spinning wheel slows when a lamp draws energy from it.",
+    "limits": "Illustrative adjustable efficiencies, no present-day Mumbai supply claim. Rotor kinematics are schematic; the energy account is exact for the stated model.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy",
+      "https://openstax.org/books/college-physics-2e/pages/7-7-power",
+      "https://openstax.org/books/college-physics-2e/pages/23-5-electric-generators"
+    ],
+    "renderer": "station"
+  },
+  {
+    "id": "m-stevin",
+    "widget": "mechanicslab",
+    "title": "Stevin’s wreath of spheres",
+    "chapter": 2,
+    "section": "2.3",
+    "figure": "c2_two_ramps",
+    "stories": [
+      "p-stevin"
+    ],
+    "question": "Why do four beads on a gentle slope balance two on a steep one?",
+    "explanation": "For a uniform chain, mass on each slope grows with its length while the downhill fraction shrinks inversely with length. Both downhill forces equal linear density × g × height.",
+    "limits": "Uniform flexible chain on frictionless slopes, symmetric hanging portion. Geometry follows the selected height; beads represent equal chain lengths.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/4-5-normal-tension-and-other-examples-of-forces",
+      "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy"
+    ],
+    "renderer": "stevin"
+  },
+  {
+    "id": "m-engine",
+    "widget": "mechanicslab",
+    "title": "A heat engine needs two temperatures",
+    "chapter": 7,
+    "section": "7.6",
+    "figure": "c7_city",
+    "stories": [
+      "engines"
+    ],
+    "question": "Could an engine turn all incoming heat into work?",
+    "explanation": "The reversible limit depends on hot and cold absolute temperatures. Work plus rejected energy always equals input; real performance can lie below that limit.",
+    "limits": "Ideal reservoir model and schematic piston; temperatures are kelvin, not Celsius. The reversible limit is not a claim of an actual engine’s efficiency.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/15-4-carnots-perfect-heat-engine-the-second-law-of-thermodynamics-restated"
+    ],
+    "renderer": "engine"
+  }
+]

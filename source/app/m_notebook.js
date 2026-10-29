@@ -4,7 +4,7 @@ import App from './core.js';
 
 const { el, store } = App;
 const HL_KEY = 'hl';
-const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:');
+const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:') || k.startsWith('lab:');
 const BOOK = () => App.data.title || document.title;
 const SLUG = () => BOOK().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const SKIP = 'svg, figure, button, textarea, input, template, script, style, .chk-ui, .home-ui, .pred-opts, .pred-you, .hl-pop, .live-controls, .scene, .bh, h2, h3, h4';
@@ -273,6 +273,14 @@ function gather() {
       title: strip(box.querySelector('.bh') && box.querySelector('.bh').textContent), pred: s.pred, res: s.res, done: s.done, date: s.date, t: s.t });
   });
   const hls = all();
+  for (const lesson of App.data.lessons || []) {
+    const saved = store.get('lab:' + lesson.id, null);
+    if (!saved || (!saved.prediction && !saved.explanation)) continue;
+    const root = document.getElementById(lesson.target);
+    if (!root) continue;
+    add(placeOf(root), { type: 'lab', target: lesson.target, lesson: lesson.id, title: lesson.title,
+      pred: saved.prediction, res: saved.explanation, t: saved.t });
+  }
   hls.forEach(h => {
     const root = document.getElementById(h.c);
     if (!root) return;
@@ -319,9 +327,17 @@ function item(it) {
     if (it.type === 'hl' && it.mark) {
       if (it.story) { nb.close(); App.openStory(it.story); setTimeout(() => { const m = document.querySelector(`mark.hl[data-hl="${it.mark}"]`); if (m) m.scrollIntoView({ block: 'center' }); }, 150); }
       else { nb.close(); const m = document.querySelector(`mark.hl[data-hl="${it.mark}"]`); if (m) setTimeout(() => m.scrollIntoView({ block: 'center' }), 60); }
+    } else if (it.type === 'lab') {
+      nb.close();
+      const link = document.createElement('a'); link.href = '#' + it.target; link.dataset.openLesson = it.lesson;
+      document.body.append(link); link.click(); link.remove();
     } else goTo(it.target, it.story);
   } }, 'Go there');
   const where = it.where ? el('span', { class: 'nb-where' }, it.where) : null;
+  if (it.type === 'lab') return el('article', { class: 'nb-item' },
+    el('p', { class: 'nb-kind' }, 'Live experiment', where), el('p', { class: 'nb-q' }, it.title),
+    it.pred ? el('p', { class: 'nb-a' }, 'I predicted: ' + it.pred) : null,
+    it.res ? el('p', { class: 'nb-a' }, 'My explanation: ' + it.res) : null, go);
   if (it.type === 'hl') {
     return el('article', { class: 'nb-item hl-item' }, el('p', { class: 'nb-kind' }, 'Highlight', where),
       el('blockquote', {}, it.quote.trim()), it.note ? el('p', { class: 'nb-note' }, it.note) : null, go);
@@ -356,6 +372,8 @@ function markdown() {
       if (it.type === 'hl') { L.push(`> ${strip(it.quote)}${w}`, ''); if (it.note) L.push(`Note: ${it.note}`, ''); }
       else if (it.type === 'pred') { L.push(`**Prediction${w}.** ${it.q}`, '', `I predicted: ${it.o}`, ''); }
       else if (it.type === 'check') { L.push(`**Check yourself${w}.** ${it.q}`, '', `My answer: ${it.a || '(in my head)'}${it.r ? ` · ${RLABEL[it.r]}` : ''}`, ''); }
+      else if (it.type === 'lab') { L.push(`**Live experiment${w}: ${it.title}**`, '');
+        if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`My explanation: ${it.res}`, ''); }
       else { L.push(`**Try it at home${w}: ${it.title}**${it.done ? ` (done ${fmtDate(it.date)})` : ''}`, '');
         if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`What happened: ${it.res}`, ''); }
     });

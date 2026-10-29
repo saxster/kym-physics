@@ -264,23 +264,38 @@ Live.register('skycolour', (stage, params, api) => {
     sync();
   });
 
-  // Control 3: Drag on the sky dome to look around horizontally
-  if (gl.canvas) {
-    let dragX = null;
-    gl.canvas.style.cursor = 'grab';
-    gl.canvas.addEventListener('pointerdown', (e) => {
-      dragX = e.clientX;
-      gl.canvas.setPointerCapture(e.pointerId);
-    });
-    gl.canvas.addEventListener('pointermove', (e) => {
-      if (dragX == null) return;
-      const dx = (e.clientX - dragX) / W;
-      dragX = e.clientX;
-      pan = Math.max(-0.28, Math.min(0.28, pan + dx));
-      sync();
-    });
-    gl.canvas.addEventListener('pointerup', () => { dragX = null; });
-  }
+  // Control 3: Rebind dragging when WebGL switches to the calculated canvas.
+  let unbindSurface = () => {};
+  const stopCanvasWatch = gl.onCanvasChange((cv) => {
+    unbindSurface(); unbindSurface = () => {};
+    if (!cv) return;
+    let dragX = null, pointerId = null;
+    cv.style.cursor = 'grab'; cv.style.touchAction = 'pan-y';
+    const reset = () => {
+      dragX = null; const id = pointerId; pointerId = null;
+      try { if (id != null && cv.hasPointerCapture(id)) cv.releasePointerCapture(id); } catch (_) { /* pointer ended */ }
+    };
+    const down = (e) => {
+      if (pointerId != null) return;
+      pointerId = e.pointerId; dragX = e.clientX;
+      try { cv.setPointerCapture(pointerId); } catch (_) { /* synthetic/ended pointer */ }
+    };
+    const move = (e) => {
+      if (dragX == null || e.pointerId !== pointerId) return;
+      const dx = (e.clientX - dragX) / (cv.getBoundingClientRect().width || W);
+      dragX = e.clientX; pan = Math.max(-0.28, Math.min(0.28, pan + dx)); sync();
+    };
+    const end = (e) => { if (e.pointerId === pointerId) reset(); };
+    cv.addEventListener('pointerdown', down); cv.addEventListener('pointermove', move);
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+    cv.addEventListener('lostpointercapture', end);
+    unbindSurface = () => {
+      cv.removeEventListener('pointerdown', down); cv.removeEventListener('pointermove', move);
+      cv.removeEventListener('pointerup', end); cv.removeEventListener('pointercancel', end);
+      cv.removeEventListener('lostpointercapture', end); reset();
+    };
+  });
+  api.onCleanup(() => { stopCanvasWatch(); unbindSurface(); });
 
   sync();
   return { destroy() {} };

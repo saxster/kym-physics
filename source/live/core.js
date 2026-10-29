@@ -14,6 +14,68 @@ const EL = {
 const DARK_TEXT = new Set(['C', 'Na', 'N', 'O', 'Cl', 'Fe', 'Cu', 'K', 'A', 'B', 'Li']);
 const reducedQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
 
+// Raw fragment-shader pool. A healthy WebGL1 canvas is lent to one lesson at
+// a time; losing contexts on every close can itself exhaust WebKit's context cap.
+let idleRawGL = null;
+let activeRawGL = null;
+let rawGLUnavailable = false;
+function resetRawGL(g) {
+  if (g.isContextLost()) return;
+  g.useProgram(null);
+  g.bindBuffer(g.ARRAY_BUFFER, null); g.bindBuffer(g.ELEMENT_ARRAY_BUFFER, null);
+  g.bindFramebuffer(g.FRAMEBUFFER, null); g.bindRenderbuffer(g.RENDERBUFFER, null);
+  for (let i = 0; i < g.getParameter(g.MAX_VERTEX_ATTRIBS); i++) {
+    g.disableVertexAttribArray(i); g.vertexAttrib4f(i, 0, 0, 0, 1);
+  }
+  for (let i = 0; i < g.getParameter(g.MAX_COMBINED_TEXTURE_IMAGE_UNITS); i++) {
+    g.activeTexture(g.TEXTURE0 + i);
+    g.bindTexture(g.TEXTURE_2D, null); g.bindTexture(g.TEXTURE_CUBE_MAP, null);
+  }
+  g.activeTexture(g.TEXTURE0);
+  for (const cap of [g.BLEND, g.CULL_FACE, g.DEPTH_TEST, g.STENCIL_TEST,
+    g.SCISSOR_TEST, g.POLYGON_OFFSET_FILL, g.SAMPLE_ALPHA_TO_COVERAGE, g.SAMPLE_COVERAGE]) g.disable(cap);
+  g.enable(g.DITHER); g.colorMask(true, true, true, true); g.depthMask(true); g.stencilMask(0xffffffff);
+  g.clearColor(0, 0, 0, 0); g.clearDepth(1); g.clearStencil(0);
+  g.blendFunc(g.ONE, g.ZERO); g.blendEquation(g.FUNC_ADD); g.depthFunc(g.LESS);
+  g.pixelStorei(g.UNPACK_FLIP_Y_WEBGL, false); g.pixelStorei(g.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+  g.pixelStorei(g.UNPACK_ALIGNMENT, 4); g.pixelStorei(g.PACK_ALIGNMENT, 4);
+  g.viewport(0, 0, 1, 1); g.scissor(0, 0, 1, 1);
+}
+function releaseRawGL(lease) {
+  if (lease.released) return;
+  lease.released = true;
+  lease.detach();
+  lease.disposeGPU();
+  const { canvas, gl } = lease;
+  canvas.remove();
+  if (activeRawGL === lease) activeRawGL = null;
+  // A genuinely lost context is retired; healthy returns never force a loss.
+  if (gl.isContextLost()) return;
+  resetRawGL(gl);
+  canvas.width = canvas.height = 1;
+  canvas.removeAttribute('style'); canvas.hidden = false;
+  idleRawGL = { canvas, gl };
+}
+function acquireRawGL(fig) {
+  if (activeRawGL) {
+    const previous = activeRawGL;
+    if (previous.fig !== fig) previous.fig.dispatchEvent(new CustomEvent('close-lesson'));
+    if (!previous.released) releaseRawGL(previous);
+  }
+  let entry = idleRawGL; idleRawGL = null;
+  if (entry?.gl.isContextLost()) { entry.canvas.remove(); entry = null; }
+  if (!entry && !rawGLUnavailable) {
+    const canvas = document.createElement('canvas');
+    let gl = null;
+    try { gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false })
+      || canvas.getContext('experimental-webgl', { antialias: false, premultipliedAlpha: false }); } catch (_) { /* use 2D */ }
+    if (gl) entry = { canvas, gl }; else rawGLUnavailable = true;
+  }
+  if (entry) resetRawGL(entry.gl);
+  return entry;
+}
+// End raw fragment-shader pool.
+
 const widgets = {};
 export const Live = {
   EL, DARK_TEXT,
@@ -163,9 +225,9 @@ function makeAudio() {
       if (Number.isFinite(dur)) {
         g.gain.setValueAtTime(gain, t0 + Math.max(attack, dur - release));
         g.gain.linearRampToValueAtTime(0, t0 + dur);
-        o.stop(t0 + dur + 0.02);
       }
       o.connect(g); g.connect(master); o.start(t0);
+      if (Number.isFinite(dur)) o.stop(t0 + dur + 0.02);
       return voice(o, g, c);
     },
     /** A note built from harmonics: amps[k] is the amplitude of harmonic k+1 (frequency (k+1)·f0). Same options as tone(). */
@@ -212,6 +274,13 @@ function makeApi(fig, stage, controls, state) {
   let interacted = false;
   let watched = false;
   let audio = null;
+  const palette = colors();
+  const themeObserver = new MutationObserver(() => {
+    Object.assign(palette, colors());
+    for (const fn of loops) fn(0, state.t);
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  cleanups.push(() => themeObserver.disconnect());
 
   const notifyChange = () => {
     for (const fn of changeListeners) {
@@ -230,10 +299,13 @@ function makeApi(fig, stage, controls, state) {
   };
   const api = {
     get reduced() { return isReducedMotion(); },
-    colors,
+    colors: () => palette,
     draw, rng, gauss, EL,
     /** true while the figure is on screen */
     get visible() { return state.visible; },
+    /** Start/pause from an explicit lesson button (for example, Run a motor). */
+    play() { state.setPlaying?.(true); },
+    pause() { state.setPlaying?.(false); },
     /** A canvas that fills the stage at a fixed logical size (W x H); drawing uses logical units. */
     canvas(W, H, label) {
       const cv = document.createElement('canvas');
@@ -531,63 +603,145 @@ function makeApi(fig, stage, controls, state) {
 
     /** A full-canvas WebGL fragment shader. The source gets `precision highp float; uniform vec2 u_res; uniform float u_time;`
         prepended; declare your own uniforms in it and pass their values in `uniforms` (numbers or arrays of 2–4).
-        Returns {ok, canvas, set(name, value), draw()}. Without WebGL: opts.fallback(ctx2d, W, H, uniforms, t) draws on a
+        Returns {ok, canvas, set(name, value), draw(), onCanvasChange(fn)}; the callback
+        immediately receives the current canvas, then a replacement on fallback or null on close. Without WebGL: opts.fallback(ctx2d, W, H, uniforms, t) draws on a
         2D canvas instead, or, with no fallback, the still drawing stays with a short note. Runs in api.loop, so it plays,
         pauses and respects reduced motion like any widget. */
     gl(fragment, uniforms = {}, { width = 640, height = 360, label, fallback } = {}) {
-      const U = { ...uniforms };
-      const cv = document.createElement('canvas');
-      cv.setAttribute('role', 'img');
-      cv.setAttribute('aria-label', label || fig.querySelector('svg')?.getAttribute('aria-label') || 'Animated figure');
-      sizeCanvas(cv, width, height);
-      let g = null;
-      try { g = cv.getContext('webgl', { antialias: false, premultipliedAlpha: false }) || cv.getContext('experimental-webgl'); } catch (e) { g = null; }
-      if (!g) {
-        if (fallback) {
-          const k = api.canvas(width, height, label);
-          api.loop((dt, t) => fallback(k.ctx, width, height, U, t));
-          return { ok: false, canvas: k.cv, set(n, val) { U[n] = val; fallback(k.ctx, width, height, U, state.t); }, draw() { fallback(k.ctx, width, height, U, state.t); } };
+      const U = { ...uniforms }, entry = acquireRawGL(fig);
+      let t = state.t || 0, closed = false, lost = false, surface = null, fallbackMounted = false;
+      let prog = null, buf = null, loc = -1, ro = null;
+      const shaders = [], attached = new Set(), locs = {}, listeners = [], pointerIds = new Set(), canvasChanges = new Set();
+      const cv = entry?.canvas, g = entry?.gl;
+      let lease = null;
+      const drawFallback = () => { if (!closed && surface && fallback) fallback(surface.ctx, width, height, U, t); };
+      const currentCanvas = () => surface?.cv || (fallbackMounted ? null : cv);
+      const notifyCanvas = canvas => { for (const fn of canvasChanges) fn(canvas); };
+      const mountFallback = message => {
+        if (fallbackMounted || closed) return;
+        fallbackMounted = true;
+        if (fallback) { surface = api.canvas(width, height, label); drawFallback(); }
+        else {
+          const svg = fig.querySelector('svg.fig');
+          if (svg) stage.appendChild(svg.cloneNode(true));
         }
-        const svg = fig.querySelector('svg.fig');
-        if (svg) stage.appendChild(svg.cloneNode(true));
-        note('This view needs WebGL, which this browser does not offer. The drawing shows the same idea.', 'live-warn');
-        return { ok: false, canvas: null, set() {}, draw() {} };
-      }
-      stage.appendChild(cv);
-      const compile = (type, src) => {
-        const sh = g.createShader(type); g.shaderSource(sh, src); g.compileShader(sh);
-        if (!g.getShaderParameter(sh, g.COMPILE_STATUS)) throw new Error('api.gl shader: ' + g.getShaderInfoLog(sh));
-        return sh;
+        notifyCanvas(currentCanvas());
+        note(message || 'This view needs WebGL. The calculated drawing shows the same idea.', 'live-warn');
       };
-      const prog = g.createProgram();
-      g.attachShader(prog, compile(g.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}'));
-      g.attachShader(prog, compile(g.FRAGMENT_SHADER, 'precision highp float;\nuniform vec2 u_res;\nuniform float u_time;\n' + fragment));
-      g.linkProgram(prog);
-      if (!g.getProgramParameter(prog, g.LINK_STATUS)) throw new Error('api.gl link: ' + g.getProgramInfoLog(prog));
-      g.useProgram(prog);
-      const buf = g.createBuffer(); g.bindBuffer(g.ARRAY_BUFFER, buf);
-      g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), g.STATIC_DRAW);   // one triangle covers the canvas
-      const loc = g.getAttribLocation(prog, 'p'); g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0);
-      const locs = {};
-      const uni = (n) => (n in locs ? locs[n] : (locs[n] = g.getUniformLocation(prog, n)));
-      let t = 0;
+      const disposeGPU = () => {
+        if (!g || g.isContextLost()) { prog = buf = null; shaders.length = 0; attached.clear(); return; }
+        g.useProgram(null);
+        if (loc >= 0) g.disableVertexAttribArray(loc);
+        g.bindBuffer(g.ARRAY_BUFFER, null); g.bindBuffer(g.ELEMENT_ARRAY_BUFFER, null);
+        if (buf) { g.deleteBuffer(buf); buf = null; }
+        if (prog) {
+          for (const shader of attached) g.detachShader(prog, shader);
+          g.deleteProgram(prog); prog = null;
+        }
+        for (const shader of shaders) g.deleteShader(shader);
+        shaders.length = 0; attached.clear();
+      };
+      const loseView = event => {
+        event?.preventDefault();
+        if (closed || lost) return;
+        lost = true;
+        if (lease) releaseRawGL(lease);
+        mountFallback('The shader view became unavailable. Keep using the calculated drawing and its controls.');
+      };
       const drawNow = () => {
+        if (closed) return;
+        if (fallbackMounted) { drawFallback(); return; }
+        if (!g || lost || lease?.released) return;
+        if (g.isContextLost()) { loseView(); return; }
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const w = Math.max(1, Math.round((cv.clientWidth || width) * dpr)), h = Math.max(1, Math.round((cv.clientHeight || height) * dpr));
         if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+        // Bind this lease explicitly, including on paused redraws after resize.
+        g.useProgram(prog); g.bindBuffer(g.ARRAY_BUFFER, buf);
+        g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0);
         g.viewport(0, 0, w, h);
+        const uni = n => n in locs ? locs[n] : (locs[n] = g.getUniformLocation(prog, n));
         g.uniform2f(uni('u_res'), w, h); g.uniform1f(uni('u_time'), t);
         for (const [n, val] of Object.entries(U)) {
-          const l = uni(n); if (!l) continue;
+          const l = uni(n); if (l == null) continue;
           if (typeof val === 'number') g.uniform1f(l, val);
-          else if (val.length === 2) g.uniform2fv(l, val); else if (val.length === 3) g.uniform3fv(l, val); else if (val.length === 4) g.uniform4fv(l, val);
+          else if (val.length === 2) g.uniform2fv(l, val);
+          else if (val.length === 3) g.uniform3fv(l, val);
+          else if (val.length === 4) g.uniform4fv(l, val);
         }
         g.drawArrays(g.TRIANGLES, 0, 3);
       };
+      if (entry) {
+        // Widgets attach pointer listeners directly to the returned canvas. Track
+        // them for this lease so a reused surface cannot call a closed widget.
+        const add = cv.addEventListener, remove = cv.removeEventListener;
+        cv.addEventListener = function(type, listener, options) {
+          listeners.push([type, listener, options]); add.call(cv, type, listener, options);
+        };
+        cv.removeEventListener = function(type, listener, options) {
+          remove.call(cv, type, listener, options);
+          const capture = option => typeof option === 'boolean' ? option : !!option?.capture;
+          for (let i = listeners.length - 1; i >= 0; i--) if (listeners[i][0] === type && listeners[i][1] === listener
+            && capture(listeners[i][2]) === capture(options)) listeners.splice(i, 1);
+        };
+        const rememberPointer = e => pointerIds.add(e.pointerId);
+        add.call(cv, 'pointerdown', rememberPointer, true);
+        add.call(cv, 'webglcontextlost', loseView);
+        lease = { ...entry, fig, released: false, disposeGPU, detach() {
+          ro?.disconnect();
+          for (const id of pointerIds) { try { if (cv.hasPointerCapture(id)) cv.releasePointerCapture(id); } catch (_) { /* pointer ended */ } }
+          for (const [type, listener, options] of listeners) remove.call(cv, type, listener, options);
+          listeners.length = 0;
+          remove.call(cv, 'pointerdown', rememberPointer, true); remove.call(cv, 'webglcontextlost', loseView);
+          cv.addEventListener = add; cv.removeEventListener = remove;
+        } };
+        activeRawGL = lease;
+        cv.setAttribute('role', 'img');
+        cv.setAttribute('aria-label', label || fig.querySelector('svg')?.getAttribute('aria-label') || 'Animated figure');
+        sizeCanvas(cv, width, height); stage.appendChild(cv);
+        try {
+          const compile = (type, source) => {
+            const shader = g.createShader(type);
+            if (!shader) throw new Error('Shader allocation failed');
+            shaders.push(shader); g.shaderSource(shader, source); g.compileShader(shader);
+            if (!g.getShaderParameter(shader, g.COMPILE_STATUS)) throw new Error(g.getShaderInfoLog(shader) || 'Shader compilation failed');
+            return shader;
+          };
+          prog = g.createProgram();
+          if (!prog) throw new Error('Program allocation failed');
+          const vertex = compile(g.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}');
+          g.attachShader(prog, vertex); attached.add(vertex);
+          const pixel = compile(g.FRAGMENT_SHADER, 'precision highp float;\nuniform vec2 u_res;\nuniform float u_time;\n' + fragment);
+          g.attachShader(prog, pixel); attached.add(pixel);
+          g.linkProgram(prog);
+          if (!g.getProgramParameter(prog, g.LINK_STATUS)) throw new Error(g.getProgramInfoLog(prog) || 'Shader link failed');
+          // Linked executables no longer need their source shader objects.
+          for (const shader of shaders) { g.detachShader(prog, shader); g.deleteShader(shader); }
+          shaders.length = 0; attached.clear();
+          buf = g.createBuffer(); if (!buf) throw new Error('Buffer allocation failed');
+          g.bindBuffer(g.ARRAY_BUFFER, buf);
+          g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), g.STATIC_DRAW);
+          loc = g.getAttribLocation(prog, 'p'); if (loc < 0) throw new Error('Shader position attribute unavailable');
+          ro = new ResizeObserver(drawNow); ro.observe(cv);
+        } catch (_) {
+          releaseRawGL(lease);
+          mountFallback('The shader could not start. Keep using the calculated drawing and controls.');
+        }
+      } else mountFallback();
       api.loop((dt, tt) => { t = tt; drawNow(); });
-      const ro = new ResizeObserver(drawNow); ro.observe(cv);
-      cleanups.push(() => { ro.disconnect(); const ext = g.getExtension('WEBGL_lose_context'); ext && ext.loseContext(); });
-      return { ok: true, canvas: cv, set(n, val) { U[n] = val; drawNow(); }, draw: drawNow };
+      cleanups.push(() => { closed = true; notifyCanvas(null); canvasChanges.clear(); if (lease) releaseRawGL(lease); });
+      drawNow();
+      return {
+        get ok() { return !!entry && !lost && !fallbackMounted && !closed && !lease?.released; },
+        get canvas() { return currentCanvas(); },
+        onCanvasChange(fn) {
+          if (closed) { fn(null); return () => {}; }
+          canvasChanges.add(fn); fn(currentCanvas());
+          return () => canvasChanges.delete(fn);
+        },
+        set(n, val) { if (closed) return; U[n] = val; drawNow(); },
+        draw: drawNow,
+      };
     },
     _loops: loops, _cleanups: cleanups, _hides: hides,
     _ext: {
@@ -846,40 +1000,57 @@ const chunkURL = (key) => {
   return m[key] ? new URL(m[key], document.baseURI).href : null;
 };
 /** Load a lazy chunk by name (site build); resolves once its module has run. */
+const chunkRetries = {};
+let liveRequestSequence=0;
 export function loadChunk(key) {
   const url = chunkURL(key);
   if (!url) return Promise.reject(new Error(`no chunk ${key}`));
-  return import(/* @vite-ignore */ url);
+  const next = new URL(url);
+  if(chunkRetries[key])next.searchParams.set('retry',chunkRetries[key]);
+  return import(/* @vite-ignore */ next.href).catch(error=>{chunkRetries[key]=(chunkRetries[key]||0)+1;throw error;});
 }
 
 const ICON_3D = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 L17 6.3 V13.7 L10 17.5 L3 13.7 V6.3 Z M3 6.3 L10 10 L17 6.3 M10 10 V17.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 const ICON_PLAY = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.2 L15.5 10 L6.5 15.8 Z" fill="currentColor"/></svg>';
 
 function setup(fig) {
-  const name = fig.dataset.live;
-  if (!widgets[name] && !chunkURL('w_' + name)) return;     // nothing to load: the still drawing stays
-  // until the widget's code arrives, the build's copy of its meta decides the button
-  const pre = widgets[name] ? widgets[name].meta
-    : { label: fig.dataset.liveLabel || '', three: fig.dataset.live3d === '1', static: fig.dataset.liveStatic === '1' };
-  let params = {};
-  try { params = JSON.parse(fig.dataset.liveParams || '{}'); } catch (e) { /* keep defaults */ }
-  const open = document.createElement('button');
-  open.type = 'button'; open.className = 'live-open';
-  const openLabel = pre.label || (pre.three ? 'Turn it in 3D' : 'Watch it move');
-  open.innerHTML = (pre.three ? ICON_3D : ICON_PLAY) + `<span>${openLabel}</span>`;
+  const options = [];
+  if (fig.dataset.live) {
+    let params = {};
+    try { params = JSON.parse(fig.dataset.liveParams || '{}'); } catch (_) { /* defaults */ }
+    const pre = widgets[fig.dataset.live]?.meta || { label: fig.dataset.liveLabel, three: fig.dataset.live3d === '1' };
+    options.push({ name: fig.dataset.live, params, label: pre.label || (pre.three ? 'Turn it in 3D' : 'Watch it move'), original: true, three: pre.three });
+  }
   try {
-    if (localStorage.getItem('mw:stamp:' + name) === '1') {
-      const b = document.createElement('em');
-      b.className = 'live-open-stamp';
-      b.textContent = '✓';
-      b.title = 'Challenge completed';
-      open.appendChild(b);
+    for (const lesson of JSON.parse(fig.dataset.labs || '[]')) {
+      options.push({ name: lesson.widget, params: { lesson: lesson.id }, id: lesson.id, label: 'Explore: ' + lesson.title });
     }
-  } catch (e) { /* ignore */ }
-  fig.insertBefore(open, fig.querySelector('figcaption'));
+  } catch (_) { /* an invalid extension must not hide the original drawing */ }
+  const available = options.filter(o => widgets[o.name] || chunkURL('w_' + o.name));
+  if (!available.length) return;
+  let name, params, open, openLabel, generation = 0;
+  for (const option of available) {
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = option.original ? 'live-open' : 'lab-open';
+    if (option.id) button.dataset.lessonId = option.id;
+    if (option.original) {
+      button.innerHTML = (option.three ? ICON_3D : ICON_PLAY) + '<span></span>';
+      button.querySelector('span').textContent = option.label;
+      try {
+        if (localStorage.getItem('mw:stamp:' + option.name) === '1') {
+          const stamp = document.createElement('em'); stamp.className = 'live-open-stamp';
+          stamp.textContent = '✓'; stamp.title = 'Challenge completed'; button.append(stamp);
+        }
+      } catch (_) { /* notebook storage is optional */ }
+    } else button.textContent = option.label;
+    option.button = button;
+    button.addEventListener('click', () => openLive(option));
+    fig.insertBefore(button, fig.querySelector('figcaption'));
+  }
 
   let w = null, inst = null, api = null, stage = null, controls = null, playing = false, raf = 0, last = 0, liftTimer = 0;
   const state = { visible: true, t: 0 };
+  state.setPlaying = setPlaying;
   const playBtn = document.createElement('button');
   playBtn.type = 'button'; playBtn.className = 'live-ctl live-play';
 
@@ -897,11 +1068,20 @@ function setup(fig) {
     if (p && state.visible) raf = requestAnimationFrame(frame);
     else if (api) for (const fn of api._loops) fn(0, state.t); // draw one still frame
   }
-  async function openLive() {
+  async function openLive(option, story = null) {
+    const requestOrder=++liveRequestSequence;
+    if (stage) closeLive(false);
+    const ticket = ++generation;
+    name = option.name; params = { ...option.params, story }; open = option.button; openLabel = option.label;
+    const setLabel = text => { const span = option.button.querySelector('span'); if (span) span.textContent = text; else option.button.textContent = text; };
     if (!widgets[name]) {
-      open.disabled = true; open.querySelector('span').textContent = 'Loading…';
+      available.forEach(o => { o.button.disabled = true; }); setLabel('Loading…');
       try { await loadChunk('w_' + name); } catch (e) { /* reported below */ }
-      open.disabled = false; open.querySelector('span').textContent = openLabel;
+      if (ticket !== generation || requestOrder!==liveRequestSequence) {
+        if(ticket===generation)available.forEach(o=>{o.button.disabled=false;});
+        setLabel(option.label);return;
+      }
+      available.forEach(o => { o.button.disabled = false; }); setLabel(openLabel);
       if (!widgets[name]) {
         let msg = fig.querySelector('.live-fail');
         if (!msg) { msg = document.createElement('p'); msg.className = 'live-note live-warn live-fail'; msg.setAttribute('role', 'status'); fig.insertBefore(msg, open.nextSibling); }
@@ -926,11 +1106,18 @@ function setup(fig) {
     state.t = 0;
     api = makeApi(fig, stage, controls, state);
     if (!w.meta.static) controls.appendChild(playBtn);
-    inst = w.factory(stage, params, api) || {};
+    try { inst = w.factory(stage, params, api) || {}; }
+    catch (_) {
+      closeLive(false);
+      const message = document.createElement('p');
+      message.className = 'live-note live-fail'; message.setAttribute('role', 'status');
+      message.textContent = 'This experiment could not open here. The drawing remains available; try opening it again.';
+      fig.insertBefore(message, open); return;
+    }
     attachEnhancements(name, fig, stage, controls, api, open);
     const close = document.createElement('button');
     close.type = 'button'; close.className = 'live-ctl live-close'; close.textContent = 'Back to the drawing';
-    close.addEventListener('click', closeLive);
+    close.addEventListener('click', () => closeLive());
     controls.appendChild(close);
     const detail = document.createElement('button');
     detail.type = 'button'; detail.className = 'live-ctl live-detail-toggle';
@@ -954,22 +1141,30 @@ function setup(fig) {
       }
       // Canvas ResizeObservers redraw the same state; this changes no physical input or clock.
     });
-    open.hidden = true;
-    setPlaying(!api.reduced && !w.meta.static);
+    available.forEach(o => { o.button.hidden = true; });
+    setPlaying(!params.lesson && !api.reduced && !w.meta.static);
+    if (params.lesson) for (const fn of api._loops) fn(0, 0);
     if (w.meta.static) for (const fn of api._loops) fn(0, 0);
     (stage.querySelector('canvas,button,input') || playBtn).focus?.({ preventScroll: true });
   }
-  function closeLive() {
+  function closeLive(restoreFocus = true) {
+    ++generation; // Also cancels a story experiment whose module is still loading.
     clearTimeout(liftTimer);
     cancelAnimationFrame(raf);
     inst?.destroy?.();
     api?._cleanups.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
     stage?.remove(); controls?.remove();
-    fig.classList.remove('live-on', 'live-lifting'); open.hidden = false; open.focus({ preventScroll: true });
+    fig.classList.remove('live-on', 'live-lifting');
+    available.forEach(o => { o.button.hidden = false;o.button.disabled=false;const span=o.button.querySelector('span');if(span)span.textContent=o.label;else o.button.textContent=o.label; });
+    if (restoreFocus) open?.focus({ preventScroll: true });
     inst = api = stage = controls = null; playing = false;
   }
   playBtn.addEventListener('click', () => setPlaying(!playing));
-  open.addEventListener('click', openLive);
+  fig.addEventListener('open-lesson', e => {
+    const option = available.find(o => o.id === e.detail?.id);
+    if (option) openLive(option, e.detail?.story || null);
+  });
+  fig.addEventListener('close-lesson', () => closeLive(false));
   window.addEventListener('still:change', (e) => {
     if (!api || !w) return;
     const stillOn = !!(e.detail && e.detail.still);
@@ -992,5 +1187,5 @@ function setup(fig) {
 // every export must be listed here.
 window.__liveModule = { Live, colors, draw, rng, gauss, loadChunk };
 
-function init() { document.querySelectorAll('figure[data-live]').forEach(setup); }
+function init() { document.querySelectorAll('figure[data-live],figure[data-labs]').forEach(setup); }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else setTimeout(init, 0);

@@ -281,6 +281,8 @@ DIALOG_JS = r'''
   function close(){ if(depth>0){ var n=depth; depth=0; history.go(-n); } else { if(/^#story-/.test(location.hash)) history.replaceState(null,'',location.pathname+location.search); hide(); } }
   window.__openStory=function(id){ return show(id,'push'); };
   window.__closeStory=close;
+  // Explicit experiment navigation preserves a return link rather than racing history.go().
+  window.__leaveStory=function(){ depth=0; hide(); };
   dlg.addEventListener('cancel',function(e){ e.preventDefault(); close(); });
   dlg.querySelector('.sd-close').addEventListener('click',close);
   back.addEventListener('click',function(){ history.back(); });

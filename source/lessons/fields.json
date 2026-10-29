@@ -1,0 +1,581 @@
+[
+  {
+    "id": "charge",
+    "widget": "fieldslab",
+    "title": "Charge moves; neutral objects respond",
+    "chapter": 12,
+    "section": "12.1",
+    "figure": "c12_rubbing",
+    "stories": [
+      "static"
+    ],
+    "question": "If both objects start neutral, can rubbing create net charge?",
+    "explanation": "Electrons move between objects; count the equal positive deficit and negative excess. A nearby neutral object can polarise.",
+    "limits": "Counted charges and displacements are enlarged. Polarisation force is a qualitative proxy, not a molecular simulation.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/18-2-conductors-and-insulators"
+    ]
+  },
+  {
+    "id": "cage",
+    "widget": "fieldslab",
+    "title": "Inside a conducting shell",
+    "chapter": 12,
+    "section": "12.1",
+    "figure": "c12_rubbing",
+    "stories": [
+      "faraday-cage"
+    ],
+    "question": "Does a metal shell merely weaken the external electric field?",
+    "explanation": "Inspect external and induced fields separately, then add them: the empty cavity is field-free in electrostatic equilibrium.",
+    "limits": "Analytic conducting sphere in a uniform static field. The cutaway is a view, not a physical opening; this does not model radio-frequency shielding.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/18-7-conductors-and-electric-fields-in-static-equilibrium"
+    ]
+  },
+  {
+    "id": "circuit-signal",
+    "widget": "fieldslab",
+    "title": "Slow electrons, fast signal",
+    "chapter": 12,
+    "section": "12.2",
+    "figure": "c12_loop",
+    "stories": [
+      "circuits"
+    ],
+    "question": "Must an electron travel from the battery to the LED before the LED responds?",
+    "explanation": "The wire already contains mobile charge. A signal travels through the circuit much faster than the average electron drift.",
+    "limits": "Illustrative 1 m wire, signal speed 10^8 m/s and chosen drift speed 0.1 mm/s; the two clocks have separate labelled scales.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/20-1-current"
+    ]
+  },
+  {
+    "id": "circuit-diagnose",
+    "widget": "fieldslab",
+    "title": "Find the dark LED",
+    "chapter": 12,
+    "section": "12.4",
+    "figure": "c12_iv_graph",
+    "stories": [
+      "circuits"
+    ],
+    "question": "Can a battery show its normal voltage and still fail under load?",
+    "explanation": "An exponential LED model and source load line meet at the measured operating point. Open and reverse states alter the visible circuit.",
+    "limits": "Illustrative exponential I–V with nVt=0.08 V, calibrated to 20 mA at red 2.0 V / white 3.3 V; temperature, leakage, reverse breakdown and component specifications omitted.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/20-2-ohms-law-resistance-and-simple-circuits",
+      "https://openstax.org/books/college-physics-2e/pages/21-2-electromotive-force-terminal-voltage",
+      "https://www.ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2005/3488c8393dbc748da85fa7737a5b433b_lecture16annotat.pdf"
+    ]
+  },
+  {
+    "id": "circuit-probes",
+    "widget": "fieldslab",
+    "title": "Measure two branches",
+    "chapter": 12,
+    "section": "12.5",
+    "figure": "c12_series_parallel",
+    "stories": [
+      "circuits"
+    ],
+    "question": "Do unequal parallel branches have equal current or equal voltage?",
+    "explanation": "Change the actual series/parallel topology, then inspect branch/total current or the red–black voltage difference across either load.",
+    "limits": "Ideal resistors and fixed 2 V LED drops in this topology lesson; these are separate from the nonlinear diagnostic model.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/21-1-resistors-in-series-and-parallel"
+    ]
+  },
+  {
+    "id": "protection",
+    "widget": "fieldslab",
+    "title": "A fault in the case",
+    "chapter": 12,
+    "section": "12.6",
+    "figure": "c12_earth_wire",
+    "stories": [],
+    "question": "Does a small current leaking to earth look like an overload?",
+    "explanation": "Compare a protective-earth fault, isolated live case, virtual touch return and balanced overload. A trip opens the actual switch and stops current until reset.",
+    "limits": "Prescribed prospective fault current, ideal latched 30 mA imbalance / 16 A overload comparisons, no real trip timing or body-resistance prediction; all routes are virtual.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/23-8-electrical-safety-systems-and-devices"
+    ]
+  },
+  {
+    "id": "domains",
+    "widget": "fieldslab",
+    "title": "Domains inside a magnet",
+    "chapter": 13,
+    "section": "13.1",
+    "figure": "c13_domains",
+    "stories": [],
+    "question": "When a magnet is cut, can one half contain only a north pole?",
+    "explanation": "Domain orientations and their net moment change with the applied field. Cutting the sample leaves complete dipoles on both pieces.",
+    "limits": "Schematic domains: field-dependent orientation and favourable-region growth, not a quantitative hysteresis or atomic-spin model.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets"
+    ]
+  },
+  {
+    "id": "earth-field",
+    "widget": "fieldslab",
+    "title": "A compass that can dip",
+    "chapter": 13,
+    "section": "13.2",
+    "figure": "c13_earth_field",
+    "stories": [
+      "earth-magnet"
+    ],
+    "question": "Does a compass reveal the complete direction of Earth’s field?",
+    "explanation": "A free needle aligns in three dimensions. A level compass can show only the horizontal projection; device axes rotate while the world field stays fixed.",
+    "limits": "Centred ideal dipole, not a local geomagnetic forecast. Latitude controls the ideal dip, which differs from measured Mumbai values.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/22-1-magnets"
+    ]
+  },
+  {
+    "id": "field-probe",
+    "widget": "fieldslab",
+    "title": "Add wire and Earth fields",
+    "chapter": 13,
+    "section": "13.3",
+    "figure": "c13_wire_field",
+    "stories": [
+      "oersted",
+      "trams"
+    ],
+    "question": "Will reversing the wire current turn a compass exactly 180 degrees?",
+    "explanation": "Move the probe and add the wire field to a fixed northward background. Compare the separate vectors and their sum.",
+    "limits": "Long straight wire, 38.4 microtesla horizontal background. The tram preset treats one distant current and omits the return conductor. Coil contributions use the on-axis Biot–Savart field of circular loops of 1 cm radius, spaced 1 mm apart. The centre probe is fixed in that mode; field-arrow scales are printed separately.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law"
+    ]
+  },
+  {
+    "id": "motor",
+    "widget": "fieldslab",
+    "title": "Step inside a motor",
+    "chapter": 13,
+    "section": "13.4",
+    "figure": "c13_motor_force",
+    "stories": [
+      "p-faraday",
+      "tax-it"
+    ],
+    "question": "Why must the current reverse every half-turn?",
+    "explanation": "Opposite coil sides carry opposite currents and feel opposite forces. The split ring reverses current so torque keeps the same rotational sense.",
+    "limits": "Uniform 0.5 T field, 10 turns of 0.04 m² area. Rotor inertia 0.08 kg·m² and damping 0.35 s^-1 are chosen model values; ideal instantaneous commutation. Holding freezes the rotor for inspection; open circuit removes electrical torque while a moving rotor coasts. Back emf is omitted.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/22-8-torque-on-a-current-loop-motors-and-meters",
+      "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/ch8magneti_field/"
+    ]
+  },
+  {
+    "id": "generator",
+    "widget": "fieldslab",
+    "title": "Turn a generator",
+    "chapter": 13,
+    "section": "13.5",
+    "figure": "c13_induction",
+    "stories": [
+      "induction"
+    ],
+    "question": "Does the largest flux always mean the largest induced voltage?",
+    "explanation": "Rotating a coil changes flux. The voltage tracks the rate of flux change, reaching zero at maximum or minimum flux.",
+    "limits": "Uniform field, ideal coil; mechanical rotation is supplied externally. Loading and self-inductance are omitted.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/23-5-electric-generators"
+    ]
+  },
+  {
+    "id": "transformer",
+    "widget": "fieldslab",
+    "title": "Two coils, one changing field",
+    "chapter": 13,
+    "section": "13.5",
+    "figure": "c13_induction",
+    "stories": [
+      "induction"
+    ],
+    "question": "Can a steady direct current keep inducing voltage in a second coil?",
+    "explanation": "Both coils link the same reversing flux. Blue primary and red secondary emf follow its time derivative; changing turns changes their amplitude ratio.",
+    "limits": "AC control is RMS voltage, with an ideal resistive secondary load and no core losses/saturation. Separate steady DC comparison assumes 10 Ω primary winding resistance and schematic stored flux; switching transient omitted.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/23-7-transformers"
+    ]
+  },
+  {
+    "id": "em-wave",
+    "widget": "fieldslab",
+    "title": "Two fields across a gap",
+    "chapter": 13,
+    "section": "13.6",
+    "figure": "c13_em_wave",
+    "stories": [
+      "maxwell",
+      "bose-waves",
+      "p-jc-bose"
+    ],
+    "question": "Does either field point along the wave’s travel direction?",
+    "explanation": "Inspect electric and magnetic field vectors at fixed points. Both are transverse, perpendicular to one another and in phase.",
+    "limits": "Plane wave; amplitudes use independent diagram scales. Wavelength spans are normalised and the animation is enormously slowed.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/24-1-maxwells-equations-electromagnetic-waves-predicted-and-observed"
+    ]
+  },
+  {
+    "id": "day-night",
+    "widget": "fieldslab",
+    "title": "Earth turns beneath the sky",
+    "chapter": 14,
+    "section": "14.1",
+    "figure": "c14_boat",
+    "stories": [
+      "earth-turns",
+      "p-aryabhata"
+    ],
+    "question": "Which way must Earth turn for stars to seem to move west?",
+    "explanation": "A marked surface observer crosses the lit and dark hemispheres. Change from a space camera to a surface-direction diagram.",
+    "limits": "Ideal sphere and distant Sun; solar time, not Mumbai civil time. Star coordinates are illustrative.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky"
+    ]
+  },
+  {
+    "id": "seasons3d",
+    "widget": "fieldslab",
+    "title": "Tilt, sunlight and daylight",
+    "chapter": 14,
+    "section": "14.2",
+    "figure": "c14_tilt_orbit",
+    "stories": [
+      "seasons"
+    ],
+    "question": "If tilt is zero but the orbit remains, do the seasons remain?",
+    "explanation": "Keep the axis fixed in space as Earth moves round its orbit. Link latitude, local noon altitude, daylight arc and a beam footprint.",
+    "limits": "Circular orbit isolates tilt; daily geometry is approximate and ignores refraction and weather.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons"
+    ]
+  },
+  {
+    "id": "moon-rotation",
+    "widget": "fieldslab",
+    "title": "The Moon has to turn",
+    "chapter": 14,
+    "section": "14.3",
+    "figure": "c14_phases",
+    "stories": [
+      "moon-phases"
+    ],
+    "question": "Would a Moon that never rotated always show us the same face?",
+    "explanation": "Keep a marked face directed towards Earth by rotating it once per orbit. Compare with a non-rotating sphere and follow its illuminated half.",
+    "limits": "Circular orbit with schematic sizes. Lunar libration is omitted; this is not a dated Moon-rise calculator.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/4-5-phases-and-motions-of-the-moon"
+    ]
+  },
+  {
+    "id": "eclipses",
+    "widget": "fieldslab",
+    "title": "Find an eclipse by geometry",
+    "chapter": 14,
+    "section": "14.4",
+    "figure": "c14_eclipse_tilt",
+    "stories": [
+      "moon-phases"
+    ],
+    "question": "Why can a new Moon miss the Sun–Earth line?",
+    "explanation": "Advance orbital longitude and the year. The inclined lunar plane meets the ecliptic at two nodes; shadow intersections are calculated from these positions.",
+    "limits": "Circular orbits and fixed nodes; no dated ephemeris. Earth, Moon, orbital distance and calculated shadow widths share one scale in 3D. The finite Sun is outside the display; the 2D view compresses the orbital gap and magnifies the height.",
+    "sources": [
+      "https://science.nasa.gov/moon/eclipses/",
+      "https://openstax.org/books/astronomy-2e/pages/4-7-eclipses-of-the-sun-and-moon"
+    ]
+  },
+  {
+    "id": "tides3d",
+    "widget": "fieldslab",
+    "title": "Subtract Earth’s central pull",
+    "chapter": 14,
+    "section": "14.5",
+    "figure": "c14_tides",
+    "stories": [
+      "tides"
+    ],
+    "question": "Why is there an outward relative pull on the far side?",
+    "explanation": "Inspect the Moon’s absolute pull and subtract the pull at Earth’s centre at each surface point. Add the Sun’s differential pull.",
+    "limits": "Ideal equilibrium tide pattern, with arrows hugely enlarged. Continents, ocean dynamics and Haji Ali timing are not predicted.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/4-6-ocean-tides-and-the-moon"
+    ]
+  },
+  {
+    "id": "photoelectric",
+    "widget": "fieldslab",
+    "title": "Count photons and electrons",
+    "chapter": 15,
+    "section": "15.1",
+    "figure": "c15_photoelectric",
+    "stories": [
+      "photons"
+    ],
+    "question": "Can bright red light beat the threshold by pooling its photons?",
+    "explanation": "Frequency sets energy per photon and maximum electron kinetic energy; photon flux sets the number available. Retarding voltage reveals the stopping potential.",
+    "limits": "Single-photon calcium model with work function 2.71 eV. A uniform 0-to-maximum electron-energy distribution is illustrative; multiphoton effects are outside this model.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/29-2-the-photoelectric-effect"
+    ]
+  },
+  {
+    "id": "atom-scale",
+    "widget": "fieldslab",
+    "title": "An atom is mostly space",
+    "chapter": 15,
+    "section": "15.2",
+    "figure": "c15_exposure",
+    "stories": [
+      "radiation"
+    ],
+    "question": "If a nucleus were a 1 cm marble, how large would the atom be?",
+    "explanation": "Change the scale and compare a nucleus reference width with the electron-cloud reference width. Electrons are not drawn on planetary tracks.",
+    "limits": "Approximate 10^5 diameter ratio; a cloud outline is a probability-region symbol rather than a solid boundary.",
+    "sources": [
+      "https://openstax.org/books/physics/pages/22-1-the-structure-of-the-atom"
+    ]
+  },
+  {
+    "id": "radiation-decay",
+    "widget": "fieldslab",
+    "title": "Exposure, contamination and decay",
+    "chapter": 15,
+    "section": "15.2",
+    "figure": "c15_exposure",
+    "stories": [
+      "radiation",
+      "p-bhabha"
+    ],
+    "question": "Does switching off a beam remove radioactive dust?",
+    "explanation": "Compare a controlled beam with radioactive material left on a surface. Individual random decay times produce a smooth exponential expectation only in a large ensemble.",
+    "limits": "Simulated decay events; half-life is chosen in arbitrary model seconds. No dose or biological-effect calculation.",
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/31-5-half-life-and-activity",
+      "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"
+    ]
+  },
+  {
+    "id": "solar-fusion",
+    "widget": "fieldslab",
+    "title": "From the solar core to light",
+    "chapter": 15,
+    "section": "15.3",
+    "figure": "c15_fusion",
+    "stories": [
+      "sun-fire"
+    ],
+    "question": "Does the Sun’s light come from chemical burning at its surface?",
+    "explanation": "Open a solar cutaway, inspect the net fusion account and compare the released mass fraction with the total. Energy crosses radiative and convective layers.",
+    "limits": "Net reaction and atomic masses are bookkeeping. Transport is a schematic stage sequence, not a simulated photon diffusion time.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity",
+      "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory"
+    ]
+  },
+  {
+    "id": "halo",
+    "widget": "fieldslab",
+    "title": "A halo around L1",
+    "chapter": 15,
+    "section": "15.3",
+    "figure": "c15_fusion",
+    "stories": [
+      "sun-watcher"
+    ],
+    "question": "Is L1 a place where gravity is zero?",
+    "explanation": "Inspect linked xy/xz/yz projections of the same craft point. Independently compare Sun/Earth force balance at the selected distance.",
+    "limits": "Point masses for the force account; its distance control does not relocate the independently schematic 177.86-day halo. No mission ephemeris or integrated restricted-three-body orbit.",
+    "sources": [
+      "https://www.isro.gov.in/Aditya_L1_Mission_Completion_of_First_Halo_Orbit.html"
+    ]
+  },
+  {
+    "id": "stellar-spectrum",
+    "widget": "fieldslab",
+    "title": "Same hydrogen, different lines",
+    "chapter": 15,
+    "section": "15.4",
+    "figure": "c15_spectra",
+    "stories": [
+      "star-stuff",
+      "p-saha",
+      "p-payne"
+    ],
+    "question": "Does a weak hydrogen line mean little hydrogen?",
+    "explanation": "Hold composition fixed and change temperature; hydrogen ionisation and excitation compete. Then change abundance separately.",
+    "limits": "LTE Saha–Boltzmann population proxy at fixed electron density 10^20 m^-3, ground-state partition approximation. Line depths are illustrative, not an atmosphere fit.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars"
+    ]
+  },
+  {
+    "id": "distance-ladder",
+    "widget": "fieldslab",
+    "title": "From a blink to a distance",
+    "chapter": 15,
+    "section": "15.5",
+    "figure": "c15_parallax",
+    "stories": [
+      "star-distances",
+      "p-leavitt"
+    ],
+    "question": "Can a star look faint because it is distant rather than weak?",
+    "explanation": "Change the exaggerated-angle baseline/triangle and uncertainty, then follow one shared Cepheid time/phase through the star and flux curve.",
+    "limits": "Triangle uses logarithmic distance and exaggerated angles; numerical parallax is physical. Cepheid relation and icon radius/colour are illustrative; extinction, metallicity and calibration uncertainty omitted.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/19-2-surveying-the-stars",
+      "https://openstax.org/books/astronomy-2e/pages/19-3-variable-stars-one-key-to-cosmic-distances"
+    ]
+  },
+  {
+    "id": "white-dwarf",
+    "widget": "fieldslab",
+    "title": "More mass, smaller dwarf",
+    "chapter": 15,
+    "section": "15.6",
+    "figure": "c15_white_dwarf",
+    "stories": [
+      "star-death",
+      "p-chandrasekhar"
+    ],
+    "question": "Does adding material always make a star bigger?",
+    "explanation": "Move along an ideal white-dwarf mass–radius relation. Compare core mass with initial stellar mass and stop at the stable-model limit.",
+    "limits": "Zero-temperature ideal relation with 1.44-solar-mass limiting mass. Zero radius marks model breakdown, not a physical white dwarf of zero size.",
+    "sources": [
+      "https://ui.adsabs.harvard.edu/abs/1972ApJ...175..417N/abstract",
+      "https://openstax.org/books/astronomy-2e/pages/23-1-the-death-of-low-mass-stars"
+    ]
+  },
+  {
+    "id": "cosmos",
+    "widget": "fieldslab",
+    "title": "Choose another galaxy",
+    "chapter": 15,
+    "section": "15.7",
+    "figure": "c15_ruler",
+    "stories": [
+      "expanding"
+    ],
+    "question": "If every distant galaxy recedes, are we at the centre?",
+    "explanation": "Select any galaxy and expand separations. Every observer finds the same distance–recession relation while individual bound-galaxy sizes stay fixed.",
+    "limits": "Homogeneous low-redshift Hubble-flow model; local peculiar velocities and general-relativistic light propagation are omitted.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/26-5-the-expanding-universe"
+    ]
+  },
+  {
+    "id": "foucault",
+    "widget": "fieldslab",
+    "title": "A pendulum and a turning Earth",
+    "chapter": 14,
+    "section": "14.1",
+    "figure": "c14_boat",
+    "stories": [
+      "foucault"
+    ],
+    "question": "Would a Foucault pendulum precess equally in Mumbai and at the equator?",
+    "explanation": "Compare local floor traces as latitude changes. The precession rate is Earth’s rotation projected onto the local vertical.",
+    "limits": "Small-amplitude ideal pendulum; precession is the local approximation, not a claim of one globally fixed swing plane at every latitude.",
+    "sources": [
+      "https://www.si.edu/spotlight/foucault-pendulum",
+      "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky",
+      "https://sciencedemonstrations.fas.harvard.edu/presentations/foucault-pendulum"
+    ]
+  },
+  {
+    "id": "telescope",
+    "widget": "fieldslab",
+    "title": "An axle parallel to Earth’s",
+    "chapter": 13,
+    "section": "13.6",
+    "figure": "c13_em_wave",
+    "stories": [
+      "p-swarup"
+    ],
+    "question": "Why does Ooty’s latitude match the telescope’s slope?",
+    "explanation": "Tilt the telescope axle to the selected latitude, then compare it with Earth’s axis. Change mesh spacing relative to wavelength.",
+    "limits": "Equatorial-mount geometry is exact; mesh reflection is a qualitative wavelength comparison, not an electromagnetic solver.",
+    "sources": [
+      "https://www.ncra.tifr.res.in/ncra/history",
+      "https://arxiv.org/abs/1703.00621"
+    ]
+  },
+  {
+    "id": "tracks",
+    "widget": "fieldslab",
+    "title": "Read a track through emulsion",
+    "chapter": 15,
+    "section": "15.2",
+    "figure": "c15_exposure",
+    "stories": [
+      "p-chowdhuri"
+    ],
+    "question": "Can a flat microscope image hide motion through the plate?",
+    "explanation": "Compare simulated resolved grains with the matching projection. Independently select observed RMS scattering and finite position resolution to infer a mass/speed interval at known momentum.",
+    "limits": "Highland x/X₀=.01 proxy, 1/β² grain-density proxy; transverse magnification and resolution are labelled. Interval conditions on known momentum/material and omits energy loss and sampling uncertainty. This does not reconstruct historical plates.",
+    "sources": [
+      "https://pdg.lbl.gov/2023/reviews/rpp2022-rev-passage-particles-matter.pdf"
+    ]
+  },
+  {
+    "id": "parity",
+    "widget": "fieldslab",
+    "title": "Nature and its mirror",
+    "chapter": 15,
+    "section": "15.2",
+    "figure": "c15_exposure",
+    "stories": [
+      "p-wu"
+    ],
+    "question": "Does a mirror image of the weak-decay pattern remain an allowed pattern?",
+    "explanation": "Reverse spin alignment and compare electron counts. In a mirror, spin is an axial vector while electron velocity is a polar vector; their correlation changes.",
+    "limits": "Illustrative angular asymmetry parameter 0.8, not historical count data. Nuclear spin is an arrow, not a classical spinning ball.",
+    "sources": [
+      "https://www.nist.gov/pml/fall-parity/reversal-parity-law-nuclear-physics",
+      "https://doi.org/10.1103/PhysRev.105.1413"
+    ]
+  },
+  {
+    "id": "bose-counting",
+    "widget": "fieldslab",
+    "title": "Count states, not labels",
+    "chapter": 15,
+    "section": "15.1",
+    "figure": "c15_photoelectric",
+    "stories": [
+      "p-sn-bose"
+    ],
+    "question": "Does exchanging two identical photons produce a new state?",
+    "explanation": "Exchange actual red A/blue B positions, then remove labels for bosons and apply the same-spin fermion exclusion.",
+    "limits": "Fixed two particles, two available one-particle states; no fixed-total-energy constraint. Counts alone do not assign general probabilities or derive Planck’s law.",
+    "sources": [
+      "https://doi.org/10.1007/BF01327326"
+    ]
+  },
+  {
+    "id": "eclipse-evidence",
+    "widget": "fieldslab",
+    "title": "Measure a tiny displaced star",
+    "chapter": 15,
+    "section": "15.5",
+    "figure": "c15_parallax",
+    "stories": [
+      "eclipse-1919"
+    ],
+    "question": "Does one noisy measurement prove a theory?",
+    "explanation": "Change angular resolution and compare apparent positions against zero, half-Einstein and Einstein deflection predictions, with uncertainty shown explicitly.",
+    "limits": "Solar-limb general-relativistic deflection 1.75 arcseconds, scaled by inverse impact parameter. The plot is simulated evidence, not the 1919 plates. The 3D ray bend is enlarged for inspection; use the labelled arcsecond plot for measurement.",
+    "sources": [
+      "https://openstax.org/books/astronomy-2e/pages/24-3-tests-of-general-relativity"
+    ]
+  }
+]

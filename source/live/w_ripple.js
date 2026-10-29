@@ -262,44 +262,57 @@ Live.register('ripple', (stage, params, api) => {
     updateReadout();
   }
 
-  // Control 1: Tap surface to dip a finger (or long-press to move paper scrap)
-  const cv = gl.canvas;
-  if (cv) {
-    cv.style.cursor = 'pointer';
-    let downTime = 0, downPos = null, pressTimer = 0;
+  // Control 1: Bind the same gestures to the current GPU or calculated canvas.
+  let unbindSurface = () => {};
+  const stopCanvasWatch = gl.onCanvasChange((cv) => {
+    unbindSurface(); unbindSurface = () => {};
+    if (!cv) return;
+    cv.style.cursor = 'pointer'; cv.style.touchAction = 'none';
+    let downTime = 0, downPos = null, pressTimer = 0, pointerId = null;
     const toLocal = (e) => {
       const r = cv.getBoundingClientRect();
-      return {
-        x: ((e.clientX - r.left) / (r.width || W)) * W,
-        y: ((e.clientY - r.top) / (r.height || H)) * H,
-      };
+      return { x: ((e.clientX - r.left) / (r.width || W)) * W,
+        y: ((e.clientY - r.top) / (r.height || H)) * H };
     };
-    cv.addEventListener('pointerdown', (e) => {
-      downTime = performance.now();
-      downPos = toLocal(e);
-      clearTimeout(pressTimer);
+    const reset = () => {
+      clearTimeout(pressTimer); pressTimer = 0; downPos = null;
+      const id = pointerId; pointerId = null;
+      try { if (id != null && cv.hasPointerCapture(id)) cv.releasePointerCapture(id); } catch (_) { /* pointer ended */ }
+    };
+    const down = (e) => {
+      if (pointerId != null) return;
+      pointerId = e.pointerId; downTime = performance.now(); downPos = toLocal(e);
+      try { cv.setPointerCapture(pointerId); } catch (_) { /* synthetic/ended pointer */ }
       pressTimer = setTimeout(() => {
+        pressTimer = 0;
         if (downPos) {
           scrap.x0 = Math.max(24, Math.min(W - 24, downPos.x));
           scrap.y0 = Math.max(24, Math.min(H - 24, downPos.y));
-          downPos = null;
-          syncUniforms();
+          downPos = null; syncUniforms();
         }
       }, 420);
-    });
-    cv.addEventListener('pointerup', () => {
+    };
+    const up = (e) => {
+      if (e.pointerId !== pointerId) return;
       clearTimeout(pressTimer);
       if (downPos && performance.now() - downTime < 420) {
         twoFingers = false;
-        tabs[0].setAttribute('aria-pressed', 'true');
-        tabs[1].setAttribute('aria-pressed', 'false');
-        sources.pop();
-        sources.unshift({ x: downPos.x, y: downPos.y, t0: simT - 0.05 });
+        tabs[0].setAttribute('aria-pressed', 'true'); tabs[1].setAttribute('aria-pressed', 'false');
+        sources.pop(); sources.unshift({ x: downPos.x, y: downPos.y, t0: simT - 0.05 });
         syncUniforms();
       }
-      downPos = null;
-    });
-  }
+      reset();
+    };
+    const cancel = (e) => { if (e.pointerId === pointerId) reset(); };
+    cv.addEventListener('pointerdown', down); cv.addEventListener('pointerup', up);
+    cv.addEventListener('pointercancel', cancel); cv.addEventListener('lostpointercapture', cancel);
+    unbindSurface = () => {
+      cv.removeEventListener('pointerdown', down); cv.removeEventListener('pointerup', up);
+      cv.removeEventListener('pointercancel', cancel); cv.removeEventListener('lostpointercapture', cancel);
+      reset();
+    };
+  });
+  api.onCleanup(() => { stopCanvasWatch(); unbindSurface(); });
 
   // Control 2: Slider Rhythm (0 = single dip, or 0.5-3.0 Hz)
   api.slider('Rhythm', {

@@ -1,0 +1,773 @@
+[
+  {
+    "id": "w8-joule",
+    "widget": "waveslab",
+    "title": "Turn a falling weight into warming",
+    "chapter": 8,
+    "section": "8.1",
+    "figure": "c8_joule",
+    "question": "Will the water warm if no hot object touches it?",
+    "explanation": "The falling weight does work on the paddles. In this insulated model, every joule lost from its gravitational store becomes water internal energy.",
+    "limits": "Ideal insulated calorimeter; the paddle timing is illustrative. Particle motion is magnified, not a molecular dynamics simulation.",
+    "stories": [
+      "caloric",
+      "conservation"
+    ],
+    "three": true,
+    "auditIds": [
+      "C08.1"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/15-1-the-first-law-of-thermodynamics"
+    ]
+  },
+  {
+    "id": "w8-samples",
+    "widget": "waveslab",
+    "title": "A hot spoonful and a warm bucket",
+    "chapter": 8,
+    "section": "8.2",
+    "figure": "c8_bucket_spoon",
+    "question": "Which sample can transfer more energy while reaching room temperature?",
+    "explanation": "Temperature characterises a distribution of particle energies. The energy released on cooling also depends on how much material is present.",
+    "limits": "Both samples are liquid water with constant specific heat 4186 J/(kg K). Each visible marker represents a different amount of water; particle counts are not literal. The plotted Maxwell curves describe classical translational speeds; water heat capacity also includes other motion and interactions.",
+    "stories": [
+      "latent-heat"
+    ],
+    "three": true,
+    "auditIds": [
+      "C08.2"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity",
+      "https://openstax.org/books/college-physics-2e/pages/13-4-kinetic-theory-atomic-and-molecular-explanation-of-pressure-and-temperature"
+    ]
+  },
+  {
+    "id": "w8-insulation",
+    "widget": "waveslab",
+    "title": "Insulation works in both directions",
+    "chapter": 8,
+    "section": "8.4",
+    "figure": "c8_sweater",
+    "question": "Will wrapping ice in a sweater melt it faster?",
+    "explanation": "An insulating layer increases thermal resistance. It slows energy transfer from warm skin to a cool room, and from a warm room to cold ice.",
+    "limits": "Steady one-dimensional conduction; convection and radiation are omitted. Layer thickness in the scene is enlarged.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C08.3",
+      "C08.4"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/14-5-conduction"
+    ]
+  },
+  {
+    "id": "w8-phase",
+    "widget": "waveslab",
+    "title": "Energy enters while the thermometer waits",
+    "chapter": 8,
+    "section": "8.5",
+    "figure": "c8_heating_curve",
+    "question": "During melting, where does the incoming energy go?",
+    "explanation": "During a phase-change plateau, energy changes particle interactions and the phase fraction rather than increasing the temperature. Ice has an open structure; liquid water is denser near melting.",
+    "limits": "One kilogram of pure water at atmospheric pressure. Ice and liquid arrangements are schematic; particle size stays fixed. Steam is represented as separate markers.",
+    "stories": [
+      "latent-heat"
+    ],
+    "three": true,
+    "auditIds": [
+      "C08.5"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat"
+    ]
+  },
+  {
+    "id": "w8-evaporation",
+    "widget": "waveslab",
+    "title": "The fastest escape from a matka",
+    "chapter": 8,
+    "section": "8.6",
+    "figure": "c8_matka",
+    "question": "Why does the same pot cool less below the air temperature in humid July?",
+    "explanation": "Escaping water molecules remove energy. Humid air reduces net evaporation. The wet-bulb temperature is a lower limit for an ideal evaporative cooler under these conditions.",
+    "limits": "Uses the book’s three illustrative weather cases, not live weather. Warm-water vaporisation cost is approximated as 2400 J per gram. The particle view illustrates selection, not measured rates.",
+    "stories": [
+      "matka"
+    ],
+    "three": true,
+    "auditIds": [
+      "C08.6"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling",
+      "https://openstax.org/books/college-physics-2e/pages/14-3-phase-change-and-latent-heat"
+    ]
+  },
+  {
+    "id": "w8-convection",
+    "widget": "waveslab",
+    "title": "A coastal circulation loop",
+    "chapter": 8,
+    "section": "8.6",
+    "figure": "c8_sea_breeze",
+    "question": "What pushes warm air up above the land?",
+    "explanation": "At equal pressure warm air is less dense. Cooler surrounding air provides buoyancy; pressure differences complete a circulation with cooler inflow near the surface.",
+    "limits": "An illustrative sea-breeze loop, not a weather or monsoon forecast. Density uses the ideal-gas relation at a common pressure.",
+    "stories": [
+      "monsoon"
+    ],
+    "three": true,
+    "auditIds": [
+      "C08.6"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/14-6-convection",
+      "https://openstax.org/books/college-physics-2e/pages/13-3-the-ideal-gas-law"
+    ]
+  },
+  {
+    "id": "w8-engine",
+    "widget": "waveslab",
+    "title": "An engine needs a cold destination",
+    "chapter": 8,
+    "section": "8.1",
+    "figure": "c8_joule",
+    "question": "Can all the energy from a hot reservoir become work in one cycle?",
+    "explanation": "A cyclic heat engine transfers some incoming energy into work and rejects the rest to a colder reservoir. Even a reversible engine has the limit 1 − cold temperature / hot temperature, in kelvin.",
+    "limits": "The animated piston illustrates a cyclic engine, not a pressure-volume calculation for a particular gas. Efficiency is a chosen fraction of the Carnot limit.",
+    "stories": [
+      "engines"
+    ],
+    "three": true,
+    "auditIds": [
+      "S04"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/15-4-carnots-perfect-heat-engine-the-second-law-of-thermodynamics-restated"
+    ]
+  },
+  {
+    "id": "w9-pendulum",
+    "widget": "waveslab",
+    "title": "What sets a pendulum’s clock?",
+    "chapter": 9,
+    "section": "9.1",
+    "figure": "c9_pendulum",
+    "question": "Does increasing the mass shorten the period?",
+    "explanation": "Gravity and inertia both grow with mass, so mass cancels. Length and gravity determine the small-angle period; larger starting angles make the period slightly longer.",
+    "limits": "Point bob and massless string; no damping. The amplitude correction is an expansion valid for the offered angles up to 40 degrees.",
+    "stories": [],
+    "three": false,
+    "auditIds": [
+      "C09.1"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/16-4-the-simple-pendulum"
+    ]
+  },
+  {
+    "id": "w9-resonance",
+    "widget": "waveslab",
+    "title": "Push in time, then add damping",
+    "chapter": 9,
+    "section": "9.2",
+    "figure": "c9_resonance",
+    "question": "Can the same small drive produce different amplitudes?",
+    "explanation": "A periodic force adds energy efficiently near the natural rhythm. In steady motion, input per cycle balances damping losses. Stronger damping limits the response.",
+    "limits": "Linear oscillator with RK4 transient motion, drive work and damping loss. The separate amplitude curve is the steady response; a manual impulse acts on the current transient.",
+    "stories": [
+      "resonance"
+    ],
+    "three": false,
+    "auditIds": [
+      "C09.2"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/16-8-forced-oscillations-and-resonance",
+      "https://openstax.org/books/college-physics-2e/pages/16-7-damped-harmonic-motion"
+    ]
+  },
+  {
+    "id": "w9-flutter",
+    "widget": "waveslab",
+    "title": "A steady flow can feed a twist",
+    "chapter": 9,
+    "section": "9.2",
+    "figure": "c9_flutter",
+    "question": "Does the wind need to arrive in rhythmic gusts?",
+    "explanation": "When aerodynamic torque is correlated with deck angular velocity, a steady flow can do positive work on each cycle. Damping removes energy; instability occurs when input exceeds loss.",
+    "limits": "A prescribed small-amplitude torsional energy model, not a CFD model or reconstruction of Tacoma’s collapse. It shows feedback separately from externally timed resonance. The plotted energy is a cycle-averaged envelope.",
+    "stories": [
+      "tacoma",
+      "wobbly-bridge"
+    ],
+    "three": true,
+    "auditIds": [
+      "C09.2"
+    ],
+    "sources": [
+      "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/63b26053bec64e7c32b93900b15d7fad_MIT18_03S10_Appendix_B.pdf"
+    ]
+  },
+  {
+    "id": "w9-water",
+    "widget": "waveslab",
+    "title": "Follow a parcel beneath a wave",
+    "chapter": 9,
+    "section": "9.3",
+    "figure": "c9_wave_carries",
+    "question": "Does a marked parcel travel with the crest?",
+    "explanation": "In this linear deep-water model, the crest advances while each parcel follows a small orbit. Motion shrinks with depth.",
+    "limits": "Linear deep-water gravity wave; controls maintain kA ≤ 0.189. Small displacements are shown at the stated scale. No Stokes drift, breaking or finite-depth dispersion.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C09.3"
+    ],
+    "sources": [
+      "https://ocw.tudelft.nl/wp-content/uploads/Part_1.pdf",
+      "https://openstax.org/books/college-physics-2e/pages/16-9-waves"
+    ]
+  },
+  {
+    "id": "w9-sound",
+    "widget": "waveslab",
+    "title": "A compression crosses the air",
+    "chapter": 9,
+    "section": "9.4",
+    "figure": "c9_compressions",
+    "question": "Will one air particle travel from the speaker to your ear?",
+    "explanation": "A longitudinal displacement pattern travels through the air. Pressure is highest where neighbouring particles crowd together; individual particles move locally.",
+    "limits": "A one-dimensional plane sound wave shown inside a volume. Regular marker rows represent mean positions, not a frozen molecular lattice; random thermal motion is omitted. Motion and time are magnified/slowed.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C09.4"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/17-1-sound",
+      "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength"
+    ]
+  },
+  {
+    "id": "w9-echo",
+    "widget": "waveslab",
+    "title": "One clap, two legs of the journey",
+    "chapter": 9,
+    "section": "9.4",
+    "figure": "c9_compressions",
+    "question": "If the echo returns after 0.29 seconds, did sound travel one wall-distance or two?",
+    "explanation": "The same pulse travels to the reflecting wall and returns. Distance to the wall is sound speed times return delay divided by two.",
+    "limits": "Ideal flat reflector, sound speed 349 m/s for the warm-air example. The pulse drawing is not a pressure amplitude measurement.",
+    "stories": [],
+    "three": false,
+    "auditIds": [
+      "C09.4"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength"
+    ]
+  },
+  {
+    "id": "w9-tone",
+    "widget": "waveslab",
+    "title": "Two separate sound controls",
+    "chapter": 9,
+    "section": "9.5",
+    "figure": "c9_loud_high",
+    "question": "Can a higher-pitched sound also be quieter?",
+    "explanation": "Frequency controls pitch; amplitude controls the oscillation size. At fixed medium, intensity is proportional to amplitude squared.",
+    "limits": "Synthetic sine tone, never a calibrated sound-level meter. Playback is optional and stops when this experiment closes or leaves view.",
+    "stories": [],
+    "three": false,
+    "auditIds": [
+      "C09.5"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level",
+      "https://openstax.org/books/college-physics-2e/pages/17-6-hearing"
+    ]
+  },
+  {
+    "id": "w9-membrane",
+    "widget": "waveslab",
+    "title": "A drumhead has nodal lines",
+    "chapter": 9,
+    "section": "9.6",
+    "figure": "c9_harmonics",
+    "question": "How does a circular skin differ from a string?",
+    "explanation": "Fixed edges permit particular modes. A plain circular membrane has Bessel-function shapes and non-integer frequency ratios. Central mass changes different modes by different amounts.",
+    "limits": "Uniform membrane modes are calculated. The central-load case uses a Rayleigh trial-shape estimate, not an exact tabla simulation; it does not force the frequencies onto integer multiples. The same calculated frequency drives optional audio.",
+    "stories": [
+      "tabla",
+      "p-raman"
+    ],
+    "three": true,
+    "auditIds": [
+      "C09.6"
+    ],
+    "sources": [
+      "https://www.acs.psu.edu/drussell/Demos/MembraneCircle/Circle.html",
+      "https://repository.ias.ac.in/52555/"
+    ],
+    "storyPresets": {
+      "tabla": {
+        "selection": 2,
+        "load": 2
+      },
+      "p-raman": {
+        "selection": 2,
+        "load": 2
+      }
+    }
+  },
+  {
+    "id": "w9-doppler",
+    "widget": "waveslab",
+    "title": "Choose who hears the moving horn",
+    "chapter": 9,
+    "section": "9.7",
+    "figure": "c9_doppler",
+    "question": "What does the driver hear compared with the platform listener?",
+    "explanation": "Each wavefront expands from its emission position through the air. A listener moving with the source receives the emitted frequency; a stationary listener ahead receives crests more often.",
+    "limits": "One-dimensional radial Doppler relation in still air; offered speeds remain subsonic. Drawn crests sparsely sample the actual sound wave.",
+    "stories": [
+      "doppler"
+    ],
+    "three": false,
+    "auditIds": [
+      "C09.7"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/17-4-doppler-effect-and-sonic-booms"
+    ]
+  },
+  {
+    "id": "w10-seeing",
+    "widget": "waveslab",
+    "title": "Light must arrive at the eye",
+    "chapter": 10,
+    "section": "10.1",
+    "figure": "c10_seeing",
+    "question": "Will an eye looking harder reveal an unlit mango?",
+    "explanation": "A source illuminates the object. Some scattered light enters the eye. Removing the source or blocking that route removes the signal; nothing is emitted by the eye.",
+    "limits": "Ray samples show possible light directions, not visible threads in clean air. The model view keeps apparatus visible even when the signal is zero.",
+    "stories": [
+      "seeing",
+      "p-ibn-al-haytham"
+    ],
+    "three": true,
+    "auditIds": [
+      "C10.1"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection",
+      "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye"
+    ]
+  },
+  {
+    "id": "w10-pinhole",
+    "widget": "waveslab",
+    "title": "Open the camera and follow the rays",
+    "chapter": 10,
+    "section": "10.2",
+    "figure": "c10_pinhole",
+    "question": "Will making the hole larger improve both brightness and sharpness?",
+    "explanation": "Straight rays from each object point cross through the opening to the opposite screen position. A finite opening gives each point a blur disc; enlarging it admits more light and more geometric blur.",
+    "limits": "Geometrical optics only; very-small-hole diffraction and exposure are omitted. Object and screen dimensions are shown numerically. The 3D apparatus is an opened camera cutaway; longitudinal framing and aperture enlargement in the lower diagram are named.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C10.2"
+    ],
+    "sources": [
+      "https://visionbook.mit.edu/imaging.html",
+      "https://openstax.org/books/college-physics-2e/pages/25-1-the-ray-aspect-of-light"
+    ]
+  },
+  {
+    "id": "w10-shadow",
+    "widget": "waveslab",
+    "title": "A large lamp softens a shadow",
+    "chapter": 10,
+    "section": "10.2",
+    "figure": "c10_pinhole",
+    "question": "Is a fuzzy shadow edge always diffraction?",
+    "explanation": "Different points on an extended source cast displaced shadows. Umbra receives none of the source; penumbra receives only part.",
+    "limits": "Geometric projection from a sampled line source. Light diffraction and multiple scattering are omitted.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C10.2"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-1-the-ray-aspect-of-light",
+      "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"
+    ]
+  },
+  {
+    "id": "w10-mirror",
+    "widget": "waveslab",
+    "title": "Walk around a mirror image",
+    "chapter": 10,
+    "section": "10.3",
+    "figure": "c10_mirror",
+    "question": "Is the image painted on the glass?",
+    "explanation": "Reflected rays obey equal angles. Their backward extensions meet at a virtual image behind a flat mirror. Curved mirrors can form real or virtual images depending on object distance.",
+    "limits": "Flat-mirror paths are geometrical. The spoon comparison is an ideal paraxial concave/convex mirror; a real spoon has aberrations.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C10.3"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-7-image-formation-by-mirrors",
+      "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection"
+    ]
+  },
+  {
+    "id": "w10-coin",
+    "widget": "waveslab",
+    "title": "Bring back the hidden coin",
+    "chapter": 10,
+    "section": "10.4",
+    "figure": "c10_refraction",
+    "question": "Can water make the coin visible while eye and coin stay fixed?",
+    "explanation": "Refraction at the surface creates a route past the rim. Back-projecting the arriving ray gives a shallower apparent position, while the real coin stays on the bottom.",
+    "limits": "Illustrative tumbler dimensions; Snell’s law solves the surface crossing. The empty/full comparison keeps eye, coin and rim fixed.",
+    "stories": [
+      "refraction"
+    ],
+    "three": true,
+    "auditIds": [
+      "C10.4"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-3-the-law-of-refraction"
+    ]
+  },
+  {
+    "id": "w10-guide",
+    "widget": "waveslab",
+    "title": "Guide light around a bend",
+    "chapter": 10,
+    "section": "10.4",
+    "figure": "c10_refraction",
+    "question": "At which surface angle will the ray start leaking out?",
+    "explanation": "A ray can reflect internally when it meets a higher-to-lower-index boundary beyond the critical angle. The path changes direction at successive contacts, not continuously between them.",
+    "limits": "Exact two-dimensional ray intersections with a circular annulus, visualised as a bent light guide. Absorption and diffraction are omitted.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C10.4"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-4-total-internal-reflection"
+    ]
+  },
+  {
+    "id": "w10-eye",
+    "widget": "waveslab",
+    "title": "Why goggles restore underwater vision",
+    "chapter": 10,
+    "section": "10.5",
+    "figure": "c10_eye",
+    "question": "Why does water blur an eye that works in air?",
+    "explanation": "The air–cornea index jump supplies much of the focusing. Water reduces this jump. Goggles restore an air layer and the cornea’s refracting power.",
+    "limits": "Reduced thin-lens teaching eye, not a prescription. Rays, focus and retinal intercepts use one physical conjugate state. Incoming rays are clipped near the eye; transverse scale is enlarged independently. The retinal image uses the calculated angular scale and pupil blur diameter; the Gaussian blur rendering is illustrative.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C10.5"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye",
+      "https://openstax.org/books/college-physics-2e/pages/25-6-image-formation-by-lenses"
+    ]
+  },
+  {
+    "id": "w10-delay",
+    "widget": "waveslab",
+    "title": "Emission time is not arrival time",
+    "chapter": 10,
+    "section": "10.6",
+    "figure": "c10_romer",
+    "question": "Can the same eclipse be observed at different times from different distances?",
+    "explanation": "An event emits a signal at one time; arrival occurs after distance divided by light speed. Changing Earth’s position changes the light-travel delay.",
+    "limits": "Circular coplanar Earth/Jupiter geometry with schematic Io eclipse events; not an ephemeris or reconstruction of Rømer’s fitted observations.",
+    "stories": [
+      "speed-of-light"
+    ],
+    "three": true,
+    "auditIds": [
+      "C10.6"
+    ],
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"
+    ]
+  },
+  {
+    "id": "w10-fizeau",
+    "widget": "waveslab",
+    "title": "A cogwheel times a light round trip",
+    "chapter": 10,
+    "section": "10.6",
+    "figure": "c10_romer",
+    "question": "How fast must the next tooth replace the outgoing gap?",
+    "explanation": "At first extinction the wheel turns through one gap-to-tooth interval during the round trip: c = 4 × distance × tooth count × rotations per second.",
+    "limits": "Equal-width teeth and gaps; transmission averages launch and return openings over a wheel cycle. The marker follows one ray launched at the gap centre. Full extinction occurs at gap-to-tooth centre alignment. Predicts timing with modern c; Fizeau’s approximate observed speed was 12.6 Hz. Apparatus and tiny phase advance are separately magnified.",
+    "stories": [
+      "fizeau-wheel"
+    ],
+    "three": true,
+    "auditIds": [
+      "C10.6",
+      "S01"
+    ],
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light",
+      "https://skullsinthestars.com/wp-content/uploads/2008/03/fizeau92.pdf"
+    ]
+  },
+  {
+    "id": "w11-prism",
+    "widget": "waveslab",
+    "title": "Select one colour for the second prism",
+    "chapter": 11,
+    "section": "11.1",
+    "figure": "c11_prism",
+    "question": "Will a second prism add colours to selected red light?",
+    "explanation": "The first prism separates wavelengths because its refractive index depends on wavelength. Selecting one narrow band leaves that band alone; the second prism refracts it without inventing other wavelengths.",
+    "limits": "A 60-degree ideal crown-glass prism; index interpolated between red and violet textbook values. Ray directions follow the calculated refractions. Apparatus dimensions are schematic.",
+    "stories": [
+      "prism",
+      "p-newton"
+    ],
+    "three": true,
+    "auditIds": [
+      "C11.1"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms",
+      "https://en.wikisource.org/wiki/New_Theory_About_Light_and_Colour"
+    ]
+  },
+  {
+    "id": "w11-rainbow",
+    "widget": "waveslab",
+    "title": "One drop becomes a rainbow cone",
+    "chapter": 11,
+    "section": "11.1",
+    "figure": "c11_prism",
+    "question": "Where must the Sun be relative to the observer?",
+    "explanation": "A primary-rainbow ray refracts into a drop, reflects once, and refracts out. Drops sending light towards one observer lie on a cone around the antisolar direction.",
+    "limits": "Spherical water drops, one internal reflection and wavelength-dependent index. The scene shows a selected impact parameter, not a complete intensity calculation.",
+    "stories": [],
+    "three": true,
+    "auditIds": [
+      "C11.1"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms"
+    ]
+  },
+  {
+    "id": "w11-reflectance",
+    "widget": "waveslab",
+    "title": "The spectrum an object returns",
+    "chapter": 11,
+    "section": "11.2",
+    "figure": "c11_banana",
+    "question": "Will the banana remain yellow under blue-only light?",
+    "explanation": "The returned spectrum is the illuminating spectrum multiplied by the object’s reflectance. Broad overlapping cone sensitivities combine the returned wavelengths into colour responses.",
+    "limits": "Illustrative smooth spectra and cone sensitivity curves; screen RGB cannot reproduce every real spectrum or visual adaptation.",
+    "stories": [
+      "raman"
+    ],
+    "three": false,
+    "auditIds": [
+      "C11.2"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/26-3-color-and-color-vision"
+    ]
+  },
+  {
+    "id": "w11-sky",
+    "widget": "waveslab",
+    "title": "Direct light and scattered light take different routes",
+    "chapter": 11,
+    "section": "11.3",
+    "figure": "c11_sky",
+    "question": "Is blue sky simply sunlight viewed straight through blue air?",
+    "explanation": "Short wavelengths scatter more strongly. The sky receives light redirected into the eye; a long direct path removes more blue from the light that continues towards the observer.",
+    "limits": "Uniform 8 km effective-air shell for optical depth; drawn shell enlarged. Scattering event lies inside air and both incoming rays share the Sun direction. Removed fraction includes all scattered directions, not a prediction of light entering one eye.",
+    "stories": [
+      "blue-sky"
+    ],
+    "three": true,
+    "auditIds": [
+      "C11.3"
+    ],
+    "sources": [
+      "https://gml.noaa.gov/grad/about/redsky/",
+      "https://acd-ext.gsfc.nasa.gov/anonftp/acd/daac_ozone/Lecture4/Text/Lecture_4/rayleigh.html"
+    ]
+  },
+  {
+    "id": "w11-polarisation",
+    "widget": "waveslab",
+    "title": "Turn the filter and delete the glare",
+    "chapter": 11,
+    "section": "11.4",
+    "figure": "c11_brewster",
+    "question": "Does rotating a filter change all light by the same amount?",
+    "explanation": "A filter transmits the projection of the electric field onto its axis. Intensity follows the squared projection. Fresnel reflection makes water glare strongly polarised near Brewster’s angle.",
+    "limits": "Ideal analyser; incoherent Fresnel s/p intensities add. Water incidence/reflection is geometric; fields enlarged 5×. Separate unpolarised returning-water colour is set to illustrative 0.080 incident units and always halves through the analyser.",
+    "stories": [
+      "raman"
+    ],
+    "three": true,
+    "auditIds": [
+      "C11.4",
+      "S11"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/27-8-polarization",
+      "https://openstax.org/books/university-physics-volume-3/pages/1-7-polarization",
+      "https://www.nature.com/articles/108367a0"
+    ],
+    "storyPresets": {
+      "raman": {
+        "glare": true,
+        "angle": 0,
+        "incidence": 53.1
+      },
+      "p-raman": {
+        "glare": true,
+        "angle": 0,
+        "incidence": 53.1
+      },
+      "raman-sea": {
+        "glare": true,
+        "angle": 0,
+        "incidence": 53.1
+      },
+      "polarisation": {
+        "glare": true,
+        "angle": 0,
+        "incidence": 53.1
+      }
+    }
+  },
+  {
+    "id": "w11-interference",
+    "widget": "waveslab",
+    "title": "Probe the path difference",
+    "chapter": 11,
+    "section": "11.5",
+    "figure": "c11_young",
+    "question": "What path difference makes a dark point on the screen?",
+    "explanation": "The two coherent waves add as amplitudes. Equal path lengths reinforce; half-integer wavelength differences cancel in this equal-amplitude model.",
+    "limits": "Exact source-to-probe distances; point-like coherent slits with equal amplitudes. The single-slit envelope and coherence loss are separate effects.",
+    "stories": [
+      "light-wave"
+    ],
+    "three": false,
+    "auditIds": [
+      "C11.5"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/27-3-youngs-double-slit-experiment"
+    ]
+  },
+  {
+    "id": "w11-diffraction",
+    "widget": "waveslab",
+    "title": "Change an opening, a grating or a thin film",
+    "chapter": 11,
+    "section": "11.5",
+    "figure": "c11_young",
+    "question": "Does every rainbow-coloured object use a prism?",
+    "explanation": "A slit has a diffraction envelope, a grating combines many coherent paths, and a thin film combines reflections from its two boundaries. They have different wavelength-dependent patterns.",
+    "limits": "Fraunhofer model: 64 equal midpoint samples across one slit, eight equal grating sources, or two equal reflected film amplitudes. Plots and visible phasors use identical sums. Film one-reflection phase reversal is included; longitudinal and transverse apparatus scales are framed separately.",
+    "stories": [],
+    "three": false,
+    "auditIds": [
+      "C11.5"
+    ],
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/27-5-single-slit-diffraction",
+      "https://openstax.org/books/college-physics-2e/pages/27-4-multiple-slit-diffraction",
+      "https://openstax.org/books/college-physics-2e/pages/27-7-thin-film-interference"
+    ]
+  },
+  {
+    "id": "w11-arago",
+    "widget": "waveslab",
+    "title": "A bright spot in the middle of a shadow",
+    "chapter": 11,
+    "section": "11.5",
+    "figure": "c11_young",
+    "question": "What happens when equal-length rim paths meet at the centre?",
+    "explanation": "At the centre, contributions from all around a circular obstacle’s rim arrive in phase. A near-axis rim-wave calculation predicts a central maximum.",
+    "limits": "Near-axis paraxial rim model, 96 coherent samples converging to J₀²; not full Fresnel irradiance. Disc and probe transverse scales are separately enlarged; both geometry and phase use the selected physical radius.",
+    "stories": [
+      "light-wave"
+    ],
+    "three": true,
+    "auditIds": [
+      "C11.5",
+      "S11"
+    ],
+    "sources": [
+      "https://lecdem.physics.umd.edu/m/m2/1687-m2-03.html",
+      "https://doi.org/10.1051/0004-6361/201937208"
+    ],
+    "storyPresets": {
+      "light-wave": {
+        "probe": 0,
+        "R": 0.001
+      }
+    }
+  },
+  {
+    "id": "w11-raman",
+    "widget": "waveslab",
+    "title": "Account for a changed photon colour",
+    "chapter": 11,
+    "section": "11.6",
+    "figure": "c11_raman",
+    "question": "If the outgoing photon loses energy, what gains it?",
+    "explanation": "Elastic scattering leaves photon energy unchanged. In Stokes scattering a molecular vibration gains energy; anti-Stokes scattering removes an existing vibrational excitation.",
+    "limits": "Schematic vibrational energy levels and selectable Raman shift. Shifted peaks are magnified; no assertion of an actual molecule’s spectrum or classical photon path.",
+    "stories": [
+      "raman",
+      "p-raman"
+    ],
+    "three": true,
+    "auditIds": [
+      "C11.6",
+      "S11"
+    ],
+    "sources": [
+      "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=918413",
+      "https://collections.archives.ncbs.res.in/handle/42412/4108"
+    ],
+    "storyPresets": {
+      "raman": {
+        "mode": 1,
+        "laser": 532,
+        "shift": 1000
+      },
+      "p-raman": {
+        "mode": 1,
+        "laser": 532,
+        "shift": 1000
+      }
+    }
+  }
+]

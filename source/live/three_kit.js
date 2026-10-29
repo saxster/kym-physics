@@ -4,16 +4,70 @@
 import {
   Scene, PerspectiveCamera, WebGLRenderer, HemisphereLight, DirectionalLight, AmbientLight, Group, Mesh,
   SphereGeometry, CylinderGeometry, MeshStandardMaterial, Vector3, Quaternion, Sprite, SpriteMaterial,
-  CanvasTexture, Color, ConeGeometry, Raycaster, SRGBColorSpace, LineDashedMaterial, BufferGeometry, Line,
+  CanvasTexture, Color, ConeGeometry, Raycaster, SRGBColorSpace, LineDashedMaterial, BufferGeometry, Line, Box3,
 } from 'three';
 import { Live, colors } from './core.js';
 
 export const RADIUS = { H: 0.30, C: 0.42, N: 0.42, O: 0.44, Na: 0.40, Cl: 0.62, S: 0.5, Li: 0.38, X: 0.4 };
 const DARK_TEXT = Live.DARK_TEXT;
 
+let webgl2Available = false;
 export function webglOK() {
-  try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); }
+  if (webgl2Available) return true;
+  try {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('webgl2');
+    // Probe once: WebKit can retain even explicitly lost contexts until its next GC.
+    context?.getExtension('WEBGL_lose_context')?.loseContext();
+    webgl2Available = !!context;
+    return webgl2Available;
+  }
   catch (e) { return false; }
+}
+
+// Closed scenes lend their renderer to the next scene. Keep at most one idle
+// context rather than creating hundreds of lost-but-not-yet-collected canvases.
+let idleRenderer = null;
+let activeStage = null;
+function destroyRenderer(renderer) {
+  const context = renderer.getContext();
+  renderer.dispose();
+  if (!context.isContextLost()) renderer.forceContextLoss();
+  renderer.domElement.remove();
+}
+function acquireRenderer() {
+  let renderer = idleRenderer; idleRenderer = null;
+  if (renderer?.getContext().isContextLost()) { destroyRenderer(renderer); renderer=null; }
+  renderer ||= new WebGLRenderer({ antialias:true,alpha:true });
+  renderer.resetState(); renderer.setRenderTarget(null);
+  renderer.localClippingEnabled=false; renderer.clippingPlanes=[];
+  renderer.setScissorTest(false); renderer.autoClear=true;
+  renderer.setClearColor(0x000000,0);
+  return renderer;
+}
+function releaseRenderer(renderer, lost) {
+  renderer.domElement.remove();
+  if (lost || renderer.getContext().isContextLost() || idleRenderer) { destroyRenderer(renderer); return; }
+  renderer.renderLists.dispose(); renderer.setRenderTarget(null);
+  renderer.setPixelRatio(1); renderer.setSize(1,1,false);
+  renderer.info.reset(); idleRenderer=renderer;
+}
+
+/** Dispose only objects owned by this group; cached primitives belong to the shared kit. */
+export function clearGroup(group) {
+  const geometries = new Set(), materials = new Set(), textures = new Set(), instances=new Set();
+  group.traverse(node => {
+    if(node.isInstancedMesh && !node.userData.shared)instances.add(node);
+    if (node.geometry && !node.geometry.userData.shared) geometries.add(node.geometry);
+    for (const material of (Array.isArray(node.material) ? node.material : [node.material])) {
+      if (!material || material.userData.shared) continue;
+      materials.add(material);
+      for (const value of Object.values(material)) if (value?.isTexture && !value.userData?.shared) textures.add(value);
+    }
+  });
+  group.clear();
+  instances.forEach(mesh=>mesh.dispose()); // instanceMatrix/instanceColor have object-level GPU buffers.
+  textures.forEach(t => t.dispose()); materials.forEach(m => m.dispose()); geometries.forEach(g => g.dispose());
 }
 
 const labelCache = new Map();
@@ -24,20 +78,25 @@ function labelTexture(text, fg) {
   const g = c.getContext('2d');
   g.fillStyle = fg; g.font = `600 ${text.length > 1 ? 58 : 70}px Lexend, system-ui, sans-serif`;
   g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, 64, 68);
-  const t = new CanvasTexture(c); t.colorSpace = SRGBColorSpace; labelCache.set(key, t); return t;
+  const t = new CanvasTexture(c); t.colorSpace = SRGBColorSpace; t.userData.shared = true; labelCache.set(key, t); return t;
 }
 
 /** Create a 3D stage. Returns kit {scene, root, camera, renderer, render(), fit(radius), spin, ...}. */
 export function makeStage(stage, api, { height = 360, distance = 7, label = '' } = {}) {
+  // A textbook can be explored for hours without accumulating a context for
+  // every earlier figure. Its saved predictions remain in the notebook.
+  if(activeStage && activeStage!==stage && activeStage.isConnected)
+    activeStage.closest('figure')?.dispatchEvent(new CustomEvent('close-lesson'));
   const c = colors();
   const wrap = document.createElement('div');
   wrap.className = 'live-3d';
-  wrap.style.height = height + 'px';
+  wrap.style.height = height + 'px'; wrap.style.position = 'relative';
   wrap.setAttribute('role', 'img');
   wrap.setAttribute('aria-label', label);
   wrap.tabIndex = 0;
   stage.appendChild(wrap);
-  const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+  const renderer = acquireRenderer();
+  activeStage = stage;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = SRGBColorSpace;
   wrap.appendChild(renderer.domElement);
@@ -53,9 +112,46 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
     c, scene, root, camera, renderer, wrap,
     spinSpeed: 0.35, // radians per second while playing
     dirty: true,
+    labels: [],
+    label(text, position, { color = c.ink } = {}) {
+      const node = document.createElement('span'); node.className = 'lab-scene-label';
+      node.textContent = text;
+      const semantic = Object.keys(c).find(k => c[k] === color);
+      node.style.color = semantic ? `var(--${semantic.replace('_', '-')})` : color; wrap.append(node);
+      const item = { node, position }; kit.labels.push(item); kit.dirty = true;
+      return node;
+    },
+    fit(radius) {
+      if (!Number.isFinite(radius) || radius <= 0) return;
+      kit.fitRadius = radius;
+      camera.position.z = Math.max(2, radius / Math.sin(camera.fov * Math.PI / 360) / Math.min(1, camera.aspect) * 1.08);
+      camera.far = Math.max(100, camera.position.z + radius * 4);
+      camera.updateProjectionMatrix(); kit.dirty = true;
+    },
+    fitContents() {
+      root.updateMatrixWorld(true);
+      const bounds = new Box3().setFromObject(root);
+      if (!bounds.isEmpty()) {
+        const size = bounds.getSize(new Vector3()), centre = bounds.getCenter(new Vector3());
+        kit.fit(size.length() / 2 + centre.length());
+      }
+    },
     render() {
+      if (kit.contextLost) return;
       // keep every atom label on the side of its sphere that faces the camera
       root.updateMatrixWorld(true);
+      camera.updateMatrixWorld(true);
+      for (const item of kit.labels) {
+        const source = typeof item.position === 'function' ? item.position() : item.position;
+        let visible = !!source;
+        if (source?.isObject3D) for (let node=source;node;node=node.parent) if (!node.visible) { visible=false;break; }
+        if (!visible) { item.node.hidden=true;continue; }
+        const point = source?.isObject3D ? source.getWorldPosition(new Vector3()) : root.localToWorld(new Vector3(...source));
+        point.project(camera);
+        item.node.hidden = point.z < -1 || point.z > 1 || Math.abs(point.x) > .98 || Math.abs(point.y) > .98;
+        item.node.style.left = (point.x + 1) * wrap.clientWidth / 2 + 'px';
+        item.node.style.top = (1 - point.y) * wrap.clientHeight / 2 + 'px';
+      }
       const atoms = [];
       root.traverse((m) => { if (m.userData && m.userData.label) atoms.push(m); });
       for (const m of atoms) {
@@ -73,36 +169,84 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
       const w = wrap.clientWidth || 600, h = wrap.clientHeight || height;
       renderer.setSize(w, h, false); renderer.domElement.style.width = '100%'; renderer.domElement.style.height = '100%';
       camera.aspect = w / h; camera.updateProjectionMatrix(); kit.render();
+      if (kit.fitRadius) { kit.fit(kit.fitRadius); kit.render(); }
     },
-    clear() { while (root.children.length) { const o = root.children.pop(); o.traverse?.((m) => { m.geometry?.dispose?.(); }); } kit.dirty = true; },
+    clear() { clearGroup(root); kit.dirty = true; },
+    cutaway(planes = []) { renderer.localClippingEnabled = true; renderer.clippingPlanes = planes; kit.dirty = true; },
   };
   const ro = new ResizeObserver(() => kit.resize()); ro.observe(wrap);
-  api.onCleanup(() => { ro.disconnect(); renderer.dispose(); });
+  const theme = new MutationObserver(() => {
+    const next = colors(), previous = { ...c }, replaced = new Map();
+    root.traverse(node => {
+      if (!node.material) return;
+      const remap = material => {
+        if (!material?.color) return material;
+        const key = Object.keys(previous).find(k => {
+          try { return material.color.equals(new Color(previous[k])); } catch (_) { return false; }
+        });
+        if (!key) return material;
+        if (material.userData.shared) {
+          if (!replaced.has(material)) { const copy = material.clone(); copy.userData.shared = false; replaced.set(material, copy); }
+          material = replaced.get(material);
+        }
+        material.color.set(next[key]); return material;
+      };
+      node.material = Array.isArray(node.material) ? node.material.map(remap) : remap(node.material);
+    });
+    Object.assign(c, next); kit.render();
+  });
+  theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  const lost = event => {
+    event.preventDefault(); wrap.hidden = true;
+    const notice = document.createElement('p'); notice.className = 'live-note';
+    notice.textContent = 'The 3D view is unavailable. Keep using the calculated diagram, or reopen the experiment.';
+    wrap.after(notice); kit.contextLost = true;
+  };
+  renderer.domElement.addEventListener('webglcontextlost', lost);
+  api.onCleanup(() => { ro.disconnect(); theme.disconnect(); clearGroup(root); scene.clear(); renderer.domElement.removeEventListener('webglcontextlost', lost); releaseRenderer(renderer,kit.contextLost); if(activeStage===stage)activeStage=null; });
   kit.resize();
 
   // drag to rotate (pointer), arrows to rotate (keyboard)
-  let drag = null, userTurned = 0;
+  let drag = null, userTurned = 0, home = null, touchRotation = false;
   const rotate = (dx, dy) => {
+    if (!home) home = root.quaternion.clone();
     const q1 = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), dx);
     const q2 = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), dy);
     root.quaternion.premultiply(q1).premultiply(q2);
     kit.render(); userTurned = 2.5;
   };
-  wrap.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; wrap.setPointerCapture(e.pointerId); });
+  wrap.addEventListener('pointerdown', (e) => { if (e.pointerType === 'touch' && !touchRotation) return; drag = { x: e.clientX, y: e.clientY }; wrap.setPointerCapture(e.pointerId); });
   wrap.addEventListener('pointermove', (e) => { if (!drag) return; rotate((e.clientX - drag.x) * 0.01, (e.clientY - drag.y) * 0.01); drag = { x: e.clientX, y: e.clientY }; });
   wrap.addEventListener('pointerup', () => { drag = null; });
+  wrap.addEventListener('pointercancel', () => { drag = null; });
   wrap.addEventListener('keydown', (e) => {
     const k = { ArrowLeft: [-0.2, 0], ArrowRight: [0.2, 0], ArrowUp: [0, -0.2], ArrowDown: [0, 0.2] }[e.key];
     if (k) { rotate(...k); e.preventDefault(); }
   });
-  wrap.style.touchAction = 'none';
+  wrap.style.touchAction = 'pan-y';
   api.button('Turn left', () => rotate(-0.35, 0));
   api.button('Turn right', () => rotate(0.35, 0));
+  const views = document.createElement('details'); views.className = 'lab-view-controls';
+  const summary = document.createElement('summary'); summary.textContent = 'Viewpoint'; views.append(summary);
+  for (const [label, angles] of [['Reset view', [0, 0]], ['Side view', [0, Math.PI / 2]], ['Top view', [-Math.PI / 2, 0]]]) {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'live-ctl'; button.textContent = label;
+    button.addEventListener('click', () => {
+      if (!home) home = root.quaternion.clone();
+      root.quaternion.copy(home);
+      root.quaternion.premultiply(new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), angles[0]));
+      root.quaternion.premultiply(new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), angles[1]));
+      userTurned = Infinity; kit.render();
+    }); views.append(button);
+  }
+  const touch = document.createElement('button'); touch.type = 'button'; touch.className = 'live-ctl'; touch.textContent = 'Turn with touch: off'; touch.setAttribute('aria-pressed', 'false');
+  touch.addEventListener('click', () => { touchRotation = !touchRotation; touch.setAttribute('aria-pressed', String(touchRotation)); touch.textContent = 'Turn with touch: ' + (touchRotation ? 'on' : 'off'); wrap.style.touchAction = touchRotation ? 'none' : 'pan-y'; });
+  views.append(touch); wrap.after(views);
+  const viewNote=document.createElement('p');viewNote.textContent='Opening another 3D figure returns this one to its drawing.';views.append(viewNote);
   api.loop((dt) => {
     if (userTurned > 0) userTurned -= dt;
     else if (dt > 0 && kit.spinSpeed) { root.rotateOnWorldAxis(new Vector3(0, 1, 0), kit.spinSpeed * dt); kit.dirty = true; }
     kit.onFrame?.(dt);
-    if (kit.dirty || dt === 0) kit.render();
+    if (!kit.contextLost && (kit.dirty || dt === 0)) kit.render();
   });
   return kit;
 }
@@ -110,11 +254,12 @@ export function makeStage(stage, api, { height = 360, distance = 7, label = '' }
 const matCache = new Map();
 function mat(color, opts = {}) {
   const key = color + JSON.stringify(opts);
-  if (!matCache.has(key)) matCache.set(key, new MeshStandardMaterial({ color: new Color(color), roughness: 0.55, metalness: 0.0, ...opts }));
+  if (!matCache.has(key)) { const material = new MeshStandardMaterial({ color: new Color(color), roughness: 0.55, metalness: 0.0, ...opts }); material.userData.shared = true; matCache.set(key, material); }
   return matCache.get(key);
 }
 const sphereGeo = new SphereGeometry(1, 32, 24);
 const cylGeo = new CylinderGeometry(1, 1, 1, 16);
+sphereGeo.userData.shared = true; cylGeo.userData.shared = true;
 
 /** Add an atom with a label that always faces the camera. */
 export function addAtom(parent, el, pos, { r, label = true, color, opacity } = {}) {

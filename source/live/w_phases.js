@@ -5,7 +5,7 @@ import {
 } from 'three';
 import { Live } from './core.js';
 import { label, note, phaseDisc } from './art_waves.js';
-import { makeStage, addArrow, addAtom, webglOK } from './three_kit.js';
+import { makeStage, addArrow, addAtom, clearGroup, webglOK } from './three_kit.js';
 
 function phaseNameForDay(day) {
   const f = ((day % 29.5) + 29.5) % 29.5;
@@ -111,6 +111,20 @@ Live.register('phases', (stage, params, api) => {
 
   const dynGroup = new Group();
   kit.root.add(dynGroup);
+  let sceneKey = '', activeMoon = null, nearMarker = null, activeOrbitR = 0, activeMoonR = 0;
+
+  function moveMoon(p) {
+    if (!activeMoon) return;
+    if (viewMode === 1) activeMoon.rotation.y = Math.PI / 2 - p.theta;
+    else {
+      const x = activeOrbitR * Math.cos(p.theta), z = -activeOrbitR * Math.sin(p.theta);
+      activeMoon.position.set(x, 0, z);
+      if (nearMarker) {
+        const inward = new Vector3(-x, 0, -z).normalize();
+        nearMarker.position.set(x + inward.x * activeMoonR * 1.08, 0, z + inward.z * activeMoonR * 1.08);
+      }
+    }
+  }
 
   // Build a sphere whose +x hemisphere (facing the Sun at +x) is bright and whose -x hemisphere is dark night,
   // independent of scene ambient lighting so the 50/50 day-night terminator is always crystal clear!
@@ -125,11 +139,13 @@ Live.register('phases', (stage, params, api) => {
   }
 
   function rebuild() {
-    while (dynGroup.children.length) {
-      const ch = dynGroup.children.pop();
-      ch.traverse?.((m) => m.geometry?.dispose?.());
-    }
+    const key = `${viewMode}:${trueScale}`;
     const p = computePhase();
+    if (sceneKey === key) {
+      moveMoon(p); updateReadout(); kit.dirty = true; kit.render(); return;
+    }
+    sceneKey = key; activeMoon = nearMarker = null;
+    clearGroup(dynGroup);
 
     if (viewMode === 1) {
       // View "From Mumbai": show the Moon large at the origin, rotated by p.theta so the camera at +z sees
@@ -137,6 +153,7 @@ Live.register('phases', (stage, params, api) => {
       kit.root.quaternion.identity();
       const moonR = 1.45;
       const moon = makeDayNightSphere(moonR, '#f5efe0', '#232b28');
+      activeMoon = moon;
       // At theta = 0 (New Moon), the dark half faces camera (+z) -> rotate +90 deg around y; then rotate by -theta
       moon.rotation.y = Math.PI / 2 - p.theta;
       dynGroup.add(moon);
@@ -157,6 +174,7 @@ Live.register('phases', (stage, params, api) => {
       const earthR = trueScale ? 2.65 / 60 : 0.62;
       const orbitR = trueScale ? 2.65 : 2.15; // In trueScale, orbitR / (2 * earthR) = 30 Earth diameters to the Moon.
       const moonR = trueScale ? earthR * .2727 : 0.34;
+      activeOrbitR = orbitR; activeMoonR = moonR;
 
       // Earth at origin (lit side facing Sun at +x)
       const earth = makeDayNightSphere(earthR, '#3b7a94', '#16262e');
@@ -180,6 +198,7 @@ Live.register('phases', (stage, params, api) => {
       const mx = orbitR * Math.cos(p.theta);
       const mz = -orbitR * Math.sin(p.theta);
       const moon = makeDayNightSphere(moonR, '#f5efe0', '#232b28');
+      activeMoon = moon;
       moon.position.set(mx, 0, mz);
       dynGroup.add(moon);
 
@@ -187,7 +206,7 @@ Live.register('phases', (stage, params, api) => {
       if (!trueScale) {
         const dirToEarth = new Vector3(-mx, 0, -mz).normalize();
         const nearDotPos = new Vector3(mx, 0, mz).addScaledVector(dirToEarth, moonR * 1.08);
-        addAtom(dynGroup, 'X', [nearDotPos.x, nearDotPos.y, nearDotPos.z], {
+        nearMarker = addAtom(dynGroup, 'X', [nearDotPos.x, nearDotPos.y, nearDotPos.z], {
           r: 0.075, label: false, color: c.proton,
         });
       }

@@ -137,6 +137,7 @@ Live.register('cannon3d', (stage, params, api) => {
       const old = trails.shift();
       kit.root.remove(old);
       old.geometry.dispose();
+      old.material.dispose();
     }
 
     activeShot = {
@@ -292,6 +293,7 @@ Live.register('cannon3d', (stage, params, api) => {
         const old = trails.pop();
         kit.root.remove(old);
         old.geometry.dispose();
+      old.material.dispose();
       }
     }
     fireShot();

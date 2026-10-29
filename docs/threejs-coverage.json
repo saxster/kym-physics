@@ -1,0 +1,1439 @@
+{
+  "date": "2026-10-29",
+  "acceptanceRows": 108,
+  "chapterSections": 90,
+  "lessons": 109,
+  "coverage": {
+    "C00.1": {
+      "lessons": [
+        "m-horizon",
+        "m-shadow-shapes"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C00.2": {
+      "lessons": [
+        "m-measurement"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C00.3": {
+      "lessons": [
+        "m-scale"
+      ],
+      "preserved": [
+        "explore-scale"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C00.4": {
+      "lessons": [
+        "m-rain",
+        "m-shadows"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C01.1": {
+      "lessons": [
+        "m-frames",
+        "m-trains"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C01.2": {
+      "lessons": [
+        "m-graph"
+      ],
+      "preserved": [
+        "graphwalk"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C01.3": {
+      "lessons": [
+        "m-acceleration",
+        "m-circle"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C01.4": {
+      "lessons": [
+        "m-galileo"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C01.5": {
+      "lessons": [
+        "m-toss"
+      ],
+      "preserved": [
+        "videotrack"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C02.1": {
+      "lessons": [
+        "m-inertia"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C02.2": {
+      "lessons": [
+        "m-arrow"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C02.3": {
+      "lessons": [
+        "m-inertia"
+      ],
+      "preserved": [
+        "ramp"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C02.4": {
+      "lessons": [
+        "m-braking"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C02.5": {
+      "lessons": [
+        "m-friction",
+        "m-tablecloth"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C03.1": {
+      "lessons": [
+        "m-vectors"
+      ],
+      "preserved": [
+        "forces"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C03.2": {
+      "lessons": [
+        "m-newton"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C03.3": {
+      "lessons": [
+        "m-support"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C03.4": {
+      "lessons": [
+        "m-pairs"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C03.5": {
+      "lessons": [
+        "m-rocket"
+      ],
+      "preserved": [
+        "momentum_carts"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C04.1": {
+      "lessons": [
+        "m-fall"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C04.2": {
+      "lessons": [
+        "m-fall"
+      ],
+      "preserved": [
+        "airfall"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C04.3": {
+      "lessons": [
+        "m-fall"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C04.4": {
+      "lessons": [
+        "m-projectile"
+      ],
+      "preserved": [
+        "projectile"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C04.5": {
+      "lessons": [
+        "m-circle"
+      ],
+      "preserved": [
+        "whirl"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.1": {
+      "lessons": [
+        "m-gravity"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.2": {
+      "lessons": [
+        "m-weightless"
+      ],
+      "preserved": [
+        "cannon3d",
+        "freefall"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.3": {
+      "lessons": [
+        "m-kepler"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.4": {
+      "lessons": [
+        "m-torsion"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.5": {
+      "lessons": [
+        "m-perturbation"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C05.6": {
+      "lessons": [
+        "m-mission"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C06.1": {
+      "lessons": [
+        "m-pressure"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C06.2": {
+      "lessons": [
+        "m-suction"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C06.3": {
+      "lessons": [
+        "m-suction"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C06.4": {
+      "lessons": [
+        "m-hydrostatic"
+      ],
+      "preserved": [
+        "pressuretank"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C06.5": {
+      "lessons": [
+        "m-hull"
+      ],
+      "preserved": [
+        "buoyancy"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.1": {
+      "lessons": [
+        "m-energy"
+      ],
+      "preserved": [
+        "energystores"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.2": {
+      "lessons": [
+        "m-impact"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.3": {
+      "lessons": [
+        "m-work"
+      ],
+      "preserved": [
+        "energytrack"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.4": {
+      "lessons": [
+        "m-energy"
+      ],
+      "preserved": [
+        "energytrack"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.5": {
+      "lessons": [
+        "m-power"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C07.6": {
+      "lessons": [
+        "m-station"
+      ],
+      "preserved": [
+        "static c7 Sankey"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "C08.1": {
+      "lessons": [
+        "w8-joule"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C08.2": {
+      "lessons": [
+        "w8-samples"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C08.3": {
+      "lessons": [
+        "w8-insulation"
+      ],
+      "preserved": [
+        "conduction"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C08.4": {
+      "lessons": [
+        "w8-insulation"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C08.5": {
+      "lessons": [
+        "w8-phase"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C08.6": {
+      "lessons": [
+        "w8-evaporation",
+        "w8-convection"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.1": {
+      "lessons": [
+        "w9-pendulum"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.2": {
+      "lessons": [
+        "w9-resonance",
+        "w9-flutter"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.3": {
+      "lessons": [
+        "w9-water"
+      ],
+      "preserved": [
+        "ripple"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.4": {
+      "lessons": [
+        "w9-sound",
+        "w9-echo"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.5": {
+      "lessons": [
+        "w9-tone"
+      ],
+      "preserved": [
+        "scope"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.6": {
+      "lessons": [
+        "w9-membrane"
+      ],
+      "preserved": [
+        "harmonics"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C09.7": {
+      "lessons": [
+        "w9-doppler"
+      ],
+      "preserved": [
+        "doppler"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.1": {
+      "lessons": [
+        "w10-seeing"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.2": {
+      "lessons": [
+        "w10-pinhole",
+        "w10-shadow"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.3": {
+      "lessons": [
+        "w10-mirror"
+      ],
+      "preserved": [
+        "mirror"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.4": {
+      "lessons": [
+        "w10-coin",
+        "w10-guide"
+      ],
+      "preserved": [
+        "refraction"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.5": {
+      "lessons": [
+        "w10-eye"
+      ],
+      "preserved": [
+        "eye3d"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C10.6": {
+      "lessons": [
+        "w10-delay",
+        "w10-fizeau"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.1": {
+      "lessons": [
+        "w11-prism",
+        "w11-rainbow"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.2": {
+      "lessons": [
+        "w11-reflectance"
+      ],
+      "preserved": [
+        "colourmix"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.3": {
+      "lessons": [
+        "w11-sky"
+      ],
+      "preserved": [
+        "skycolour"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.4": {
+      "lessons": [
+        "w11-polarisation"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.5": {
+      "lessons": [
+        "w11-interference",
+        "w11-diffraction",
+        "w11-arago"
+      ],
+      "preserved": [
+        "interference"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C11.6": {
+      "lessons": [
+        "w11-raman"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "C12.1": {
+      "lessons": [
+        "charge",
+        "cage"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C12.2": {
+      "lessons": [
+        "circuit-signal"
+      ],
+      "preserved": [
+        "circuit"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C12.3": {
+      "lessons": [
+        "circuit-signal"
+      ],
+      "preserved": [
+        "circuit"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C12.4": {
+      "lessons": [
+        "circuit-diagnose"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C12.5": {
+      "lessons": [
+        "circuit-probes"
+      ],
+      "preserved": [
+        "seriesparallel"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C12.6": {
+      "lessons": [
+        "protection"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.1": {
+      "lessons": [
+        "domains"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.2": {
+      "lessons": [
+        "earth-field"
+      ],
+      "preserved": [
+        "magnetometer"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.3": {
+      "lessons": [
+        "field-probe"
+      ],
+      "preserved": [
+        "field3d"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.4": {
+      "lessons": [
+        "motor"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.5": {
+      "lessons": [
+        "generator",
+        "transformer"
+      ],
+      "preserved": [
+        "induction"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C13.6": {
+      "lessons": [
+        "em-wave"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C14.1": {
+      "lessons": [
+        "day-night",
+        "foucault"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C14.2": {
+      "lessons": [
+        "seasons3d"
+      ],
+      "preserved": [
+        "seasons"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C14.3": {
+      "lessons": [
+        "moon-rotation"
+      ],
+      "preserved": [
+        "phases"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C14.4": {
+      "lessons": [
+        "eclipses"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C14.5": {
+      "lessons": [
+        "tides3d"
+      ],
+      "preserved": [
+        "tides"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.1": {
+      "lessons": [
+        "photoelectric"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.2": {
+      "lessons": [
+        "atom-scale",
+        "radiation-decay"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.3": {
+      "lessons": [
+        "solar-fusion",
+        "halo"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.4": {
+      "lessons": [
+        "stellar-spectrum"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.5": {
+      "lessons": [
+        "distance-ladder"
+      ],
+      "preserved": [
+        "parallax"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.6": {
+      "lessons": [
+        "white-dwarf"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "C15.7": {
+      "lessons": [
+        "cosmos"
+      ],
+      "preserved": [
+        "expansion"
+      ],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S01": {
+      "lessons": [
+        "w10-fizeau"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "S02": {
+      "lessons": [
+        "foucault"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S03": {
+      "lessons": [
+        "cage"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S04": {
+      "lessons": [
+        "w8-engine",
+        "m-engine"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "S05": {
+      "lessons": [
+        "m-stevin"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-mechanics-independent.md"
+      ]
+    },
+    "S06": {
+      "lessons": [
+        "telescope"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S07": {
+      "lessons": [
+        "tracks"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S08": {
+      "lessons": [
+        "parity"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S09": {
+      "lessons": [
+        "bose-counting"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S10": {
+      "lessons": [
+        "eclipse-evidence"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-fields-independent.md"
+      ]
+    },
+    "S11": {
+      "lessons": [
+        "w11-arago",
+        "w11-raman",
+        "w9-membrane",
+        "w11-polarisation"
+      ],
+      "preserved": [],
+      "status": "VERIFIED",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-waves-independent.md"
+      ]
+    },
+    "S12": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "mechanism": "All catalog story links and explorer/map related-experiment links; historical/evidence-only stories intentionally retain their existing illustrations.",
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json"
+      ]
+    },
+    "E01": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/live/three_kit.js",
+        "source/live/lab_kit.js",
+        "source/live/core.js"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-lifecycle-independent.md"
+      ]
+    },
+    "E02": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/live/three_kit.js",
+        "source/live/lab_kit.js",
+        "source/live/core.js"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json",
+        "source/gates/visual-lifecycle-independent.md"
+      ]
+    },
+    "E03": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/live/lab_kit.js",
+        "source/app/m_notebook.js",
+        "source/app/m_labs.js"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json"
+      ]
+    },
+    "E04": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/build.py",
+        "source/lesson_catalog.py"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json"
+      ]
+    },
+    "E05": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/tests/test_labs_browser.py",
+        "source/tests/test_labs_integration.py",
+        "source/gates/visual-mechanics-independent.md",
+        "source/gates/visual-waves-independent.md",
+        "source/gates/visual-fields-independent.md",
+        "source/tests/test_labs_lifecycle.py",
+        "source/gates/visual-lifecycle-independent.md"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json"
+      ]
+    },
+    "E06": {
+      "lessons": [],
+      "preserved": [],
+      "status": "VERIFIED",
+      "files": [
+        "source/src/ch14.md"
+      ],
+      "evidence": [
+        "docs/threejs-verification.md",
+        "docs/threejs-verification.json"
+      ]
+    }
+  },
+  "stories": {
+    "total": 95,
+    "linkedToExperiments": 90,
+    "retainedAsEvidenceOrHistory": [
+      "einstein-brain",
+      "fish-book",
+      "galileo-fingers",
+      "mpemba",
+      "p-brahmagupta"
+    ],
+    "reason": "These five stories concern historical evidence, anecdote or conditional experiments; no deterministic new 3D mechanism is claimed."
+  },
+  "verification": {
+    "status": "VERIFIED_IN_BROWSER_EMULATION",
+    "manifest": "docs/threejs-verification.json",
+    "buildCache": "mw-5539b5376f34",
+    "unverifiedBoundaries": [
+      "Physical Android/iOS GPU, battery, thermal and real-device frame-rate performance",
+      "Actual microphone/motion/magnetic sensor calibration",
+      "Controlled learner-comprehension or retention outcomes"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ import {
 } from 'three';
 import { Live } from './core.js';
 import { label, note } from './art_waves.js';
-import { makeStage, addArrow, addAtom, webglOK } from './three_kit.js';
+import { makeStage, addArrow, addAtom, clearGroup, webglOK } from './three_kit.js';
 
 Live.register('field3d', (stage, params, api) => {
   const c = api.colors();
@@ -156,10 +156,7 @@ Live.register('field3d', (stage, params, api) => {
   }
 
   function rebuild() {
-    while (dynGroup.children.length) {
-      const ch = dynGroup.children.pop();
-      ch.traverse?.((m) => m.geometry?.dispose?.());
-    }
+    clearGroup(dynGroup);
 
     const dirSign = reversed ? -1 : 1;
 
