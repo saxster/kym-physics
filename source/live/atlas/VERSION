@@ -1,0 +1,5 @@
+Atlas (github.com/saxster/atlas) at 4e6518b, vendored by tools/vendor.mjs.
+Chapters: physics/oscillations
+Do not edit these files here: change the atlas, then run
+  node tools/vendor.mjs <this directory> physics/oscillations
+in the atlas. Code MIT (LICENSE); Atlas of Physics (c) 2026 Nathan Liow.
