@@ -36,7 +36,7 @@ That is enough to run a 10-watt LED bulb for about two million years.
 
 #### Step 3: why it needs the centre of a star
 
-Hydrogen nuclei are protons, and protons repel each other. To fuse, two of them must get close enough for the nuclear force to grab, which means they must be moving fast enough to overcome the push. That takes a temperature above about 12 million kelvin. The Sun's centre is at about 15 million kelvin, so fusion happens there, in the core, and nowhere near the surface. The surface, at a few thousand degrees, is merely glowing with the energy that has worked its way out.
+Hydrogen nuclei are protons, and protons repel each other. To fuse, a pair must get close enough for the nuclear force to act. Even in the Sun’s core, motion alone does not give most pairs enough energy to overcome that electrical barrier. Quantum physics gives them a small chance of passing through it instead: this is called *tunnelling*. The core’s high temperature and density bring huge numbers of pairs close together, so enough of those rare encounters lead to fusion to keep the Sun shining. Its centre is about 15 million kelvin. The much cooler surface glows with energy that has worked its way out.
 
 #### Step 4: the Sun's budget
 

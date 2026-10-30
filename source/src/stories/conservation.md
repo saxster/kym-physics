@@ -71,7 +71,7 @@ Energy never runs out; it moves. At every bounce some of the ball's energy becom
 :::
 
 :::home Warm hands
-Rub your palms together hard for twenty seconds. They are warm. Nothing hot touched them. Your muscles did work against the friction between your hands, and that work became warmth in your skin, exactly as Joule's falling weights became warmth in his water. Now hold your palms still, pressed together just as hard, for twenty seconds. No warming. Pressing is not work; moving against a force is.
+Rub your palms together hard for twenty seconds. They are warm. Nothing hot touched them. Your muscles did work against the friction between your hands, and that work became warmth in your skin, exactly as Joule's falling weights became warmth in his water. Now hold your palms still, pressed gently together, for twenty seconds. There is no sliding friction doing work between the hands, though your muscles still use energy and your skin may feel warm. Pressing without displacement does no mechanical work on the other hand; moving against friction does.
 :::
 
 Mayer saw it in blood, Joule in a thermometer, and neither used the word *energy* in the way we do now. The word came into its modern meaning over the following decades, as physicists realised that the same number kept its total through every change they could devise. In Chapter 7 you will do that bookkeeping yourself, and find out why your electricity bill says "units consumed" when nothing has been consumed at all. In Chapter 8 you will see what the thermal store really is, and why the energy that goes into it is so hard to get back.

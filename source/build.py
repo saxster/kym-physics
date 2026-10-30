@@ -329,6 +329,8 @@ class Builder:
                 inner.append(lines[j]); j += 1
             if j >= len(lines):
                 raise SystemExit(f':::{kind} in chapter {ch.n} (section {sec or "intro"}) has no closing ::: line')
+            if kind != 'raw' and any(re.match(r'^:::\w+', ln) for ln in inner):
+                raise SystemExit(f'Nested directive inside :::{kind} in chapter {ch.n} (section {sec or "intro"}); move it outside the block')
             i = j + 1
             html_ = self.block(kind, arg, '\n'.join(inner), ch, sec)
             if kind in ('note', 'aside') and out and isinstance(out[-1], str) and last_text:
@@ -385,7 +387,8 @@ class Builder:
             return (f'<div class="box evidence"><p class="bh">{ICONS["evidence"]}<span>How do we know? '
                     f'{md_inline(t.strip())}{yr}</span></p>{md(inner)}</div>')
         if kind == 'five':
-            # Understand it (Feynman-style). Lines "? Question" are the core questions (always shown);
+            # Understand it (Feynman-style). Keep the full review together, opened on request.
+            # Lines "? Question" are the five core questions;
             # "?? Question" are go-deeper questions (folded away). Each is followed by its answer.
             # The card ends with a "Your turn" check: explain it in one sentence, compared with the first answer.
             title, _, opts = arg.partition('|')
@@ -399,8 +402,8 @@ class Builder:
                 raise SystemExit(f':::five {arg} has no "? question" lines (chapter {ch.n})')
             plain_t = html.escape(re.sub(r'<[^>]+>', '', md_inline(title.strip())), quote=True)
             slug = re.sub(r'[^a-z0-9]+', '-', re.sub(r'<[^>]+>', '', title).lower()).strip('-')
-            out = (f'<section class="box five" id="five-{slug}" aria-label="Understand it: {plain_t}">'
-                   f'<p class="bh"><span class="five-k">Understand it</span><span class="five-t">{md_inline(title.strip())}</span></p>'
+            out = (f'<details class="box five" id="five-{slug}" aria-label="Understand it: {plain_t}">'
+                   f'<summary class="bh"><span class="five-k">Understand it · optional review</span><span class="five-t">{md_inline(title.strip())}</span></summary>'
                    f'<dl class="fqs">{"".join(r for r, _, _ in core)}</dl>')
             if deep:
                 names = ', '.join(html.unescape(re.sub(r'<[^>]+>', '', md_inline(q))).rstrip('?').lower() for _, q, _ in deep)
@@ -412,7 +415,7 @@ class Builder:
                 out += (f'<div class="box check five-turn" id="{anchor}"><p class="bh">{ICONS["check"]}<span>Your turn</span></p>'
                         f'<p>Explain <b>{md_inline(title.strip())}</b> to a friend in one sentence, in your own words. '
                         f'Then compare it with the book’s.</p><template class="chk-a">{one}</template></div>')
-            return out + '</section>'
+            return out + '</details>'
         if kind == 'careful':
             head = md_inline(arg) if arg else 'Careful'
             return f'<div class="box careful"><p class="bh">{ICONS["careful"]}<span>{head}</span></p>{md(inner)}</div>'
@@ -479,10 +482,10 @@ class Builder:
                     f'<div class="pred-reveal"><p class="pr-k">What happens</p>{md(reveal)}</div></div>')
         if kind == 'school':
             head = md_inline(arg) if arg else 'At school'
-            return f'<div class="box school"><p class="bh">{ICONS["school"]}<span>{head}</span></p>{md(inner)}</div>'
+            return f'<details class="box school"><summary class="bh">{ICONS["school"]}<span>{head}: wording and exam links</span></summary>{md(inner)}</details>'
         if kind == 'case':
             puzzle, _, sol = inner.partition('\n???\n')
-            return (f'<div class="case full-ish"><p class="bh">{ICONS["case"]}<span>Case file {ch.n}</span></p>'
+            return (f'<div class="case full-ish" id="case-{ch.n}"><p class="bh">{ICONS["case"]}<span>Case file {ch.n}</span></p>'
                     f'<h3>{md_inline(arg)}</h3><div class="clues">{md(puzzle)}</div>'
                     f'<details><summary>Show the solution</summary><div>{md(sol)}</div></details></div>')
         if kind == 'next':
@@ -505,17 +508,23 @@ class Builder:
         intro = self.linker.link(self.render_blocks(ch.intro_src, ch, None), seen=seen)
         intro = re.sub(r'<p>', '<p class="lede">', intro, count=1)
         secs = []
+        numbered = [(n, t) for n, t, _ in ch.sections if n]
         for n, t, body in ch.sections:
             if n:
+                pos = next(i for i, (num, _) in enumerate(numbered) if num == n)
+                following = numbered[pos + 1] if pos + 1 < len(numbered) else None
+                pause = ('<aside class="reader-pause"><p>A good place to pause. You can come back to the next question whenever you like.</p>'
+                         + (f'<a href="#s{sid(following[0])}">Next section: {following[0]} {md_inline(following[1])} →</a>' if following else '<a href="#contents">Choose another question from the contents →</a>')
+                         + '</aside>')
                 secs.append(f'<section class="sec" id="s{sid(n)}"><h3><span class="n">{n}</span>{md_inline(t)}</h3>'
-                            f'{self.linker.link(self.render_blocks(body, ch, n), seen=seen)}</section>')
+                            f'{self.linker.link(self.render_blocks(body, ch, n), seen=seen)}{pause}</section>')
             else:
                 secs.append(f'<section class="sec end">{self.linker.link(self.render_blocks(body, ch, None), seen=seen)}</section>')
         return (f'<article class="chapter vol-{ch.vol}" id="ch{ch.n}" data-vol="{ch.vol}"><div class="flow">'
                 f'<header class="opener"><p class="cn" aria-hidden="true"><span>{ch.n}</span></p><p class="cl">Chapter {ch.n}</p>'
                 f'<h2>{md_inline(ch.title)}</h2>'
                 + (f'<p class="bq"><span class="bq-label">The big question</span>{md_inline(ch.question)}</p>' if ch.question else '')
-                + f'<ol class="chapter-toc">{toc}</ol></header>'
+                + f'<p class="chapter-pace">One section is a good start. The reviews and school notes open when you want them.</p><ol class="chapter-toc">{toc}</ol></header>'
                 f'<div class="intro">{intro}</div>{"".join(secs)}'
                 f'<p class="fin" aria-hidden="true"><i></i><i></i><i></i></p>{chapter_credits(ch, ledger)}</div></article>')
 
@@ -550,7 +559,7 @@ class Builder:
                         f'<a href="#s{sid(n)}"><span class="sn">{n}</span><span class="st">{md_inline(t)}</span></a>'
                         for n, t, _ in c.sections if n)
                     out.append(f'<li><div class="tch"><span class="n">{c.n}</span><a href="#ch{c.n}">{md_inline(c.title)}</a>'
-                               f'<div class="tsec">{secs}</div></div></li>')
+                               f'<details class="toc-sections"><summary>Sections in chapter {c.n}</summary><div class="tsec">{secs}</div></details></div></li>')
             out.append('</ol>')
         out.append('<p class="tvol">At the back</p><ol>'
                    + li('stories', 'Stories behind the ideas') + li('timeline', 'The adventure in time')
@@ -591,6 +600,8 @@ class Builder:
         story_by_id = {s.id: s for s in stories}
 
         def where(ch_n, key):
+            if key.startswith('case:ch'):
+                return (f'#case-{key[7:]}', f'Case file {key[7:]}')
             if key.startswith('story:'):
                 s = story_by_id.get(key[6:])
                 return (f'#story-{key[6:]}', f'Story: {plain(s.title)}' if s else key)
@@ -977,7 +988,7 @@ SITE_HEAD = (
     '<script>if("serviceWorker" in navigator && (location.protocol==="https:"||/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname))){{'
     'addEventListener("load",function(){{navigator.serviceWorker.register("sw.js").catch(function(){{}});}});}}</script>')
 
-BUDGET_INDEX = int(4.5 * 1024 * 1024)
+BUDGET_INDEX = 4 * 1024 * 1024
 BUDGET_CHUNK = 150 * 1024
 
 
@@ -1015,7 +1026,7 @@ def report_sizes(index, sizes):
     kb = lambda n: f'{n / 1024:8.1f} KB'
     isz = os.path.getsize(index)
     over = []
-    print('\nsizes (budget: index.html < 4.5 MB, each chunk < 150 KB except the shared three.js chunk)')
+    print('\nsizes (budget: index.html < 4 MiB, each chunk < 150 KB except the shared three.js chunk)')
     print(f'  index.html {kb(isz)}' + ('   OVER BUDGET' if isz > BUDGET_INDEX else ''))
     if isz > BUDGET_INDEX:
         over.append('index.html')
@@ -1110,10 +1121,12 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     cover = FIGS['cover_art']() if 'cover_art' in FIGS else ''
     legend = '<figcaption class="legend">Every tile is a chapter of this book: tap any tile to see its puzzle, the people who cracked it, and where to jump in.</figcaption>'
     parts = [f'''<header class="cover" id="top"><canvas class="field" aria-hidden="true"></canvas><div class="title"><h1>{TITLE}</h1>
-<p class="sub">{SUBTITLE}. {COVER_LINE}</p>
+<p class="sub">A ball bounces. A train brakes. The Moon keeps missing Earth. Let’s find out why.</p>
 <p class="for">Written for Kym</p>
-<p class="begin"><a href="#letter">Start reading</a></p></div>
-{f'<figure class="art">{cover}{legend}</figure>' if cover else ''}</header>''']
+<p class="begin"><a href="#investigations">Try a quick puzzle</a><a class="begin-read" href="#ch0">Start reading · Chapter 0</a></p>
+<p class="cover-welcome">One puzzle is plenty for today. Guess, play, and see what surprises you.</p>
+<p class="cover-letter"><a href="#letter">A letter to you, from Amar</a></p></div>
+{f'<details class="cover-chapters"><summary>Browse the sixteen chapters</summary><figure class="art">{cover}{legend}</figure></details>' if cover else ''}</header>''']
     front_titles = []
     for k, cls, default in (('letter', 'letter', 'A letter to Kym'), ('howto', 'howto', 'How this book works'),
                             ('ideas', 'ideas-page', 'Five big ideas')):
@@ -1166,8 +1179,11 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
                           f'<p>{html.escape(r["question"])}</p><p class="inv-materials">{html.escape(r["materials"])}</p>'
                           f'<a href="#ch{r["chapter"]}">Read chapter {r["chapter"]}</a></article>')
         back.append('<section class="flow" id="investigations"><h2>Investigate everyday things</h2>'
-                    '<p>Begin with a thing you recognise. Predict, look closely, then explain. Each investigation has a short encounter, '
-                    'an optional longer activity, and a notebook for your evidence. Every activity has a virtual route.</p>'
+                    '<p>Choose one thing that makes you curious. You can play with every model here without gathering materials. '
+                    'The longer activity and notebook are there whenever you want them.</p>'
+                    '<aside class="inv-start"><h3>A small place to start</h3><p>What changes when a ball lands on a bouncier surface?</p>'
+                    + next((f'<a href="#{b.lesson_targets[r["id"]]}" data-open-lesson="{r["id"]}">Try the bouncing-ball puzzle</a>' for r in investigations if r['id'] == 'j-bounce'), '')
+                    + '<p>Change one setting, then look again. No equipment or writing needed.</p></aside>'
                     '<div id="investigation-filters"></div><p id="investigation-count" role="status"></p>'
                     + ''.join(entries) + '<p>These original investigations were developed after researching Arthur W. Wiggins’s '
                     '<i>The Joy of Physics</i>. They use the independently cited physics sources below; the text and diagrams are original. '
@@ -1233,6 +1249,25 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     chunks_json = json.dumps(chunks).replace('</', '<\\/')
     text_for_fonts = re.sub(r'<[^>]+>', ' ', body) + TITLE + SUBTITLE + '0123456789'
     faces = font_faces(html.unescape(text_for_fonts))
+    if site_dir:
+        # Keep reading typography offline without base64-expanding every font in the
+        # already large document. The self-contained edition still embeds its fonts.
+        generated_fonts = set()
+        def font_asset(match):
+            data = base64.b64decode(match.group(1))
+            rel = 'assets/fonts/' + hashlib.sha256(data).hexdigest()[:16] + '.woff2'
+            path = os.path.join(site_dir, rel)
+            generated_fonts.add(os.path.basename(path))
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, 'wb') as f:
+                f.write(data)
+            if not any(row[0] == rel for row in sizes):
+                sizes.append((rel, len(data), 'font'))
+            return 'url(' + rel + ')'
+        faces = re.sub(r'url\(data:font/woff2;base64,([A-Za-z0-9+/=]+)\)', font_asset, faces)
+        for stale in glob.glob(os.path.join(site_dir, 'assets', 'fonts', '*.woff2')):
+            if os.path.basename(stale) not in generated_fonts:
+                os.remove(stale)
     page = f'''<!doctype html>
 <html lang="en-GB" data-theme="sepia" style="--scale:0.92">
 <head>

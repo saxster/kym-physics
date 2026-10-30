@@ -40,7 +40,7 @@ Driving a thing at its own natural frequency, so that small pushes add up into a
 :::work
 **How often should the parent push?** Suppose the swing's chains are 2.5 m long (a guess for a park swing).
 Time for one swing: T = 2π√(L ÷ g) = 2π × √(2.5 ÷ 9.8) = 3.2 s.
-So: one push every 3.2 s, each time the seat returns. Pushes every 1.6 s, or every 6.4 s, land at the wrong moment half the time and fight each other.
+So: one push every 3.2 s, each time the seat returns. A push at the wrong part of the swing can slow it down. Keep both the timing and the direction of the push in mind.
 :::
 
 :::fig s_push_timing() | The same small pushes, two rhythms. Above, the pushes come once every swing, each as the seat moves away from the pusher, and the swing grows. Below, the pushes come at a rhythm of their own that has nothing to do with the swing's; half of them slow it down, and it never gets going. Both curves are computed for the same swing with the same friction.
@@ -49,7 +49,7 @@ So: one push every 3.2 s, each time the seat returns. Pushes every 1.6 s, or eve
 
 Wet a finger and rub it slowly round the rim of a wine glass, and the glass sings a clear note. Your finger slips and catches, slips and catches, hundreds of times a second, and each catch is a tiny push. The glass answers at its own natural frequency; that one note is the sound of the glass resonating.
 
-This is also how a singer can break a glass, and the trick is not loudness alone. The singer has to find the glass's own note and hold it, so that each ripple of sound arriving at the glass pushes it the way it is already moving. A loud wrong note leaves the glass unharmed; the right note, held steadily, can shake it until it shatters. (Not one to try at home: it takes a loudspeaker.)
+This is also how a singer can break a glass, and the trick is not loudness alone. The singer has to find the glass's own note and hold it, so that each ripple of sound arriving at the glass pushes it the way it is already moving. The right note lets energy build up especially well, but the sound must still be strong enough to overcome the losses and break the glass. A quiet right note will not do it. This is a demonstration to watch, not a home experiment.
 
 How large the motion grows depends on friction. A swing with very little friction keeps adding up pushes for a long time before the losses catch up, so its peak is tall and narrow, and you must hit the rhythm almost exactly. More friction drains the energy faster, so the peak is lower and broader, and the rhythm matters less.
 

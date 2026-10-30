@@ -21,7 +21,7 @@ Later, in the books he wrote as an old man, he described an experiment that he c
 
 Look at what kind of argument that is. Galileo never watched a ball roll for ever; no one can. He watched a *trend*. Every time he made the ramp shallower the ball went further, and the only thing spoiling the pattern was friction. Reasoning about where a trend points once you remove the thing that spoils it is a thought experiment, and it is only trustworthy when every step has been checked against real ramps first.
 
-You can walk the same trend on a floor. Slide a steel katori across a rough floor and it stops quickly. Dust the floor with talcum powder and it slides further. Oil the floor and it slides further still. Each change reduces the rubbing, and each time the stopping takes longer. Follow the trend to its end: take the rubbing away entirely, and the stopping takes for ever. An air-hockey table comes close: with the fan on, a cushion of air lifts the puck clear of the table and it glides from end to end at very nearly constant speed.
+You can compare the same trend on a counter. Slide an ice cube over a folded cloth and then across a wet steel thali kept flat beside it. Keep a hand at the far edge and wipe up the water afterwards. The cube usually travels farther on the thali: less rubbing means slower stopping. Follow the trend to its end: take the rubbing away entirely, and the stopping takes for ever. An air-hockey table comes close: with the fan on, a cushion of air lifts the puck clear of the table and it glides from end to end at very nearly constant speed.
 
 #### Step 2: A rule in two halves
 
@@ -53,7 +53,7 @@ Your head is not free, of course. Your legs and back pull it along, and that pul
 :::careful
 > "A moving thing keeps moving, but it slowly runs down on its own."
 
-The law has no "slowly runs down" in it. Every real thing stops because a real force stops it: friction from the floor, the drag of the air. The test is not to watch for a ball that rolls for ever, which is impossible, but to watch the stopping fade exactly as the friction fades. Rough floor, talc, oil, air cushion: each step confirms it. Remove the last of the friction and you remove the last of the stopping.
+The law has no "slowly runs down" in it. Every real thing stops because a real force stops it: friction from the floor, the drag of the air. The test is not to watch for a ball that rolls for ever, which is impossible, but to watch the stopping fade exactly as the friction fades. The cloth, wet thali and air cushion let you compare stopping as rubbing is reduced. Remove the last of the friction and you remove the last of the stopping.
 :::
 
 :::home The tray that stops

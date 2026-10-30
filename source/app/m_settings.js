@@ -19,7 +19,7 @@ function apply() {
   const projector = !!s.projector;
   if (projector) root.setAttribute('data-projector', '1');
   else root.removeAttribute('data-projector');
-  const sound = s.sound !== false;
+  const sound = s.sound === true;
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--paper').trim() || '#f6f4ec');
   return { size, theme, still, projector, sound };

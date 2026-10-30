@@ -1,5 +1,9 @@
 /* Everyday investigations use the book's existing paper, ink and type tokens. */
 #investigations h2 { margin-top:2rem; }
+.inv-start { border-left: 3px solid var(--electron); background: var(--sheet); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.inv-start h3 { margin: 0; font-size: 1.25rem; }
+.inv-start p { margin: .5rem 0; }
+.inv-start a { display: inline-block; min-height: 44px; padding: .5rem 0; font: 600 1rem/1.5 var(--sans); }
 #investigation-filters { display:flex; flex-wrap:wrap; gap:1rem; margin:1.5rem 0; font:.9rem/1.5 var(--sans); }
 #investigation-filters label { display:grid; gap:.4rem; flex:1 1 12rem; }
 #investigation-filters select { min-height:44px; padding:.5rem; background:var(--sheet); color:var(--ink); border:1px solid var(--rule); max-width:100%; }

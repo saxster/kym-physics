@@ -19,7 +19,7 @@ He also noticed what the magnet did *not* do. A lodestone pulls on iron, rubbed 
 
 #### Step 1: nothing is made, something is moved
 
-Every atom holds two kinds of electric charge: protons, with a positive charge, in its nucleus, and electrons, with a negative charge, around it. A neutral object has equal amounts of each, which is why it pulls on nothing. Now press two different materials together. One of them holds its electrons more tightly than the other, and when the two part, it keeps a few extra. Rubbing is a way of pressing the surfaces together more closely, over and over, so that more electrons cross.
+Every atom holds two kinds of electric charge: protons, with a positive charge, in its nucleus, and electrons, with a negative charge, around it. A neutral object has equal amounts of positive and negative charge, so its net charge is zero. Its charges can still shift slightly in response to a nearby charged object, as the wall below will show. Now press two different materials together. One of them holds its electrons more tightly than the other, and when the two part, it keeps a few extra. Rubbing is a way of pressing the surfaces together more closely, over and over, so that more electrons cross.
 
 Count the charge before and after and the total is the same. The balloon has gained electrons and is negative; your hair has lost exactly that many, and the positive charge left behind is exactly as large. Charge is never created or destroyed; it is only transferred from one body to another. That is the whole of this story's title. Rubbing doesn't make charge. It separates charge that was already there.
 
@@ -62,7 +62,7 @@ Same charge, same electrons. On the balloon the extra electrons sit still, becau
 Try the balloon on a dry January evening in Mumbai and it clings and crackles. Try it in the monsoon and almost nothing happens. The sources this book trusts say only this much for certain: in damp air the extra charge leaks away faster, so the effect is weaker. How moist air carries the charge off is not something we can tell you from a source we have checked, so we leave it there. You can measure the difference yourself: the same balloon, the same hair, July and then January.
 
 :::home Two strips of tape
-Take two pieces of sticky tape about 4 cm long. Stick both to a table, side by side, then peel them off quickly and hold them near each other. They push apart: both lost electrons to the table in the same way, so both carry the same kind of charge. Now stick one strip on top of the other, peel the pair off the table together, and then peel them apart. Hold them near each other again. This time they pull together: one strip took electrons from the other. Best on a dry day.
+Take two pieces of sticky tape about 4 cm long. Stick both to a table, side by side, then peel them off quickly and hold them near each other. They push apart: that repulsion shows that they carry the same kind of charge after peeling. It does not tell you which sign of charge they have. Now stick one strip on top of the other, peel the pair off the table together, and then peel them apart. Hold them near each other again. This time they pull together: one strip took electrons from the other. Best on a dry day.
 :::
 
 In Chapter 12 the charge stops sitting still. The same electrons, drifting round a closed loop of wire, are what we call a current, and the first question there is what, if anything, gets used up.

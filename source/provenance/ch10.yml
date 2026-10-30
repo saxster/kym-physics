@@ -109,3 +109,6 @@
 "story:speed-of-light":
   history:
     - {what: "Rømer 1676 and Huygens's arithmetic; Fizeau's cogwheel 1849", source: "research/history.md §5; OpenStax University Physics Vol. 3, 1.1", url: "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"}
+
+  research:
+    - {what: "Indoor lightning safety: stay away from windows, doors and balconies; activity offers supplied paper timings", source: "US National Weather Service, Lightning indoors; checked 2026-10-30", url: "https://www.weather.gov/safety/lightning-indoors"}

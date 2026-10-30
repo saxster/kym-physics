@@ -64,7 +64,7 @@ They are a drawing. Each line records the direction a compass would point at tha
 :::
 
 :::home Ørsted at your kitchen table
-Ask an adult to help. Lay a phone with its compass app open, or a small pocket compass, flat on the table, and find north. Hold a piece of insulated copper wire, with its ends bared, so that it runs north–south about a centimetre above the compass. Touch the ends to the two terminals of an AA cell for a moment and watch the needle swing; swap the ends and it swings the other way. Touch for a second at a time only: the wire is a short circuit across the cell and gets hot. Never use mains electricity for this, or for anything.
+Open Chapter 13’s wire-and-compass model, “Add wire and Earth fields”. Predict which way the needle will turn, then reverse the current and check. Compare a nearby probe with a farther one: where does the wire make the bigger difference? The model lets you investigate without shorting a battery. A physical version belongs in an adult-led school activity with a purpose-made, current-limited teaching kit; do not join a cell’s terminals with bare wire.
 :::
 
 Ørsted had shown that a current moves a magnet. The obvious next question, whether a magnet can be made to move charge and drive a current, took eleven more years and another man at a bench in London. In Chapter 13 you will meet both: first the wire over the compass, then Faraday's spinning wire and his iron ring.

@@ -45,7 +45,7 @@ try:
     page.get_by_label('Choose an everyday object',exact=True).select_option('all')
     page.get_by_label('Time for the longer activity',exact=True).select_option('all')
     page.screenshot(path=str(OUT/'directory-mobile.png'))
-    page.locator('#investigations [data-open-lesson="j-bounce"]').click()
+    page.get_by_role('link',name='Try the bouncing-ball puzzle',exact=True).click()
     fig=page.locator('figure[data-active-lesson="j-bounce"]')
     expect(fig.locator('.inv-quick')).to_be_visible()
     expect(fig.locator('.inv-theory')).not_to_have_attribute('open','')

@@ -11,7 +11,7 @@ blurb: A comet that came back when three people's arithmetic said it would, and 
 
 :::scene Near Dresden, Christmas night, 1758
 
-On the night of 25 December 1758 a farmer called Johann Georg Palitzsch, who studied the sky in his spare time from his fields near Dresden, saw a faint comet. He was the first person on Earth to see it. Astronomers across Europe had been searching for it for months, because this comet had an appointment.
+On the night of 25 December 1758 a farmer called Johann Georg Palitzsch, who studied the sky in his spare time from his fields near Dresden, saw a faint comet. His was the first reported sighting of its 1758 return. Astronomers across Europe had been searching for it for months, because this comet had an appointment.
 
 Edmond Halley, the friend who had badgered Newton into writing the *Principia*, had worked out that a comet seen before would come back on a long orbit, and had said it would return in 1758. By then Halley had been dead for sixteen years. The comet kept the appointment all the same, and it has been ==Halley's comet== ever since.
 
@@ -48,18 +48,18 @@ Two footnotes belong to the story. In England, John Couch Adams had made a simil
 
 Newton's law had been built to explain the apple and the Moon, and then the planets already known. Here it reached past everything it had been made for: it took a wobble in one planet and said *there is another one, there, look*. That is the strongest test a law of nature can pass, a prediction of something nobody has seen, and it is why Neptune is called the first planet discovered by mathematics.
 
-It is also a warning against overconfidence. The law is simple; the sky is not. With two bodies, the Sun and one planet, Newton's law gives a perfect ellipse. Add a third and there is no exact answer at all, only step-by-step arithmetic that Lepaute and her colleagues did by hand for months and that computers now do in seconds. The Moon's own motion, pulled by both Earth and Sun, kept the best mathematicians of the 1700s busy for the whole century.
+It is also a warning against overconfidence. The law is simple; the sky is not. For a bound orbit with just two bodies, the Sun and one planet, Newton's law gives an ellipse. Add a third body and there is no simple general formula for their paths; the tugs can be followed step by step. Lepaute and her colleagues did that arithmetic by hand for months; computers now do it much faster. The Moon's own motion, pulled by both Earth and Sun, kept the best mathematicians of the 1700s busy for the whole century.
 
 :::careful
 > "Newton's law predicts the sky perfectly."
 
-It predicts the sky *very well*, which is different. Every extra body adds tugs that can only be followed step by step; that is why the Paris team needed months for one comet, and why Uranus's tables went wrong in the first place: they left out a planet nobody knew about.
+It predicts the sky *very well*, which is different. Every extra body adds tugs that complicate the calculation; that is why the Paris team needed months for one comet, and why Uranus's tables went wrong in the first place: they left out a planet nobody knew about.
 :::
 
 :::careful
 > "Halley discovered Halley's comet."
 
-He never saw its 1758 return; he had died in 1742. What he did was recognise that a comet seen before would come back, and say when. The comet carries his name because he predicted it, not because he found it. A farmer near Dresden found it.
+He never saw its 1758 return; he had died in 1742. What he did was recognise that a comet seen before would come back, and say when. The comet carries his name because he predicted it, not because he found it. A farmer near Dresden reported its return.
 :::
 
 In Chapter 5 the comet comes back as the chapter's closing puzzle, and the small tugs that found Neptune are at work on every orbit in that chapter, Chandrayaan-3's included.

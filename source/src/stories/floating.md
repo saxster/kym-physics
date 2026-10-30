@@ -48,7 +48,7 @@ Steel is 7.8 times as dense as water, so a lump of it sinks. A ship of 50,000 to
 
 #### Step 5: The egg
 
-Put an egg in a glass of tap water and it sinks: an egg is a little denser than water. Now stir in salt, a spoonful at a time. Nothing about the egg changes. The *water* changes: dissolved salt makes each cubic centimetre of it heavier, and once the salt water is denser than the egg, the egg lifts off the bottom and floats. It takes several spoons. Try the same idea the other way round with an orange: the whole orange floats, because its peel is full of tiny air pockets, and the peeled orange, denser without them, sinks.
+Put an egg in a glass of tap water and it sinks: an egg is a little denser than water. Now stir in salt, a spoonful at a time. Nothing about the egg changes. The *water* changes: dissolved salt makes each cubic centimetre of it heavier, and once the salt water is denser than the egg, the egg lifts off the bottom and floats. It takes several spoons. Try an orange too. Air pockets in the peel can make the whole fruit float; removing that peel can raise its average density enough to make it sink. Oranges vary, so record what yours does and compare average density rather than assuming every fruit must behave alike.
 
 :::careful
 > "Heavy things sink and light things float."
@@ -61,7 +61,7 @@ Your IGCSE syllabus covers density, ρ = m/V. It does not use the word "upthrust
 :::
 
 :::home Floaters and sinkers
-Put an egg in a tall glass of tap water: it sinks. Add salt a teaspoon at a time, stirring until each spoonful dissolves, and count the spoons until the egg lifts. Several are needed; stop when it floats. Put a whole orange in a bowl of water, then the same orange peeled. Then make a boat: a sheet of aluminium foil rolled into a tight ball sinks; the same sheet shaped into a dish floats, and will carry ₹1 coins as cargo. Count how many it takes to sink it, then reshape the foil and try to carry more.
+Put an egg in a tall glass of tap water: it sinks. Add salt a teaspoon at a time, stirring until each spoonful dissolves, and count the spoons until the egg lifts. Several are needed; stop when it floats. Put a whole orange in a bowl of water, then the same orange peeled. Then make a boat: compress a sheet of aluminium foil into a tight ball and lower it into the water. Trapped air may keep it floating; try pressing it more tightly. The same sheet shaped into a watertight dish can float and carry ₹1 coins as cargo. Count how many it takes to sink it, then reshape the foil and try to carry more.
 :::
 
 In Chapter 6 you meet the pressures that make all this happen, and the chapter ends with the case of the egg that changed its mind.

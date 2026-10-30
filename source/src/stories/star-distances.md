@@ -11,7 +11,7 @@ blurb: A Harvard "computer" noticed that the slow blinkers among the stars of on
 
 :::scene Harvard, 1912
 
-In 1912 Henrietta Leavitt was one of the women employed at Harvard College Observatory as "computers": people who measured and catalogued the stars on photographic plates, at a third or a quarter of what the observatory paid men. Her plates showed the Small Magellanic Cloud, a smudge of stars visible from the southern hemisphere, photographed night after night. Some of the stars in it were variable: they brightened and faded, over and over, each on its own steady rhythm of days or weeks. Stars of this kind are called Cepheids, after the first one found, in the constellation Cepheus.
+In 1912 Henrietta Leavitt was one of the women employed at Harvard College Observatory as "computers": people who measured and catalogued the stars on photographic plates. Her plates showed the Small Magellanic Cloud, a smudge of stars visible from the southern hemisphere, photographed night after night. Some of the stars in it were variable: they brightened and faded, over and over, each on its own steady rhythm of days or weeks. Stars of this kind are called Cepheids, after the first one found, in the constellation Cepheus.
 
 Leavitt measured twenty-five of them, and saw a pattern. The brighter a Cepheid appeared, the longer it took to go through one cycle of brightening and fading. The slow blinkers were always the bright ones.
 

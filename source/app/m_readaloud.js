@@ -19,13 +19,14 @@ const I = {
 
 // ------------------------------------------------------------------ what to read
 const BLOCKS = 'h2, h3, h4, p, li, dt, dd';
-const SKIP = 'figure, svg, .side, button, .st-callout, code, pre, template, .chk-a, details, nav, .ans, .live-controls, ' +
+const SKIP = 'figure, svg, .side, button, .st-callout, code, pre, template, .chk-a, ' +
+  'details:not(.five):not(.school):not(.five-more):not(.howto-reference), details:not([open]), nav, .ans, .live-controls, ' +
   '.rl-player, .chapter-toc, .toolbar, .noscript, .cast, .st-index, script, style, .opener .cn';
 
 function collectBlocks(root) {
   return [...root.querySelectorAll(BLOCKS)].filter(b => {
     if (b.closest(SKIP)) return false;
-    if (b.tagName === 'LI' && b.querySelector('p')) return false;   // its paragraphs are read instead
+    if (/^(LI|DD)$/.test(b.tagName) && b.querySelector('p')) return false;   // its paragraphs are read instead
     if (b.closest('li') && b.tagName !== 'LI' && b.tagName !== 'P') return false;
     return b.textContent.trim().length > 0 && b.getClientRects().length > 0;
   });
@@ -176,7 +177,6 @@ const kokoroPossible = !!(window.Worker && window.WebAssembly && (window.AudioCo
 const useGPU = !!navigator.gpu;
 let KOKORO_RUN = useGPU ? { dtype: 'fp32', device: 'webgpu' } : { dtype: 'q8', device: 'wasm' };
 let KOKORO_MB = useGPU ? 'about 300 MB' : 'about 90 MB';
-const saveData = !!(navigator.connection && navigator.connection.saveData);
 const K = { state: 'idle', worker: null, files: {}, pct: 0, lastProgress: 0, timer: 0, waiters: [], seq: 0, pending: new Map(),
   cache: new Map(), fallback: false, slow: 0, offered: false, ctx: null, src: null };
 
@@ -209,7 +209,7 @@ function engine() {
   const v = App.store.get('readaloud:voice', null);
   if (!kokoroPossible || K.fallback || K.state === 'failed') return 'system';
   if (v === ISABELLA) return 'kokoro';
-  if (v == null) return 'kokoro';   // Isabella by default (on a data-saving connection the reader is asked first)
+  if (v == null) return 'kokoro';   // Offer the one-time download before starting it.
   return 'system';
 }
 function audioCtx() {
@@ -336,7 +336,7 @@ function speakSystem(s, token) {
 function speakKokoro(s, token) {
   if (K.state !== 'ready') {
     // first use: fetch the voice (or ask first, on a data-saving connection), then start automatically
-    if (saveData && K.state === 'idle' && !App.store.get('readaloud:kokoro-ok', false) && !K.askedOk) { showAsk(); return; }
+    if (K.state === 'idle' && !App.store.get('readaloud:kokoro-ok', false) && !K.askedOk) { showAsk(); return; }
     showLoading();
     loadKokoro().then(() => { hideLoading(); if (token === st.token && st.playing && !st.paused && engine() === 'kokoro') speakCurrent(); })
       .catch(() => { hideLoading(); fallBack('Isabella’s natural voice could not load here, so this device’s own voice is reading.'); });

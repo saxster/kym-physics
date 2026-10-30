@@ -199,10 +199,3 @@ dialog.srch::backdrop { background: rgba(20, 28, 25, .38); }
   .navbtn, .iw-pop, .iw-toast, .cont-chip, .hlink, .sd-share, dialog.srch, .cprog { display: none !important; }
   .toc .tsec a.is-read::before, .st-index a.is-read::before, .cast-card.is-read .mono::after { content: none !important; }
 }
-
-/* ------------------------------------------------------------------ the toolbar steps aside while reading
-   (m_layout.js adds .tb-away on scrolling down, removes it on scrolling up), so it never sits over the margin notes */
-.navbtn { transition: transform .28s cubic-bezier(.2, .7, .2, 1), opacity .2s; }
-.navbtn.tb-away { transform: translateY(calc(-100% - 1.2rem)); opacity: 0; pointer-events: none; }
-@media screen and (max-width: 700px) { .navbtn.tb-away { transform: translateY(calc(100% + .5rem)); } }
-@media (prefers-reduced-motion: reduce) { .navbtn { transition: opacity .15s; } .navbtn.tb-away { transform: none; } }

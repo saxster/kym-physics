@@ -154,3 +154,6 @@
 "story:bose-waves":
   history:
     - {what: "Calcutta 1895 demonstration (TRUE, details HEDGE); Royal Institution 1897; the patent filed by Sara Bull and Sister Nivedita (HEDGE, needs nuance)", source: "research/history.md §6", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
+
+  research:
+    - {what: "Crystal radios use received-signal energy without a battery; restrict local-power explanation to Bose bell and amplified receivers", source: "The Open University, Building a crystal radio set; checked 2026-10-30", url: "https://www.open.edu/openlearn/science-maths-technology/science/physics-and-astronomy/physics/building-crystal-radio-set"}

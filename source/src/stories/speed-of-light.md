@@ -52,7 +52,7 @@ It proves only that light is faster than sound. The flash and the bang leave the
 :::
 
 :::home Count the storm
-During a monsoon storm, stay indoors by a window and watch for a flash. The moment you see it, count seconds, and stop at the thunder. Sound travels about 349 metres a second in warm air, so every three seconds of counting is roughly one kilometre between you and the lightning. Fifteen seconds is about five kilometres. If the count shrinks from one flash to the next, the storm is coming nearer. The light's own delay over five kilometres is seventeen millionths of a second, which is why you can treat the flash as the moment it happened.
+You can do this on paper with three flash-to-thunder delays: 3 seconds, 6 seconds and 15 seconds. Work out the distance for each. If you happen to notice a flash while already safely indoors, you can count until the thunder, but stay away from windows, doors and balconies; do not go looking for a storm to measure. Sound travels about 349 metres a second in warm air, so every three seconds of counting is roughly one kilometre between you and the lightning. Fifteen seconds is about five kilometres. If the count shrinks from one flash to the next, the storm is coming nearer. The light's own delay over five kilometres is seventeen millionths of a second, which is why you can treat the flash as the moment it happened.
 :::
 
 In Chapter 10 the speed of light is Section 10.6, where the Moon's radio delay and the age of sunlight come back. In Chapter 13, Section 13.6, James Clerk Maxwell works out from electricity and magnetism how fast a certain kind of wave must travel, and gets Fizeau's number.

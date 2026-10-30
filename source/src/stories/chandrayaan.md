@@ -13,7 +13,7 @@ blurb: Forty days from Sriharikota to the Moon's south polar region in widening 
 
 At 14:35 on 14 July 2023 an LVM3 rocket lifted off from the Second Launch Pad at Sriharikota carrying ==Chandrayaan-3==. The spacecraft weighed about 3.9 tonnes: a propulsion module of 2,148 kg to do the travelling, and a lander of 1,752 kg, the ==Vikram lander==, with a 26 kg rover called ==Pragyan== folded inside it.
 
-It did not fly to the Moon. Nothing does, directly. The rocket put it into a long thin loop around Earth, and then for three weeks the spacecraft went round and round, each loop a little bigger than the last, before it let go of Earth at all. The slow road is the physics of Chapter 5 made visible, so it is worth walking down it step by step.
+It did not follow one straight path from the launch pad to the Moon. Its journey began with loops around Earth. The rocket put it into a long thin loop around Earth, and then for three weeks the spacecraft went round and round, each loop a little bigger than the last, before it let go of Earth at all. The slow road is the physics of Chapter 5 made visible, so it is worth walking down it step by step.
 
 #### Step 1: the parking orbit
 

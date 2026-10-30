@@ -49,7 +49,12 @@ function buildIndex() {
     const link = dd.querySelector('a[href^="#"]');
     out.push({ kind: 'Word', label: 'Word worth knowing', title: dt.textContent.trim(), text: cleanText(dd, 'a[href^="#"]:last-child'), target: link ? link.getAttribute('href').slice(1) : 'glossary', boost: 10 });
   });
-  ['letter', 'howto', 'ideas', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
+  (App.data.lessons || []).forEach(l => {
+    out.push({ kind: 'Experiment', label: 'Try an experiment', title: l.title,
+      text: [l.object, l.question, l.encounter, l.description].filter(Boolean).join(' '),
+      target: l.target, lesson: l.id, boost: 15 });
+  });
+  ['letter', 'howto', 'ideas', 'investigations', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
     const s = document.getElementById(id);
     if (!s) return;
     const h = s.querySelector('h2');
@@ -156,7 +161,7 @@ App.ready(() => {
     });
     input.setAttribute('aria-expanded', String(results.length > 0));
     if (active >= 0) input.setAttribute('aria-activedescendant', 'sr-o-0'); else input.removeAttribute('aria-activedescendant');
-    status.textContent = !q.trim() ? 'Try “mole”, “Newton”, “why ice floats” or “battery”.'
+    status.textContent = !q.trim() ? 'Try “bounce”, “Moon”, “Newton” or “battery”.'
       : results.length ? `${results.length}${results.length === 40 ? '+' : ''} result${results.length === 1 ? '' : 's'}` : 'Nothing found. Try a shorter word.';
   }
   function setActive(i) {
@@ -171,6 +176,11 @@ App.ready(() => {
     const e = results[i]; if (!e) return;
     const t = toks.slice();
     dlg.close();
+    if (e.lesson) {
+      const link = App.el('a', { href: '#' + e.target, 'data-open-lesson': e.lesson, hidden: true });
+      document.body.append(link); link.click(); link.remove();
+      return;
+    }
     if (e.story) {
       App.openStory(e.story);
       setTimeout(() => highlight(document.getElementById('story-' + e.story), t), 120);

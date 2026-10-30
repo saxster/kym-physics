@@ -34,9 +34,9 @@ Now the extreme case. You stand on the floor. The Earth pulls you down with your
 
 #### Step 3: Prove it with two luggage scales
 
-You can measure the law in your hallway. Hook two hanging luggage scales together, the kind families use for airline bags. You pull one handle and an adult pulls the other, as hard as either of you likes. Both scales read the same, to within about a tenth of a kilogram, however much harder one of you "pulls". Hook one scale to a door handle instead and pull the other: the two still agree. A luggage scale reads in kilograms, but it is measuring a force; a reading of 10 kg means a pull of about 98 N, and the door handle is pulling back with 98 N too.
+If you can borrow two hanging luggage scales, ask an adult to hook them securely together. Pull gently from opposite ends while standing securely, keep below both load limits, and compare the readings when the scales are held steady. They should agree within their measurement uncertainty. Change the gentle pull together and compare again. If two scales are not available, follow the paired-scale drawing instead. A luggage scale reads in kilograms, but it measures a force; a reading of 10 kg would mean a pull of about 98 N.
 
-:::fig s_two_scales() | Two luggage scales hooked together and pulled from both ends. Each scale reads the pull on it, and the two readings agree whatever the two pullers do: where the hooks meet, the pair of forces are equal and opposite. Hook one end to a door handle and nothing changes.
+:::fig s_two_scales() | Two luggage scales hooked together and pulled from both ends. Each scale reads the tension in the chain. When held steady, the readings agree within measurement uncertainty; at the meeting hooks, the two forces are equal and opposite.
 
 #### Step 4: Which pairs are not pairs
 
@@ -57,7 +57,7 @@ Many school books word the law as "to every action there is an equal and opposit
 :::
 
 :::home Two scales, one pull
-Borrow two luggage scales. Hook them together and pull against a friend or a parent; read both. Now one of you pulls gently and the other pulls as hard as possible: read again. Hook one scale to a sturdy door handle and pull the other. Then sit on a chair with wheels on a smooth floor, push flat-handed against a wall, and notice which way you go and what pushed you.
+If two luggage scales are available, follow the gentle, adult-assisted test above and stop if a hook slips. Compare both readings as you change the pull together. Then press one palm gently against your other palm. Feel both sides of the contact: each hand pushes the other, and neither push waits for a reply.
 :::
 
 In Chapter 3 the law meets the chapter's big question, a mosquito on a windscreen, and the next section turns pairs of forces into the idea of momentum, which is what lets a rocket climb. In Chapter 5 the same law says that while the Earth pulls the Moon, the Moon pulls back on the Earth with exactly the same force.

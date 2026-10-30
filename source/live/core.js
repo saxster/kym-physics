@@ -1184,6 +1184,13 @@ function setup(fig) {
     if (params.lesson) for (const fn of api._loops) fn(0, 0);
     if (w.meta.static) for (const fn of api._loops) fn(0, 0);
     (stage.querySelector('.live-3d[tabindex],canvas[tabindex],button,input') || playBtn).focus?.({ preventScroll: true });
+    if (params.lesson) {
+      const title = stage.querySelector('.lab-title');
+      if (title) { title.tabIndex = -1; title.focus({ preventScroll: true }); }
+      // The static drawing has just changed height. Align after mounting, so a link
+      // from search or the directory starts at the question rather than halfway down.
+      fig.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
   }
   function closeLive(restoreFocus = true) {
     ++generation; // Also cancels a story experiment whose module is still loading.

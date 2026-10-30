@@ -54,7 +54,7 @@ It destroys nothing. The 83 J leave as warmth in the surroundings: the hot exhau
 :::
 
 :::home The bottom of the waterfall
-Hold your hand near the back of the fridge, or beside the vent of a laptop that has been working hard, or over a running mixer-grinder just after it stops. Each is warm. Every machine that does useful work hands some energy to its surroundings as warmth, and in a working machine there is no way round it. Count the warm machines in your flat: each one is a small cooling tower.
+After a laptop has been used normally, notice the warm air near its accessible vent, keeping the vent clear. There is no need to reach behind an appliance or go near a mixer or any moving part. Useful work and warmth leaving the machine can happen together. Look round your flat and name three machines that pass some energy to their surroundings this way: each has its own small version of a cooling tower.
 :::
 
 In Chapter 7 the efficiency of the coal station that lights Mumbai is worked through, and the bookkeeping shows where every joule goes. In Chapter 8 you will see what the "cold side" really receives, and why energy that has spread out as warmth is so hard to get back.

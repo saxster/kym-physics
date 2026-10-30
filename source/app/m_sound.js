@@ -4,7 +4,7 @@
 //   - 'flap'  : soft stitched-paper flap / page lift when revealing an answer or lifting a live figure
 //   - 'stamp' : rubber-stamp thud + crisp ink press when completing a widget challenge
 //   - 'lens'  : gentle glass tap when inspecting an equation symbol or unit card
-// Respects the reader's sound setting (mw:settings.sound, default true) and mutes automatically in Still Mode or reduced motion.
+// Paper sounds are opt-in and mute automatically in Still Mode or reduced motion.
 import App from './core.js';
 
 const AC = typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext);
@@ -16,7 +16,7 @@ function isEnabled() {
   if (!AC || App.reduceMotion()) return false;
   if (document.documentElement.classList.contains('still') || document.body?.classList.contains('still')) return false;
   const s = App.store.get('settings', {});
-  return s.sound !== false;
+  return s.sound === true;
 }
 
 function ensureCtx() {

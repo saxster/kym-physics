@@ -4,7 +4,7 @@
 //     first line. When a note sits in the text column instead (narrow screens, and inside the story panel), it must
 //     come AFTER the paragraph, so the reader meets the word before its definition. This module moves notes to the
 //     right side of their paragraph whenever the layout changes.
-//  2. The toolbar steps out of the way while reading (scrolling down) and comes back on scrolling up.
+// The reading toolbar stays available, including after a deep link or a jump from search.
 import App from './core.js';
 
 const anchors = new Map();   // note -> the paragraph (or block) it belongs to
@@ -46,23 +46,4 @@ App.ready(() => {
   App.on('story:open', () => requestAnimationFrame(place));
   App.on('story:close', () => requestAnimationFrame(place));
 
-  // ------------------------------------------------------------ the toolbar steps aside while reading
-  const nav = document.querySelector('.navbtn');
-  if (!nav) return;
-  let lastY = window.scrollY, ticking = false;
-  const openPop = () => { try { return !!document.querySelector('.iw-pop:popover-open'); } catch (e) { return false; } };
-  const busy = () => document.documentElement.classList.contains('sd-open') || nav.matches(':focus-within') ||
-    openPop() || !!document.querySelector('.iw-pop.open, dialog[open]');
-  function update() {
-    ticking = false;
-    const y = window.scrollY, dy = y - lastY;
-    if (Math.abs(dy) < 6) return;
-    if (y < 240 || dy < 0 || busy()) nav.classList.remove('tb-away');
-    else nav.classList.add('tb-away');
-    lastY = y;
-  }
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  nav.addEventListener('focusin', () => nav.classList.remove('tb-away'));
-  // bring it back when the pointer heads for the top edge
-  window.addEventListener('mousemove', e => { if (e.clientY < 70) nav.classList.remove('tb-away'); }, { passive: true });
 });

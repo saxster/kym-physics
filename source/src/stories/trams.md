@@ -42,7 +42,7 @@ It does not point exactly north, and it does not point the same way from year to
 :::
 
 :::home Make your own tram
-The free phyphox app turns your phone into a magnetometer. Open it, lay the phone on a wooden table and read the total field: in Mumbai expect roughly 40 to 45 microtesla, which is 40,000 to 45,000 nanotesla, though phone sensors are rough. Now bring a steel spoon, then a running fan, then a charging cable with a current in it, slowly towards the phone and watch the number change. Every one of them is a tram, as far as the needle is concerned.
+The free phyphox app turns your phone into a magnetometer. Open it, lay the phone on a wooden table and read the total field: in Mumbai expect roughly 40 to 45 microtesla, which is 40,000 to 45,000 nanotesla, though phone sensors are rough. Now bring a steel spoon slowly towards the phone, keeping it clear of the screen, and record whether the reading changes. Move it away and repeat from the same distance. Different spoons and phone sensors may give different results; that is evidence to keep, not a failed experiment. Leave fans and electrical appliances untouched. The point is to see how something nearby can disturb an instrument’s reading.
 :::
 
 Chapter 13 opens with the Earth as a magnet in Section 13.2, and the chapter's case file, *The trams and the magnetometer*, lets you work out for yourself how far away the trams had to be.

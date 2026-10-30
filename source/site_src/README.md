@@ -18,3 +18,5 @@ Facts were checked against sources, and the page "Where this book comes from" li
 Licensed CC BY-NC-SA 4.0 (see LICENSE.md). See NOTICES.md for the typefaces, software and map data, which keep their own licences.
 
 The book's source, and the playbook used to make it, are in the `source/` folder.
+
+To repeat the reader release checks locally, run `./source/check-reader.sh` from the repository root. It builds the book and checks its models, reading journey, read-aloud, notebook, experiments and offline access. It requires Node dependencies from `source/package-lock.json` and the existing Python environment with Markdown, fontTools and Playwright. Checks run locally; publishing the verified static files is a separate source push. This repository has no GitHub Actions CI workflows.

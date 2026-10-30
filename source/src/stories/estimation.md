@@ -40,7 +40,7 @@ Kilometres had to become metres before they met the depth in metres. Then m² ×
 
 An estimate is only as good as its shakiest input. The city's area is good to perhaps 20%. The rain is far shakier: 100 mm was one gauge's reading, and rain over a city is patchy. If the true average was 50 mm, the answer halves. So the depth is the number worth improving, and you can improve it yourself with a straight-sided jar on the balcony.
 
-The same lesson, the other way round: estimate the mass of all the oceans using an average depth of 1 km, and the answer comes out roughly ten times too small, because the real average depth is nearer 3.7 km. Everything else in that chain was fine. One weak input swallowed the whole answer.
+The same lesson, the other way round: estimate the mass of all the oceans using an average depth of 1 km, and the answer comes out about 3.7 times too small, because the real average depth is nearer 3.7 km. Everything else in that chain was fine. One weak input swallowed the whole answer.
 
 #### Step 5: write only the digits you have earned
 
@@ -51,7 +51,7 @@ Notice the wording. Never "60,300,000 tonnes" or "exactly 80 tuners". Inputs tha
 :::careful
 > "An answer with more digits is a better answer."
 
-The opposite. The weakest input sets how many digits the answer can have, and writing more pretends to a precision you do not possess. "About 60 million tonnes" is honest. "60,300,000 tonnes" is a small lie dressed up as care.
+The opposite. The weakest input sets how many digits the answer can have, and writing more pretends to a precision you do not possess. "About 60 million tonnes" is honest. "60,300,000 tonnes" claims a precision the inputs cannot support.
 :::
 
 :::home How many breaths have you taken?

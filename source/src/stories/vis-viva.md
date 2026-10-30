@@ -44,7 +44,7 @@ So, if the thing a moving body carries is measured by the pushing needed to stop
 :::careful
 > "The deeper dent *is* the energy. The second ball had exactly four times as much."
 
-Roughly four times. The dent is a fair measure only because the clay pushes back with a roughly steady force as the ball sinks. Real clay (and real flour, if you try this at home) stiffens as it is squashed, so the ratio comes out near four, not exactly four. Say "about four times, as the square law predicts", never "exactly".
+For the same mass, twice the impact speed does mean four times the kinetic energy. But a fourfold dent depth follows only if the resisting force is the same and roughly steady through both dents. Real clay or flour may resist differently as it is packed and penetrated. A different depth ratio tests that assumption; it does not overturn the kinetic-energy rule or mean you did the experiment badly.
 :::
 
 #### Step 4: a book in a château
@@ -69,7 +69,7 @@ If the brakes push with the same force both times, the stopping distance is four
 :::
 
 :::home A marble in the atta
-Pour atta or maida into a tray to a depth of a few centimetres and smooth the top. Drop a marble into it from 25 cm, then push a toothpick into the crater and mark the depth. Smooth the flour again and drop the same marble from 1 m, four times the height, so that it arrives twice as fast. Measure again. You should get a crater roughly four times as deep, not exactly four times, for the reason in the warning above. If you have a bigger marble, drop it from 25 cm and compare: double the mass, and the dent only doubles.
+Keep a tray of atta or maida on the floor, a few centimetres deep, and smooth the top. Keep the marble away from small children. Drop the same marble from 25 cm and then 1 m, smoothing and repacking the flour the same way between drops. After gently removing the marble with a spoon, lay a ruler across the undisturbed surface and use a blunt stick to compare the dent bottom with that surface. Stop if the marble reaches the tray. Repeat each height three times and record the spread. The higher drop delivers four times the kinetic energy; investigate whether your dent depths follow that ratio. No exact depth ratio is guaranteed, because the flour's resistance can change. Chapter 7 explains the model assumption.
 :::
 
 The word *vis viva* has gone, and nobody now calls either quantity a force. But every time an engineer works out how fast a car can safely take a bend, or how much energy a cricket ball delivers to a bat, she is using the quantity that 's Gravesande read off the clay: mass times speed squared. In Chapter 3 you will meet mv under its own name, momentum, with a law all of its own. In Chapter 7, ½mv² joins the family of energies, and you will see why doubling your speed on a bicycle costs you four times the braking.

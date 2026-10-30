@@ -63,7 +63,7 @@
     - {book: "College Physics 2e", section: "22.9 Magnetic Fields Produced by Currents: Ampere's Law", url: "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law", took: "Ørsted's currents were not large; Example 22.6"}
     - {book: "College Physics 2e", section: "22.10 Magnetic Force between Two Parallel Conductors", url: "https://openstax.org/books/college-physics-2e/pages/22-10-magnetic-force-between-two-parallel-conductors", took: "same-direction currents attract, opposite repel"}
   research:
-    - {what: "wire-over-phone-compass demo; brief touches, the wire heats; AA internal resistance 150–300 mΩ (short-circuit current estimate 5–10 A)", source: "research/misconceptions.md §11; Energizer E91 datasheet via grounding/ch12.md", url: "https://data.energizer.com/pdfs/e91.pdf"}
+    - {what: "Retired shorted-AA-cell home demo; reader activity now uses existing wire-and-compass model; physical apparatus limited to an adult-led current-limited teaching kit", source: "research/misconceptions.md §11; Energizer E91 datasheet via grounding/ch12.md", url: "https://data.energizer.com/pdfs/e91.pdf"}
   history:
     - {what: "Copenhagen, 21 April 1820: twitch during a lecture, unnoticed by the audience; reversing the current reversed it; four pages in Latin in July", source: "research/history.md §6", url: "https://aps.org/apsnews/2008/07/1820-oersted-electromagnetism"}
     - {what: "Arago told the Académie on 4 Sept 1820 and repeated the experiment on 11 Sept; Ampère presented his first electrodynamics work on 18 Sept, with a new theory of the magnet (currents inside) and the 'bonhomme d'Ampère' rule (fetched 2026-10-28)", source: "École Polytechnique, 'Bonhomme d'Ampère celebrates his two century anniversary'", url: "https://www.polytechnique.edu/en/content/bonhomme-dampere-celebrates-his-two-century-anniversary"}
@@ -107,6 +107,7 @@
   openstax:
     - {book: "College Physics 2e", section: "24.3 The Electromagnetic Spectrum", url: "https://openstax.org/books/college-physics-2e/pages/24-3-the-electromagnetic-spectrum", took: "microwaves as a band of the spectrum"}
   research:
+    - {what: "Crystal radios use received-signal energy without a battery; restrict local-power explanation to Bose bell and amplified receivers", source: "The Open University, Building a crystal radio set; checked 2026-10-30", url: "https://www.open.edu/openlearn/science-maths-technology/science/physics-and-astronomy/physics/building-crystal-radio-set"}
     - {what: "₹1 coin 22 mm (2011 series)", source: "RBI press release 22 Jul 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
   history:
     - {what: "1895 demonstration at Presidency College: 60 GHz over 23 m through two walls, rang a bell and detonated gunpowder; wavelengths 2.5 cm to 5 mm, chosen partly for the small laboratory; spark transmitter, coherer, dielectric lens, polariser, horn antenna, cylindrical diffraction grating; IEEE Milestone plaque dedicated 15 Sept 2012 (fetched 2026-10-28)", source: "ETHW, IEEE Milestone: First Millimeter-wave Communication Experiments by J.C. Bose, 1894-96", url: "https://ethw.org/Milestones:First_Millimeter-wave_Communication_Experiments_by_J.C._Bose,_1894-96"}
@@ -140,6 +141,7 @@
     - {book: "College Physics 2e", section: "32.2 Biological Effects of Ionizing Radiation", url: "https://openstax.org/books/college-physics-2e/pages/32-2-biological-effects-of-ionizing-radiation", took: "cosmic 0.40 mSv/y; 12-hour flight 0.02–0.03 mSv; airline crew 2 mSv/y; ground dose varies up to ten times; 'we are all a little radioactive'"}
     - {book: "College Physics 2e", section: "31.5 Half-Life and Activity", url: "https://openstax.org/books/college-physics-2e/pages/31-5-half-life-and-activity", took: "half-life 'time in which half of the original number of nuclei decay'; 'purely statistical process'; range 1e-23 s to >1e16 y; C-14 5,730 y (dating to 50,000–60,000 y); Cs-137 30.2 y; U-238 4.5e9 y; 1/1024 after ten half-lives (fetched 2026-10-28)"}
   research:
+    - {what: "Controlled irradiation does not make food radioactive; no universal no-nuclear-reaction claim", source: "FDA, Food irradiation: What you need to know; checked 2026-10-30", url: "https://www.fda.gov/food/buy-store-serve-safe-food/food-irradiation-what-you-need-know"}
     - {what: "exposed is not contaminated; X-ray example; contamination = radioactive material on skin, hair, clothing or inside", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
     - {what: "63–75% believe radiation makes things radioactive (three studies)", source: "research/misconceptions.md §13", url: "https://arxiv.org/pdf/2001.07746"}
   computed:
@@ -153,6 +155,7 @@
     - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "E = mc²; 0.71% of mass converted; 6.4e14 J per kg; 600 million tons/s; 4 million tons/s; protons repel; Sun about 4.5 billion years old; 'most of its protons have not yet been involved'"}
     - {book: "Astronomy 2e", section: "16.3 The Solar Interior: Theory", url: "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory", took: ">12 million K; centre ~15 million K; fusion at the centre (PH 22.4's 'boundary of the helium core' rejected); photons 100,000–1,000,000 y; neutrinos ~2 s"}
   research:
+    - {what: "Proton-proton solar fusion depends on quantum tunnelling through electrostatic repulsion; classical speed-over-barrier account rejected", source: "US DOE Office of Science, Proton-Proton Fusion: Powering the Sun; checked 2026-10-30", url: "https://www.energy.gov/science/np/articles/proton-proton-fusion-powering-sun"}
     - {what: "L = 382.8e24 W; mass conversion 4260e6 kg/s; Sun mass 1,988,400e24 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
     - {what: "Aditya-L1: halo orbit about 1.5 million km sunward, period 177.86 d, arrived 6 Jan 2024", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}
     - {what: "'E = mc² is only about bombs'", source: "research/misconceptions.md §13", url: "https://www.aapt.org/docdirectory/meetingpresentations/SM14/PST2C37%20A%20Johnson%20Journeys_poster.pdf"}
@@ -179,7 +182,7 @@
   openstax:
     - {book: "Astronomy 2e", section: "19.2 Surveying the Stars", url: "https://openstax.org/books/astronomy-2e/pages/19-2-surveying-the-stars", took: "pen demo; parallax = half the total shift; parsec 206,265 AU = 3.26 ly; Bessel 1838, 61 Cygni; Proxima 4.25 ly; Gaia nearly a billion stars to a few millionths of an arcsecond"}
     - {book: "Astronomy 2e", section: "19.3 Variable Stars: One Key to Cosmic Distances", url: "https://openstax.org/books/astronomy-2e/pages/19-3-variable-stars-one-key-to-cosmic-distances", took: "Cepheids named for Delta Cephei; brighter-appearing Cepheids have longer periods; same distance in the SMC; Leavitt could not calibrate; Hubble used Cepheids in galaxies"}
-    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "Pickering's women computers paid one-third or one-fourth of men's salaries"}
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "women computers measured photographic plates; salary ratio omitted in the reader text"}
   research:
     - {what: "₹1 coin 22 mm", source: "RBI press release 22 Jul 2011", url: "https://www.rbi.org.in/Commonman/English/scripts/PressReleases.aspx?Id=1124"}
     - {what: "Bandra–Worli Sea Link 5.6 km", source: "research/history.md §9", url: "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"}

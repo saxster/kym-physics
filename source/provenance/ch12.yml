@@ -111,13 +111,15 @@
     - {book: "College Physics 2e", section: "23.8 Electrical Safety: Systems and Devices", url: "https://openstax.org/books/college-physics-2e/pages/23-8-electrical-safety-systems-and-devices", took: "three-wire system; earthed case; worn-insulation case with and without earth (Fig 23.32 idea for c12_earth_wire); GFI compares live and neutral currents"}
     - {book: "College Physics 2e", section: "20.5 Alternating Current versus Direct Current", url: "https://openstax.org/books/college-physics-2e/pages/20-5-alternating-current-versus-direct-current", took: "V_rms = V₀/√2 (peak of 230 V r.m.s.)"}
   research:
+    - {what: "Mains shock can kill or seriously injure; harm varies with contact path, moisture and duration; closed fuse-box cases; no safe dry-skin promise", source: "UK Health and Safety Executive, Electrical injuries and Introduction to electrical safety; checked 2026-10-30", url: "https://www.hse.gov.uk/electricity/injuries.htm"}
+    - {what: "Keep distribution-board covers closed; work on installations is for competent people", source: "UK Health and Safety Executive, Introduction to electrical safety; checked 2026-10-30", url: "https://www.hse.gov.uk/electricity/introduction.htm"}
     - {what: "230/240 V single phase, 50 cycles; band +10%/−15% (Table 1)", source: "MERC Supply Code Regulations 2021 §3.1–3.2", url: "https://merc.gov.in/wp-content/uploads/2022/07/Supply-Code-Regulations-2021-English.pdf"}
     - {what: "240→230 V changeover 'kept in abeyance'", source: "IS 12360:1988 Amendment 4 (Nov 2011)", url: "https://law.resource.org/pub/in/bis/S05/is.12360.1988.pdf"}
     - {what: "domestic RCD residual operating current not exceeding 30 mA (reg 44); earthed terminal (reg 18)", source: "CEA (Measures relating to Safety and Electric Supply) Regulations 2023", url: "https://kseb.in/uploads/Downloadtemsuppy/Central%20Electricity%20Authority%20(Measures%20relating%20to%20Safety%20and%20Electric%20Supply)%20Regulations,%202023-1699594973944568556.pdf"}
     - {what: "NCERT warns never to experiment with mains, generator or inverter supply; 'MCB' is everyday Indian wording with no regulatory source", source: "research/misconceptions.md §10; grounding/ch12.md 12.6", url: "https://ncert.nic.in/textbook/pdf/hesc111.pdf"}
     - {what: "IGCSE 0625 topic 4.4 Electrical safety (title only quoted)", source: "research/school-wording.md §1", url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"}
   computed:
-    - "230 V through 10 kΩ (wet) = 23.0 mA; through 200 kΩ (dry) = 1.15 mA. CP's body resistances ASSUMED transferable to 230 V; the text says so."
+    - "Retired 2026-10-30: arithmetic using fixed dry/wet body resistances was a toy calculation, not a safe prediction for a person. The reader text now gives no dry-skin current or harmless-mains claim."
     - "peak 230 × √2 = 325.3 V; period 1/50 s = 20 ms; 'reverses a hundred times a second' = 2 reversals per cycle × 50 Hz"
     - "MERC band 230 × 1.10 = 253.0 V, 230 × 0.85 = 195.5 V"
     - "the RCD's trip speed ('a fraction of a second') is a qualitative statement, not a sourced number"

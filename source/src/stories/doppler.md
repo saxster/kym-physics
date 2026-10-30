@@ -58,7 +58,7 @@ Louder and higher are different things. The horn does get louder as it nears you
 :::
 
 :::home The passing horn
-From a balcony or an open window, listen to a motorbike or an ambulance coming along the road and going away again. Hum the note you hear while it is approaching, then the note after it has passed, and check the two hums against a tuner app on a phone. The second will be lower. Then listen to one that is parked and revving: louder or quieter as it likes, but the same note. Please do not do this on a railway platform; the local train's horn is loud and the platform edge is no place for an experiment.
+From a safe place indoors, listen for a passing vehicle that holds one steady horn note as it comes and goes. Hum the note you hear while it is approaching, then the note after it has passed, and check the two hums against a tuner app on a phone. The second will be lower. For comparison, use the live model in Chapter 9: keep its horn still and change only its loudness. A real engine being revved changes its own pitch as well as its loudness, so it is not a fair test of motion alone. Please do not do this on a railway platform; the local train's horn is loud and the platform edge is no place for an experiment.
 :::
 
 In Chapter 9 the moving whistle is Section 9.7, with a live figure that lets you drive the horn yourself. In Chapter 15, Section 15.7, the same idea applied to light stretches across the whole universe.

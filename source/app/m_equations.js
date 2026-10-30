@@ -218,20 +218,14 @@ function matchEquation(text) {
   for (const item of EQ_DB) {
     if (item.match.test(clean)) return item;
   }
-  return {
-    title: 'Equation & units breakdown',
-    summary: 'Check that the units on both sides of the equals sign match before trusting any calculation.',
-    terms: [
-      { sym: clean.split('=')[0]?.trim() || 'LHS', name: 'Left-hand quantity', unit: 'SI unit', note: 'Equals the right-hand expression' },
-      { sym: clean.split('=')[1]?.trim() || 'RHS', name: 'Right-hand expression', unit: 'Matching SI unit', note: 'Substitute numbers in standard SI units' },
-    ],
-  };
+  return null;
 }
 
 function setupEq(eqEl, idx) {
   if (eqEl.dataset.eqReady) return;
   eqEl.dataset.eqReady = '1';
   const info = matchEquation(eqEl.textContent || '');
+  if (!info) return; // An unknown equation keeps its explanation in the surrounding prose.
   const cardId = `eq-card-${idx}`;
 
   const wrap = el('div', { class: 'eq-wrap' });
@@ -319,6 +313,7 @@ function setupEq(eqEl, idx) {
       highlightRow(activeIdx);
     } else {
       highlightRow(-1);
+      toggleBtn.focus({ preventScroll: true });
     }
   }
 

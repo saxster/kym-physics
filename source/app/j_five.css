@@ -2,6 +2,15 @@
 .box.five { border: 1px solid var(--rule); border-top: 3px solid var(--vol); border-radius: 12px; background: var(--sheet);
   padding: 1.1rem 1.25rem 1.2rem; margin: 1.8rem 0 2rem; }
 .box.five > .bh { display: flex; flex-direction: column; gap: .15rem; margin: 0 0 .8rem; }
+.box.five > summary.bh { cursor: pointer; min-height: 44px; margin: 0; padding-right: 1.5rem; position: relative; }
+.box.five > summary.bh::after { content: '+'; position: absolute; right: 0; top: .5rem; font: 600 1.3rem var(--sans); }
+.box.five[open] > summary.bh::after { content: '−'; }
+.box.five[open] > summary.bh { margin-bottom: .8rem; }
+.box.five > summary.bh::-webkit-details-marker { display: none; }
+.box.five > summary:focus-visible, .box.school > summary:focus-visible { outline: 3px solid var(--electron); outline-offset: 5px; }
+.box.school > summary { cursor: pointer; min-height: 44px; margin: 0; }
+.box.school[open] > summary { margin-bottom: .75rem; }
+@media print { details.box.five > :not(summary), details.box.school > :not(summary) { display: block !important; } }
 .box.five > .bh .five-k { font: 600 .72rem/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--vol); }
 .box.five > .bh .five-t { font: 400 1.45rem/1.2 var(--serif); color: var(--ink); }
 .box.five .fqs { margin: 0; display: grid; gap: .1rem; }

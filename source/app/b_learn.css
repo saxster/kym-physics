@@ -184,6 +184,8 @@ dialog.notebook[open] { display: flex; flex-direction: column; width: min(44rem,
   background: var(--sheet); color: var(--ink); font: 500 .76rem/1.2 var(--sans);
   cursor: pointer; transition: border-color .15s, background .15s;
 }
+.eq-wrap:not(.eq-open) .eq-sym-chip { display: none; }
+.eq-lens-btn, .eq-sym-chip, .eq-lens-close { min-height: 44px; }
 .eq-sym-chip b { font: italic 700 .9rem/1 var(--serif); color: var(--vol); }
 .eq-sym-chip span { font-size: .72rem; color: var(--muted); }
 .eq-sym-chip:hover, .eq-sym-chip.is-active {

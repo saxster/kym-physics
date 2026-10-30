@@ -160,7 +160,7 @@ function setupPredict(box) {
     return b;
   });
   const you = el('p', { class: 'pred-you', 'aria-live': 'polite' });
-  const flapText = el('span', { class: 'flap-t' }, 'Lift the flap to see the answer …after you have made your prediction');
+  const flapText = el('span', { class: 'flap-t' }, 'Make a guess, then see what happens');
   const flap = el('button', {
     type: 'button',
     class: 'pred-flap',
@@ -193,20 +193,23 @@ function setupPredict(box) {
     playSound('flap');
     flap.classList.toggle('is-lifted', openNow);
     flap.setAttribute('aria-expanded', String(openNow));
-    flapText.textContent = openNow ? 'Flap lifted · Tap to fold back' : 'Tap to lift the flap again';
+    flapText.textContent = openNow ? 'Hide what happens' : 'See what happens';
+    s.seen = openNow; store.set(key, s);
+    btns.forEach(b => { b.disabled = openNow; });
     reveal(rev, openNow);
   });
 
   function paint(animate) {
     const s = store.get(key, null);
     const has = s && s.c != null && btns[s.c];
-    btns.forEach((b, i) => { b.setAttribute('aria-pressed', String(!!has && i === s.c)); b.disabled = !!has; });
-    you.textContent = has ? `You predicted ${LETTERS[s.c]}: ${s.o}` : 'Choose one before you lift the flap.';
+    const isOpen = !!has && !!s.seen;
+    btns.forEach((b, i) => { b.setAttribute('aria-pressed', String(!!has && i === s.c)); b.disabled = isOpen; });
+    you.textContent = has ? `Your guess: ${s.o}` : 'A guess is enough. Nobody is grading you.';
     box.dataset.chosen = has ? '1' : '';
-    flap.classList.toggle('is-lifted', !!has);
-    flap.setAttribute('aria-expanded', String(!!has));
-    flapText.textContent = has ? 'Flap lifted · Tap to fold back' : 'Lift the flap to see the answer …after you have made your prediction';
-    if (has) {
+    flap.classList.toggle('is-lifted', isOpen);
+    flap.setAttribute('aria-expanded', String(isOpen));
+    flapText.textContent = isOpen ? 'Hide what happens' : has ? 'See what happens' : 'Make a guess, then see what happens';
+    if (isOpen) {
       if (animate) {
         playSound('flap');
         if (!App.reduceMotion() && flap.animate) {

@@ -31,7 +31,7 @@ Picture instead a long loop of rope passing through the hands of a circle of peo
 
 :::fig s_rope_loop() | A loop of rope as a circuit. The battery hauls, the bulb grips, and the rope moves at the same rate at every point of the loop: no rope is used up. Energy leaves the loop only where the rope is squeezed.
 
-Measure the current in a real loop and that is what you find: the same current at every point, including inside the battery. The current neither speeds up in the wires nor slows down in the bulb; if it did, charge would pile up somewhere, and it does not. What the bulb takes is energy, delivered where the charge is squeezed through. Energy is what gets used up. Current is what goes round.
+Measure the current in a real loop and that is what you find: the same current at every point, including inside the battery. The current neither speeds up in the wires nor slows down in the bulb; if it did, charge would pile up somewhere, and it does not. What the bulb takes is energy, delivered where the charge is squeezed through. Energy is transferred into light and warmth; none is destroyed. Current is what goes round.
 
 #### Step 3: push and resistance
 
@@ -74,7 +74,7 @@ A battery gives roughly the same push. The current depends on what you connect: 
 :::
 
 :::home A current you can count
-Fill a drinking straw with dried chana or peas until it is full. Push one more in at one end: one falls out of the other end at once, though no single pea has travelled the length of the straw. Push peas in steadily for thirty seconds, count how many fall out, and divide by thirty. That is your pea current, in peas per second. Electrons in a wire behave a little like this, with one difference the straw cannot show: they push each other along by electric repulsion, not by bumping.
+Fill a wide drinking straw with small dried peas that fit freely until it is full. Push one more in at one end: one falls out of the other end at once, though no single pea has travelled the length of the straw. Push peas in steadily for thirty seconds, count how many fall out, and divide by thirty. That is your pea current, in peas per second. Electrons in a wire behave a little like this, with one difference the straw cannot show: they push each other along by electric repulsion, not by bumping.
 :::
 
-In Chapter 12 you will build this loop yourself, with two AA cells, an LED and a resistor, and find out why a white LED can stay dark on three volts while a red one shines.
+In Chapter 12 you can build a loop with the 9 V battery, LED and resistor kit, and find out why a white LED can stay dark on three volts while a red one shines.

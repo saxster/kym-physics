@@ -248,3 +248,11 @@ A beautiful book gets read. Use everything the browser offers, but every moving 
 - Frame the visible apparatus rather than hidden alternatives or unused buffer capacity. For a replay, author an envelope that contains its motion and keep that camera fixed through the replay.
 - Match controls to the model: hide playback when time changes nothing; synchronise clocks, resets and preset selection; derive displayed precision from the actual slider step. A loop that pauses at an endpoint must not schedule another animation frame afterwards.
 - Check light, dark and sepia on a wide-gamut display. Convert CSS Color 4 palette values through the browser's sRGB canvas before passing them to a renderer that cannot parse that syntax; otherwise coloured evidence can become white. Cache the conversion rather than reading pixels every frame.
+
+### Reader review lessons (30 October 2026)
+
+- Start with one achievable puzzle and a visible route into the story. Separate the opening pages, offer a pause after each section, and keep navigation available.
+- Offer the complete five-question review as an optional disclosure, with all five core answers together when opened. This reader-focused revision replaces the earlier always-expanded presentation; no teaching content is removed. School wording and equation chips should not interrupt every paragraph. Deep links, print and read-aloud must still reach the content.
+- A prediction is a guess to test: keep selecting it separate from revealing the answer. Avoid judgemental statistics and guaranteed kitchen results. Model limitations belong beside an experiment, and changed household instructions must be checked in linked stories too.
+- Source validation and actual learner trials answer different questions. Keep chapter/story coverage and physical-test limits explicit. The dated reader and independent reports under `docs/kymaia-*` record this pass.
+- All release verification runs locally. Use `./source/check-reader.sh` from the repository root. GitHub Pages only publishes the already-built static files; do not add GitHub Actions CI. Fonts in the site are cached hashed assets, retaining the original 4 MiB index budget and offline typography.

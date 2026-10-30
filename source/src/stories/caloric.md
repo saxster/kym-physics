@@ -46,14 +46,14 @@ Rumford's own guess was that heat was a kind of motion rather than a fluid. He c
 
 #### Step 4: what an object actually has
 
-Here is the modern answer, which is what caloric was reaching for and missing. Every object is made of particles that jiggle, spin and vibrate. The total energy of all that motion is the object's ==internal energy==, also called its ==thermal energy==. Warm an object and its particles jiggle faster: its internal energy rises. Rub it, hammer it, stir it, and the same thing happens, because pushing on the particles speeds them up too. Afterwards there is no way to tell which route the energy took. A kilogram of water warmed by a flame and a kilogram warmed by a paddle wheel are identical.
+Here is the modern answer, which is what caloric was reaching for and missing. Every object is made of particles that jiggle, spin and vibrate. The energy of that motion and of the particles’ interactions is the object's ==internal energy==, also called its ==thermal energy== here. Warm an object and its particles jiggle faster: its internal energy rises. Rub it, hammer it, stir it, and the same thing happens, because pushing on the particles speeds them up too. Afterwards there is no way to tell which route the energy took. A kilogram of water warmed by a flame and a kilogram warmed by a paddle wheel are identical.
 
 So the brass in Munich did not contain heat. It contained internal energy, and the horses kept adding more. The word *heat* survives, but physicists now use it for one thing only: energy *on the move* from a hotter object to a colder one, because of the difference in their temperatures. Heat is a transfer, like a payment, and you cannot store a payment. You can only store what it buys.
 
 :::careful
 > "The brass had heat inside it, and the drill squeezed the heat out."
 
-Nothing was squeezed out, because heat is not a thing an object holds. The brass held internal energy, the motion of its particles. Rubbing added more, for as long as the rubbing went on, and the extra energy flowed as heat into the colder water. If the brass had really held a fixed stock of heat, it would have run dry long before the water boiled.
+Nothing was squeezed out, because heat is not a thing an object holds. The brass held internal energy in its particles’ motion and interactions. Rubbing added more, for as long as the rubbing went on, and the extra energy flowed as heat into the colder water. If the brass had really held a fixed stock of heat, it would have run dry long before the water boiled.
 :::
 
 #### Step 5: why caloric lasted so long
@@ -61,7 +61,7 @@ Nothing was squeezed out, because heat is not a thing an object holds. The brass
 It is easy to laugh at caloric. Do not. It fitted most of what people could see, and it took a very odd experiment to catch it out, because almost nothing in ordinary life rubs for two and a half hours without stopping. Rumford's result sat uncomfortably beside the fluid theory for decades, and the theory was only abandoned when Joule's careful numbers and the particle picture of matter arrived together. Being wrong for a good reason, and then letting go when the evidence turns, is what science looks like from the inside.
 
 :::home Rumford's test in ten seconds
-Rub a pencil eraser hard against a desk for ten seconds, then touch it to your lip. It is warm. Nothing hot touched it. Your arm did work against friction, and the work became internal energy in the rubber. Rub for twenty seconds and it is warmer still. There is no sign of the eraser running out of heat, for exactly the reason Rumford's brass did not.
+Rub a pencil eraser hard against a desk for ten seconds, then touch it with your fingertips. It is warm. Nothing hot touched it. Your arm did work against friction, and the work became internal energy in the rubber. Rub for twenty seconds and it is warmer still. There is no sign of the eraser running out of heat, for exactly the reason Rumford's brass did not.
 :::
 
 In Chapter 8 you will meet the two words that replaced caloric, *internal energy* and *heat*, and see why a steel thali that feels cold in the morning is at exactly the same temperature as the wooden board beside it. In Chapter 7 you will meet the unit named after the man who finished what Rumford started: the joule.

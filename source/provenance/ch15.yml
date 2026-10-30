@@ -29,6 +29,7 @@
     - {book: "College Physics 2e", section: "32.4 Food Irradiation", url: "https://openstax.org/books/college-physics-2e/pages/32-4-food-irradiation", took: "gamma, X-ray and electron irradiation leaves no residual radioactivity; neutron irradiation can, and is not used on food"}
     - {book: "College Physics 2e", section: "32.2 Biological Effects of Ionizing Radiation", url: "https://openstax.org/books/college-physics-2e/pages/32-2-biological-effects-of-ionizing-radiation", took: "cosmic rays about 0.40 mSv/y; 12-h flight 0.02–0.03 mSv; ground doses up to ten times average; 'low dose' below 100 mSv; 'we are all a little radioactive'"}
   research:
+    - {what: "Approved food irradiation does not make food radioactive; restrict explanation to controlled processes rather than a universal photons claim", source: "FDA, Food irradiation: What you need to know; checked 2026-10-30", url: "https://www.fda.gov/food/buy-store-serve-safe-food/food-irradiation-what-you-need-know"}
     - {what: "exposure is not contamination; the X-ray example; contamination = material on or in the body", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
     - {what: "radiation makes things radioactive: 63–75% across studies", source: "research/misconceptions.md §13", url: "https://arxiv.org/pdf/2001.07746"}
     - {what: "IGCSE 0625 5.1 nuclear model, 5.2 radioactivity (three types of emission, half-life, safety)", source: "research/school-wording.md", url: ""}
@@ -51,6 +52,7 @@
     - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "E = mc²; 0.71% of mass converted; 600 million tons of hydrogen and 4 million tons of mass per second; most protons not yet fused; the Sun about 4.5 billion years old; protons repel so the core must be hot"}
     - {book: "Astronomy 2e", section: "16.3 The Solar Interior: Theory", url: "https://openstax.org/books/astronomy-2e/pages/16-3-the-solar-interior-theory", took: "fusion in the centre, above 12 million K; centre about 15 million K; photons take 100,000–1,000,000 years to get out (PH 22.4's 'boundary of the helium core' and 'splitting of an atomic bond' lines rejected)"}
   research:
+    - {what: "Proton-proton solar fusion depends on quantum tunnelling through electrostatic repulsion; classical speed-over-barrier account rejected", source: "US DOE Office of Science, Proton-Proton Fusion: Powering the Sun; checked 2026-10-30", url: "https://www.energy.gov/science/np/articles/proton-proton-fusion-powering-sun"}
     - {what: "net pp-chain accounting consumes four protons and two electrons, producing helium-4, two neutrinos and energy", source: "CERN-hosted solar-neutrino review, equation 148", url: "https://cds.cern.ch/record/677618/files/p115.pdf"}
     - {what: "hydrogen-1 and helium-4 atomic masses used for the 0.71 percent comparison", source: "NIST Atomic Weights and Isotopic Compositions", url: "https://pml.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=H"}
     - {what: "L = 382.8e24 W; mass conversion 4260e6 kg/s; Sun mass 1.9884e30 kg", source: "NASA NSSDC Sun Fact Sheet", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"}
@@ -75,7 +77,7 @@
     - {course: "8.282J Introduction to Astronomy, Spring 2006", where: "Syllabus (students were given a simple spectrometer kit)", url: "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/", took: "the idea of a home spectroscope (the Sun-viewing part dropped for safety)"}
   openstax:
     - {book: "Astronomy 2e", section: "5.3 Spectroscopy in Astronomy", url: "https://openstax.org/books/astronomy-2e/pages/5-3-spectroscopy-in-astronomy", took: "absorption lines; Fraunhofer about 600 lines in 1815; Kirchhoff identified sodium in 1860; helium found in the Sun first"}
-    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "the 'different composition' hypothesis was wrong: temperature sets the spectrum; hydrogen lines missing in the hottest (ionised) and coolest (electrons in the lowest level) stars; Cannon's O B A F G K M; women hired at one-third or one-fourth of men's pay"}
+    - {book: "Astronomy 2e", section: "17.3 The Spectra of Stars (and Brown Dwarfs)", url: "https://openstax.org/books/astronomy-2e/pages/17-3-the-spectra-of-stars-and-brown-dwarfs", took: "the 'different composition' hypothesis was wrong: temperature sets the spectrum; hydrogen lines missing in the hottest (ionised) and coolest (electrons in the lowest level) stars; Cannon's O B A F G K M; women’s role in photographic spectrum classification"}
     - {book: "Astronomy 2e", section: "15.1 The Structure and Composition of the Sun", url: "https://openstax.org/books/astronomy-2e/pages/15-1-the-structure-and-composition-of-the-sun", took: "Payne 1925: so unexpected she was persuaded it must be wrong, confirmed three years later; 73% hydrogen, 25% helium by mass; crust is oxygen, silicon, aluminium; plasma"}
   history:
     - {what: "Saha, Calcutta → London 1920: ionisation equation; Fowler at Imperial College. Payne 1925: Russell 'clearly impossible', thesis labelled 'spurious', Russell 1929; Struve's 'most brilliant PhD thesis' line", source: "research/history.md §7", url: "https://www.aps.org/apsnews/2015/01/cecilia-payne-gaposchkin-universe-changed"}
@@ -156,6 +158,7 @@
   licence: "CC BY-NC-SA 4.0"
 "story:radiation":
   research:
+    - {what: "Diagnostic X-ray exposure is distinct from contamination", source: "CDC, What causes contamination versus exposure; checked 2026-10-30", url: "https://www.cdc.gov/radiation-emergencies/causes/index.html"}
     - {what: "exposure vs contamination", source: "CDC, Radiation Contamination Versus Exposure", url: "https://www.cdc.gov/radiation-emergencies/infographic/contamination-versus-exposure.html"}
     - {what: "63–75% believe radiation makes things radioactive", source: "research/misconceptions.md §13", url: ""}
   openstax:
@@ -167,6 +170,9 @@
   openstax:
     - {book: "Astronomy 2e", section: "16.2 Mass, Energy, and the Theory of Relativity", url: "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity", took: "0.71%; 600 and 4 million tons per second; age about 4.5 billion years (the story title's 4.6 should match)"}
   licence: "CC BY-NC-SA 4.0"
+  research:
+    - {what: "Proton-proton solar fusion depends on quantum tunnelling through electrostatic repulsion; classical speed-over-barrier account rejected", source: "US DOE Office of Science, Proton-Proton Fusion: Powering the Sun; checked 2026-10-30", url: "https://www.energy.gov/science/np/articles/proton-proton-fusion-powering-sun"}
+
 "story:sun-watcher":
   research:
     - {what: "Aditya-L1 halo orbit, 6 January 2024, about 1.5 million km, 177.86 days", source: "ISRO", url: "https://www.isro.gov.in/ISRO_EN/halo-orbit-insertion-adtya-l1.html"}

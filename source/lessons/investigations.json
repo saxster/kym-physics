@@ -136,7 +136,7 @@
     "preparation": 1,
     "materials": "Soft ball, ruler, clear floor and optional local slow-motion clip. Supplied observations need no equipment.",
     "question": "If 80% of the speed returns, does 80% of the energy return?",
-    "encounter": "Predict the next bounce height before lowering the restitution control. Does losing half the height mean losing half the speed?",
+    "encounter": "Press Play to watch the bounces. Then lower “Speed ratio e”, the fraction of speed kept after each bounce. Before playing again, guess whether the next bounce will be higher or lower.",
     "procedure": [
       "Use the linked local video tracker to mark the highest point after each bounce; put a ruler in the same plane. Or use the supplied observations.",
       "Keep ball, surface and camera position fixed. Enter successive drop and rebound heights in metres; repeat a height three times.",

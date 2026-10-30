@@ -40,7 +40,7 @@ The shorter a wave, the more it behaves like a ray of light: it can be focused b
 
 #### Step 3: how the bell rang
 
-The receiver had to turn an arriving wave into something that could ring a bell. Bose's coherer did that: a device whose electrical contact changed when the waves hit it, so that a current from an ordinary battery could suddenly flow and work the bell. The waves themselves carried almost no energy. They carried a *signal*, and the battery supplied the push. Every radio receiver since has worked on the same division of labour: a faint wave is detected, and local power does the rest.
+The receiver had to turn an arriving wave into something that could ring a bell. Bose's coherer did that: a device whose electrical contact changed when the waves hit it, so that a current from an ordinary battery could suddenly flow and work the bell. The arriving waves carried the signal, while the battery supplied the energy to ring this bell. Many receivers use local power to amplify a faint signal. But that is not a rule for every receiver: a crystal radio can make a faint sound using energy taken from the radio wave itself, with no battery.
 
 #### Step 4: the same waves today
 

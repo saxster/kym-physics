@@ -53,7 +53,7 @@ It is a thousand times as big. The little numbers are counts of tens, and three 
 :::
 
 :::home A page you cannot measure
-A single page of a notebook is too thin for a ruler. So measure a hundred of them pressed flat: about a centimetre, say, which is 10⁻² m. One page is then 10⁻² ÷ 10² = 10⁻⁴ m, a tenth of a millimetre. Now work out how many pages, stacked, would reach the top of your head: your height in metres divided by 10⁻⁴. For 1.5 m that is 15,000 pages, or 1.5 × 10⁴. Check it against the number of pages in a notebook and the thickness of the notebook.
+A single sheet of paper is too thin for a ruler. Count 100 physical sheets: in a notebook that means 100 leaves, or 200 numbered pages. Measure that stack pressed gently flat: suppose it is 1 cm thick, which is 10⁻² m. One sheet is then 10⁻² ÷ 10² = 10⁻⁴ m, a tenth of a millimetre. Replace that example reading with your own. How many sheets, stacked, would reach the top of your head? Divide your height by your measured sheet thickness, both in metres. For 1.5 m and 10⁻⁴ m per sheet, that is 15,000 sheets, or 1.5 × 10⁴.
 :::
 
 Chapter 0 opens the Powers of Ten explorer, where you can climb this ladder with your thumb. You will need it in Chapter 15 most of all, where the distances to the stars are written in powers of ten because there is no other way to write them.

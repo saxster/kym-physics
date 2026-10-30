@@ -14,12 +14,11 @@ function txt(e) { return e ? e.textContent.replace(/\s+/g, ' ').trim() : ''; }
 function collect() {
   if (!main) return;
   const kids = [...main.children];
-  let pendingVol = null, front = null;
+  let pendingVol = null;
   const add = (u) => { units.push(u); u.els.forEach((e) => unitByEl.set(e, u)); return u; };
   for (const k of kids) {
     if (k.matches('header.cover, section.front') && !k.matches('.explore')) {
-      if (!front) front = add({ id: 'top', els: [], title: 'The beginning', kind: 'front' });
-      front.els.push(k); unitByEl.set(k, front);
+      add({ id: k.id, els: [k], title: txt(k.querySelector('h1, h2')) || 'The beginning', kind: 'front' });
     } else if (k.matches('section.explore')) {
       add({ id: k.id, els: [k], title: txt(k.querySelector('h2')), kind: 'explore' });
     } else if (k.matches('section.volume')) {
@@ -34,8 +33,6 @@ function collect() {
         const sec = part.querySelector('section[id]') || part;
         add({ id: sec.id || ('back-' + units.length), els: [part], title: txt(sec.querySelector('h2')), kind: 'back' });
       }
-    } else if (front && !units.some((u) => u.kind !== 'front')) {
-      front.els.push(k); unitByEl.set(k, front);   // anything else early on travels with the front
     }
   }
 }
@@ -94,8 +91,16 @@ function afterShow() {
 
 const origScroll = Element.prototype.scrollIntoView;
 
+// Notebook and deep links can point inside an optional review or school note.
+function unfold(el) {
+  for (let p = el?.parentElement; p; p = p.parentElement) {
+    if (p.matches('details')) p.open = true;
+  }
+}
+
 /** Show the page holding el (if it is not the current one). Returns true if the page changed. */
 function reveal(el, { anim = false } = {}) {
+  unfold(el);
   const u = el && unitOf(el);
   if (!u || u === cur) return false;
   const go = () => setVisible(u);
@@ -145,9 +150,10 @@ function route({ anim = true, initial = false, pop = false, y = null } = {}) {
   const changed = u !== cur;
   if (!changed && pop && fromStory) return;   // closing a story: stay exactly where the reader was
   const scroll = () => {
+    unfold(t);
     if (y != null) { scrollTo({ top: y, behavior: 'instant' }); return; }
     const behavior = changed || App.reduceMotion() ? 'instant' : 'smooth';
-    if (t === u.els[0] || t.id === u.id) scrollTo({ top: 0, behavior: 'instant' });
+    if (t === u.els[0]) scrollTo({ top: 0, behavior: 'instant' });
     else origScroll.call(t, { block: 'start', behavior });
   };
   if (!changed) { scroll(); return; }

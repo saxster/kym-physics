@@ -53,7 +53,7 @@ That puts light inside the eye's job. Light is not fuel for the eye; it is the t
 :::
 
 :::home A camera obscura from a shoebox
-Cut a window about the size of a playing card in one end of a shoebox and tape tracing paper, or thin white paper, over it as a screen. Cover the other end with kitchen foil and prick one small hole in the middle of the foil with a pin. Put the lid on. In a dim room, point the pinhole end at a bright window and look at the paper screen: the window appears on it, upside down, with the room's ceiling at the bottom. Try pricking a second, bigger hole with a pencil point: brighter, and blurred. Never point the camera at the Sun, and never look at the Sun through the hole.
+Ask an adult to help with cutting and the pin. Cut a window about the size of a playing card in one end of a shoebox and tape tracing paper, or thin white paper, over it as a screen. Cover the other end with kitchen foil and prick one small hole in the middle of the foil with a pin. Put the lid on. In a dim room, point the pinhole end at a bright window and look at the paper screen: the window appears on it, upside down, with the room's ceiling at the bottom. Try pricking a second, bigger hole with a pencil point: brighter, and blurred. Never point the camera at the Sun, and never look at the Sun through the hole.
 For the chain's first link, fill a plant sprayer with water, darken the room, and shine a torch across it while you spray a fine mist. The beam appears only where droplets are sending light into your eye, and vanishes where the air is clear.
 :::
 

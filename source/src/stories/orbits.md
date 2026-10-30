@@ -60,7 +60,7 @@ At school, weight means the gravitational force on a mass. In that language an a
 
 #### Step 4: your phone can feel it
 
-The free phyphox app reads your phone's motion sensor. Open "Acceleration (with g)" and lay the phone on a table: it reads about 9.8 m/s². That is not gravity it is sensing; it is the table pushing up. Now hold the phone over a pillow and let go. During the fall the reading drops to about zero. For a third of a second your phone is exactly where the astronauts are: falling, with nothing pushing on it, weightless with gravity at full strength.
+The free phyphox app reads your phone's motion sensor. Open "Acceleration (with g)" and lay the phone on a table: it reads about 9.8 m/s². That is not gravity it is sensing; it is the table pushing up. The live free-fall trace in Chapter 5 shows what happens next, without risking your phone: during a short fall the sensor reading drops to about zero. For a third of a second your phone is exactly where the astronauts are: falling, with nothing pushing on it, weightless with gravity at full strength.
 
 :::careful
 > "There's no gravity up there. That's why they float."
@@ -75,7 +75,7 @@ Being above the air only stops them slowing down. What keeps them up is sideways
 :::
 
 :::home The weightless phone
-Install phyphox and open "Acceleration (with g)". Put the phone flat on a table and read about 9.8 m/s². Now hold it about 40 cm above a soft pillow or a folded blanket, start recording, and let it drop. Look at the graph: the reading falls to almost zero for about a third of a second, then jumps as the pillow catches it. That dip is free fall, the same thing an astronaut feels all day. Keep the drop small and the landing soft.
+The live trace in Chapter 5 lets you inspect this experiment without dropping a phone. For a physical test, ask an adult first and use only a phone they agree can be dropped onto a thick cushion. Install phyphox and open "Acceleration (with g)". Put the phone flat on a table and read about 9.8 m/s². Now hold it about 40 cm above a soft pillow or a folded blanket, start recording, and let it drop. Look at the graph: the reading falls to almost zero for about a third of a second, then jumps as the pillow catches it. That dip is free fall, the same thing an astronaut feels all day. Keep the drop small and the landing soft.
 :::
 
 In Chapter 5 Newton's cannon comes alive on the screen and you can fire it yourself. In Chapter 4 you met a dropped coin and a flicked coin landing at the same moment; a satellite is the flicked coin, flicked hard enough to miss the whole world.

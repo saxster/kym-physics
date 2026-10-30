@@ -95,6 +95,7 @@
     - {book: "Physics", section: "14.4 Sound Interference and Resonance", url: "https://openstax.org/books/physics/pages/14-4-sound-interference-and-resonance", took: "closed pipe: odd multiples only; overtone mix gives instruments their character"}
     - {book: "College Physics 2e", section: "Ch 17 Conceptual Questions", url: "https://openstax.org/books/college-physics-2e/pages/17-conceptual-questions", took: "Q9 (open vs closed pipe, lower note) for the check; Q10 (overtone vs harmonic)"}
   research:
+    - {what: "Narrow-necked bottle mechanism: neck air as moving mass, enclosed air as spring; adding water raises pitch through reduced cavity volume; distinguished from straight-pipe modes", source: "UNSW Physics, Helmholtz resonance; checked 2026-10-30", url: "https://phys.unsw.edu.au/jw/Helmholtz.html"}
     - {what: "computed: closed 30 cm tube at 30 °C: 290.6, 872, 1453 Hz; open: 581.2 Hz; octave = 2× frequency ↔ 4× tension (square root read off Vincenzo's finding)", source: "python3 -I, 2026-10-28", url: ""}
     - {what: "UNSOURCED MODEL for the gate: the ideal circular-membrane mode ratios 1 : 1.593 : 2.136 : 2.295 : 2.653 (zeros of Bessel functions, computed by series + bisection in python3 -I). Standard physics, but in neither grounding source; the qualitative claim (drum overtones are not whole-number multiples) rests on Raman & Kumar 1920", source: "python3 -I, 2026-10-28", url: ""}
   history:

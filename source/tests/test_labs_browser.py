@@ -59,10 +59,30 @@ FALLBACK = """const originalContext=HTMLCanvasElement.prototype.getContext;
 HTMLCanvasElement.prototype.getContext=function(t,...a){return /webgl/.test(t)?null:originalContext.call(this,t,...a);};"""
 
 
-def diagram_painted(canvas):
-    return canvas.evaluate("""cv=>{const c=cv.getContext('2d'),d=c.getImageData(0,0,cv.width,cv.height).data;
+DOM_CALCULATIONS = {'m-rain', 'm-rocket', 'm-kepler', 'm-pressure', 'm-stevin', 'w10-delay'}
+
+
+def diagram_painted(canvas, timeout_ms=1500):
+    # These six calculations intentionally contain text only. The annotation layer
+    # moves that text into readable DOM spans, leaving a uniform canvas background.
+    # Every other lesson must still paint raster marks; labels cannot mask a lost plot.
+    probe = """(cv, textOnly)=>{const c=cv.getContext('2d'),d=c.getImageData(0,0,cv.width,cv.height).data;
     let n=0;for(let i=0;i<d.length;i+=16)if(d[i+3]&&Math.abs(d[i]-d[0])+Math.abs(d[i+1]-d[1])+Math.abs(d[i+2]-d[2])>45)n++;
-    return n>25;}""")
+    if(n>25)return true;
+    if(!textOnly.includes(cv.closest('.live-stage')?.dataset.lesson))return false;
+    const surface=cv.closest('.lab-diagram-surface');
+    const labels=[...(surface?.querySelectorAll('.lab-diagram-label')||[])].filter(e=>
+      !e.hidden&&e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden'&&
+      (!e.checkVisibility||e.checkVisibility())&&e.textContent.trim());
+    return labels.length>=3&&labels.filter(e=>/\\d/.test(e.textContent)).length>=2&&
+      labels.every(e=>!/(?:NaN|undefined)/.test(e.textContent));}"""
+    deadline = time.monotonic() + timeout_ms / 1000
+    while True:
+        if canvas.evaluate(probe, sorted(DOM_CALCULATIONS)):
+            return True
+        if time.monotonic() >= deadline:
+            return False
+        canvas.page.wait_for_timeout(25)
 
 
 def snapshot(figure, path):

@@ -1,5 +1,15 @@
 /* ------------------------------------------------------------------ the cover's chapter tiles, made tappable */
 header.cover figure { position: relative; }
+.cover .begin { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.cover .begin a.begin-read { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+.cover .cover-welcome, .cover .cover-letter { font: .95rem/1.6 var(--sans); max-width: 36rem; }
+.cover .cover-welcome { margin: 1rem 0 0; }
+.cover .cover-letter { margin: .5rem 0 0; }
+.cover-chapters { width: 100%; max-width: 50rem; }
+.cover-chapters > summary { font: 600 1rem/1.5 var(--sans); min-height: 44px; padding: .6rem 0; cursor: pointer; border-top: 1px solid var(--rule); }
+.cover-chapters[open] > summary { margin-bottom: 1rem; }
+.cover .begin a:focus-visible, .cover-chapters > summary:focus-visible { outline: 3px solid var(--electron); outline-offset: 4px; }
+@media print { .cover-chapters > figure { display: block !important; } }
 .cover-live g.el { cursor: pointer; outline: none; }
 .cover-live g.el > rect { transition: transform .15s ease, stroke-width .15s ease; transform-box: fill-box; transform-origin: center; }
 .cover-live g.el:hover > rect, .cover-live g.el:focus-visible > rect, .cover-live g.el.cv-sel > rect {

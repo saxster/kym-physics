@@ -10,6 +10,7 @@ export function activity(stage,api,lesson){
  const store=window.App?.store,key='investigation:'+lesson.id,spec=lesson.observations;
  let record=normaliseRecord(store?.get(key,null)),predict=null,modelNote='';
  const panel=el('section','inv-activity'),quick=el('details','inv-quick'),long=el('details','inv-long');
+ const back=el('a','inv-back','← Everyday investigations');back.href='#investigations';
  quick.open=true;quick.append(el('summary','', 'Try a short encounter'),el('p','',lesson.encounter));
  const setup=el('p','inv-meta',`Allow about ${lesson.minutes} minutes, plus ${lesson.preparation} minute${lesson.preparation===1?'':'s'} to prepare. These are planning estimates; take your time.`);
  long.append(el('summary','','Make an investigation'),setup,el('p','',lesson.materials));
@@ -89,7 +90,7 @@ export function activity(stage,api,lesson){
  const home=el('a','','Back to everyday investigations');home.href='#investigations';links.append(home);
  const sources=el('details','inv-sources');sources.append(el('summary','','Sources for this investigation'));
  const ul=el('ul');lesson.sources.forEach((url,i)=>{const li=el('li'),a=el('a','',`Physics source ${i+1}`);a.href=url;a.target='_blank';a.rel='noopener';li.append(a);ul.append(li);});sources.append(ul);
- panel.append(quick,long,theory,challenge,links,sources);
+ panel.append(back,quick,long,theory,challenge,links,sources);
  stage.querySelector('.lab-prediction').after(panel);
  renderRows();redraw();api.loop(()=>redraw());
  // Put extended work after the model, while keeping the encounter before it.

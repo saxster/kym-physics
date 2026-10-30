@@ -66,7 +66,7 @@ Harder gives a bigger vibration, and a bigger vibration is louder, not higher. P
 :::
 
 :::home Notes from a bottle, and a string cut in half
-Blow gently across the top of an empty glass bottle until it toots. Pour in some water and blow again: the note is higher, because the column of air that vibrates is shorter. More water, higher still. If there is a guitar or any stringed instrument at home, try this too: pluck a string, then pluck it again while touching it very lightly at its exact middle with a fingertip. The note jumps an octave higher and sounds thinner. Your finger has held the middle still, so the string can only vibrate in halves, and you are hearing the second rung of its ladder on its own.
+Blow gently across the top of an empty glass bottle until it toots. Pour in some water and blow again: the note is higher. The air in the neck moves against the springiness of the air inside, and less enclosed air makes a stiffer spring. More water, higher still. If there is a guitar or any stringed instrument at home, try this too: pluck a string, then pluck it again while touching it very lightly at its exact middle with a fingertip. The note jumps an octave higher and sounds thinner. Your finger has held the middle still, so the string can only vibrate in halves, and you are hearing the second rung of its ladder on its own.
 :::
 
 In Chapter 9, Section 9.5 separates loud from high, and Section 9.6 builds the ladder of harmonics rung by rung and lets you hear the difference between a string's ladder and a drum's. Raman returns in Chapter 11, on the deck of a ship, asking why the sea is blue.

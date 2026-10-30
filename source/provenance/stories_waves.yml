@@ -164,6 +164,7 @@
       url: "https://openstax.org/books/college-physics-2e/pages/25-conceptual-questions"
       took: "the careful box and the storm home experiment"
   research:
+    - {what: "Indoor lightning safety; no storm-window activity", source: "US National Weather Service, Lightning indoors; checked 2026-10-30", url: "https://www.weather.gov/safety/lightning-indoors"}
     - source: "BIPM, CGPM 1983 Resolution 1 (the metre defined from c); NIST CODATA c = 299 792 458 m/s exact"
       url: "https://www.bipm.org/en/committees/cg/cgpm/17-1983/resolution-1"
       what: "c fixed by definition since 1983"

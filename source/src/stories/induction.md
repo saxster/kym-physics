@@ -65,7 +65,7 @@ They convert it. Something has to turn the coil, and the electrical energy that 
 :::
 
 :::home A magnet that falls slowly
-Ask an adult for a strong magnet (the kind sold as a neodymium disc) and a length of copper or aluminium pipe from a hardware shop, wider than the magnet. Drop a steel nut down the pipe: it clatters out at once. Drop the magnet: it drifts down, visibly slower, braked by the currents its moving field induces in the pipe. Nothing in this is electrical, but strong magnets pinch fingers, wipe cards and must be kept away from small children.
+Ask an adult for a strong magnet (the kind sold as a neodymium disc) and a length of copper or aluminium pipe from a hardware shop, wider than the magnet. Drop a steel nut down the pipe: it clatters out at once. Drop the magnet: it drifts down, visibly slower, braked by the currents its moving field induces in the pipe. No battery supplies those currents: the energy comes from the magnet falling. Strong magnets pinch fingers, can damage cards and must be kept away from small children.
 :::
 
 In Chapter 13 you will push a magnet into a coil and watch a meter, then follow the electricity from the Ghats to your flat; Chapter 12 explains why that 230 volts must never be part of any experiment.

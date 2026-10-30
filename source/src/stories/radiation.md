@@ -6,7 +6,7 @@ sort: 1896
 people: Henri Becquerel
 group: atoms
 terms: radiation, ionising radiation, ionizing radiation, radioactive, radioactivity, contamination, half-life
-blurb: Most students think a chest X-ray leaves you radioactive. It does not, and the difference between being hit by radiation and carrying radioactive dust is the whole of radiation safety.
+blurb: Most students think a chest X-ray leaves you radioactive. It does not, and the difference between exposure and carrying radioactive material clears up a common fear.
 ---
 
 :::scene A hospital in Mumbai, any afternoon
@@ -31,7 +31,7 @@ The top of the ladder has a second source besides hot things and X-ray tubes. In
 
 #### Step 3: being hit is not the same as carrying
 
-Here is the heart of it. When an X-ray or a gamma ray passes through you, it may break a few molecules on the way, and then it is gone. It does not stay in you, and it does not make your atoms unstable. X-rays, gamma rays and electron beams induce no nuclear reactions in what they pass through, which is why food irradiated with them to kill bacteria is not radioactive afterwards. The United States' public-health agency, the CDC, puts it plainly: a person exposed to radiation is not necessarily contaminated with radioactive material. When a person has an X-ray, he or she is exposed to radiation but is not contaminated.
+Here is the heart of it. A diagnostic X-ray exposes the patient to a beam without leaving radioactive material in the body. The CDC distinguishes that exposure from contamination. Food treated with approved irradiation methods does not become radioactive either; the permitted kinds and energies are chosen for that purpose. These examples do not mean that every kind of radiation at every energy behaves the same way. Exposure can still harm tissue while it happens, which is why the amount and purpose of the beam matter.
 
 Contamination is a different thing. It means radioactive *material*, dust or liquid whose own nuclei are unstable, on your skin, hair or clothes, or breathed in or swallowed. That material keeps emitting wherever it is, and it can be carried from place to place, washed off, or passed on. The X-rayed girl has been *exposed*; she carries nothing, so she can hug anyone she likes. A worker who gets radioactive dust on his sleeve is *contaminated*; the dust is the problem, and taking off the sleeve removes most of it.
 
@@ -54,7 +54,7 @@ You are being hit by ionising radiation now. Cosmic rays from space give the ave
 :::careful
 > "Anything that has been near radiation becomes radioactive."
 
-Being hit by X-rays, gamma rays or light leaves nothing behind in you. Only radioactive *material*, on you or inside you, makes you a source, and that is contamination, not exposure. The one exception, neutrons, is the reason the rule is stated carefully.
+A diagnostic X-ray does not leave radioactive material in you. Radioactive *material* on you or inside you is contamination and keeps emitting. Some other exposures, such as neutron irradiation, can change nuclei themselves. The true rule depends on the kind and energy of radiation; exposure and contamination are different questions.
 :::
 
 :::careful

@@ -71,7 +71,7 @@ Air never holds a feather *up*; on Earth it slows the feather down. On the Moon 
 :::
 
 :::home One clink
-Hold a ₹1 coin and a ₹5 coin side by side at the same height over a steel thali and let go together. Listen for one clink, not two. Then drop a flat sheet of A4 paper beside a sheet crumpled into a tight ball. Then crumple two sheets together into one ball and race it against a single-sheet ball: twice the weight, nearly the same size. Which races are decided by weight, and which by air? Try the coins again from a chair, with an adult steadying it, and listen harder.
+Hold a ₹1 coin and a ₹5 coin side by side at the same height over a steel thali and let go together. Listen for one clink, not two. Then drop a flat sheet of A4 paper beside a sheet crumpled into a tight ball. Then crumple two sheets together into one ball and race it against a single-sheet ball: twice the weight, nearly the same size. Which races are decided by weight, and which by air? Keep both feet on the floor and keep the coin drops low over the thali. Repeat, or film the release in slow motion, to see how closely you can let go together.
 :::
 
 In Chapter 4 you drop things for yourself, time a one-metre fall with your phone, and meet the raindrops of the monsoon. Chapter 5 explains why the Earth's pull is in proportion to mass, and that is where the single thud finally comes from.

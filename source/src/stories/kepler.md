@@ -81,4 +81,4 @@ It is not. It sits at one of the two foci, the pins. The centre of the ellipse i
 Push two drawing pins into the flap of a cardboard box, 2 cm apart. Make a loop of thread about 22 cm round, hook it over both pins, pull it tight with a pencil and draw all the way round, keeping the thread taut. You have drawn Mars's orbit to scale: an ellipse so round that its far ends are only about half a millimetre short of a circle. Now move the pins 8 cm apart, keep the same loop, and draw again; that is the squashed shape the textbook pictures show. Finally put both pins in the same hole, and the ellipse becomes a circle.
 :::
 
-In Chapter 5 you will meet the ellipse again as the path every satellite and planet must follow, and you will see why Newton's inverse-square pull allows no other shape.
+In Chapter 5 you will meet the ellipse again: it is the bound orbit predicted by Newton's inverse-square pull when only two bodies interact. Faster, escaping objects can follow open paths instead.

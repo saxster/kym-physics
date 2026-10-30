@@ -1,8 +1,14 @@
 ## How this book works
 
-This book is one long adventure. It follows people across two and a half thousand years, from a Greek philosopher who was sure that a moving thing needs a mover, to an engineer dropping lead balls from a church tower in Delft, to a man in a shed in London weighing the whole Earth, to scientists in Calcutta, Bombay and Bengaluru working out what light is and how stars die. Each of them was trying to answer a question you will ask too: why do things move the way they do, and how do we know?
+Pick one puzzle, make a guess, then see what happens. You can begin with [an everyday investigation](#investigations) or [the first chapter](#ch0). You do not need to learn the controls or gather equipment before you start.
 
-There are four volumes and sixteen chapters, numbered from 0 because Chapter 0 is the warm-up. Each chapter opens with a puzzle, follows the people who cracked it, and then explains the idea plainly, one numbered section at a time. You can read straight through, or jump to anything that makes you curious.
+Read one numbered section at a time. Try a picture that interests you; leave the optional **Understand it** reviews and **At school** notes for when you want another explanation or school wording. You can think your answers instead of writing them. Your notebook is there if you want to keep a thought.
+
+The sixteen chapters follow real people trying to understand the world. Chapter 0 is the warm-up. You can follow their adventure in order, or jump to a question that makes you curious. Your place is saved in this browser; the next visit offers **Continue where you left off**.
+
+:::raw
+<details class="howto-reference"><summary>A guide to the boxes, links and reading tools</summary>
+:::
 
 As you read, you will meet a few kinds of boxes. Each one has one job.
 
@@ -16,9 +22,9 @@ As you read, you will meet a few kinds of boxes. Each one has one job.
 <dt>Careful</dt><dd>A tempting idea that is wrong, and why it is wrong. Most of these are ideas that many clever people have had, so if you have had them too, you are in good company.</dd>
 <dt>Understand it</dt><dd>Knowing the name of something is not the same as understanding it. Every major idea gets unpacked into five plain questions (what it is, why it is called that, what problem it solved, why it works, and how it helps), plus folded go-deeper notes and a space to explain it back in your own words.</dd>
 <dt>Try it</dt><dd>Something to predict, sketch or work out.</dd>
-<dt>Try it at home</dt><dd>A real experiment with things from the kitchen, a torch or your phone. Everything in these boxes is safe to do, but ask an adult first, and never use mains electricity.</dd>
+<dt>Try it at home</dt><dd>A real experiment with things from the kitchen, a torch or your phone. Read the instructions with an adult first, use only the suggested household materials, and stop if anything feels unsafe. Never use mains electricity.</dd>
 <dt>Watch and play</dt><dd>Many pictures come alive: a button under them starts an animation, a sound, or a 3D model you can turn with your finger. Some can use your phone's microphone or motion sensor, but only if you say yes, and nothing you record ever leaves your phone. They only move when you ask.</dd>
-<dt>At school</dt><dd>A sentence on how your school book or exam might say the same thing in different words.</dd>
+<dt>At school</dt><dd>Optional wording for your school book or exam. Open it when you need that connection.</dd>
 <dt>Check yourself</dt><dd>One question at the end of a section. Tap or click to open the answer and the reasoning right below, and test yourself again later at the back of the book.</dd>
 <dt>Back from Chapter N</dt><dd>An old wrong idea, returning in a new place. Wrong ideas have a habit of creeping back, so the book checks on them.</dd>
 <dt>Case file</dt><dd>A mystery at the end of each chapter. You get the clues; you work out what is going on. The solution is hidden until you ask for it.</dd>
@@ -28,3 +34,7 @@ As you read, you will meet a few kinds of boxes. Each one has one job.
 Four explorers sit at the front of the book, for things you will want to come back to: <a href="#explore-scale">Powers of Ten</a> (from a proton to a galaxy), <a href="#explore-sky">The Sky</a> (the Sun, Earth and Moon, seen from space or from a Mumbai rooftop), <a href="#explore-spectrum">The Ladder of Light</a> (every kind of light, from radio to X-rays) and <a href="#explore-map">the adventure map</a>.
 
 Numbers in this book are real measured values unless the text says they are made up for a model. A few reading habits help: 10⁶ means a million (1 followed by six zeros), and 10⁻⁶ means one millionth. m/s means metres per second. m/s² means metres per second, every second. A newton (N) is about the weight of a small apple.
+
+:::raw
+</details>
+:::

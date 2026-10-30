@@ -62,7 +62,7 @@ Every ant on the ruler thought the same, and each was equally right and equally 
 :::
 
 :::home A universe on a balloon
-Draw a dozen dots on a balloon with a marker, and one short wavy line. Blow it up slowly. Every dot moves away from every other dot, and the dots farthest apart separate fastest, while each dot itself stays small. The wavy line stretches as the rubber does: that is the redshift. Pick any dot and call it home; the view is the same from all of them. The balloon has a centre, inside it, where there is no rubber at all; the universe does not have even that.
+With an adult, draw a dozen dots on a balloon and one short wavy line. Inflate it slowly and compare the gaps. Farther-apart dots separate more; pick any dot as home and you find the same pattern. The wavy line stretches too, modelling redshift. Notice where the model fails: ink dots stretch with the rubber, while gravity keeps galaxies from simply expanding with space. The balloon also has a centre inside it; our universe does not need that extra place in the picture.
 :::
 
 In Chapter 15 this is the last section of the book, where Leavitt's tape, Saha's thermometer and Hubble's redshifts come together to ask how old everything is. The Doppler effect you start from is in the story *Horn players on a train*.

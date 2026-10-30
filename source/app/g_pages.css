@@ -28,3 +28,14 @@ html.paged [data-page-off] { display: none !important; }
 
 /* The stories page is an index: each story is read in the story panel, so the long articles stay tucked away. */
 html.paged #stories > article.story { display: none; }
+
+.toc-sections { grid-column: 2; }
+.toc-sections > summary { cursor: pointer; font: .85rem/1.5 var(--sans); padding: .5rem 0; min-height: 44px; }
+.toc-sections > summary:focus-visible { outline: 3px solid var(--electron); outline-offset: 3px; }
+.reader-pause { border-top: 1px solid var(--rule); margin-top: 2rem; padding-top: .75rem; font: .9rem/1.6 var(--sans); }
+.reader-pause p { margin: .4rem 0; }
+html.paged .backmatter > :not([data-page-off]) > section { padding-top: 5rem; }
+.howto-reference > summary { cursor: pointer; min-height: 44px; font: 600 1rem/1.5 var(--sans); padding: .75rem 0; }
+@media print { .howto-reference > :not(summary) { display: block !important; } }
+@media print { details::details-content { content-visibility: visible !important; } }
+@media print { .toc-sections > .tsec { display: grid !important; } .reader-pause { display: none; } }

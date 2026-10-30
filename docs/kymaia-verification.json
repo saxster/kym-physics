@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30",
+  "audience": "Kymaia, 12, Mumbai",
+  "site": "https://saxster.github.io/kym-physics/",
+  "cache": "mw-890a5f44d7be",
+  "indexSha256": "8c81acf79cc01702d751c3d84c57400f92140fd6238d09481039bd5e4e2bda1a",
+  "indexBytes": 3984873,
+  "indexBudgetBytes": 4194304,
+  "precacheFiles": 76,
+  "localChecks": {
+    "nodeTestFiles": 19,
+    "catalogTests": 4,
+    "buildIntegrityTests": 3,
+    "readerLayouts": 15,
+    "readerSurfaces": [
+      "cover",
+      "investigation directory"
+    ],
+    "lessonSmokeCases": 252,
+    "lessons": 126,
+    "textOnlyCalculationReruns": 12,
+    "originalLiveFigures": 36,
+    "explorers": 4,
+    "investigationJourney": "PASS",
+    "originalIntegration": "PASS",
+    "readaloudOptionalContent": "PASS",
+    "voiceDownloadChoice": "PASS",
+    "offlineLocal": "PASS",
+    "sourceDiff": "PASS"
+  },
+  "reviewReports": [
+    "kymaia-reader-first-half.md",
+    "kymaia-reader-second-half.md",
+    "kymaia-independent-review.md",
+    "kymaia-app-code-review.md"
+  ],
+  "liveVerification": "pending publication",
+  "screenshots": [
+    "kymaia-review/01-opening-before.jpg",
+    "kymaia-review/02-opening-after.png",
+    "kymaia-review/03-first-puzzle.png"
+  ],
+  "limits": [
+    "No physical household or sensor trial",
+    "No actual learner-comprehension trial",
+    "Synthetic speech output checks selection, not voice quality",
+    "Whole-story scan is not a new fact-check of every unchanged historical statement"
+  ]
+}

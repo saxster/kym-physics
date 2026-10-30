@@ -54,7 +54,7 @@ She was doubted, and told to call her result spurious, which was wrong of her el
 :::
 
 :::home A spectroscope from a CD
-Hold an old CD or DVD at a slant so that it reflects a street lamp into your eye, and tilt it until the light spreads into a rainbow. A yellow sodium street lamp gives a few sharp coloured bands; a white LED gives a smooth rainbow. The sharp bands are the lamp's fingerprint, the same idea Fraunhofer and Kirchhoff used on the Sun. Never try this with the Sun itself, directly or in a reflection.
+Hold an old CD or DVD at a slant so that it reflects a street lamp into your eye, and tilt it until the light spreads into a rainbow. Compare the light from two different lamps and sketch the bands, bright regions and gaps you actually see. Their patterns can differ; do not expect a white LED to make a perfectly smooth rainbow. A lamp’s spectrum is a fingerprint of its light, the same idea Fraunhofer and Kirchhoff used on the Sun. Never try this with the Sun itself, directly or in a reflection.
 :::
 
 In Chapter 15 you will meet the fingerprints again and ask what the Sun's 73 per cent hydrogen is for; Chapter 11 is where the prism first splits white light into the rainbow these lines are drawn on.
