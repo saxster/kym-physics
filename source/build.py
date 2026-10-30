@@ -530,6 +530,8 @@ class Builder:
                 f'<div class="intro">{intro}</div>'
                 + (f'<aside class="exam-chapter-link"><a href="{"#exam-prep" if ch.n == 1 else f"exams/ch{ch.n:02d}.html#exam-prep"}">Prepare for my exam · {"motion questions and revision" if ch.n == 1 else "chapter questions and revision"}</a><p>Keep reading the story, or return here when you want to practise.</p></aside>'
                    if any(c['chapter'] == ch.n for c in getattr(self, 'exam_catalogs', [])) else '')
+                + (f'<aside class="exam-chapter-link spread-chapter-link"><a href="spreads/ch{ch.n:02d}.html">Explore this chapter in 3D · one moving figure you can take apart</a><p>Point at anything to stop time; click it to see what it is made of.</p></aside>'
+                   if ch.n in getattr(self, 'spreads', ()) else '')
                 + f'{"".join(secs)}'
                 f'<p class="fin" aria-hidden="true"><i></i><i></i><i></i></p>{chapter_credits(ch, ledger)}</div></article>')
 
@@ -928,6 +930,7 @@ def build_chunks(site_dir, widget_names):
     os.makedirs(live_out)
     entries = {f'w_{n}': os.path.join(ROOT, 'live', f'w_{n}.js') for n in widget_names}
     entries.update({os.path.splitext(os.path.basename(p))[0]: p for p in sorted(glob.glob(os.path.join(ROOT, 'app', 'x_*.js')))})
+    entries.update({f'spread_{k}': p for k, p in spread_entries().items()})
     tmp = os.path.join(ROOT, 'build', '.chunks')
     os.makedirs(tmp, exist_ok=True)
     if any(imports_three(p) for p in entries.values()):
@@ -999,6 +1002,74 @@ SITE_HEAD = (
     '<script>if("serviceWorker" in navigator && (location.protocol==="https:"||/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname))){{'
     'addEventListener("load",function(){{navigator.serviceWorker.register("sw.js").catch(function(){{}});}});}}</script>')
 
+def spread_entries():
+    """Companion spreads (spreads/chNN/main.js): the chapter as one moving figure you can take apart. Website only."""
+    return {os.path.basename(os.path.dirname(p)): p for p in sorted(glob.glob(os.path.join(ROOT, 'spreads', 'ch[0-9][0-9]', 'main.js')))}
+
+
+SPREAD_BODY = '''<body class="book-body">
+  <header class="topbar">
+    <a href="../index.html#ch{n}" class="brand">The Moving World</a>
+    <span class="crumb">Chapter {n} · {title}</span>
+    <nav class="dots" id="dots" aria-label="Pages"></nav>
+  </header>
+  <div class="scroll-space" id="space"></div>
+  <main class="book" id="book">
+    <section class="page left" id="left" aria-live="polite">
+      <article class="sheet" id="sheet"><noscript><p class="noscript">This page is a moving 3D figure and needs JavaScript and WebGL. <a href="../index.html#ch{n}">Chapter {n}</a> has the same ideas with still drawings.</p></noscript></article>
+      <article class="plate" id="plate" hidden></article>
+      <footer class="folio"><span>{title}</span><span id="folio">1</span></footer>
+    </section>
+    <section class="page right" id="right">
+      <div class="figure">
+        <canvas id="gl" role="img" aria-label="An interactive figure."></canvas>
+        <div id="labels" aria-hidden="true"></div>
+        <div class="corner tl" id="figno">Fig. {n}</div>
+        <div class="corner tr" id="figtitle"></div>
+        <div class="corner bl" id="hint">Drag to turn · click to take it apart</div>
+        <div class="corner br readout" id="readout" aria-hidden="true"></div>
+      </div>
+    </section>
+    <div class="leaf" id="leaf" aria-hidden="true">
+      <div class="leaf-front"><span id="leafnext"></span></div>
+      <div class="leaf-back"><article class="sheet" id="leafsheet"></article></div>
+    </div>
+    <div class="spine" aria-hidden="true"></div>
+  </main>
+  <p class="scroll-cue" id="cue">Scroll to turn the page</p>
+  <script type="module" src="../{chunk}"></script>
+</body>
+</html>'''
+
+
+def write_spread_pages(main_page, chunks, chapters, site_dir):
+    """spreads/chNN.html: its own small head (theme tokens, the book's fonts, the spread's CSS) and one module."""
+    titles = {f'ch{c.n:02d}': (c.n, plain(c.title)) for c in chapters}
+    book_css = open(os.path.join(ROOT, 'book.css'), encoding='utf-8').read()
+    tokens = book_css.split('/* ------------------------------------------------------------------ base */', 1)[0]
+    sepia = re.search(r':root\[data-theme="sepia"\] \{[^}]*\}', open(os.path.join(ROOT, 'app', 'a_toolbar.css'), encoding='utf-8').read()).group(0)
+    fonts = ''.join(re.findall(r'@font-face\{[^}]*\}', main_page)).replace('url(assets/', 'url(../assets/')
+    css = compact_css(tokens + sepia + open(os.path.join(ROOT, 'spread', 'spread.css'), encoding='utf-8').read())
+    # the reader's theme and Still mode, before first paint (app/m_settings.js keeps them under mw:settings)
+    boot = ('<script>try{var s=JSON.parse(localStorage.getItem("mw:settings"))||{};var t=s.theme||"sepia";'
+            'if(t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","sepia");}</script>')
+    sw = '<script>if("serviceWorker" in navigator&&(location.protocol==="https:"||/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)))navigator.serviceWorker.register("../sw.js").catch(function(){});</script>'
+    folder = os.path.join(site_dir, 'spreads'); os.makedirs(folder, exist_ok=True)
+    sizes = []
+    for key in spread_entries():
+        chunk = chunks.get(f'spread_{key}')
+        if not chunk or key not in titles:
+            continue
+        n, title = titles[key]
+        doc = (f'<!doctype html>\n<html lang="en-GB">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+               f'<title>{html.escape(title)} · explore in 3D · {TITLE}</title>\n<link rel="icon" href="data:image/svg+xml,{FAVICON}">\n'
+               f'{boot}<style>{fonts}{css}</style>{sw}\n</head>\n'
+               + SPREAD_BODY.format(n=n, title=html.escape(title), chunk=chunk))
+        rel = f'spreads/{key}.html'; Path(os.path.join(site_dir, rel)).write_text(doc, encoding='utf-8')
+        sizes.append((rel, len(doc.encode()), 'spread'))
+    return sizes
+
+
 BUDGET_INDEX = 4 * 1024 * 1024
 BUDGET_CHUNK = 150 * 1024
 
@@ -1042,7 +1113,7 @@ def report_sizes(index, sizes):
     if isz > BUDGET_INDEX:
         over.append('index.html')
     for f, n, kind in sizes:
-        bad = (n > BUDGET_INDEX) if kind == 'exam' else kind != 'three' and n > BUDGET_CHUNK
+        bad = (n > BUDGET_INDEX) if kind in ('exam', 'spread') else kind != 'three' and n > BUDGET_CHUNK
         print(f'  {f:<34} {kb(n)}  {kind}' + ('   OVER BUDGET' if bad else ''))
         if bad:
             over.append(f)
@@ -1173,6 +1244,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     if len({c['chapter'] for c in b.exam_catalogs}) != len(b.exam_catalogs):
         raise ValueError('Duplicate chapter preparation bank')
     b.exam_catalog = next((c for c in b.exam_catalogs if c['chapter'] == 1), None)
+    b.spreads = {int(k[2:]) for k in spread_entries()} if site_dir else set()
     ledger = Ledger(PROV)
     front = {k: open(os.path.join(SRC, 'front', f'{k}.md'), encoding='utf-8').read()
              for k in ('letter', 'howto', 'ideas', 'models', 'further')
@@ -1370,6 +1442,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     open(out, 'w', encoding='utf-8').write(page)
     if site_dir and b.exam_catalogs:
         sizes.extend(write_exam_pages(page, b.exam_catalogs, site_dir))
+    if site_dir:
+        sizes.extend(write_spread_pages(page, chunks, chapters, site_dir))
     print(f'wrote {out}  ({len(page.encode())/1024:.0f} KB, {len(chapters)} chapters, {len(b.answers)} checks, '
           f'{len(b.predicts)} predictions, {len(b.glossary)} terms, {len(widgets)} live widgets)')
     if pdf:

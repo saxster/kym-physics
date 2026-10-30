@@ -20,6 +20,7 @@ node --test tests/test_*.mjs
 "$reader_python" tests/test_investigations_browser.py
 "$reader_python" tests/test_labs_integration.py --out build/reader-labs-integration
 "$reader_python" tests/test_labs_browser.py --smoke --widths 390,1440 --themes light,sepia,dark --out build/reader-lessons
+"$reader_python" tests/test_spreads_browser.py build/site
 "$reader_python" livetest.py build/site/index.html build/reader-live-figures --wait 300 --offline
 git -C "$project_root" diff --check
 printf '%s\n' 'PASS local reader release checks. No source was pushed or published.'
