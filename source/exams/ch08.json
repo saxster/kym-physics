@@ -1,0 +1,1003 @@
+{
+  "version": 1,
+  "key": "chapter-08",
+  "chapter": 8,
+  "title": "Heat and temperature",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch08-objective-1",
+      "label": "Explain how heating and mechanical work change internal energy.",
+      "teach": "#s8-1",
+      "note": "Trace the direction of energy transfer and distinguish a stored quantity from a transfer process."
+    },
+    {
+      "id": "ch08-objective-2",
+      "label": "Distinguish temperature from internal energy and calculate heating energy.",
+      "teach": "#s8-2",
+      "note": "Compare equal-temperature samples, use E = mcΔT and relate temperature rise to specific heat capacity."
+    },
+    {
+      "id": "ch08-objective-3",
+      "label": "Explain conduction and why equal-temperature materials can feel different.",
+      "teach": "#s8-3",
+      "note": "Connect the rate of energy transfer from skin to conductivity; identify controls in a comparison of rods."
+    },
+    {
+      "id": "ch08-objective-4",
+      "label": "Explain insulation and plan a fair comparison of insulating wraps.",
+      "teach": "#s8-4",
+      "note": "Explain reduced transfer in either direction; distinguish insulation from an energy source such as metabolism."
+    },
+    {
+      "id": "ch08-objective-5",
+      "label": "Explain temperature plateaus and calculate energy for a change of state.",
+      "teach": "#s8-5",
+      "note": "Distinguish melting, boiling and evaporation; use E = mL and explain where energy goes during a plateau."
+    },
+    {
+      "id": "ch08-objective-6",
+      "label": "Explain evaporative cooling and convection using particle and density changes.",
+      "teach": "#s8-6",
+      "note": "Separate the effects of humidity and airflow, identify confounding variables, and connect rising warm air to buoyancy."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch08-card-1",
+      "term": "Heating",
+      "definition": "Energy transfer caused by a temperature difference.",
+      "explanation": "Energy transfer caused by a temperature difference. Internal energy is stored; heating is a transfer process.",
+      "example": "A warm mug transfers energy to cooler surroundings.",
+      "confusion": "Internal energy is stored; heating is a transfer process.",
+      "question": "Explain heating and distinguish it from a common mistaken idea.",
+      "answer": "Energy transfer caused by a temperature difference. Internal energy is stored; heating is a transfer process.",
+      "teach": "#s8-1",
+      "questionId": "ch08-practice-1-2",
+      "cue": "Internal energy is stored; heating is a transfer process."
+    },
+    {
+      "id": "ch08-card-2",
+      "term": "Temperature and internal energy",
+      "definition": "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies.",
+      "explanation": "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies. A hotter object need not contain more internal energy than a much larger cooler object.",
+      "example": "A full warm bath can supply more energy on cooling than a hotter teaspoon.",
+      "confusion": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "question": "Explain temperature and internal energy and distinguish it from a common mistaken idea.",
+      "answer": "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies. A hotter object need not contain more internal energy than a much larger cooler object.",
+      "teach": "#s8-2",
+      "questionId": "ch08-practice-2-2",
+      "cue": "A hotter object need not contain more internal energy than a much larger cooler object."
+    },
+    {
+      "id": "ch08-card-3",
+      "term": "Conduction",
+      "definition": "Energy transfer through matter without bulk transport of the material.",
+      "explanation": "Energy transfer through matter without bulk transport of the material. Feeling colder does not prove a lower initial temperature.",
+      "example": "A metal handle can transfer energy from your hand faster than a wooden one.",
+      "confusion": "Feeling colder does not prove a lower initial temperature.",
+      "question": "Explain conduction and distinguish it from a common mistaken idea.",
+      "answer": "Energy transfer through matter without bulk transport of the material. Feeling colder does not prove a lower initial temperature.",
+      "teach": "#s8-3",
+      "questionId": "ch08-practice-3-2",
+      "cue": "Feeling colder does not prove a lower initial temperature."
+    },
+    {
+      "id": "ch08-card-4",
+      "term": "Insulation",
+      "definition": "Reducing the rate of energy transfer between a system and its surroundings.",
+      "explanation": "Reducing the rate of energy transfer between a system and its surroundings. Insulation does not supply energy or stop every transfer indefinitely.",
+      "example": "Trapped air in a jacket slows energy loss.",
+      "confusion": "Insulation does not supply energy or stop every transfer indefinitely.",
+      "question": "Explain insulation and distinguish it from a common mistaken idea.",
+      "answer": "Reducing the rate of energy transfer between a system and its surroundings. Insulation does not supply energy or stop every transfer indefinitely.",
+      "teach": "#s8-4",
+      "questionId": "ch08-practice-4-2",
+      "cue": "Insulation does not supply energy or stop every transfer indefinitely."
+    },
+    {
+      "id": "ch08-card-5",
+      "term": "Latent heat",
+      "definition": "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure.",
+      "explanation": "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure. A temperature plateau does not mean that no energy is being transferred.",
+      "example": "Melting ice can absorb energy while remaining near 0 °C.",
+      "confusion": "A temperature plateau does not mean that no energy is being transferred.",
+      "question": "Explain latent heat and distinguish it from a common mistaken idea.",
+      "answer": "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure. A temperature plateau does not mean that no energy is being transferred.",
+      "teach": "#s8-5",
+      "questionId": "ch08-practice-5-2",
+      "cue": "A temperature plateau does not mean that no energy is being transferred."
+    },
+    {
+      "id": "ch08-card-6",
+      "term": "Evaporation and convection",
+      "definition": "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement.",
+      "explanation": "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement. Wind alone and evaporation have different cooling mechanisms.",
+      "example": "Water seeping through a porous matka can evaporate from its outside.",
+      "confusion": "Wind alone and evaporation have different cooling mechanisms.",
+      "question": "Explain evaporation and convection and distinguish it from a common mistaken idea.",
+      "answer": "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement. Wind alone and evaporation have different cooling mechanisms.",
+      "teach": "#s8-6",
+      "questionId": "ch08-practice-6-2",
+      "cue": "Wind alone and evaporation have different cooling mechanisms."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "A metal paddle stirs insulated water. Its temperature rises without a hotter object touching it. Explain how this is possible."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Describe how to test whether airflow affects evaporation, using room-temperature water only."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "A model water sample has mass 0.25 kg and specific heat capacity 4200 J/(kg·°C). Calculate the energy for an 8 °C rise, with no losses or change of state."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A supplied matka comparison records mass lost in 10 minutes. Dry moving air: 8 g; humid still air: 2 g. Explain what this suggests and why it does not isolate humidity alone."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch08-recall",
+      "title": "Heating · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch08-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by heating.",
+      "marks": 1,
+      "points": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "model": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Internal energy is stored; heating is a transfer process.",
+      "hints": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "teach": "#s8-1"
+    },
+    {
+      "id": "ch08-worked",
+      "title": "Temperature and internal energy · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch08-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A model water sample has mass 0.25 kg and specific heat capacity 4200 J/(kg·°C). Calculate the energy for an 8 °C rise, with no losses or change of state.",
+      "marks": 2,
+      "points": [
+        "E = mcΔT.",
+        "E = 0.25 × 4200 × 8 = 8400 J."
+      ],
+      "model": [
+        "E = mcΔT.",
+        "E = 0.25 × 4200 × 8 = 8400 J."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "hints": [
+        "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies."
+      ],
+      "teach": "#s8-2",
+      "numeric": {
+        "value": 8400,
+        "unit": "J",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch08-guided",
+      "title": "Latent heat · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch08-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A model solid of mass 0.08 kg melts at constant temperature. Its specific latent heat is 200000 J/kg. Calculate the energy supplied.",
+      "marks": 2,
+      "points": [
+        "E = mL.",
+        "E = 0.08 × 200000 = 16000 J."
+      ],
+      "model": [
+        "E = mL.",
+        "E = 0.08 × 200000 = 16000 J."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A temperature plateau does not mean that no energy is being transferred.",
+      "hints": [
+        "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure."
+      ],
+      "teach": "#s8-5",
+      "numeric": {
+        "value": 16000,
+        "unit": "J",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch08-practice-1-1",
+      "title": "Heating · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A metal paddle stirs insulated water. Its temperature rises without a hotter object touching it. Explain how this is possible.",
+      "marks": 2,
+      "points": [
+        "Mechanical work transfers energy to the water.",
+        "Its internal energy increases, so its temperature can rise."
+      ],
+      "model": [
+        "Mechanical work transfers energy to the water.",
+        "Its internal energy increases, so its temperature can rise."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Internal energy is stored; heating is a transfer process.",
+      "hints": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "teach": "#s8-1"
+    },
+    {
+      "id": "ch08-practice-1-2",
+      "title": "Heating · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch08-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A hot spoon and cooler soup touch. Describe the initial net energy transfer and when it stops.",
+      "marks": 2,
+      "points": [
+        "Energy transfers from the hotter spoon to the cooler soup.",
+        "Net transfer due to the temperature difference stops at thermal equilibrium."
+      ],
+      "model": [
+        "Energy transfers from the hotter spoon to the cooler soup.",
+        "Net transfer due to the temperature difference stops at thermal equilibrium."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Internal energy is stored; heating is a transfer process.",
+      "hints": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "teach": "#s8-1"
+    },
+    {
+      "id": "ch08-practice-2-1",
+      "title": "Temperature and internal energy · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Two samples of the same material in the same physical state have the same temperature, but one has three times the mass. Explain why equal temperature does not imply equal internal energy.",
+      "marks": 2,
+      "points": [
+        "They have similar average microscopic energy per particle at that thermal state.",
+        "The larger sample contains more particles and can have greater total internal energy."
+      ],
+      "model": [
+        "They have similar average microscopic energy per particle at that thermal state.",
+        "The larger sample contains more particles and can have greater total internal energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "hints": [
+        "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies."
+      ],
+      "teach": "#s8-2"
+    },
+    {
+      "id": "ch08-practice-2-2",
+      "title": "Temperature and internal energy · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch08-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A 0.40 kg model sample has specific heat capacity 500 J/(kg·°C). Calculate the energy needed for a 15 °C rise, with no phase change or loss.",
+      "marks": 2,
+      "points": [
+        "Use E = mcΔT.",
+        "E = 0.40 × 500 × 15 = 3000 J."
+      ],
+      "model": [
+        "Use E = mcΔT.",
+        "E = 0.40 × 500 × 15 = 3000 J."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "hints": [
+        "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies."
+      ],
+      "teach": "#s8-2",
+      "numeric": {
+        "value": 3000,
+        "unit": "J",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch08-practice-3-1",
+      "title": "Conduction · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A steel tile and cork tile have been in one room overnight. The steel feels colder. Explain without claiming different initial temperatures.",
+      "marks": 2,
+      "points": [
+        "They can be at the same room temperature.",
+        "Steel conducts energy away from warmer skin more rapidly than cork."
+      ],
+      "model": [
+        "They can be at the same room temperature.",
+        "Steel conducts energy away from warmer skin more rapidly than cork."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Feeling colder does not prove a lower initial temperature.",
+      "hints": [
+        "Energy transfer through matter without bulk transport of the material."
+      ],
+      "teach": "#s8-3"
+    },
+    {
+      "id": "ch08-practice-3-2",
+      "title": "Conduction · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch08-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the handle of a spoon warms when its other end is in warm water, even though the spoon does not flow.",
+      "marks": 2,
+      "points": [
+        "Energy passes through the solid by conduction.",
+        "Microscopic interactions transfer energy along it without bulk movement of the spoon material."
+      ],
+      "model": [
+        "Energy passes through the solid by conduction.",
+        "Microscopic interactions transfer energy along it without bulk movement of the spoon material."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Feeling colder does not prove a lower initial temperature.",
+      "hints": [
+        "Energy transfer through matter without bulk transport of the material."
+      ],
+      "teach": "#s8-3"
+    },
+    {
+      "id": "ch08-practice-4-1",
+      "title": "Insulation · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A cloth jacket is wrapped around a bottle of cool water in a warmer room. Predict its effect and explain.",
+      "marks": 2,
+      "points": [
+        "It slows the bottle’s warming.",
+        "Insulation reduces energy transfer in either direction when there is a temperature difference."
+      ],
+      "model": [
+        "It slows the bottle’s warming.",
+        "Insulation reduces energy transfer in either direction when there is a temperature difference."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Insulation does not supply energy or stop every transfer indefinitely.",
+      "hints": [
+        "Reducing the rate of energy transfer between a system and its surroundings."
+      ],
+      "teach": "#s8-4"
+    },
+    {
+      "id": "ch08-practice-4-2",
+      "title": "Insulation · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch08-objective-4"
+      ],
+      "kind": "investigate",
+      "prompt": "Plan a fair comparison of two wraps using identical closed bottles of warm, not hot, water. Include measurements and a control.",
+      "marks": 3,
+      "points": [
+        "Use equal water masses and starting temperatures in identical bottles.",
+        "Keep wrap thickness or mass and surroundings comparable.",
+        "Measure temperatures after equal times and repeat the comparison."
+      ],
+      "model": [
+        "Use equal water masses and starting temperatures in identical bottles.",
+        "Keep wrap thickness or mass and surroundings comparable.",
+        "Measure temperatures after equal times and repeat the comparison."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Insulation does not supply energy or stop every transfer indefinitely.",
+      "hints": [
+        "Reducing the rate of energy transfer between a system and its surroundings."
+      ],
+      "teach": "#s8-4"
+    },
+    {
+      "id": "ch08-practice-5-1",
+      "title": "Latent heat · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Pure ice and water coexist at the melting point at fixed pressure. Energy is supplied steadily. Explain why temperature can remain constant.",
+      "marks": 2,
+      "points": [
+        "The energy changes the arrangement and separation of particles during melting.",
+        "It increases the relevant potential part of internal energy rather than raising temperature."
+      ],
+      "model": [
+        "The energy changes the arrangement and separation of particles during melting.",
+        "It increases the relevant potential part of internal energy rather than raising temperature."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A temperature plateau does not mean that no energy is being transferred.",
+      "hints": [
+        "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure."
+      ],
+      "teach": "#s8-5"
+    },
+    {
+      "id": "ch08-practice-5-2",
+      "title": "Latent heat · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch08-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why can steam at 100 °C transfer more energy to skin than the same mass of water at 100 °C as both cool? Treat this as a written explanation only.",
+      "marks": 2,
+      "points": [
+        "Steam can first condense, releasing latent energy.",
+        "The resulting water then cools too, so equal starting temperature does not mean equal transferable energy."
+      ],
+      "model": [
+        "Steam can first condense, releasing latent energy.",
+        "The resulting water then cools too, so equal starting temperature does not mean equal transferable energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A temperature plateau does not mean that no energy is being transferred.",
+      "hints": [
+        "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure."
+      ],
+      "teach": "#s8-5"
+    },
+    {
+      "id": "ch08-practice-6-1",
+      "title": "Evaporation and convection · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch08-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a porous water pot cools its contents more effectively in dry moving air than humid still air.",
+      "marks": 2,
+      "points": [
+        "Evaporation takes energy from the water and pot.",
+        "Dry moving air carries vapour away and favours further evaporation."
+      ],
+      "model": [
+        "Evaporation takes energy from the water and pot.",
+        "Dry moving air carries vapour away and favours further evaporation."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Wind alone and evaporation have different cooling mechanisms.",
+      "hints": [
+        "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement."
+      ],
+      "teach": "#s8-6"
+    },
+    {
+      "id": "ch08-practice-6-2",
+      "title": "Evaporation and convection · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch08-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "Describe how to test whether airflow affects evaporation, using room-temperature water only.",
+      "marks": 3,
+      "points": [
+        "Use identical shallow containers with equal water amounts and exposed areas.",
+        "Change airflow while keeping temperature and humidity as similar as possible.",
+        "Compare mass lost over equal times, repeat, and keep electrical fans away from water."
+      ],
+      "model": [
+        "Use identical shallow containers with equal water amounts and exposed areas.",
+        "Change airflow while keeping temperature and humidity as similar as possible.",
+        "Compare mass lost over equal times, repeat, and keep electrical fans away from water."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Wind alone and evaporation have different cooling mechanisms.",
+      "hints": [
+        "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement."
+      ],
+      "teach": "#s8-6"
+    },
+    {
+      "id": "ch08-paper-a-1",
+      "title": "Heating · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A student says that cold flows from an ice pack into an ankle. Explain a better account.",
+      "marks": 2,
+      "points": [
+        "Energy transfers from the warmer ankle to the cooler pack.",
+        "The ankle loses internal energy; cold is not a flowing substance."
+      ],
+      "model": [
+        "Energy transfers from the warmer ankle to the cooler pack.",
+        "The ankle loses internal energy; cold is not a flowing substance."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Internal energy is stored; heating is a transfer process.",
+      "hints": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "teach": "#s8-1"
+    },
+    {
+      "id": "ch08-paper-a-2",
+      "title": "Temperature and internal energy · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "For equal masses receiving equal energy with no losses, material A warms by 4 °C and B by 12 °C. Compare their specific heat capacities.",
+      "marks": 2,
+      "points": [
+        "E = mcΔT, so specific heat capacity is inversely proportional to temperature rise here.",
+        "A has three times B’s specific heat capacity."
+      ],
+      "model": [
+        "E = mcΔT, so specific heat capacity is inversely proportional to temperature rise here.",
+        "A has three times B’s specific heat capacity."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "hints": [
+        "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies."
+      ],
+      "teach": "#s8-2"
+    },
+    {
+      "id": "ch08-paper-a-3",
+      "title": "Conduction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State a variable, other than the material, to control when comparing conduction through two rods. Explain your choice.",
+      "marks": 2,
+      "points": [
+        "Keep rod dimensions or the temperature difference the same.",
+        "These also affect the rate of conduction and would otherwise confound the comparison."
+      ],
+      "model": [
+        "Keep rod dimensions or the temperature difference the same.",
+        "These also affect the rate of conduction and would otherwise confound the comparison."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Feeling colder does not prove a lower initial temperature.",
+      "hints": [
+        "Energy transfer through matter without bulk transport of the material."
+      ],
+      "teach": "#s8-3"
+    },
+    {
+      "id": "ch08-paper-a-4",
+      "title": "Insulation · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a coat helps a person stay warm but cannot make a cold stone warmer than its surroundings on its own.",
+      "marks": 2,
+      "points": [
+        "Metabolism transfers energy from a person’s chemical stores to internal energy, helping maintain body temperature.",
+        "A coat reduces the rate of energy transfer; it does not supply energy that could raise a stone above the surroundings on its own."
+      ],
+      "model": [
+        "Metabolism transfers energy from a person’s chemical stores to internal energy, helping maintain body temperature.",
+        "A coat reduces the rate of energy transfer; it does not supply energy that could raise a stone above the surroundings on its own."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Insulation does not supply energy or stop every transfer indefinitely.",
+      "hints": [
+        "Reducing the rate of energy transfer between a system and its surroundings."
+      ],
+      "teach": "#s8-4"
+    },
+    {
+      "id": "ch08-paper-a-5",
+      "title": "Latent heat · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A model substance needs 24000 J to melt 0.12 kg at its melting point. Calculate its specific latent heat.",
+      "marks": 2,
+      "points": [
+        "Use L = E/m.",
+        "L = 24000/0.12 = 200000 J/kg."
+      ],
+      "model": [
+        "Use L = E/m.",
+        "L = 24000/0.12 = 200000 J/kg."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A temperature plateau does not mean that no energy is being transferred.",
+      "hints": [
+        "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure."
+      ],
+      "teach": "#s8-5",
+      "numeric": {
+        "value": 200000,
+        "unit": "J/kg",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch08-paper-a-6",
+      "title": "Evaporation and convection · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how warming air near a sunlit surface can lead to convection.",
+      "marks": 2,
+      "points": [
+        "The warmed air expands and becomes less dense than nearby cooler air at similar pressure.",
+        "Buoyancy can make it rise while cooler air moves in, producing bulk circulation."
+      ],
+      "model": [
+        "The warmed air expands and becomes less dense than nearby cooler air at similar pressure.",
+        "Buoyancy can make it rise while cooler air moves in, producing bulk circulation."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Wind alone and evaporation have different cooling mechanisms.",
+      "hints": [
+        "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement."
+      ],
+      "teach": "#s8-6"
+    },
+    {
+      "id": "ch08-paper-b-1",
+      "title": "Heating · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two identical samples reach the same final temperature, one by stirring and one by contact with a hot plate. Explain why temperature alone does not reveal the transfer route.",
+      "marks": 2,
+      "points": [
+        "Work and heating can both increase internal energy.",
+        "The same final temperature does not identify which process supplied the energy."
+      ],
+      "model": [
+        "Work and heating can both increase internal energy.",
+        "The same final temperature does not identify which process supplied the energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Internal energy is stored; heating is a transfer process.",
+      "hints": [
+        "Energy transfer caused by a temperature difference."
+      ],
+      "teach": "#s8-1"
+    },
+    {
+      "id": "ch08-paper-b-2",
+      "title": "Temperature and internal energy · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a thermometer does not directly measure all the internal energy of an object.",
+      "marks": 2,
+      "points": [
+        "It measures temperature.",
+        "Total internal energy also depends on the amount and type of material and its state."
+      ],
+      "model": [
+        "It measures temperature.",
+        "Total internal energy also depends on the amount and type of material and its state."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A hotter object need not contain more internal energy than a much larger cooler object.",
+      "hints": [
+        "Temperature describes thermal state; internal energy includes microscopic kinetic and potential energies."
+      ],
+      "teach": "#s8-2"
+    },
+    {
+      "id": "ch08-paper-b-3",
+      "title": "Conduction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A student says that metal creates cold. Explain the error using a metal object warmer than a hand.",
+      "marks": 2,
+      "points": [
+        "Metal conducts energy rapidly; it does not create cold.",
+        "If it is hotter than the hand, energy transfers into the skin and it feels hot."
+      ],
+      "model": [
+        "Metal conducts energy rapidly; it does not create cold.",
+        "If it is hotter than the hand, energy transfers into the skin and it feels hot."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Feeling colder does not prove a lower initial temperature.",
+      "hints": [
+        "Energy transfer through matter without bulk transport of the material."
+      ],
+      "teach": "#s8-3"
+    },
+    {
+      "id": "ch08-paper-b-4",
+      "title": "Insulation · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Why does loose wool often insulate better than a thin solid sheet of the same mass?",
+      "marks": 2,
+      "points": [
+        "It traps pockets of air.",
+        "Air is a poor conductor and restricting bulk air movement also reduces convection."
+      ],
+      "model": [
+        "It traps pockets of air.",
+        "Air is a poor conductor and restricting bulk air movement also reduces convection."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Insulation does not supply energy or stop every transfer indefinitely.",
+      "hints": [
+        "Reducing the rate of energy transfer between a system and its surroundings."
+      ],
+      "teach": "#s8-4"
+    },
+    {
+      "id": "ch08-paper-b-5",
+      "title": "Latent heat · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish boiling from evaporation in terms of where it happens and temperature conditions.",
+      "marks": 2,
+      "points": [
+        "Boiling occurs throughout a liquid at its boiling temperature for the pressure.",
+        "Evaporation occurs at the surface and can happen below that temperature."
+      ],
+      "model": [
+        "Boiling occurs throughout a liquid at its boiling temperature for the pressure.",
+        "Evaporation occurs at the surface and can happen below that temperature."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A temperature plateau does not mean that no energy is being transferred.",
+      "hints": [
+        "Energy transferred during a change of state without a temperature change in an ideal pure substance at fixed pressure."
+      ],
+      "teach": "#s8-5"
+    },
+    {
+      "id": "ch08-paper-b-6",
+      "title": "Evaporation and convection · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch08-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "On a humid day sweat may drip without cooling you effectively. Explain why.",
+      "marks": 2,
+      "points": [
+        "Cooling depends on sweat evaporating and taking energy from skin.",
+        "High humidity reduces evaporation; liquid dripping off does not provide the same latent cooling."
+      ],
+      "model": [
+        "Cooling depends on sweat evaporating and taking energy from skin.",
+        "High humidity reduces evaporation; liquid dripping off does not provide the same latent cooling."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Wind alone and evaporation have different cooling mechanisms.",
+      "hints": [
+        "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement."
+      ],
+      "teach": "#s8-6"
+    },
+    {
+      "id": "ch08-data-review",
+      "title": "Evaporation and convection · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch08-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "A supplied matka comparison records mass lost in 10 minutes. Dry moving air: 8 g; humid still air: 2 g. Explain what this suggests and why it does not isolate humidity alone.",
+      "marks": 2,
+      "points": [
+        "More water evaporated in the dry moving-air condition.",
+        "Both humidity and airflow changed, so this comparison cannot attribute the difference to humidity alone."
+      ],
+      "model": [
+        "More water evaporated in the dry moving-air condition.",
+        "Both humidity and airflow changed, so this comparison cannot attribute the difference to humidity alone."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Wind alone and evaporation have different cooling mechanisms.",
+      "hints": [
+        "Evaporation removes escaping surface particles; convection transfers energy through bulk fluid movement."
+      ],
+      "teach": "#s8-6",
+      "data": {
+        "headers": [
+          "Condition",
+          "Water mass lost (g)"
+        ],
+        "rows": [
+          [
+            "Dry, moving air",
+            8
+          ],
+          [
+            "Humid, still air",
+            2
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch08-paper-a",
+      "title": "Heat and temperature · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch08-paper-a-1",
+        "ch08-paper-a-2",
+        "ch08-paper-a-3",
+        "ch08-paper-a-4",
+        "ch08-paper-a-5",
+        "ch08-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch08-paper-b",
+      "title": "Heat and temperature · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch08-paper-b-1",
+        "ch08-paper-b-2",
+        "ch08-paper-b-3",
+        "ch08-paper-b-4",
+        "ch08-paper-b-5",
+        "ch08-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 8: Heat and temperature",
+      "url": "#ch8"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/resources/mit8_21s09_lec04/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://openstax.org/books/college-physics-2e/pages/14-1-heat"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/physics/pages/11-1-temperature-and-thermal-energy"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity"
+    }
+  ]
+}

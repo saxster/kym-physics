@@ -54,11 +54,20 @@ function buildIndex() {
       text: [l.object, l.question, l.encounter, l.description].filter(Boolean).join(' '),
       target: l.target, lesson: l.id, boost: 15 });
   });
-  ['letter', 'howto', 'ideas', 'investigations', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
+  document.querySelectorAll('#exam-prep .exam-question').forEach(q => {
+    const title = q.querySelector('h4, h5');
+    out.push({ kind: 'Practice', label: 'Exam practice question', title: title?.textContent.trim() || 'Motion practice',
+      text: cleanText(q, '.exam-solution, .exam-response-ui, .exam-marking-ui, .exam-scaffold'), target: q.id, boost: 12 });
+  });
+  document.querySelectorAll('#exam-prep .exam-word').forEach(card => {
+    out.push({ kind: 'Revision', label: 'Motion revision card', title: card.querySelector('h4')?.textContent.trim() || 'Motion word', text: cleanText(card, 'details'), target: card.id });
+  });
+  ['letter', 'howto', 'ideas', 'investigations', 'exam-prep', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
     const s = document.getElementById(id);
     if (!s) return;
     const h = s.querySelector('h2');
-    out.push({ kind: 'Page', label: 'Page', title: h ? h.textContent.trim() : id, text: cleanText(s), target: id });
+    out.push({ kind: 'Page', label: 'Page', title: h ? h.textContent.trim() : id,
+      text: cleanText(s, id === 'exam-prep' ? '.exam-solution, .exam-response-ui, .exam-marking-ui, .exam-scaffold, .exam-word details' : null), target: id });
   });
   out.forEach(e => { e.ft = fold(e.title); e.fx = fold(e.text); });
   return out;
@@ -189,10 +198,11 @@ App.ready(() => {
     const nav = () => {
       const target = document.getElementById(e.target);
       if (!target) return;
+      App.emit('search:target', { id: e.target });
       history.pushState(null, '', '#' + e.target);
       target.scrollIntoView({ behavior: App.reduceMotion() ? 'auto' : 'smooth', block: 'start' });
       highlight(target.closest('section, article') || target, t);
-      const h = target.matches('section, article') ? target.querySelector('h2, h3') : target;
+      const h = target.matches('section, article') ? target.querySelector('h2, h3, h4, h5') : target;
       if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
     };
     if (document.documentElement.classList.contains('sd-open')) { App.closeStory(); setTimeout(nav, 200); } else nav();

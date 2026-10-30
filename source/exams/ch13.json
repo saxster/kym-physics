@@ -1,0 +1,989 @@
+{
+  "version": 1,
+  "key": "chapter-13",
+  "chapter": 13,
+  "title": "Magnetism and electromagnetism",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch13-objective-1",
+      "label": "Distinguish magnetic materials and explain poles and magnetisation.",
+      "teach": "#s13-1",
+      "note": "Avoid treating every metal as ferromagnetic; explain aligned magnetic regions and why cutting a magnet retains paired poles."
+    },
+    {
+      "id": "ch13-objective-2",
+      "label": "Explain compass directions using Earth’s field and local disturbances.",
+      "teach": "#s13-2",
+      "note": "Distinguish geographic north from magnetic-pole terminology and a field model from a literal bar magnet inside Earth."
+    },
+    {
+      "id": "ch13-objective-3",
+      "label": "Describe magnetic fields produced by wires and coils.",
+      "teach": "#s13-3",
+      "note": "Use conventional-current direction in the grip rule; explain effects of current, turns and an iron core."
+    },
+    {
+      "id": "ch13-objective-4",
+      "label": "Predict motor forces and explain the turning of a current-carrying coil.",
+      "teach": "#s13-4",
+      "note": "Distinguish translation from a couple; explain current reversal and the different energy transfers of motors and generators."
+    },
+    {
+      "id": "ch13-objective-5",
+      "label": "Explain induction and calculate ideal-transformer voltage and current.",
+      "teach": "#s13-5",
+      "note": "Require changing magnetic flux, distinguish induced voltage from current in an open circuit, and account for generator energy input."
+    },
+    {
+      "id": "ch13-objective-6",
+      "label": "Explain how electromagnetic signals travel between transmitter and receiver.",
+      "teach": "#s13-6",
+      "note": "Distinguish radiating changing fields from steady-current models, compare light and radio, and account for finite propagation time."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch13-card-1",
+      "term": "Magnetic materials",
+      "definition": "Some materials can develop strong magnetisation when microscopic magnetic effects align.",
+      "explanation": "Some materials can develop strong magnetisation when microscopic magnetic effects align. Being a metal does not automatically mean strong attraction to a magnet.",
+      "example": "An iron nail can be strongly attracted while aluminium foil is not strongly attracted.",
+      "confusion": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "question": "Explain magnetic materials and distinguish it from a common mistaken idea.",
+      "answer": "Some materials can develop strong magnetisation when microscopic magnetic effects align. Being a metal does not automatically mean strong attraction to a magnet.",
+      "teach": "#s13-1",
+      "questionId": "ch13-practice-1-2",
+      "cue": "Being a metal does not automatically mean strong attraction to a magnet."
+    },
+    {
+      "id": "ch13-card-2",
+      "term": "Earth’s magnetic field",
+      "definition": "A compass responds to the local resultant magnetic field, including Earth’s field.",
+      "explanation": "A compass responds to the local resultant magnetic field, including Earth’s field. Earth’s geographic north and magnetic pole terminology are not identical.",
+      "example": "A nearby magnet can deflect a compass from its usual Earth-field direction.",
+      "confusion": "Earth’s geographic north and magnetic pole terminology are not identical.",
+      "question": "Explain earth’s magnetic field and distinguish it from a common mistaken idea.",
+      "answer": "A compass responds to the local resultant magnetic field, including Earth’s field. Earth’s geographic north and magnetic pole terminology are not identical.",
+      "teach": "#s13-2",
+      "questionId": "ch13-practice-2-2",
+      "cue": "Earth’s geographic north and magnetic pole terminology are not identical."
+    },
+    {
+      "id": "ch13-card-3",
+      "term": "Current-produced magnetic fields",
+      "definition": "An electric current produces a magnetic field around its path.",
+      "explanation": "An electric current produces a magnetic field around its path. Field lines are a representation, not streams of material flowing out of a wire.",
+      "example": "A current-carrying straight wire produces a circular field pattern.",
+      "confusion": "Field lines are a representation, not streams of material flowing out of a wire.",
+      "question": "Explain current-produced magnetic fields and distinguish it from a common mistaken idea.",
+      "answer": "An electric current produces a magnetic field around its path. Field lines are a representation, not streams of material flowing out of a wire.",
+      "teach": "#s13-3",
+      "questionId": "ch13-practice-3-2",
+      "cue": "Field lines are a representation, not streams of material flowing out of a wire."
+    },
+    {
+      "id": "ch13-card-4",
+      "term": "Motor effect",
+      "definition": "A current-carrying conductor can experience a force in an external magnetic field.",
+      "explanation": "A current-carrying conductor can experience a force in an external magnetic field. A motor converts energy; it does not consume electric charge.",
+      "example": "Opposite sides of a coil can experience opposite forces and turn it.",
+      "confusion": "A motor converts energy; it does not consume electric charge.",
+      "question": "Explain motor effect and distinguish it from a common mistaken idea.",
+      "answer": "A current-carrying conductor can experience a force in an external magnetic field. A motor converts energy; it does not consume electric charge.",
+      "teach": "#s13-4",
+      "questionId": "ch13-practice-4-2",
+      "cue": "A motor converts energy; it does not consume electric charge."
+    },
+    {
+      "id": "ch13-card-5",
+      "term": "Electromagnetic induction",
+      "definition": "A changing magnetic flux through a circuit induces a potential difference.",
+      "explanation": "A changing magnetic flux through a circuit induces a potential difference. A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "example": "Moving a magnet into a coil can induce a brief voltage.",
+      "confusion": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "question": "Explain electromagnetic induction and distinguish it from a common mistaken idea.",
+      "answer": "A changing magnetic flux through a circuit induces a potential difference. A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "teach": "#s13-5",
+      "questionId": "ch13-practice-5-2",
+      "cue": "A stationary magnet beside a stationary coil does not continuously generate energy."
+    },
+    {
+      "id": "ch13-card-6",
+      "term": "Electromagnetic waves",
+      "definition": "Changing electric and magnetic fields can propagate and carry energy through vacuum.",
+      "explanation": "Changing electric and magnetic fields can propagate and carry energy through vacuum. Steady current is not equivalent to a radiating oscillating source.",
+      "example": "Accelerating charges in an aerial can produce radio waves.",
+      "confusion": "Steady current is not equivalent to a radiating oscillating source.",
+      "question": "Explain electromagnetic waves and distinguish it from a common mistaken idea.",
+      "answer": "Changing electric and magnetic fields can propagate and carry energy through vacuum. Steady current is not equivalent to a radiating oscillating source.",
+      "teach": "#s13-6",
+      "questionId": "ch13-practice-6-2",
+      "cue": "Steady current is not equivalent to a radiating oscillating source."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Explain why testing one iron nail does not justify the claim that every metal sticks strongly to a magnet."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Compare the propagation of visible light and radio waves in vacuum."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "An ideal transformer has 400 primary turns and 100 secondary turns. Its primary has 12 V alternating potential difference. Calculate secondary voltage. This is a written calculation, not an instruction to connect mains."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A model receiver detects these signal strengths when a transmitting circuit is switched. Explain the relationship and why this does not show light needs a wire between transmitter and receiver."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch13-recall",
+      "title": "Magnetic materials · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch13-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by magnetic materials.",
+      "marks": 1,
+      "points": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "model": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "hints": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "teach": "#s13-1"
+    },
+    {
+      "id": "ch13-worked",
+      "title": "Electromagnetic induction · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "An ideal transformer has 400 primary turns and 100 secondary turns. Its primary has 12 V alternating potential difference. Calculate secondary voltage. This is a written calculation, not an instruction to connect mains.",
+      "marks": 2,
+      "points": [
+        "Use Vs/Vp = Ns/Np.",
+        "Vs = 12 × 100/400 = 3.0 V."
+      ],
+      "model": [
+        "Use Vs/Vp = Ns/Np.",
+        "Vs = 12 × 100/400 = 3.0 V."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5",
+      "numeric": {
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch13-guided",
+      "title": "Electromagnetic induction · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "An ideal transformer supplies 6.0 W at a secondary voltage of 3.0 V. Calculate the secondary current.",
+      "marks": 2,
+      "points": [
+        "Use P = VI, so I = P/V.",
+        "I = 6.0/3.0 = 2.0 A."
+      ],
+      "model": [
+        "Use P = VI, so I = P/V.",
+        "I = 6.0/3.0 = 2.0 A."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5",
+      "numeric": {
+        "value": 2,
+        "unit": "A",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch13-practice-1-1",
+      "title": "Magnetic materials · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why testing one iron nail does not justify the claim that every metal sticks strongly to a magnet.",
+      "marks": 2,
+      "points": [
+        "Iron is ferromagnetic under ordinary conditions.",
+        "Other metals such as aluminium do not show the same strong ferromagnetic attraction."
+      ],
+      "model": [
+        "Iron is ferromagnetic under ordinary conditions.",
+        "Other metals such as aluminium do not show the same strong ferromagnetic attraction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "hints": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "teach": "#s13-1"
+    },
+    {
+      "id": "ch13-practice-1-2",
+      "title": "Magnetic materials · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch13-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A magnet is cut into two pieces. Predict the poles of each piece rather than imagining isolated poles.",
+      "marks": 2,
+      "points": [
+        "Each piece has a north and a south pole.",
+        "Cutting does not ordinarily isolate a single magnetic pole."
+      ],
+      "model": [
+        "Each piece has a north and a south pole.",
+        "Cutting does not ordinarily isolate a single magnetic pole."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "hints": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "teach": "#s13-1"
+    },
+    {
+      "id": "ch13-practice-2-1",
+      "title": "Earth’s magnetic field · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-2"
+      ],
+      "kind": "graph",
+      "prompt": "Explain why a compass near a steel cabinet may not indicate geographic north reliably.",
+      "marks": 2,
+      "points": [
+        "It follows the local resultant magnetic field.",
+        "The cabinet’s magnetisation can disturb the field at the compass."
+      ],
+      "model": [
+        "It follows the local resultant magnetic field.",
+        "The cabinet’s magnetisation can disturb the field at the compass."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Earth’s geographic north and magnetic pole terminology are not identical.",
+      "hints": [
+        "A compass responds to the local resultant magnetic field, including Earth’s field."
+      ],
+      "teach": "#s13-2"
+    },
+    {
+      "id": "ch13-practice-2-2",
+      "title": "Earth’s magnetic field · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch13-objective-2"
+      ],
+      "kind": "graph",
+      "prompt": "Why does the north-seeking end of a compass point generally towards the geographic north region?",
+      "marks": 2,
+      "points": [
+        "Earth has a magnetic field whose local direction guides the compass.",
+        "The region near geographic north behaves approximately as a magnetic south pole, attracting the north-seeking end."
+      ],
+      "model": [
+        "Earth has a magnetic field whose local direction guides the compass.",
+        "The region near geographic north behaves approximately as a magnetic south pole, attracting the north-seeking end."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Earth’s geographic north and magnetic pole terminology are not identical.",
+      "hints": [
+        "A compass responds to the local resultant magnetic field, including Earth’s field."
+      ],
+      "teach": "#s13-2"
+    },
+    {
+      "id": "ch13-practice-3-1",
+      "title": "Current-produced magnetic fields · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Describe the magnetic field around a long straight current-carrying wire and how reversing current affects it.",
+      "marks": 2,
+      "points": [
+        "The field lines form circles centred on the wire.",
+        "Reversing the current reverses their direction."
+      ],
+      "model": [
+        "The field lines form circles centred on the wire.",
+        "Reversing the current reverses their direction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Field lines are a representation, not streams of material flowing out of a wire.",
+      "hints": [
+        "An electric current produces a magnetic field around its path."
+      ],
+      "teach": "#s13-3"
+    },
+    {
+      "id": "ch13-practice-3-2",
+      "title": "Current-produced magnetic fields · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch13-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why adding an iron core can strengthen a coil’s magnetic field.",
+      "marks": 2,
+      "points": [
+        "The current already produces a magnetic field.",
+        "The core’s magnetic regions can align and add to it."
+      ],
+      "model": [
+        "The current already produces a magnetic field.",
+        "The core’s magnetic regions can align and add to it."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Field lines are a representation, not streams of material flowing out of a wire.",
+      "hints": [
+        "An electric current produces a magnetic field around its path."
+      ],
+      "teach": "#s13-3"
+    },
+    {
+      "id": "ch13-practice-4-1",
+      "title": "Motor effect · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A wire carries current perpendicular to an external magnetic field. Predict the effect of reversing only the current.",
+      "marks": 2,
+      "points": [
+        "The magnetic force reverses direction.",
+        "Its magnitude remains the same if field strength, current magnitude, geometry and wire length are unchanged."
+      ],
+      "model": [
+        "The magnetic force reverses direction.",
+        "Its magnitude remains the same if field strength, current magnitude, geometry and wire length are unchanged."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A motor converts energy; it does not consume electric charge.",
+      "hints": [
+        "A current-carrying conductor can experience a force in an external magnetic field."
+      ],
+      "teach": "#s13-4"
+    },
+    {
+      "id": "ch13-practice-4-2",
+      "title": "Motor effect · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch13-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why opposite forces on different sides of a coil can rotate it although their vector sum is zero.",
+      "marks": 2,
+      "points": [
+        "They act at different positions.",
+        "Their turning effects can form a couple, producing rotation without a net translational force."
+      ],
+      "model": [
+        "They act at different positions.",
+        "Their turning effects can form a couple, producing rotation without a net translational force."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A motor converts energy; it does not consume electric charge.",
+      "hints": [
+        "A current-carrying conductor can experience a force in an external magnetic field."
+      ],
+      "teach": "#s13-4"
+    },
+    {
+      "id": "ch13-practice-5-1",
+      "title": "Electromagnetic induction · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why holding a magnet still inside a stationary coil does not produce a continuous induced voltage.",
+      "marks": 2,
+      "points": [
+        "The magnetic flux through the loop is not changing.",
+        "Induction requires a change, not just a magnetic field being present."
+      ],
+      "model": [
+        "The magnetic flux through the loop is not changing.",
+        "Induction requires a change, not just a magnetic field being present."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5"
+    },
+    {
+      "id": "ch13-practice-5-2",
+      "title": "Electromagnetic induction · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A coil is disconnected so its circuit is open. Can changing magnetic flux still induce a potential difference? Distinguish voltage and current.",
+      "marks": 2,
+      "points": [
+        "An induced potential difference can appear across the ends.",
+        "A sustained circulating current needs a complete conducting path."
+      ],
+      "model": [
+        "An induced potential difference can appear across the ends.",
+        "A sustained circulating current needs a complete conducting path."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5"
+    },
+    {
+      "id": "ch13-practice-6-1",
+      "title": "Electromagnetic waves · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch13-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a radio receiver does not require a wire connecting it directly to the transmitting aerial.",
+      "marks": 2,
+      "points": [
+        "An electromagnetic wave can propagate through the gap.",
+        "It carries energy and information in changing fields that can affect the receiver."
+      ],
+      "model": [
+        "An electromagnetic wave can propagate through the gap.",
+        "It carries energy and information in changing fields that can affect the receiver."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Steady current is not equivalent to a radiating oscillating source.",
+      "hints": [
+        "Changing electric and magnetic fields can propagate and carry energy through vacuum."
+      ],
+      "teach": "#s13-6"
+    },
+    {
+      "id": "ch13-practice-6-2",
+      "title": "Electromagnetic waves · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch13-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Compare the propagation of visible light and radio waves in vacuum.",
+      "marks": 2,
+      "points": [
+        "Both are electromagnetic waves travelling at speed c.",
+        "They have different frequency and wavelength ranges."
+      ],
+      "model": [
+        "Both are electromagnetic waves travelling at speed c.",
+        "They have different frequency and wavelength ranges."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Steady current is not equivalent to a radiating oscillating source.",
+      "hints": [
+        "Changing electric and magnetic fields can propagate and carry energy through vacuum."
+      ],
+      "teach": "#s13-6"
+    },
+    {
+      "id": "ch13-paper-a-1",
+      "title": "Magnetic materials · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an unmagnetised piece of iron can become magnetised near a magnet.",
+      "marks": 2,
+      "points": [
+        "Microscopic magnetic regions can align more strongly with the applied field.",
+        "Their effects then no longer cancel in the same way."
+      ],
+      "model": [
+        "Microscopic magnetic regions can align more strongly with the applied field.",
+        "Their effects then no longer cancel in the same way."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "hints": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "teach": "#s13-1"
+    },
+    {
+      "id": "ch13-paper-a-2",
+      "title": "Earth’s magnetic field · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why drawing Earth’s field as a bar-magnet pattern does not prove a giant bar magnet is inside Earth.",
+      "marks": 2,
+      "points": [
+        "The drawing models the external field pattern.",
+        "A successful model of the pattern does not require the internal mechanism to be a literal bar magnet."
+      ],
+      "model": [
+        "The drawing models the external field pattern.",
+        "A successful model of the pattern does not require the internal mechanism to be a literal bar magnet."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Earth’s geographic north and magnetic pole terminology are not identical.",
+      "hints": [
+        "A compass responds to the local resultant magnetic field, including Earth’s field."
+      ],
+      "teach": "#s13-2"
+    },
+    {
+      "id": "ch13-paper-a-3",
+      "title": "Current-produced magnetic fields · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Use the right-hand grip rule to explain which quantity the thumb represents and which the curled fingers represent.",
+      "marks": 2,
+      "points": [
+        "The thumb indicates conventional current direction.",
+        "Curled fingers indicate the magnetic field direction around a straight wire."
+      ],
+      "model": [
+        "The thumb indicates conventional current direction.",
+        "Curled fingers indicate the magnetic field direction around a straight wire."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Field lines are a representation, not streams of material flowing out of a wire.",
+      "hints": [
+        "An electric current produces a magnetic field around its path."
+      ],
+      "teach": "#s13-3"
+    },
+    {
+      "id": "ch13-paper-a-4",
+      "title": "Motor effect · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain the purpose of a split-ring commutator in a simple direct-current motor.",
+      "marks": 2,
+      "points": [
+        "It reverses the coil current every half-turn.",
+        "This keeps the useful turning effect in the same rotational direction."
+      ],
+      "model": [
+        "It reverses the coil current every half-turn.",
+        "This keeps the useful turning effect in the same rotational direction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A motor converts energy; it does not consume electric charge.",
+      "hints": [
+        "A current-carrying conductor can experience a force in an external magnetic field."
+      ],
+      "teach": "#s13-4"
+    },
+    {
+      "id": "ch13-paper-a-5",
+      "title": "Electromagnetic induction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an ordinary transformer does not give continuous secondary voltage after its primary is connected to steady direct current.",
+      "marks": 2,
+      "points": [
+        "After switching transients, the primary current and core flux are steady.",
+        "Without changing flux there is no continuous induced secondary voltage."
+      ],
+      "model": [
+        "After switching transients, the primary current and core flux are steady.",
+        "Without changing flux there is no continuous induced secondary voltage."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5"
+    },
+    {
+      "id": "ch13-paper-a-6",
+      "title": "Electromagnetic waves · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Why is a charge oscillating back and forth relevant to transmitting electromagnetic waves?",
+      "marks": 2,
+      "points": [
+        "Its motion is accelerating and produces changing electromagnetic fields.",
+        "The radiation can propagate away, unlike treating a steady current as a continuously radiating oscillator."
+      ],
+      "model": [
+        "Its motion is accelerating and produces changing electromagnetic fields.",
+        "The radiation can propagate away, unlike treating a steady current as a continuously radiating oscillator."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Steady current is not equivalent to a radiating oscillating source.",
+      "hints": [
+        "Changing electric and magnetic fields can propagate and carry energy through vacuum."
+      ],
+      "teach": "#s13-6"
+    },
+    {
+      "id": "ch13-paper-b-1",
+      "title": "Magnetic materials · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State how two magnetic poles interact and distinguish this from a statement about electric charge.",
+      "marks": 2,
+      "points": [
+        "Like magnetic poles repel and unlike poles attract.",
+        "Magnetic north/south poles are not simply positive/negative electric charges."
+      ],
+      "model": [
+        "Like magnetic poles repel and unlike poles attract.",
+        "Magnetic north/south poles are not simply positive/negative electric charges."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Being a metal does not automatically mean strong attraction to a magnet.",
+      "hints": [
+        "Some materials can develop strong magnetisation when microscopic magnetic effects align."
+      ],
+      "teach": "#s13-1"
+    },
+    {
+      "id": "ch13-paper-b-2",
+      "title": "Earth’s magnetic field · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A compass is turned by hand and released away from local magnets. Explain why it tends to realign.",
+      "marks": 2,
+      "points": [
+        "Earth’s magnetic field exerts a turning effect on the magnetic needle.",
+        "It settles approximately along the local field direction rather than the direction chosen by hand."
+      ],
+      "model": [
+        "Earth’s magnetic field exerts a turning effect on the magnetic needle.",
+        "It settles approximately along the local field direction rather than the direction chosen by hand."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Earth’s geographic north and magnetic pole terminology are not identical.",
+      "hints": [
+        "A compass responds to the local resultant magnetic field, including Earth’s field."
+      ],
+      "teach": "#s13-2"
+    },
+    {
+      "id": "ch13-paper-b-3",
+      "title": "Current-produced magnetic fields · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Describe one change that can strengthen an electromagnet while keeping other factors comparable.",
+      "marks": 2,
+      "points": [
+        "Increase the current or the number of turns per unit length.",
+        "Explain that the magnetic effects of the current/turns increase; use only supervised low-voltage equipment if testing."
+      ],
+      "model": [
+        "Increase the current or the number of turns per unit length.",
+        "Explain that the magnetic effects of the current/turns increase; use only supervised low-voltage equipment if testing."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Field lines are a representation, not streams of material flowing out of a wire.",
+      "hints": [
+        "An electric current produces a magnetic field around its path."
+      ],
+      "teach": "#s13-3"
+    },
+    {
+      "id": "ch13-paper-b-4",
+      "title": "Motor effect · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish the energy transfers in a motor from those in a generator.",
+      "marks": 2,
+      "points": [
+        "A motor transfers electrical energy into mechanical work, with losses.",
+        "A generator transfers supplied mechanical work into electrical energy, with losses."
+      ],
+      "model": [
+        "A motor transfers electrical energy into mechanical work, with losses.",
+        "A generator transfers supplied mechanical work into electrical energy, with losses."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A motor converts energy; it does not consume electric charge.",
+      "hints": [
+        "A current-carrying conductor can experience a force in an external magnetic field."
+      ],
+      "teach": "#s13-4"
+    },
+    {
+      "id": "ch13-paper-b-5",
+      "title": "Electromagnetic induction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a generator requires a continuing energy input when it supplies a load.",
+      "marks": 2,
+      "points": [
+        "The induced current’s magnetic effect opposes the change that produces it.",
+        "Mechanical work against that opposition is transferred to electrical energy; magnetism does not create energy."
+      ],
+      "model": [
+        "The induced current’s magnetic effect opposes the change that produces it.",
+        "Mechanical work against that opposition is transferred to electrical energy; magnetism does not create energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A stationary magnet beside a stationary coil does not continuously generate energy.",
+      "hints": [
+        "A changing magnetic flux through a circuit induces a potential difference."
+      ],
+      "teach": "#s13-5"
+    },
+    {
+      "id": "ch13-paper-b-6",
+      "title": "Electromagnetic waves · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch13-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why switching off a transmitter does not make a signal already travelling far away vanish everywhere at once.",
+      "marks": 2,
+      "points": [
+        "The wave propagates at a finite speed.",
+        "Changes in the transmitted signal reach distant places only after the appropriate travel time."
+      ],
+      "model": [
+        "The wave propagates at a finite speed.",
+        "Changes in the transmitted signal reach distant places only after the appropriate travel time."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Steady current is not equivalent to a radiating oscillating source.",
+      "hints": [
+        "Changing electric and magnetic fields can propagate and carry energy through vacuum."
+      ],
+      "teach": "#s13-6"
+    },
+    {
+      "id": "ch13-data-review",
+      "title": "Electromagnetic waves · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch13-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "A model receiver detects these signal strengths when a transmitting circuit is switched. Explain the relationship and why this does not show light needs a wire between transmitter and receiver.",
+      "marks": 2,
+      "points": [
+        "A changing transmitter current can produce changing electromagnetic fields detected remotely.",
+        "Electromagnetic waves can carry energy across the gap without a connecting conducting wire."
+      ],
+      "model": [
+        "A changing transmitter current can produce changing electromagnetic fields detected remotely.",
+        "Electromagnetic waves can carry energy across the gap without a connecting conducting wire."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Steady current is not equivalent to a radiating oscillating source.",
+      "hints": [
+        "Changing electric and magnetic fields can propagate and carry energy through vacuum."
+      ],
+      "teach": "#s13-6",
+      "data": {
+        "headers": [
+          "Transmitter",
+          "Relative receiver signal"
+        ],
+        "rows": [
+          [
+            "Off",
+            0
+          ],
+          [
+            "Oscillating current",
+            5
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch13-paper-a",
+      "title": "Magnetism and electromagnetism · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch13-paper-a-1",
+        "ch13-paper-a-2",
+        "ch13-paper-a-3",
+        "ch13-paper-a-4",
+        "ch13-paper-a-5",
+        "ch13-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch13-paper-b",
+      "title": "Magnetism and electromagnetism · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch13-paper-b-1",
+        "ch13-paper-b-2",
+        "ch13-paper-b-3",
+        "ch13-paper-b-4",
+        "ch13-paper-b-5",
+        "ch13-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 13: Magnetism and electromagnetism",
+      "url": "#ch13"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/experiment3/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/college-physics-2e/pages/22-2-ferromagnets-and-electromagnets"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/ch8magneti_field/"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/college-physics-2e/pages/22-1-magnets"
+    }
+  ]
+}

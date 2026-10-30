@@ -1,0 +1,998 @@
+{
+  "version": 1,
+  "key": "chapter-11",
+  "chapter": 11,
+  "title": "Colour, and what light really is",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch11-objective-1",
+      "label": "Explain how a prism separates white light into a spectrum.",
+      "teach": "#s11-1",
+      "note": "Relate different refraction to wavelength; distinguish separating existing wavelengths from creating new colours."
+    },
+    {
+      "id": "ch11-objective-2",
+      "label": "Predict object and filter colours under specified illumination.",
+      "teach": "#s11-2",
+      "note": "Track which wavelengths are available, reflected, transmitted or absorbed; distinguish additive light from pigment mixing."
+    },
+    {
+      "id": "ch11-objective-3",
+      "label": "Explain a blue sky and a redder direct Sun near the horizon.",
+      "teach": "#s11-3",
+      "note": "Distinguish redirected scattered light from the direct beam and account for wavelength dependence and atmospheric path length."
+    },
+    {
+      "id": "ch11-objective-4",
+      "label": "Explain how absorption, path length and suspended material affect water colour.",
+      "teach": "#s11-4",
+      "note": "Compare shallow and deep paths; control background and illumination and recognise limits of a coloured-water model."
+    },
+    {
+      "id": "ch11-objective-5",
+      "label": "Use light-wave relationships and polarisation evidence.",
+      "teach": "#s11-5",
+      "note": "Calculate frequency from wavelength, compare electromagnetic waves in vacuum, and explain crossed polarising filters."
+    },
+    {
+      "id": "ch11-objective-6",
+      "label": "Account for energy and wavelength changes in Raman scattering.",
+      "teach": "#s11-6",
+      "note": "Track energy exchange between a photon and material; distinguish ordinary elastic scattering from a characteristic Raman shift."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch11-card-1",
+      "term": "Dispersion",
+      "definition": "Different wavelengths can refract by different amounts in a material.",
+      "explanation": "Different wavelengths can refract by different amounts in a material. A prism separates existing colours rather than manufacturing them.",
+      "example": "White light can spread into a spectrum through a glass prism.",
+      "confusion": "A prism separates existing colours rather than manufacturing them.",
+      "question": "Explain dispersion and distinguish it from a common mistaken idea.",
+      "answer": "Different wavelengths can refract by different amounts in a material. A prism separates existing colours rather than manufacturing them.",
+      "teach": "#s11-1",
+      "questionId": "ch11-practice-1-2",
+      "cue": "A prism separates existing colours rather than manufacturing them."
+    },
+    {
+      "id": "ch11-card-2",
+      "term": "Object colour",
+      "definition": "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer.",
+      "explanation": "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer. A surface cannot reflect a wavelength absent from the illumination.",
+      "example": "An ideal red surface can look dark under blue-only illumination.",
+      "confusion": "A surface cannot reflect a wavelength absent from the illumination.",
+      "question": "Explain object colour and distinguish it from a common mistaken idea.",
+      "answer": "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer. A surface cannot reflect a wavelength absent from the illumination.",
+      "teach": "#s11-2",
+      "questionId": "ch11-practice-2-2",
+      "cue": "A surface cannot reflect a wavelength absent from the illumination."
+    },
+    {
+      "id": "ch11-card-3",
+      "term": "Scattering in the sky",
+      "definition": "Small particles and molecules scatter different wavelengths by different amounts.",
+      "explanation": "Small particles and molecules scatter different wavelengths by different amounts. The daytime blue sky is not mainly a reflection of the sea.",
+      "example": "Shorter visible wavelengths scatter strongly in clear air.",
+      "confusion": "The daytime blue sky is not mainly a reflection of the sea.",
+      "question": "Explain scattering in the sky and distinguish it from a common mistaken idea.",
+      "answer": "Small particles and molecules scatter different wavelengths by different amounts. The daytime blue sky is not mainly a reflection of the sea.",
+      "teach": "#s11-3",
+      "questionId": "ch11-practice-3-2",
+      "cue": "The daytime blue sky is not mainly a reflection of the sea."
+    },
+    {
+      "id": "ch11-card-4",
+      "term": "Water colour",
+      "definition": "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings.",
+      "explanation": "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings. Every blue sea is not explained by sky reflection alone.",
+      "example": "Deep clean water preferentially absorbs longer visible wavelengths along a long path.",
+      "confusion": "Every blue sea is not explained by sky reflection alone.",
+      "question": "Explain water colour and distinguish it from a common mistaken idea.",
+      "answer": "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings. Every blue sea is not explained by sky reflection alone.",
+      "teach": "#s11-4",
+      "questionId": "ch11-practice-4-2",
+      "cue": "Every blue sea is not explained by sky reflection alone."
+    },
+    {
+      "id": "ch11-card-5",
+      "term": "Light waves and polarisation",
+      "definition": "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation.",
+      "explanation": "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation. Light does not need air as a travelling medium.",
+      "example": "Crossed ideal polarising filters can greatly reduce transmitted light.",
+      "confusion": "Light does not need air as a travelling medium.",
+      "question": "Explain light waves and polarisation and distinguish it from a common mistaken idea.",
+      "answer": "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation. Light does not need air as a travelling medium.",
+      "teach": "#s11-5",
+      "questionId": "ch11-practice-5-2",
+      "cue": "Light does not need air as a travelling medium."
+    },
+    {
+      "id": "ch11-card-6",
+      "term": "Raman scattering",
+      "definition": "Inelastic scattering changes a photon’s energy while the material exchanges energy with it.",
+      "explanation": "Inelastic scattering changes a photon’s energy while the material exchanges energy with it. A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "example": "A scattered photon can lose energy to a molecular vibration.",
+      "confusion": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "question": "Explain raman scattering and distinguish it from a common mistaken idea.",
+      "answer": "Inelastic scattering changes a photon’s energy while the material exchanges energy with it. A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "teach": "#s11-6",
+      "questionId": "ch11-practice-6-2",
+      "cue": "A changed colour is not automatically the same process as ordinary elastic scattering."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Explain why white light can spread into colours in a prism."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "A photon gains energy from a molecule in scattering. What happens to the molecule and the photon’s frequency?"
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "A vacuum light wave has wavelength 750 nm. Use c = 3.0 × 10⁸ m/s to calculate its frequency."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "Two supplied Raman measurements show the same frequency shift with different incoming light. Explain what is the same energy exchange, using E = hf."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch11-recall",
+      "title": "Dispersion · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch11-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by dispersion.",
+      "marks": 1,
+      "points": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "model": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A prism separates existing colours rather than manufacturing them.",
+      "hints": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "teach": "#s11-1"
+    },
+    {
+      "id": "ch11-worked",
+      "title": "Light waves and polarisation · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A vacuum light wave has wavelength 750 nm. Use c = 3.0 × 10⁸ m/s to calculate its frequency.",
+      "marks": 2,
+      "points": [
+        "750 nm = 7.50 × 10⁻⁷ m; use f = c/λ.",
+        "f = 4.0 × 10¹⁴ Hz."
+      ],
+      "model": [
+        "750 nm = 7.50 × 10⁻⁷ m; use f = c/λ.",
+        "f = 4.0 × 10¹⁴ Hz."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5",
+      "numeric": {
+        "value": 400000000000000.0,
+        "unit": "Hz",
+        "tolerance": 2000000000000.0
+      }
+    },
+    {
+      "id": "ch11-guided",
+      "title": "Light waves and polarisation · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A vacuum light wave has frequency 5.0 × 10¹⁴ Hz. Use c = 3.0 × 10⁸ m/s to calculate wavelength in metres.",
+      "marks": 2,
+      "points": [
+        "Rearrange c = fλ to λ = c/f.",
+        "λ = (3.0 × 10⁸)/(5.0 × 10¹⁴) = 6.0 × 10⁻⁷ m."
+      ],
+      "model": [
+        "Rearrange c = fλ to λ = c/f.",
+        "λ = (3.0 × 10⁸)/(5.0 × 10¹⁴) = 6.0 × 10⁻⁷ m."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5",
+      "numeric": {
+        "value": 6e-07,
+        "unit": "m",
+        "tolerance": 3e-09
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch11-practice-1-1",
+      "title": "Dispersion · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why white light can spread into colours in a prism.",
+      "marks": 2,
+      "points": [
+        "White light contains a range of wavelengths.",
+        "The material’s refractive index varies with wavelength, so they refract by different amounts."
+      ],
+      "model": [
+        "White light contains a range of wavelengths.",
+        "The material’s refractive index varies with wavelength, so they refract by different amounts."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A prism separates existing colours rather than manufacturing them.",
+      "hints": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "teach": "#s11-1"
+    },
+    {
+      "id": "ch11-practice-1-2",
+      "title": "Dispersion · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch11-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "What would a prism do to an ideal single-wavelength red beam? Explain.",
+      "marks": 2,
+      "points": [
+        "It would refract the beam.",
+        "It would not split it into the full visible spectrum because the other wavelengths are absent."
+      ],
+      "model": [
+        "It would refract the beam.",
+        "It would not split it into the full visible spectrum because the other wavelengths are absent."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A prism separates existing colours rather than manufacturing them.",
+      "hints": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "teach": "#s11-1"
+    },
+    {
+      "id": "ch11-practice-2-1",
+      "title": "Object colour · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "An ideal surface reflects red light and absorbs blue light. Predict its appearance under blue-only light and explain.",
+      "marks": 2,
+      "points": [
+        "It appears dark in the ideal model.",
+        "There is no red light to reflect and the incident blue is absorbed."
+      ],
+      "model": [
+        "It appears dark in the ideal model.",
+        "There is no red light to reflect and the incident blue is absorbed."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A surface cannot reflect a wavelength absent from the illumination.",
+      "hints": [
+        "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer."
+      ],
+      "teach": "#s11-2"
+    },
+    {
+      "id": "ch11-practice-2-2",
+      "title": "Object colour · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch11-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why mixing red and green light is different from mixing red and green paints.",
+      "marks": 2,
+      "points": [
+        "Light mixing adds the light reaching the eye.",
+        "Pigments remove wavelengths by absorption, so paint mixing follows different rules."
+      ],
+      "model": [
+        "Light mixing adds the light reaching the eye.",
+        "Pigments remove wavelengths by absorption, so paint mixing follows different rules."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A surface cannot reflect a wavelength absent from the illumination.",
+      "hints": [
+        "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer."
+      ],
+      "teach": "#s11-2"
+    },
+    {
+      "id": "ch11-practice-3-1",
+      "title": "Scattering in the sky · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain a blue daytime sky in terms of sunlight and atmospheric scattering.",
+      "marks": 3,
+      "points": [
+        "Sunlight contains many visible wavelengths.",
+        "Air molecules scatter shorter visible wavelengths more strongly into many viewing directions.",
+        "Scattered blue light reaches the eye from many sky directions; the perceived colour also depends on the sunlight spectrum and the eye’s response."
+      ],
+      "model": [
+        "Sunlight contains many visible wavelengths.",
+        "Air molecules scatter shorter visible wavelengths more strongly into many viewing directions.",
+        "Scattered blue light reaches the eye from many sky directions; the perceived colour also depends on the sunlight spectrum and the eye’s response."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The daytime blue sky is not mainly a reflection of the sea.",
+      "hints": [
+        "Small particles and molecules scatter different wavelengths by different amounts."
+      ],
+      "teach": "#s11-3"
+    },
+    {
+      "id": "ch11-practice-3-2",
+      "title": "Scattering in the sky · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch11-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the direct Sun often appears redder near the horizon.",
+      "marks": 2,
+      "points": [
+        "Its light travels through a longer atmospheric path.",
+        "More short-wavelength light is scattered out of the direct beam, leaving it relatively richer in red."
+      ],
+      "model": [
+        "Its light travels through a longer atmospheric path.",
+        "More short-wavelength light is scattered out of the direct beam, leaving it relatively richer in red."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The daytime blue sky is not mainly a reflection of the sea.",
+      "hints": [
+        "Small particles and molecules scatter different wavelengths by different amounts."
+      ],
+      "teach": "#s11-3"
+    },
+    {
+      "id": "ch11-practice-4-1",
+      "title": "Water colour · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why clean deep water can look blue even when sky reflection is reduced.",
+      "marks": 2,
+      "points": [
+        "Water absorbs longer visible wavelengths more strongly along a long path.",
+        "The remaining light, with scattering, can be relatively richer in blue."
+      ],
+      "model": [
+        "Water absorbs longer visible wavelengths more strongly along a long path.",
+        "The remaining light, with scattering, can be relatively richer in blue."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Every blue sea is not explained by sky reflection alone.",
+      "hints": [
+        "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings."
+      ],
+      "teach": "#s11-4"
+    },
+    {
+      "id": "ch11-practice-4-2",
+      "title": "Water colour · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch11-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Why need not a thin glassful of water show the same colour as a deep pool?",
+      "marks": 2,
+      "points": [
+        "The light path through the glassful is much shorter.",
+        "Its differential absorption is smaller and backgrounds/reflections can dominate."
+      ],
+      "model": [
+        "The light path through the glassful is much shorter.",
+        "Its differential absorption is smaller and backgrounds/reflections can dominate."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Every blue sea is not explained by sky reflection alone.",
+      "hints": [
+        "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings."
+      ],
+      "teach": "#s11-4"
+    },
+    {
+      "id": "ch11-practice-5-1",
+      "title": "Light waves and polarisation · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Two ideal polarising filters give maximum transmission when aligned and almost none when crossed. Explain what this shows about light.",
+      "marks": 2,
+      "points": [
+        "They select different orientations of the transverse electric field.",
+        "The effect is evidence of light’s transverse nature."
+      ],
+      "model": [
+        "They select different orientations of the transverse electric field.",
+        "The effect is evidence of light’s transverse nature."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5"
+    },
+    {
+      "id": "ch11-practice-5-2",
+      "title": "Light waves and polarisation · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A light wave in vacuum has wavelength 500 nm. Use c = 3.0 × 10⁸ m/s to calculate its frequency.",
+      "marks": 2,
+      "points": [
+        "Convert 500 nm to 5.0 × 10⁻⁷ m and use f = c/λ.",
+        "f = 6.0 × 10¹⁴ Hz."
+      ],
+      "model": [
+        "Convert 500 nm to 5.0 × 10⁻⁷ m and use f = c/λ.",
+        "f = 6.0 × 10¹⁴ Hz."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5",
+      "numeric": {
+        "value": 600000000000000.0,
+        "unit": "Hz",
+        "tolerance": 3000000000000.0
+      }
+    },
+    {
+      "id": "ch11-practice-6-1",
+      "title": "Raman scattering · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch11-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A photon leaves a molecule with less energy than it had on arrival. Explain the energy account and wavelength change.",
+      "marks": 2,
+      "points": [
+        "The molecule gains the energy difference, for example as vibrational energy.",
+        "The outgoing photon has lower frequency and longer wavelength."
+      ],
+      "model": [
+        "The molecule gains the energy difference, for example as vibrational energy.",
+        "The outgoing photon has lower frequency and longer wavelength."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "hints": [
+        "Inelastic scattering changes a photon’s energy while the material exchanges energy with it."
+      ],
+      "teach": "#s11-6"
+    },
+    {
+      "id": "ch11-practice-6-2",
+      "title": "Raman scattering · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch11-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A photon gains energy from a molecule in scattering. What happens to the molecule and the photon’s frequency?",
+      "marks": 2,
+      "points": [
+        "The molecule loses the corresponding internal energy.",
+        "The outgoing photon has a higher frequency."
+      ],
+      "model": [
+        "The molecule loses the corresponding internal energy.",
+        "The outgoing photon has a higher frequency."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "hints": [
+        "Inelastic scattering changes a photon’s energy while the material exchanges energy with it."
+      ],
+      "teach": "#s11-6"
+    },
+    {
+      "id": "ch11-paper-a-1",
+      "title": "Dispersion · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Describe evidence that a prism does not create the colours separated from white light.",
+      "marks": 2,
+      "points": [
+        "The separated colours can be recombined to produce white light.",
+        "A single-colour input does not produce all the other visible colours."
+      ],
+      "model": [
+        "The separated colours can be recombined to produce white light.",
+        "A single-colour input does not produce all the other visible colours."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A prism separates existing colours rather than manufacturing them.",
+      "hints": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "teach": "#s11-1"
+    },
+    {
+      "id": "ch11-paper-a-2",
+      "title": "Object colour · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "White light passes through an ideal red filter. State what emerges and what happens to other visible components.",
+      "marks": 2,
+      "points": [
+        "Red light is transmitted.",
+        "The other components are absorbed in the ideal model."
+      ],
+      "model": [
+        "Red light is transmitted.",
+        "The other components are absorbed in the ideal model."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A surface cannot reflect a wavelength absent from the illumination.",
+      "hints": [
+        "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer."
+      ],
+      "teach": "#s11-2"
+    },
+    {
+      "id": "ch11-paper-a-3",
+      "title": "Scattering in the sky · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Why does a blue sky not require a blue ocean underneath it?",
+      "marks": 2,
+      "points": [
+        "Atmospheric molecules scatter sunlight.",
+        "The mechanism works above land as well as above oceans."
+      ],
+      "model": [
+        "Atmospheric molecules scatter sunlight.",
+        "The mechanism works above land as well as above oceans."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The daytime blue sky is not mainly a reflection of the sea.",
+      "hints": [
+        "Small particles and molecules scatter different wavelengths by different amounts."
+      ],
+      "teach": "#s11-3"
+    },
+    {
+      "id": "ch11-paper-a-4",
+      "title": "Water colour · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A sea turns brown after runoff. Explain why its colour cannot be predicted from pure water alone.",
+      "marks": 2,
+      "points": [
+        "Suspended sediment and other substances change absorption and scattering.",
+        "The observed spectrum therefore differs from that of clean water."
+      ],
+      "model": [
+        "Suspended sediment and other substances change absorption and scattering.",
+        "The observed spectrum therefore differs from that of clean water."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Every blue sea is not explained by sky reflection alone.",
+      "hints": [
+        "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings."
+      ],
+      "teach": "#s11-4"
+    },
+    {
+      "id": "ch11-paper-a-5",
+      "title": "Light waves and polarisation · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why can sunlight cross the vacuum between Sun and Earth while ordinary sound cannot?",
+      "marks": 2,
+      "points": [
+        "Electromagnetic waves do not require a material medium.",
+        "Sound is a mechanical disturbance that needs matter."
+      ],
+      "model": [
+        "Electromagnetic waves do not require a material medium.",
+        "Sound is a mechanical disturbance that needs matter."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5"
+    },
+    {
+      "id": "ch11-paper-a-6",
+      "title": "Raman scattering · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a Raman shift can help identify a material.",
+      "marks": 2,
+      "points": [
+        "The energy changes correspond to particular molecular vibrations or other allowed excitations.",
+        "Different materials can have characteristic patterns of shifts."
+      ],
+      "model": [
+        "The energy changes correspond to particular molecular vibrations or other allowed excitations.",
+        "Different materials can have characteristic patterns of shifts."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "hints": [
+        "Inelastic scattering changes a photon’s energy while the material exchanges energy with it."
+      ],
+      "teach": "#s11-6"
+    },
+    {
+      "id": "ch11-paper-b-1",
+      "title": "Dispersion · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish a spectrum from the coloured band’s brightness.",
+      "marks": 2,
+      "points": [
+        "The spectrum describes how the light is distributed over wavelengths or frequencies.",
+        "Brightness also depends on the amount of light and the observer’s response."
+      ],
+      "model": [
+        "The spectrum describes how the light is distributed over wavelengths or frequencies.",
+        "Brightness also depends on the amount of light and the observer’s response."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A prism separates existing colours rather than manufacturing them.",
+      "hints": [
+        "Different wavelengths can refract by different amounts in a material."
+      ],
+      "teach": "#s11-1"
+    },
+    {
+      "id": "ch11-paper-b-2",
+      "title": "Object colour · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "An ideal yellow filter transmits red and green; an ideal blue filter transmits only blue. Predict the light through both in series.",
+      "marks": 2,
+      "points": [
+        "Ideally no visible light emerges.",
+        "No wavelength is passed by both filters."
+      ],
+      "model": [
+        "Ideally no visible light emerges.",
+        "No wavelength is passed by both filters."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A surface cannot reflect a wavelength absent from the illumination.",
+      "hints": [
+        "The colour seen from an object depends on the illuminating spectrum and the light reaching the observer."
+      ],
+      "teach": "#s11-2"
+    },
+    {
+      "id": "ch11-paper-b-3",
+      "title": "Scattering in the sky · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish light scattered out of a direct beam from light destroyed by scattering.",
+      "marks": 2,
+      "points": [
+        "Scattering redirects the light.",
+        "Loss from one beam direction does not by itself mean that light energy has disappeared."
+      ],
+      "model": [
+        "Scattering redirects the light.",
+        "Loss from one beam direction does not by itself mean that light energy has disappeared."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The daytime blue sky is not mainly a reflection of the sea.",
+      "hints": [
+        "Small particles and molecules scatter different wavelengths by different amounts."
+      ],
+      "teach": "#s11-3"
+    },
+    {
+      "id": "ch11-paper-b-4",
+      "title": "Water colour · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-4"
+      ],
+      "kind": "investigate",
+      "prompt": "Plan an observation to compare water colour while controlling the background. Do not use deep water or outdoor water collection.",
+      "marks": 3,
+      "points": [
+        "Use small transparent containers of the same shape on the same white background under the same illumination.",
+        "Change one intended factor such as safe food colouring concentration and compare consistently.",
+        "Treat the colouring model as absorption evidence, not as a complete model of an ocean."
+      ],
+      "model": [
+        "Use small transparent containers of the same shape on the same white background under the same illumination.",
+        "Change one intended factor such as safe food colouring concentration and compare consistently.",
+        "Treat the colouring model as absorption evidence, not as a complete model of an ocean."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Every blue sea is not explained by sky reflection alone.",
+      "hints": [
+        "The colour of water depends on absorption, scattering, depth, contents and reflected surroundings."
+      ],
+      "teach": "#s11-4"
+    },
+    {
+      "id": "ch11-paper-b-5",
+      "title": "Light waves and polarisation · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Compare radio waves and visible light in vacuum in terms of speed and frequency.",
+      "marks": 2,
+      "points": [
+        "They travel at the same vacuum speed c.",
+        "Radio waves have lower frequencies and longer wavelengths than visible light."
+      ],
+      "model": [
+        "They travel at the same vacuum speed c.",
+        "Radio waves have lower frequencies and longer wavelengths than visible light."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Light does not need air as a travelling medium.",
+      "hints": [
+        "Light is a transverse electromagnetic wave; polarisation concerns its transverse field orientation."
+      ],
+      "teach": "#s11-5"
+    },
+    {
+      "id": "ch11-paper-b-6",
+      "title": "Raman scattering · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch11-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why Raman scattering does not violate conservation of energy.",
+      "marks": 2,
+      "points": [
+        "Count both the photon and the material.",
+        "The energy gained by one is lost by the other."
+      ],
+      "model": [
+        "Count both the photon and the material.",
+        "The energy gained by one is lost by the other."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "hints": [
+        "Inelastic scattering changes a photon’s energy while the material exchanges energy with it."
+      ],
+      "teach": "#s11-6"
+    },
+    {
+      "id": "ch11-data-review",
+      "title": "Raman scattering · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch11-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "Two supplied Raman measurements show the same frequency shift with different incoming light. Explain what is the same energy exchange, using E = hf.",
+      "marks": 2,
+      "points": [
+        "The frequency decrease is 1.0 × 10¹³ Hz in both cases.",
+        "With the same h, the molecule gains the same energy hΔf in each event, although the incoming photon energies differ."
+      ],
+      "model": [
+        "The frequency decrease is 1.0 × 10¹³ Hz in both cases.",
+        "With the same h, the molecule gains the same energy hΔf in each event, although the incoming photon energies differ."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A changed colour is not automatically the same process as ordinary elastic scattering.",
+      "hints": [
+        "Inelastic scattering changes a photon’s energy while the material exchanges energy with it."
+      ],
+      "teach": "#s11-6",
+      "data": {
+        "headers": [
+          "Incoming frequency (Hz)",
+          "Outgoing frequency (Hz)"
+        ],
+        "rows": [
+          [
+            600000000000000,
+            590000000000000
+          ],
+          [
+            500000000000000,
+            490000000000000
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch11-paper-a",
+      "title": "Colour, and what light really is · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch11-paper-a-1",
+        "ch11-paper-a-2",
+        "ch11-paper-a-3",
+        "ch11-paper-a-4",
+        "ch11-paper-a-5",
+        "ch11-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch11-paper-b",
+      "title": "Colour, and what light really is · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch11-paper-b-1",
+        "ch11-paper-b-2",
+        "ch11-paper-b-3",
+        "ch11-paper-b-4",
+        "ch11-paper-b-5",
+        "ch11-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 11: Colour, and what light really is",
+      "url": "#ch11"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/resources/mit8_03scf16_lec19/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://openstax.org/books/college-physics-2e/pages/25-5-dispersion-the-rainbow-and-prisms"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/university-physics-volume-3/pages/1-5-dispersion"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://openstax.org/books/college-physics-2e/pages/26-3-color-and-color-vision"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/physics/pages/15-1-the-electromagnetic-spectrum"
+    }
+  ]
+}

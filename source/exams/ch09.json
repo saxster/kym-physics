@@ -1,0 +1,1077 @@
+{
+  "version": 1,
+  "key": "chapter-09",
+  "chapter": 9,
+  "title": "Vibrations, waves and sound",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch09-objective-1",
+      "label": "Calculate period and frequency and evaluate pendulum timing methods.",
+      "teach": "#s9-1",
+      "note": "Use cycles per second and time per cycle; explain why timing repeated small swings reduces relative reaction-time uncertainty."
+    },
+    {
+      "id": "ch09-objective-2",
+      "label": "Explain resonance, driving frequency and the effect of damping.",
+      "teach": "#s9-2",
+      "note": "Link repeated energy input to a favourable phase near resonance; explain why damping limits amplitude."
+    },
+    {
+      "id": "ch09-objective-3",
+      "label": "Distinguish wave travel from particle motion and calculate wave speed.",
+      "teach": "#s9-3",
+      "note": "Use v = fλ; identify oscillation and propagation directions, including transverse-wave examples."
+    },
+    {
+      "id": "ch09-objective-4",
+      "label": "Explain sound propagation and calculate distances from echoes.",
+      "teach": "#s9-4",
+      "note": "Describe compressions and rarefactions, explain the need for a medium, and count both legs of an echo journey."
+    },
+    {
+      "id": "ch09-objective-5",
+      "label": "Use sound traces to distinguish pitch from loudness.",
+      "teach": "#s9-5",
+      "note": "Compare cycle spacing and amplitude separately; recognise that frequency data alone cannot establish loudness."
+    },
+    {
+      "id": "ch09-objective-6",
+      "label": "Explain timbre, nodes and how vibration modes affect musical sounds.",
+      "teach": "#s9-6",
+      "note": "Relate overtone mixtures to timbre, identify zero-amplitude nodes, and explain effects of string tension and tabla loading."
+    },
+    {
+      "id": "ch09-objective-7",
+      "label": "Explain sound Doppler shifts using wavefront arrival rates.",
+      "teach": "#s9-7",
+      "note": "Distinguish emitted from observed frequency and specify source and observer velocities relative to the medium."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch09-card-1",
+      "term": "Period and frequency",
+      "definition": "Period is time per cycle; frequency is cycles per second.",
+      "explanation": "Period is time per cycle; frequency is cycles per second. A larger period means a smaller frequency.",
+      "example": "A swing taking 2 s per cycle has frequency 0.5 Hz.",
+      "confusion": "A larger period means a smaller frequency.",
+      "question": "Explain period and frequency and distinguish it from a common mistaken idea.",
+      "answer": "Period is time per cycle; frequency is cycles per second. A larger period means a smaller frequency.",
+      "teach": "#s9-1",
+      "questionId": "ch09-practice-1-2",
+      "cue": "A larger period means a smaller frequency."
+    },
+    {
+      "id": "ch09-card-2",
+      "term": "Resonance",
+      "definition": "A large driven response near a system’s natural frequency.",
+      "explanation": "A large driven response near a system’s natural frequency. Larger pushes alone do not define resonance.",
+      "example": "Small correctly timed pushes can build a swing’s amplitude.",
+      "confusion": "Larger pushes alone do not define resonance.",
+      "question": "Explain resonance and distinguish it from a common mistaken idea.",
+      "answer": "A large driven response near a system’s natural frequency. Larger pushes alone do not define resonance.",
+      "teach": "#s9-2",
+      "questionId": "ch09-practice-2-2",
+      "cue": "Larger pushes alone do not define resonance."
+    },
+    {
+      "id": "ch09-card-3",
+      "term": "Wave transport",
+      "definition": "A travelling disturbance can transfer energy without carrying the medium along with it.",
+      "explanation": "A travelling disturbance can transfer energy without carrying the medium along with it. The moving pattern and the motion of particles are different.",
+      "example": "A floating marker can bob while ripples pass.",
+      "confusion": "The moving pattern and the motion of particles are different.",
+      "question": "Explain wave transport and distinguish it from a common mistaken idea.",
+      "answer": "A travelling disturbance can transfer energy without carrying the medium along with it. The moving pattern and the motion of particles are different.",
+      "teach": "#s9-3",
+      "questionId": "ch09-practice-3-2",
+      "cue": "The moving pattern and the motion of particles are different."
+    },
+    {
+      "id": "ch09-card-4",
+      "term": "Sound",
+      "definition": "A mechanical wave of pressure and density changes travelling through a medium.",
+      "explanation": "A mechanical wave of pressure and density changes travelling through a medium. Sound does not propagate through a vacuum.",
+      "example": "Air particles oscillate along the direction a sound wave travels.",
+      "confusion": "Sound does not propagate through a vacuum.",
+      "question": "Explain sound and distinguish it from a common mistaken idea.",
+      "answer": "A mechanical wave of pressure and density changes travelling through a medium. Sound does not propagate through a vacuum.",
+      "teach": "#s9-4",
+      "questionId": "ch09-practice-4-2",
+      "cue": "Sound does not propagate through a vacuum."
+    },
+    {
+      "id": "ch09-card-5",
+      "term": "Pitch and loudness",
+      "definition": "Pitch is related mainly to frequency; loudness depends on intensity and hearing response.",
+      "explanation": "Pitch is related mainly to frequency; loudness depends on intensity and hearing response. Amplitude and frequency are not interchangeable.",
+      "example": "A taller trace can show a louder sound without a change in pitch.",
+      "confusion": "Amplitude and frequency are not interchangeable.",
+      "question": "Explain pitch and loudness and distinguish it from a common mistaken idea.",
+      "answer": "Pitch is related mainly to frequency; loudness depends on intensity and hearing response. Amplitude and frequency are not interchangeable.",
+      "teach": "#s9-5",
+      "questionId": "ch09-practice-5-2",
+      "cue": "Amplitude and frequency are not interchangeable."
+    },
+    {
+      "id": "ch09-card-6",
+      "term": "Timbre and standing waves",
+      "definition": "A sound’s mixture of frequencies and their strengths helps determine its timbre.",
+      "explanation": "A sound’s mixture of frequencies and their strengths helps determine its timbre. Equal pitch does not imply identical waveform or timbre.",
+      "example": "A tabla and a flute can have different mixtures of overtones.",
+      "confusion": "Equal pitch does not imply identical waveform or timbre.",
+      "question": "Explain timbre and standing waves and distinguish it from a common mistaken idea.",
+      "answer": "A sound’s mixture of frequencies and their strengths helps determine its timbre. Equal pitch does not imply identical waveform or timbre.",
+      "teach": "#s9-6",
+      "questionId": "ch09-practice-6-2",
+      "cue": "Equal pitch does not imply identical waveform or timbre."
+    },
+    {
+      "id": "ch09-card-7",
+      "term": "Doppler effect",
+      "definition": "Relative source-observer motion can change the observed frequency.",
+      "explanation": "Relative source-observer motion can change the observed frequency. The source need not change its emitted frequency.",
+      "example": "An approaching siren can sound higher than the same siren after it passes.",
+      "confusion": "The source need not change its emitted frequency.",
+      "question": "Explain doppler effect and distinguish it from a common mistaken idea.",
+      "answer": "Relative source-observer motion can change the observed frequency. The source need not change its emitted frequency.",
+      "teach": "#s9-7",
+      "questionId": "ch09-practice-7-2",
+      "cue": "The source need not change its emitted frequency."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "A model oscillator completes 36 cycles in 12 s. Calculate its frequency."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "An ambulance continues sounding the same siren after it passes you. Explain the lower pitch you then hear."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "A pendulum completes 20 full swings in 14 s. Calculate its average period."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A microphone trace contains the supplied numbers of cycles in equal time intervals. Compare frequencies and state one thing these data do not establish."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch09-recall",
+      "title": "Period and frequency · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch09-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by period and frequency.",
+      "marks": 1,
+      "points": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "model": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A larger period means a smaller frequency.",
+      "hints": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "teach": "#s9-1"
+    },
+    {
+      "id": "ch09-worked",
+      "title": "Period and frequency · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch09-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A pendulum completes 20 full swings in 14 s. Calculate its average period.",
+      "marks": 2,
+      "points": [
+        "Period = total time/number of cycles.",
+        "T = 14/20 = 0.70 s."
+      ],
+      "model": [
+        "Period = total time/number of cycles.",
+        "T = 14/20 = 0.70 s."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A larger period means a smaller frequency.",
+      "hints": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "teach": "#s9-1",
+      "numeric": {
+        "value": 0.7,
+        "unit": "s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch09-guided",
+      "title": "Sound · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch09-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A model sound wave has frequency 220.0 Hz and wavelength 1.60 m. Calculate its speed to three significant figures.",
+      "marks": 2,
+      "points": [
+        "Use v = fλ.",
+        "v = 220.0 × 1.60 = 352 m/s to three significant figures."
+      ],
+      "model": [
+        "Use v = fλ.",
+        "v = 220.0 × 1.60 = 352 m/s to three significant figures."
+      ],
+      "accepted": [
+        "Accept 352 m/s, including equivalent three-significant-figure notation. Award the relationship mark separately from the final result."
+      ],
+      "common": "Sound does not propagate through a vacuum.",
+      "hints": [
+        "A mechanical wave of pressure and density changes travelling through a medium."
+      ],
+      "teach": "#s9-4",
+      "numeric": {
+        "value": 352,
+        "unit": "m/s",
+        "tolerance": 0.5
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch09-practice-1-1",
+      "title": "Period and frequency · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A model oscillator completes 36 cycles in 12 s. Calculate its frequency.",
+      "marks": 2,
+      "points": [
+        "Frequency = number of cycles/time.",
+        "f = 36/12 = 3 Hz."
+      ],
+      "model": [
+        "Frequency = number of cycles/time.",
+        "f = 36/12 = 3 Hz."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A larger period means a smaller frequency.",
+      "hints": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "teach": "#s9-1",
+      "numeric": {
+        "value": 3,
+        "unit": "Hz",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch09-practice-1-2",
+      "title": "Period and frequency · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch09-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why timing 20 complete swings can give a more reliable period estimate than timing one.",
+      "marks": 2,
+      "points": [
+        "The total measured interval is longer, so reaction-time uncertainty is a smaller fraction.",
+        "Divide the total time by 20; repeat measurements to assess variation."
+      ],
+      "model": [
+        "The total measured interval is longer, so reaction-time uncertainty is a smaller fraction.",
+        "Divide the total time by 20; repeat measurements to assess variation."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A larger period means a smaller frequency.",
+      "hints": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "teach": "#s9-1"
+    },
+    {
+      "id": "ch09-practice-2-1",
+      "title": "Resonance · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why small regularly timed pushes can build a swing’s amplitude.",
+      "marks": 2,
+      "points": [
+        "The pushes are timed near its natural oscillation frequency.",
+        "They transfer energy repeatedly in a favourable phase, overcoming damping."
+      ],
+      "model": [
+        "The pushes are timed near its natural oscillation frequency.",
+        "They transfer energy repeatedly in a favourable phase, overcoming damping."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Larger pushes alone do not define resonance.",
+      "hints": [
+        "A large driven response near a system’s natural frequency."
+      ],
+      "teach": "#s9-2"
+    },
+    {
+      "id": "ch09-practice-2-2",
+      "title": "Resonance · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch09-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A vibration system responds most strongly at 8 Hz but weakly at 3 Hz and 15 Hz. What does this suggest, and what prevents unlimited growth?",
+      "marks": 2,
+      "points": [
+        "Its natural resonance is near 8 Hz.",
+        "Damping and other non-ideal effects limit the amplitude."
+      ],
+      "model": [
+        "Its natural resonance is near 8 Hz.",
+        "Damping and other non-ideal effects limit the amplitude."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Larger pushes alone do not define resonance.",
+      "hints": [
+        "A large driven response near a system’s natural frequency."
+      ],
+      "teach": "#s9-2"
+    },
+    {
+      "id": "ch09-practice-3-1",
+      "title": "Wave transport · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A cork bobs as a ripple crosses a tray. Explain how the wave travels while the cork stays near one place.",
+      "marks": 2,
+      "points": [
+        "The disturbance and energy propagate.",
+        "Water particles mainly oscillate near their equilibrium positions rather than moving with the crest across the tray."
+      ],
+      "model": [
+        "The disturbance and energy propagate.",
+        "Water particles mainly oscillate near their equilibrium positions rather than moving with the crest across the tray."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The moving pattern and the motion of particles are different.",
+      "hints": [
+        "A travelling disturbance can transfer energy without carrying the medium along with it."
+      ],
+      "teach": "#s9-3"
+    },
+    {
+      "id": "ch09-practice-3-2",
+      "title": "Wave transport · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch09-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A wave has frequency 6 Hz and wavelength 0.75 m. Calculate its speed.",
+      "marks": 2,
+      "points": [
+        "Use v = fλ.",
+        "v = 6 × 0.75 = 4.5 m/s."
+      ],
+      "model": [
+        "Use v = fλ.",
+        "v = 6 × 0.75 = 4.5 m/s."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The moving pattern and the motion of particles are different.",
+      "hints": [
+        "A travelling disturbance can transfer energy without carrying the medium along with it."
+      ],
+      "teach": "#s9-3",
+      "numeric": {
+        "value": 4.5,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch09-practice-4-1",
+      "title": "Sound · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a bell in a vacuum would not send ordinary sound through the empty space to an observer.",
+      "marks": 2,
+      "points": [
+        "Sound requires a material medium to pass on pressure disturbances.",
+        "A vacuum has no particles to carry that mechanical wave."
+      ],
+      "model": [
+        "Sound requires a material medium to pass on pressure disturbances.",
+        "A vacuum has no particles to carry that mechanical wave."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Sound does not propagate through a vacuum.",
+      "hints": [
+        "A mechanical wave of pressure and density changes travelling through a medium."
+      ],
+      "teach": "#s9-4"
+    },
+    {
+      "id": "ch09-practice-4-2",
+      "title": "Sound · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch09-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "An echo returns 0.40 s after a sound is emitted. Use sound speed 330 m/s to calculate the reflecting wall’s distance.",
+      "marks": 2,
+      "points": [
+        "The sound travels to the wall and back, so distance = vt/2.",
+        "Distance = 330 × 0.40/2 = 66 m."
+      ],
+      "model": [
+        "The sound travels to the wall and back, so distance = vt/2.",
+        "Distance = 330 × 0.40/2 = 66 m."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Sound does not propagate through a vacuum.",
+      "hints": [
+        "A mechanical wave of pressure and density changes travelling through a medium."
+      ],
+      "teach": "#s9-4",
+      "numeric": {
+        "value": 66,
+        "unit": "m",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch09-practice-5-1",
+      "title": "Pitch and loudness · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-5"
+      ],
+      "kind": "graph",
+      "prompt": "Two ideal sound traces have equal time between peaks, but one has twice the amplitude. Compare pitch and likely loudness.",
+      "marks": 2,
+      "points": [
+        "Their frequencies, and hence their pitches, are the same.",
+        "The larger-amplitude sound has greater intensity under the same conditions and is generally louder."
+      ],
+      "model": [
+        "Their frequencies, and hence their pitches, are the same.",
+        "The larger-amplitude sound has greater intensity under the same conditions and is generally louder."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Amplitude and frequency are not interchangeable.",
+      "hints": [
+        "Pitch is related mainly to frequency; loudness depends on intensity and hearing response."
+      ],
+      "teach": "#s9-5"
+    },
+    {
+      "id": "ch09-practice-5-2",
+      "title": "Pitch and loudness · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch09-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A source frequency rises from 200 Hz to 400 Hz. Describe the pitch change and explain why loudness is not determined.",
+      "marks": 2,
+      "points": [
+        "Its pitch rises.",
+        "Frequency alone does not specify amplitude or intensity."
+      ],
+      "model": [
+        "Its pitch rises.",
+        "Frequency alone does not specify amplitude or intensity."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Amplitude and frequency are not interchangeable.",
+      "hints": [
+        "Pitch is related mainly to frequency; loudness depends on intensity and hearing response."
+      ],
+      "teach": "#s9-5"
+    },
+    {
+      "id": "ch09-practice-6-1",
+      "title": "Timbre and standing waves · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Two instruments play the same fundamental frequency but sound different. Explain.",
+      "marks": 2,
+      "points": [
+        "Their mixtures of overtones and relative strengths differ.",
+        "This changes the waveform and timbre even with the same fundamental pitch."
+      ],
+      "model": [
+        "Their mixtures of overtones and relative strengths differ.",
+        "This changes the waveform and timbre even with the same fundamental pitch."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal pitch does not imply identical waveform or timbre.",
+      "hints": [
+        "A sound’s mixture of frequencies and their strengths helps determine its timbre."
+      ],
+      "teach": "#s9-6"
+    },
+    {
+      "id": "ch09-practice-6-2",
+      "title": "Timbre and standing waves · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch09-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain what a node means in an ideal standing-wave displacement pattern.",
+      "marks": 2,
+      "points": [
+        "It is a position of zero oscillation amplitude.",
+        "Oppositely travelling waves interfere destructively there."
+      ],
+      "model": [
+        "It is a position of zero oscillation amplitude.",
+        "Oppositely travelling waves interfere destructively there."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal pitch does not imply identical waveform or timbre.",
+      "hints": [
+        "A sound’s mixture of frequencies and their strengths helps determine its timbre."
+      ],
+      "teach": "#s9-6"
+    },
+    {
+      "id": "ch09-practice-7-1",
+      "title": "Doppler effect · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch09-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "A steady-frequency whistle approaches a stationary observer through still air. Explain the higher observed frequency.",
+      "marks": 2,
+      "points": [
+        "Successive wavefronts in front are closer together because the source moves forward between emissions.",
+        "More wavefronts reach the observer per second."
+      ],
+      "model": [
+        "Successive wavefronts in front are closer together because the source moves forward between emissions.",
+        "More wavefronts reach the observer per second."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The source need not change its emitted frequency.",
+      "hints": [
+        "Relative source-observer motion can change the observed frequency."
+      ],
+      "teach": "#s9-7"
+    },
+    {
+      "id": "ch09-practice-7-2",
+      "title": "Doppler effect · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch09-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "An ambulance continues sounding the same siren after it passes you. Explain the lower pitch you then hear.",
+      "marks": 2,
+      "points": [
+        "For a receding source, wavefronts reaching you are spaced farther apart.",
+        "Their arrival frequency is lower even if emission frequency is unchanged."
+      ],
+      "model": [
+        "For a receding source, wavefronts reaching you are spaced farther apart.",
+        "Their arrival frequency is lower even if emission frequency is unchanged."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The source need not change its emitted frequency.",
+      "hints": [
+        "Relative source-observer motion can change the observed frequency."
+      ],
+      "teach": "#s9-7"
+    },
+    {
+      "id": "ch09-paper-a-1",
+      "title": "Period and frequency · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A small-angle pendulum is lengthened without changing its bob. Predict the period change.",
+      "marks": 2,
+      "points": [
+        "The period increases.",
+        "For the simple small-angle model T is proportional to the square root of length."
+      ],
+      "model": [
+        "The period increases.",
+        "For the simple small-angle model T is proportional to the square root of length."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A larger period means a smaller frequency.",
+      "hints": [
+        "Period is time per cycle; frequency is cycles per second."
+      ],
+      "teach": "#s9-1"
+    },
+    {
+      "id": "ch09-paper-a-2",
+      "title": "Resonance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A child pushes a swing at random times. Explain why equally large pushes need not produce a large amplitude.",
+      "marks": 2,
+      "points": [
+        "A push can be out of phase with the motion.",
+        "It may remove energy or fail to add it effectively each cycle."
+      ],
+      "model": [
+        "A push can be out of phase with the motion.",
+        "It may remove energy or fail to add it effectively each cycle."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Larger pushes alone do not define resonance.",
+      "hints": [
+        "A large driven response near a system’s natural frequency."
+      ],
+      "teach": "#s9-2"
+    },
+    {
+      "id": "ch09-paper-a-3",
+      "title": "Wave transport · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Define a transverse wave using directions of motion, then name a suitable example.",
+      "marks": 2,
+      "points": [
+        "The oscillation is perpendicular to the direction of propagation.",
+        "A small wave on a stretched string is an example."
+      ],
+      "model": [
+        "The oscillation is perpendicular to the direction of propagation.",
+        "A small wave on a stretched string is an example."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The moving pattern and the motion of particles are different.",
+      "hints": [
+        "A travelling disturbance can transfer energy without carrying the medium along with it."
+      ],
+      "teach": "#s9-3"
+    },
+    {
+      "id": "ch09-paper-a-4",
+      "title": "Sound · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish compression from rarefaction in a sound wave.",
+      "marks": 2,
+      "points": [
+        "A compression has higher pressure and particles closer together than equilibrium.",
+        "A rarefaction has lower pressure and particles farther apart."
+      ],
+      "model": [
+        "A compression has higher pressure and particles closer together than equilibrium.",
+        "A rarefaction has lower pressure and particles farther apart."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Sound does not propagate through a vacuum.",
+      "hints": [
+        "A mechanical wave of pressure and density changes travelling through a medium."
+      ],
+      "teach": "#s9-4"
+    },
+    {
+      "id": "ch09-paper-a-5",
+      "title": "Pitch and loudness · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-5"
+      ],
+      "kind": "graph",
+      "prompt": "Describe how to compare the frequencies of two recorded sound traces fairly.",
+      "marks": 2,
+      "points": [
+        "Use the same time scale and measure the time for several cycles.",
+        "Calculate frequency or compare the number of cycles in equal time intervals."
+      ],
+      "model": [
+        "Use the same time scale and measure the time for several cycles.",
+        "Calculate frequency or compare the number of cycles in equal time intervals."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Amplitude and frequency are not interchangeable.",
+      "hints": [
+        "Pitch is related mainly to frequency; loudness depends on intensity and hearing response."
+      ],
+      "teach": "#s9-5"
+    },
+    {
+      "id": "ch09-paper-a-6",
+      "title": "Timbre and standing waves · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Why is the dark loading on a tabla membrane relevant to its sound?",
+      "marks": 2,
+      "points": [
+        "It changes the membrane’s mass distribution and vibration modes.",
+        "This can bring important mode frequencies into a more nearly harmonic relationship."
+      ],
+      "model": [
+        "It changes the membrane’s mass distribution and vibration modes.",
+        "This can bring important mode frequencies into a more nearly harmonic relationship."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal pitch does not imply identical waveform or timbre.",
+      "hints": [
+        "A sound’s mixture of frequencies and their strengths helps determine its timbre."
+      ],
+      "teach": "#s9-6"
+    },
+    {
+      "id": "ch09-paper-b-1",
+      "title": "Resonance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why changing a vibrating system’s stiffness can shift the frequency of its strongest response.",
+      "marks": 2,
+      "points": [
+        "Stiffness affects the restoring force and natural frequency.",
+        "The driving frequency giving resonance can therefore change."
+      ],
+      "model": [
+        "Stiffness affects the restoring force and natural frequency.",
+        "The driving frequency giving resonance can therefore change."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Larger pushes alone do not define resonance.",
+      "hints": [
+        "A large driven response near a system’s natural frequency."
+      ],
+      "teach": "#s9-2"
+    },
+    {
+      "id": "ch09-paper-b-2",
+      "title": "Wave transport · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A student says a wave’s speed must equal the greatest speed of one particle in the medium. Explain the error.",
+      "marks": 2,
+      "points": [
+        "Wave speed describes the motion of the disturbance.",
+        "Particle velocity describes local oscillation; they are different quantities."
+      ],
+      "model": [
+        "Wave speed describes the motion of the disturbance.",
+        "Particle velocity describes local oscillation; they are different quantities."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The moving pattern and the motion of particles are different.",
+      "hints": [
+        "A travelling disturbance can transfer energy without carrying the medium along with it."
+      ],
+      "teach": "#s9-3"
+    },
+    {
+      "id": "ch09-paper-b-3",
+      "title": "Sound · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a microphone can detect a sound after the original air particles beside the source have barely changed their average positions.",
+      "marks": 2,
+      "points": [
+        "Neighbouring particles pass on the disturbance.",
+        "Energy travels while the particles mainly oscillate locally."
+      ],
+      "model": [
+        "Neighbouring particles pass on the disturbance.",
+        "Energy travels while the particles mainly oscillate locally."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Sound does not propagate through a vacuum.",
+      "hints": [
+        "A mechanical wave of pressure and density changes travelling through a medium."
+      ],
+      "teach": "#s9-4"
+    },
+    {
+      "id": "ch09-paper-b-4",
+      "title": "Pitch and loudness · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A high-pitched sound is quiet. Is this contradictory? Explain.",
+      "marks": 2,
+      "points": [
+        "No: high pitch refers mainly to high frequency.",
+        "A small amplitude/intensity can make that same sound quiet."
+      ],
+      "model": [
+        "No: high pitch refers mainly to high frequency.",
+        "A small amplitude/intensity can make that same sound quiet."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Amplitude and frequency are not interchangeable.",
+      "hints": [
+        "Pitch is related mainly to frequency; loudness depends on intensity and hearing response."
+      ],
+      "teach": "#s9-5"
+    },
+    {
+      "id": "ch09-paper-b-5",
+      "title": "Timbre and standing waves · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the pitch of a stretched string can change when its tension changes.",
+      "marks": 2,
+      "points": [
+        "Tension changes the wave speed on the string.",
+        "For fixed length and mode, the allowed vibration frequency therefore changes."
+      ],
+      "model": [
+        "Tension changes the wave speed on the string.",
+        "For fixed length and mode, the allowed vibration frequency therefore changes."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal pitch does not imply identical waveform or timbre.",
+      "hints": [
+        "A sound’s mixture of frequencies and their strengths helps determine its timbre."
+      ],
+      "teach": "#s9-6"
+    },
+    {
+      "id": "ch09-paper-b-6",
+      "title": "Doppler effect · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch09-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "Why should a Doppler comparison specify the observer as well as the source?",
+      "marks": 2,
+      "points": [
+        "Observed sound frequency depends on both source and observer velocities relative to the medium.",
+        "Different observers can encounter wavefronts at different rates from the same source."
+      ],
+      "model": [
+        "Observed sound frequency depends on both source and observer velocities relative to the medium.",
+        "Different observers can encounter wavefronts at different rates from the same source."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The source need not change its emitted frequency.",
+      "hints": [
+        "Relative source-observer motion can change the observed frequency."
+      ],
+      "teach": "#s9-7"
+    },
+    {
+      "id": "ch09-data-review",
+      "title": "Doppler effect · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch09-objective-7"
+      ],
+      "kind": "investigate",
+      "prompt": "A microphone trace contains the supplied numbers of cycles in equal time intervals. Compare frequencies and state one thing these data do not establish.",
+      "marks": 2,
+      "points": [
+        "A has 4/0.02 = 200 Hz; B has 8/0.02 = 400 Hz, so B has the higher pitch.",
+        "The table gives no amplitude or intensity and therefore does not establish which is louder."
+      ],
+      "model": [
+        "A has 4/0.02 = 200 Hz; B has 8/0.02 = 400 Hz, so B has the higher pitch.",
+        "The table gives no amplitude or intensity and therefore does not establish which is louder."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The source need not change its emitted frequency.",
+      "hints": [
+        "Relative source-observer motion can change the observed frequency."
+      ],
+      "teach": "#s9-7",
+      "data": {
+        "headers": [
+          "Trace",
+          "Cycles in 0.020 s"
+        ],
+        "rows": [
+          [
+            "A",
+            4
+          ],
+          [
+            "B",
+            8
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch09-paper-a",
+      "title": "Vibrations, waves and sound · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch09-paper-a-1",
+        "ch09-paper-a-2",
+        "ch09-paper-a-3",
+        "ch09-paper-a-4",
+        "ch09-paper-a-5",
+        "ch09-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch09-paper-b",
+      "title": "Vibrations, waves and sound · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch09-paper-b-1",
+        "ch09-paper-b-2",
+        "ch09-paper-b-3",
+        "ch09-paper-b-4",
+        "ch09-paper-b-5",
+        "ch09-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 9: Vibrations, waves and sound",
+      "url": "#ch9"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-1/"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-2/"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://openstax.org/books/college-physics-2e/pages/16-4-the-simple-pendulum"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-3/"
+    }
+  ]
+}

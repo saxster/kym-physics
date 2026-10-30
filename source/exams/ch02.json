@@ -1,0 +1,1016 @@
+{
+  "version": 1,
+  "chapter": 2,
+  "key": "chapter-02",
+  "title": "Why things keep moving",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch02-objective-1",
+      "label": "Explain and use interactions.",
+      "teach": "#s2-1",
+      "note": "A force describes an interaction between objects, such as contact or gravity."
+    },
+    {
+      "id": "ch02-objective-2",
+      "label": "Explain and use after release.",
+      "teach": "#s2-2",
+      "note": "Once contact ends, the pushing hand no longer exerts a contact force on the released object."
+    },
+    {
+      "id": "ch02-objective-3",
+      "label": "Explain and use idealisation.",
+      "teach": "#s2-3",
+      "note": "An idealised situation leaves out selected influences to reveal a simpler relationship."
+    },
+    {
+      "id": "ch02-objective-4",
+      "label": "Explain and use newton’s first law.",
+      "teach": "#s2-4",
+      "note": "Zero resultant force means constant velocity, including the special case of remaining at rest."
+    },
+    {
+      "id": "ch02-objective-5",
+      "label": "Explain and use friction.",
+      "teach": "#s2-5",
+      "note": "A contact force opposing relative sliding or its tendency at a surface."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch02-card-1",
+      "term": "Interactions",
+      "definition": "A force describes an interaction between objects, such as contact or gravity.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A student sees a rolling ball stop and concludes that motion always needs a forward force. Explain what her evidence overlooks. The surface and air exert resistive forces. The stopping observation does not describe motion with zero resultant force.",
+      "confusion": "A moving object does not need a continuing forward force merely to keep moving.",
+      "question": "Explain interactions from memory. What common mistake must you avoid?",
+      "answer": "A force describes an interaction between objects, such as contact or gravity. A moving object does not need a continuing forward force merely to keep moving.",
+      "teach": "#s2-1",
+      "questionId": "ch02-o1-q1"
+    },
+    {
+      "id": "ch02-card-2",
+      "term": "After release",
+      "definition": "Once contact ends, the pushing hand no longer exerts a contact force on the released object.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A coin has left a person’s fingers and is moving upwards. Ignoring air resistance, name the force acting on it and its direction, and explain whether the fingers still exert a force. Gravity acts downwards. There is no remaining upward contact force from the fingers after release.",
+      "confusion": "A push is not a substance stored inside the object.",
+      "question": "Explain after release from memory. What common mistake must you avoid?",
+      "answer": "Once contact ends, the pushing hand no longer exerts a contact force on the released object. A push is not a substance stored inside the object.",
+      "teach": "#s2-2",
+      "questionId": "ch02-o2-q1"
+    },
+    {
+      "id": "ch02-card-3",
+      "term": "Idealisation",
+      "definition": "An idealised situation leaves out selected influences to reveal a simpler relationship.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "An ideal simulation shows a puck moving forever. A real puck stops. Explain one consistent reason. The ideal simulation neglects resistance. The real puck experiences resistive forces that change its velocity.",
+      "confusion": "Removing friction in a model is different from claiming no real surface has friction.",
+      "question": "Explain idealisation from memory. What common mistake must you avoid?",
+      "answer": "An idealised situation leaves out selected influences to reveal a simpler relationship. Removing friction in a model is different from claiming no real surface has friction.",
+      "teach": "#s2-3",
+      "questionId": "ch02-o3-q1"
+    },
+    {
+      "id": "ch02-card-4",
+      "term": "Newton’s first law",
+      "definition": "Zero resultant force means constant velocity, including the special case of remaining at rest.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A car turns at constant speed. Explain why the first law does not imply zero resultant force. The direction of its velocity changes. A resultant force is needed to change that velocity.",
+      "confusion": "Constant speed along a curve is not constant velocity.",
+      "question": "Explain newton’s first law from memory. What common mistake must you avoid?",
+      "answer": "Zero resultant force means constant velocity, including the special case of remaining at rest. Constant speed along a curve is not constant velocity.",
+      "teach": "#s2-4",
+      "questionId": "ch02-o4-q1"
+    },
+    {
+      "id": "ch02-card-5",
+      "term": "Friction",
+      "definition": "A contact force opposing relative sliding or its tendency at a surface.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A box slides right across a floor. State the direction of the floor’s friction on the box and explain. The friction acts left. It opposes the box’s sliding relative to the floor.",
+      "confusion": "Friction is not always opposite the object’s motion relative to the ground.",
+      "question": "Explain friction from memory. What common mistake must you avoid?",
+      "answer": "A contact force opposing relative sliding or its tendency at a surface. Friction is not always opposite the object’s motion relative to the ground.",
+      "teach": "#s2-5",
+      "questionId": "ch02-o5-q1"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of interactions."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "A student sees a rolling ball stop and concludes that motion always needs a forward force. Explain what her evidence overlooks."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "No numerical substitution is needed for a purely conceptual explanation."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the friction revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch02-o1-q1",
+      "title": "A toy slides across a table after a hand lets go",
+      "stage": "independent",
+      "objectives": [
+        "ch02-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A toy slides across a table after a hand lets go. Name an interaction that can slow it and explain the change.",
+      "marks": 2,
+      "points": [
+        "Friction between toy and table acts opposite the sliding motion.",
+        "A backward resultant force changes its velocity and slows it."
+      ],
+      "model": [
+        "Friction between toy and table acts opposite the sliding motion.",
+        "A backward resultant force changes its velocity and slows it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A moving object does not need a continuing forward force merely to keep moving.",
+      "hints": [
+        "Begin with the meaning of interactions: A force describes an interaction between objects, such as contact or gravity."
+      ],
+      "teach": "#s2-1"
+    },
+    {
+      "id": "ch02-o1-q2",
+      "title": "A student sees a rolling ball stop and concludes that motion always needs a forward force",
+      "stage": "transfer",
+      "objectives": [
+        "ch02-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A student sees a rolling ball stop and concludes that motion always needs a forward force. Explain what her evidence overlooks.",
+      "marks": 2,
+      "points": [
+        "The surface and air exert resistive forces.",
+        "The stopping observation does not describe motion with zero resultant force."
+      ],
+      "model": [
+        "The surface and air exert resistive forces.",
+        "The stopping observation does not describe motion with zero resultant force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A moving object does not need a continuing forward force merely to keep moving.",
+      "hints": [
+        "Begin with the meaning of interactions: A force describes an interaction between objects, such as contact or gravity."
+      ],
+      "teach": "#s2-1"
+    },
+    {
+      "id": "ch02-o1-q3",
+      "title": "A trolley rolls steadily on an ideal track with no horizontal resistance after a push",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A trolley rolls steadily on an ideal track with no horizontal resistance after a push. Is a forward horizontal force required? Explain.",
+      "marks": 2,
+      "points": [
+        "No continuing forward force is required.",
+        "With zero horizontal resultant force, its horizontal velocity stays constant."
+      ],
+      "model": [
+        "No continuing forward force is required.",
+        "With zero horizontal resultant force, its horizontal velocity stays constant."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A moving object does not need a continuing forward force merely to keep moving.",
+      "hints": [],
+      "teach": "#s2-1"
+    },
+    {
+      "id": "ch02-o1-q4",
+      "title": "A child says the floor does nothing because it is still",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A child says the floor does nothing because it is still. Explain why being stationary does not establish absence of force.",
+      "marks": 2,
+      "points": [
+        "The floor interacts with objects touching it and can exert contact forces.",
+        "An object can have balanced forces and no change in velocity."
+      ],
+      "model": [
+        "The floor interacts with objects touching it and can exert contact forces.",
+        "An object can have balanced forces and no change in velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A moving object does not need a continuing forward force merely to keep moving.",
+      "hints": [],
+      "teach": "#s2-1"
+    },
+    {
+      "id": "ch02-o1-recall",
+      "title": "State the meaning of interactions and explain one distinction that prevents a common misunderstandin",
+      "stage": "recall",
+      "objectives": [
+        "ch02-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of interactions and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A force describes an interaction between objects, such as contact or gravity.",
+        "A moving object does not need a continuing forward force merely to keep moving."
+      ],
+      "model": [
+        "A force describes an interaction between objects, such as contact or gravity.",
+        "A moving object does not need a continuing forward force merely to keep moving."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A moving object does not need a continuing forward force merely to keep moving.",
+      "hints": [
+        "Begin with the meaning of interactions: A force describes an interaction between objects, such as contact or gravity."
+      ],
+      "teach": "#s2-1"
+    },
+    {
+      "id": "ch02-o2-q1",
+      "title": "After a puck leaves a player’s stick, does a forward force from the stick remain inside the puck? Ex",
+      "stage": "independent",
+      "objectives": [
+        "ch02-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "After a puck leaves a player’s stick, does a forward force from the stick remain inside the puck? Explain.",
+      "marks": 2,
+      "points": [
+        "No: the stick’s contact with the puck has ended.",
+        "The puck continues moving because motion persists unless a resultant force changes it."
+      ],
+      "model": [
+        "No: the stick’s contact with the puck has ended.",
+        "The puck continues moving because motion persists unless a resultant force changes it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A push is not a substance stored inside the object.",
+      "hints": [
+        "Begin with the meaning of after release: Once contact ends, the pushing hand no longer exerts a contact force on the released object."
+      ],
+      "teach": "#s2-2"
+    },
+    {
+      "id": "ch02-o2-q2",
+      "title": "A coin has left a person’s fingers and is moving upwards",
+      "stage": "transfer",
+      "objectives": [
+        "ch02-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A coin has left a person’s fingers and is moving upwards. Ignoring air resistance, name the force acting on it and its direction, and explain whether the fingers still exert a force.",
+      "marks": 2,
+      "points": [
+        "Gravity acts downwards.",
+        "There is no remaining upward contact force from the fingers after release."
+      ],
+      "model": [
+        "Gravity acts downwards.",
+        "There is no remaining upward contact force from the fingers after release."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A push is not a substance stored inside the object.",
+      "hints": [
+        "Begin with the meaning of after release: Once contact ends, the pushing hand no longer exerts a contact force on the released object."
+      ],
+      "teach": "#s2-2"
+    },
+    {
+      "id": "ch02-o2-q3",
+      "title": "A ball has left a bat",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A ball has left a bat. A pupil says its stored hitting force gradually runs out. Correct this explanation.",
+      "marks": 2,
+      "points": [
+        "A force is an interaction, not something stored in the ball.",
+        "Its velocity changes because of subsequent forces such as gravity and air resistance."
+      ],
+      "model": [
+        "A force is an interaction, not something stored in the ball.",
+        "Its velocity changes because of subsequent forces such as gravity and air resistance."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A push is not a substance stored inside the object.",
+      "hints": [],
+      "teach": "#s2-2"
+    },
+    {
+      "id": "ch02-o2-q4",
+      "title": "An arrow flies after losing contact with the bow",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "An arrow flies after losing contact with the bow. Why does continuing flight not prove the bow still pushes it?",
+      "marks": 2,
+      "points": [
+        "Contact with the bow has ended.",
+        "An object can continue moving without a force in its direction of motion."
+      ],
+      "model": [
+        "Contact with the bow has ended.",
+        "An object can continue moving without a force in its direction of motion."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A push is not a substance stored inside the object.",
+      "hints": [],
+      "teach": "#s2-2"
+    },
+    {
+      "id": "ch02-o2-recall",
+      "title": "State the meaning of after release and explain one distinction that prevents a common misunderstandi",
+      "stage": "recall",
+      "objectives": [
+        "ch02-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of after release and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Once contact ends, the pushing hand no longer exerts a contact force on the released object.",
+        "A push is not a substance stored inside the object."
+      ],
+      "model": [
+        "Once contact ends, the pushing hand no longer exerts a contact force on the released object.",
+        "A push is not a substance stored inside the object."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A push is not a substance stored inside the object.",
+      "hints": [
+        "Begin with the meaning of after release: Once contact ends, the pushing hand no longer exerts a contact force on the released object."
+      ],
+      "teach": "#s2-2"
+    },
+    {
+      "id": "ch02-o3-q1",
+      "title": "Why is it useful to compare a ball rolling on rough and smoother tracks when considering a frictionl",
+      "stage": "independent",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Why is it useful to compare a ball rolling on rough and smoother tracks when considering a frictionless model?",
+      "marks": 2,
+      "points": [
+        "Smoother tracks generally reduce resistive effects and allow the ball to travel farther.",
+        "This supports reasoning about the limit of vanishing resistance, while not proving a real track is perfectly frictionless."
+      ],
+      "model": [
+        "Smoother tracks generally reduce resistive effects and allow the ball to travel farther.",
+        "This supports reasoning about the limit of vanishing resistance, while not proving a real track is perfectly frictionless."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [
+        "Begin with the meaning of idealisation: An idealised situation leaves out selected influences to reveal a simpler relationship."
+      ],
+      "teach": "#s2-3"
+    },
+    {
+      "id": "ch02-o3-q2",
+      "title": "An ideal simulation shows a puck moving forever",
+      "stage": "transfer",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "An ideal simulation shows a puck moving forever. A real puck stops. Explain one consistent reason.",
+      "marks": 2,
+      "points": [
+        "The ideal simulation neglects resistance.",
+        "The real puck experiences resistive forces that change its velocity."
+      ],
+      "model": [
+        "The ideal simulation neglects resistance.",
+        "The real puck experiences resistive forces that change its velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [
+        "Begin with the meaning of idealisation: An idealised situation leaves out selected influences to reveal a simpler relationship."
+      ],
+      "teach": "#s2-3"
+    },
+    {
+      "id": "ch02-o3-q3",
+      "title": "Suggest a fair comparison to investigate how track surface affects the stopping distance of a toy ca",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Suggest a fair comparison to investigate how track surface affects the stopping distance of a toy car.",
+      "marks": 2,
+      "points": [
+        "Use the same car, starting speed and level track geometry while changing only the surface.",
+        "Repeat measurements of stopping distance and compare representative results."
+      ],
+      "model": [
+        "Use the same car, starting speed and level track geometry while changing only the surface.",
+        "Repeat measurements of stopping distance and compare representative results."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [],
+      "teach": "#s2-3"
+    },
+    {
+      "id": "ch02-o3-q4",
+      "title": "A model sets air resistance to zero",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A model sets air resistance to zero. Give one situation where this approximation is less suitable.",
+      "marks": 2,
+      "points": [
+        "A light paper sheet falling through air has a large effect from air resistance relative to its weight.",
+        "The model can then predict motion poorly because an important influence was omitted."
+      ],
+      "model": [
+        "A light paper sheet falling through air has a large effect from air resistance relative to its weight.",
+        "The model can then predict motion poorly because an important influence was omitted."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [],
+      "teach": "#s2-3"
+    },
+    {
+      "id": "ch02-o3-recall",
+      "title": "State the meaning of idealisation and explain one distinction that prevents a common misunderstandin",
+      "stage": "recall",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of idealisation and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "An idealised situation leaves out selected influences to reveal a simpler relationship.",
+        "Removing friction in a model is different from claiming no real surface has friction."
+      ],
+      "model": [
+        "An idealised situation leaves out selected influences to reveal a simpler relationship.",
+        "Removing friction in a model is different from claiming no real surface has friction."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [
+        "Begin with the meaning of idealisation: An idealised situation leaves out selected influences to reveal a simpler relationship."
+      ],
+      "teach": "#s2-3"
+    },
+    {
+      "id": "ch02-o4-q1",
+      "title": "A suitcase moves at constant velocity on a straight conveyor",
+      "stage": "independent",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A suitcase moves at constant velocity on a straight conveyor. What does this imply about its resultant force?",
+      "marks": 2,
+      "points": [
+        "Its acceleration is zero.",
+        "Its resultant force is zero."
+      ],
+      "model": [
+        "Its acceleration is zero.",
+        "Its resultant force is zero."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [
+        "Begin with the meaning of newton’s first law: Zero resultant force means constant velocity, including the special case of remaining at rest."
+      ],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-o4-q2",
+      "title": "A car turns at constant speed",
+      "stage": "transfer",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A car turns at constant speed. Explain why the first law does not imply zero resultant force.",
+      "marks": 2,
+      "points": [
+        "The direction of its velocity changes.",
+        "A resultant force is needed to change that velocity."
+      ],
+      "model": [
+        "The direction of its velocity changes.",
+        "A resultant force is needed to change that velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [
+        "Begin with the meaning of newton’s first law: Zero resultant force means constant velocity, including the special case of remaining at rest."
+      ],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-o4-q3",
+      "title": "A resting book has balanced forces",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A resting book has balanced forces. Does the first law predict it starts moving? Explain.",
+      "marks": 2,
+      "points": [
+        "No: zero resultant force leaves its velocity unchanged.",
+        "Its initial velocity is zero, so it remains at rest."
+      ],
+      "model": [
+        "No: zero resultant force leaves its velocity unchanged.",
+        "Its initial velocity is zero, so it remains at rest."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-o4-q4",
+      "title": "On an ideal frictionless horizontal track a cart is moving left",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "On an ideal frictionless horizontal track a cart is moving left. No resultant force acts. Describe its later motion.",
+      "marks": 2,
+      "points": [
+        "It continues left in a straight line.",
+        "Its speed remains constant."
+      ],
+      "model": [
+        "It continues left in a straight line.",
+        "Its speed remains constant."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-o4-recall",
+      "title": "State the meaning of newton’s first law and explain one distinction that prevents a common misunders",
+      "stage": "recall",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of newton’s first law and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Zero resultant force means constant velocity, including the special case of remaining at rest.",
+        "Constant speed along a curve is not constant velocity."
+      ],
+      "model": [
+        "Zero resultant force means constant velocity, including the special case of remaining at rest.",
+        "Constant speed along a curve is not constant velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [
+        "Begin with the meaning of newton’s first law: Zero resultant force means constant velocity, including the special case of remaining at rest."
+      ],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-o5-q1",
+      "title": "Why can friction help a person walk forwards?",
+      "stage": "independent",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why can friction help a person walk forwards?",
+      "marks": 2,
+      "points": [
+        "The foot pushes backwards on the ground without slipping.",
+        "Static friction from the ground can push the person forwards."
+      ],
+      "model": [
+        "The foot pushes backwards on the ground without slipping.",
+        "Static friction from the ground can push the person forwards."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [
+        "Begin with the meaning of friction: A contact force opposing relative sliding or its tendency at a surface."
+      ],
+      "teach": "#s2-5"
+    },
+    {
+      "id": "ch02-o5-q2",
+      "title": "A box slides right across a floor",
+      "stage": "transfer",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A box slides right across a floor. State the direction of the floor’s friction on the box and explain.",
+      "marks": 2,
+      "points": [
+        "The friction acts left.",
+        "It opposes the box’s sliding relative to the floor."
+      ],
+      "model": [
+        "The friction acts left.",
+        "It opposes the box’s sliding relative to the floor."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [
+        "Begin with the meaning of friction: A contact force opposing relative sliding or its tendency at a surface."
+      ],
+      "teach": "#s2-5"
+    },
+    {
+      "id": "ch02-o5-q3",
+      "title": "A parked car rests on a slope without sliding",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A parked car rests on a slope without sliding. Can friction act even though the car is not moving? Explain.",
+      "marks": 2,
+      "points": [
+        "Yes: static friction can act before slipping begins.",
+        "It can balance the component of gravity tending to move the car down the slope."
+      ],
+      "model": [
+        "Yes: static friction can act before slipping begins.",
+        "It can balance the component of gravity tending to move the car down the slope."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [],
+      "teach": "#s2-5"
+    },
+    {
+      "id": "ch02-o5-q4",
+      "title": "A bicycle tyre grips the road",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A bicycle tyre grips the road. Explain why removing all friction would make starting difficult.",
+      "marks": 2,
+      "points": [
+        "The tyre needs a tangential contact force from the road to accelerate the bicycle.",
+        "Without grip it cannot obtain that forward frictional push."
+      ],
+      "model": [
+        "The tyre needs a tangential contact force from the road to accelerate the bicycle.",
+        "Without grip it cannot obtain that forward frictional push."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [],
+      "teach": "#s2-5"
+    },
+    {
+      "id": "ch02-o5-recall",
+      "title": "State the meaning of friction and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of friction and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A contact force opposing relative sliding or its tendency at a surface.",
+        "Friction is not always opposite the object’s motion relative to the ground."
+      ],
+      "model": [
+        "A contact force opposing relative sliding or its tendency at a surface.",
+        "Friction is not always opposite the object’s motion relative to the ground."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [
+        "Begin with the meaning of friction: A contact force opposing relative sliding or its tendency at a surface."
+      ],
+      "teach": "#s2-5"
+    },
+    {
+      "id": "ch02-mixed-1",
+      "title": "The same car starts at the same speed on two level surfaces",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-3"
+      ],
+      "kind": "investigate",
+      "prompt": "The same car starts at the same speed on two level surfaces. Use the supplied stopping distances to compare resistance, and name one variable to control.",
+      "marks": 2,
+      "points": [
+        "The car stops in a shorter distance on the rough surface, consistent with greater resistance.",
+        "Control starting speed, car or track slope; repeat the comparison."
+      ],
+      "model": [
+        "The car stops in a shorter distance on the rough surface, consistent with greater resistance.",
+        "Control starting speed, car or track slope; repeat the comparison."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Removing friction in a model is different from claiming no real surface has friction.",
+      "hints": [],
+      "teach": "#s2-3",
+      "data": {
+        "headers": [
+          "Surface",
+          "Stopping distances (cm)"
+        ],
+        "rows": [
+          [
+            "Rough",
+            "18, 17, 19"
+          ],
+          [
+            "Smooth",
+            "44, 46, 45"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch02-mixed-2",
+      "title": "A small wooden block rests on a horizontal tray",
+      "stage": "paper",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A small wooden block rests on a horizontal tray. The tray is pulled right very quickly and the block initially moves only a little. Explain this using inertia without proposing that inertia is a force.",
+      "marks": 3,
+      "points": [
+        "The block tends to retain its original velocity.",
+        "Friction can change that velocity, but acts for only a short time during a quick pull.",
+        "Inertia is a property associated with mass, not an extra force."
+      ],
+      "model": [
+        "The block tends to retain its original velocity.",
+        "Friction can change that velocity, but acts for only a short time during a quick pull.",
+        "Inertia is a property associated with mass, not an extra force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-worked-explanation",
+      "title": "Worked example: Newton’s first law",
+      "stage": "worked",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Worked example: a cart moves at constant velocity for 18 s and covers 90 m along a straight track. Calculate its speed and explain what follows about its horizontal resultant force.",
+      "marks": 3,
+      "points": [
+        "Speed = 90 ÷ 18 = 5 m/s.",
+        "Constant velocity means zero acceleration.",
+        "The horizontal resultant force is therefore zero."
+      ],
+      "model": [
+        "Speed = 90 ÷ 18 = 5 m/s.",
+        "Constant velocity means zero acceleration.",
+        "The horizontal resultant force is therefore zero."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Constant speed along a curve is not constant velocity.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s2-4"
+    },
+    {
+      "id": "ch02-guided-explanation",
+      "title": "Guided practice: Friction",
+      "stage": "guided",
+      "objectives": [
+        "ch02-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A delivery box slides left on a floor. Identify the direction of friction on the box and explain why the sliding slows it.",
+      "marks": 3,
+      "points": [
+        "Friction from the floor acts right, opposing the relative sliding.",
+        "If this is the only horizontal force, the resultant is right while the box moves left.",
+        "Its leftward speed therefore decreases."
+      ],
+      "model": [
+        "Friction from the floor acts right, opposing the relative sliding.",
+        "If this is the only horizontal force, the resultant is right while the box moves left.",
+        "Its leftward speed therefore decreases."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Friction is not always opposite the object’s motion relative to the ground.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s2-5",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step."
+    },
+    {
+      "id": "ch02-delayed-cumulative",
+      "title": "Return after a delay",
+      "stage": "review",
+      "objectives": [
+        "ch02-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A toy rolls at constant velocity along a straight level track. Earlier you learned that velocity includes direction. Explain why its horizontal resultant is zero and what must change if it starts curving at the same speed.",
+      "marks": 3,
+      "points": [
+        "Straight constant velocity means zero acceleration and zero horizontal resultant.",
+        "Curving changes velocity direction despite the same speed.",
+        "A nonzero resultant towards the curve is then required."
+      ],
+      "model": [
+        "Straight constant velocity means zero acceleration and zero horizontal resultant.",
+        "Curving changes velocity direction despite the same speed.",
+        "A nonzero resultant towards the curve is then required."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s2-4"
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch02-paper-a",
+      "title": "Why things keep moving · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch02-o1-q3",
+        "ch02-o2-q3",
+        "ch02-o3-q3",
+        "ch02-o4-q3",
+        "ch02-o5-q3",
+        "ch02-mixed-1"
+      ]
+    },
+    {
+      "id": "ch02-paper-b",
+      "title": "Why things keep moving · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch02-o1-q4",
+        "ch02-o2-q4",
+        "ch02-o3-q4",
+        "ch02-o4-q4",
+        "ch02-o5-q4",
+        "ch02-mixed-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 2: Why things keep moving",
+      "url": "#ch2"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://openstax.org/books/physics/pages/4-2-newtons-first-law-of-motion-inertia"
+    }
+  ]
+}

@@ -1,0 +1,1145 @@
+{
+  "version": 1,
+  "chapter": 5,
+  "key": "chapter-05",
+  "title": "Gravity and orbits",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch05-objective-1",
+      "label": "Explain and use universal gravitation.",
+      "teach": "#s5-1",
+      "note": "Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+    },
+    {
+      "id": "ch05-objective-2",
+      "label": "Explain and use orbit.",
+      "teach": "#s5-2",
+      "note": "An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body."
+    },
+    {
+      "id": "ch05-objective-3",
+      "label": "Explain and use elliptical orbit.",
+      "teach": "#s5-3",
+      "note": "In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre."
+    },
+    {
+      "id": "ch05-objective-4",
+      "label": "Explain and use measuring g.",
+      "teach": "#s5-4",
+      "note": "A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements."
+    },
+    {
+      "id": "ch05-objective-5",
+      "label": "Explain and use prediction and evidence.",
+      "teach": "#s5-5",
+      "note": "A physical model is strengthened when its predictions match new observations."
+    },
+    {
+      "id": "ch05-objective-6",
+      "label": "Explain and use mission trajectory.",
+      "teach": "#s5-6",
+      "note": "A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch05-card-1",
+      "term": "Universal gravitation",
+      "definition": "Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Why is an astronaut’s apparent weightlessness not proof that gravity is absent? Gravity is present in a nearby orbit. The astronaut and spacecraft fall together, so there is little supporting contact force.",
+      "confusion": "Gravity does not end at the edge of the atmosphere.",
+      "question": "Explain universal gravitation from memory. What common mistake must you avoid?",
+      "answer": "Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance. Gravity does not end at the edge of the atmosphere.",
+      "teach": "#s5-1",
+      "questionId": "ch05-o1-q1"
+    },
+    {
+      "id": "ch05-card-2",
+      "term": "Orbit",
+      "definition": "An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "In a circular orbit, does a satellite’s velocity remain constant? Explain. No: its direction changes continuously. It can have constant speed while its velocity changes.",
+      "confusion": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "question": "Explain orbit from memory. What common mistake must you avoid?",
+      "answer": "An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body. An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "teach": "#s5-2",
+      "questionId": "ch05-o2-q1"
+    },
+    {
+      "id": "ch05-card-3",
+      "term": "Elliptical orbit",
+      "definition": "In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Compare a planet’s speed close to the Sun and far from it in a fixed elliptical orbit. It moves faster near the Sun. It moves more slowly farther away, consistent with equal areas swept in equal times.",
+      "confusion": "An ellipse’s focus is different from its centre.",
+      "question": "Explain elliptical orbit from memory. What common mistake must you avoid?",
+      "answer": "In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre. An ellipse’s focus is different from its centre.",
+      "teach": "#s5-3",
+      "questionId": "ch05-o3-q1"
+    },
+    {
+      "id": "ch05-card-4",
+      "term": "Measuring G",
+      "definition": "A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Explain how measuring a small gravitational force in a laboratory can help estimate Earth’s mass. The laboratory experiment determines G. Combine G with measured surface gravitational acceleration and Earth’s radius using the gravitational model.",
+      "confusion": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "question": "Explain measuring G from memory. What common mistake must you avoid?",
+      "answer": "A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements. A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "teach": "#s5-4",
+      "questionId": "ch05-o4-q1"
+    },
+    {
+      "id": "ch05-card-5",
+      "term": "Prediction and evidence",
+      "definition": "A physical model is strengthened when its predictions match new observations.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "The observed position of a planet differs slightly from a simple two-body prediction. Suggest a physical refinement before abandoning gravity. Include gravitational effects from other planets. The two-body approximation leaves out these additional interactions.",
+      "confusion": "A successful prediction supports a model without establishing that every detail is exact.",
+      "question": "Explain prediction and evidence from memory. What common mistake must you avoid?",
+      "answer": "A physical model is strengthened when its predictions match new observations. A successful prediction supports a model without establishing that every detail is exact.",
+      "teach": "#s5-5",
+      "questionId": "ch05-o5-q1"
+    },
+    {
+      "id": "ch05-card-6",
+      "term": "Mission trajectory",
+      "definition": "A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Does a spacecraft need its engine firing throughout a coast between burns? Explain. No: its motion continues and gravity changes its trajectory during coasting. Engines are used for particular planned changes of velocity rather than to sustain motion itself.",
+      "confusion": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "question": "Explain mission trajectory from memory. What common mistake must you avoid?",
+      "answer": "A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints. A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "teach": "#s5-6",
+      "questionId": "ch05-o6-q1"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of universal gravitation."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "Why is an astronaut’s apparent weightlessness not proof that gravity is absent?"
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "A fixed pair of model masses attracts with 36 N at a reference separation. Their separation is tripled while their masses stay fixed. Calculate the new force magnitude."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the mission trajectory revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch05-o1-q1",
+      "title": "Explain why an orbiting Moon need not be outside the influence of gravity",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an orbiting Moon need not be outside the influence of gravity.",
+      "marks": 2,
+      "points": [
+        "Earth’s gravitational attraction acts on the Moon.",
+        "It continually changes the Moon’s velocity direction, producing its curved orbit."
+      ],
+      "model": [
+        "Earth’s gravitational attraction acts on the Moon.",
+        "It continually changes the Moon’s velocity direction, producing its curved orbit."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [
+        "Begin with the meaning of universal gravitation: Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+      ],
+      "teach": "#s5-1"
+    },
+    {
+      "id": "ch05-o1-q2",
+      "title": "Why is an astronaut’s apparent weightlessness not proof that gravity is absent?",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Why is an astronaut’s apparent weightlessness not proof that gravity is absent?",
+      "marks": 2,
+      "points": [
+        "Gravity is present in a nearby orbit.",
+        "The astronaut and spacecraft fall together, so there is little supporting contact force."
+      ],
+      "model": [
+        "Gravity is present in a nearby orbit.",
+        "The astronaut and spacecraft fall together, so there is little supporting contact force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [
+        "Begin with the meaning of universal gravitation: Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+      ],
+      "teach": "#s5-1"
+    },
+    {
+      "id": "ch05-o1-q3",
+      "title": "In an inverse-square model, two fixed masses are separated by twice their original centre-to-centre ",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "In an inverse-square model, two fixed masses are separated by twice their original centre-to-centre distance. Compare the new force with the old one. Explain your answer.",
+      "marks": 2,
+      "points": [
+        "The new force is one quarter of the old force.",
+        "Doubling the separation multiplies its square by four."
+      ],
+      "model": [
+        "The new force is one quarter of the old force.",
+        "Doubling the separation multiplies its square by four."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [],
+      "teach": "#s5-1"
+    },
+    {
+      "id": "ch05-o1-q4",
+      "title": "At the same separation, one of two interacting masses is tripled",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "At the same separation, one of two interacting masses is tripled. How does the gravitational force magnitude change in the model? Explain your answer.",
+      "marks": 2,
+      "points": [
+        "It triples.",
+        "The force is proportional to the product of the masses."
+      ],
+      "model": [
+        "It triples.",
+        "The force is proportional to the product of the masses."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [],
+      "teach": "#s5-1"
+    },
+    {
+      "id": "ch05-o1-recall",
+      "title": "State the meaning of universal gravitation and explain one distinction that prevents a common misund",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of universal gravitation and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance.",
+        "Gravity does not end at the edge of the atmosphere."
+      ],
+      "model": [
+        "Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance.",
+        "Gravity does not end at the edge of the atmosphere."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [
+        "Begin with the meaning of universal gravitation: Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+      ],
+      "teach": "#s5-1"
+    },
+    {
+      "id": "ch05-o2-q1",
+      "title": "Why can a satellite remain above Earth although gravity pulls it inwards?",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Why can a satellite remain above Earth although gravity pulls it inwards?",
+      "marks": 2,
+      "points": [
+        "Its sideways motion carries it around as it falls.",
+        "At suitable speed and height its path follows the curvature around Earth rather than striking the surface."
+      ],
+      "model": [
+        "Its sideways motion carries it around as it falls.",
+        "At suitable speed and height its path follows the curvature around Earth rather than striking the surface."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [
+        "Begin with the meaning of orbit: An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body."
+      ],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-o2-q2",
+      "title": "In a circular orbit, does a satellite’s velocity remain constant? Explain",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "In a circular orbit, does a satellite’s velocity remain constant? Explain.",
+      "marks": 2,
+      "points": [
+        "No: its direction changes continuously.",
+        "It can have constant speed while its velocity changes."
+      ],
+      "model": [
+        "No: its direction changes continuously.",
+        "It can have constant speed while its velocity changes."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [
+        "Begin with the meaning of orbit: An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body."
+      ],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-o2-q3",
+      "title": "Suppose gravity on a satellite suddenly vanished and no other force acted",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Suppose gravity on a satellite suddenly vanished and no other force acted. Describe its immediate path.",
+      "marks": 2,
+      "points": [
+        "A straight line tangent to its former orbit.",
+        "Its velocity would no longer be deflected inwards."
+      ],
+      "model": [
+        "A straight line tangent to its former orbit.",
+        "Its velocity would no longer be deflected inwards."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-o2-q4",
+      "title": "A pupil says gravity and an outward “orbit force” balance on a circularly orbiting satellite in an E",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil says gravity and an outward “orbit force” balance on a circularly orbiting satellite in an Earth-centred inertial approximation. Explain the error.",
+      "marks": 2,
+      "points": [
+        "Circular motion requires a nonzero inward resultant.",
+        "Gravity supplies that resultant; balanced forces would give straight-line constant velocity."
+      ],
+      "model": [
+        "Circular motion requires a nonzero inward resultant.",
+        "Gravity supplies that resultant; balanced forces would give straight-line constant velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-o2-recall",
+      "title": "State the meaning of orbit and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of orbit and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body.",
+        "An orbiting satellite does not require a continuous outward force to cancel gravity."
+      ],
+      "model": [
+        "An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body.",
+        "An orbiting satellite does not require a continuous outward force to cancel gravity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [
+        "Begin with the meaning of orbit: An orbit is a continually deflected path under gravity, combining inward acceleration with motion around the attracting body."
+      ],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-o3-q1",
+      "title": "Where is the Sun in the idealised elliptical orbit of a planet?",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Where is the Sun in the idealised elliptical orbit of a planet?",
+      "marks": 1,
+      "points": [
+        "At one focus of the ellipse."
+      ],
+      "model": [
+        "At one focus of the ellipse."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An ellipse’s focus is different from its centre.",
+      "hints": [
+        "Begin with the meaning of elliptical orbit: In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre."
+      ],
+      "teach": "#s5-3"
+    },
+    {
+      "id": "ch05-o3-q2",
+      "title": "Compare a planet’s speed close to the Sun and far from it in a fixed elliptical orbit",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Compare a planet’s speed close to the Sun and far from it in a fixed elliptical orbit.",
+      "marks": 2,
+      "points": [
+        "It moves faster near the Sun.",
+        "It moves more slowly farther away, consistent with equal areas swept in equal times."
+      ],
+      "model": [
+        "It moves faster near the Sun.",
+        "It moves more slowly farther away, consistent with equal areas swept in equal times."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An ellipse’s focus is different from its centre.",
+      "hints": [
+        "Begin with the meaning of elliptical orbit: In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre."
+      ],
+      "teach": "#s5-3"
+    },
+    {
+      "id": "ch05-o3-q3",
+      "title": "In a drawing of an elliptical orbit the Sun is placed at its centre",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "In a drawing of an elliptical orbit the Sun is placed at its centre. Identify and correct the error.",
+      "marks": 2,
+      "points": [
+        "An elliptical orbit has the Sun at one focus.",
+        "Only the circular limiting case puts the focus at the centre."
+      ],
+      "model": [
+        "An elliptical orbit has the Sun at one focus.",
+        "Only the circular limiting case puts the focus at the centre."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An ellipse’s focus is different from its centre.",
+      "hints": [],
+      "teach": "#s5-3"
+    },
+    {
+      "id": "ch05-o3-q4",
+      "title": "State what equal areas in equal times imply about the speed in different parts of an elliptical orbi",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State what equal areas in equal times imply about the speed in different parts of an elliptical orbit.",
+      "marks": 2,
+      "points": [
+        "At smaller distance from the Sun the planet must move through a longer arc in the same time.",
+        "Its speed is therefore greater near the Sun."
+      ],
+      "model": [
+        "At smaller distance from the Sun the planet must move through a longer arc in the same time.",
+        "Its speed is therefore greater near the Sun."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An ellipse’s focus is different from its centre.",
+      "hints": [],
+      "teach": "#s5-3"
+    },
+    {
+      "id": "ch05-o3-recall",
+      "title": "State the meaning of elliptical orbit and explain one distinction that prevents a common misundersta",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of elliptical orbit and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre.",
+        "An ellipse’s focus is different from its centre."
+      ],
+      "model": [
+        "In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre.",
+        "An ellipse’s focus is different from its centre."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An ellipse’s focus is different from its centre.",
+      "hints": [
+        "Begin with the meaning of elliptical orbit: In an elliptical orbit, the attracting central body lies at one focus, not generally at the geometric centre."
+      ],
+      "teach": "#s5-3"
+    },
+    {
+      "id": "ch05-o4-q1",
+      "title": "Why is measuring gravitational attraction between laboratory masses challenging?",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Why is measuring gravitational attraction between laboratory masses challenging?",
+      "marks": 2,
+      "points": [
+        "The force between ordinary laboratory masses is very small.",
+        "Other disturbances such as vibration can obscure its effect."
+      ],
+      "model": [
+        "The force between ordinary laboratory masses is very small.",
+        "Other disturbances such as vibration can obscure its effect."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "hints": [
+        "Begin with the meaning of measuring g: A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements."
+      ],
+      "teach": "#s5-4"
+    },
+    {
+      "id": "ch05-o4-q2",
+      "title": "Explain how measuring a small gravitational force in a laboratory can help estimate Earth’s mass",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how measuring a small gravitational force in a laboratory can help estimate Earth’s mass.",
+      "marks": 2,
+      "points": [
+        "The laboratory experiment determines G.",
+        "Combine G with measured surface gravitational acceleration and Earth’s radius using the gravitational model."
+      ],
+      "model": [
+        "The laboratory experiment determines G.",
+        "Combine G with measured surface gravitational acceleration and Earth’s radius using the gravitational model."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "hints": [
+        "Begin with the meaning of measuring g: A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements."
+      ],
+      "teach": "#s5-4"
+    },
+    {
+      "id": "ch05-o4-q3",
+      "title": "A student says Cavendish put Earth on a balance",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A student says Cavendish put Earth on a balance. Correct this description of the method.",
+      "marks": 2,
+      "points": [
+        "He measured the small attraction between laboratory masses.",
+        "The result can be combined with a gravitational model to infer Earth’s density or mass."
+      ],
+      "model": [
+        "He measured the small attraction between laboratory masses.",
+        "The result can be combined with a gravitational model to infer Earth’s density or mass."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "hints": [],
+      "teach": "#s5-4"
+    },
+    {
+      "id": "ch05-o4-q4",
+      "title": "Name one reason a gravitational torsion-balance experiment needs careful isolation",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a gravitational torsion-balance experiment needs careful isolation.",
+      "marks": 2,
+      "points": [
+        "The gravitational twisting effect is very small.",
+        "Air currents, vibration or other external disturbances could produce a comparable effect."
+      ],
+      "model": [
+        "The gravitational twisting effect is very small.",
+        "Air currents, vibration or other external disturbances could produce a comparable effect."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "hints": [],
+      "teach": "#s5-4"
+    },
+    {
+      "id": "ch05-o4-recall",
+      "title": "State the meaning of measuring G and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of measuring G and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements.",
+        "A balance experiment is not a direct reading of the entire Earth’s mass."
+      ],
+      "model": [
+        "A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements.",
+        "A balance experiment is not a direct reading of the entire Earth’s mass."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A balance experiment is not a direct reading of the entire Earth’s mass.",
+      "hints": [
+        "Begin with the meaning of measuring g: A laboratory measurement of gravitational attraction can determine the gravitational constant used with orbital and surface measurements."
+      ],
+      "teach": "#s5-4"
+    },
+    {
+      "id": "ch05-o5-q1",
+      "title": "A model predicts the approximate return of a comet",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A model predicts the approximate return of a comet. Why is observing its return useful evidence?",
+      "marks": 2,
+      "points": [
+        "The observation tests a prediction made before the event.",
+        "Agreement supports the gravitational/orbital model used to make it."
+      ],
+      "model": [
+        "The observation tests a prediction made before the event.",
+        "Agreement supports the gravitational/orbital model used to make it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A successful prediction supports a model without establishing that every detail is exact.",
+      "hints": [
+        "Begin with the meaning of prediction and evidence: A physical model is strengthened when its predictions match new observations."
+      ],
+      "teach": "#s5-5"
+    },
+    {
+      "id": "ch05-o5-q2",
+      "title": "The observed position of a planet differs slightly from a simple two-body prediction",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "The observed position of a planet differs slightly from a simple two-body prediction. Suggest a physical refinement before abandoning gravity.",
+      "marks": 2,
+      "points": [
+        "Include gravitational effects from other planets.",
+        "The two-body approximation leaves out these additional interactions."
+      ],
+      "model": [
+        "Include gravitational effects from other planets.",
+        "The two-body approximation leaves out these additional interactions."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A successful prediction supports a model without establishing that every detail is exact.",
+      "hints": [
+        "Begin with the meaning of prediction and evidence: A physical model is strengthened when its predictions match new observations."
+      ],
+      "teach": "#s5-5"
+    },
+    {
+      "id": "ch05-o5-q3",
+      "title": "Why is an orbital prediction stronger evidence when its parameters are specified before the observat",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why is an orbital prediction stronger evidence when its parameters are specified before the observation?",
+      "marks": 2,
+      "points": [
+        "It is a genuine test of the model in a new case.",
+        "It has not merely been adjusted afterwards to reproduce the observation."
+      ],
+      "model": [
+        "It is a genuine test of the model in a new case.",
+        "It has not merely been adjusted afterwards to reproduce the observation."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A successful prediction supports a model without establishing that every detail is exact.",
+      "hints": [],
+      "teach": "#s5-5"
+    },
+    {
+      "id": "ch05-o5-q4",
+      "title": "A proposed unseen planet could explain a repeated orbital discrepancy",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A proposed unseen planet could explain a repeated orbital discrepancy. What additional evidence would strengthen the proposal?",
+      "marks": 2,
+      "points": [
+        "A correctly predicted position where the proposed planet is then observed.",
+        "Independent observations consistent with its predicted gravitational effects."
+      ],
+      "model": [
+        "A correctly predicted position where the proposed planet is then observed.",
+        "Independent observations consistent with its predicted gravitational effects."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A successful prediction supports a model without establishing that every detail is exact.",
+      "hints": [],
+      "teach": "#s5-5"
+    },
+    {
+      "id": "ch05-o5-recall",
+      "title": "State the meaning of prediction and evidence and explain one distinction that prevents a common misu",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of prediction and evidence and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A physical model is strengthened when its predictions match new observations.",
+        "A successful prediction supports a model without establishing that every detail is exact."
+      ],
+      "model": [
+        "A physical model is strengthened when its predictions match new observations.",
+        "A successful prediction supports a model without establishing that every detail is exact."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A successful prediction supports a model without establishing that every detail is exact.",
+      "hints": [
+        "Begin with the meaning of prediction and evidence: A physical model is strengthened when its predictions match new observations."
+      ],
+      "teach": "#s5-5"
+    },
+    {
+      "id": "ch05-o6-q1",
+      "title": "Explain why a lunar mission might use several Earth orbits before travelling towards the Moon",
+      "stage": "independent",
+      "objectives": [
+        "ch05-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a lunar mission might use several Earth orbits before travelling towards the Moon.",
+      "marks": 2,
+      "points": [
+        "Successive planned engine burns can build the required orbital energy under propulsion constraints.",
+        "A trajectory trades time against fuel, launch capability and mission requirements."
+      ],
+      "model": [
+        "Successive planned engine burns can build the required orbital energy under propulsion constraints.",
+        "A trajectory trades time against fuel, launch capability and mission requirements."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "hints": [
+        "Begin with the meaning of mission trajectory: A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints."
+      ],
+      "teach": "#s5-6"
+    },
+    {
+      "id": "ch05-o6-q2",
+      "title": "Does a spacecraft need its engine firing throughout a coast between burns? Explain",
+      "stage": "transfer",
+      "objectives": [
+        "ch05-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Does a spacecraft need its engine firing throughout a coast between burns? Explain.",
+      "marks": 2,
+      "points": [
+        "No: its motion continues and gravity changes its trajectory during coasting.",
+        "Engines are used for particular planned changes of velocity rather than to sustain motion itself."
+      ],
+      "model": [
+        "No: its motion continues and gravity changes its trajectory during coasting.",
+        "Engines are used for particular planned changes of velocity rather than to sustain motion itself."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "hints": [
+        "Begin with the meaning of mission trajectory: A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints."
+      ],
+      "teach": "#s5-6"
+    },
+    {
+      "id": "ch05-o6-q3",
+      "title": "Two proposed routes reach the same destination at different times and with different fuel demands",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Two proposed routes reach the same destination at different times and with different fuel demands. Give two quantities an engineer should compare.",
+      "marks": 2,
+      "points": [
+        "Required changes in velocity and the propulsion/fuel capability.",
+        "Travel time, arrival conditions or other mission constraints."
+      ],
+      "model": [
+        "Required changes in velocity and the propulsion/fuel capability.",
+        "Travel time, arrival conditions or other mission constraints."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "hints": [],
+      "teach": "#s5-6"
+    },
+    {
+      "id": "ch05-o6-q4",
+      "title": "A spacecraft is halfway along a curved coast with its engine off",
+      "stage": "paper",
+      "objectives": [
+        "ch05-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A spacecraft is halfway along a curved coast with its engine off. Does a curved path prove its engine is operating? Explain.",
+      "marks": 2,
+      "points": [
+        "No: gravity can change the velocity direction while the engine is off.",
+        "Engine thrust is not the only possible cause of acceleration."
+      ],
+      "model": [
+        "No: gravity can change the velocity direction while the engine is off.",
+        "Engine thrust is not the only possible cause of acceleration."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "hints": [],
+      "teach": "#s5-6"
+    },
+    {
+      "id": "ch05-o6-recall",
+      "title": "State the meaning of mission trajectory and explain one distinction that prevents a common misunders",
+      "stage": "recall",
+      "objectives": [
+        "ch05-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of mission trajectory and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints.",
+        "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion."
+      ],
+      "model": [
+        "A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints.",
+        "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A longer route is not necessarily a mistake if it reduces a mission’s required propulsion.",
+      "hints": [
+        "Begin with the meaning of mission trajectory: A spacecraft trajectory is chosen subject to fuel, timing and gravitational constraints."
+      ],
+      "teach": "#s5-6"
+    },
+    {
+      "id": "ch05-mixed-1",
+      "title": "The table shows an inverse-square model for fixed masses",
+      "stage": "review",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "investigate",
+      "prompt": "The table shows an inverse-square model for fixed masses. Predict the force ratio at four times the reference separation and explain the pattern.",
+      "marks": 2,
+      "points": [
+        "Force ratio = 1 ÷ 4² = 1/16 = 0.0625.",
+        "The force is inversely proportional to the square of centre-to-centre separation."
+      ],
+      "model": [
+        "Force ratio = 1 ÷ 4² = 1/16 = 0.0625.",
+        "The force is inversely proportional to the square of centre-to-centre separation."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [
+        "Begin with the meaning of universal gravitation: Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+      ],
+      "teach": "#s5-1",
+      "data": {
+        "headers": [
+          "Separation / reference separation",
+          "Force / reference force"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0.25
+          ],
+          [
+            3,
+            "1/9"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch05-mixed-2",
+      "title": "A circular orbit has radius 14000 km and period 14000 s",
+      "stage": "review",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A circular orbit has radius 14000 km and period 14000 s. Use circumference = 2πr and π = 3.14. Calculate the average orbital speed in km/s.",
+      "marks": 2,
+      "points": [
+        "Circumference = 2 × 3.14 × 14000 = 87920 km.",
+        "Speed = 87920 ÷ 14000 = 6.28 km/s."
+      ],
+      "model": [
+        "Circumference = 2 × 3.14 × 14000 = 87920 km.",
+        "Speed = 87920 ÷ 14000 = 6.28 km/s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [
+        "Begin with the meaning of universal gravitation: Masses attract each other gravitationally; for spherical masses outside one another the inverse-square model uses centre-to-centre distance."
+      ],
+      "teach": "#s5-2"
+    },
+    {
+      "id": "ch05-worked-explanation",
+      "title": "Worked example: Universal gravitation",
+      "stage": "worked",
+      "objectives": [
+        "ch05-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A fixed pair of model masses attracts with 36 N at a reference separation. Their separation is tripled while their masses stay fixed. Calculate the new force magnitude.",
+      "marks": 3,
+      "points": [
+        "For fixed masses, gravitational force is inversely proportional to separation squared.",
+        "Correct substitution: 36 ÷ 3².",
+        "The answer is 4 N."
+      ],
+      "model": [
+        "For fixed masses, gravitational force is inversely proportional to separation squared.",
+        "36 ÷ 3² = 4 N.",
+        "The answer is 4 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Gravity does not end at the edge of the atmosphere.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s5-1",
+      "numeric": {
+        "value": 4.0,
+        "unit": "N",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch05-guided-explanation",
+      "title": "Guided practice: Orbit",
+      "stage": "guided",
+      "objectives": [
+        "ch05-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "An engine-off spacecraft follows a curved path near a planet. Explain why this can happen and why it does not require a hidden outward force.",
+      "marks": 3,
+      "points": [
+        "The planet’s gravity exerts a force on the spacecraft.",
+        "That force changes the spacecraft’s velocity and can curve its path during coasting.",
+        "There is no need for an outward force to balance gravity; a curved path requires a resultant acceleration."
+      ],
+      "model": [
+        "The planet’s gravity exerts a force on the spacecraft.",
+        "That force changes the spacecraft’s velocity and can curve its path during coasting.",
+        "There is no need for an outward force to balance gravity; a curved path requires a resultant acceleration."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An orbiting satellite does not require a continuous outward force to cancel gravity.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s5-2",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step."
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch05-paper-a",
+      "title": "Gravity and orbits · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch05-o1-q3",
+        "ch05-o2-q3",
+        "ch05-o3-q3",
+        "ch05-o4-q3",
+        "ch05-o5-q3",
+        "ch05-o6-q3"
+      ]
+    },
+    {
+      "id": "ch05-paper-b",
+      "title": "Gravity and orbits · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch05-o1-q4",
+        "ch05-o2-q4",
+        "ch05-o3-q4",
+        "ch05-o4-q4",
+        "ch05-o5-q4",
+        "ch05-o6-q4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 5: Gravity and orbits",
+      "url": "#ch5"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_data.pdf"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_constants.pdf"
+    }
+  ]
+}

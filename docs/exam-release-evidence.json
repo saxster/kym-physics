@@ -1,0 +1,264 @@
+{
+  "all_chapters": {
+    "chapters": [
+      {
+        "chapter": 0,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 1,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 2,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 3,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 4,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 5,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 6,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 7,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 8,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 9,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 10,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 11,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 12,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 13,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 14,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      },
+      {
+        "chapter": 15,
+        "answer_mark_reload": "PASS",
+        "widths": [
+          390,
+          1440
+        ]
+      }
+    ],
+    "errors": [],
+    "backup_restore": "All 17 chapter/mixed keys preserved and restored on a fresh browser context",
+    "result": "PASS"
+  },
+  "webkit": {
+    "result": "PASS",
+    "chapter_boots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "mark_reload": [
+      0,
+      8,
+      15
+    ],
+    "errors": []
+  },
+  "package": {
+    "index_bytes": 4150981,
+    "budget_bytes": 4194304,
+    "offline_entries": 93,
+    "prepared_html_pages": 17,
+    "index_sha256": "880982a37960d4b725696aba821426a92cfa1a5427ea29b825937505d64b0433",
+    "cache_version": "mw-aef65c263925"
+  },
+  "motion": {
+    "checks": [
+      "cover entry, correct page identity, nonblank preparation page, daily heading",
+      "empty-answer gate, own answer commitment, numeric feedback, rubric marking, independent evidence, saved answer and marks after reload",
+      "delayed marking cannot create spaced success; a fresh changed-context answer on a later day can",
+      "hints are remembered and never counted as fresh independent evidence",
+      "filter recovery, direct question link, search entry and concealed answer exclusion",
+      "paper locks, first answers retained across reload, unchanged deadline, expiry and paper retry safety",
+      "second paper supports untimed practice and explicit finishing",
+      "question-only print excludes solutions and saved responses; answer print includes model and marking",
+      "readable Markdown export and existing notebook backup/restore on a fresh device context",
+      "native keyboard controls, graph/data layout and six widths \u00d7 three themes without horizontal overflow",
+      "offline reload preserves complete practice and saved marking",
+      "readable no-JavaScript native answer disclosure and usable storage-failure session"
+    ],
+    "layouts": [
+      {
+        "width": 320,
+        "theme": "light"
+      },
+      {
+        "width": 320,
+        "theme": "sepia"
+      },
+      {
+        "width": 320,
+        "theme": "dark"
+      },
+      {
+        "width": 390,
+        "theme": "light"
+      },
+      {
+        "width": 390,
+        "theme": "sepia"
+      },
+      {
+        "width": 390,
+        "theme": "dark"
+      },
+      {
+        "width": 820,
+        "theme": "light"
+      },
+      {
+        "width": 820,
+        "theme": "sepia"
+      },
+      {
+        "width": 820,
+        "theme": "dark"
+      },
+      {
+        "width": 1024,
+        "theme": "light"
+      },
+      {
+        "width": 1024,
+        "theme": "sepia"
+      },
+      {
+        "width": 1024,
+        "theme": "dark"
+      },
+      {
+        "width": 1180,
+        "theme": "light"
+      },
+      {
+        "width": 1180,
+        "theme": "sepia"
+      },
+      {
+        "width": 1180,
+        "theme": "dark"
+      },
+      {
+        "width": 1440,
+        "theme": "light"
+      },
+      {
+        "width": 1440,
+        "theme": "sepia"
+      },
+      {
+        "width": 1440,
+        "theme": "dark"
+      }
+    ],
+    "errors": [],
+    "result": "PASS"
+  }
+}

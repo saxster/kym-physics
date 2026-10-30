@@ -1,0 +1,1009 @@
+{
+  "version": 1,
+  "key": "chapter-12",
+  "chapter": 12,
+  "title": "Charge and circuits",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch12-objective-1",
+      "label": "Explain charging by electron transfer and attraction of neutral objects.",
+      "teach": "#s12-1",
+      "note": "Use conservation and charge signs, distinguish polarisation from net charge, and explain the role of grounding."
+    },
+    {
+      "id": "ch12-objective-2",
+      "label": "Explain complete circuits and calculate current from charge and time.",
+      "teach": "#s12-2",
+      "note": "Draw a low-voltage series loop with an ammeter and apply equal steady charge-flow rates around one loop."
+    },
+    {
+      "id": "ch12-objective-3",
+      "label": "Distinguish conserved charge from transferred electrical energy.",
+      "teach": "#s12-3",
+      "note": "Use V = E/Q; explain energy changes in the source and lamp without claiming that electrons are consumed."
+    },
+    {
+      "id": "ch12-objective-4",
+      "label": "Calculate resistance and interpret current–voltage behaviour.",
+      "teach": "#s12-4",
+      "note": "Use R = V/I, identify proportional data, explain temperature-dependent lamp resistance, and connect a voltmeter in parallel."
+    },
+    {
+      "id": "ch12-objective-5",
+      "label": "Compare series and parallel circuits using current and potential difference.",
+      "teach": "#s12-5",
+      "note": "Apply charge conservation at junctions; explain shared branch voltage and how an added branch changes total current."
+    },
+    {
+      "id": "ch12-objective-6",
+      "label": "Explain protective devices and choose safe circuit-investigation precautions.",
+      "teach": "#s12-6",
+      "note": "Distinguish fuse protection from shock prevention; explain earth fault paths and keep all planned investigations away from mains."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch12-card-1",
+      "term": "Electric charge",
+      "definition": "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge.",
+      "explanation": "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge. Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "example": "A plastic object and cloth can acquire opposite net charges.",
+      "confusion": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "question": "Explain electric charge and distinguish it from a common mistaken idea.",
+      "answer": "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge. Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "teach": "#s12-1",
+      "questionId": "ch12-practice-1-2",
+      "cue": "Ordinary rubbing transfers electrons rather than creating net charge from nothing."
+    },
+    {
+      "id": "ch12-card-2",
+      "term": "Current and complete circuits",
+      "definition": "Electric current is the rate of flow of charge through a cross-section.",
+      "explanation": "Electric current is the rate of flow of charge through a cross-section. Charge is not consumed as it passes a lamp.",
+      "example": "A low-voltage cell and lamp need a complete conducting loop.",
+      "confusion": "Charge is not consumed as it passes a lamp.",
+      "question": "Explain current and complete circuits and distinguish it from a common mistaken idea.",
+      "answer": "Electric current is the rate of flow of charge through a cross-section. Charge is not consumed as it passes a lamp.",
+      "teach": "#s12-2",
+      "questionId": "ch12-practice-2-2",
+      "cue": "Charge is not consumed as it passes a lamp."
+    },
+    {
+      "id": "ch12-card-3",
+      "term": "Electrical energy transfer",
+      "definition": "A source transfers energy to the circuit; components transfer it to other stores or surroundings.",
+      "explanation": "A source transfers energy to the circuit; components transfer it to other stores or surroundings. Energy is transferred; electric charge is conserved.",
+      "example": "A lamp transfers electrical energy to light and heating.",
+      "confusion": "Energy is transferred; electric charge is conserved.",
+      "question": "Explain electrical energy transfer and distinguish it from a common mistaken idea.",
+      "answer": "A source transfers energy to the circuit; components transfer it to other stores or surroundings. Energy is transferred; electric charge is conserved.",
+      "teach": "#s12-3",
+      "questionId": "ch12-practice-3-2",
+      "cue": "Energy is transferred; electric charge is conserved."
+    },
+    {
+      "id": "ch12-card-4",
+      "term": "Potential difference and resistance",
+      "definition": "Potential difference is energy transferred per charge; resistance relates potential difference to current.",
+      "explanation": "Potential difference is energy transferred per charge; resistance relates potential difference to current. Voltage is not a rate of charge flow.",
+      "example": "An ohmic resistor at steady temperature has V proportional to I.",
+      "confusion": "Voltage is not a rate of charge flow.",
+      "question": "Explain potential difference and resistance and distinguish it from a common mistaken idea.",
+      "answer": "Potential difference is energy transferred per charge; resistance relates potential difference to current. Voltage is not a rate of charge flow.",
+      "teach": "#s12-4",
+      "questionId": "ch12-practice-4-2",
+      "cue": "Voltage is not a rate of charge flow."
+    },
+    {
+      "id": "ch12-card-5",
+      "term": "Series and parallel",
+      "definition": "Series components share one current path; parallel branches connect across common junctions.",
+      "explanation": "Series components share one current path; parallel branches connect across common junctions. Equal branch voltage does not require equal branch currents.",
+      "example": "Two different resistors in parallel can draw different currents at the same voltage.",
+      "confusion": "Equal branch voltage does not require equal branch currents.",
+      "question": "Explain series and parallel and distinguish it from a common mistaken idea.",
+      "answer": "Series components share one current path; parallel branches connect across common junctions. Equal branch voltage does not require equal branch currents.",
+      "teach": "#s12-5",
+      "questionId": "ch12-practice-5-2",
+      "cue": "Equal branch voltage does not require equal branch currents."
+    },
+    {
+      "id": "ch12-card-6",
+      "term": "Electrical safety",
+      "definition": "Safety measures reduce dangerous currents, contact with live conductors and overheating.",
+      "explanation": "Safety measures reduce dangerous currents, contact with live conductors and overheating. A fuse is not a guarantee against every electric shock.",
+      "example": "An earth connection can provide a fault-current path in a correctly installed appliance.",
+      "confusion": "A fuse is not a guarantee against every electric shock.",
+      "question": "Explain electrical safety and distinguish it from a common mistaken idea.",
+      "answer": "Safety measures reduce dangerous currents, contact with live conductors and overheating. A fuse is not a guarantee against every electric shock.",
+      "teach": "#s12-6",
+      "questionId": "ch12-practice-6-2",
+      "cue": "A fuse is not a guarantee against every electric shock."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Two initially neutral objects are rubbed together and one gains electrons. State the sign of each net charge and explain conservation."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Explain why a wet environment increases electrical danger."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "An ideal low-voltage circuit has 4.5 V across a 15 Ω resistor. Calculate the current."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A supplied safe model circuit has these current readings on either side of one lamp. Explain what they support, and why measurement agreement cannot prove exactly zero charge accumulation."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch12-recall",
+      "title": "Electric charge · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch12-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by electric charge.",
+      "marks": 1,
+      "points": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "model": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "hints": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "teach": "#s12-1"
+    },
+    {
+      "id": "ch12-worked",
+      "title": "Potential difference and resistance · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch12-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "An ideal low-voltage circuit has 4.5 V across a 15 Ω resistor. Calculate the current.",
+      "marks": 2,
+      "points": [
+        "Use I = V/R.",
+        "I = 4.5/15 = 0.30 A."
+      ],
+      "model": [
+        "Use I = V/R.",
+        "I = 4.5/15 = 0.30 A."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Voltage is not a rate of charge flow.",
+      "hints": [
+        "Potential difference is energy transferred per charge; resistance relates potential difference to current."
+      ],
+      "teach": "#s12-4",
+      "numeric": {
+        "value": 0.3,
+        "unit": "A",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch12-guided",
+      "title": "Electrical energy transfer · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch12-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A component transfers 3.0 J per coulomb. Calculate the energy transferred when 8.0 C passes through it.",
+      "marks": 2,
+      "points": [
+        "Use E = VQ, with V = 3.0 J/C.",
+        "E = 3.0 × 8.0 = 24 J."
+      ],
+      "model": [
+        "Use E = VQ, with V = 3.0 J/C.",
+        "E = 3.0 × 8.0 = 24 J."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Energy is transferred; electric charge is conserved.",
+      "hints": [
+        "A source transfers energy to the circuit; components transfer it to other stores or surroundings."
+      ],
+      "teach": "#s12-3",
+      "numeric": {
+        "value": 24,
+        "unit": "J",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch12-practice-1-1",
+      "title": "Electric charge · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two initially neutral objects are rubbed together and one gains electrons. State the sign of each net charge and explain conservation.",
+      "marks": 2,
+      "points": [
+        "The electron-gaining object becomes negative.",
+        "The other becomes positive because it loses electrons; the total charge is conserved."
+      ],
+      "model": [
+        "The electron-gaining object becomes negative.",
+        "The other becomes positive because it loses electrons; the total charge is conserved."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "hints": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "teach": "#s12-1"
+    },
+    {
+      "id": "ch12-practice-1-2",
+      "title": "Electric charge · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch12-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A charged rod attracts a neutral scrap of paper. Explain why attraction alone does not prove opposite net charges.",
+      "marks": 2,
+      "points": [
+        "The rod can polarise the neutral paper’s charge distribution.",
+        "The resulting unequal attractions and repulsions can give a net attraction."
+      ],
+      "model": [
+        "The rod can polarise the neutral paper’s charge distribution.",
+        "The resulting unequal attractions and repulsions can give a net attraction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "hints": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "teach": "#s12-1"
+    },
+    {
+      "id": "ch12-practice-2-1",
+      "title": "Current and complete circuits · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a lamp in a simple cell circuit goes out when a switch opens one wire.",
+      "marks": 2,
+      "points": [
+        "The conducting path is interrupted.",
+        "A sustained current cannot circulate through the lamp in that open circuit."
+      ],
+      "model": [
+        "The conducting path is interrupted.",
+        "A sustained current cannot circulate through the lamp in that open circuit."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Charge is not consumed as it passes a lamp.",
+      "hints": [
+        "Electric current is the rate of flow of charge through a cross-section."
+      ],
+      "teach": "#s12-2"
+    },
+    {
+      "id": "ch12-practice-2-2",
+      "title": "Current and complete circuits · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch12-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A steady current transfers 18 C through a wire in 6.0 s. Calculate the current.",
+      "marks": 2,
+      "points": [
+        "Use I = Q/t.",
+        "I = 18/6.0 = 3.0 A."
+      ],
+      "model": [
+        "Use I = Q/t.",
+        "I = 18/6.0 = 3.0 A."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Charge is not consumed as it passes a lamp.",
+      "hints": [
+        "Electric current is the rate of flow of charge through a cross-section."
+      ],
+      "teach": "#s12-2",
+      "numeric": {
+        "value": 3,
+        "unit": "A",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch12-practice-3-1",
+      "title": "Electrical energy transfer · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain what a cell supplies and what gets transferred in a working lamp circuit.",
+      "marks": 2,
+      "points": [
+        "The cell’s chemical store decreases as it transfers energy electrically.",
+        "The lamp transfers energy to light and heating; charge itself is not used up."
+      ],
+      "model": [
+        "The cell’s chemical store decreases as it transfers energy electrically.",
+        "The lamp transfers energy to light and heating; charge itself is not used up."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Energy is transferred; electric charge is conserved.",
+      "hints": [
+        "A source transfers energy to the circuit; components transfer it to other stores or surroundings."
+      ],
+      "teach": "#s12-3"
+    },
+    {
+      "id": "ch12-practice-3-2",
+      "title": "Electrical energy transfer · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch12-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A lamp transfers 36 J while 12 C of charge passes through it. Calculate the potential difference.",
+      "marks": 2,
+      "points": [
+        "Use V = E/Q.",
+        "V = 36/12 = 3.0 V."
+      ],
+      "model": [
+        "Use V = E/Q.",
+        "V = 36/12 = 3.0 V."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Energy is transferred; electric charge is conserved.",
+      "hints": [
+        "A source transfers energy to the circuit; components transfer it to other stores or surroundings."
+      ],
+      "teach": "#s12-3",
+      "numeric": {
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch12-practice-4-1",
+      "title": "Potential difference and resistance · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A resistor has 8.0 V across it and current 0.40 A. Calculate its resistance.",
+      "marks": 2,
+      "points": [
+        "Use R = V/I.",
+        "R = 8.0/0.40 = 20 Ω."
+      ],
+      "model": [
+        "Use R = V/I.",
+        "R = 8.0/0.40 = 20 Ω."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Voltage is not a rate of charge flow.",
+      "hints": [
+        "Potential difference is energy transferred per charge; resistance relates potential difference to current."
+      ],
+      "teach": "#s12-4",
+      "numeric": {
+        "value": 20,
+        "unit": "Ω",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch12-practice-4-2",
+      "title": "Potential difference and resistance · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch12-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why doubling voltage does not always double current in a filament lamp.",
+      "marks": 2,
+      "points": [
+        "Its filament heats as operating conditions change.",
+        "Its resistance changes with temperature, so it is not an ohmic constant-resistance component over that range."
+      ],
+      "model": [
+        "Its filament heats as operating conditions change.",
+        "Its resistance changes with temperature, so it is not an ohmic constant-resistance component over that range."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Voltage is not a rate of charge flow.",
+      "hints": [
+        "Potential difference is energy transferred per charge; resistance relates potential difference to current."
+      ],
+      "teach": "#s12-4"
+    },
+    {
+      "id": "ch12-practice-5-1",
+      "title": "Series and parallel · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Two lamps are connected in parallel to an ideal low-voltage source. One branch is opened. Explain why the other can remain lit.",
+      "marks": 2,
+      "points": [
+        "The other branch still forms a complete path across the source.",
+        "Its potential difference remains supplied in the ideal-source model."
+      ],
+      "model": [
+        "The other branch still forms a complete path across the source.",
+        "Its potential difference remains supplied in the ideal-source model."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal branch voltage does not require equal branch currents.",
+      "hints": [
+        "Series components share one current path; parallel branches connect across common junctions."
+      ],
+      "teach": "#s12-5"
+    },
+    {
+      "id": "ch12-practice-5-2",
+      "title": "Series and parallel · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch12-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A junction receives 0.75 A. One outgoing branch carries 0.25 A. Calculate the current in the only other outgoing branch.",
+      "marks": 2,
+      "points": [
+        "Charge conservation gives total outgoing current equal to incoming current.",
+        "The other current is 0.75 − 0.25 = 0.50 A."
+      ],
+      "model": [
+        "Charge conservation gives total outgoing current equal to incoming current.",
+        "The other current is 0.75 − 0.25 = 0.50 A."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal branch voltage does not require equal branch currents.",
+      "hints": [
+        "Series components share one current path; parallel branches connect across common junctions."
+      ],
+      "teach": "#s12-5",
+      "numeric": {
+        "value": 0.5,
+        "unit": "A",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch12-practice-6-1",
+      "title": "Electrical safety · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch12-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain the function of a correctly rated fuse in a circuit. Do not perform a fault experiment.",
+      "marks": 2,
+      "points": [
+        "Excessive current heats and melts the fuse element, opening the circuit.",
+        "This reduces prolonged overheating and fire risk; the fuse is not a universal protection against shock."
+      ],
+      "model": [
+        "Excessive current heats and melts the fuse element, opening the circuit.",
+        "This reduces prolonged overheating and fire risk; the fuse is not a universal protection against shock."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A fuse is not a guarantee against every electric shock.",
+      "hints": [
+        "Safety measures reduce dangerous currents, contact with live conductors and overheating."
+      ],
+      "teach": "#s12-6"
+    },
+    {
+      "id": "ch12-practice-6-2",
+      "title": "Electrical safety · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch12-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a wet environment increases electrical danger.",
+      "marks": 2,
+      "points": [
+        "Water containing dissolved ions and wet skin can lower the resistance of a current path.",
+        "A dangerous current can then flow through a person; mains must be kept away from water."
+      ],
+      "model": [
+        "Water containing dissolved ions and wet skin can lower the resistance of a current path.",
+        "A dangerous current can then flow through a person; mains must be kept away from water."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A fuse is not a guarantee against every electric shock.",
+      "hints": [
+        "Safety measures reduce dangerous currents, contact with live conductors and overheating."
+      ],
+      "teach": "#s12-6"
+    },
+    {
+      "id": "ch12-paper-a-1",
+      "title": "Electric charge · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a metal object generally needs insulation from the ground to retain transferred net charge.",
+      "marks": 2,
+      "points": [
+        "Charges can move readily through the metal.",
+        "A conducting path to ground lets charge transfer, reducing its net charge."
+      ],
+      "model": [
+        "Charges can move readily through the metal.",
+        "A conducting path to ground lets charge transfer, reducing its net charge."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "hints": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "teach": "#s12-1"
+    },
+    {
+      "id": "ch12-paper-a-2",
+      "title": "Current and complete circuits · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Why is the steady current the same on both sides of a lamp in a single-loop circuit?",
+      "marks": 2,
+      "points": [
+        "Charge does not accumulate steadily inside the lamp.",
+        "The rate of charge entering must equal the rate leaving."
+      ],
+      "model": [
+        "Charge does not accumulate steadily inside the lamp.",
+        "The rate of charge entering must equal the rate leaving."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Charge is not consumed as it passes a lamp.",
+      "hints": [
+        "Electric current is the rate of flow of charge through a cross-section."
+      ],
+      "teach": "#s12-2"
+    },
+    {
+      "id": "ch12-paper-a-3",
+      "title": "Electrical energy transfer · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A student says the lamp uses up some electrons. Correct the claim using conservation and energy.",
+      "marks": 2,
+      "points": [
+        "In steady operation charge entering and leaving is equal.",
+        "Energy is transferred from the source through the circuit to the lamp’s surroundings."
+      ],
+      "model": [
+        "In steady operation charge entering and leaving is equal.",
+        "Energy is transferred from the source through the circuit to the lamp’s surroundings."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Energy is transferred; electric charge is conserved.",
+      "hints": [
+        "A source transfers energy to the circuit; components transfer it to other stores or surroundings."
+      ],
+      "teach": "#s12-3"
+    },
+    {
+      "id": "ch12-paper-a-4",
+      "title": "Potential difference and resistance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Describe how to connect a voltmeter to measure a lamp’s potential difference.",
+      "marks": 2,
+      "points": [
+        "Connect it across the lamp’s two terminals.",
+        "It is in parallel so it compares the energy per charge at those terminals."
+      ],
+      "model": [
+        "Connect it across the lamp’s two terminals.",
+        "It is in parallel so it compares the energy per charge at those terminals."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Voltage is not a rate of charge flow.",
+      "hints": [
+        "Potential difference is energy transferred per charge; resistance relates potential difference to current."
+      ],
+      "teach": "#s12-4"
+    },
+    {
+      "id": "ch12-paper-a-5",
+      "title": "Series and parallel · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Compare current and potential difference for two resistors in series.",
+      "marks": 2,
+      "points": [
+        "The same steady current passes through both.",
+        "Their potential differences add to the total across the pair; individual values can differ."
+      ],
+      "model": [
+        "The same steady current passes through both.",
+        "Their potential differences add to the total across the pair; individual values can differ."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal branch voltage does not require equal branch currents.",
+      "hints": [
+        "Series components share one current path; parallel branches connect across common junctions."
+      ],
+      "teach": "#s12-5"
+    },
+    {
+      "id": "ch12-paper-a-6",
+      "title": "Electrical safety · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the earth wire of a correctly earthed metal-case appliance can improve safety during a live-wire-to-case fault.",
+      "marks": 2,
+      "points": [
+        "It provides a low-resistance fault-current path rather than relying on a person.",
+        "The resulting fault can operate protective devices, disconnecting the supply."
+      ],
+      "model": [
+        "It provides a low-resistance fault-current path rather than relying on a person.",
+        "The resulting fault can operate protective devices, disconnecting the supply."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A fuse is not a guarantee against every electric shock.",
+      "hints": [
+        "Safety measures reduce dangerous currents, contact with live conductors and overheating."
+      ],
+      "teach": "#s12-6"
+    },
+    {
+      "id": "ch12-paper-b-1",
+      "title": "Electric charge · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish a charged atom from a neutral atom using its particles.",
+      "marks": 2,
+      "points": [
+        "A neutral atom has equal numbers of protons and electrons.",
+        "An ion has gained or lost electrons, producing unequal charges."
+      ],
+      "model": [
+        "A neutral atom has equal numbers of protons and electrons.",
+        "An ion has gained or lost electrons, producing unequal charges."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary rubbing transfers electrons rather than creating net charge from nothing.",
+      "hints": [
+        "Charge is a conserved property responsible for electric interactions; electrons have negative charge and protons positive charge."
+      ],
+      "teach": "#s12-1"
+    },
+    {
+      "id": "ch12-paper-b-2",
+      "title": "Current and complete circuits · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-2"
+      ],
+      "kind": "graph",
+      "prompt": "Draw a safe low-voltage cell-lamp circuit with an ammeter. State how the ammeter is connected.",
+      "marks": 2,
+      "points": [
+        "The cell, switch if present, lamp and ammeter form one complete loop.",
+        "The ammeter is in series with the lamp, not directly across the cell."
+      ],
+      "model": [
+        "The cell, switch if present, lamp and ammeter form one complete loop.",
+        "The ammeter is in series with the lamp, not directly across the cell."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Charge is not consumed as it passes a lamp.",
+      "hints": [
+        "Electric current is the rate of flow of charge through a cross-section."
+      ],
+      "teach": "#s12-2"
+    },
+    {
+      "id": "ch12-paper-b-3",
+      "title": "Electrical energy transfer · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why current does not need to wait for newly released electrons to travel all the way from a cell to a nearby lamp before it starts lighting.",
+      "marks": 2,
+      "points": [
+        "Mobile charges are already present throughout the conducting loop.",
+        "An electromagnetic disturbance establishes their response around the circuit much faster than electron drift."
+      ],
+      "model": [
+        "Mobile charges are already present throughout the conducting loop.",
+        "An electromagnetic disturbance establishes their response around the circuit much faster than electron drift."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Energy is transferred; electric charge is conserved.",
+      "hints": [
+        "A source transfers energy to the circuit; components transfer it to other stores or surroundings."
+      ],
+      "teach": "#s12-3"
+    },
+    {
+      "id": "ch12-paper-b-4",
+      "title": "Potential difference and resistance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A model fixed-temperature resistor gives currents 0.1, 0.2 and 0.3 A at 2, 4 and 6 V. State the pattern and its resistance.",
+      "marks": 2,
+      "points": [
+        "V/I stays constant, so the relationship is proportional.",
+        "The resistance is 20 Ω."
+      ],
+      "model": [
+        "V/I stays constant, so the relationship is proportional.",
+        "The resistance is 20 Ω."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Voltage is not a rate of charge flow.",
+      "hints": [
+        "Potential difference is energy transferred per charge; resistance relates potential difference to current."
+      ],
+      "teach": "#s12-4"
+    },
+    {
+      "id": "ch12-paper-b-5",
+      "title": "Series and parallel · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why adding a resistor in parallel can increase the total current from an ideal fixed-voltage source.",
+      "marks": 2,
+      "points": [
+        "It adds another conducting branch at the same source voltage.",
+        "The total current is the sum of branch currents, so effective resistance falls."
+      ],
+      "model": [
+        "It adds another conducting branch at the same source voltage.",
+        "The total current is the sum of branch currents, so effective resistance falls."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Equal branch voltage does not require equal branch currents.",
+      "hints": [
+        "Series components share one current path; parallel branches connect across common junctions."
+      ],
+      "teach": "#s12-5"
+    },
+    {
+      "id": "ch12-paper-b-6",
+      "title": "Electrical safety · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch12-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Give two precautions for a school circuit investigation.",
+      "marks": 2,
+      "points": [
+        "Use only approved low-voltage cells or a supervised low-voltage supply, never mains.",
+        "Avoid short circuits, switch off between changes, and stop if a component becomes hot."
+      ],
+      "model": [
+        "Use only approved low-voltage cells or a supervised low-voltage supply, never mains.",
+        "Avoid short circuits, switch off between changes, and stop if a component becomes hot."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A fuse is not a guarantee against every electric shock.",
+      "hints": [
+        "Safety measures reduce dangerous currents, contact with live conductors and overheating."
+      ],
+      "teach": "#s12-6"
+    },
+    {
+      "id": "ch12-data-review",
+      "title": "Electrical safety · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch12-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "A supplied safe model circuit has these current readings on either side of one lamp. Explain what they support, and why measurement agreement cannot prove exactly zero charge accumulation.",
+      "marks": 2,
+      "points": [
+        "The equal readings support equal steady charge-flow rates into and out of the lamp.",
+        "Finite resolution and uncertainty limit how small a difference can be detected."
+      ],
+      "model": [
+        "The equal readings support equal steady charge-flow rates into and out of the lamp.",
+        "Finite resolution and uncertainty limit how small a difference can be detected."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A fuse is not a guarantee against every electric shock.",
+      "hints": [
+        "Safety measures reduce dangerous currents, contact with live conductors and overheating."
+      ],
+      "teach": "#s12-6",
+      "data": {
+        "headers": [
+          "Position",
+          "Current (A)"
+        ],
+        "rows": [
+          [
+            "Before lamp",
+            0.24
+          ],
+          [
+            "After lamp",
+            0.24
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch12-paper-a",
+      "title": "Charge and circuits · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch12-paper-a-1",
+        "ch12-paper-a-2",
+        "ch12-paper-a-3",
+        "ch12-paper-a-4",
+        "ch12-paper-a-5",
+        "ch12-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch12-paper-b",
+      "title": "Charge and circuits · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch12-paper-b-1",
+        "ch12-paper-b-2",
+        "ch12-paper-b-3",
+        "ch12-paper-b-4",
+        "ch12-paper-b-5",
+        "ch12-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 12: Charge and circuits",
+      "url": "#ch12"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/resources/chap2coulomb_law/"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/resources/prs_w01d2/"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://openstax.org/books/physics/pages/18-1-electrical-charges-conservation-of-charge-and-transfer-of-charge"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/college-physics-2e/pages/18-1-static-electricity-and-charge-conservation-of-charge"
+    }
+  ]
+}

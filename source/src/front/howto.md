@@ -6,6 +6,8 @@ Read one numbered section at a time. Try a picture that interests you; leave the
 
 The sixteen chapters follow real people trying to understand the world. Chapter 0 is the warm-up. You can follow their adventure in order, or jump to a question that makes you curious. Your place is saved in this browser; the next visit offers **Continue where you left off**.
 
+When you want to prepare for school, open **[Prepare for my exam](#exam-prep)** and choose a chapter from **[the preparation directory](#exam-directory)**. Each chapter has objectives, progressive questions, model answers, suggested marking guidance and spaced review. Mixed practice connects ideas across chapters, with a study plan for the weeks before your exam. Use your school’s topic list to choose what to revise. Marks are your own practice record, and your work can be backed up in the notebook.
+
 :::raw
 <details class="howto-reference"><summary>A guide to the boxes, links and reading tools</summary>
 :::

@@ -5,7 +5,7 @@ import { normaliseRecord, markdown as recordMarkdown, sourceLabel } from '../liv
 
 const { el, store } = App;
 const HL_KEY = 'hl';
-const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:') || k.startsWith('lab:') || k.startsWith('investigation:');
+const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:') || k.startsWith('lab:') || k.startsWith('investigation:') || /^exam:(motion|mixed|chapter-(?:0[0-9]|1[0-5]))$/.test(k);
 const BOOK = () => App.data.title || document.title;
 const SLUG = () => BOOK().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const SKIP = 'svg, figure, button, textarea, input, template, script, style, .chk-ui, .home-ui, .pred-opts, .pred-you, .hl-pop, .live-controls, .scene, .bh, h2, h3, h4';

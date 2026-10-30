@@ -18,12 +18,14 @@ The build fails if a numbered section of a built chapter has no provenance entry
 from __future__ import annotations
 import base64, glob, hashlib, html, importlib, io, json, os, re, shutil, subprocess, sys
 import markdown
+from pathlib import Path
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 from figs_core import FIGS, DEFS  # noqa: E402
 import stories as ST  # noqa: E402
 from lesson_catalog import load_catalog, lesson_attributes, widgets_from_html
+from exam_prep import load_exam, render_exam, runtime_exam, validate_exam
 
 SRC = os.path.join(ROOT, 'src')
 PROV = os.path.join(ROOT, 'provenance')
@@ -525,7 +527,10 @@ class Builder:
                 f'<h2>{md_inline(ch.title)}</h2>'
                 + (f'<p class="bq"><span class="bq-label">The big question</span>{md_inline(ch.question)}</p>' if ch.question else '')
                 + f'<p class="chapter-pace">One section is a good start. The reviews and school notes open when you want them.</p><ol class="chapter-toc">{toc}</ol></header>'
-                f'<div class="intro">{intro}</div>{"".join(secs)}'
+                f'<div class="intro">{intro}</div>'
+                + (f'<aside class="exam-chapter-link"><a href="{"#exam-prep" if ch.n == 1 else f"exams/ch{ch.n:02d}.html#exam-prep"}">Prepare for my exam · {"motion questions and revision" if ch.n == 1 else "chapter questions and revision"}</a><p>Keep reading the story, or return here when you want to practise.</p></aside>'
+                   if any(c['chapter'] == ch.n for c in getattr(self, 'exam_catalogs', [])) else '')
+                + f'{"".join(secs)}'
                 f'<p class="fin" aria-hidden="true"><i></i><i></i><i></i></p>{chapter_credits(ch, ledger)}</div></article>')
 
     def volume_html(self, v, chapters) -> str:
@@ -545,6 +550,9 @@ class Builder:
             out.append(li(k, t))
         out.append(li('cast', 'The cast'))
         out.append(li('investigations', 'Investigate everyday things'))
+        if getattr(self, 'exam_catalog', None):
+            out.append(li('exam-prep', 'Prepare for my exam · motion'))
+            out.append(li('exam-directory', 'Exam preparation · all chapters'))
         for name, title, _, _ in EXPLORERS:
             out.append(li(f'explore-{name}', title))
         out.append(li('explore-map', 'The adventure map'))
@@ -589,7 +597,8 @@ class Builder:
         items = sorted(self.glossary.items(), key=lambda kv: re.sub(r'[^a-z0-9 ]', '', kv[0].lower()))
         dl = ''.join(f'<div><dt>{md_inline(t)}</dt><dd>{re.sub(r"</?p>", " ", h).strip()} <a href="#{a}">{l}</a></dd></div>'
                      for t, (h, a, l) in items)
-        return f'<section class="flow" id="glossary"><h2>Words worth knowing</h2><dl class="gloss full">{dl}</dl></section>'
+        revision = '<p>Revisit <a href="#exam-motion-cards">motion words, equations and memory questions</a>.</p>' if getattr(self, 'exam_catalog', None) else ''
+        return f'<section class="flow" id="glossary"><h2>Words worth knowing</h2>{revision}<dl class="gloss full">{dl}</dl></section>'
 
     def credits_html(self, chapters, stories, ledger: Ledger) -> str:
         """Back-matter page "Where this book comes from", grouped by source."""
@@ -777,7 +786,9 @@ JS = r'''
     if(bar) bar.style.width=(max>0? (h.scrollTop/max*100):0)+'%';
   }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  window.addEventListener('beforeprint',function(){[].forEach.call(document.querySelectorAll('details'),function(d){d.setAttribute('open','')});});
+  var printDetails = null;
+  window.addEventListener('beforeprint',function(){if(printDetails)return;printDetails=[].map.call(document.querySelectorAll('details'),function(d){var wasOpen=d.open;d.open=true;return[d,wasOpen];});});
+  window.addEventListener('afterprint',function(){if(!printDetails)return;printDetails.forEach(function(pair){pair[0].open=pair[1];});printDetails=null;});
 })();
 '''
 
@@ -1012,7 +1023,7 @@ def make_site(site_dir, only=None):
     # the cache version is a hash of everything the service worker precaches, so any change ships a new cache
     files = [f for f in ['index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'] + [s[0] for s in sizes]
              if os.path.exists(os.path.join(site_dir, f))]
-    h = hashlib.sha1()
+    h = hashlib.sha1(SW_JS.encode())
     for f in files:
         h.update(f.encode()); h.update(open(os.path.join(site_dir, f), 'rb').read())
     ver = h.hexdigest()[:12]
@@ -1031,7 +1042,7 @@ def report_sizes(index, sizes):
     if isz > BUDGET_INDEX:
         over.append('index.html')
     for f, n, kind in sizes:
-        bad = kind != 'three' and n > BUDGET_CHUNK
+        bad = (n > BUDGET_INDEX) if kind == 'exam' else kind != 'three' and n > BUDGET_CHUNK
         print(f'  {f:<34} {kb(n)}  {kind}' + ('   OVER BUDGET' if bad else ''))
         if bad:
             over.append(f)
@@ -1049,8 +1060,12 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
   // network first for the page (so new editions arrive), cache as fallback; cache first for everything else
   if (e.request.mode === 'navigate') {
-    e.respondWith(fetch(e.request).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put('./index.html', c)); return r; })
-      .catch(() => caches.match('./index.html')));
+    const key = new URL(e.request.url); key.search = ''; key.hash = '';
+    if (key.pathname.endsWith('/')) key.pathname += 'index.html';
+    e.respondWith(fetch(e.request).then(async r => {
+      if (r.ok) { const cache = await caches.open(CACHE); await cache.put(key.href, r.clone()); }
+      return r;
+    }).catch(async () => (await caches.match(key.href)) || Response.error()));
     return;
   }
   e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
@@ -1101,6 +1116,43 @@ def front_title(html_, default):
     return re.sub(r'<[^>]+>', '', m.group(1)).strip() if m else default
 
 
+def exam_directory(catalogs, nested=False):
+    if len(catalogs) == 1 and not nested:
+        return '<section class="flow exam-directory" id="exam-directory"><h2>Preparation in this edition</h2><p><a href="#exam-prep">Motion practice</a> is included here. The website edition provides the remaining chapter banks and mixed review.</p></section>'
+    prefix = '' if nested else 'exams/'
+    rows = ''.join(f'<li><a href="{prefix}ch{c["chapter"]:02d}.html#exam-prep">Chapter {c["chapter"]}: {html.escape(c["title"])}</a></li>' for c in catalogs)
+    mixed = '<li><a href="'+prefix+'mixed.html#exam-prep">Mixed review: connect the chapters</a></li>' if len(catalogs) > 1 else ''
+    return '<section class="flow exam-directory" id="exam-directory"><h2>Prepare every chapter</h2><p>Choose the topics in your school syllabus. Every chapter has practice, worked answers, revision and original papers.</p><ol>'+rows+mixed+'</ol></section>'
+
+
+def write_exam_pages(main_page, catalogs, site_dir):
+    from exam_rollout import create_mixed, render_study_plan
+    mixed = create_mixed(catalogs)
+    banks = catalogs + ([validate_exam(mixed)] if mixed else [])
+    adir = os.path.join(ROOT, 'app')
+    modules = ['m_base.js', 'm_settings.js', 'm_pages.js', 'm_notebook.js', 'm_search.js', 'm_exam.js']
+    js = iife("import './core.js';\n" + ''.join(f"import './{name}';\n" for name in modules), 'exam', adir)
+    head = main_page.split('<body', 1)[0]
+    head = head.replace('url(assets/', 'url(../assets/').replace('href="manifest.webmanifest"', 'href="../manifest.webmanifest"').replace('register("sw.js")', 'register("../sw.js")').replace('href="icon-192.png"', 'href="../icon-192.png"')
+    folder = os.path.join(site_dir, 'exams'); os.makedirs(folder, exist_ok=True)
+    sizes = []
+    for c in banks:
+        name = 'mixed' if c.get('key') == 'mixed' else f'ch{c["chapter"]:02d}'
+        content = render_exam(c)
+        content = re.sub(r'href="(#(?:s[0-9]+-[0-9]+|ch[0-9]+))"', r'href="../index.html\1"', content)
+        if c.get('key') == 'mixed':
+            study = render_study_plan(catalogs).replace('href="exams/', 'href="').replace('href="#exam-motion-objectives"', 'href="../index.html#exam-motion-objectives"')
+            content += '<div class="exam-study-plan">' + study + '</div>'
+        content += exam_directory(catalogs, nested=True)
+        data = dict(title=TITLE, chapters=[], stories=[], checks=[], predicts=[], lessons=[], exam=runtime_exam(c))
+        encoded = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+        title_head = head.replace(f'<title>{TITLE}</title>', f'<title>{html.escape(c["title"])} · exam preparation</title>')
+        document = title_head + f'<body class="vol-1"><nav class="navbtn" aria-label="Book navigation"><a href="../index.html#contents">Contents</a><div id="toolbar" class="toolbar" role="toolbar" aria-label="Reading tools"></div></nav><main class="book"><div class="backmatter"><div class="front-ish">{content}</div></div></main><script>{JS}</script><script type="application/json" id="book-data">{encoded}</script><script>{js}</script></body></html>'
+        rel = f'exams/{name}.html'; Path(os.path.join(site_dir, rel)).write_text(document, encoding='utf-8')
+        sizes.append((rel, len(document.encode()), 'exam'))
+    return sizes
+
+
 def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     load_figures()
     b = Builder()
@@ -1112,6 +1164,15 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     chapters.sort(key=lambda c: c.n)
     if only is not None:
         chapters = [c for c in chapters if c.n in only]
+    exam_dir = os.path.join(os.path.dirname(os.path.abspath(SRC)), 'exams')
+    b.exam_catalogs = [load_exam(path) for path in sorted(glob.glob(os.path.join(exam_dir, '*.json'))) if os.path.basename(path) == 'motion.json' or re.fullmatch(r'ch[0-9]{2}\.json', os.path.basename(path))]
+    b.exam_catalogs = [c for c in b.exam_catalogs if c['chapter'] in {ch.n for ch in chapters}]
+    if not site_dir:
+        b.exam_catalogs = [c for c in b.exam_catalogs if c['chapter'] == 1]
+    b.exam_catalogs.sort(key=lambda c: c['chapter'])
+    if len({c['chapter'] for c in b.exam_catalogs}) != len(b.exam_catalogs):
+        raise ValueError('Duplicate chapter preparation bank')
+    b.exam_catalog = next((c for c in b.exam_catalogs if c['chapter'] == 1), None)
     ledger = Ledger(PROV)
     front = {k: open(os.path.join(SRC, 'front', f'{k}.md'), encoding='utf-8').read()
              for k in ('letter', 'howto', 'ideas', 'models', 'further')
@@ -1125,7 +1186,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
 <p class="for">Written for Kym</p>
 <p class="begin"><a href="#investigations">Try a quick puzzle</a><a class="begin-read" href="#ch0">Start reading · Chapter 0</a></p>
 <p class="cover-welcome">One puzzle is plenty for today. Guess, play, and see what surprises you.</p>
-<p class="cover-letter"><a href="#letter">A letter to you, from Amar</a></p></div>
+<p class="cover-letter"><a href="#letter">A letter to you, from Amar</a></p>{'<p class="cover-exam"><a href="#exam-prep">Prepare for my exam · motion</a></p><p class="cover-exam"><a href="#exam-directory">Prepare every chapter</a></p>' if b.exam_catalog else ''}</div>
 {f'<details class="cover-chapters"><summary>Browse the sixteen chapters</summary><figure class="art">{cover}{legend}</figure></details>' if cover else ''}</header>''']
     front_titles = []
     for k, cls, default in (('letter', 'letter', 'A letter to Kym'), ('howto', 'howto', 'How this book works'),
@@ -1169,6 +1230,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
                   'or build a partial draft with --allow-missing-provenance.')
             raise SystemExit(1)
     back = []
+    if b.exam_catalog:
+        back.append(render_exam(b.exam_catalog) + exam_directory(b.exam_catalogs))
     investigations = [r for r in b.lessons if r.get('object') and r['id'] in b.lesson_targets]
     if investigations:
         entries = []
@@ -1202,6 +1265,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     parts.append('<div class="backmatter">' + ''.join(f'<div class="front-ish">{x}</div>' for x in back) + '</div>')
 
     body = mark_scripts('\n'.join(parts))
+    body = re.sub(r'href="((?:grounding|research)/[^"]+)"', r'href="source/\1"', body)
     # drop contents lines whose page this build does not have (no cast yet, no models page in a fixture...)
     ids = set(re.findall(r'\bid="([^"]+)"', body))
     body = re.sub(r'<li><div class="tch"><span class="n"></span><a href="#([\w-]+)">[^<]*</a></div></li>',
@@ -1229,6 +1293,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
         'scenes': b.scenes,
         'checks': [{'anchor': a[4], 'label': a[1], 'ch': a[0]} for a in b.answers],
         'predicts': [{'id': k, 'ch': v[0], 'label': v[1]} for k, v in b.predicts.items()],
+        'exam': runtime_exam(b.exam_catalog),
+        'examChapters': [c['chapter'] for c in b.exam_catalogs],
         'lessons': [{'id': r['id'], 'title': r['title'], 'chapter': r['chapter'], 'target': b.lesson_targets[r['id']], 'stories': r.get('stories', []),
                      **{k: r[k] for k in ('object', 'minutes', 'observations', 'connections') if k in r}} for r in b.lessons if r['id'] in b.lesson_targets],
     }
@@ -1247,7 +1313,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     scale_art_json = json.dumps(scale_assets['neighbourhood'])
     scale_assets_json = json.dumps(scale_assets)
     chunks_json = json.dumps(chunks).replace('</', '<\\/')
-    text_for_fonts = re.sub(r'<[^>]+>', ' ', body) + TITLE + SUBTITLE + '0123456789'
+    text_for_fonts = re.sub(r'<[^>]+>', ' ', body) + TITLE + SUBTITLE + '0123456789' + ''.join(json.dumps(c, ensure_ascii=False) for c in b.exam_catalogs)
     faces = font_faces(html.unescape(text_for_fonts))
     if site_dir:
         # Keep reading typography offline without base64-expanding every font in the
@@ -1302,6 +1368,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     os.makedirs(os.path.join(ROOT, 'build'), exist_ok=True)
     out = out or os.path.join(ROOT, 'build', f'{OUT_NAME}.html')
     open(out, 'w', encoding='utf-8').write(page)
+    if site_dir and b.exam_catalogs:
+        sizes.extend(write_exam_pages(page, b.exam_catalogs, site_dir))
     print(f'wrote {out}  ({len(page.encode())/1024:.0f} KB, {len(chapters)} chapters, {len(b.answers)} checks, '
           f'{len(b.predicts)} predictions, {len(b.glossary)} terms, {len(widgets)} live widgets)')
     if pdf:

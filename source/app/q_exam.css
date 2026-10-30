@@ -1,0 +1,118 @@
+.cover .cover-exam { font: .85rem/1.6 var(--sans); margin: 1rem 0 0; }
+.cover .cover-exam a { display: inline-block; padding: .4rem 0; }
+.exam-chapter-link { margin: 1.5rem 0 2rem; padding: .8rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font: .9rem/1.6 var(--sans); }
+.exam-chapter-link p { margin: .35rem 0 0; color: var(--muted); font-size: .83rem; }
+/* Exam preparation uses the book's paper, rules and type. */
+.exam-prep { --vol: var(--electron); }
+.exam-prep h3 { margin: 2.7rem 0 1rem; font-size: 1.5rem; }
+.exam-prep h4 { margin: 0 0 .6rem; font-size: 1.15rem; }
+.exam-prep h5 { margin: 0 0 .6rem; font: 600 1.1rem/1.35 var(--serif); }
+.exam-prep p, .exam-prep li { overflow-wrap: anywhere; }
+.exam-prep [hidden] { display: none !important; }
+.exam-prep a { text-underline-offset: .2em; }
+.exam-prep button, .exam-prep select, .exam-prep summary { min-height: 44px; }
+.exam-prep button:disabled { opacity: .65; cursor: default; }
+.exam-prep label { cursor: pointer; }
+.exam-prep input[type="checkbox"] { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; margin: .15rem .55rem 0 0; accent-color: var(--electron); }
+.exam-prep input, .exam-prep select, .exam-prep textarea { color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); font: inherit; max-width: 100%; }
+.exam-prep input:focus-visible, .exam-prep select:focus-visible, .exam-prep textarea:focus-visible { outline: 3px solid var(--electron); outline-offset: 3px; }
+.exam-prep textarea[readonly], .exam-prep input[readonly] { background: var(--paper); }
+.exam-prep select { width: 100%; display: block; padding: .5rem; margin-top: .35rem; border-radius: .25rem; font: .88rem/1.5 var(--sans); }
+.exam-prep .exam-nav, .examprep-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; padding: .8rem 0 1.2rem; border-bottom: 1px solid var(--rule); font: .9rem/1.6 var(--sans); }
+.exam-prep .exam-nav a, .examprep-nav a { padding: .35rem 0; }
+.exam-prep .exam-small, .exam-meta, .exam-objective-status, .exam-filter-count, .exam-daily-reason { font: .83rem/1.6 var(--sans); color: var(--muted); }
+.exam-prep .exam-meta { margin: 0 0 .8rem; }
+.exam-prep .exam-small { margin: .6rem 0; }
+.exam-objective-status, .exam-daily-reason { display: block; margin-top: .25rem; }
+#exam-motion-status:empty, .exam-question-status:empty, .exam-timer:empty { display: none; }
+#exam-motion-status, .exam-storage-note, .exam-question-status:not(:empty) { border-left: 3px solid var(--electron); padding: .6rem .8rem; background: var(--vol-wash); font: .9rem/1.6 var(--sans); margin: 1rem 0; }
+.exam-storage-note { border-color: var(--neutron); }
+#exam-motion-objectives ol { padding-left: 1.4rem; }
+#exam-motion-objectives li { padding: .8rem 0 1rem .25rem; border-bottom: 1px solid var(--rule-2); }
+.exam-scope { display: flex; align-items: flex-start; margin-bottom: .35rem; font: .8rem/1.5 var(--sans); color: var(--muted); }
+.exam-daily-list { padding-left: 1.4rem; }
+.exam-daily-list li { padding: .5rem 0 .7rem .25rem; }
+.exam-filter-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.exam-filter-row label, #exam-motion-tools > label { font: .85rem/1.5 var(--sans); }
+.exam-filter-count { margin: .75rem 0; }
+.exam-question { padding: 1.8rem 0 2rem; border-bottom: 1px solid var(--rule); break-inside: avoid-page; }
+.exam-question .exam-prompt { white-space: pre-line; }
+.exam-question .exam-scaffold, .exam-hint { padding: .7rem .9rem; border-left: 2px solid var(--electron); background: var(--vol-wash); font-size: .95rem; }
+.exam-question .exam-hint { margin: .5rem 0; }
+.exam-question .exam-solution { margin-top: 1rem; padding: .8rem 0 0; border-top: 1px dashed var(--rule); }
+.exam-question .exam-solution > summary { display: list-item; cursor: pointer; padding: .4rem 0 .6rem; font: 600 .95rem/1.5 var(--sans); }
+.exam-question .exam-solution > ol, .exam-question .exam-solution > p { margin-top: .7rem; }
+.exam-question .exam-model { margin: .8rem 0 1rem; padding-left: 1.4rem; }
+.exam-question .exam-model li { padding-left: .15rem; margin-bottom: .4rem; }
+.exam-enhanced .exam-question:not([data-stage="worked"]) .exam-markpoints { display: none; }
+.exam-number-feedback { font: .9rem/1.6 var(--sans); color: var(--ink-2); }
+.exam-numeric-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: .7rem 0; }
+.exam-numeric-row label { font: .82rem/1.5 var(--sans); color: var(--muted); }
+.exam-numeric-row input { display: block; width: 100%; min-height: 44px; padding: .4rem .6rem; border-radius: .25rem; margin-top: .25rem; }
+.exam-help { display: flex; align-items: flex-start; margin: .8rem 0; font: .85rem/1.6 var(--sans); }
+.exam-rubric, .exam-errors { min-width: 0; padding: .8rem 0 .2rem; border: 0; margin: .7rem 0; }
+.exam-rubric legend, .exam-errors legend { font: 600 .86rem/1.6 var(--sans); padding: 0; margin-bottom: .4rem; }
+.exam-rubric label, .exam-errors label { display: flex; align-items: flex-start; padding: .45rem 0; font: .9rem/1.6 var(--sans); }
+.exam-errors label { font-size: .83rem; }
+.exam-score, .exam-saved { font: 600 .9rem/1.6 var(--sans); color: var(--green); }
+.exam-paper { padding: 1rem 0; border-top: 1px solid var(--rule); margin-top: 1rem; }
+.exam-paper > summary { cursor: pointer; font: 600 1.05rem/1.5 var(--serif); padding: .7rem 0; }
+.exam-paper-ui { margin-bottom: 1rem; font: .9rem/1.6 var(--sans); }
+.exam-timer { font: 600 1rem/1.6 var(--sans); font-variant-numeric: tabular-nums; }
+.exam-word { border-bottom: 1px solid var(--rule-2); padding: 1rem 0; }
+.exam-word details > summary { cursor: pointer; padding: .4rem 0; font: .88rem/1.6 var(--sans); }
+.exam-word details > :not(summary) { margin: .7rem 0; }
+.exam-word .exam-formula { font-weight: 600; }
+.exam-prep .exam-table-wrap { overflow-x: auto; max-width: 100%; margin: 1rem 0; }
+.exam-prep table { border-collapse: collapse; width: 100%; font: .9rem/1.5 var(--sans); }
+.exam-prep th, .exam-prep td { text-align: left; border-bottom: 1px solid var(--rule); padding: .5rem .6rem; }
+.exam-prep figure { margin: 1rem 0; max-width: 100%; }
+.exam-prep svg { max-width: 100%; height: auto; }
+.exam-prep figcaption { font: .83rem/1.6 var(--sans); color: var(--muted); }
+.exam-print-working { display: none; }
+.exam-prep > section, .exam-question, .exam-word { scroll-margin-top: 1rem; }
+@media (max-width: 560px) {
+  .exam-filter-row { grid-template-columns: 1fr; }
+  .exam-prep h3 { margin-top: 2.2rem; }
+  .exam-prep .lj-row > button { max-width: 100%; }
+}
+/* Keep all eight reading targets reachable on the narrowest phones. */
+@media screen and (max-width: 360px) {
+  html:has(#tb-exam) .navbtn { display: grid; grid-template-columns: auto 1fr; gap: .25rem; }
+  html:has(#tb-exam) .toolbar { display: grid; grid-template-columns: repeat(4, minmax(44px, 1fr)); gap: 0; min-width: 0; }
+  html:has(#tb-exam) .navbtn > a { align-self: center; }
+  html:has(#tb-exam) body { padding-bottom: calc(6.8rem + env(safe-area-inset-bottom)); }
+  html:has(#tb-exam) .iw-pop { bottom: calc(7.4rem + env(safe-area-inset-bottom)); }
+}
+@media print {
+  .exam-prep .exam-markpoints { display: block !important; }
+  .exam-prep .exam-response-ui, .exam-prep .exam-marking-ui, .exam-prep .exam-paper-ui, .exam-prep .exam-scope, #exam-motion-tools, #exam-motion-filters, #exam-motion-status, .exam-storage-note { display: none !important; }
+  .exam-prep .exam-solution { display: block !important; }
+  .exam-prep .exam-solution > :not(summary), .exam-prep .exam-word details > :not(summary), .exam-prep .exam-paper > :not(summary) { display: block !important; }
+  .exam-prep .exam-paper > .exam-paper-ui, .exam-prep .exam-solution > .exam-marking-ui { display: none !important; }
+  html[data-exam-print] .exam-paper > summary { display: none !important; }
+  html[data-exam-print] body { background: white !important; color: black !important; }
+  html[data-exam-print] main.book > :not(.backmatter), html[data-exam-print] .navbtn, html[data-exam-print] .skip { display: none !important; }
+  html[data-exam-print] .backmatter > .front-ish { display: none !important; }
+  html[data-exam-print] .backmatter > .front-ish:has(> #exam-prep) { display: block !important; }
+  html[data-exam-print] #exam-prep { --measure: 100%; --side: 0px; --gap: 0px; --paper: white; --sheet: white; --ink: black; --ink-2: black; --muted: #333; --rule: #bbb; --rule-2: #ddd; padding: 0 !important; max-width: none; margin: 0; font-size: 11pt; }
+  html[data-exam-print] #exam-prep > :not(h2):not(#exam-motion-papers):not(#exam-motion-cards):not(#exam-motion-technique) { display: none !important; }
+  html[data-exam-print] #exam-prep .pg-nav, html[data-exam-print] #exam-prep .exam-nav, html[data-exam-print] #exam-prep .examprep-nav { display: none !important; }
+  html[data-exam-print="questions"] #exam-motion-cards, html[data-exam-print="answers"] #exam-motion-cards,
+  html[data-exam-print="questions"] #exam-motion-technique, html[data-exam-print="answers"] #exam-motion-technique { display: none !important; }
+  html[data-exam-print="questions"] #exam-motion-papers, html[data-exam-print="answers"] #exam-motion-papers { display: block !important; }
+  html[data-exam-print="questions"] #exam-prep > h2, html[data-exam-print="answers"] #exam-prep > h2,
+  html[data-exam-print] #exam-motion-papers > h3, html[data-exam-print] #exam-motion-papers > p { display: none !important; }
+  html[data-exam-print] .exam-paper > h4 { margin-top: 0; font-size: 16pt; }
+  html[data-exam-print] .exam-paper > h4::before { content: 'The Moving World · exam practice'; display: block; font: 9pt/1.5 var(--sans); margin-bottom: .5rem; }
+  html[data-exam-print] .exam-paper { display: none !important; }
+  html[data-exam-print] .exam-paper[data-exam-print-selected="true"] { display: block !important; border: 0; }
+  html[data-exam-print="questions"] .exam-paper .exam-solution, html[data-exam-print="questions"] .exam-paper .exam-scaffold { display: none !important; }
+  html[data-exam-print="questions"] .exam-print-working { display: block !important; height: 5rem; border-bottom: 1px dotted #aaa; margin-top: 1rem; }
+  html[data-exam-print="revision"] #exam-motion-papers { display: none !important; }
+  html[data-exam-print="revision"] #exam-motion-cards, html[data-exam-print="revision"] #exam-motion-technique { display: block !important; }
+  html[data-exam-print] .exam-question { break-inside: avoid; }
+  html[data-exam-print] #exam-prep a { color: black; text-decoration: none; }
+}
+
+@media print { html[data-exam-print] .exam-directory, html[data-exam-print] .exam-study-plan { display: none !important; } }

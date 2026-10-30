@@ -1,0 +1,1656 @@
+{
+  "version": 1,
+  "chapter": 3,
+  "key": "chapter-03",
+  "title": "Forces come in pairs",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch03-objective-1",
+      "label": "Explain and use resultant force.",
+      "teach": "#s3-1",
+      "note": "The vector sum of the forces acting on one chosen object."
+    },
+    {
+      "id": "ch03-objective-2",
+      "label": "Use moments and the principle of moments; explain stability.",
+      "teach": "#s3-1",
+      "note": "The turning effect of a force about a pivot, equal to force times perpendicular distance."
+    },
+    {
+      "id": "ch03-objective-3",
+      "label": "Explain and use acceleration and resultant force.",
+      "teach": "#s3-2",
+      "note": "For constant mass in this model, resultant force equals mass multiplied by acceleration."
+    },
+    {
+      "id": "ch03-objective-4",
+      "label": "Explain and use contact force.",
+      "teach": "#s3-3",
+      "note": "A surface can exert a force on an object touching it."
+    },
+    {
+      "id": "ch03-objective-5",
+      "label": "Explain and use spring constant.",
+      "teach": "#s3-3",
+      "note": "For a proportional spring, force divided by extension gives its spring constant."
+    },
+    {
+      "id": "ch03-objective-6",
+      "label": "Explain and use third-law pair.",
+      "teach": "#s3-4",
+      "note": "Two interacting objects exert equal-magnitude opposite-direction forces on each other."
+    },
+    {
+      "id": "ch03-objective-7",
+      "label": "Explain and use momentum.",
+      "teach": "#s3-5",
+      "note": "Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+    },
+    {
+      "id": "ch03-objective-8",
+      "label": "Distinguish mass from weight and use W = mg.",
+      "note": "Mass is measured in kg; weight is a gravitational force in N and depends on local g.",
+      "teach": "#s3-2"
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch03-card-1",
+      "term": "Resultant force",
+      "definition": "The vector sum of the forces acting on one chosen object.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A model cart has two horizontal forces: a motor pulls right and resistance is 19 N left. Its resultant is 28 N right. Calculate the motor force. Motor force − 19 N = 28 N. Motor force = 28 + 19 = 47 N.",
+      "confusion": "Forces on different objects do not cancel in a single-object force diagram.",
+      "question": "Explain resultant force from memory. What common mistake must you avoid?",
+      "answer": "The vector sum of the forces acting on one chosen object. Forces on different objects do not cancel in a single-object force diagram.",
+      "teach": "#s3-1",
+      "questionId": "ch03-o1-q1",
+      "formula": "Fᵣ = sum of signed forces",
+      "unit": "N"
+    },
+    {
+      "id": "ch03-card-2",
+      "term": "Moment",
+      "definition": "The turning effect of a force about a pivot, equal to force times perpendicular distance.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A door needs a turning moment of 8.4 N m about its hinge. You push at right angles 0.70 m from the hinge. Calculate the required force. Force = moment ÷ perpendicular distance. 8.4 ÷ 0.70 = 12 N.",
+      "confusion": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "question": "Explain moment from memory. What common mistake must you avoid?",
+      "answer": "The turning effect of a force about a pivot, equal to force times perpendicular distance. Use perpendicular distance to the line of action, not an arbitrary length.",
+      "teach": "#s3-1",
+      "questionId": "ch03-o2-q1",
+      "formula": "M = Fd⊥",
+      "unit": "N m"
+    },
+    {
+      "id": "ch03-card-3",
+      "term": "Acceleration and resultant force",
+      "definition": "For constant mass in this model, resultant force equals mass multiplied by acceleration.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A model lift has a constant mass. A resultant upward force of 18 N gives an upward acceleration of 1.5 m/s². Calculate the mass. Mass = resultant force ÷ acceleration. 18 ÷ 1.5 = 12 kg.",
+      "confusion": "Use the resultant force, not just one of several forces.",
+      "question": "Explain acceleration and resultant force from memory. What common mistake must you avoid?",
+      "answer": "For constant mass in this model, resultant force equals mass multiplied by acceleration. Use the resultant force, not just one of several forces.",
+      "teach": "#s3-2",
+      "questionId": "ch03-o3-q1",
+      "formula": "a = Fᵣ/m",
+      "unit": "m/s²"
+    },
+    {
+      "id": "ch03-card-4",
+      "term": "Contact force",
+      "definition": "A surface can exert a force on an object touching it.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A rigid shelf supports a vase. Explain why “the shelf is not alive” does not prevent it exerting a force. Small deformations and interactions within the material produce contact forces. Being alive is not a condition for exerting a force.",
+      "confusion": "A table need not visibly move to exert an upward force.",
+      "question": "Explain contact force from memory. What common mistake must you avoid?",
+      "answer": "A surface can exert a force on an object touching it. A table need not visibly move to exert an upward force.",
+      "teach": "#s3-3",
+      "questionId": "ch03-o4-q1"
+    },
+    {
+      "id": "ch03-card-5",
+      "term": "Spring constant",
+      "definition": "For a proportional spring, force divided by extension gives its spring constant.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A proportional spring in a model force meter has spring constant 160 N/m. Calculate the extension produced by a 6.4 N force. Extension = force ÷ spring constant. 6.4 ÷ 160 = 0.040 m.",
+      "confusion": "Extension is the change in length, not the full stretched length.",
+      "question": "Explain spring constant from memory. What common mistake must you avoid?",
+      "answer": "For a proportional spring, force divided by extension gives its spring constant. Extension is the change in length, not the full stretched length.",
+      "teach": "#s3-3",
+      "questionId": "ch03-o5-q1",
+      "formula": "k = F/x",
+      "unit": "N/m"
+    },
+    {
+      "id": "ch03-card-6",
+      "term": "Third-law pair",
+      "definition": "Two interacting objects exert equal-magnitude opposite-direction forces on each other.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A lorry and a small car interact during a collision. Compare their interaction force magnitudes. Explain why their accelerations or damage can nevertheless differ. The two interaction forces have equal magnitude. Their accelerations and damage can differ because mass and structure differ.",
+      "confusion": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "question": "Explain third-law pair from memory. What common mistake must you avoid?",
+      "answer": "Two interacting objects exert equal-magnitude opposite-direction forces on each other. The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "teach": "#s3-4",
+      "questionId": "ch03-o6-q1"
+    },
+    {
+      "id": "ch03-card-7",
+      "term": "Momentum",
+      "definition": "Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A model cart has momentum 10.8 kg m/s west and mass 3.6 kg. Calculate its speed and state its velocity direction. Speed = momentum magnitude ÷ mass. 10.8 ÷ 3.6 = 3.0 m/s. Its velocity is directed west.",
+      "confusion": "Choose the system and a direction before adding momenta.",
+      "question": "Explain momentum from memory. What common mistake must you avoid?",
+      "answer": "Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero. Choose the system and a direction before adding momenta.",
+      "teach": "#s3-5",
+      "questionId": "ch03-o7-q1",
+      "formula": "p = mv",
+      "unit": "kg m/s"
+    },
+    {
+      "id": "ch03-card-8",
+      "term": "Mass and weight",
+      "definition": "Mass measures inertia/amount of matter; weight is the gravitational force on a mass.",
+      "explanation": "Mass measures inertia/amount of matter; weight is the gravitational force on a mass.",
+      "example": "A 6 kg object weighs 60 N where g = 10 N/kg.",
+      "confusion": "Moving an object to weaker gravity changes its weight, not its mass.",
+      "question": "Explain mass and weight from memory and give its important distinction.",
+      "answer": "Mass measures inertia/amount of matter; weight is the gravitational force on a mass. Moving an object to weaker gravity changes its weight, not its mass.",
+      "teach": "#s3-2",
+      "questionId": "ch03-mass-weight",
+      "formula": "W = mg",
+      "unit": "kg for mass; N for weight"
+    },
+    {
+      "id": "ch03-card-9",
+      "term": "Principle of moments",
+      "definition": "For rotational equilibrium, total clockwise moment equals total anticlockwise moment about the chosen pivot.",
+      "explanation": "For rotational equilibrium, total clockwise moment equals total anticlockwise moment about the chosen pivot.",
+      "example": "A smaller force can balance a larger force by acting farther from the pivot.",
+      "confusion": "Zero resultant force alone does not ensure rotational equilibrium.",
+      "question": "Explain principle of moments from memory and give its important distinction.",
+      "answer": "For rotational equilibrium, total clockwise moment equals total anticlockwise moment about the chosen pivot. Zero resultant force alone does not ensure rotational equilibrium.",
+      "teach": "#s3-1",
+      "questionId": "ch03-balance-moments",
+      "formula": "Σ clockwise moments = Σ anticlockwise moments",
+      "unit": "N m"
+    },
+    {
+      "id": "ch03-card-10",
+      "term": "Centre of gravity and stability",
+      "definition": "The centre of gravity is the point at which the whole weight may be treated as acting in a uniform gravitational field.",
+      "explanation": "The centre of gravity is the point at which the whole weight may be treated as acting in a uniform gravitational field.",
+      "example": "A wide-based, low object needs a larger tilt to bring its weight line beyond its base.",
+      "confusion": "Weight acts through the centre of gravity; a toppling threshold concerns that line’s position relative to the base.",
+      "question": "Explain centre of gravity and stability from memory and give its important distinction.",
+      "answer": "The centre of gravity is the point at which the whole weight may be treated as acting in a uniform gravitational field. Weight acts through the centre of gravity; a toppling threshold concerns that line’s position relative to the base.",
+      "teach": "#s3-1",
+      "questionId": "ch03-stability"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of resultant force."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "Two horizontal forces act on a cart: 62 N right and 23 N left. Calculate the magnitude of the resultant."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "Two horizontal forces act on a cart: 45 N right and 18 N left. Calculate the magnitude of the resultant."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the momentum revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch03-o1-q1",
+      "title": "Two horizontal forces act on a cart: 45 N right and 18 N left",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "Two horizontal forces act on a cart: 45 N right and 18 N left. Calculate the magnitude of the resultant.",
+      "marks": 3,
+      "points": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "Correct substitution: 45 − 18.",
+        "The answer is 27 N."
+      ],
+      "model": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "45 − 18 = 27 N right.",
+        "The answer is 27 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Forces on different objects do not cancel in a single-object force diagram.",
+      "hints": [
+        "Begin with the meaning of resultant force: The vector sum of the forces acting on one chosen object."
+      ],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 27,
+        "unit": "N",
+        "tolerance": 0.0027
+      }
+    },
+    {
+      "id": "ch03-o1-q2",
+      "title": "A different setting: Resultant force",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A model cart has two horizontal forces: a motor pulls right and resistance is 19 N left. Its resultant is 28 N right. Calculate the motor force.",
+      "marks": 2,
+      "points": [
+        "Motor force − 19 N = 28 N.",
+        "Motor force = 28 + 19 = 47 N."
+      ],
+      "model": [
+        "Motor force − 19 N = 28 N.",
+        "Motor force = 28 + 19 = 47 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Forces on different objects do not cancel in a single-object force diagram.",
+      "hints": [
+        "Begin with the meaning of resultant force: The vector sum of the forces acting on one chosen object."
+      ],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 47,
+        "unit": "N",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o1-q3",
+      "title": "Two horizontal forces act on a cart: 84 N right and 31 N left",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "Two horizontal forces act on a cart: 84 N right and 31 N left. Calculate the magnitude of the resultant.",
+      "marks": 3,
+      "points": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "Correct substitution: 84 − 31.",
+        "The answer is 53 N."
+      ],
+      "model": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "84 − 31 = 53 N right.",
+        "The answer is 53 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Forces on different objects do not cancel in a single-object force diagram.",
+      "hints": [],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 53,
+        "unit": "N",
+        "tolerance": 0.0053
+      }
+    },
+    {
+      "id": "ch03-o1-q4",
+      "title": "Two horizontal forces act on a cart: 97 N right and 42 N left",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "Two horizontal forces act on a cart: 97 N right and 42 N left. Calculate the magnitude of the resultant.",
+      "marks": 3,
+      "points": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "Correct substitution: 97 − 42.",
+        "The answer is 55 N."
+      ],
+      "model": [
+        "Opposite collinear forces subtract; the resultant points right.",
+        "97 − 42 = 55 N right.",
+        "The answer is 55 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Forces on different objects do not cancel in a single-object force diagram.",
+      "hints": [],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 55,
+        "unit": "N",
+        "tolerance": 0.0055000000000000005
+      }
+    },
+    {
+      "id": "ch03-o1-recall",
+      "title": "State the meaning of resultant force and explain one distinction that prevents a common misunderstan",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of resultant force and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "The vector sum of the forces acting on one chosen object.",
+        "Forces on different objects do not cancel in a single-object force diagram."
+      ],
+      "model": [
+        "The vector sum of the forces acting on one chosen object.",
+        "Forces on different objects do not cancel in a single-object force diagram."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Forces on different objects do not cancel in a single-object force diagram.",
+      "hints": [
+        "Begin with the meaning of resultant force: The vector sum of the forces acting on one chosen object."
+      ],
+      "teach": "#s3-1"
+    },
+    {
+      "id": "ch03-o2-q1",
+      "title": "A force of 15 N acts perpendicular to a spanner at 0",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A force of 15 N acts perpendicular to a spanner at 0.24 m from its pivot. Calculate its moment magnitude.",
+      "marks": 3,
+      "points": [
+        "Moment = force × perpendicular distance.",
+        "Correct substitution: 15 × 0.24.",
+        "The answer is 3.6 N m."
+      ],
+      "model": [
+        "Moment = force × perpendicular distance.",
+        "15 × 0.24 = 3.6 N m.",
+        "The answer is 3.6 N m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [
+        "Begin with the meaning of moment: The turning effect of a force about a pivot, equal to force times perpendicular distance."
+      ],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 3.5999999999999996,
+        "unit": "N m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o2-q2",
+      "title": "A different setting: Moment",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A door needs a turning moment of 8.4 N m about its hinge. You push at right angles 0.70 m from the hinge. Calculate the required force.",
+      "marks": 2,
+      "points": [
+        "Force = moment ÷ perpendicular distance.",
+        "8.4 ÷ 0.70 = 12 N."
+      ],
+      "model": [
+        "Force = moment ÷ perpendicular distance.",
+        "8.4 ÷ 0.70 = 12 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [
+        "Begin with the meaning of moment: The turning effect of a force about a pivot, equal to force times perpendicular distance."
+      ],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 12,
+        "unit": "N",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o2-q3",
+      "title": "A force of 25 N acts perpendicular to a spanner at 0",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A force of 25 N acts perpendicular to a spanner at 0.16 m from its pivot. Calculate its moment magnitude.",
+      "marks": 3,
+      "points": [
+        "Moment = force × perpendicular distance.",
+        "Correct substitution: 25 × 0.16.",
+        "The answer is 4 N m."
+      ],
+      "model": [
+        "Moment = force × perpendicular distance.",
+        "25 × 0.16 = 4 N m.",
+        "The answer is 4 N m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 4.0,
+        "unit": "N m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o2-q4",
+      "title": "A force of 32 N acts perpendicular to a spanner at 0",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A force of 32 N acts perpendicular to a spanner at 0.15 m from its pivot. Calculate its moment magnitude.",
+      "marks": 3,
+      "points": [
+        "Moment = force × perpendicular distance.",
+        "Correct substitution: 32 × 0.15.",
+        "The answer is 4.8 N m."
+      ],
+      "model": [
+        "Moment = force × perpendicular distance.",
+        "32 × 0.15 = 4.8 N m.",
+        "The answer is 4.8 N m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 4.8,
+        "unit": "N m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o2-recall",
+      "title": "State the meaning of moment and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of moment and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "The turning effect of a force about a pivot, equal to force times perpendicular distance.",
+        "Use perpendicular distance to the line of action, not an arbitrary length."
+      ],
+      "model": [
+        "The turning effect of a force about a pivot, equal to force times perpendicular distance.",
+        "Use perpendicular distance to the line of action, not an arbitrary length."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [
+        "Begin with the meaning of moment: The turning effect of a force about a pivot, equal to force times perpendicular distance."
+      ],
+      "teach": "#s3-1"
+    },
+    {
+      "id": "ch03-o3-q1",
+      "title": "A cart of mass 6 kg has a horizontal resultant force of 27 N",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A cart of mass 6 kg has a horizontal resultant force of 27 N. Calculate its acceleration magnitude.",
+      "marks": 3,
+      "points": [
+        "Acceleration = resultant force ÷ mass.",
+        "Correct substitution: 27 ÷ 6.",
+        "The answer is 4.5 m/s²."
+      ],
+      "model": [
+        "Acceleration = resultant force ÷ mass.",
+        "27 ÷ 6 = 4.5 m/s².",
+        "The answer is 4.5 m/s²."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [
+        "Begin with the meaning of acceleration and resultant force: For constant mass in this model, resultant force equals mass multiplied by acceleration."
+      ],
+      "teach": "#s3-2",
+      "numeric": {
+        "value": 4.5,
+        "unit": "m/s²",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o3-q2",
+      "title": "A different setting: Acceleration and resultant force",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A model lift has a constant mass. A resultant upward force of 18 N gives an upward acceleration of 1.5 m/s². Calculate the mass.",
+      "marks": 2,
+      "points": [
+        "Mass = resultant force ÷ acceleration.",
+        "18 ÷ 1.5 = 12 kg."
+      ],
+      "model": [
+        "Mass = resultant force ÷ acceleration.",
+        "18 ÷ 1.5 = 12 kg."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [
+        "Begin with the meaning of acceleration and resultant force: For constant mass in this model, resultant force equals mass multiplied by acceleration."
+      ],
+      "teach": "#s3-2",
+      "numeric": {
+        "value": 12,
+        "unit": "kg",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o3-q3",
+      "title": "A cart of mass 12 kg has a horizontal resultant force of 42 N",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A cart of mass 12 kg has a horizontal resultant force of 42 N. Calculate its acceleration magnitude.",
+      "marks": 3,
+      "points": [
+        "Acceleration = resultant force ÷ mass.",
+        "Correct substitution: 42 ÷ 12.",
+        "The answer is 3.5 m/s²."
+      ],
+      "model": [
+        "Acceleration = resultant force ÷ mass.",
+        "42 ÷ 12 = 3.5 m/s².",
+        "The answer is 3.5 m/s²."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [],
+      "teach": "#s3-2",
+      "numeric": {
+        "value": 3.5,
+        "unit": "m/s²",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o3-q4",
+      "title": "A cart of mass 15 kg has a horizontal resultant force of 48 N",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A cart of mass 15 kg has a horizontal resultant force of 48 N. Calculate its acceleration magnitude.",
+      "marks": 3,
+      "points": [
+        "Acceleration = resultant force ÷ mass.",
+        "Correct substitution: 48 ÷ 15.",
+        "The answer is 3.2 m/s²."
+      ],
+      "model": [
+        "Acceleration = resultant force ÷ mass.",
+        "48 ÷ 15 = 3.2 m/s².",
+        "The answer is 3.2 m/s²."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [],
+      "teach": "#s3-2",
+      "numeric": {
+        "value": 3.2,
+        "unit": "m/s²",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o3-recall",
+      "title": "State the meaning of acceleration and resultant force and explain one distinction that prevents a co",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of acceleration and resultant force and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "For constant mass in this model, resultant force equals mass multiplied by acceleration.",
+        "Use the resultant force, not just one of several forces."
+      ],
+      "model": [
+        "For constant mass in this model, resultant force equals mass multiplied by acceleration.",
+        "Use the resultant force, not just one of several forces."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [
+        "Begin with the meaning of acceleration and resultant force: For constant mass in this model, resultant force equals mass multiplied by acceleration."
+      ],
+      "teach": "#s3-2"
+    },
+    {
+      "id": "ch03-o4-q1",
+      "title": "A book rests on a horizontal table",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A book rests on a horizontal table. Name the two principal forces on the book and their directions.",
+      "marks": 2,
+      "points": [
+        "Its weight acts downwards.",
+        "The table’s normal contact force acts upwards."
+      ],
+      "model": [
+        "Its weight acts downwards.",
+        "The table’s normal contact force acts upwards."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A table need not visibly move to exert an upward force.",
+      "hints": [
+        "Begin with the meaning of contact force: A surface can exert a force on an object touching it."
+      ],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o4-q2",
+      "title": "A rigid shelf supports a vase",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A rigid shelf supports a vase. Explain why “the shelf is not alive” does not prevent it exerting a force.",
+      "marks": 2,
+      "points": [
+        "Small deformations and interactions within the material produce contact forces.",
+        "Being alive is not a condition for exerting a force."
+      ],
+      "model": [
+        "Small deformations and interactions within the material produce contact forces.",
+        "Being alive is not a condition for exerting a force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A table need not visibly move to exert an upward force.",
+      "hints": [
+        "Begin with the meaning of contact force: A surface can exert a force on an object touching it."
+      ],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o4-q3",
+      "title": "A block presses into a cushion and comes to rest",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A block presses into a cushion and comes to rest. What balances its weight? Explain your answer.",
+      "marks": 2,
+      "points": [
+        "An upward contact force from the cushion.",
+        "For rest with no acceleration, the resultant force is zero."
+      ],
+      "model": [
+        "An upward contact force from the cushion.",
+        "For rest with no acceleration, the resultant force is zero."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A table need not visibly move to exert an upward force.",
+      "hints": [],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o4-q4",
+      "title": "State how the normal contact force is oriented relative to a smooth supporting surface",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State how the normal contact force is oriented relative to a smooth supporting surface.",
+      "marks": 1,
+      "points": [
+        "It acts at right angles (perpendicular) to the supporting surface."
+      ],
+      "model": [
+        "It acts at right angles (perpendicular) to the supporting surface."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A table need not visibly move to exert an upward force.",
+      "hints": [],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o4-recall",
+      "title": "State the meaning of contact force and explain one distinction that prevents a common misunderstandi",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of contact force and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A surface can exert a force on an object touching it.",
+        "A table need not visibly move to exert an upward force."
+      ],
+      "model": [
+        "A surface can exert a force on an object touching it.",
+        "A table need not visibly move to exert an upward force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A table need not visibly move to exert an upward force.",
+      "hints": [
+        "Begin with the meaning of contact force: A surface can exert a force on an object touching it."
+      ],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o5-q1",
+      "title": "A spring is in its proportional range",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A spring is in its proportional range. A force of 3 N produces an extension of 0.025 m. Calculate the spring constant.",
+      "marks": 3,
+      "points": [
+        "Spring constant k = F/x in the proportional range.",
+        "Correct substitution: 3 ÷ 0.025.",
+        "The answer is 120 N/m."
+      ],
+      "model": [
+        "Spring constant k = F/x in the proportional range.",
+        "3 ÷ 0.025 = 120 N/m.",
+        "The answer is 120 N/m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [
+        "Begin with the meaning of spring constant: For a proportional spring, force divided by extension gives its spring constant."
+      ],
+      "teach": "#s3-3",
+      "numeric": {
+        "value": 120.0,
+        "unit": "N/m",
+        "tolerance": 0.012
+      }
+    },
+    {
+      "id": "ch03-o5-q2",
+      "title": "A different setting: Spring constant",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A proportional spring in a model force meter has spring constant 160 N/m. Calculate the extension produced by a 6.4 N force.",
+      "marks": 2,
+      "points": [
+        "Extension = force ÷ spring constant.",
+        "6.4 ÷ 160 = 0.040 m."
+      ],
+      "model": [
+        "Extension = force ÷ spring constant.",
+        "6.4 ÷ 160 = 0.040 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [
+        "Begin with the meaning of spring constant: For a proportional spring, force divided by extension gives its spring constant."
+      ],
+      "teach": "#s3-3",
+      "numeric": {
+        "value": 0.04,
+        "unit": "m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o5-q3",
+      "title": "A spring is in its proportional range",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A spring is in its proportional range. A force of 7 N produces an extension of 0.035 m. Calculate the spring constant.",
+      "marks": 3,
+      "points": [
+        "Spring constant k = F/x in the proportional range.",
+        "Correct substitution: 7 ÷ 0.035.",
+        "The answer is 200 N/m."
+      ],
+      "model": [
+        "Spring constant k = F/x in the proportional range.",
+        "7 ÷ 0.035 = 200 N/m.",
+        "The answer is 200 N/m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [],
+      "teach": "#s3-3",
+      "numeric": {
+        "value": 199.99999999999997,
+        "unit": "N/m",
+        "tolerance": 0.019999999999999997
+      }
+    },
+    {
+      "id": "ch03-o5-q4",
+      "title": "A spring is in its proportional range",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A spring is in its proportional range. A force of 9 N produces an extension of 0.06 m. Calculate the spring constant.",
+      "marks": 3,
+      "points": [
+        "Spring constant k = F/x in the proportional range.",
+        "Correct substitution: 9 ÷ 0.06.",
+        "The answer is 150 N/m."
+      ],
+      "model": [
+        "Spring constant k = F/x in the proportional range.",
+        "9 ÷ 0.06 = 150 N/m.",
+        "The answer is 150 N/m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [],
+      "teach": "#s3-3",
+      "numeric": {
+        "value": 150.0,
+        "unit": "N/m",
+        "tolerance": 0.015000000000000001
+      }
+    },
+    {
+      "id": "ch03-o5-recall",
+      "title": "State the meaning of spring constant and explain one distinction that prevents a common misunderstan",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of spring constant and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "For a proportional spring, force divided by extension gives its spring constant.",
+        "Extension is the change in length, not the full stretched length."
+      ],
+      "model": [
+        "For a proportional spring, force divided by extension gives its spring constant.",
+        "Extension is the change in length, not the full stretched length."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [
+        "Begin with the meaning of spring constant: For a proportional spring, force divided by extension gives its spring constant."
+      ],
+      "teach": "#s3-3"
+    },
+    {
+      "id": "ch03-o6-q1",
+      "title": "A swimmer pushes water backwards",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A swimmer pushes water backwards. Identify the partner force that helps the swimmer move forwards. State how the two forces are related.",
+      "marks": 2,
+      "points": [
+        "Water exerts a forward force on the swimmer.",
+        "The two interaction forces have equal magnitude and opposite direction and act on different objects."
+      ],
+      "model": [
+        "Water exerts a forward force on the swimmer.",
+        "The two interaction forces have equal magnitude and opposite direction and act on different objects."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "hints": [
+        "Begin with the meaning of third-law pair: Two interacting objects exert equal-magnitude opposite-direction forces on each other."
+      ],
+      "teach": "#s3-4"
+    },
+    {
+      "id": "ch03-o6-q2",
+      "title": "A lorry and a small car interact during a collision",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A lorry and a small car interact during a collision. Compare their interaction force magnitudes. Explain why their accelerations or damage can nevertheless differ.",
+      "marks": 2,
+      "points": [
+        "The two interaction forces have equal magnitude.",
+        "Their accelerations and damage can differ because mass and structure differ."
+      ],
+      "model": [
+        "The two interaction forces have equal magnitude.",
+        "Their accelerations and damage can differ because mass and structure differ."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "hints": [
+        "Begin with the meaning of third-law pair: Two interacting objects exert equal-magnitude opposite-direction forces on each other."
+      ],
+      "teach": "#s3-4"
+    },
+    {
+      "id": "ch03-o6-q3",
+      "title": "A hand pushes a wall",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A hand pushes a wall. Name both members of the third-law pair.",
+      "marks": 2,
+      "points": [
+        "The hand pushes the wall.",
+        "The wall pushes the hand equally strongly in the opposite direction."
+      ],
+      "model": [
+        "The hand pushes the wall.",
+        "The wall pushes the hand equally strongly in the opposite direction."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "hints": [],
+      "teach": "#s3-4"
+    },
+    {
+      "id": "ch03-o6-q4",
+      "title": "A student says a book’s weight and the table’s push form a third-law pair",
+      "stage": "paper",
+      "objectives": [
+        "ch03-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A student says a book’s weight and the table’s push form a third-law pair. Explain the mistake.",
+      "marks": 2,
+      "points": [
+        "Both forces act on the same object, the book.",
+        "Third-law partners act on different objects: for example, table on book and book on table."
+      ],
+      "model": [
+        "Both forces act on the same object, the book.",
+        "Third-law partners act on different objects: for example, table on book and book on table."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "hints": [],
+      "teach": "#s3-4"
+    },
+    {
+      "id": "ch03-o6-recall",
+      "title": "State the meaning of third-law pair and explain one distinction that prevents a common misunderstand",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of third-law pair and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Two interacting objects exert equal-magnitude opposite-direction forces on each other.",
+        "The pair acts on different objects, so it does not balance the forces on either object by itself."
+      ],
+      "model": [
+        "Two interacting objects exert equal-magnitude opposite-direction forces on each other.",
+        "The pair acts on different objects, so it does not balance the forces on either object by itself."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The pair acts on different objects, so it does not balance the forces on either object by itself.",
+      "hints": [
+        "Begin with the meaning of third-law pair: Two interacting objects exert equal-magnitude opposite-direction forces on each other."
+      ],
+      "teach": "#s3-4"
+    },
+    {
+      "id": "ch03-o7-q1",
+      "title": "A model trolley of mass 2",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "calculate",
+      "prompt": "A model trolley of mass 2.5 kg moves at 3.2 m/s east. Calculate its momentum magnitude.",
+      "marks": 3,
+      "points": [
+        "Momentum p = mv; its direction is east.",
+        "Correct substitution: 2.5 × 3.2.",
+        "The answer is 8 kg m/s."
+      ],
+      "model": [
+        "Momentum p = mv; its direction is east.",
+        "2.5 × 3.2 = 8 kg m/s east.",
+        "The answer is 8 kg m/s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5",
+      "numeric": {
+        "value": 8.0,
+        "unit": "kg m/s",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-o7-q2",
+      "title": "A different setting: Momentum",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "A model cart has momentum 10.8 kg m/s west and mass 3.6 kg. Calculate its speed and state its velocity direction.",
+      "marks": 3,
+      "points": [
+        "Speed = momentum magnitude ÷ mass.",
+        "10.8 ÷ 3.6 = 3.0 m/s.",
+        "Its velocity is directed west."
+      ],
+      "model": [
+        "Speed = momentum magnitude ÷ mass.",
+        "10.8 ÷ 3.6 = 3.0 m/s.",
+        "Its velocity is directed west."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5"
+    },
+    {
+      "id": "ch03-o7-q3",
+      "title": "Momentum in a new situation",
+      "stage": "review",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "Two model carts of masses 2.0 kg and 3.0 kg start at rest on a horizontal track. A spring pushes them apart. If the 2.0 kg cart moves at 3.0 m/s east, calculate the other cart’s velocity. Ignore external horizontal impulse.",
+      "marks": 3,
+      "points": [
+        "Initial total momentum is zero; taking east positive, final total must also be zero.",
+        "First cart momentum = 2.0 × 3.0 = +6.0 kg m/s.",
+        "Other cart velocity = −6.0 ÷ 3.0 = −2.0 m/s, or 2.0 m/s west."
+      ],
+      "model": [
+        "Initial total momentum is zero; taking east positive, final total must also be zero.",
+        "First cart momentum = 2.0 × 3.0 = +6.0 kg m/s.",
+        "Other cart velocity = −6.0 ÷ 3.0 = −2.0 m/s, or 2.0 m/s west."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5"
+    },
+    {
+      "id": "ch03-o7-q4",
+      "title": "Momentum in a new situation",
+      "stage": "review",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "A trolley has momentum 18 kg m/s west while moving at 6.0 m/s west. Calculate its mass and explain why the direction does not make the mass negative.",
+      "marks": 2,
+      "points": [
+        "Mass = momentum magnitude ÷ speed = 18 ÷ 6.0 = 3.0 kg.",
+        "Mass is a scalar positive quantity; the westward direction belongs to velocity and momentum."
+      ],
+      "model": [
+        "Mass = momentum magnitude ÷ speed = 18 ÷ 6.0 = 3.0 kg.",
+        "Mass is a scalar positive quantity; the westward direction belongs to velocity and momentum."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5"
+    },
+    {
+      "id": "ch03-o7-recall",
+      "title": "State the meaning of momentum and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of momentum and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero.",
+        "Choose the system and a direction before adding momenta."
+      ],
+      "model": [
+        "Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero.",
+        "Choose the system and a direction before adding momenta."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5"
+    },
+    {
+      "id": "ch03-mixed-1",
+      "title": "A model spring gives the supplied readings",
+      "stage": "review",
+      "objectives": [
+        "ch03-objective-5"
+      ],
+      "kind": "investigate",
+      "prompt": "A model spring gives the supplied readings. Decide whether they support proportionality and calculate its spring constant in the tested range.",
+      "marks": 3,
+      "points": [
+        "Doubling force doubles extension, and the listed relationship passes through zero.",
+        "k = 2 ÷ 0.010 = 200 N/m.",
+        "The conclusion applies to the tested range; it does not prove proportionality for all loads."
+      ],
+      "model": [
+        "Doubling force doubles extension, and the listed relationship passes through zero.",
+        "k = 2 ÷ 0.010 = 200 N/m.",
+        "The conclusion applies to the tested range; it does not prove proportionality for all loads."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Extension is the change in length, not the full stretched length.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-3",
+      "data": {
+        "headers": [
+          "Force (N)",
+          "Extension (m)"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0.01
+          ],
+          [
+            4,
+            0.02
+          ],
+          [
+            6,
+            0.03
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch03-mixed-2",
+      "title": "A model spacecraft throws 0",
+      "stage": "review",
+      "objectives": [
+        "ch03-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "A model spacecraft throws 0.8 kg of gas backwards at 15 m/s relative to the initial inertial frame. Its remaining mass is 12 kg and the initial total momentum was zero. Ignore external impulse. Calculate the spacecraft’s forward speed.",
+      "marks": 3,
+      "points": [
+        "Gas momentum = −0.8 × 15 = −12 kg m/s, taking forwards as positive.",
+        "Conservation gives spacecraft momentum +12 kg m/s.",
+        "Spacecraft speed = 12 ÷ 12 = 1.0 m/s."
+      ],
+      "model": [
+        "Gas momentum = −0.8 × 15 = −12 kg m/s, taking forwards as positive.",
+        "Conservation gives spacecraft momentum +12 kg m/s.",
+        "Spacecraft speed = 12 ÷ 12 = 1.0 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Choose the system and a direction before adding momenta.",
+      "hints": [
+        "Begin with the meaning of momentum: Momentum is mass multiplied by velocity; a system’s total momentum is conserved when its external resultant impulse is zero."
+      ],
+      "teach": "#s3-5"
+    },
+    {
+      "id": "ch03-worked-explanation",
+      "title": "Worked example: Moment",
+      "stage": "worked",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A 25 N force acts at right angles to a lever 0.28 m from its pivot. Calculate the moment magnitude.",
+      "marks": 3,
+      "points": [
+        "Moment = force × perpendicular distance.",
+        "Correct substitution: 25 × 0.28.",
+        "The answer is 7 N m."
+      ],
+      "model": [
+        "Moment = force × perpendicular distance.",
+        "25 × 0.28 = 7.0 N m.",
+        "The answer is 7 N m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use perpendicular distance to the line of action, not an arbitrary length.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s3-1",
+      "numeric": {
+        "value": 7.000000000000001,
+        "unit": "N m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-guided-explanation",
+      "title": "Guided practice: Acceleration and resultant force",
+      "stage": "guided",
+      "objectives": [
+        "ch03-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A model cart of mass 8.0 kg is pulled by 41 N right while resistance is 17 N left. Calculate its acceleration magnitude.",
+      "marks": 3,
+      "points": [
+        "First find resultant force, then use a = F/m.",
+        "Correct substitution: (41 − 17) ÷ 8.0.",
+        "The answer is 3 m/s²."
+      ],
+      "model": [
+        "First find resultant force, then use a = F/m.",
+        "(41 − 17) ÷ 8.0 = 3.0 m/s² to the right.",
+        "The answer is 3 m/s²."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Use the resultant force, not just one of several forces.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s3-2",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step.",
+      "numeric": {
+        "value": 3.0,
+        "unit": "m/s²",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch03-mass-weight",
+      "title": "A force and a mass",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-8"
+      ],
+      "kind": "explain",
+      "prompt": "A 14 kg model instrument is at a location where g = 9.8 N/kg. Calculate its weight and name the unit used for its mass.",
+      "marks": 2,
+      "points": [
+        "Weight = mg = 14 × 9.8 = 137.2 N.",
+        "Its mass is 14 kg; kilograms measure mass, not force."
+      ],
+      "model": [
+        "Weight = mg = 14 × 9.8 = 137.2 N.",
+        "Its mass is 14 kg; kilograms measure mass, not force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-2"
+    },
+    {
+      "id": "ch03-changing-g",
+      "title": "The same instrument elsewhere",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-8"
+      ],
+      "kind": "explain",
+      "prompt": "An object weighs 40 N where g = 10 N/kg. It is moved without losing material to a body where g = 2.5 N/kg. Calculate its mass and new weight.",
+      "marks": 2,
+      "points": [
+        "Mass = 40/10 = 4 kg and is unchanged by the move.",
+        "New weight = 4 × 2.5 = 10 N."
+      ],
+      "model": [
+        "Mass = 40/10 = 4 kg and is unchanged by the move.",
+        "New weight = 4 × 2.5 = 10 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-2"
+    },
+    {
+      "id": "ch03-balance-moments",
+      "title": "Balancing a beam",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A 24 N load acts 0.35 m left of a pivot on a light horizontal beam. Where should a 14 N load act on the right to balance it? Forces are perpendicular to the beam.",
+      "marks": 3,
+      "points": [
+        "Left moment = 24 × 0.35 = 8.4 N m.",
+        "For balance, clockwise moment equals anticlockwise moment.",
+        "Right distance = 8.4/14 = 0.60 m."
+      ],
+      "model": [
+        "Left moment = 24 × 0.35 = 8.4 N m.",
+        "For balance, clockwise moment equals anticlockwise moment.",
+        "Right distance = 8.4/14 = 0.60 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-1"
+    },
+    {
+      "id": "ch03-shifted-load",
+      "title": "A changing turning effect",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A balanced seesaw has its left load moved farther from the pivot while the right load and position remain fixed. Predict which side initially turns down and explain.",
+      "marks": 2,
+      "points": [
+        "The left load’s moment increases because its perpendicular distance increases.",
+        "Its anticlockwise/left-down turning effect exceeds the opposing moment, so the left side initially goes down."
+      ],
+      "model": [
+        "The left load’s moment increases because its perpendicular distance increases.",
+        "Its anticlockwise/left-down turning effect exceeds the opposing moment, so the left side initially goes down."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-1"
+    },
+    {
+      "id": "ch03-stability",
+      "title": "A toppling object",
+      "stage": "independent",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a low centre of gravity and wide base usually make a standing object harder to topple.",
+      "marks": 2,
+      "points": [
+        "It must be tilted farther before the vertical line through its centre of gravity passes outside its base.",
+        "Before that boundary is crossed, the weight’s moment tends to restore it rather than topple it."
+      ],
+      "model": [
+        "It must be tilted farther before the vertical line through its centre of gravity passes outside its base.",
+        "Before that boundary is crossed, the weight’s moment tends to restore it rather than topple it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-1"
+    },
+    {
+      "id": "ch03-centre-gravity",
+      "title": "Locating a hidden point",
+      "stage": "transfer",
+      "objectives": [
+        "ch03-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Describe how to locate the centre of gravity of an irregular flat cardboard shape using two suspension positions and a plumb line.",
+      "marks": 3,
+      "points": [
+        "Suspend it freely from one point and mark the vertical plumb line below that point.",
+        "Suspend it from another point and mark the new vertical.",
+        "The lines intersect at the centre of gravity; keep hands away from any sharp suspension pin."
+      ],
+      "model": [
+        "Suspend it freely from one point and mark the vertical plumb line below that point.",
+        "Suspend it from another point and mark the new vertical.",
+        "The lines intersect at the centre of gravity; keep hands away from any sharp suspension pin."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s3-1"
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch03-paper-a",
+      "title": "Forces come in pairs · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch03-o1-q3",
+        "ch03-o2-q3",
+        "ch03-o3-q3",
+        "ch03-o4-q3",
+        "ch03-o5-q3",
+        "ch03-o6-q3"
+      ]
+    },
+    {
+      "id": "ch03-paper-b",
+      "title": "Forces come in pairs · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch03-o1-q4",
+        "ch03-o2-q4",
+        "ch03-o3-q4",
+        "ch03-o4-q4",
+        "ch03-o5-q4",
+        "ch03-o6-q4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 3: Forces come in pairs",
+      "url": "#ch3"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter7.pdf"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/7-1-pushing-pulling-and-tension/"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://openstax.org/books/physics/pages/4-1-force"
+    },
+    {
+      "title": "OpenStax: torque and rotational equilibrium",
+      "url": "https://openstax.org/books/college-physics-2e/pages/9-2-the-second-condition-for-equilibrium"
+    },
+    {
+      "title": "OpenStax: stability and centre of gravity",
+      "url": "https://openstax.org/books/college-physics-2e/pages/9-3-stability"
+    }
+  ]
+}

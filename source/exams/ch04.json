@@ -1,0 +1,1056 @@
+{
+  "version": 1,
+  "chapter": 4,
+  "key": "chapter-04",
+  "title": "Falling",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch04-objective-1",
+      "label": "Explain and use free-fall acceleration.",
+      "teach": "#s4-1",
+      "note": "When gravity is the only force, the local acceleration does not depend on the object’s mass."
+    },
+    {
+      "id": "ch04-objective-2",
+      "label": "Explain and use terminal velocity.",
+      "teach": "#s4-2",
+      "note": "A falling object reaches terminal velocity when drag balances weight and its velocity stops changing."
+    },
+    {
+      "id": "ch04-objective-3",
+      "label": "Explain and use mass and lunar weight.",
+      "teach": "#s4-3",
+      "note": "Mass is unchanged by location, while weight depends on the local gravitational field strength."
+    },
+    {
+      "id": "ch04-objective-4",
+      "label": "Explain and use projectile motion.",
+      "teach": "#s4-4",
+      "note": "Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately."
+    },
+    {
+      "id": "ch04-objective-5",
+      "label": "Explain and use circular motion.",
+      "teach": "#s4-5",
+      "note": "Changing direction at constant speed changes velocity and requires acceleration towards the centre."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch04-card-1",
+      "term": "Free-fall acceleration",
+      "definition": "When gravity is the only force, the local acceleration does not depend on the object’s mass.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Why does a falling feather in air not by itself refute equal free-fall acceleration? Air exerts a force that can be significant relative to the feather’s weight. The feather is not in the gravity-only conditions of ideal free fall.",
+      "confusion": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "question": "Explain free-fall acceleration from memory. What common mistake must you avoid?",
+      "answer": "When gravity is the only force, the local acceleration does not depend on the object’s mass. Equal acceleration does not mean equal gravitational force on different masses.",
+      "teach": "#s4-1",
+      "questionId": "ch04-o1-q1"
+    },
+    {
+      "id": "ch04-card-2",
+      "term": "Terminal velocity",
+      "definition": "A falling object reaches terminal velocity when drag balances weight and its velocity stops changing.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A parachute opens while a person falls. Explain why the person initially slows. Opening the parachute greatly increases drag. Drag can exceed weight, producing an upward resultant force while the person moves downwards.",
+      "confusion": "At terminal velocity the forces are not absent.",
+      "question": "Explain terminal velocity from memory. What common mistake must you avoid?",
+      "answer": "A falling object reaches terminal velocity when drag balances weight and its velocity stops changing. At terminal velocity the forces are not absent.",
+      "teach": "#s4-2",
+      "questionId": "ch04-o2-q1"
+    },
+    {
+      "id": "ch04-card-3",
+      "term": "Mass and lunar weight",
+      "definition": "Mass is unchanged by location, while weight depends on the local gravitational field strength.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "An instrument weighs 24 N on the Moon, where g = 1.6 N/kg. Calculate its mass and explain whether this mass changes when it returns to Earth. Mass = weight ÷ gravitational field strength. 24 ÷ 1.6 = 15 kg. Its mass remains 15 kg on Earth; its weight changes with the gravitational field.",
+      "confusion": "Low lunar weight is not a loss of mass.",
+      "question": "Explain mass and lunar weight from memory. What common mistake must you avoid?",
+      "answer": "Mass is unchanged by location, while weight depends on the local gravitational field strength. Low lunar weight is not a loss of mass.",
+      "teach": "#s4-3",
+      "questionId": "ch04-o3-q1",
+      "formula": "W = mg",
+      "unit": "N"
+    },
+    {
+      "id": "ch04-card-4",
+      "term": "Projectile motion",
+      "definition": "Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A ball is projected horizontally in still air with air resistance neglected. Describe its horizontal speed and vertical speed during descent. Its horizontal speed stays constant. Its downward vertical speed increases because gravity accelerates it.",
+      "confusion": "Horizontal motion does not switch off the downward acceleration.",
+      "question": "Explain projectile motion from memory. What common mistake must you avoid?",
+      "answer": "Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately. Horizontal motion does not switch off the downward acceleration.",
+      "teach": "#s4-4",
+      "questionId": "ch04-o4-q1"
+    },
+    {
+      "id": "ch04-card-5",
+      "term": "Circular motion",
+      "definition": "Changing direction at constant speed changes velocity and requires acceleration towards the centre.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A ball’s string breaks during horizontal circular motion. Ignore other horizontal forces. State its immediate horizontal path. Explain your answer. It moves along the tangent at the release point. It continues in its instantaneous direction without the inward string force.",
+      "confusion": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "question": "Explain circular motion from memory. What common mistake must you avoid?",
+      "answer": "Changing direction at constant speed changes velocity and requires acceleration towards the centre. An inward resultant is a role played by real forces, not an additional interaction.",
+      "teach": "#s4-5",
+      "questionId": "ch04-o5-q1"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of free-fall acceleration."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "Why does a falling feather in air not by itself refute equal free-fall acceleration?"
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "Use lunar gravitational field strength 1.6 N/kg. Calculate the weight magnitude of a 7.5 kg instrument on the Moon."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the circular motion revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch04-o1-q1",
+      "title": "Two compact balls of different masses are released together from rest in a vacuum",
+      "stage": "independent",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two compact balls of different masses are released together from rest in a vacuum. Compare their acceleration. Explain your answer.",
+      "marks": 2,
+      "points": [
+        "They have the same local gravitational acceleration.",
+        "The greater gravitational force on the heavier ball is accompanied by a proportionally greater mass."
+      ],
+      "model": [
+        "They have the same local gravitational acceleration.",
+        "The greater gravitational force on the heavier ball is accompanied by a proportionally greater mass."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [
+        "Begin with the meaning of free-fall acceleration: When gravity is the only force, the local acceleration does not depend on the object’s mass."
+      ],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-o1-q2",
+      "title": "Why does a falling feather in air not by itself refute equal free-fall acceleration?",
+      "stage": "transfer",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Why does a falling feather in air not by itself refute equal free-fall acceleration?",
+      "marks": 2,
+      "points": [
+        "Air exerts a force that can be significant relative to the feather’s weight.",
+        "The feather is not in the gravity-only conditions of ideal free fall."
+      ],
+      "model": [
+        "Air exerts a force that can be significant relative to the feather’s weight.",
+        "The feather is not in the gravity-only conditions of ideal free fall."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [
+        "Begin with the meaning of free-fall acceleration: When gravity is the only force, the local acceleration does not depend on the object’s mass."
+      ],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-o1-q3",
+      "title": "Two stones have equal initial velocity at the same location in a vacuum",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two stones have equal initial velocity at the same location in a vacuum. Will their different masses alone make their trajectories differ? Explain.",
+      "marks": 2,
+      "points": [
+        "No: the local acceleration is independent of mass.",
+        "With the same initial motion and gravitational field, their ideal trajectories match."
+      ],
+      "model": [
+        "No: the local acceleration is independent of mass.",
+        "With the same initial motion and gravitational field, their ideal trajectories match."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-o1-q4",
+      "title": "A pupil says a heavier object must have a larger free-fall acceleration because gravity pulls it har",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil says a heavier object must have a larger free-fall acceleration because gravity pulls it harder. Correct the reasoning.",
+      "marks": 2,
+      "points": [
+        "Gravity does exert a larger force on a larger mass at the same location.",
+        "Dividing that force by the correspondingly larger mass gives the same acceleration."
+      ],
+      "model": [
+        "Gravity does exert a larger force on a larger mass at the same location.",
+        "Dividing that force by the correspondingly larger mass gives the same acceleration."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-o1-recall",
+      "title": "State the meaning of free-fall acceleration and explain one distinction that prevents a common misun",
+      "stage": "recall",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of free-fall acceleration and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "When gravity is the only force, the local acceleration does not depend on the object’s mass.",
+        "Equal acceleration does not mean equal gravitational force on different masses."
+      ],
+      "model": [
+        "When gravity is the only force, the local acceleration does not depend on the object’s mass.",
+        "Equal acceleration does not mean equal gravitational force on different masses."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [
+        "Begin with the meaning of free-fall acceleration: When gravity is the only force, the local acceleration does not depend on the object’s mass."
+      ],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-o2-q1",
+      "title": "Describe the vertical forces on a falling object at terminal velocity",
+      "stage": "independent",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Describe the vertical forces on a falling object at terminal velocity.",
+      "marks": 2,
+      "points": [
+        "Weight acts downwards and drag upwards.",
+        "Their magnitudes are equal, making the vertical resultant zero."
+      ],
+      "model": [
+        "Weight acts downwards and drag upwards.",
+        "Their magnitudes are equal, making the vertical resultant zero."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [
+        "Begin with the meaning of terminal velocity: A falling object reaches terminal velocity when drag balances weight and its velocity stops changing."
+      ],
+      "teach": "#s4-2"
+    },
+    {
+      "id": "ch04-o2-q2",
+      "title": "A parachute opens while a person falls",
+      "stage": "transfer",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A parachute opens while a person falls. Explain why the person initially slows.",
+      "marks": 2,
+      "points": [
+        "Opening the parachute greatly increases drag.",
+        "Drag can exceed weight, producing an upward resultant force while the person moves downwards."
+      ],
+      "model": [
+        "Opening the parachute greatly increases drag.",
+        "Drag can exceed weight, producing an upward resultant force while the person moves downwards."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [
+        "Begin with the meaning of terminal velocity: A falling object reaches terminal velocity when drag balances weight and its velocity stops changing."
+      ],
+      "teach": "#s4-2"
+    },
+    {
+      "id": "ch04-o2-q3",
+      "title": "An object has reached constant downward velocity through air",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "An object has reached constant downward velocity through air. What are its acceleration and resultant force?",
+      "marks": 2,
+      "points": [
+        "Acceleration is zero.",
+        "Resultant force is zero because drag balances weight."
+      ],
+      "model": [
+        "Acceleration is zero.",
+        "Resultant force is zero because drag balances weight."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [],
+      "teach": "#s4-2"
+    },
+    {
+      "id": "ch04-o2-q4",
+      "title": "Explain why a wider parachute can reduce terminal speed for the same person",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a wider parachute can reduce terminal speed for the same person.",
+      "marks": 2,
+      "points": [
+        "A larger effective area can produce greater drag at a given speed.",
+        "Drag can then balance the same weight at a lower speed."
+      ],
+      "model": [
+        "A larger effective area can produce greater drag at a given speed.",
+        "Drag can then balance the same weight at a lower speed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [],
+      "teach": "#s4-2"
+    },
+    {
+      "id": "ch04-o2-recall",
+      "title": "State the meaning of terminal velocity and explain one distinction that prevents a common misunderst",
+      "stage": "recall",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of terminal velocity and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A falling object reaches terminal velocity when drag balances weight and its velocity stops changing.",
+        "At terminal velocity the forces are not absent."
+      ],
+      "model": [
+        "A falling object reaches terminal velocity when drag balances weight and its velocity stops changing.",
+        "At terminal velocity the forces are not absent."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [
+        "Begin with the meaning of terminal velocity: A falling object reaches terminal velocity when drag balances weight and its velocity stops changing."
+      ],
+      "teach": "#s4-2"
+    },
+    {
+      "id": "ch04-o3-q1",
+      "title": "Use lunar gravitational field strength 1",
+      "stage": "independent",
+      "objectives": [
+        "ch04-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "Use lunar gravitational field strength 1.6 N/kg. Calculate the weight magnitude of a 7.5 kg instrument on the Moon.",
+      "marks": 3,
+      "points": [
+        "Weight = mass × gravitational field strength.",
+        "Correct substitution: 7.5 × 1.6.",
+        "The answer is 12 N."
+      ],
+      "model": [
+        "Weight = mass × gravitational field strength.",
+        "7.5 × 1.6 = 12 N.",
+        "The answer is 12 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Low lunar weight is not a loss of mass.",
+      "hints": [
+        "Begin with the meaning of mass and lunar weight: Mass is unchanged by location, while weight depends on the local gravitational field strength."
+      ],
+      "teach": "#s4-3",
+      "numeric": {
+        "value": 12.0,
+        "unit": "N",
+        "tolerance": 0.0012000000000000001
+      }
+    },
+    {
+      "id": "ch04-o3-q2",
+      "title": "A different setting: Mass and lunar weight",
+      "stage": "transfer",
+      "objectives": [
+        "ch04-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "An instrument weighs 24 N on the Moon, where g = 1.6 N/kg. Calculate its mass and explain whether this mass changes when it returns to Earth.",
+      "marks": 3,
+      "points": [
+        "Mass = weight ÷ gravitational field strength.",
+        "24 ÷ 1.6 = 15 kg.",
+        "Its mass remains 15 kg on Earth; its weight changes with the gravitational field."
+      ],
+      "model": [
+        "Mass = weight ÷ gravitational field strength.",
+        "24 ÷ 1.6 = 15 kg.",
+        "Its mass remains 15 kg on Earth; its weight changes with the gravitational field."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Low lunar weight is not a loss of mass.",
+      "hints": [
+        "Begin with the meaning of mass and lunar weight: Mass is unchanged by location, while weight depends on the local gravitational field strength."
+      ],
+      "teach": "#s4-3"
+    },
+    {
+      "id": "ch04-o3-q3",
+      "title": "Use lunar gravitational field strength 1",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "Use lunar gravitational field strength 1.6 N/kg. Calculate the weight magnitude of a 18 kg instrument on the Moon.",
+      "marks": 3,
+      "points": [
+        "Weight = mass × gravitational field strength.",
+        "Correct substitution: 18 × 1.6.",
+        "The answer is 28.8 N."
+      ],
+      "model": [
+        "Weight = mass × gravitational field strength.",
+        "18 × 1.6 = 28.8 N.",
+        "The answer is 28.8 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Low lunar weight is not a loss of mass.",
+      "hints": [],
+      "teach": "#s4-3",
+      "numeric": {
+        "value": 28.8,
+        "unit": "N",
+        "tolerance": 0.5
+      }
+    },
+    {
+      "id": "ch04-o3-q4",
+      "title": "Use lunar gravitational field strength 1",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "Use lunar gravitational field strength 1.6 N/kg. Calculate the weight magnitude of a 24 kg instrument on the Moon.",
+      "marks": 3,
+      "points": [
+        "Weight = mass × gravitational field strength.",
+        "Correct substitution: 24 × 1.6.",
+        "The answer is 38.4 N."
+      ],
+      "model": [
+        "Weight = mass × gravitational field strength.",
+        "24 × 1.6 = 38.4 N.",
+        "The answer is 38.4 N."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Low lunar weight is not a loss of mass.",
+      "hints": [],
+      "teach": "#s4-3",
+      "numeric": {
+        "value": 38.400000000000006,
+        "unit": "N",
+        "tolerance": 0.5
+      }
+    },
+    {
+      "id": "ch04-o3-recall",
+      "title": "State the meaning of mass and lunar weight and explain one distinction that prevents a common misund",
+      "stage": "recall",
+      "objectives": [
+        "ch04-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of mass and lunar weight and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Mass is unchanged by location, while weight depends on the local gravitational field strength.",
+        "Low lunar weight is not a loss of mass."
+      ],
+      "model": [
+        "Mass is unchanged by location, while weight depends on the local gravitational field strength.",
+        "Low lunar weight is not a loss of mass."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Low lunar weight is not a loss of mass.",
+      "hints": [
+        "Begin with the meaning of mass and lunar weight: Mass is unchanged by location, while weight depends on the local gravitational field strength."
+      ],
+      "teach": "#s4-3"
+    },
+    {
+      "id": "ch04-o4-q1",
+      "title": "Two balls start at the same height together: one is dropped and the other projected horizontally",
+      "stage": "independent",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Two balls start at the same height together: one is dropped and the other projected horizontally. Ignore air resistance. Compare their landing times.",
+      "marks": 2,
+      "points": [
+        "Their initial vertical velocities are both zero and their vertical accelerations match.",
+        "They land at the same time if the landing level is the same."
+      ],
+      "model": [
+        "Their initial vertical velocities are both zero and their vertical accelerations match.",
+        "They land at the same time if the landing level is the same."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Horizontal motion does not switch off the downward acceleration.",
+      "hints": [
+        "Begin with the meaning of projectile motion: Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately."
+      ],
+      "teach": "#s4-4"
+    },
+    {
+      "id": "ch04-o4-q2",
+      "title": "A ball is projected horizontally in still air with air resistance neglected",
+      "stage": "transfer",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A ball is projected horizontally in still air with air resistance neglected. Describe its horizontal speed and vertical speed during descent.",
+      "marks": 2,
+      "points": [
+        "Its horizontal speed stays constant.",
+        "Its downward vertical speed increases because gravity accelerates it."
+      ],
+      "model": [
+        "Its horizontal speed stays constant.",
+        "Its downward vertical speed increases because gravity accelerates it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Horizontal motion does not switch off the downward acceleration.",
+      "hints": [
+        "Begin with the meaning of projectile motion: Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately."
+      ],
+      "teach": "#s4-4"
+    },
+    {
+      "id": "ch04-o4-q3",
+      "title": "A drawing of a projectile path curves downwards",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A drawing of a projectile path curves downwards. What force causes its vertical acceleration in a gravity-only model? Is a horizontal force needed to maintain its horizontal velocity?",
+      "marks": 2,
+      "points": [
+        "The gravitational force acts downwards.",
+        "No horizontal force is needed to maintain its horizontal velocity."
+      ],
+      "model": [
+        "The gravitational force acts downwards.",
+        "No horizontal force is needed to maintain its horizontal velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Horizontal motion does not switch off the downward acceleration.",
+      "hints": [],
+      "teach": "#s4-4"
+    },
+    {
+      "id": "ch04-o4-q4",
+      "title": "A pupil thinks a horizontally fired ball must float until its forward speed is used up",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil thinks a horizontally fired ball must float until its forward speed is used up. Explain why this is wrong.",
+      "marks": 2,
+      "points": [
+        "Gravity acts from the moment of release.",
+        "Horizontal motion and vertical falling occur simultaneously."
+      ],
+      "model": [
+        "Gravity acts from the moment of release.",
+        "Horizontal motion and vertical falling occur simultaneously."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Horizontal motion does not switch off the downward acceleration.",
+      "hints": [],
+      "teach": "#s4-4"
+    },
+    {
+      "id": "ch04-o4-recall",
+      "title": "State the meaning of projectile motion and explain one distinction that prevents a common misunderst",
+      "stage": "recall",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of projectile motion and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately.",
+        "Horizontal motion does not switch off the downward acceleration."
+      ],
+      "model": [
+        "Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately.",
+        "Horizontal motion does not switch off the downward acceleration."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Horizontal motion does not switch off the downward acceleration.",
+      "hints": [
+        "Begin with the meaning of projectile motion: Ignoring air resistance, horizontal and vertical components of projectile motion can be considered separately."
+      ],
+      "teach": "#s4-4"
+    },
+    {
+      "id": "ch04-o5-q1",
+      "title": "A ball follows a horizontal circle on a string",
+      "stage": "independent",
+      "objectives": [
+        "ch04-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A ball moves at constant speed in a horizontal circle on a string. State the direction of its resultant force and explain why it is needed.",
+      "marks": 2,
+      "points": [
+        "Towards the centre of the circle.",
+        "The inward force changes the direction of velocity."
+      ],
+      "model": [
+        "Towards the centre of the circle.",
+        "The inward force changes the direction of velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "hints": [
+        "Begin with the meaning of circular motion: Changing direction at constant speed changes velocity and requires acceleration towards the centre."
+      ],
+      "teach": "#s4-5"
+    },
+    {
+      "id": "ch04-o5-q2",
+      "title": "A ball’s string breaks during horizontal circular motion",
+      "stage": "transfer",
+      "objectives": [
+        "ch04-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A ball’s string breaks during horizontal circular motion. Ignore other horizontal forces. State its immediate horizontal path. Explain your answer.",
+      "marks": 2,
+      "points": [
+        "It moves along the tangent at the release point.",
+        "It continues in its instantaneous direction without the inward string force."
+      ],
+      "model": [
+        "It moves along the tangent at the release point.",
+        "It continues in its instantaneous direction without the inward string force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "hints": [
+        "Begin with the meaning of circular motion: Changing direction at constant speed changes velocity and requires acceleration towards the centre."
+      ],
+      "teach": "#s4-5"
+    },
+    {
+      "id": "ch04-o5-q3",
+      "title": "A car rounds a bend at steady speed",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A car rounds a bend at steady speed. Explain why it is accelerating.",
+      "marks": 2,
+      "points": [
+        "Its velocity changes direction.",
+        "Its acceleration has a component towards the centre of the turn."
+      ],
+      "model": [
+        "Its velocity changes direction.",
+        "Its acceleration has a component towards the centre of the turn."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "hints": [],
+      "teach": "#s4-5"
+    },
+    {
+      "id": "ch04-o5-q4",
+      "title": "A pupil draws both tension and a separate “centripetal force” on a ball whirling on a string",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil draws both tension and a separate “centripetal force” on a ball whirling on a string. Explain the possible double counting.",
+      "marks": 2,
+      "points": [
+        "The string tension can supply the required inward resultant.",
+        "Centripetal describes the inward role of the resultant; it is not automatically another force to add."
+      ],
+      "model": [
+        "The string tension can supply the required inward resultant.",
+        "Centripetal describes the inward role of the resultant; it is not automatically another force to add."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "hints": [],
+      "teach": "#s4-5"
+    },
+    {
+      "id": "ch04-o5-recall",
+      "title": "State the meaning of circular motion and explain one distinction that prevents a common misunderstan",
+      "stage": "recall",
+      "objectives": [
+        "ch04-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of circular motion and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Changing direction at constant speed changes velocity and requires acceleration towards the centre.",
+        "An inward resultant is a role played by real forces, not an additional interaction."
+      ],
+      "model": [
+        "Changing direction at constant speed changes velocity and requires acceleration towards the centre.",
+        "An inward resultant is a role played by real forces, not an additional interaction."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inward resultant is a role played by real forces, not an additional interaction.",
+      "hints": [
+        "Begin with the meaning of circular motion: Changing direction at constant speed changes velocity and requires acceleration towards the centre."
+      ],
+      "teach": "#s4-5"
+    },
+    {
+      "id": "ch04-mixed-1",
+      "title": "A model falling object has the supplied downward speeds",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "investigate",
+      "prompt": "A model falling object has the supplied downward speeds. Identify a terminal-speed interval and state the force balance there.",
+      "marks": 2,
+      "points": [
+        "From 3 s to 4 s the downward speed is unchanged at 10 m/s.",
+        "In the model the upward drag balances the downward weight there."
+      ],
+      "model": [
+        "From 3 s to 4 s the downward speed is unchanged at 10 m/s.",
+        "In the model the upward drag balances the downward weight there."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [],
+      "teach": "#s4-2",
+      "data": {
+        "headers": [
+          "Time (s)",
+          "Downward speed (m/s)"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            4,
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch04-mixed-2",
+      "title": "A small ball is dropped from rest on a body where g = 2",
+      "stage": "paper",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A small ball is dropped from rest on a body where g = 2.4 m/s². Ignore air resistance and calculate its downward speed after 1.5 s.",
+      "marks": 2,
+      "points": [
+        "Change in speed = g × time.",
+        "2.4 × 1.5 = 3.6 m/s downwards."
+      ],
+      "model": [
+        "Change in speed = g × time.",
+        "2.4 × 1.5 = 3.6 m/s downwards."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [],
+      "teach": "#s4-1"
+    },
+    {
+      "id": "ch04-worked-explanation",
+      "title": "Worked example: Free-fall acceleration",
+      "stage": "worked",
+      "objectives": [
+        "ch04-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A model object starts from rest in free fall. Use g = 9.8 m/s² and ignore air resistance. Calculate its speed after 0.80 s.",
+      "marks": 3,
+      "points": [
+        "For release from rest, speed gained = g × time.",
+        "Correct substitution: 9.8 × 0.80.",
+        "The answer is 7.84 m/s."
+      ],
+      "model": [
+        "For release from rest, speed gained = g × time.",
+        "9.8 × 0.80 = 7.84 m/s downwards.",
+        "The answer is 7.84 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Equal acceleration does not mean equal gravitational force on different masses.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s4-1",
+      "numeric": {
+        "value": 7.840000000000001,
+        "unit": "m/s",
+        "tolerance": 0.05
+      }
+    },
+    {
+      "id": "ch04-guided-explanation",
+      "title": "Guided practice: Terminal velocity",
+      "stage": "guided",
+      "objectives": [
+        "ch04-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A falling parachutist has weight 600 N. Just after opening, the parachute gives an upward drag of 800 N. State the resultant force and explain the immediate effect on speed.",
+      "marks": 3,
+      "points": [
+        "Resultant force = 800 − 600 = 200 N upwards.",
+        "The parachutist is still moving downwards.",
+        "The upward acceleration reduces the downward speed."
+      ],
+      "model": [
+        "Resultant force = 800 − 600 = 200 N upwards.",
+        "The parachutist is still moving downwards.",
+        "The upward acceleration reduces the downward speed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "At terminal velocity the forces are not absent.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s4-2",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step."
+    },
+    {
+      "id": "ch04-delayed-cumulative",
+      "title": "Return after a delay",
+      "stage": "review",
+      "objectives": [
+        "ch04-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A model ball is projected horizontally at 3.0 m/s and lands after 0.80 s. Ignore air resistance. Calculate its horizontal travel and explain why this does not delay its vertical fall.",
+      "marks": 3,
+      "points": [
+        "Horizontal travel = speed × time = 3.0 × 0.80 = 2.4 m.",
+        "Horizontal and vertical components are independent in this model.",
+        "Gravity accelerates it vertically from release, as for a dropped ball with the same initial vertical velocity."
+      ],
+      "model": [
+        "Horizontal travel = speed × time = 3.0 × 0.80 = 2.4 m.",
+        "Horizontal and vertical components are independent in this model.",
+        "Gravity accelerates it vertically from release, as for a dropped ball with the same initial vertical velocity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s4-4"
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch04-paper-a",
+      "title": "Falling · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch04-o1-q3",
+        "ch04-o2-q3",
+        "ch04-o3-q3",
+        "ch04-o4-q3",
+        "ch04-o5-q3",
+        "ch04-mixed-1"
+      ]
+    },
+    {
+      "id": "ch04-paper-b",
+      "title": "Falling · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch04-o1-q4",
+        "ch04-o2-q4",
+        "ch04-o3-q4",
+        "ch04-o4-q4",
+        "ch04-o5-q4",
+        "ch04-mixed-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 4: Falling",
+      "url": "#ch4"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter5.pdf"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/5-3-gravity-at-the-surface-of-the-earth-the-value-of-g/"
+    }
+  ]
+}

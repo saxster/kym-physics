@@ -1,0 +1,1066 @@
+{
+  "version": 1,
+  "key": "chapter-15",
+  "chapter": 15,
+  "title": "Atoms, stars and the universe",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch15-objective-1",
+      "label": "Explain photon interactions using energy, frequency and intensity.",
+      "teach": "#s15-1",
+      "note": "Use E = hf; distinguish energy per photon from photon arrival rate and explain a photoelectric threshold without abandoning wave evidence."
+    },
+    {
+      "id": "ch15-objective-2",
+      "label": "Distinguish nuclear radiation, irradiation and radioactive contamination.",
+      "teach": "#s15-2",
+      "note": "Explain half-life as a statistical statement, compare alpha and gamma, and avoid generalising all exposures as radioactive contamination."
+    },
+    {
+      "id": "ch15-objective-3",
+      "label": "Explain fusion, fission and the mass–energy account of the Sun.",
+      "teach": "#s15-3",
+      "note": "Use ΔE = Δmc² with system energy conserved; distinguish core nuclear fusion from surface burning and chemical combustion."
+    },
+    {
+      "id": "ch15-objective-4",
+      "label": "Use spectral lines as evidence about stellar composition and conditions.",
+      "teach": "#s15-4",
+      "note": "Distinguish abundance from temperature effects on line strength and explain why several matching wavelengths are stronger evidence than one."
+    },
+    {
+      "id": "ch15-objective-5",
+      "label": "Explain how parallax and calibrated stellar brightness reveal distance.",
+      "teach": "#s15-5",
+      "note": "Compare parallax angles, distinguish apparent from intrinsic brightness, and define a light-year as a distance."
+    },
+    {
+      "id": "ch15-objective-6",
+      "label": "Explain why stellar remnants depend on mass and physical support.",
+      "teach": "#s15-6",
+      "note": "Describe a Sun-like star’s broad fate, distinguish white-dwarf support from continued fusion, and interpret a stability limit without a point-sized remnant."
+    },
+    {
+      "id": "ch15-objective-7",
+      "label": "Explain cosmological redshift and evidence for cosmic expansion.",
+      "teach": "#s15-7",
+      "note": "Use stretching wavelength and changing separations, distinguish expansion from a central explosion, and connect redshift with complementary background-radiation evidence."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch15-card-1",
+      "term": "Photons",
+      "definition": "Light exchanges energy in packets whose energy is E = hf.",
+      "explanation": "Light exchanges energy in packets whose energy is E = hf. More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "example": "At fixed frequency, brighter light can mean more photons arriving each second.",
+      "confusion": "More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "question": "Explain photons and distinguish it from a common mistaken idea.",
+      "answer": "Light exchanges energy in packets whose energy is E = hf. More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "teach": "#s15-1",
+      "questionId": "ch15-practice-1-2",
+      "cue": "More light intensity does not automatically mean greater energy per photon at the same frequency."
+    },
+    {
+      "id": "ch15-card-2",
+      "term": "Nuclei and radioactivity",
+      "definition": "Unstable nuclei can emit ionising radiation as they change.",
+      "explanation": "Unstable nuclei can emit ionising radiation as they change. Irradiation is not the same as radioactive contamination.",
+      "example": "An ordinary diagnostic X-ray exposure does not leave radioactive material on the patient.",
+      "confusion": "Irradiation is not the same as radioactive contamination.",
+      "question": "Explain nuclei and radioactivity and distinguish it from a common mistaken idea.",
+      "answer": "Unstable nuclei can emit ionising radiation as they change. Irradiation is not the same as radioactive contamination.",
+      "teach": "#s15-2",
+      "questionId": "ch15-practice-2-2",
+      "cue": "Irradiation is not the same as radioactive contamination."
+    },
+    {
+      "id": "ch15-card-3",
+      "term": "Fusion and mass-energy",
+      "definition": "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc².",
+      "explanation": "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc². Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "example": "Hydrogen nuclei ultimately combine into helium in the Sun’s hot core.",
+      "confusion": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "question": "Explain fusion and mass-energy and distinguish it from a common mistaken idea.",
+      "answer": "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc². Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "teach": "#s15-3",
+      "questionId": "ch15-practice-3-2",
+      "cue": "Fusion in the Sun is not chemical burning, and total energy is conserved."
+    },
+    {
+      "id": "ch15-card-4",
+      "term": "Stellar spectra",
+      "definition": "Patterns of spectral lines provide evidence about atoms and physical conditions in stars.",
+      "explanation": "Patterns of spectral lines provide evidence about atoms and physical conditions in stars. Different line strengths need not mean completely different chemical ingredients.",
+      "example": "Temperature changes which atoms or ions produce strong absorption lines.",
+      "confusion": "Different line strengths need not mean completely different chemical ingredients.",
+      "question": "Explain stellar spectra and distinguish it from a common mistaken idea.",
+      "answer": "Patterns of spectral lines provide evidence about atoms and physical conditions in stars. Different line strengths need not mean completely different chemical ingredients.",
+      "teach": "#s15-4",
+      "questionId": "ch15-practice-4-2",
+      "cue": "Different line strengths need not mean completely different chemical ingredients."
+    },
+    {
+      "id": "ch15-card-5",
+      "term": "Stellar distance",
+      "definition": "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties.",
+      "explanation": "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties. A light-year is a distance, and faintness alone does not determine distance.",
+      "example": "A nearby star can show a larger parallax than a much more distant star.",
+      "confusion": "A light-year is a distance, and faintness alone does not determine distance.",
+      "question": "Explain stellar distance and distinguish it from a common mistaken idea.",
+      "answer": "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties. A light-year is a distance, and faintness alone does not determine distance.",
+      "teach": "#s15-5",
+      "questionId": "ch15-practice-5-2",
+      "cue": "A light-year is a distance, and faintness alone does not determine distance."
+    },
+    {
+      "id": "ch15-card-6",
+      "term": "Stellar remnants",
+      "definition": "A star’s later evolution depends strongly on its mass and the physical support of its remaining core.",
+      "explanation": "A star’s later evolution depends strongly on its mass and the physical support of its remaining core. The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "example": "A Sun-like star can leave a white dwarf after losing its outer layers.",
+      "confusion": "The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "question": "Explain stellar remnants and distinguish it from a common mistaken idea.",
+      "answer": "A star’s later evolution depends strongly on its mass and the physical support of its remaining core. The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "teach": "#s15-6",
+      "questionId": "ch15-practice-6-2",
+      "cue": "The Sun is not expected to become a core-collapse supernova or a black hole."
+    },
+    {
+      "id": "ch15-card-7",
+      "term": "Cosmic expansion",
+      "definition": "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift.",
+      "explanation": "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift. The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "example": "An expanding-grid model stretches separations between widely separated unbound points.",
+      "confusion": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "question": "Explain cosmic expansion and distinguish it from a common mistaken idea.",
+      "answer": "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift. The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "teach": "#s15-7",
+      "questionId": "ch15-practice-7-2",
+      "cue": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Two beams have the same frequency but different intensities. Compare individual photon energies and a possible difference in arrival rate."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Explain why an expanding-dot model can show more distant dots receding faster from every dot without a special central dot."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "A model nuclear reaction releases energy corresponding to a mass decrease of 2.0 × 10⁻⁶ kg. Use c = 3.0 × 10⁸ m/s to calculate the energy."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A supplied distant-galaxy sample has these redshifts. State the trend and one reason a redshift value alone is not a complete account of cosmic history."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch15-recall",
+      "title": "Photons · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch15-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by photons.",
+      "marks": 1,
+      "points": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "model": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "hints": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "teach": "#s15-1"
+    },
+    {
+      "id": "ch15-worked",
+      "title": "Fusion and mass-energy · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch15-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A model nuclear reaction releases energy corresponding to a mass decrease of 2.0 × 10⁻⁶ kg. Use c = 3.0 × 10⁸ m/s to calculate the energy.",
+      "marks": 2,
+      "points": [
+        "Use E = Δmc².",
+        "E = (2.0 × 10⁻⁶) × (3.0 × 10⁸)² = 1.8 × 10¹¹ J."
+      ],
+      "model": [
+        "Use E = Δmc².",
+        "E = (2.0 × 10⁻⁶) × (3.0 × 10⁸)² = 1.8 × 10¹¹ J."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "hints": [
+        "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc²."
+      ],
+      "teach": "#s15-3",
+      "numeric": {
+        "value": 180000000000.0,
+        "unit": "J",
+        "tolerance": 900000000.0
+      }
+    },
+    {
+      "id": "ch15-guided",
+      "title": "Nuclei and radioactivity · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch15-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "An ideal sample has an initial activity of 96 Bq and half-life 2 h. Calculate its expected activity after 6 h. Ignore background readings.",
+      "marks": 2,
+      "points": [
+        "Six hours is three half-lives.",
+        "Activity = 96/2³ = 12 Bq; this is an expected value for random decay."
+      ],
+      "model": [
+        "Six hours is three half-lives.",
+        "Activity = 96/2³ = 12 Bq; this is an expected value for random decay."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Irradiation is not the same as radioactive contamination.",
+      "hints": [
+        "Unstable nuclei can emit ionising radiation as they change."
+      ],
+      "teach": "#s15-2",
+      "numeric": {
+        "value": 12,
+        "unit": "Bq",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch15-practice-1-1",
+      "title": "Photons · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two beams have the same frequency but different intensities. Compare individual photon energies and a possible difference in arrival rate.",
+      "marks": 2,
+      "points": [
+        "Their photon energies are equal because E = hf.",
+        "The brighter beam can deliver more photons per second per unit area."
+      ],
+      "model": [
+        "Their photon energies are equal because E = hf.",
+        "The brighter beam can deliver more photons per second per unit area."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "hints": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "teach": "#s15-1"
+    },
+    {
+      "id": "ch15-practice-1-2",
+      "title": "Photons · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch15-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "In a model photoelectric experiment, increasing red-light intensity still ejects no electrons, while suitable violet light does. Explain.",
+      "marks": 2,
+      "points": [
+        "An electron needs a minimum energy to escape the material.",
+        "The lower-frequency photons can individually fall below that threshold; increasing their number does not change each photon’s energy."
+      ],
+      "model": [
+        "An electron needs a minimum energy to escape the material.",
+        "The lower-frequency photons can individually fall below that threshold; increasing their number does not change each photon’s energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "hints": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "teach": "#s15-1"
+    },
+    {
+      "id": "ch15-practice-2-1",
+      "title": "Nuclei and radioactivity · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish radioactive contamination from irradiation by an ordinary diagnostic X-ray.",
+      "marks": 2,
+      "points": [
+        "Contamination involves radioactive material on or inside the person.",
+        "X-ray irradiation is exposure to incoming radiation and does not ordinarily make the patient a radioactive source."
+      ],
+      "model": [
+        "Contamination involves radioactive material on or inside the person.",
+        "X-ray irradiation is exposure to incoming radiation and does not ordinarily make the patient a radioactive source."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Irradiation is not the same as radioactive contamination.",
+      "hints": [
+        "Unstable nuclei can emit ionising radiation as they change."
+      ],
+      "teach": "#s15-2"
+    },
+    {
+      "id": "ch15-practice-2-2",
+      "title": "Nuclei and radioactivity · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch15-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain what a half-life does and does not predict about one unstable nucleus.",
+      "marks": 2,
+      "points": [
+        "It gives the time for the expected number of undecayed nuclei in a large sample to halve.",
+        "It does not specify the exact time when one particular nucleus will decay."
+      ],
+      "model": [
+        "It gives the time for the expected number of undecayed nuclei in a large sample to halve.",
+        "It does not specify the exact time when one particular nucleus will decay."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Irradiation is not the same as radioactive contamination.",
+      "hints": [
+        "Unstable nuclei can emit ionising radiation as they change."
+      ],
+      "teach": "#s15-2"
+    },
+    {
+      "id": "ch15-practice-3-1",
+      "title": "Fusion and mass-energy · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the Sun can shine without a supply of atmospheric oxygen.",
+      "marks": 2,
+      "points": [
+        "Its main energy source is nuclear fusion in its core.",
+        "Fusion is different from chemical combustion and does not require oxygen as fuel."
+      ],
+      "model": [
+        "Its main energy source is nuclear fusion in its core.",
+        "Fusion is different from chemical combustion and does not require oxygen as fuel."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "hints": [
+        "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc²."
+      ],
+      "teach": "#s15-3"
+    },
+    {
+      "id": "ch15-practice-3-2",
+      "title": "Fusion and mass-energy · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch15-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A nuclear reaction’s final products have less total rest mass than its initial system. Explain the energy account.",
+      "marks": 2,
+      "points": [
+        "The mass difference corresponds to released energy Δmc².",
+        "Total energy, including rest-mass energy and the released energy, remains conserved."
+      ],
+      "model": [
+        "The mass difference corresponds to released energy Δmc².",
+        "Total energy, including rest-mass energy and the released energy, remains conserved."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "hints": [
+        "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc²."
+      ],
+      "teach": "#s15-3"
+    },
+    {
+      "id": "ch15-practice-4-1",
+      "title": "Stellar spectra · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Two stars have different strengths of hydrogen absorption lines. Explain why this alone does not prove greatly different hydrogen abundance.",
+      "marks": 2,
+      "points": [
+        "Line strengths depend on temperature and ionisation/excitation conditions.",
+        "Composition must be inferred using a physical model of those conditions."
+      ],
+      "model": [
+        "Line strengths depend on temperature and ionisation/excitation conditions.",
+        "Composition must be inferred using a physical model of those conditions."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Different line strengths need not mean completely different chemical ingredients.",
+      "hints": [
+        "Patterns of spectral lines provide evidence about atoms and physical conditions in stars."
+      ],
+      "teach": "#s15-4"
+    },
+    {
+      "id": "ch15-practice-4-2",
+      "title": "Stellar spectra · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch15-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why matching several line wavelengths is more persuasive evidence for an element than matching only one.",
+      "marks": 2,
+      "points": [
+        "An element has a characteristic pattern of transitions.",
+        "Several matching lines make an accidental single-line coincidence less likely."
+      ],
+      "model": [
+        "An element has a characteristic pattern of transitions.",
+        "Several matching lines make an accidental single-line coincidence less likely."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Different line strengths need not mean completely different chemical ingredients.",
+      "hints": [
+        "Patterns of spectral lines provide evidence about atoms and physical conditions in stars."
+      ],
+      "teach": "#s15-4"
+    },
+    {
+      "id": "ch15-practice-5-1",
+      "title": "Stellar distance · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Compare parallaxes of two stars at different distances under the same observing baseline. Explain.",
+      "marks": 2,
+      "points": [
+        "The nearer star has the larger parallax angle.",
+        "The same baseline subtends a larger angle for a nearer object."
+      ],
+      "model": [
+        "The nearer star has the larger parallax angle.",
+        "The same baseline subtends a larger angle for a nearer object."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year is a distance, and faintness alone does not determine distance.",
+      "hints": [
+        "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties."
+      ],
+      "teach": "#s15-5"
+    },
+    {
+      "id": "ch15-practice-5-2",
+      "title": "Stellar distance · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch15-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why apparent brightness alone cannot tell you which of two stars is farther away.",
+      "marks": 2,
+      "points": [
+        "Their intrinsic luminosities can differ.",
+        "A faint star might be nearby and intrinsically faint, or distant and intrinsically bright."
+      ],
+      "model": [
+        "Their intrinsic luminosities can differ.",
+        "A faint star might be nearby and intrinsically faint, or distant and intrinsically bright."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year is a distance, and faintness alone does not determine distance.",
+      "hints": [
+        "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties."
+      ],
+      "teach": "#s15-5"
+    },
+    {
+      "id": "ch15-practice-6-1",
+      "title": "Stellar remnants · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Describe the expected broad fate of a Sun-like star, without claiming it becomes a black hole.",
+      "marks": 2,
+      "points": [
+        "It expands during later evolution and loses outer material.",
+        "It leaves a white dwarf that cools, rather than undergoing the usual massive-star core-collapse route."
+      ],
+      "model": [
+        "It expands during later evolution and loses outer material.",
+        "It leaves a white dwarf that cools, rather than undergoing the usual massive-star core-collapse route."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "hints": [
+        "A star’s later evolution depends strongly on its mass and the physical support of its remaining core."
+      ],
+      "teach": "#s15-6"
+    },
+    {
+      "id": "ch15-practice-6-2",
+      "title": "Stellar remnants · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch15-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a white dwarf need not keep fusing hydrogen to remain supported for a long time.",
+      "marks": 2,
+      "points": [
+        "Electron degeneracy pressure can support it against gravity.",
+        "Its glow can come from residual thermal energy as it cools rather than ongoing normal stellar fusion."
+      ],
+      "model": [
+        "Electron degeneracy pressure can support it against gravity.",
+        "Its glow can come from residual thermal energy as it cools rather than ongoing normal stellar fusion."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "hints": [
+        "A star’s later evolution depends strongly on its mass and the physical support of its remaining core."
+      ],
+      "teach": "#s15-6"
+    },
+    {
+      "id": "ch15-practice-7-1",
+      "title": "Cosmic expansion · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch15-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "Explain cosmological redshift in terms of a light wave travelling through expanding space.",
+      "marks": 2,
+      "points": [
+        "The wavelength stretches as space expands during the journey.",
+        "The observed wavelength is longer than when emitted."
+      ],
+      "model": [
+        "The wavelength stretches as space expands during the journey.",
+        "The observed wavelength is longer than when emitted."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "hints": [
+        "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift."
+      ],
+      "teach": "#s15-7"
+    },
+    {
+      "id": "ch15-practice-7-2",
+      "title": "Cosmic expansion · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch15-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an expanding-dot model can show more distant dots receding faster from every dot without a special central dot.",
+      "marks": 2,
+      "points": [
+        "Uniform expansion stretches each separation by the same fractional amount.",
+        "Larger initial separations therefore gain more distance per unit time; any dot can be used as the viewpoint."
+      ],
+      "model": [
+        "Uniform expansion stretches each separation by the same fractional amount.",
+        "Larger initial separations therefore gain more distance per unit time; any dot can be used as the viewpoint."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "hints": [
+        "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift."
+      ],
+      "teach": "#s15-7"
+    },
+    {
+      "id": "ch15-paper-a-1",
+      "title": "Photons · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Compare photon energy for two frequencies f and 2f. State the relationship used.",
+      "marks": 2,
+      "points": [
+        "E = hf.",
+        "The 2f photon has twice the energy."
+      ],
+      "model": [
+        "E = hf.",
+        "The 2f photon has twice the energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "More light intensity does not automatically mean greater energy per photon at the same frequency.",
+      "hints": [
+        "Light exchanges energy in packets whose energy is E = hf."
+      ],
+      "teach": "#s15-1"
+    },
+    {
+      "id": "ch15-paper-a-2",
+      "title": "Nuclei and radioactivity · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Compare alpha and gamma radiation in terms of what they are and their usual penetration through material.",
+      "marks": 2,
+      "points": [
+        "Alpha particles are helium nuclei; gamma radiation consists of high-energy electromagnetic photons.",
+        "Alpha is generally stopped much more readily than gamma, although actual penetration depends on energy and material."
+      ],
+      "model": [
+        "Alpha particles are helium nuclei; gamma radiation consists of high-energy electromagnetic photons.",
+        "Alpha is generally stopped much more readily than gamma, although actual penetration depends on energy and material."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Irradiation is not the same as radioactive contamination.",
+      "hints": [
+        "Unstable nuclei can emit ionising radiation as they change."
+      ],
+      "teach": "#s15-2"
+    },
+    {
+      "id": "ch15-paper-a-3",
+      "title": "Fusion and mass-energy · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish fission from fusion.",
+      "marks": 2,
+      "points": [
+        "Fission splits a heavy nucleus into smaller nuclei.",
+        "Fusion combines light nuclei into heavier nuclei under suitable conditions."
+      ],
+      "model": [
+        "Fission splits a heavy nucleus into smaller nuclei.",
+        "Fusion combines light nuclei into heavier nuclei under suitable conditions."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "hints": [
+        "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc²."
+      ],
+      "teach": "#s15-3"
+    },
+    {
+      "id": "ch15-paper-a-4",
+      "title": "Stellar spectra · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A cooler gas lies in front of a continuous-spectrum source. Describe an absorption spectrum and its origin.",
+      "marks": 2,
+      "points": [
+        "Dark lines occur at particular wavelengths in the transmitted spectrum.",
+        "Gas atoms absorb photons corresponding to allowed energy transitions."
+      ],
+      "model": [
+        "Dark lines occur at particular wavelengths in the transmitted spectrum.",
+        "Gas atoms absorb photons corresponding to allowed energy transitions."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Different line strengths need not mean completely different chemical ingredients.",
+      "hints": [
+        "Patterns of spectral lines provide evidence about atoms and physical conditions in stars."
+      ],
+      "teach": "#s15-4"
+    },
+    {
+      "id": "ch15-paper-a-5",
+      "title": "Stellar distance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "What additional calibration is needed to turn a Cepheid’s period into a distance estimate?",
+      "marks": 2,
+      "points": [
+        "Use a calibrated period–luminosity relation to infer intrinsic luminosity.",
+        "Compare that with apparent brightness, allowing for relevant effects such as extinction."
+      ],
+      "model": [
+        "Use a calibrated period–luminosity relation to infer intrinsic luminosity.",
+        "Compare that with apparent brightness, allowing for relevant effects such as extinction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year is a distance, and faintness alone does not determine distance.",
+      "hints": [
+        "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties."
+      ],
+      "teach": "#s15-5"
+    },
+    {
+      "id": "ch15-paper-a-6",
+      "title": "Stellar remnants · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Why is it misleading to say every star ends in the same kind of remnant?",
+      "marks": 2,
+      "points": [
+        "Initial mass and subsequent mass loss affect core conditions and evolution.",
+        "Different outcomes include white dwarfs and, for sufficiently massive stellar cores, neutron stars or black holes."
+      ],
+      "model": [
+        "Initial mass and subsequent mass loss affect core conditions and evolution.",
+        "Different outcomes include white dwarfs and, for sufficiently massive stellar cores, neutron stars or black holes."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "hints": [
+        "A star’s later evolution depends strongly on its mass and the physical support of its remaining core."
+      ],
+      "teach": "#s15-6"
+    },
+    {
+      "id": "ch15-paper-b-1",
+      "title": "Nuclei and radioactivity · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why saying that every kind of radiation makes an exposed object radioactive is too broad.",
+      "marks": 2,
+      "points": [
+        "Exposure and contamination are different, and many ordinary exposures leave no radioactive material.",
+        "Some nuclear processes, such as neutron activation, can induce radioactivity, so the radiation and process must be specified."
+      ],
+      "model": [
+        "Exposure and contamination are different, and many ordinary exposures leave no radioactive material.",
+        "Some nuclear processes, such as neutron activation, can induce radioactivity, so the radiation and process must be specified."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Irradiation is not the same as radioactive contamination.",
+      "hints": [
+        "Unstable nuclei can emit ionising radiation as they change."
+      ],
+      "teach": "#s15-2"
+    },
+    {
+      "id": "ch15-paper-b-2",
+      "title": "Fusion and mass-energy · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a statement that the Sun’s fusion energy is produced mainly at its surface is incorrect.",
+      "marks": 2,
+      "points": [
+        "The required high temperatures and pressures occur in the core.",
+        "Energy then reaches the surface by transport through the star before being radiated."
+      ],
+      "model": [
+        "The required high temperatures and pressures occur in the core.",
+        "Energy then reaches the surface by transport through the star before being radiated."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Fusion in the Sun is not chemical burning, and total energy is conserved.",
+      "hints": [
+        "In nuclear reactions a decrease in system rest mass can correspond to energy released according to ΔE = Δmc²."
+      ],
+      "teach": "#s15-3"
+    },
+    {
+      "id": "ch15-paper-b-3",
+      "title": "Stellar spectra · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State what a stellar spectrum can reveal besides composition, with an explanation.",
+      "marks": 2,
+      "points": [
+        "A systematic shift of spectral wavelengths can reveal line-of-sight motion or cosmological redshift in the appropriate context.",
+        "Compare the observed line pattern with known reference wavelengths."
+      ],
+      "model": [
+        "A systematic shift of spectral wavelengths can reveal line-of-sight motion or cosmological redshift in the appropriate context.",
+        "Compare the observed line pattern with known reference wavelengths."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Different line strengths need not mean completely different chemical ingredients.",
+      "hints": [
+        "Patterns of spectral lines provide evidence about atoms and physical conditions in stars."
+      ],
+      "teach": "#s15-4"
+    },
+    {
+      "id": "ch15-paper-b-4",
+      "title": "Stellar distance · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State what a light-year measures and explain its definition.",
+      "marks": 2,
+      "points": [
+        "It measures distance.",
+        "It is the distance light travels in vacuum in one year."
+      ],
+      "model": [
+        "It measures distance.",
+        "It is the distance light travels in vacuum in one year."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year is a distance, and faintness alone does not determine distance.",
+      "hints": [
+        "Distances can be inferred from geometric parallax and calibrated relationships between intrinsic brightness and other properties."
+      ],
+      "teach": "#s15-5"
+    },
+    {
+      "id": "ch15-paper-b-5",
+      "title": "Stellar remnants · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why exceeding the maximum supported white-dwarf mass does not simply mean a stable white dwarf has zero radius.",
+      "marks": 2,
+      "points": [
+        "The support model no longer permits a stable white dwarf above its limit.",
+        "A different physical outcome must occur; the limit is not a literal stable point-sized white dwarf."
+      ],
+      "model": [
+        "The support model no longer permits a stable white dwarf above its limit.",
+        "A different physical outcome must occur; the limit is not a literal stable point-sized white dwarf."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The Sun is not expected to become a core-collapse supernova or a black hole.",
+      "hints": [
+        "A star’s later evolution depends strongly on its mass and the physical support of its remaining core."
+      ],
+      "teach": "#s15-6"
+    },
+    {
+      "id": "ch15-paper-b-6",
+      "title": "Cosmic expansion · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch15-objective-7"
+      ],
+      "kind": "explain",
+      "prompt": "Give two complementary types of evidence used in the modern Big Bang account.",
+      "marks": 2,
+      "points": [
+        "The large-scale redshift–distance relationship supports expansion.",
+        "The cosmic microwave background supports an earlier hot dense state."
+      ],
+      "model": [
+        "The large-scale redshift–distance relationship supports expansion.",
+        "The cosmic microwave background supports an earlier hot dense state."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "hints": [
+        "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift."
+      ],
+      "teach": "#s15-7"
+    },
+    {
+      "id": "ch15-data-review",
+      "title": "Cosmic expansion · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch15-objective-7"
+      ],
+      "kind": "investigate",
+      "prompt": "A supplied distant-galaxy sample has these redshifts. State the trend and one reason a redshift value alone is not a complete account of cosmic history.",
+      "marks": 2,
+      "points": [
+        "The more distant model galaxy has the larger positive redshift, consistent with expansion.",
+        "A full interpretation needs an expansion model and other evidence; one correlation is not a complete history."
+      ],
+      "model": [
+        "The more distant model galaxy has the larger positive redshift, consistent with expansion.",
+        "A full interpretation needs an expansion model and other evidence; one correlation is not a complete history."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The expanding universe is not a conventional explosion from a special centre into pre-existing empty space.",
+      "hints": [
+        "Large-scale observations support expansion of space, with distant unbound galaxies generally showing redshift."
+      ],
+      "teach": "#s15-7",
+      "data": {
+        "headers": [
+          "Model distance (arbitrary units)",
+          "Redshift"
+        ],
+        "rows": [
+          [
+            1,
+            0.01
+          ],
+          [
+            2,
+            0.02
+          ],
+          [
+            3,
+            0.03
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch15-paper-a",
+      "title": "Atoms, stars and the universe · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch15-paper-a-1",
+        "ch15-paper-a-2",
+        "ch15-paper-a-3",
+        "ch15-paper-a-4",
+        "ch15-paper-a-5",
+        "ch15-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch15-paper-b",
+      "title": "Atoms, stars and the universe · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch15-paper-b-1",
+        "ch15-paper-b-2",
+        "ch15-paper-b-3",
+        "ch15-paper-b-4",
+        "ch15-paper-b-5",
+        "ch15-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 15: Atoms, stars and the universe",
+      "url": "#ch15"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://openstax.org/books/astronomy-2e/pages/16-2-mass-energy-and-the-theory-of-relativity"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/assignments/"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/physics/pages/21-2-einstein-and-the-photoelectric-effect"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://openstax.org/books/college-physics-2e/pages/29-2-the-photoelectric-effect"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/physics/pages/22-1-the-structure-of-the-atom"
+    }
+  ]
+}

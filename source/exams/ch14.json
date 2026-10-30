@@ -1,0 +1,924 @@
+{
+  "version": 1,
+  "key": "chapter-14",
+  "chapter": 14,
+  "title": "Earth, Moon and Sun",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch14-objective-1",
+      "label": "Explain day and night and distinguish rotation from orbital motion.",
+      "teach": "#s14-1",
+      "note": "Relate Earth’s rotation to apparent solar motion and evaluate the scale and illumination limits of a globe-and-lamp model."
+    },
+    {
+      "id": "ch14-objective-2",
+      "label": "Explain opposite hemispheres’ seasons using tilt and sunlight geometry.",
+      "teach": "#s14-2",
+      "note": "Use day length and energy per surface area; reject Earth–Sun distance alone as the cause of opposite seasons."
+    },
+    {
+      "id": "ch14-objective-3",
+      "label": "Explain lunar phases, synchronous rotation and the two lunar periods.",
+      "teach": "#s14-3",
+      "note": "Separate the visible sunlit fraction from a shadow; distinguish the star-relative orbital period from the phase cycle."
+    },
+    {
+      "id": "ch14-objective-4",
+      "label": "Draw eclipse alignments and explain why eclipses do not occur every month.",
+      "teach": "#s14-4",
+      "note": "Identify which body blocks light and how orbital tilt matters; distinguish apparent size from physical size and use safe indirect viewing only."
+    },
+    {
+      "id": "ch14-objective-5",
+      "label": "Explain tidal patterns and the limits of a two-bulge model.",
+      "teach": "#s14-5",
+      "note": "Use differences in gravitational effects, distinguish spring and neap tides, and separate model patterns from real access-safety timetables."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch14-card-1",
+      "term": "Rotation and day/night",
+      "definition": "Earth’s rotation changes which places face the Sun.",
+      "explanation": "Earth’s rotation changes which places face the Sun. A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "example": "A town passes into and out of the sunlit half as Earth rotates.",
+      "confusion": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "question": "Explain rotation and day/night and distinguish it from a common mistaken idea.",
+      "answer": "Earth’s rotation changes which places face the Sun. A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "teach": "#s14-1",
+      "questionId": "ch14-practice-1-2",
+      "cue": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day."
+    },
+    {
+      "id": "ch14-card-2",
+      "term": "Seasons",
+      "definition": "Earth’s axial tilt changes day length and sunlight angle over the year.",
+      "explanation": "Earth’s axial tilt changes day length and sunlight angle over the year. Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "example": "When one hemisphere tilts towards the Sun it generally has longer days and higher solar altitude.",
+      "confusion": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "question": "Explain seasons and distinguish it from a common mistaken idea.",
+      "answer": "Earth’s axial tilt changes day length and sunlight angle over the year. Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "teach": "#s14-2",
+      "questionId": "ch14-practice-2-2",
+      "cue": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons."
+    },
+    {
+      "id": "ch14-card-3",
+      "term": "Lunar phases",
+      "definition": "A phase is the fraction of the Moon’s sunlit half visible from Earth.",
+      "explanation": "A phase is the fraction of the Moon’s sunlit half visible from Earth. Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "example": "A full Moon shows nearly all its sunlit half towards Earth.",
+      "confusion": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "question": "Explain lunar phases and distinguish it from a common mistaken idea.",
+      "answer": "A phase is the fraction of the Moon’s sunlit half visible from Earth. Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "teach": "#s14-3",
+      "questionId": "ch14-practice-3-2",
+      "cue": "Ordinary phases are not Earth’s shadow falling on the Moon."
+    },
+    {
+      "id": "ch14-card-4",
+      "term": "Eclipses",
+      "definition": "An eclipse occurs when one body blocks light from reaching another body or observer.",
+      "explanation": "An eclipse occurs when one body blocks light from reaching another body or observer. There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "example": "A solar eclipse can occur when the Moon passes between Earth and Sun in the right alignment.",
+      "confusion": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "question": "Explain eclipses and distinguish it from a common mistaken idea.",
+      "answer": "An eclipse occurs when one body blocks light from reaching another body or observer. There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "teach": "#s14-4",
+      "questionId": "ch14-practice-4-2",
+      "cue": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted."
+    },
+    {
+      "id": "ch14-card-5",
+      "term": "Tides",
+      "definition": "Tides arise from differences in gravitational effects across Earth, with important local ocean responses.",
+      "explanation": "Tides arise from differences in gravitational effects across Earth, with important local ocean responses. Actual high tide need not occur exactly when the Moon is overhead.",
+      "example": "The Sun and Moon together help produce spring and neap tidal patterns.",
+      "confusion": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "question": "Explain tides and distinguish it from a common mistaken idea.",
+      "answer": "Tides arise from differences in gravitational effects across Earth, with important local ocean responses. Actual high tide need not occur exactly when the Moon is overhead.",
+      "teach": "#s14-5",
+      "questionId": "ch14-practice-5-2",
+      "cue": "Actual high tide need not occur exactly when the Moon is overhead."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Explain why an observer experiences night even though the Sun continues shining."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Distinguish spring tides from neap tides using the Sun-Moon geometry rather than the season."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "In a simplified model Earth turns through 360° in 24 h. Calculate its average rotation rate in degrees per hour."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "Supplied water-level observations at an imaginary coast are shown. State one pattern and explain why these readings must not be used as a timetable for Haji Ali."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch14-recall",
+      "title": "Rotation and day/night · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by rotation and day/night.",
+      "marks": 1,
+      "points": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "model": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-worked",
+      "title": "Rotation and day/night · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "In a simplified model Earth turns through 360° in 24 h. Calculate its average rotation rate in degrees per hour.",
+      "marks": 2,
+      "points": [
+        "Rate = angle/time.",
+        "360/24 = 15 degrees per hour."
+      ],
+      "model": [
+        "Rate = angle/time.",
+        "360/24 = 15 degrees per hour."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1",
+      "numeric": {
+        "value": 15,
+        "unit": "°/h",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch14-guided",
+      "title": "Lunar phases · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch14-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "For this model take one complete lunar phase cycle as 29.5 days. Calculate the time for two complete cycles.",
+      "marks": 2,
+      "points": [
+        "Multiply the cycle duration by two.",
+        "2 × 29.5 = 59 days."
+      ],
+      "model": [
+        "Multiply the cycle duration by two.",
+        "2 × 29.5 = 59 days."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "hints": [
+        "A phase is the fraction of the Moon’s sunlit half visible from Earth."
+      ],
+      "teach": "#s14-3",
+      "numeric": {
+        "value": 59,
+        "unit": "days",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch14-practice-1-1",
+      "title": "Rotation and day/night · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an observer experiences night even though the Sun continues shining.",
+      "marks": 2,
+      "points": [
+        "Earth rotates the observer’s location to the side facing away from the Sun.",
+        "The opaque Earth blocks direct sunlight from reaching that location."
+      ],
+      "model": [
+        "Earth rotates the observer’s location to the side facing away from the Sun.",
+        "The opaque Earth blocks direct sunlight from reaching that location."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-practice-1-2",
+      "title": "Rotation and day/night · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A model globe rotates west to east. Describe the ordinary apparent daily motion of the Sun for an observer on it.",
+      "marks": 2,
+      "points": [
+        "The Sun appears to move generally east to west across the sky.",
+        "The apparent motion is opposite to the observer’s rotation."
+      ],
+      "model": [
+        "The Sun appears to move generally east to west across the sky.",
+        "The apparent motion is opposite to the observer’s rotation."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-practice-2-1",
+      "title": "Seasons · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch14-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the northern and southern hemispheres can have opposite seasons at the same time.",
+      "marks": 2,
+      "points": [
+        "Earth’s axis is tilted.",
+        "One hemisphere has longer days and more direct sunlight while the other has shorter days and less direct sunlight."
+      ],
+      "model": [
+        "Earth’s axis is tilted.",
+        "One hemisphere has longer days and more direct sunlight while the other has shorter days and less direct sunlight."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "hints": [
+        "Earth’s axial tilt changes day length and sunlight angle over the year."
+      ],
+      "teach": "#s14-2"
+    },
+    {
+      "id": "ch14-practice-2-2",
+      "title": "Seasons · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch14-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why describing northern summer as Earth being much closer to the Sun cannot account for southern winter at the same time.",
+      "marks": 2,
+      "points": [
+        "Both hemispheres are essentially at the same Earth-Sun distance.",
+        "The major seasonal differences instead arise from sunlight angle and day length due to tilt."
+      ],
+      "model": [
+        "Both hemispheres are essentially at the same Earth-Sun distance.",
+        "The major seasonal differences instead arise from sunlight angle and day length due to tilt."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "hints": [
+        "Earth’s axial tilt changes day length and sunlight angle over the year."
+      ],
+      "teach": "#s14-2"
+    },
+    {
+      "id": "ch14-practice-3-1",
+      "title": "Lunar phases · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch14-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a crescent Moon does not imply that most of the Moon has stopped receiving sunlight.",
+      "marks": 2,
+      "points": [
+        "Approximately half the Moon is still sunlit.",
+        "From Earth we see only a small part of that illuminated half at the crescent geometry."
+      ],
+      "model": [
+        "Approximately half the Moon is still sunlit.",
+        "From Earth we see only a small part of that illuminated half at the crescent geometry."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "hints": [
+        "A phase is the fraction of the Moon’s sunlit half visible from Earth."
+      ],
+      "teach": "#s14-3"
+    },
+    {
+      "id": "ch14-practice-3-2",
+      "title": "Lunar phases · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch14-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the same face of the Moon usually faces Earth even though the Moon rotates.",
+      "marks": 2,
+      "points": [
+        "The Moon rotates once in approximately the time it takes to orbit Earth.",
+        "This synchronous rotation keeps nearly the same face directed towards Earth."
+      ],
+      "model": [
+        "The Moon rotates once in approximately the time it takes to orbit Earth.",
+        "This synchronous rotation keeps nearly the same face directed towards Earth."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "hints": [
+        "A phase is the fraction of the Moon’s sunlit half visible from Earth."
+      ],
+      "teach": "#s14-3"
+    },
+    {
+      "id": "ch14-practice-4-1",
+      "title": "Eclipses · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch14-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Describe the alignment for a lunar eclipse and state which object’s shadow is involved.",
+      "marks": 2,
+      "points": [
+        "Earth is between Sun and Moon in sufficiently close alignment.",
+        "The Moon passes through Earth’s shadow."
+      ],
+      "model": [
+        "Earth is between Sun and Moon in sufficiently close alignment.",
+        "The Moon passes through Earth’s shadow."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "hints": [
+        "An eclipse occurs when one body blocks light from reaching another body or observer."
+      ],
+      "teach": "#s14-4"
+    },
+    {
+      "id": "ch14-practice-4-2",
+      "title": "Eclipses · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch14-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a solar eclipse does not happen at every new Moon.",
+      "marks": 2,
+      "points": [
+        "The Moon’s orbital plane is tilted to Earth’s orbital plane.",
+        "At most new Moons its shadow passes above or below Earth rather than across an observer’s location."
+      ],
+      "model": [
+        "The Moon’s orbital plane is tilted to Earth’s orbital plane.",
+        "At most new Moons its shadow passes above or below Earth rather than across an observer’s location."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "hints": [
+        "An eclipse occurs when one body blocks light from reaching another body or observer."
+      ],
+      "teach": "#s14-4"
+    },
+    {
+      "id": "ch14-practice-5-1",
+      "title": "Tides · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch14-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why the Moon’s gravitational pull being different across Earth matters for tides.",
+      "marks": 2,
+      "points": [
+        "The near side, Earth’s centre and far side experience different lunar accelerations.",
+        "Their relative effects contribute to two broad tidal bulges in the simplified ocean model."
+      ],
+      "model": [
+        "The near side, Earth’s centre and far side experience different lunar accelerations.",
+        "Their relative effects contribute to two broad tidal bulges in the simplified ocean model."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "hints": [
+        "Tides arise from differences in gravitational effects across Earth, with important local ocean responses."
+      ],
+      "teach": "#s14-5"
+    },
+    {
+      "id": "ch14-practice-5-2",
+      "title": "Tides · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch14-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish spring tides from neap tides using the Sun-Moon geometry rather than the season.",
+      "marks": 2,
+      "points": [
+        "Spring tides occur around new and full Moon when their tidal effects reinforce more strongly.",
+        "Neap tides occur near quarter Moon when their effects partly oppose, reducing the range."
+      ],
+      "model": [
+        "Spring tides occur around new and full Moon when their tidal effects reinforce more strongly.",
+        "Neap tides occur near quarter Moon when their effects partly oppose, reducing the range."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "hints": [
+        "Tides arise from differences in gravitational effects across Earth, with important local ocean responses."
+      ],
+      "teach": "#s14-5"
+    },
+    {
+      "id": "ch14-paper-a-1",
+      "title": "Rotation and day/night · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish Earth’s rotation from its revolution around the Sun.",
+      "marks": 2,
+      "points": [
+        "Rotation is spinning about its own axis, taking approximately a day.",
+        "Revolution is orbital motion around the Sun, taking approximately a year."
+      ],
+      "model": [
+        "Rotation is spinning about its own axis, taking approximately a day.",
+        "Revolution is orbital motion around the Sun, taking approximately a year."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-paper-a-2",
+      "title": "Seasons · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Compare the energy received per square metre when the same beam strikes a surface directly and at a shallow angle.",
+      "marks": 2,
+      "points": [
+        "At a shallow angle the beam spreads over a larger surface area.",
+        "Energy per square metre is therefore smaller for the same incident beam energy."
+      ],
+      "model": [
+        "At a shallow angle the beam spreads over a larger surface area.",
+        "Energy per square metre is therefore smaller for the same incident beam energy."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "hints": [
+        "Earth’s axial tilt changes day length and sunlight angle over the year."
+      ],
+      "teach": "#s14-2"
+    },
+    {
+      "id": "ch14-paper-a-3",
+      "title": "Lunar phases · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish the Moon’s orbital period relative to stars from its phase-cycle period.",
+      "marks": 2,
+      "points": [
+        "The orbital period relative to distant stars is about 27.3 days.",
+        "Phases repeat in about 29.5 days because Earth also moves around the Sun."
+      ],
+      "model": [
+        "The orbital period relative to distant stars is about 27.3 days.",
+        "Phases repeat in about 29.5 days because Earth also moves around the Sun."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "hints": [
+        "A phase is the fraction of the Moon’s sunlit half visible from Earth."
+      ],
+      "teach": "#s14-3"
+    },
+    {
+      "id": "ch14-paper-a-4",
+      "title": "Eclipses · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Draw the relative order of Sun, Moon and Earth for a solar eclipse. Explain why this is not permission to look at the Sun.",
+      "marks": 2,
+      "points": [
+        "The order is Sun–Moon–Earth in a suitable alignment.",
+        "Even partly obscured sunlight can harm eyes; use a safely designed indirect projection method under knowledgeable adult supervision, never direct viewing."
+      ],
+      "model": [
+        "The order is Sun–Moon–Earth in a suitable alignment.",
+        "Even partly obscured sunlight can harm eyes; use a safely designed indirect projection method under knowledgeable adult supervision, never direct viewing."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "hints": [
+        "An eclipse occurs when one body blocks light from reaching another body or observer."
+      ],
+      "teach": "#s14-4"
+    },
+    {
+      "id": "ch14-paper-a-5",
+      "title": "Tides · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a simple two-bulge drawing cannot give a safe timetable for walking to a tidal island.",
+      "marks": 2,
+      "points": [
+        "Real timing and height depend on coastline, depth, friction and other local effects.",
+        "Use current official local tide information and access advice; do not infer safe access from the drawing."
+      ],
+      "model": [
+        "Real timing and height depend on coastline, depth, friction and other local effects.",
+        "Use current official local tide information and access advice; do not infer safe access from the drawing."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "hints": [
+        "Tides arise from differences in gravitational effects across Earth, with important local ocean responses."
+      ],
+      "teach": "#s14-5"
+    },
+    {
+      "id": "ch14-paper-a-6",
+      "title": "Rotation and day/night · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "In a model Earth completes 360° in 24 h. Calculate the angle turned in 4 h.",
+      "marks": 2,
+      "points": [
+        "Rate = 360/24 = 15 degrees per hour.",
+        "In 4 h it turns 4 × 15 = 60°."
+      ],
+      "model": [
+        "Rate = 360/24 = 15 degrees per hour.",
+        "In 4 h it turns 4 × 15 = 60°."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-paper-b-1",
+      "title": "Rotation and day/night · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how a globe-and-lamp model can represent day and night, and name one limit.",
+      "marks": 2,
+      "points": [
+        "A fixed lamp illuminates one side as the globe rotates.",
+        "The model is not to scale, and a nearby lamp’s diverging rays differ from approximately parallel sunlight."
+      ],
+      "model": [
+        "A fixed lamp illuminates one side as the globe rotates.",
+        "The model is not to scale, and a nearby lamp’s diverging rays differ from approximately parallel sunlight."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-paper-b-2",
+      "title": "Seasons · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State two effects of a hemisphere tilting towards the Sun that contribute to warmer seasonal conditions.",
+      "marks": 2,
+      "points": [
+        "Its daylight duration is generally longer.",
+        "The Sun is generally higher, concentrating its light on a smaller surface area."
+      ],
+      "model": [
+        "Its daylight duration is generally longer.",
+        "The Sun is generally higher, concentrating its light on a smaller surface area."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Distance from the Sun is not the main cause of opposite hemispheres’ seasons.",
+      "hints": [
+        "Earth’s axial tilt changes day length and sunlight angle over the year."
+      ],
+      "teach": "#s14-2"
+    },
+    {
+      "id": "ch14-paper-b-3",
+      "title": "Lunar phases · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "At approximately what time does a full Moon rise, and what geometry explains this?",
+      "marks": 2,
+      "points": [
+        "Near sunset.",
+        "The full Moon is roughly opposite the Sun in our sky, so it rises as the Sun sets."
+      ],
+      "model": [
+        "Near sunset.",
+        "The full Moon is roughly opposite the Sun in our sky, so it rises as the Sun sets."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Ordinary phases are not Earth’s shadow falling on the Moon.",
+      "hints": [
+        "A phase is the fraction of the Moon’s sunlit half visible from Earth."
+      ],
+      "teach": "#s14-3"
+    },
+    {
+      "id": "ch14-paper-b-4",
+      "title": "Eclipses · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "The Sun and Moon can have similar apparent diameters. Explain why that does not mean equal physical sizes.",
+      "marks": 2,
+      "points": [
+        "Angular size depends on both physical size and distance.",
+        "The Sun is much larger and much farther away."
+      ],
+      "model": [
+        "Angular size depends on both physical size and distance.",
+        "The Sun is much larger and much farther away."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "There is not an eclipse at every new or full Moon because the Moon’s orbit is tilted.",
+      "hints": [
+        "An eclipse occurs when one body blocks light from reaching another body or observer."
+      ],
+      "teach": "#s14-4"
+    },
+    {
+      "id": "ch14-paper-b-5",
+      "title": "Tides · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why can the Sun affect tides even though it is much farther away than the Moon?",
+      "marks": 2,
+      "points": [
+        "Its gravitational field also varies across Earth.",
+        "Its large mass makes its tidal contribution significant, although the Moon’s contribution is generally larger."
+      ],
+      "model": [
+        "Its gravitational field also varies across Earth.",
+        "Its large mass makes its tidal contribution significant, although the Moon’s contribution is generally larger."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "hints": [
+        "Tides arise from differences in gravitational effects across Earth, with important local ocean responses."
+      ],
+      "teach": "#s14-5"
+    },
+    {
+      "id": "ch14-paper-b-6",
+      "title": "Rotation and day/night · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch14-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A simplified lunar phase cycle lasts 30 days. Calculate the fraction of a cycle represented by 15 days.",
+      "marks": 2,
+      "points": [
+        "Fraction = elapsed time / cycle time.",
+        "15/30 = 0.50 of a cycle."
+      ],
+      "model": [
+        "Fraction = elapsed time / cycle time.",
+        "15/30 = 0.50 of a cycle."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A daily apparent motion across the sky does not mean the Sun orbits Earth once per day.",
+      "hints": [
+        "Earth’s rotation changes which places face the Sun."
+      ],
+      "teach": "#s14-1"
+    },
+    {
+      "id": "ch14-data-review",
+      "title": "Tides · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch14-objective-5"
+      ],
+      "kind": "investigate",
+      "prompt": "Supplied water-level observations at an imaginary coast are shown. State one pattern and explain why these readings must not be used as a timetable for Haji Ali.",
+      "marks": 2,
+      "points": [
+        "High and low levels alternate in this illustrative series.",
+        "Actual local tide timing depends on real astronomical and coastal conditions; use official local tide information for access safety."
+      ],
+      "model": [
+        "High and low levels alternate in this illustrative series.",
+        "Actual local tide timing depends on real astronomical and coastal conditions; use official local tide information for access safety."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Actual high tide need not occur exactly when the Moon is overhead.",
+      "hints": [
+        "Tides arise from differences in gravitational effects across Earth, with important local ocean responses."
+      ],
+      "teach": "#s14-5",
+      "data": {
+        "headers": [
+          "Time",
+          "Model water level"
+        ],
+        "rows": [
+          [
+            "00:00",
+            "High"
+          ],
+          [
+            "06:10",
+            "Low"
+          ],
+          [
+            "12:25",
+            "High"
+          ],
+          [
+            "18:35",
+            "Low"
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch14-paper-a",
+      "title": "Earth, Moon and Sun · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch14-paper-a-1",
+        "ch14-paper-a-2",
+        "ch14-paper-a-3",
+        "ch14-paper-a-4",
+        "ch14-paper-a-5",
+        "ch14-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch14-paper-b",
+      "title": "Earth, Moon and Sun · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch14-paper-b-1",
+        "ch14-paper-b-2",
+        "ch14-paper-b-3",
+        "ch14-paper-b-4",
+        "ch14-paper-b-5",
+        "ch14-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 14: Earth, Moon and Sun",
+      "url": "#ch14"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/pages/syllabus/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://openstax.org/books/astronomy-2e/pages/4-1-earth-and-sky"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/resources/ps1/"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/astronomy-2e/pages/4-5-phases-and-motions-of-the-moon"
+    }
+  ]
+}

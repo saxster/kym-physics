@@ -8,11 +8,14 @@ if [[ ! -x "$reader_python" ]]; then reader_python=python3; fi
 cd "$source_root"
 node --test tests/test_*.mjs
 "$reader_python" -m unittest discover -s tests -p 'test_lesson_catalog.py'
+"$reader_python" -m unittest discover -s tests -p 'test_exam_catalog.py'
 "$reader_python" tests/test_figs_core.py
 "$reader_python" tests/test_graphics_physics.py
 "$reader_python" build.py --site build/site
 "$reader_python" tests/test_reader_build.py
 "$reader_python" tests/test_reader_journey.py
+"$reader_python" tests/test_exam_browser.py
+"$reader_python" tests/test_exam_rollout.py
 "$reader_python" tests/test_readaloud_optional.py
 "$reader_python" tests/test_investigations_browser.py
 "$reader_python" tests/test_labs_integration.py --out build/reader-labs-integration

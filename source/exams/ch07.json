@@ -1,0 +1,1384 @@
+{
+  "version": 1,
+  "chapter": 7,
+  "key": "chapter-07",
+  "title": "Energy",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch07-objective-1",
+      "label": "Explain and use energy conservation.",
+      "teach": "#s7-1",
+      "note": "Energy is conserved when transfers across the chosen system boundary are fully counted."
+    },
+    {
+      "id": "ch07-objective-2",
+      "label": "Explain and use kinetic energy.",
+      "teach": "#s7-2",
+      "note": "For the low-speed classical model, kinetic energy is half mass times speed squared."
+    },
+    {
+      "id": "ch07-objective-3",
+      "label": "Describe stores and transfers, calculate mechanical work and gravitational potential energy changes.",
+      "teach": "#s7-3",
+      "note": "An energy store describes a system’s state; a transfer describes how energy moves between stores or systems."
+    },
+    {
+      "id": "ch07-objective-4",
+      "label": "Explain and use efficiency.",
+      "teach": "#s7-4",
+      "note": "Efficiency compares useful output energy or power with total input energy or power."
+    },
+    {
+      "id": "ch07-objective-5",
+      "label": "Explain and use power.",
+      "teach": "#s7-5",
+      "note": "Power is the rate of energy transfer: energy transferred divided by elapsed time."
+    },
+    {
+      "id": "ch07-objective-6",
+      "label": "Explain and use electricity generation.",
+      "teach": "#s7-6",
+      "note": "Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch07-card-1",
+      "term": "Energy conservation",
+      "definition": "Energy is conserved when transfers across the chosen system boundary are fully counted.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A pupil claims a frictionless machine can deliver energy forever without any decrease in its source or input. Explain the problem. Useful output energy must come from an input or a decrease in an energy store. Producing a continuing output with neither would violate energy conservation.",
+      "confusion": "Energy spreading into surroundings is not energy being destroyed.",
+      "question": "Explain energy conservation from memory. What common mistake must you avoid?",
+      "answer": "Energy is conserved when transfers across the chosen system boundary are fully counted. Energy spreading into surroundings is not energy being destroyed.",
+      "teach": "#s7-1",
+      "questionId": "ch07-o1-q1"
+    },
+    {
+      "id": "ch07-card-2",
+      "term": "Kinetic energy",
+      "definition": "For the low-speed classical model, kinetic energy is half mass times speed squared.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Two identical model trolleys move at 3 m/s and 6 m/s. Compare their kinetic energies and explain why doubling speed does not merely double this energy. Kinetic energy is proportional to speed squared for fixed mass. The energy ratio is 6²/3² = 4. The faster trolley therefore has four times the kinetic energy.",
+      "confusion": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "question": "Explain kinetic energy from memory. What common mistake must you avoid?",
+      "answer": "For the low-speed classical model, kinetic energy is half mass times speed squared. Doubling speed multiplies kinetic energy by four, not by two.",
+      "teach": "#s7-2",
+      "questionId": "ch07-o2-q1",
+      "formula": "Eₖ = ½mv²",
+      "unit": "J"
+    },
+    {
+      "id": "ch07-card-3",
+      "term": "Stores and transfers",
+      "definition": "An energy store describes a system’s state; a transfer describes how energy moves between stores or systems.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A battery drives a motor that lifts a mass. Identify an initial and a final energy store. The battery’s chemical store decreases. The gravitational potential store of the Earth–mass system increases, with some energy transferred to surroundings.",
+      "confusion": "Heating is a transfer process, not a substance held in an object.",
+      "question": "Explain stores and transfers from memory. What common mistake must you avoid?",
+      "answer": "An energy store describes a system’s state; a transfer describes how energy moves between stores or systems. Heating is a transfer process, not a substance held in an object.",
+      "teach": "#s7-3",
+      "questionId": "ch07-o3-q1"
+    },
+    {
+      "id": "ch07-card-4",
+      "term": "Efficiency",
+      "definition": "Efficiency compares useful output energy or power with total input energy or power.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A model motor has efficiency 30% and must provide 210 J of useful output. Calculate the required input energy. Efficiency as a fraction = 0.30 = useful output ÷ input. Input = 210 ÷ 0.30 = 700 J.",
+      "confusion": "An inefficient device still conserves total energy when all outputs are counted.",
+      "question": "Explain efficiency from memory. What common mistake must you avoid?",
+      "answer": "Efficiency compares useful output energy or power with total input energy or power. An inefficient device still conserves total energy when all outputs are counted.",
+      "teach": "#s7-4",
+      "questionId": "ch07-o4-q1",
+      "formula": "efficiency = useful output / total input; multiply by 100 for %",
+      "unit": "dimensionless or %"
+    },
+    {
+      "id": "ch07-card-5",
+      "term": "Power",
+      "definition": "Power is the rate of energy transfer: energy transferred divided by elapsed time.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A 45 W model device must transfer 675 J at constant power. Calculate the time required. Time = energy transferred ÷ power. 675 ÷ 45 = 15 s.",
+      "confusion": "Power and energy have different units.",
+      "question": "Explain power from memory. What common mistake must you avoid?",
+      "answer": "Power is the rate of energy transfer: energy transferred divided by elapsed time. Power and energy have different units.",
+      "teach": "#s7-5",
+      "questionId": "ch07-o5-q1",
+      "formula": "P = E/t",
+      "unit": "W"
+    },
+    {
+      "id": "ch07-card-6",
+      "term": "Electricity generation",
+      "definition": "Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Give one reason a city cannot assume a solar panel supplies its rated power continuously throughout every day. Sunlight varies with time and weather and is absent at night, so rated power is not supplied continuously.",
+      "confusion": "Renewable does not mean there are no environmental effects.",
+      "question": "Explain electricity generation from memory. What common mistake must you avoid?",
+      "answer": "Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences. Renewable does not mean there are no environmental effects.",
+      "teach": "#s7-6",
+      "questionId": "ch07-o6-q1"
+    },
+    {
+      "id": "ch07-card-7",
+      "term": "Mechanical work",
+      "definition": "A force does work when there is displacement with a component along that force.",
+      "explanation": "A force does work when there is displacement with a component along that force.",
+      "example": "A 10 N force acting along a 2 m displacement does 20 J of work.",
+      "confusion": "A force can act without doing work if the displacement is perpendicular to it.",
+      "question": "Explain mechanical work from memory and give its important distinction.",
+      "answer": "A force does work when there is displacement with a component along that force. A force can act without doing work if the displacement is perpendicular to it.",
+      "teach": "#s7-3",
+      "questionId": "ch07-work-force",
+      "formula": "W = Fd for a constant force parallel to displacement",
+      "unit": "J"
+    },
+    {
+      "id": "ch07-card-8",
+      "term": "Gravitational potential energy",
+      "definition": "Near a surface with approximately constant g, the increase in gravitational potential energy is mg times the vertical height gained.",
+      "explanation": "Near a surface with approximately constant g, the increase in gravitational potential energy is mg times the vertical height gained.",
+      "example": "Raising the same load twice as far gives twice the potential-energy increase.",
+      "confusion": "Use vertical height change, not the length of a sloping path.",
+      "question": "Explain gravitational potential energy from memory and give its important distinction.",
+      "answer": "Near a surface with approximately constant g, the increase in gravitational potential energy is mg times the vertical height gained. Use vertical height change, not the length of a sloping path.",
+      "teach": "#s7-3",
+      "questionId": "ch07-gpe",
+      "formula": "ΔEₚ = mgΔh",
+      "unit": "J"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of energy conservation."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "A pupil claims a frictionless machine can deliver energy forever without any decrease in its source or input. Explain the problem."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "A model object has mass 3 kg and speed 4 m/s. Calculate its kinetic energy."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the electricity generation revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch07-o1-q1",
+      "title": "A toy’s mechanical energy decreases as it stops on a rough surface",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A toy’s mechanical energy decreases as it stops on a rough surface. Explain how conservation can still hold.",
+      "marks": 2,
+      "points": [
+        "Energy is transferred into internal energy of the toy, surface and surroundings.",
+        "Include those surroundings and transfers in the energy account."
+      ],
+      "model": [
+        "Energy is transferred into internal energy of the toy, surface and surroundings.",
+        "Include those surroundings and transfers in the energy account."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Energy spreading into surroundings is not energy being destroyed.",
+      "hints": [
+        "Begin with the meaning of energy conservation: Energy is conserved when transfers across the chosen system boundary are fully counted."
+      ],
+      "teach": "#s7-1"
+    },
+    {
+      "id": "ch07-o1-q2",
+      "title": "A pupil claims a frictionless machine can deliver energy forever without any decrease in its source ",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil claims a frictionless machine can deliver energy forever without any decrease in its source or input. Explain the problem.",
+      "marks": 2,
+      "points": [
+        "Useful output energy must come from an input or a decrease in an energy store.",
+        "Producing a continuing output with neither would violate energy conservation."
+      ],
+      "model": [
+        "Useful output energy must come from an input or a decrease in an energy store.",
+        "Producing a continuing output with neither would violate energy conservation."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Energy spreading into surroundings is not energy being destroyed.",
+      "hints": [
+        "Begin with the meaning of energy conservation: Energy is conserved when transfers across the chosen system boundary are fully counted."
+      ],
+      "teach": "#s7-1"
+    },
+    {
+      "id": "ch07-o1-q3",
+      "title": "An energy account shows less energy at the end than at the beginning",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "An energy account shows less energy at the end than at the beginning. What should you investigate? Explain why the incomplete account does not show that energy was destroyed.",
+      "marks": 2,
+      "points": [
+        "Energy transfers across the selected boundary and overlooked stores such as internal energy.",
+        "An incomplete account is not evidence that energy has been destroyed."
+      ],
+      "model": [
+        "Energy transfers across the selected boundary and overlooked stores such as internal energy.",
+        "An incomplete account is not evidence that energy has been destroyed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Energy spreading into surroundings is not energy being destroyed.",
+      "hints": [],
+      "teach": "#s7-1"
+    },
+    {
+      "id": "ch07-o1-q4",
+      "title": "Why must a conservation calculation identify the system being considered?",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Why must a conservation calculation identify the system being considered?",
+      "marks": 2,
+      "points": [
+        "Energy may cross its boundary.",
+        "The chosen system determines which stores are counted and which transfers enter or leave."
+      ],
+      "model": [
+        "Energy may cross its boundary.",
+        "The chosen system determines which stores are counted and which transfers enter or leave."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Energy spreading into surroundings is not energy being destroyed.",
+      "hints": [],
+      "teach": "#s7-1"
+    },
+    {
+      "id": "ch07-o1-recall",
+      "title": "State the meaning of energy conservation and explain one distinction that prevents a common misunder",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of energy conservation and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Energy is conserved when transfers across the chosen system boundary are fully counted.",
+        "Energy spreading into surroundings is not energy being destroyed."
+      ],
+      "model": [
+        "Energy is conserved when transfers across the chosen system boundary are fully counted.",
+        "Energy spreading into surroundings is not energy being destroyed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Energy spreading into surroundings is not energy being destroyed.",
+      "hints": [
+        "Begin with the meaning of energy conservation: Energy is conserved when transfers across the chosen system boundary are fully counted."
+      ],
+      "teach": "#s7-1"
+    },
+    {
+      "id": "ch07-o2-q1",
+      "title": "A model object has mass 3 kg and speed 4 m/s",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A model object has mass 3 kg and speed 4 m/s. Calculate its kinetic energy.",
+      "marks": 3,
+      "points": [
+        "Kinetic energy = ½mv².",
+        "Correct substitution: ½ × 3 × 4².",
+        "The answer is 24 J."
+      ],
+      "model": [
+        "Kinetic energy = ½mv².",
+        "½ × 3 × 4² = 24 J.",
+        "The answer is 24 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [
+        "Begin with the meaning of kinetic energy: For the low-speed classical model, kinetic energy is half mass times speed squared."
+      ],
+      "teach": "#s7-2",
+      "numeric": {
+        "value": 24.0,
+        "unit": "J",
+        "tolerance": 0.0024000000000000002
+      }
+    },
+    {
+      "id": "ch07-o2-q2",
+      "title": "A different setting: Kinetic energy",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Two identical model trolleys move at 3 m/s and 6 m/s. Compare their kinetic energies and explain why doubling speed does not merely double this energy.",
+      "marks": 3,
+      "points": [
+        "Kinetic energy is proportional to speed squared for fixed mass.",
+        "The energy ratio is 6²/3² = 4.",
+        "The faster trolley therefore has four times the kinetic energy."
+      ],
+      "model": [
+        "Kinetic energy is proportional to speed squared for fixed mass.",
+        "The energy ratio is 6²/3² = 4.",
+        "The faster trolley therefore has four times the kinetic energy."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [
+        "Begin with the meaning of kinetic energy: For the low-speed classical model, kinetic energy is half mass times speed squared."
+      ],
+      "teach": "#s7-2"
+    },
+    {
+      "id": "ch07-o2-q3",
+      "title": "A model object has mass 7 kg and speed 2 m/s",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A model object has mass 7 kg and speed 2 m/s. Calculate its kinetic energy.",
+      "marks": 3,
+      "points": [
+        "Kinetic energy = ½mv².",
+        "Correct substitution: ½ × 7 × 2².",
+        "The answer is 14 J."
+      ],
+      "model": [
+        "Kinetic energy = ½mv².",
+        "½ × 7 × 2² = 14 J.",
+        "The answer is 14 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [],
+      "teach": "#s7-2",
+      "numeric": {
+        "value": 14.0,
+        "unit": "J",
+        "tolerance": 0.0014
+      }
+    },
+    {
+      "id": "ch07-o2-q4",
+      "title": "A model object has mass 9 kg and speed 4 m/s",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A model object has mass 9 kg and speed 4 m/s. Calculate its kinetic energy.",
+      "marks": 3,
+      "points": [
+        "Kinetic energy = ½mv².",
+        "Correct substitution: ½ × 9 × 4².",
+        "The answer is 72 J."
+      ],
+      "model": [
+        "Kinetic energy = ½mv².",
+        "½ × 9 × 4² = 72 J.",
+        "The answer is 72 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [],
+      "teach": "#s7-2",
+      "numeric": {
+        "value": 72.0,
+        "unit": "J",
+        "tolerance": 0.007200000000000001
+      }
+    },
+    {
+      "id": "ch07-o2-recall",
+      "title": "State the meaning of kinetic energy and explain one distinction that prevents a common misunderstand",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of kinetic energy and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "For the low-speed classical model, kinetic energy is half mass times speed squared.",
+        "Doubling speed multiplies kinetic energy by four, not by two."
+      ],
+      "model": [
+        "For the low-speed classical model, kinetic energy is half mass times speed squared.",
+        "Doubling speed multiplies kinetic energy by four, not by two."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [
+        "Begin with the meaning of kinetic energy: For the low-speed classical model, kinetic energy is half mass times speed squared."
+      ],
+      "teach": "#s7-2"
+    },
+    {
+      "id": "ch07-o3-q1",
+      "title": "A falling ball speeds up before striking the ground",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A falling ball speeds up before striking the ground. Identify the main energy-store changes while air resistance is neglected.",
+      "marks": 2,
+      "points": [
+        "The gravitational potential energy of the Earth–ball system decreases.",
+        "The ball’s kinetic energy increases."
+      ],
+      "model": [
+        "The gravitational potential energy of the Earth–ball system decreases.",
+        "The ball’s kinetic energy increases."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Heating is a transfer process, not a substance held in an object.",
+      "hints": [
+        "Begin with the meaning of stores and transfers: An energy store describes a system’s state; a transfer describes how energy moves between stores or systems."
+      ],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-o3-q2",
+      "title": "A battery drives a motor that lifts a mass",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A battery drives a motor that lifts a mass. Identify an initial and a final energy store.",
+      "marks": 2,
+      "points": [
+        "The battery’s chemical store decreases.",
+        "The gravitational potential store of the Earth–mass system increases, with some energy transferred to surroundings."
+      ],
+      "model": [
+        "The battery’s chemical store decreases.",
+        "The gravitational potential store of the Earth–mass system increases, with some energy transferred to surroundings."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Heating is a transfer process, not a substance held in an object.",
+      "hints": [
+        "Begin with the meaning of stores and transfers: An energy store describes a system’s state; a transfer describes how energy moves between stores or systems."
+      ],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-o3-q3",
+      "title": "An electric heater warms water",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "An electric heater warms water. Identify an energy transfer and a store that increases.",
+      "marks": 2,
+      "points": [
+        "Energy is transferred electrically to the heater and then by heating to the water.",
+        "The water’s internal energy increases."
+      ],
+      "model": [
+        "Energy is transferred electrically to the heater and then by heating to the water.",
+        "The water’s internal energy increases."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Heating is a transfer process, not a substance held in an object.",
+      "hints": [],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-o3-q4",
+      "title": "A stretched spring launches a cart",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A stretched spring launches a cart. Describe the main store changes in a low-friction model.",
+      "marks": 2,
+      "points": [
+        "The spring’s elastic store decreases.",
+        "The cart’s kinetic store increases."
+      ],
+      "model": [
+        "The spring’s elastic store decreases.",
+        "The cart’s kinetic store increases."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Heating is a transfer process, not a substance held in an object.",
+      "hints": [],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-o3-recall",
+      "title": "State the meaning of stores and transfers and explain one distinction that prevents a common misunde",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of stores and transfers and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "An energy store describes a system’s state; a transfer describes how energy moves between stores or systems.",
+        "Heating is a transfer process, not a substance held in an object."
+      ],
+      "model": [
+        "An energy store describes a system’s state; a transfer describes how energy moves between stores or systems.",
+        "Heating is a transfer process, not a substance held in an object."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Heating is a transfer process, not a substance held in an object.",
+      "hints": [
+        "Begin with the meaning of stores and transfers: An energy store describes a system’s state; a transfer describes how energy moves between stores or systems."
+      ],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-o4-q1",
+      "title": "A model device receives 360 J and supplies 90 J of useful output",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A model device receives 360 J and supplies 90 J of useful output. Calculate its percentage efficiency.",
+      "marks": 3,
+      "points": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "Correct substitution: 90 ÷ 360 × 100.",
+        "The answer is 25 %."
+      ],
+      "model": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "90 ÷ 360 × 100 = 25 %.",
+        "The answer is 25 %."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [
+        "Begin with the meaning of efficiency: Efficiency compares useful output energy or power with total input energy or power."
+      ],
+      "teach": "#s7-4",
+      "numeric": {
+        "value": 25.0,
+        "unit": "%",
+        "tolerance": 0.0025
+      }
+    },
+    {
+      "id": "ch07-o4-q2",
+      "title": "A different setting: Efficiency",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A model motor has efficiency 30% and must provide 210 J of useful output. Calculate the required input energy.",
+      "marks": 2,
+      "points": [
+        "Efficiency as a fraction = 0.30 = useful output ÷ input.",
+        "Input = 210 ÷ 0.30 = 700 J."
+      ],
+      "model": [
+        "Efficiency as a fraction = 0.30 = useful output ÷ input.",
+        "Input = 210 ÷ 0.30 = 700 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [
+        "Begin with the meaning of efficiency: Efficiency compares useful output energy or power with total input energy or power."
+      ],
+      "teach": "#s7-4",
+      "numeric": {
+        "value": 700,
+        "unit": "J",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch07-o4-q3",
+      "title": "A model device receives 800 J and supplies 280 J of useful output",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A model device receives 800 J and supplies 280 J of useful output. Calculate its percentage efficiency.",
+      "marks": 3,
+      "points": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "Correct substitution: 280 ÷ 800 × 100.",
+        "The answer is 35 %."
+      ],
+      "model": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "280 ÷ 800 × 100 = 35 %.",
+        "The answer is 35 %."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [],
+      "teach": "#s7-4",
+      "numeric": {
+        "value": 35.0,
+        "unit": "%",
+        "tolerance": 0.0035
+      }
+    },
+    {
+      "id": "ch07-o4-q4",
+      "title": "A model device receives 900 J and supplies 540 J of useful output",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "A model device receives 900 J and supplies 540 J of useful output. Calculate its percentage efficiency.",
+      "marks": 3,
+      "points": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "Correct substitution: 540 ÷ 900 × 100.",
+        "The answer is 60 %."
+      ],
+      "model": [
+        "Percentage efficiency = useful output ÷ total input × 100.",
+        "540 ÷ 900 × 100 = 60 %.",
+        "The answer is 60 %."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [],
+      "teach": "#s7-4",
+      "numeric": {
+        "value": 60.0,
+        "unit": "%",
+        "tolerance": 0.006
+      }
+    },
+    {
+      "id": "ch07-o4-recall",
+      "title": "State the meaning of efficiency and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of efficiency and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Efficiency compares useful output energy or power with total input energy or power.",
+        "An inefficient device still conserves total energy when all outputs are counted."
+      ],
+      "model": [
+        "Efficiency compares useful output energy or power with total input energy or power.",
+        "An inefficient device still conserves total energy when all outputs are counted."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [
+        "Begin with the meaning of efficiency: Efficiency compares useful output energy or power with total input energy or power."
+      ],
+      "teach": "#s7-4"
+    },
+    {
+      "id": "ch07-o5-q1",
+      "title": "A motor transfers 420 J in 7 s",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A motor transfers 420 J in 7 s. Calculate its average power.",
+      "marks": 3,
+      "points": [
+        "Average power = energy transferred ÷ time.",
+        "Correct substitution: 420 ÷ 7.",
+        "The answer is 60 W."
+      ],
+      "model": [
+        "Average power = energy transferred ÷ time.",
+        "420 ÷ 7 = 60 W.",
+        "The answer is 60 W."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [
+        "Begin with the meaning of power: Power is the rate of energy transfer: energy transferred divided by elapsed time."
+      ],
+      "teach": "#s7-5",
+      "numeric": {
+        "value": 60.0,
+        "unit": "W",
+        "tolerance": 0.006
+      }
+    },
+    {
+      "id": "ch07-o5-q2",
+      "title": "A different setting: Power",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A 45 W model device must transfer 675 J at constant power. Calculate the time required.",
+      "marks": 2,
+      "points": [
+        "Time = energy transferred ÷ power.",
+        "675 ÷ 45 = 15 s."
+      ],
+      "model": [
+        "Time = energy transferred ÷ power.",
+        "675 ÷ 45 = 15 s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [
+        "Begin with the meaning of power: Power is the rate of energy transfer: energy transferred divided by elapsed time."
+      ],
+      "teach": "#s7-5",
+      "numeric": {
+        "value": 15,
+        "unit": "s",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch07-o5-q3",
+      "title": "A motor transfers 960 J in 12 s",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A motor transfers 960 J in 12 s. Calculate its average power.",
+      "marks": 3,
+      "points": [
+        "Average power = energy transferred ÷ time.",
+        "Correct substitution: 960 ÷ 12.",
+        "The answer is 80 W."
+      ],
+      "model": [
+        "Average power = energy transferred ÷ time.",
+        "960 ÷ 12 = 80 W.",
+        "The answer is 80 W."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [],
+      "teach": "#s7-5",
+      "numeric": {
+        "value": 80.0,
+        "unit": "W",
+        "tolerance": 0.008
+      }
+    },
+    {
+      "id": "ch07-o5-q4",
+      "title": "A motor transfers 1350 J in 15 s",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A motor transfers 1350 J in 15 s. Calculate its average power.",
+      "marks": 3,
+      "points": [
+        "Average power = energy transferred ÷ time.",
+        "Correct substitution: 1350 ÷ 15.",
+        "The answer is 90 W."
+      ],
+      "model": [
+        "Average power = energy transferred ÷ time.",
+        "1350 ÷ 15 = 90 W.",
+        "The answer is 90 W."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [],
+      "teach": "#s7-5",
+      "numeric": {
+        "value": 90.0,
+        "unit": "W",
+        "tolerance": 0.009000000000000001
+      }
+    },
+    {
+      "id": "ch07-o5-recall",
+      "title": "State the meaning of power and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of power and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Power is the rate of energy transfer: energy transferred divided by elapsed time.",
+        "Power and energy have different units."
+      ],
+      "model": [
+        "Power is the rate of energy transfer: energy transferred divided by elapsed time.",
+        "Power and energy have different units."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [
+        "Begin with the meaning of power: Power is the rate of energy transfer: energy transferred divided by elapsed time."
+      ],
+      "teach": "#s7-5"
+    },
+    {
+      "id": "ch07-o6-q1",
+      "title": "Why does a wind turbine need an energy input even though wind is not purchased as fuel?",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Why does a wind turbine need an energy input even though wind is not purchased as fuel?",
+      "marks": 2,
+      "points": [
+        "The moving air carries kinetic energy.",
+        "The turbine transfers some of that energy into electrical output, with other transfers to surroundings."
+      ],
+      "model": [
+        "The moving air carries kinetic energy.",
+        "The turbine transfers some of that energy into electrical output, with other transfers to surroundings."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Renewable does not mean there are no environmental effects.",
+      "hints": [
+        "Begin with the meaning of electricity generation: Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+      ],
+      "teach": "#s7-6"
+    },
+    {
+      "id": "ch07-o6-q2",
+      "title": "Give one reason a city cannot assume a solar panel supplies its rated power continuously throughout ",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Give one reason a city cannot assume a solar panel supplies its rated power continuously throughout every day.",
+      "marks": 1,
+      "points": [
+        "Sunlight varies with time and weather and is absent at night, so rated power is not supplied continuously."
+      ],
+      "model": [
+        "Sunlight varies with time and weather and is absent at night, so rated power is not supplied continuously."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Renewable does not mean there are no environmental effects.",
+      "hints": [
+        "Begin with the meaning of electricity generation: Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+      ],
+      "teach": "#s7-6"
+    },
+    {
+      "id": "ch07-o6-q3",
+      "title": "A pupil calls a hydroelectric station an energy creator",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil calls a hydroelectric station an energy creator. Correct the statement.",
+      "marks": 2,
+      "points": [
+        "The station transfers energy from the gravitational potential store of water and Earth.",
+        "The generator converts part of the resulting mechanical transfer into electrical output; it does not create energy."
+      ],
+      "model": [
+        "The station transfers energy from the gravitational potential store of water and Earth.",
+        "The generator converts part of the resulting mechanical transfer into electrical output; it does not create energy."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Renewable does not mean there are no environmental effects.",
+      "hints": [],
+      "teach": "#s7-6"
+    },
+    {
+      "id": "ch07-o6-q4",
+      "title": "Suggest two factors a city should compare when choosing an energy supply",
+      "stage": "paper",
+      "objectives": [
+        "ch07-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Suggest two factors a city should compare when choosing an energy supply.",
+      "marks": 2,
+      "points": [
+        "Availability and whether output can match demand or needs storage/back-up.",
+        "Environmental effects, cost, safety or resource constraints."
+      ],
+      "model": [
+        "Availability and whether output can match demand or needs storage/back-up.",
+        "Environmental effects, cost, safety or resource constraints."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Renewable does not mean there are no environmental effects.",
+      "hints": [],
+      "teach": "#s7-6"
+    },
+    {
+      "id": "ch07-o6-recall",
+      "title": "State the meaning of electricity generation and explain one distinction that prevents a common misun",
+      "stage": "recall",
+      "objectives": [
+        "ch07-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of electricity generation and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences.",
+        "Renewable does not mean there are no environmental effects."
+      ],
+      "model": [
+        "Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences.",
+        "Renewable does not mean there are no environmental effects."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Renewable does not mean there are no environmental effects.",
+      "hints": [
+        "Begin with the meaning of electricity generation: Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+      ],
+      "teach": "#s7-6"
+    },
+    {
+      "id": "ch07-mixed-1",
+      "title": "Three model devices each receive 1000 J",
+      "stage": "review",
+      "objectives": [
+        "ch07-objective-4"
+      ],
+      "kind": "investigate",
+      "prompt": "Three model devices each receive 1000 J. Use the supplied useful outputs to choose the most efficient and calculate its efficiency. Explain what happens to the rest of the input energy.",
+      "marks": 3,
+      "points": [
+        "Device C has the largest useful output for the same input.",
+        "Efficiency = 450 ÷ 1000 × 100 = 45%.",
+        "The other 550 J is transferred to other stores or surroundings; it is not destroyed."
+      ],
+      "model": [
+        "Device C has the largest useful output for the same input.",
+        "Efficiency = 450 ÷ 1000 × 100 = 45%.",
+        "The other 550 J is transferred to other stores or surroundings; it is not destroyed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An inefficient device still conserves total energy when all outputs are counted.",
+      "hints": [
+        "Begin with the meaning of electricity generation: Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+      ],
+      "teach": "#s7-4",
+      "data": {
+        "headers": [
+          "Device",
+          "Useful output (J)"
+        ],
+        "rows": [
+          [
+            "A",
+            250
+          ],
+          [
+            "B",
+            350
+          ],
+          [
+            "C",
+            450
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch07-mixed-2",
+      "title": "A 0",
+      "stage": "review",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A 0.60 kW appliance operates for 2.5 h. Calculate the electrical energy transferred in kWh.",
+      "marks": 2,
+      "points": [
+        "Energy = power × time.",
+        "0.60 × 2.5 = 1.5 kWh; a kWh is an energy unit."
+      ],
+      "model": [
+        "Energy = power × time.",
+        "0.60 × 2.5 = 1.5 kWh; a kWh is an energy unit."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [
+        "Begin with the meaning of electricity generation: Generators transfer energy from other sources; energy supplies differ in availability and environmental consequences."
+      ],
+      "teach": "#s7-5"
+    },
+    {
+      "id": "ch07-worked-explanation",
+      "title": "Worked example: Power",
+      "stage": "worked",
+      "objectives": [
+        "ch07-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "A motor transfers 840 J in 21 s. Calculate its average power.",
+      "marks": 3,
+      "points": [
+        "Average power = energy transferred ÷ time.",
+        "Correct substitution: 840 ÷ 21.",
+        "The answer is 40 W."
+      ],
+      "model": [
+        "Average power = energy transferred ÷ time.",
+        "840 ÷ 21 = 40 W.",
+        "The answer is 40 W."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Power and energy have different units.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s7-5",
+      "numeric": {
+        "value": 40.0,
+        "unit": "W",
+        "tolerance": 0.004
+      }
+    },
+    {
+      "id": "ch07-guided-explanation",
+      "title": "Guided practice: Kinetic energy",
+      "stage": "guided",
+      "objectives": [
+        "ch07-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A model object has mass 4.0 kg and speed 3.0 m/s. Calculate its kinetic energy.",
+      "marks": 3,
+      "points": [
+        "Kinetic energy = ½mv².",
+        "Correct substitution: ½ × 4.0 × 3.0².",
+        "The answer is 18 J."
+      ],
+      "model": [
+        "Kinetic energy = ½mv².",
+        "½ × 4.0 × 3.0² = 18 J.",
+        "The answer is 18 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Doubling speed multiplies kinetic energy by four, not by two.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s7-2",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step.",
+      "numeric": {
+        "value": 18.0,
+        "unit": "J",
+        "tolerance": 0.0018000000000000002
+      }
+    },
+    {
+      "id": "ch07-work-force",
+      "title": "Work by a force",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A constant force of 28 N moves a model crate 3.5 m in the force’s direction. Calculate the work done by that force.",
+      "marks": 2,
+      "points": [
+        "Work = force × displacement in the force direction.",
+        "28 × 3.5 = 98 J."
+      ],
+      "model": [
+        "Work = force × displacement in the force direction.",
+        "28 × 3.5 = 98 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s7-3",
+      "numeric": {
+        "value": 98,
+        "unit": "J",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch07-work-direction",
+      "title": "A force without work along it",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A student carries a bag horizontally at constant height. Explain why the upward support force does no work on the bag in the simple point-object model.",
+      "marks": 2,
+      "points": [
+        "The displacement is horizontal while the support force is vertical.",
+        "There is no displacement component in that force’s direction, so its work is zero."
+      ],
+      "model": [
+        "The displacement is horizontal while the support force is vertical.",
+        "There is no displacement component in that force’s direction, so its work is zero."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s7-3"
+    },
+    {
+      "id": "ch07-gpe",
+      "title": "Lifting a mass",
+      "stage": "independent",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A 2.5 kg load is raised vertically by 1.8 m. Use g = 10 N/kg. Calculate the increase in gravitational potential energy of the Earth–load system.",
+      "marks": 2,
+      "points": [
+        "Increase = mgΔh.",
+        "2.5 × 10 × 1.8 = 45 J."
+      ],
+      "model": [
+        "Increase = mgΔh.",
+        "2.5 × 10 × 1.8 = 45 J."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s7-3",
+      "numeric": {
+        "value": 45,
+        "unit": "J",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch07-gpe-height",
+      "title": "Working backwards from energy",
+      "stage": "transfer",
+      "objectives": [
+        "ch07-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A model lift increases an Earth–load system’s gravitational potential energy by 144 J. The load has mass 4.0 kg and g = 10 N/kg. Calculate the height gained.",
+      "marks": 2,
+      "points": [
+        "Height gained = energy increase ÷ (mg).",
+        "144 ÷ (4.0 × 10) = 3.6 m."
+      ],
+      "model": [
+        "Height gained = energy increase ÷ (mg).",
+        "144 ÷ (4.0 × 10) = 3.6 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s7-3",
+      "numeric": {
+        "value": 3.6,
+        "unit": "m",
+        "tolerance": 0.001
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch07-paper-a",
+      "title": "Energy · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch07-o1-q3",
+        "ch07-o2-q3",
+        "ch07-o3-q3",
+        "ch07-o4-q3",
+        "ch07-o5-q3",
+        "ch07-o6-q3"
+      ]
+    },
+    {
+      "id": "ch07-paper-b",
+      "title": "Energy · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch07-o1-q4",
+        "ch07-o2-q4",
+        "ch07-o3-q4",
+        "ch07-o4-q4",
+        "ch07-o5-q4",
+        "ch07-o6-q4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 7: Energy",
+      "url": "#ch7"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter13.pdf"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter14.pdf"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://ocw.mit.edu/courses/8-21-the-physics-of-energy-fall-2009/76bb428d6455f6769501ff959cc28fee_MIT8_21s09_lec02.pdf"
+    }
+  ]
+}

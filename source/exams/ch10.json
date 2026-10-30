@@ -1,0 +1,1007 @@
+{
+  "version": 1,
+  "key": "chapter-10",
+  "chapter": 10,
+  "title": "Light and seeing",
+  "scope": "Use your school’s topic list to select the ideas you need. These are original practice questions with illustrative values and suggested self-marking guidance, not official Cambridge papers.",
+  "objectives": [
+    {
+      "id": "ch10-objective-1",
+      "label": "Trace light from a source through an object to the eye.",
+      "teach": "#s10-1",
+      "note": "Draw correct ray-arrow directions and explain seeing a non-luminous object without a seeing beam from the eye."
+    },
+    {
+      "id": "ch10-objective-2",
+      "label": "Explain umbra and penumbra and plan a controlled shadow investigation.",
+      "teach": "#s10-2",
+      "note": "Compare point-like and extended sources; separate the straight-ray approximation from diffraction."
+    },
+    {
+      "id": "ch10-objective-3",
+      "label": "Use the law of reflection to locate plane-mirror images.",
+      "teach": "#s10-3",
+      "note": "Measure angles to the normal, calculate mirror distances, and use backward ray extensions to explain a virtual image."
+    },
+    {
+      "id": "ch10-objective-4",
+      "label": "Explain refraction and state the conditions for total internal reflection.",
+      "teach": "#s10-4",
+      "note": "Link bending to speed changes and incidence angle; distinguish normal incidence and explain apparent depth."
+    },
+    {
+      "id": "ch10-objective-5",
+      "label": "Construct lens ray diagrams and explain image formation in cameras and eyes.",
+      "teach": "#s10-5",
+      "note": "Identify image properties, accommodation and short-sight correction; predict what covering half a lens changes."
+    },
+    {
+      "id": "ch10-objective-6",
+      "label": "Calculate light travel times and explain why distant images show the past.",
+      "teach": "#s10-6",
+      "note": "Use compatible distance and speed units, distinguish one-way from round-trip time, and recognise light-years as distance."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch10-card-1",
+      "term": "Seeing",
+      "definition": "Seeing ordinary objects requires light from them to enter an eye.",
+      "explanation": "Seeing ordinary objects requires light from them to enter an eye. Looking does not send a seeing beam out of the eye.",
+      "example": "A lamp can illuminate a book whose reflected light reaches your eyes.",
+      "confusion": "Looking does not send a seeing beam out of the eye.",
+      "question": "Explain seeing and distinguish it from a common mistaken idea.",
+      "answer": "Seeing ordinary objects requires light from them to enter an eye. Looking does not send a seeing beam out of the eye.",
+      "teach": "#s10-1",
+      "questionId": "ch10-practice-1-2",
+      "cue": "Looking does not send a seeing beam out of the eye."
+    },
+    {
+      "id": "ch10-card-2",
+      "term": "Shadows",
+      "definition": "A shadow is a region receiving less light because an object blocks some light paths.",
+      "explanation": "A shadow is a region receiving less light because an object blocks some light paths. A shadow is not a substance cast out by an object.",
+      "example": "A broad light source can produce a partial shadow around a darker centre.",
+      "confusion": "A shadow is not a substance cast out by an object.",
+      "question": "Explain shadows and distinguish it from a common mistaken idea.",
+      "answer": "A shadow is a region receiving less light because an object blocks some light paths. A shadow is not a substance cast out by an object.",
+      "teach": "#s10-2",
+      "questionId": "ch10-practice-2-2",
+      "cue": "A shadow is not a substance cast out by an object."
+    },
+    {
+      "id": "ch10-card-3",
+      "term": "Reflection",
+      "definition": "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal.",
+      "explanation": "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal. The normal is perpendicular to the surface, not along it.",
+      "example": "A ray arriving at 30° to a mirror normal leaves at 30° to that normal.",
+      "confusion": "The normal is perpendicular to the surface, not along it.",
+      "question": "Explain reflection and distinguish it from a common mistaken idea.",
+      "answer": "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal. The normal is perpendicular to the surface, not along it.",
+      "teach": "#s10-3",
+      "questionId": "ch10-practice-3-2",
+      "cue": "The normal is perpendicular to the surface, not along it."
+    },
+    {
+      "id": "ch10-card-4",
+      "term": "Refraction",
+      "definition": "Light changes propagation direction at a boundary when its speed changes and incidence is oblique.",
+      "explanation": "Light changes propagation direction at a boundary when its speed changes and incidence is oblique. The change is not because light is attracted towards the normal.",
+      "example": "An oblique ray entering glass from air usually bends towards the normal.",
+      "confusion": "The change is not because light is attracted towards the normal.",
+      "question": "Explain refraction and distinguish it from a common mistaken idea.",
+      "answer": "Light changes propagation direction at a boundary when its speed changes and incidence is oblique. The change is not because light is attracted towards the normal.",
+      "teach": "#s10-4",
+      "questionId": "ch10-practice-4-2",
+      "cue": "The change is not because light is attracted towards the normal."
+    },
+    {
+      "id": "ch10-card-5",
+      "term": "Lenses and eyes",
+      "definition": "A lens refracts light; a converging lens can bring parallel rays towards a focal point.",
+      "explanation": "A lens refracts light; a converging lens can bring parallel rays towards a focal point. An image need not lose its top half when half a lens is covered.",
+      "example": "A camera lens forms a real image on a sensor.",
+      "confusion": "An image need not lose its top half when half a lens is covered.",
+      "question": "Explain lenses and eyes and distinguish it from a common mistaken idea.",
+      "answer": "A lens refracts light; a converging lens can bring parallel rays towards a focal point. An image need not lose its top half when half a lens is covered.",
+      "teach": "#s10-5",
+      "questionId": "ch10-practice-5-2",
+      "cue": "An image need not lose its top half when half a lens is covered."
+    },
+    {
+      "id": "ch10-card-6",
+      "term": "Light travel time",
+      "definition": "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s.",
+      "explanation": "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s. A light-year measures distance, not time.",
+      "example": "A flash takes a measurable time to cross a very large distance.",
+      "confusion": "A light-year measures distance, not time.",
+      "question": "Explain light travel time and distinguish it from a common mistaken idea.",
+      "answer": "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s. A light-year measures distance, not time.",
+      "teach": "#s10-6",
+      "questionId": "ch10-practice-6-2",
+      "cue": "A light-year measures distance, not time."
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact or value directly.",
+      "example": "Name the physical quantity and give its unit when requested."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to the physical mechanism.",
+      "example": "Explain why an ordinary page becomes invisible in a completely dark room even if your eyes are open."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Use the same feature for both cases; include similarities or differences requested.",
+      "example": "Explain why seeing a distant star means seeing its past."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Show the relationship, compatible units, substitution and final result.",
+      "example": "A light ray meets a plane mirror at 27° to its surface. Calculate the reflection angle measured to the normal."
+    },
+    {
+      "word": "Evaluate an investigation",
+      "meaning": "Use the evidence, controls and measurement limits to judge a conclusion.",
+      "example": "A supplied light-distance model gives the travel times below. Describe the relationship and state why tiny room-scale delays are hard to measure using an ordinary stopwatch."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch10-recall",
+      "title": "Seeing · Recall",
+      "stage": "recall",
+      "objectives": [
+        "ch10-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State what is meant by seeing.",
+      "marks": 1,
+      "points": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "model": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Looking does not send a seeing beam out of the eye.",
+      "hints": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "teach": "#s10-1"
+    },
+    {
+      "id": "ch10-worked",
+      "title": "Reflection · Worked example",
+      "stage": "worked",
+      "objectives": [
+        "ch10-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A light ray meets a plane mirror at 27° to its surface. Calculate the reflection angle measured to the normal.",
+      "marks": 2,
+      "points": [
+        "The normal is perpendicular to the mirror: incidence angle = 90° − 27°.",
+        "Reflection angle = incidence angle = 63°."
+      ],
+      "model": [
+        "The normal is perpendicular to the mirror: incidence angle = 90° − 27°.",
+        "Reflection angle = incidence angle = 63°."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The normal is perpendicular to the surface, not along it.",
+      "hints": [
+        "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal."
+      ],
+      "teach": "#s10-3",
+      "numeric": {
+        "value": 63,
+        "unit": "°",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch10-guided",
+      "title": "Light travel time · Complete the method",
+      "stage": "guided",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "calculate",
+      "prompt": "A model light signal crosses 9.0 × 10⁸ m of vacuum. Use c = 3.0 × 10⁸ m/s to calculate the time.",
+      "marks": 2,
+      "points": [
+        "Time = distance/speed.",
+        "t = (9.0 × 10⁸)/(3.0 × 10⁸) = 3.0 s."
+      ],
+      "model": [
+        "Time = distance/speed.",
+        "t = (9.0 × 10⁸)/(3.0 × 10⁸) = 3.0 s."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6",
+      "numeric": {
+        "value": 3,
+        "unit": "s",
+        "tolerance": 0.01
+      },
+      "scaffold": "Choose the relationship, put the values in compatible units, then substitute and state the unit."
+    },
+    {
+      "id": "ch10-practice-1-1",
+      "title": "Seeing · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an ordinary page becomes invisible in a completely dark room even if your eyes are open.",
+      "marks": 2,
+      "points": [
+        "No illuminating light is available to reflect from the page into your eyes.",
+        "Open eyes alone do not supply a beam that makes the page visible."
+      ],
+      "model": [
+        "No illuminating light is available to reflect from the page into your eyes.",
+        "Open eyes alone do not supply a beam that makes the page visible."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Looking does not send a seeing beam out of the eye.",
+      "hints": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "teach": "#s10-1"
+    },
+    {
+      "id": "ch10-practice-1-2",
+      "title": "Seeing · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch10-objective-1"
+      ],
+      "kind": "graph",
+      "prompt": "Draw a ray route showing how a lamp lets a student see a non-luminous ball. State the necessary arrow directions.",
+      "marks": 2,
+      "points": [
+        "Show light travelling from lamp to ball.",
+        "Show reflected light travelling from ball into the eye."
+      ],
+      "model": [
+        "Show light travelling from lamp to ball.",
+        "Show reflected light travelling from ball into the eye."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Looking does not send a seeing beam out of the eye.",
+      "hints": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "teach": "#s10-1"
+    },
+    {
+      "id": "ch10-practice-2-1",
+      "title": "Shadows · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Compare the shadow edges made by a small source and an extended source with the same opaque object.",
+      "marks": 2,
+      "points": [
+        "A small source gives a sharper boundary in the simple ray model.",
+        "An extended source can produce a penumbra because some, but not all, source regions are blocked."
+      ],
+      "model": [
+        "A small source gives a sharper boundary in the simple ray model.",
+        "An extended source can produce a penumbra because some, but not all, source regions are blocked."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A shadow is not a substance cast out by an object.",
+      "hints": [
+        "A shadow is a region receiving less light because an object blocks some light paths."
+      ],
+      "teach": "#s10-2"
+    },
+    {
+      "id": "ch10-practice-2-2",
+      "title": "Shadows · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch10-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why an opaque object blocks a beam instead of letting it bend around as a ray in the straight-line model.",
+      "marks": 2,
+      "points": [
+        "In a uniform medium the ray model represents light travelling in straight lines.",
+        "The object intercepts these paths; diffraction is outside that simple approximation."
+      ],
+      "model": [
+        "In a uniform medium the ray model represents light travelling in straight lines.",
+        "The object intercepts these paths; diffraction is outside that simple approximation."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A shadow is not a substance cast out by an object.",
+      "hints": [
+        "A shadow is a region receiving less light because an object blocks some light paths."
+      ],
+      "teach": "#s10-2"
+    },
+    {
+      "id": "ch10-practice-3-1",
+      "title": "Reflection · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-3"
+      ],
+      "kind": "calculate",
+      "prompt": "A ray is incident at 37° to the normal of a plane mirror. Calculate the angle of reflection.",
+      "marks": 2,
+      "points": [
+        "Use angle of reflection = angle of incidence.",
+        "The angle of reflection is 37° to the normal."
+      ],
+      "model": [
+        "Use angle of reflection = angle of incidence.",
+        "The angle of reflection is 37° to the normal."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The normal is perpendicular to the surface, not along it.",
+      "hints": [
+        "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal."
+      ],
+      "teach": "#s10-3",
+      "numeric": {
+        "value": 37,
+        "unit": "°",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch10-practice-3-2",
+      "title": "Reflection · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch10-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a plane-mirror image is called virtual.",
+      "marks": 2,
+      "points": [
+        "The reflected rays reaching the eye diverge.",
+        "Their backward extensions meet behind the mirror; light does not actually converge there."
+      ],
+      "model": [
+        "The reflected rays reaching the eye diverge.",
+        "Their backward extensions meet behind the mirror; light does not actually converge there."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The normal is perpendicular to the surface, not along it.",
+      "hints": [
+        "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal."
+      ],
+      "teach": "#s10-3"
+    },
+    {
+      "id": "ch10-practice-4-1",
+      "title": "Refraction · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A ray enters glass from air obliquely. Its speed decreases. Describe its bending relative to the normal.",
+      "marks": 2,
+      "points": [
+        "It bends towards the normal.",
+        "The angle to the normal is smaller in the glass."
+      ],
+      "model": [
+        "It bends towards the normal.",
+        "The angle to the normal is smaller in the glass."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The change is not because light is attracted towards the normal.",
+      "hints": [
+        "Light changes propagation direction at a boundary when its speed changes and incidence is oblique."
+      ],
+      "teach": "#s10-4"
+    },
+    {
+      "id": "ch10-practice-4-2",
+      "title": "Refraction · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch10-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a ray entering a new medium along the normal need not change direction although its speed changes.",
+      "marks": 2,
+      "points": [
+        "The ray is perpendicular to the boundary.",
+        "Refraction at normal incidence changes speed without changing the propagation direction."
+      ],
+      "model": [
+        "The ray is perpendicular to the boundary.",
+        "Refraction at normal incidence changes speed without changing the propagation direction."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The change is not because light is attracted towards the normal.",
+      "hints": [
+        "Light changes propagation direction at a boundary when its speed changes and incidence is oblique."
+      ],
+      "teach": "#s10-4"
+    },
+    {
+      "id": "ch10-practice-5-1",
+      "title": "Lenses and eyes · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A converging camera lens is half covered by an opaque card. Describe the main image change in the simple lens model.",
+      "marks": 2,
+      "points": [
+        "The complete image remains.",
+        "It is dimmer because less light reaches it."
+      ],
+      "model": [
+        "The complete image remains.",
+        "It is dimmer because less light reaches it."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "An image need not lose its top half when half a lens is covered.",
+      "hints": [
+        "A lens refracts light; a converging lens can bring parallel rays towards a focal point."
+      ],
+      "teach": "#s10-5"
+    },
+    {
+      "id": "ch10-practice-5-2",
+      "title": "Lenses and eyes · A changed setting",
+      "stage": "transfer",
+      "objectives": [
+        "ch10-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how the eye focuses on a nearby object after viewing a distant object.",
+      "marks": 2,
+      "points": [
+        "The eye changes the shape and optical power of its lens.",
+        "For a nearer object the lens becomes more strongly converging, focusing on the retina."
+      ],
+      "model": [
+        "The eye changes the shape and optical power of its lens.",
+        "For a nearer object the lens becomes more strongly converging, focusing on the retina."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "An image need not lose its top half when half a lens is covered.",
+      "hints": [
+        "A lens refracts light; a converging lens can bring parallel rays towards a focal point."
+      ],
+      "teach": "#s10-5"
+    },
+    {
+      "id": "ch10-practice-6-1",
+      "title": "Light travel time · On your own",
+      "stage": "independent",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "calculate",
+      "prompt": "A model signal travels 6.0 × 10⁸ m through vacuum. Use c = 3.0 × 10⁸ m/s to calculate the travel time.",
+      "marks": 2,
+      "points": [
+        "Use time = distance/speed.",
+        "t = (6.0 × 10⁸)/(3.0 × 10⁸) = 2.0 s."
+      ],
+      "model": [
+        "Use time = distance/speed.",
+        "t = (6.0 × 10⁸)/(3.0 × 10⁸) = 2.0 s."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6",
+      "numeric": {
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "ch10-practice-6-2",
+      "title": "Light travel time · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why seeing a distant star means seeing its past.",
+      "marks": 2,
+      "points": [
+        "Light takes time to travel from the star to us.",
+        "The received light records conditions when it left, not the star’s present state at our location’s time."
+      ],
+      "model": [
+        "Light takes time to travel from the star to us.",
+        "The received light records conditions when it left, not the star’s present state at our location’s time."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6"
+    },
+    {
+      "id": "ch10-paper-a-1",
+      "title": "Seeing · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a wall can be visible to many observers although it does not produce visible light itself.",
+      "marks": 2,
+      "points": [
+        "It reflects or scatters incident light in many directions.",
+        "Some of that light reaches each observer’s eyes."
+      ],
+      "model": [
+        "It reflects or scatters incident light in many directions.",
+        "Some of that light reaches each observer’s eyes."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Looking does not send a seeing beam out of the eye.",
+      "hints": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "teach": "#s10-1"
+    },
+    {
+      "id": "ch10-paper-a-2",
+      "title": "Shadows · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Describe an umbra and a penumbra.",
+      "marks": 2,
+      "points": [
+        "An umbra receives no direct light from the source in the ideal geometric model.",
+        "A penumbra receives direct light from only part of an extended source."
+      ],
+      "model": [
+        "An umbra receives no direct light from the source in the ideal geometric model.",
+        "A penumbra receives direct light from only part of an extended source."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A shadow is not a substance cast out by an object.",
+      "hints": [
+        "A shadow is a region receiving less light because an object blocks some light paths."
+      ],
+      "teach": "#s10-2"
+    },
+    {
+      "id": "ch10-paper-a-3",
+      "title": "Reflection · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "An object is 0.65 m in front of a plane mirror. State the image’s distance behind the mirror and the object-image separation.",
+      "marks": 2,
+      "points": [
+        "The image is 0.65 m behind the mirror.",
+        "The separation is 1.30 m."
+      ],
+      "model": [
+        "The image is 0.65 m behind the mirror.",
+        "The separation is 1.30 m."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The normal is perpendicular to the surface, not along it.",
+      "hints": [
+        "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal."
+      ],
+      "teach": "#s10-3"
+    },
+    {
+      "id": "ch10-paper-a-4",
+      "title": "Refraction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why a submerged object can appear shallower than it really is when viewed from air.",
+      "marks": 2,
+      "points": [
+        "Rays leaving water refract away from the normal.",
+        "Backward straight-line extensions used by the observer locate a virtual image nearer the surface."
+      ],
+      "model": [
+        "Rays leaving water refract away from the normal.",
+        "Backward straight-line extensions used by the observer locate a virtual image nearer the surface."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The change is not because light is attracted towards the normal.",
+      "hints": [
+        "Light changes propagation direction at a boundary when its speed changes and incidence is oblique."
+      ],
+      "teach": "#s10-4"
+    },
+    {
+      "id": "ch10-paper-a-5",
+      "title": "Lenses and eyes · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-5"
+      ],
+      "kind": "graph",
+      "prompt": "Draw a ray diagram for an object beyond twice the focal length of a thin converging lens. State the image properties.",
+      "marks": 3,
+      "points": [
+        "Use a parallel ray refracted through the far focus and a ray through the optical centre.",
+        "They meet on the other side between one and two focal lengths.",
+        "The image is real, inverted and smaller."
+      ],
+      "model": [
+        "Use a parallel ray refracted through the far focus and a ray through the optical centre.",
+        "They meet on the other side between one and two focal lengths.",
+        "The image is real, inverted and smaller."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "An image need not lose its top half when half a lens is covered.",
+      "hints": [
+        "A lens refracts light; a converging lens can bring parallel rays towards a focal point."
+      ],
+      "teach": "#s10-5"
+    },
+    {
+      "id": "ch10-paper-a-6",
+      "title": "Light travel time · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Explain why dividing a round-trip laser distance experiment’s travel time by two can be necessary. Treat this as a description, not an experiment to perform.",
+      "marks": 2,
+      "points": [
+        "The measured interval includes outward and return journeys.",
+        "The one-way distance is c multiplied by half that interval."
+      ],
+      "model": [
+        "The measured interval includes outward and return journeys.",
+        "The one-way distance is c multiplied by half that interval."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6"
+    },
+    {
+      "id": "ch10-paper-b-1",
+      "title": "Seeing · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A student draws an arrow from her eye to a chair to explain ordinary seeing. Correct the ray direction and explain.",
+      "marks": 2,
+      "points": [
+        "The relevant light travels from the illuminated chair to the eye.",
+        "The eye detects incoming light rather than sending out seeing rays."
+      ],
+      "model": [
+        "The relevant light travels from the illuminated chair to the eye.",
+        "The eye detects incoming light rather than sending out seeing rays."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "Looking does not send a seeing beam out of the eye.",
+      "hints": [
+        "Seeing ordinary objects requires light from them to enter an eye."
+      ],
+      "teach": "#s10-1"
+    },
+    {
+      "id": "ch10-paper-b-2",
+      "title": "Shadows · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-2"
+      ],
+      "kind": "investigate",
+      "prompt": "Plan a safe torch-and-card investigation of how object-screen distance changes a shadow.",
+      "marks": 3,
+      "points": [
+        "Keep source and object sizes and source position fixed while changing only object-screen distance.",
+        "Measure the shadow on a screen using low-power ordinary torch light, never a laser or the Sun.",
+        "Repeat distances and keep the alignment the same."
+      ],
+      "model": [
+        "Keep source and object sizes and source position fixed while changing only object-screen distance.",
+        "Measure the shadow on a screen using low-power ordinary torch light, never a laser or the Sun.",
+        "Repeat distances and keep the alignment the same."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A shadow is not a substance cast out by an object.",
+      "hints": [
+        "A shadow is a region receiving less light because an object blocks some light paths."
+      ],
+      "teach": "#s10-2"
+    },
+    {
+      "id": "ch10-paper-b-3",
+      "title": "Reflection · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Describe the construction needed to locate a plane-mirror image using two rays from an object point.",
+      "marks": 2,
+      "points": [
+        "Reflect both rays using equal angles to the normal.",
+        "Extend their reflected paths backwards behind the mirror to their intersection."
+      ],
+      "model": [
+        "Reflect both rays using equal angles to the normal.",
+        "Extend their reflected paths backwards behind the mirror to their intersection."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The normal is perpendicular to the surface, not along it.",
+      "hints": [
+        "At a reflecting surface, the angle of reflection equals the angle of incidence, both measured to the normal."
+      ],
+      "teach": "#s10-3"
+    },
+    {
+      "id": "ch10-paper-b-4",
+      "title": "Refraction · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the two conditions for total internal reflection.",
+      "marks": 2,
+      "points": [
+        "Light travels towards a medium in which its speed would be greater, from higher to lower refractive index.",
+        "Its incidence angle exceeds the critical angle for those two media."
+      ],
+      "model": [
+        "Light travels towards a medium in which its speed would be greater, from higher to lower refractive index.",
+        "Its incidence angle exceeds the critical angle for those two media."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "The change is not because light is attracted towards the normal.",
+      "hints": [
+        "Light changes propagation direction at a boundary when its speed changes and incidence is oblique."
+      ],
+      "teach": "#s10-4"
+    },
+    {
+      "id": "ch10-paper-b-5",
+      "title": "Lenses and eyes · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how a diverging lens helps a short-sighted eye view a distant object.",
+      "marks": 2,
+      "points": [
+        "Without correction the distant image focuses in front of the retina.",
+        "The diverging lens reduces convergence before light enters the eye so the final focus can lie on the retina."
+      ],
+      "model": [
+        "Without correction the distant image focuses in front of the retina.",
+        "The diverging lens reduces convergence before light enters the eye so the final focus can lie on the retina."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "An image need not lose its top half when half a lens is covered.",
+      "hints": [
+        "A lens refracts light; a converging lens can bring parallel rays towards a focal point."
+      ],
+      "teach": "#s10-5"
+    },
+    {
+      "id": "ch10-paper-b-6",
+      "title": "Light travel time · Paper practice",
+      "stage": "paper",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "explain",
+      "prompt": "Distinguish the speed of light from its wavelength, including their units.",
+      "marks": 2,
+      "points": [
+        "Speed is distance travelled per time, measured in m/s.",
+        "Wavelength is the spatial separation of corresponding wave points, measured in m."
+      ],
+      "model": [
+        "Speed is distance travelled per time, measured in m/s.",
+        "Wavelength is the spatial separation of corresponding wave points, measured in m."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6"
+    },
+    {
+      "id": "ch10-data-review",
+      "title": "Light travel time · Revisit the idea",
+      "stage": "review",
+      "objectives": [
+        "ch10-objective-6"
+      ],
+      "kind": "investigate",
+      "prompt": "A supplied light-distance model gives the travel times below. Describe the relationship and state why tiny room-scale delays are hard to measure using an ordinary stopwatch.",
+      "marks": 2,
+      "points": [
+        "Distance is proportional to travel time for constant light speed.",
+        "Room-scale travel times are far shorter than human reaction times and ordinary stopwatch resolution."
+      ],
+      "model": [
+        "Distance is proportional to travel time for constant light speed.",
+        "Room-scale travel times are far shorter than human reaction times and ordinary stopwatch resolution."
+      ],
+      "accepted": [
+        "Accept scientifically equivalent explanations and correctly labelled diagrams. Each listed point is worth one suggested mark; do not require identical wording."
+      ],
+      "common": "A light-year measures distance, not time.",
+      "hints": [
+        "Light travels at a finite speed; in vacuum use c ≈ 3.0 × 10⁸ m/s."
+      ],
+      "teach": "#s10-6",
+      "data": {
+        "headers": [
+          "Vacuum distance (m)",
+          "Time (s)"
+        ],
+        "rows": [
+          [
+            300000000,
+            1
+          ],
+          [
+            600000000,
+            2
+          ],
+          [
+            900000000,
+            3
+          ]
+        ]
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch10-paper-a",
+      "title": "Light and seeing · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch10-paper-a-1",
+        "ch10-paper-a-2",
+        "ch10-paper-a-3",
+        "ch10-paper-a-4",
+        "ch10-paper-a-5",
+        "ch10-paper-a-6"
+      ]
+    },
+    {
+      "id": "ch10-paper-b",
+      "title": "Light and seeing · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch10-paper-b-1",
+        "ch10-paper-b-2",
+        "ch10-paper-b-3",
+        "ch10-paper-b-4",
+        "ch10-paper-b-5",
+        "ch10-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 10: Light and seeing",
+      "url": "#ch10"
+    },
+    {
+      "title": "Chapter grounding source 1",
+      "url": "https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/"
+    },
+    {
+      "title": "Chapter grounding source 2",
+      "url": "https://openstax.org/books/college-physics-2e/pages/26-1-physics-of-the-eye"
+    },
+    {
+      "title": "Chapter grounding source 3",
+      "url": "https://openstax.org/books/college-physics-2e/pages/25-2-the-law-of-reflection"
+    },
+    {
+      "title": "Chapter grounding source 4",
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-ii-electromagnetic-waves/lecture-16/"
+    },
+    {
+      "title": "Chapter grounding source 5",
+      "url": "https://openstax.org/books/college-physics-2e/pages/25-1-the-ray-aspect-of-light"
+    }
+  ]
+}

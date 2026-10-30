@@ -1,0 +1,1144 @@
+{
+  "version": 1,
+  "chapter": 0,
+  "key": "chapter-00",
+  "title": "The physicist's way of seeing",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch00-objective-1",
+      "label": "Explain and use scientific model.",
+      "teach": "#s0-1",
+      "note": "A simplified representation that explains observations and makes testable predictions."
+    },
+    {
+      "id": "ch00-objective-2",
+      "label": "Explain and use measurement resolution.",
+      "teach": "#s0-2",
+      "note": "The smallest change a measuring instrument can distinguish."
+    },
+    {
+      "id": "ch00-objective-3",
+      "label": "Explain and use precision and accuracy.",
+      "teach": "#s0-2",
+      "note": "Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value."
+    },
+    {
+      "id": "ch00-objective-4",
+      "label": "Convert units, use standard form and compare powers of ten.",
+      "teach": "#s0-3",
+      "note": "Choose compatible units; write a × 10ⁿ with 1 ≤ a < 10 and use powers of ten to compare scale."
+    },
+    {
+      "id": "ch00-objective-5",
+      "label": "Explain and use estimation.",
+      "teach": "#s0-4",
+      "note": "An approximate calculation based on stated, reasonable inputs."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch00-card-1",
+      "term": "Scientific model",
+      "definition": "A simplified representation that explains observations and makes testable predictions.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Two explanations both fit yesterday’s observations. How could you decide which is more useful? Find a new situation in which the explanations predict different results. Test it and compare the observations with each prediction.",
+      "confusion": "A model is not established merely because an explanation sounds convincing.",
+      "question": "Explain scientific model from memory. What common mistake must you avoid?",
+      "answer": "A simplified representation that explains observations and makes testable predictions. A model is not established merely because an explanation sounds convincing.",
+      "teach": "#s0-1",
+      "questionId": "ch00-o1-q1"
+    },
+    {
+      "id": "ch00-card-2",
+      "term": "Measurement resolution",
+      "definition": "The smallest change a measuring instrument can distinguish.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A balance displays mass in steps of 1 g. Can it directly distinguish masses of 8.2 g and 8.3 g? Explain. No: the difference is 0.1 g. That difference is smaller than the 1 g display step.",
+      "confusion": "Resolution is different from closeness to the true value.",
+      "question": "Explain measurement resolution from memory. What common mistake must you avoid?",
+      "answer": "The smallest change a measuring instrument can distinguish. Resolution is different from closeness to the true value.",
+      "teach": "#s0-2",
+      "questionId": "ch00-o2-q1"
+    },
+    {
+      "id": "ch00-card-3",
+      "term": "Precision and accuracy",
+      "definition": "Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A stopwatch gives 2.1 s, 2.5 s and 2.2 s for repeated journeys. State one way to improve the estimate and one limitation of that improvement. Repeat and calculate a mean, investigating any unusual result. A mean reduces the influence of random variation but cannot by itself remove a systematic error.",
+      "confusion": "Repeated identical values can all share a systematic error.",
+      "question": "Explain precision and accuracy from memory. What common mistake must you avoid?",
+      "answer": "Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value. Repeated identical values can all share a systematic error.",
+      "teach": "#s0-2",
+      "questionId": "ch00-o3-q1"
+    },
+    {
+      "id": "ch00-card-4",
+      "term": "Unit conversion",
+      "definition": "The same physical quantity can be expressed in different units using the defined conversion factor.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A survey records a model track length as 1850 m. Express this length in kilometres and explain whether its physical length changes. 1 km = 1000 m, so divide the metre value by 1000. 1850 ÷ 1000 = 1.85 km. Changing the unit changes the numerical value, not the physical length.",
+      "confusion": "Changing the unit does not change the physical size of the quantity.",
+      "question": "Explain unit conversion from memory. What common mistake must you avoid?",
+      "answer": "The same physical quantity can be expressed in different units using the defined conversion factor. Changing the unit does not change the physical size of the quantity.",
+      "teach": "#s0-3",
+      "questionId": "ch00-o4-q1",
+      "formula": "metres = kilometres × 1000",
+      "unit": "m"
+    },
+    {
+      "id": "ch00-card-5",
+      "term": "Estimation",
+      "definition": "An approximate calculation based on stated, reasonable inputs.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A camp estimates it needs 19200 L of water for 240 people each day. What daily allowance per person does this estimate assume? Give one reason the real demand may differ. Assumed allowance = total volume ÷ number of people. 19200 ÷ 240 = 80 L per person per day. Actual use may differ with weather, activities or individual needs.",
+      "confusion": "An estimate does not justify more significant figures than its weakest inputs.",
+      "question": "Explain estimation from memory. What common mistake must you avoid?",
+      "answer": "An approximate calculation based on stated, reasonable inputs. An estimate does not justify more significant figures than its weakest inputs.",
+      "teach": "#s0-4",
+      "questionId": "ch00-o5-q1",
+      "formula": "total = number × estimated quantity per item",
+      "unit": "L in these examples"
+    },
+    {
+      "id": "ch00-card-6",
+      "term": "Standard form",
+      "definition": "Standard form writes a number as a × 10ⁿ, with 1 ≤ a < 10 and integer n.",
+      "explanation": "Standard form writes a number as a × 10ⁿ, with 1 ≤ a < 10 and integer n.",
+      "example": "0.0076 m = 7.6 × 10⁻³ m.",
+      "confusion": "A negative exponent means a small positive number, not a negative length.",
+      "question": "Explain standard form from memory and give its important distinction.",
+      "answer": "Standard form writes a number as a × 10ⁿ, with 1 ≤ a < 10 and integer n. A negative exponent means a small positive number, not a negative length.",
+      "teach": "#s0-3",
+      "questionId": "ch00-standard-form"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of scientific model."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "Two explanations both fit yesterday’s observations. How could you decide which is more useful?"
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "Convert 2.4 km to metres."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the estimation revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch00-o1-q1",
+      "title": "A student proposes that shadows depend on the position of a light source",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A student proposes that shadows depend on the position of a light source. Describe one test that could support this model.",
+      "marks": 2,
+      "points": [
+        "Keep the object and screen fixed and change the lamp position.",
+        "Compare the predicted shadow position with the observed position."
+      ],
+      "model": [
+        "Keep the object and screen fixed and change the lamp position.",
+        "Compare the predicted shadow position with the observed position."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A model is not established merely because an explanation sounds convincing.",
+      "hints": [
+        "Begin with the meaning of scientific model: A simplified representation that explains observations and makes testable predictions."
+      ],
+      "teach": "#s0-1"
+    },
+    {
+      "id": "ch00-o1-q2",
+      "title": "Two explanations both fit yesterday’s observations",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "Two explanations both fit yesterday’s observations. How could you decide which is more useful?",
+      "marks": 2,
+      "points": [
+        "Find a new situation in which the explanations predict different results.",
+        "Test it and compare the observations with each prediction."
+      ],
+      "model": [
+        "Find a new situation in which the explanations predict different results.",
+        "Test it and compare the observations with each prediction."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A model is not established merely because an explanation sounds convincing.",
+      "hints": [
+        "Begin with the meaning of scientific model: A simplified representation that explains observations and makes testable predictions."
+      ],
+      "teach": "#s0-1"
+    },
+    {
+      "id": "ch00-o1-q3",
+      "title": "A drawing represents Earth as a smooth sphere",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A drawing represents Earth as a smooth sphere. Give one useful purpose and one limitation.",
+      "marks": 2,
+      "points": [
+        "It can help calculate approximate circumference or explain the curved shadow in an eclipse.",
+        "It omits mountains and local departures from a perfect sphere."
+      ],
+      "model": [
+        "It can help calculate approximate circumference or explain the curved shadow in an eclipse.",
+        "It omits mountains and local departures from a perfect sphere."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A model is not established merely because an explanation sounds convincing.",
+      "hints": [],
+      "teach": "#s0-1"
+    },
+    {
+      "id": "ch00-o1-q4",
+      "title": "A pupil says a famous scientist’s explanation must be correct",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil says a famous scientist’s explanation must be correct. Explain how scientific ideas should instead be judged.",
+      "marks": 2,
+      "points": [
+        "Compare the explanation’s predictions with repeatable observations or measurements.",
+        "Authority alone is not experimental evidence."
+      ],
+      "model": [
+        "Compare the explanation’s predictions with repeatable observations or measurements.",
+        "Authority alone is not experimental evidence."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A model is not established merely because an explanation sounds convincing.",
+      "hints": [],
+      "teach": "#s0-1"
+    },
+    {
+      "id": "ch00-o1-recall",
+      "title": "State the meaning of scientific model and explain one distinction that prevents a common misundersta",
+      "stage": "recall",
+      "objectives": [
+        "ch00-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of scientific model and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A simplified representation that explains observations and makes testable predictions.",
+        "A model is not established merely because an explanation sounds convincing."
+      ],
+      "model": [
+        "A simplified representation that explains observations and makes testable predictions.",
+        "A model is not established merely because an explanation sounds convincing."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A model is not established merely because an explanation sounds convincing.",
+      "hints": [
+        "Begin with the meaning of scientific model: A simplified representation that explains observations and makes testable predictions."
+      ],
+      "teach": "#s0-1"
+    },
+    {
+      "id": "ch00-o2-q1",
+      "title": "A ruler has millimetre divisions",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A ruler has millimetre divisions. Explain why measuring one sheet of paper directly is difficult. Suggest a better method.",
+      "marks": 2,
+      "points": [
+        "A sheet is thinner than one ruler division.",
+        "Measure a stack of a known number of sheets and divide its thickness by the number."
+      ],
+      "model": [
+        "A sheet is thinner than one ruler division.",
+        "Measure a stack of a known number of sheets and divide its thickness by the number."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [
+        "Begin with the meaning of measurement resolution: The smallest change a measuring instrument can distinguish."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o2-q2",
+      "title": "A balance displays mass in steps of 1 g",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A balance displays mass in steps of 1 g. Can it directly distinguish masses of 8.2 g and 8.3 g? Explain.",
+      "marks": 2,
+      "points": [
+        "No: the difference is 0.1 g.",
+        "That difference is smaller than the 1 g display step."
+      ],
+      "model": [
+        "No: the difference is 0.1 g.",
+        "That difference is smaller than the 1 g display step."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [
+        "Begin with the meaning of measurement resolution: The smallest change a measuring instrument can distinguish."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o2-q3",
+      "title": "A student measures a pencil with her eye well to one side of a ruler mark",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A student measures a pencil with her eye well to one side of a ruler mark. Suggest a better reading method and say why.",
+      "marks": 2,
+      "points": [
+        "Place the eye directly above the relevant scale mark.",
+        "This reduces parallax error caused by viewing from an angle."
+      ],
+      "model": [
+        "Place the eye directly above the relevant scale mark.",
+        "This reduces parallax error caused by viewing from an angle."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o2-q4",
+      "title": "You need the thickness of a coin",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "You need the thickness of a coin. Explain why measuring a stack of 15 identical coins can help.",
+      "marks": 2,
+      "points": [
+        "The stack has a thickness large enough to read more clearly on a ruler.",
+        "Divide the measured stack thickness by 15; ensure the coins lie flat without gaps."
+      ],
+      "model": [
+        "The stack has a thickness large enough to read more clearly on a ruler.",
+        "Divide the measured stack thickness by 15; ensure the coins lie flat without gaps."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o2-recall",
+      "title": "State the meaning of measurement resolution and explain one distinction that prevents a common misun",
+      "stage": "recall",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of measurement resolution and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "The smallest change a measuring instrument can distinguish.",
+        "Resolution is different from closeness to the true value."
+      ],
+      "model": [
+        "The smallest change a measuring instrument can distinguish.",
+        "Resolution is different from closeness to the true value."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [
+        "Begin with the meaning of measurement resolution: The smallest change a measuring instrument can distinguish."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o3-q1",
+      "title": "An empty scale reads 6 g",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "An empty scale reads 6 g. A pupil obtains very similar readings for the same mass. Explain why these readings can be precise but inaccurate.",
+      "marks": 2,
+      "points": [
+        "The repeated readings agree closely, so they are precise.",
+        "The nonzero reading when empty indicates a zero error that can shift all readings."
+      ],
+      "model": [
+        "The repeated readings agree closely, so they are precise.",
+        "The nonzero reading when empty indicates a zero error that can shift all readings."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [
+        "Begin with the meaning of precision and accuracy: Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o3-q2",
+      "title": "A stopwatch gives 2",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A stopwatch gives 2.1 s, 2.5 s and 2.2 s for repeated journeys. State one way to improve the estimate and one limitation of that improvement.",
+      "marks": 2,
+      "points": [
+        "Repeat and calculate a mean, investigating any unusual result.",
+        "A mean reduces the influence of random variation but cannot by itself remove a systematic error."
+      ],
+      "model": [
+        "Repeat and calculate a mean, investigating any unusual result.",
+        "A mean reduces the influence of random variation but cannot by itself remove a systematic error."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [
+        "Begin with the meaning of precision and accuracy: Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o3-q3",
+      "title": "A thermometer is checked in a reliable reference condition and reads 3 °C too high",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A thermometer is checked in a reliable reference condition and reads 3 °C too high. Will repeating a measurement remove this offset? Explain.",
+      "marks": 2,
+      "points": [
+        "No: a repeated systematic offset remains in repeated readings.",
+        "Correct or calibrate the instrument using the reference."
+      ],
+      "model": [
+        "No: a repeated systematic offset remains in repeated readings.",
+        "Correct or calibrate the instrument using the reference."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o3-q4",
+      "title": "A student writes that more decimal places always make a measurement accurate",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A student writes that more decimal places always make a measurement accurate. Explain why this is wrong.",
+      "marks": 2,
+      "points": [
+        "Extra written digits do not improve the instrument or measurement method.",
+        "Accuracy must be judged against a trustworthy reference; only justified precision should be reported."
+      ],
+      "model": [
+        "Extra written digits do not improve the instrument or measurement method.",
+        "Accuracy must be judged against a trustworthy reference; only justified precision should be reported."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o3-recall",
+      "title": "State the meaning of precision and accuracy and explain one distinction that prevents a common misun",
+      "stage": "recall",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of precision and accuracy and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value.",
+        "Repeated identical values can all share a systematic error."
+      ],
+      "model": [
+        "Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value.",
+        "Repeated identical values can all share a systematic error."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [
+        "Begin with the meaning of precision and accuracy: Precision concerns agreement among repeated readings; accuracy concerns agreement with the true value."
+      ],
+      "teach": "#s0-2"
+    },
+    {
+      "id": "ch00-o4-q1",
+      "title": "Convert 2",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Convert 2.4 km to metres.",
+      "marks": 3,
+      "points": [
+        "1 km = 1000 m.",
+        "Correct substitution: 2.4 × 1000.",
+        "The answer is 2400 m."
+      ],
+      "model": [
+        "1 km = 1000 m.",
+        "2.4 × 1000 = 2400 m.",
+        "The answer is 2400 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Changing the unit does not change the physical size of the quantity.",
+      "hints": [
+        "Begin with the meaning of unit conversion: The same physical quantity can be expressed in different units using the defined conversion factor."
+      ],
+      "teach": "#s0-3",
+      "numeric": {
+        "value": 2400.0,
+        "unit": "m",
+        "tolerance": 0.24000000000000002
+      }
+    },
+    {
+      "id": "ch00-o4-q2",
+      "title": "A different setting: Unit conversion",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A survey records a model track length as 1850 m. Express this length in kilometres and explain whether its physical length changes.",
+      "marks": 3,
+      "points": [
+        "1 km = 1000 m, so divide the metre value by 1000.",
+        "1850 ÷ 1000 = 1.85 km.",
+        "Changing the unit changes the numerical value, not the physical length."
+      ],
+      "model": [
+        "1 km = 1000 m, so divide the metre value by 1000.",
+        "1850 ÷ 1000 = 1.85 km.",
+        "Changing the unit changes the numerical value, not the physical length."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Changing the unit does not change the physical size of the quantity.",
+      "hints": [
+        "Begin with the meaning of unit conversion: The same physical quantity can be expressed in different units using the defined conversion factor."
+      ],
+      "teach": "#s0-3"
+    },
+    {
+      "id": "ch00-o4-q3",
+      "title": "Convert 3",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Convert 3.7 km to metres.",
+      "marks": 3,
+      "points": [
+        "1 km = 1000 m.",
+        "Correct substitution: 3.7 × 1000.",
+        "The answer is 3700 m."
+      ],
+      "model": [
+        "1 km = 1000 m.",
+        "3.7 × 1000 = 3700 m.",
+        "The answer is 3700 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Changing the unit does not change the physical size of the quantity.",
+      "hints": [],
+      "teach": "#s0-3",
+      "numeric": {
+        "value": 3700.0,
+        "unit": "m",
+        "tolerance": 0.37
+      }
+    },
+    {
+      "id": "ch00-o4-q4",
+      "title": "Convert 0",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Convert 0.085 km to metres.",
+      "marks": 3,
+      "points": [
+        "1 km = 1000 m.",
+        "Correct substitution: 0.085 × 1000.",
+        "The answer is 85 m."
+      ],
+      "model": [
+        "1 km = 1000 m.",
+        "0.085 × 1000 = 85 m.",
+        "The answer is 85 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Changing the unit does not change the physical size of the quantity.",
+      "hints": [],
+      "teach": "#s0-3",
+      "numeric": {
+        "value": 85.0,
+        "unit": "m",
+        "tolerance": 0.0085
+      }
+    },
+    {
+      "id": "ch00-o4-recall",
+      "title": "State the meaning of unit conversion and explain one distinction that prevents a common misunderstan",
+      "stage": "recall",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of unit conversion and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "The same physical quantity can be expressed in different units using the defined conversion factor.",
+        "Changing the unit does not change the physical size of the quantity."
+      ],
+      "model": [
+        "The same physical quantity can be expressed in different units using the defined conversion factor.",
+        "Changing the unit does not change the physical size of the quantity."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Changing the unit does not change the physical size of the quantity.",
+      "hints": [
+        "Begin with the meaning of unit conversion: The same physical quantity can be expressed in different units using the defined conversion factor."
+      ],
+      "teach": "#s0-3"
+    },
+    {
+      "id": "ch00-o5-q1",
+      "title": "For an estimate, assume 120 people each use 80 L of water per day",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "For an estimate, assume 120 people each use 80 L of water per day. Estimate the total daily volume in litres.",
+      "marks": 3,
+      "points": [
+        "Total volume = number of people × volume per person.",
+        "Correct substitution: 120 × 80.",
+        "The answer is 9600 L."
+      ],
+      "model": [
+        "Total volume = number of people × volume per person.",
+        "120 × 80 = 9600 L. State the assumed use per person.",
+        "The answer is 9600 L."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [
+        "Begin with the meaning of estimation: An approximate calculation based on stated, reasonable inputs."
+      ],
+      "teach": "#s0-4",
+      "numeric": {
+        "value": 9600,
+        "unit": "L",
+        "tolerance": 0.9600000000000001
+      }
+    },
+    {
+      "id": "ch00-o5-q2",
+      "title": "A different setting: Estimation",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A camp estimates it needs 19200 L of water for 240 people each day. What daily allowance per person does this estimate assume? Give one reason the real demand may differ.",
+      "marks": 3,
+      "points": [
+        "Assumed allowance = total volume ÷ number of people.",
+        "19200 ÷ 240 = 80 L per person per day.",
+        "Actual use may differ with weather, activities or individual needs."
+      ],
+      "model": [
+        "Assumed allowance = total volume ÷ number of people.",
+        "19200 ÷ 240 = 80 L per person per day.",
+        "Actual use may differ with weather, activities or individual needs."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [
+        "Begin with the meaning of estimation: An approximate calculation based on stated, reasonable inputs."
+      ],
+      "teach": "#s0-4"
+    },
+    {
+      "id": "ch00-o5-q3",
+      "title": "For an estimate, assume 400 people each use 90 L of water per day",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "For an estimate, assume 400 people each use 90 L of water per day. Estimate the total daily volume in litres.",
+      "marks": 3,
+      "points": [
+        "Total volume = number of people × volume per person.",
+        "Correct substitution: 400 × 90.",
+        "The answer is 36000 L."
+      ],
+      "model": [
+        "Total volume = number of people × volume per person.",
+        "400 × 90 = 36000 L. State the assumed use per person.",
+        "The answer is 36000 L."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [],
+      "teach": "#s0-4",
+      "numeric": {
+        "value": 36000,
+        "unit": "L",
+        "tolerance": 3.6
+      }
+    },
+    {
+      "id": "ch00-o5-q4",
+      "title": "For an estimate, assume 350 people each use 40 L of water per day",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "calculate",
+      "prompt": "For an estimate, assume 350 people each use 40 L of water per day. Estimate the total daily volume in litres.",
+      "marks": 3,
+      "points": [
+        "Total volume = number of people × volume per person.",
+        "Correct substitution: 350 × 40.",
+        "The answer is 14000 L."
+      ],
+      "model": [
+        "Total volume = number of people × volume per person.",
+        "350 × 40 = 14000 L. State the assumed use per person.",
+        "The answer is 14000 L."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [],
+      "teach": "#s0-4",
+      "numeric": {
+        "value": 14000,
+        "unit": "L",
+        "tolerance": 1.4000000000000001
+      }
+    },
+    {
+      "id": "ch00-o5-recall",
+      "title": "State the meaning of estimation and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of estimation and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "An approximate calculation based on stated, reasonable inputs.",
+        "An estimate does not justify more significant figures than its weakest inputs."
+      ],
+      "model": [
+        "An approximate calculation based on stated, reasonable inputs.",
+        "An estimate does not justify more significant figures than its weakest inputs."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [
+        "Begin with the meaning of estimation: An approximate calculation based on stated, reasonable inputs."
+      ],
+      "teach": "#s0-4"
+    },
+    {
+      "id": "ch00-mixed-1",
+      "title": "A student measures a model rod three times",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "investigate",
+      "prompt": "A student measures a model rod three times. Calculate the mean length and explain whether repeating alone removes a ruler zero error.",
+      "marks": 2,
+      "points": [
+        "Mean = (12.1 + 12.2 + 12.3) ÷ 3 = 12.2 cm.",
+        "Repeating alone does not remove a systematic zero error."
+      ],
+      "model": [
+        "Mean = (12.1 + 12.2 + 12.3) ÷ 3 = 12.2 cm.",
+        "Repeating alone does not remove a systematic zero error."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Repeated identical values can all share a systematic error.",
+      "hints": [],
+      "teach": "#s0-2",
+      "data": {
+        "headers": [
+          "Reading",
+          "Length (cm)"
+        ],
+        "rows": [
+          [
+            1,
+            12.1
+          ],
+          [
+            2,
+            12.2
+          ],
+          [
+            3,
+            12.3
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch00-mixed-2",
+      "title": "Estimate a building’s height assuming 18 storeys, each about 2",
+      "stage": "paper",
+      "objectives": [
+        "ch00-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Estimate a building’s height assuming 18 storeys, each about 2.8 m high. State the limit of your answer’s precision.",
+      "marks": 2,
+      "points": [
+        "18 × 2.8 = 50.4 m, so about 50 m.",
+        "The assumed typical storey height limits the precision; 50.400 m is unjustified."
+      ],
+      "model": [
+        "18 × 2.8 = 50.4 m, so about 50 m.",
+        "The assumed typical storey height limits the precision; 50.400 m is unjustified."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "An estimate does not justify more significant figures than its weakest inputs.",
+      "hints": [],
+      "teach": "#s0-4"
+    },
+    {
+      "id": "ch00-worked-explanation",
+      "title": "Worked example: Measurement resolution",
+      "stage": "worked",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "A stack of 24 identical sheets is 6.0 mm thick. Calculate the mean thickness of one sheet.",
+      "marks": 3,
+      "points": [
+        "Mean thickness = stack thickness ÷ number of sheets.",
+        "Correct substitution: 6.0 ÷ 24.",
+        "The answer is 0.25 mm."
+      ],
+      "model": [
+        "Mean thickness = stack thickness ÷ number of sheets.",
+        "6.0 ÷ 24 = 0.25 mm.",
+        "The answer is 0.25 mm."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s0-2",
+      "numeric": {
+        "value": 0.25,
+        "unit": "mm",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch00-guided-explanation",
+      "title": "Guided practice: Measurement resolution",
+      "stage": "guided",
+      "objectives": [
+        "ch00-objective-2"
+      ],
+      "kind": "calculate",
+      "prompt": "Twenty complete oscillations take 36 s. Calculate the mean time for one complete oscillation.",
+      "marks": 3,
+      "points": [
+        "Mean time per oscillation = total time ÷ number of complete oscillations.",
+        "Correct substitution: 36 ÷ 20.",
+        "The answer is 1.8 s."
+      ],
+      "model": [
+        "Mean time per oscillation = total time ÷ number of complete oscillations.",
+        "36 ÷ 20 = 1.8 s.",
+        "The answer is 1.8 s."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Resolution is different from closeness to the true value.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s0-2",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step.",
+      "numeric": {
+        "value": 1.8,
+        "unit": "s",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch00-standard-form",
+      "title": "Very large and very small",
+      "stage": "independent",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "Write 3500000 m and 0.00042 m in standard form.",
+      "marks": 2,
+      "points": [
+        "3500000 m = 3.5 × 10⁶ m.",
+        "0.00042 m = 4.2 × 10⁻⁴ m."
+      ],
+      "model": [
+        "3500000 m = 3.5 × 10⁶ m.",
+        "0.00042 m = 4.2 × 10⁻⁴ m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s0-3"
+    },
+    {
+      "id": "ch00-scale-ratio",
+      "title": "Comparing two scales",
+      "stage": "transfer",
+      "objectives": [
+        "ch00-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "A model object is 8 × 10⁻³ m long and another is 2 × 10⁻⁵ m long. Calculate how many times longer the first is, showing how the powers of ten enter.",
+      "marks": 2,
+      "points": [
+        "Ratio = (8/2) × 10⁻³⁻⁽⁻⁵⁾ = 4 × 10².",
+        "The first is 400 times longer."
+      ],
+      "model": [
+        "Ratio = (8/2) × 10⁻³⁻⁽⁻⁵⁾ = 4 × 10².",
+        "The first is 400 times longer."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s0-3"
+    },
+    {
+      "id": "ch00-delayed-cumulative",
+      "title": "Return after a delay",
+      "stage": "review",
+      "objectives": [
+        "ch00-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A ruler gives almost identical readings for a rod but reads 2 mm when its zero is checked. Explain how the readings can be precise and why averaging them does not settle accuracy.",
+      "marks": 3,
+      "points": [
+        "The readings agree closely, so repeatability/precision can be good.",
+        "The zero offset is systematic and affects all the readings.",
+        "Check or correct against a reliable reference; averaging alone does not remove the offset."
+      ],
+      "model": [
+        "The readings agree closely, so repeatability/precision can be good.",
+        "The zero offset is systematic and affects all the readings.",
+        "Check or correct against a reliable reference; averaging alone does not remove the offset."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s0-2"
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch00-paper-a",
+      "title": "The physicist's way of seeing · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch00-o1-q3",
+        "ch00-o2-q3",
+        "ch00-o3-q3",
+        "ch00-o4-q3",
+        "ch00-o5-q3",
+        "ch00-mixed-1"
+      ]
+    },
+    {
+      "id": "ch00-paper-b",
+      "title": "The physicist's way of seeing · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch00-o1-q4",
+        "ch00-o2-q4",
+        "ch00-o3-q4",
+        "ch00-o4-q4",
+        "ch00-o5-q4",
+        "ch00-mixed-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 0: The physicist's way of seeing",
+      "url": "#ch0"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter1.pdf"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://openstax.org/books/physics/pages/1-2-the-scientific-methods"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://openstax.org/books/college-physics-2e/pages/1-1-physics-an-introduction"
+    }
+  ]
+}

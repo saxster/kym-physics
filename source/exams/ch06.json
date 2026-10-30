@@ -1,0 +1,1082 @@
+{
+  "version": 1,
+  "chapter": 6,
+  "key": "chapter-06",
+  "title": "Pressure, floating and the ocean of air",
+  "scope": "Choose the objectives in your school’s topic list. These are original practice questions with illustrative values, not a claim of an official school paper format.",
+  "objectives": [
+    {
+      "id": "ch06-objective-1",
+      "label": "Explain and use pressure.",
+      "teach": "#s6-1",
+      "note": "Pressure is normal force per unit area."
+    },
+    {
+      "id": "ch06-objective-2",
+      "label": "Explain and use atmospheric pressure.",
+      "teach": "#s6-2",
+      "note": "Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere."
+    },
+    {
+      "id": "ch06-objective-3",
+      "label": "Explain and use pressure difference.",
+      "teach": "#s6-3",
+      "note": "A difference in pressure can produce a net force and drive fluid motion."
+    },
+    {
+      "id": "ch06-objective-4",
+      "label": "Explain and use hydrostatic pressure change.",
+      "teach": "#s6-4",
+      "note": "In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change."
+    },
+    {
+      "id": "ch06-objective-5",
+      "label": "Explain and use density and floating.",
+      "teach": "#s6-5",
+      "note": "Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ch06-card-1",
+      "term": "Pressure",
+      "definition": "Pressure is normal force per unit area.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A model support must limit pressure to 2400 Pa while supporting a uniform normal force of 96 N. Calculate the minimum contact area. Area = normal force ÷ pressure. 96 ÷ 2400 = 0.040 m²; a smaller area would exceed the pressure limit.",
+      "confusion": "A larger total force need not mean a larger pressure if the area also changes.",
+      "question": "Explain pressure from memory. What common mistake must you avoid?",
+      "answer": "Pressure is normal force per unit area. A larger total force need not mean a larger pressure if the area also changes.",
+      "teach": "#s6-1",
+      "questionId": "ch06-o1-q1",
+      "formula": "p = F/A",
+      "unit": "Pa"
+    },
+    {
+      "id": "ch06-card-2",
+      "term": "Atmospheric pressure",
+      "definition": "Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Why does atmospheric pressure usually decrease as you climb a mountain? There is less atmosphere above you. The smaller weight of overlying air requires a smaller pressure to support it.",
+      "confusion": "Air can exert a force even when it is invisible or apparently still.",
+      "question": "Explain atmospheric pressure from memory. What common mistake must you avoid?",
+      "answer": "Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere. Air can exert a force even when it is invisible or apparently still.",
+      "teach": "#s6-2",
+      "questionId": "ch06-o2-q1"
+    },
+    {
+      "id": "ch06-card-3",
+      "term": "Pressure difference",
+      "definition": "A difference in pressure can produce a net force and drive fluid motion.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A suction cup sticks to a smooth tile when its internal pressure is reduced. What supplies the net holding force? The greater outside air pressure pushes the cup towards the tile. The smaller internal pressure provides a smaller opposing force.",
+      "confusion": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "question": "Explain pressure difference from memory. What common mistake must you avoid?",
+      "answer": "A difference in pressure can produce a net force and drive fluid motion. “Suction” does not mean an empty space pulls fluid towards itself.",
+      "teach": "#s6-3",
+      "questionId": "ch06-o3-q1"
+    },
+    {
+      "id": "ch06-card-4",
+      "term": "Hydrostatic pressure change",
+      "definition": "In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "Pressure increases by 7200 Pa between two points in still fresh water. Use density 1000 kg/m³ and g = 10 N/kg. Calculate their vertical depth difference. Depth difference = pressure increase ÷ (density × g). 7200 ÷ (1000 × 10) = 0.72 m.",
+      "confusion": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "question": "Explain hydrostatic pressure change from memory. What common mistake must you avoid?",
+      "answer": "In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change. Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "teach": "#s6-4",
+      "questionId": "ch06-o4-q1",
+      "formula": "Δp = ρgΔh",
+      "unit": "Pa"
+    },
+    {
+      "id": "ch06-card-5",
+      "term": "Density and floating",
+      "definition": "Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight.",
+      "explanation": "Use the relationship in the stated conditions and name the objects or system being considered.",
+      "example": "A sealed floating block is moved from fresh water to denser salt water. Will it float higher or lower? Explain. It floats higher. A smaller displaced volume of the denser fluid has the same weight needed to balance the block’s weight.",
+      "confusion": "The material alone does not determine an object’s average density when it contains air.",
+      "question": "Explain density and floating from memory. What common mistake must you avoid?",
+      "answer": "Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight. The material alone does not determine an object’s average density when it contains air.",
+      "teach": "#s6-5",
+      "questionId": "ch06-o5-q1"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State a precise meaning of pressure."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "Describe the pattern in the supplied data before proposing a cause."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "A uniform normal force of 95 N acts over 0.019 m². Calculate the pressure."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "A uniform normal force of 72 N acts over 0.024 m². Calculate the pressure."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Use the distinction in the density and floating revision card to compare both cases."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Propose a change of method that addresses the specific source of uncertainty, and say how it helps."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Name the objects and label each relevant direction or axis; add units to plotted quantities."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "Use the units, a rough estimate and the stated assumptions to check whether the answer is sensible."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ch06-o1-q1",
+      "title": "A uniform normal force of 72 N acts over 0",
+      "stage": "independent",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A uniform normal force of 72 N acts over 0.024 m². Calculate the pressure.",
+      "marks": 3,
+      "points": [
+        "Pressure = normal force ÷ area.",
+        "Correct substitution: 72 ÷ 0.024.",
+        "The answer is 3000 Pa."
+      ],
+      "model": [
+        "Pressure = normal force ÷ area.",
+        "72 ÷ 0.024 = 3000 Pa.",
+        "The answer is 3000 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [
+        "Begin with the meaning of pressure: Pressure is normal force per unit area."
+      ],
+      "teach": "#s6-1",
+      "numeric": {
+        "value": 3000.0,
+        "unit": "Pa",
+        "tolerance": 0.3
+      }
+    },
+    {
+      "id": "ch06-o1-q2",
+      "title": "A different setting: Pressure",
+      "stage": "transfer",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A model support must limit pressure to 2400 Pa while supporting a uniform normal force of 96 N. Calculate the minimum contact area.",
+      "marks": 2,
+      "points": [
+        "Area = normal force ÷ pressure.",
+        "96 ÷ 2400 = 0.040 m²; a smaller area would exceed the pressure limit."
+      ],
+      "model": [
+        "Area = normal force ÷ pressure.",
+        "96 ÷ 2400 = 0.040 m²; a smaller area would exceed the pressure limit."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [
+        "Begin with the meaning of pressure: Pressure is normal force per unit area."
+      ],
+      "teach": "#s6-1",
+      "numeric": {
+        "value": 0.04,
+        "unit": "m²",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch06-o1-q3",
+      "title": "A uniform normal force of 108 N acts over 0",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A uniform normal force of 108 N acts over 0.036 m². Calculate the pressure.",
+      "marks": 3,
+      "points": [
+        "Pressure = normal force ÷ area.",
+        "Correct substitution: 108 ÷ 0.036.",
+        "The answer is 3000 Pa."
+      ],
+      "model": [
+        "Pressure = normal force ÷ area.",
+        "108 ÷ 0.036 = 3000 Pa.",
+        "The answer is 3000 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [],
+      "teach": "#s6-1",
+      "numeric": {
+        "value": 3000.0,
+        "unit": "Pa",
+        "tolerance": 0.3
+      }
+    },
+    {
+      "id": "ch06-o1-q4",
+      "title": "A uniform normal force of 154 N acts over 0",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A uniform normal force of 154 N acts over 0.022 m². Calculate the pressure.",
+      "marks": 3,
+      "points": [
+        "Pressure = normal force ÷ area.",
+        "Correct substitution: 154 ÷ 0.022.",
+        "The answer is 7000 Pa."
+      ],
+      "model": [
+        "Pressure = normal force ÷ area.",
+        "154 ÷ 0.022 = 7000 Pa.",
+        "The answer is 7000 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [],
+      "teach": "#s6-1",
+      "numeric": {
+        "value": 7000.0,
+        "unit": "Pa",
+        "tolerance": 0.7000000000000001
+      }
+    },
+    {
+      "id": "ch06-o1-recall",
+      "title": "State the meaning of pressure and explain one distinction that prevents a common misunderstanding",
+      "stage": "recall",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of pressure and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Pressure is normal force per unit area.",
+        "A larger total force need not mean a larger pressure if the area also changes."
+      ],
+      "model": [
+        "Pressure is normal force per unit area.",
+        "A larger total force need not mean a larger pressure if the area also changes."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [
+        "Begin with the meaning of pressure: Pressure is normal force per unit area."
+      ],
+      "teach": "#s6-1"
+    },
+    {
+      "id": "ch06-o2-q1",
+      "title": "Why can air exert a force on the outside of a sealed container?",
+      "stage": "independent",
+      "objectives": [
+        "ch06-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Why can air exert a force on the outside of a sealed container?",
+      "marks": 2,
+      "points": [
+        "Air molecules collide with the container’s surface.",
+        "The many collisions produce pressure and a resulting force over the area."
+      ],
+      "model": [
+        "Air molecules collide with the container’s surface.",
+        "The many collisions produce pressure and a resulting force over the area."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Air can exert a force even when it is invisible or apparently still.",
+      "hints": [
+        "Begin with the meaning of atmospheric pressure: Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere."
+      ],
+      "teach": "#s6-2"
+    },
+    {
+      "id": "ch06-o2-q2",
+      "title": "Why does atmospheric pressure usually decrease as you climb a mountain?",
+      "stage": "transfer",
+      "objectives": [
+        "ch06-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Why does atmospheric pressure usually decrease as you climb a mountain?",
+      "marks": 2,
+      "points": [
+        "There is less atmosphere above you.",
+        "The smaller weight of overlying air requires a smaller pressure to support it."
+      ],
+      "model": [
+        "There is less atmosphere above you.",
+        "The smaller weight of overlying air requires a smaller pressure to support it."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Air can exert a force even when it is invisible or apparently still.",
+      "hints": [
+        "Begin with the meaning of atmospheric pressure: Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere."
+      ],
+      "teach": "#s6-2"
+    },
+    {
+      "id": "ch06-o2-q3",
+      "title": "A pupil says atmospheric pressure acts only downwards",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "A pupil says atmospheric pressure acts only downwards. Explain the error.",
+      "marks": 2,
+      "points": [
+        "Gas molecules move in many directions and collide with surfaces facing different directions.",
+        "Pressure in air therefore acts on surfaces in all directions."
+      ],
+      "model": [
+        "Gas molecules move in many directions and collide with surfaces facing different directions.",
+        "Pressure in air therefore acts on surfaces in all directions."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Air can exert a force even when it is invisible or apparently still.",
+      "hints": [],
+      "teach": "#s6-2"
+    },
+    {
+      "id": "ch06-o2-q4",
+      "title": "Why are you not crushed simply because atmospheric pressure acts on your body?",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "Why are you not crushed simply because atmospheric pressure acts on your body?",
+      "marks": 2,
+      "points": [
+        "Fluids and air within the body also exert pressure.",
+        "Many internal and external pressure forces approximately balance rather than leaving the whole atmospheric force unopposed."
+      ],
+      "model": [
+        "Fluids and air within the body also exert pressure.",
+        "Many internal and external pressure forces approximately balance rather than leaving the whole atmospheric force unopposed."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Air can exert a force even when it is invisible or apparently still.",
+      "hints": [],
+      "teach": "#s6-2"
+    },
+    {
+      "id": "ch06-o2-recall",
+      "title": "State the meaning of atmospheric pressure and explain one distinction that prevents a common misunde",
+      "stage": "recall",
+      "objectives": [
+        "ch06-objective-2"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of atmospheric pressure and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere.",
+        "Air can exert a force even when it is invisible or apparently still."
+      ],
+      "model": [
+        "Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere.",
+        "Air can exert a force even when it is invisible or apparently still."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Air can exert a force even when it is invisible or apparently still.",
+      "hints": [
+        "Begin with the meaning of atmospheric pressure: Air pressure results from molecular collisions, and atmospheric pressure changes with the overlying atmosphere."
+      ],
+      "teach": "#s6-2"
+    },
+    {
+      "id": "ch06-o3-q1",
+      "title": "Explain how reducing pressure in your mouth can make liquid rise through a straw",
+      "stage": "independent",
+      "objectives": [
+        "ch06-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Explain how reducing pressure in your mouth can make liquid rise through a straw.",
+      "marks": 2,
+      "points": [
+        "The pressure above the liquid in the straw is reduced.",
+        "Greater atmospheric pressure on the drink’s surface pushes liquid up the straw."
+      ],
+      "model": [
+        "The pressure above the liquid in the straw is reduced.",
+        "Greater atmospheric pressure on the drink’s surface pushes liquid up the straw."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "hints": [
+        "Begin with the meaning of pressure difference: A difference in pressure can produce a net force and drive fluid motion."
+      ],
+      "teach": "#s6-3"
+    },
+    {
+      "id": "ch06-o3-q2",
+      "title": "A suction cup sticks to a smooth tile when its internal pressure is reduced",
+      "stage": "transfer",
+      "objectives": [
+        "ch06-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A suction cup sticks to a smooth tile when its internal pressure is reduced. What supplies the net holding force?",
+      "marks": 2,
+      "points": [
+        "The greater outside air pressure pushes the cup towards the tile.",
+        "The smaller internal pressure provides a smaller opposing force."
+      ],
+      "model": [
+        "The greater outside air pressure pushes the cup towards the tile.",
+        "The smaller internal pressure provides a smaller opposing force."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "hints": [
+        "Begin with the meaning of pressure difference: A difference in pressure can produce a net force and drive fluid motion."
+      ],
+      "teach": "#s6-3"
+    },
+    {
+      "id": "ch06-o3-q3",
+      "title": "Why does admitting air under a suction cup make it easier to remove?",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "Why does admitting air under a suction cup make it easier to remove?",
+      "marks": 2,
+      "points": [
+        "The pressure under the cup rises towards the outside pressure.",
+        "The pressure difference and resulting holding force decrease."
+      ],
+      "model": [
+        "The pressure under the cup rises towards the outside pressure.",
+        "The pressure difference and resulting holding force decrease."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "hints": [],
+      "teach": "#s6-3"
+    },
+    {
+      "id": "ch06-o3-q4",
+      "title": "A drink straw has a hole above the liquid surface",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "A drink straw has a hole above the liquid surface. Explain why drinking through it becomes difficult.",
+      "marks": 2,
+      "points": [
+        "Air enters through the hole.",
+        "The pressure above the liquid cannot be reduced as effectively below the surrounding pressure."
+      ],
+      "model": [
+        "Air enters through the hole.",
+        "The pressure above the liquid cannot be reduced as effectively below the surrounding pressure."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "hints": [],
+      "teach": "#s6-3"
+    },
+    {
+      "id": "ch06-o3-recall",
+      "title": "State the meaning of pressure difference and explain one distinction that prevents a common misunder",
+      "stage": "recall",
+      "objectives": [
+        "ch06-objective-3"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of pressure difference and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "A difference in pressure can produce a net force and drive fluid motion.",
+        "“Suction” does not mean an empty space pulls fluid towards itself."
+      ],
+      "model": [
+        "A difference in pressure can produce a net force and drive fluid motion.",
+        "“Suction” does not mean an empty space pulls fluid towards itself."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "“Suction” does not mean an empty space pulls fluid towards itself.",
+      "hints": [
+        "Begin with the meaning of pressure difference: A difference in pressure can produce a net force and drive fluid motion."
+      ],
+      "teach": "#s6-3"
+    },
+    {
+      "id": "ch06-o4-q1",
+      "title": "Use water density 1000 kg/m³ and g = 10 N/kg",
+      "stage": "independent",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Use water density 1000 kg/m³ and g = 10 N/kg. Calculate the pressure increase over a vertical depth increase of 0.35 m.",
+      "marks": 3,
+      "points": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "Correct substitution: 1000 × 10 × 0.35.",
+        "The answer is 3500 Pa."
+      ],
+      "model": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "1000 × 10 × 0.35 = 3500 Pa.",
+        "The answer is 3500 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [
+        "Begin with the meaning of hydrostatic pressure change: In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change."
+      ],
+      "teach": "#s6-4",
+      "numeric": {
+        "value": 3500.0,
+        "unit": "Pa",
+        "tolerance": 0.35000000000000003
+      }
+    },
+    {
+      "id": "ch06-o4-q2",
+      "title": "A different setting: Hydrostatic pressure change",
+      "stage": "transfer",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Pressure increases by 7200 Pa between two points in still fresh water. Use density 1000 kg/m³ and g = 10 N/kg. Calculate their vertical depth difference.",
+      "marks": 2,
+      "points": [
+        "Depth difference = pressure increase ÷ (density × g).",
+        "7200 ÷ (1000 × 10) = 0.72 m."
+      ],
+      "model": [
+        "Depth difference = pressure increase ÷ (density × g).",
+        "7200 ÷ (1000 × 10) = 0.72 m."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [
+        "Begin with the meaning of hydrostatic pressure change: In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change."
+      ],
+      "teach": "#s6-4",
+      "numeric": {
+        "value": 0.72,
+        "unit": "m",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "ch06-o4-q3",
+      "title": "Use water density 1000 kg/m³ and g = 10 N/kg",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Use water density 1000 kg/m³ and g = 10 N/kg. Calculate the pressure increase over a vertical depth increase of 0.85 m.",
+      "marks": 3,
+      "points": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "Correct substitution: 1000 × 10 × 0.85.",
+        "The answer is 8500 Pa."
+      ],
+      "model": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "1000 × 10 × 0.85 = 8500 Pa.",
+        "The answer is 8500 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [],
+      "teach": "#s6-4",
+      "numeric": {
+        "value": 8500.0,
+        "unit": "Pa",
+        "tolerance": 0.8500000000000001
+      }
+    },
+    {
+      "id": "ch06-o4-q4",
+      "title": "Use water density 1000 kg/m³ and g = 10 N/kg",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "Use water density 1000 kg/m³ and g = 10 N/kg. Calculate the pressure increase over a vertical depth increase of 1.2 m.",
+      "marks": 3,
+      "points": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "Correct substitution: 1000 × 10 × 1.2.",
+        "The answer is 12000 Pa."
+      ],
+      "model": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "1000 × 10 × 1.2 = 12000 Pa.",
+        "The answer is 12000 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [],
+      "teach": "#s6-4",
+      "numeric": {
+        "value": 12000.0,
+        "unit": "Pa",
+        "tolerance": 1.2
+      }
+    },
+    {
+      "id": "ch06-o4-recall",
+      "title": "State the meaning of hydrostatic pressure change and explain one distinction that prevents a common ",
+      "stage": "recall",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of hydrostatic pressure change and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change.",
+        "Depth matters; total width or volume alone does not set pressure at a given depth."
+      ],
+      "model": [
+        "In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change.",
+        "Depth matters; total width or volume alone does not set pressure at a given depth."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [
+        "Begin with the meaning of hydrostatic pressure change: In a uniform liquid at rest, pressure increases with depth by density × gravitational field strength × depth change."
+      ],
+      "teach": "#s6-4"
+    },
+    {
+      "id": "ch06-o5-q1",
+      "title": "Why can a hollow metal boat float although a compact piece of the same metal sinks?",
+      "stage": "independent",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "Why can a hollow metal boat float although a compact piece of the same metal sinks?",
+      "marks": 2,
+      "points": [
+        "The hollow boat can displace a large volume of water for its total mass.",
+        "Its average density, including its enclosed air space, can be below that of water."
+      ],
+      "model": [
+        "The hollow boat can displace a large volume of water for its total mass.",
+        "Its average density, including its enclosed air space, can be below that of water."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [
+        "Begin with the meaning of density and floating: Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight."
+      ],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-o5-q2",
+      "title": "A sealed floating block is moved from fresh water to denser salt water",
+      "stage": "transfer",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A sealed floating block is moved from fresh water to denser salt water. Will it float higher or lower? Explain.",
+      "marks": 2,
+      "points": [
+        "It floats higher.",
+        "A smaller displaced volume of the denser fluid has the same weight needed to balance the block’s weight."
+      ],
+      "model": [
+        "It floats higher.",
+        "A smaller displaced volume of the denser fluid has the same weight needed to balance the block’s weight."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [
+        "Begin with the meaning of density and floating: Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight."
+      ],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-o5-q3",
+      "title": "A sealed object floats at rest",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A sealed object floats at rest. Compare the upward buoyant force with its weight. Explain your answer.",
+      "marks": 2,
+      "points": [
+        "They have equal magnitude.",
+        "The resultant vertical force is zero for rest."
+      ],
+      "model": [
+        "They have equal magnitude.",
+        "The resultant vertical force is zero for rest."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-o5-q4",
+      "title": "An object is fully submerged in a uniform liquid",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "An object is fully submerged in a uniform liquid. What determines the buoyant force in the simple static model?",
+      "marks": 2,
+      "points": [
+        "The weight of the displaced liquid.",
+        "That depends on liquid density, displaced volume and g, not on the object’s material by itself."
+      ],
+      "model": [
+        "The weight of the displaced liquid.",
+        "That depends on liquid density, displaced volume and g, not on the object’s material by itself."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-o5-recall",
+      "title": "State the meaning of density and floating and explain one distinction that prevents a common misunde",
+      "stage": "recall",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "State the meaning of density and floating and explain one distinction that prevents a common misunderstanding.",
+      "marks": 2,
+      "points": [
+        "Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight.",
+        "The material alone does not determine an object’s average density when it contains air."
+      ],
+      "model": [
+        "Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight.",
+        "The material alone does not determine an object’s average density when it contains air."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [
+        "Begin with the meaning of density and floating: Density is mass per volume; a freely floating object displaces a weight of fluid equal to its own weight."
+      ],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-mixed-1",
+      "title": "A sealed object of mass 300 g and volume 500 cm³ floats in fresh water and in brine",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "investigate",
+      "prompt": "A sealed object of mass 300 g and volume 500 cm³ floats in fresh water and in brine. Use the densities in the table to calculate the displaced volume in each liquid.",
+      "marks": 3,
+      "points": [
+        "The displaced liquid has the same mass, 300 g, as the floating object.",
+        "Fresh water: volume = 300 ÷ 1.0 = 300 cm³.",
+        "Brine: volume = 300 ÷ 1.2 = 250 cm³, so the object floats higher."
+      ],
+      "model": [
+        "The displaced liquid has the same mass, 300 g, as the floating object.",
+        "Fresh water: volume = 300 ÷ 1.0 = 300 cm³.",
+        "Brine: volume = 300 ÷ 1.2 = 250 cm³, so the object floats higher."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [],
+      "teach": "#s6-5",
+      "data": {
+        "headers": [
+          "Liquid",
+          "Density (g/cm³)"
+        ],
+        "rows": [
+          [
+            "Fresh water",
+            1.0
+          ],
+          [
+            "Brine",
+            1.2
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ch06-mixed-2",
+      "title": "A 2",
+      "stage": "paper",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A 2.4 kg solid occupies 0.0008 m³. Calculate its average density and predict whether it sinks in water of density 1000 kg/m³ when fully wetted with no trapped air.",
+      "marks": 2,
+      "points": [
+        "Density = mass ÷ volume = 2.4 ÷ 0.0008 = 3000 kg/m³.",
+        "Its density exceeds water’s, so it sinks under these conditions."
+      ],
+      "model": [
+        "Density = mass ÷ volume = 2.4 ÷ 0.0008 = 3000 kg/m³.",
+        "Its density exceeds water’s, so it sinks under these conditions."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "The material alone does not determine an object’s average density when it contains air.",
+      "hints": [],
+      "teach": "#s6-5"
+    },
+    {
+      "id": "ch06-worked-explanation",
+      "title": "Worked example: Pressure",
+      "stage": "worked",
+      "objectives": [
+        "ch06-objective-1"
+      ],
+      "kind": "calculate",
+      "prompt": "A uniform normal force of 280 N is spread over 0.070 m². Calculate the pressure.",
+      "marks": 3,
+      "points": [
+        "Pressure = normal force ÷ area.",
+        "Correct substitution: 280 ÷ 0.070.",
+        "The answer is 4000 Pa."
+      ],
+      "model": [
+        "Pressure = normal force ÷ area.",
+        "280 ÷ 0.070 = 4000 Pa.",
+        "The answer is 4000 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "A larger total force need not mean a larger pressure if the area also changes.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s6-1",
+      "numeric": {
+        "value": 3999.9999999999995,
+        "unit": "Pa",
+        "tolerance": 0.39999999999999997
+      }
+    },
+    {
+      "id": "ch06-guided-explanation",
+      "title": "Guided practice: Hydrostatic pressure change",
+      "stage": "guided",
+      "objectives": [
+        "ch06-objective-4"
+      ],
+      "kind": "calculate",
+      "prompt": "An oil has uniform density 800 kg/m³. Use g = 10 N/kg. Calculate the pressure increase over a depth increase of 0.45 m.",
+      "marks": 3,
+      "points": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "Correct substitution: 800 × 10 × 0.45.",
+        "The answer is 3600 Pa."
+      ],
+      "model": [
+        "Pressure increase = density × g × vertical depth increase.",
+        "800 × 10 × 0.45 = 3600 Pa.",
+        "The answer is 3600 Pa."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording. For calculations, give credit for a correct relationship and correctly substituted values even if a later arithmetic slip occurs."
+      ],
+      "common": "Depth matters; total width or volume alone does not set pressure at a given depth.",
+      "hints": [
+        "Identify what is given and the required quantity or physical effect."
+      ],
+      "teach": "#s6-4",
+      "scaffold": "First identify the relevant objects or quantities, then apply the relationship step by step.",
+      "numeric": {
+        "value": 3600.0,
+        "unit": "Pa",
+        "tolerance": 0.36000000000000004
+      }
+    },
+    {
+      "id": "ch06-delayed-cumulative",
+      "title": "Return after a delay",
+      "stage": "review",
+      "objectives": [
+        "ch06-objective-5"
+      ],
+      "kind": "explain",
+      "prompt": "A sealed model object floats at rest in water. Earlier you learned that balanced forces need not be absent. Explain its vertical force balance and why moving it to denser brine changes the submerged fraction.",
+      "marks": 3,
+      "points": [
+        "Upward buoyant force equals downward weight at rest.",
+        "In denser brine a smaller displaced volume supplies the same buoyant force.",
+        "Less of the same object is submerged, so it floats higher."
+      ],
+      "model": [
+        "Upward buoyant force equals downward weight at rest.",
+        "In denser brine a smaller displaced volume supplies the same buoyant force.",
+        "Less of the same object is submerged, so it floats higher."
+      ],
+      "accepted": [
+        "Accept equivalent scientifically correct wording and clearly identified directions or units."
+      ],
+      "common": "Name the quantity, system and conditions before applying the relationship.",
+      "hints": [
+        "Identify the relevant quantities and what the question asks you to explain or calculate."
+      ],
+      "teach": "#s6-5"
+    }
+  ],
+  "papers": [
+    {
+      "id": "ch06-paper-a",
+      "title": "Pressure, floating and the ocean of air · practice paper A",
+      "minutes": 20,
+      "questions": [
+        "ch06-o1-q3",
+        "ch06-o2-q3",
+        "ch06-o3-q3",
+        "ch06-o4-q3",
+        "ch06-o5-q3",
+        "ch06-mixed-1"
+      ]
+    },
+    {
+      "id": "ch06-paper-b",
+      "title": "Pressure, floating and the ocean of air · practice paper B",
+      "minutes": 20,
+      "questions": [
+        "ch06-o1-q4",
+        "ch06-o2-q4",
+        "ch06-o3-q4",
+        "ch06-o4-q4",
+        "ch06-o5-q4",
+        "ch06-mixed-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 6: Pressure, floating and the ocean of air",
+      "url": "#ch6"
+    },
+    {
+      "title": "Chapter physics source 1",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    },
+    {
+      "title": "Chapter physics source 2",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter27.pdf"
+    },
+    {
+      "title": "Chapter physics source 3",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/syllabus/"
+    },
+    {
+      "title": "Chapter physics source 4",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-4-drag-forces-constraints-and-continuous-systems/"
+    }
+  ]
+}

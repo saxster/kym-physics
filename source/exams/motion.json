@@ -1,0 +1,1743 @@
+{
+  "version": 1,
+  "chapter": 1,
+  "title": "Motion",
+  "scope": "For your school’s Grade 8 exams on the IGCSE pathway, match these motion objectives to your teacher’s topic list. These original practice questions use illustrative values, so you can concentrate on the physics.",
+  "objectives": [
+    {
+      "id": "motion-frames",
+      "label": "Describe motion in a stated frame; distinguish distance from displacement.",
+      "teach": "#s1-1",
+      "note": "Practise identifying the observer, path length and start-to-finish change in position."
+    },
+    {
+      "id": "motion-speed",
+      "label": "Calculate average speed and distinguish speed from velocity.",
+      "teach": "#s1-2",
+      "note": "Use total distance and total elapsed time; include direction when giving velocity."
+    },
+    {
+      "id": "motion-units",
+      "label": "Convert units and rearrange the speed equation.",
+      "teach": "#s1-2",
+      "note": "Practise metres, kilometres, seconds, minutes and hours. Keep quantities in compatible units."
+    },
+    {
+      "id": "motion-position-graphs",
+      "label": "Read and draw distance–time and position–time graphs.",
+      "teach": "#s1-2",
+      "note": "Read both axes before using a gradient. A distance-travelled graph cannot slope down."
+    },
+    {
+      "id": "motion-acceleration",
+      "label": "Explain and calculate changes in velocity.",
+      "teach": "#s1-3",
+      "note": "Include changes of direction and distinguish negative acceleration from slowing down."
+    },
+    {
+      "id": "motion-speed-graphs",
+      "label": "Interpret speed–time graphs and calculate distance from their area.",
+      "teach": "#s1-4",
+      "note": "For straight-line motion without reversing direction, a straight sloping speed–time segment means constant acceleration. Area under a speed–time graph gives distance; signed velocity–time area gives displacement."
+    },
+    {
+      "id": "motion-investigation",
+      "label": "Plan motion measurements and evaluate data.",
+      "teach": "#s1-4",
+      "note": "Practise measurements, variables, repeats, fair comparisons and evidence-based conclusions."
+    },
+    {
+      "id": "motion-free-fall",
+      "label": "Explain velocity and acceleration during free fall.",
+      "teach": "#s1-5",
+      "note": "Use the stated value of g and state when air resistance is ignored. Check whether your school includes numerical questions on this topic."
+    }
+  ],
+  "cards": [
+    {
+      "id": "motion-card-frame",
+      "term": "Reference frame",
+      "definition": "The viewpoint and coordinate system used to describe position and motion.",
+      "explanation": "A parcel can keep its place on a walkway while its position relative to the floor changes. Both descriptions need their frame.",
+      "example": "A seated passenger is at rest relative to her bus and moving relative to a roadside tree.",
+      "confusion": "Moving relative to one frame does not mean moving relative to every frame.",
+      "question": "Can a parcel be at rest and moving in the same event?",
+      "answer": "Yes, relative to different frames: at rest on its walkway, moving relative to the floor.",
+      "teach": "#s1-1",
+      "questionId": "motion-transfer-frames",
+      "cue": "Before “moving”, ask “relative to what?”."
+    },
+    {
+      "id": "motion-card-distance",
+      "term": "Distance and displacement",
+      "definition": "Distance is path length. Displacement is the change in position, including direction.",
+      "explanation": "Follow the whole route for distance; compare just the start and finish for displacement.",
+      "example": "Walking 10 m east and 10 m west gives 20 m distance and zero displacement.",
+      "confusion": "A zero displacement does not mean no journey took place.",
+      "question": "After a complete lap, which can be zero: distance or displacement?",
+      "answer": "Displacement is zero. Distance is the lap length.",
+      "teach": "#s1-1",
+      "questionId": "motion-independent-round-trip",
+      "unit": "m",
+      "cue": "Distance: the route. Displacement: start to finish."
+    },
+    {
+      "id": "motion-card-speed",
+      "term": "Average speed",
+      "definition": "Total distance travelled divided by total elapsed time.",
+      "explanation": "Average speed spreads the whole route over the whole duration, including stops when the question includes them.",
+      "example": "A 100 m journey in 20 s has average speed 5 m/s.",
+      "confusion": "Do not divide displacement by time when asked for average speed.",
+      "question": "A 30 m journey takes 10 s. What is the average speed?",
+      "answer": "30 ÷ 10 = 3 m/s.",
+      "teach": "#s1-2",
+      "questionId": "motion-independent-speed",
+      "unit": "m/s",
+      "formula": "average speed = total distance ÷ total elapsed time"
+    },
+    {
+      "id": "motion-card-velocity",
+      "term": "Velocity",
+      "definition": "The rate of change of position, including direction.",
+      "explanation": "Average velocity uses displacement divided by elapsed time; instantaneous velocity describes the motion at one instant.",
+      "example": "4 m/s east and 4 m/s west have the same speed and different velocities.",
+      "confusion": "Changing direction changes velocity even if the speed stays the same.",
+      "question": "A runner turns a corner at steady speed. Is velocity constant?",
+      "answer": "No. The direction changes, so the velocity changes.",
+      "teach": "#s1-2",
+      "questionId": "motion-transfer-velocity",
+      "unit": "m/s",
+      "formula": "average velocity = displacement ÷ elapsed time"
+    },
+    {
+      "id": "motion-card-units",
+      "term": "Compatible units",
+      "definition": "Units that match the equation and the requested answer.",
+      "explanation": "To get m/s from distance divided by time, use metres and seconds.",
+      "example": "72 km/h = 72000 m ÷ 3600 s = 20 m/s.",
+      "confusion": "A number without its unit may describe the wrong quantity.",
+      "question": "How do you convert 90 cm to metres and 2 min to seconds?",
+      "answer": "90 cm = 0.90 m; 2 min = 120 s.",
+      "teach": "#s1-2",
+      "questionId": "motion-transfer-units",
+      "cue": "Metres and seconds before metres per second."
+    },
+    {
+      "id": "motion-card-gradient",
+      "term": "Gradient of a motion graph",
+      "definition": "Change in the vertical-axis quantity divided by change in the horizontal-axis quantity.",
+      "explanation": "Read the axes first. Distance-travelled–time gradient gives speed; position–time gradient gives velocity.",
+      "example": "Position rises uniformly by 12 m in 4 s: velocity is +3 m/s in the positive direction.",
+      "confusion": "A graph is not a drawing of the path; a flat position line means stationary.",
+      "question": "What does a negative gradient on a position–time graph mean?",
+      "answer": "Velocity is in the negative direction. It does not by itself say whether speed is increasing or decreasing.",
+      "teach": "#s1-2",
+      "questionId": "motion-independent-position-graph",
+      "formula": "gradient = change up the axis ÷ change along the axis",
+      "cue": "Read axes, then rise over run."
+    },
+    {
+      "id": "motion-card-acceleration",
+      "term": "Acceleration",
+      "definition": "Rate of change of velocity.",
+      "explanation": "It describes how quickly velocity changes in size or direction. Average acceleration uses the velocity change over the whole interval.",
+      "example": "Velocity changes from 1 m/s to 7 m/s in 3 s: average acceleration is 2 m/s².",
+      "confusion": "Negative acceleration means the negative direction; whether speed decreases depends on the velocity direction.",
+      "question": "Can something accelerate while travelling at constant speed?",
+      "answer": "Yes. Turning at constant speed changes the direction of velocity.",
+      "teach": "#s1-3",
+      "questionId": "motion-transfer-negative",
+      "unit": "m/s²",
+      "formula": "average acceleration = (final velocity − initial velocity) ÷ elapsed time",
+      "cue": "Change first, then divide by time."
+    },
+    {
+      "id": "motion-card-area",
+      "term": "Area under a speed–time graph",
+      "definition": "The distance travelled during the time interval.",
+      "explanation": "A thin strip means speed multiplied by a short time. Adding the strips gives distance.",
+      "example": "A constant 3 m/s for 4 s gives rectangle area 12 m.",
+      "confusion": "Area under a signed velocity–time graph gives displacement; speed–time area gives distance.",
+      "question": "A straight line rises from 0 to 4 m/s in 3 s. What distance is covered?",
+      "answer": "The triangular area is ½ × 3 × 4 = 6 m.",
+      "teach": "#s1-4",
+      "questionId": "motion-independent-speed-graph",
+      "unit": "m",
+      "formula": "distance = area under the speed–time graph"
+    },
+    {
+      "id": "motion-card-measurement",
+      "term": "Repeats and fair comparisons",
+      "definition": "Repeated measurements reveal variation; a fair comparison controls relevant variables.",
+      "explanation": "Repeat the same procedure, compare the readings and calculate a mean where appropriate. Change one intended variable at a time.",
+      "example": "When varying ramp height, keep the car, timed distance, surface and release method the same.",
+      "confusion": "A mean can reduce random variation but cannot fix every systematic error.",
+      "question": "Does repeating a measurement fix a distance marked incorrectly every time?",
+      "answer": "No. Check and correct the distance measurement; repeating a shared systematic error does not remove it.",
+      "teach": "#s1-4",
+      "questionId": "motion-review-measurement"
+    },
+    {
+      "id": "motion-card-freefall",
+      "term": "Free fall",
+      "definition": "Motion under gravity alone, with other forces negligible.",
+      "explanation": "A ball can be in free fall while rising after release, at the highest point, and while falling.",
+      "example": "Ignoring air, a ball has downward acceleration about 9.8 m/s² even when its velocity is zero at the top.",
+      "confusion": "Zero velocity at an instant is different from zero acceleration.",
+      "question": "At the top of a vertical throw, which is zero: velocity or acceleration?",
+      "answer": "Velocity is zero. Acceleration remains downward because gravity still acts.",
+      "teach": "#s1-5",
+      "questionId": "motion-review-free-fall",
+      "unit": "g in m/s²",
+      "formula": "near Earth, g ≈ 9.8 m/s²; use the value stated in the question"
+    }
+  ],
+  "techniques": [
+    {
+      "word": "State",
+      "meaning": "Give the requested fact, name or value directly.",
+      "example": "State the SI unit of speed: m/s."
+    },
+    {
+      "word": "Describe",
+      "meaning": "Say what happens or what a pattern shows. Use the graph or data when provided.",
+      "example": "The distance rises at a constant rate, stays constant, then rises again."
+    },
+    {
+      "word": "Explain",
+      "meaning": "Connect the observation to a scientific reason.",
+      "example": "The runner accelerates because turning changes the direction of her velocity."
+    },
+    {
+      "word": "Calculate",
+      "meaning": "Choose a suitable relationship, show substitutions, and give the result with its unit.",
+      "example": "Average speed = 120 m ÷ 30 s = 4.0 m/s."
+    },
+    {
+      "word": "Compare",
+      "meaning": "Refer to both cases and give a relevant similarity or difference.",
+      "example": "Both boats move at 2.0 m/s, so their speeds are equal."
+    },
+    {
+      "word": "Suggest",
+      "meaning": "Offer a scientifically plausible idea suited to the evidence or situation.",
+      "example": "Time crossings from video frames to reduce uncertainty about the start and finish."
+    },
+    {
+      "word": "Draw",
+      "meaning": "Produce the requested diagram or graph with the stated labels, units and conventions.",
+      "example": "Put time on the horizontal axis, label both axes with units, use uniform scales and plot the readings."
+    },
+    {
+      "word": "Check your calculation",
+      "meaning": "Check compatible units, the size of the result and whether it answers the quantity requested.",
+      "example": "At 5 m/s, 1200 m should take 240 s; that agrees with the given journey."
+    },
+    {
+      "word": "Use the marks",
+      "meaning": "Read what the question asks and supply the needed distinct points. A mark count is a guide, not a rule that every sentence earns a mark.",
+      "example": "For a comparison, mention both cases. For a calculation, show your method as well as the final number."
+    },
+    {
+      "word": "Manage your time",
+      "meaning": "Read the whole task, work steadily, and leave time to check units, signs, diagrams and unanswered parts.",
+      "example": "If stuck, write useful known quantities, move to another question and return when you can. Use the paper’s actual instructions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "motion-recall-distance",
+      "title": "A journey and its endpoints",
+      "stage": "recall",
+      "objectives": [
+        "motion-frames"
+      ],
+      "kind": "recall",
+      "prompt": "State the difference between distance travelled and displacement.",
+      "marks": 2,
+      "points": [
+        "Distance is the total length of the path travelled.",
+        "Displacement is the change from the starting position to the final position, including direction."
+      ],
+      "model": [
+        "Distance follows the whole route. Displacement describes where you finish relative to where you started."
+      ],
+      "accepted": [
+        "Accept “length of the route” for distance and “final position minus initial position, with direction” for displacement."
+      ],
+      "common": "A long journey can end at its starting point, giving zero displacement.",
+      "hints": [
+        "Compare the whole path with the start and finish."
+      ],
+      "teach": "#s1-1"
+    },
+    {
+      "id": "motion-recall-speed",
+      "title": "How fast, and which way?",
+      "stage": "recall",
+      "objectives": [
+        "motion-speed"
+      ],
+      "kind": "recall",
+      "prompt": "State the equation for average speed and give its SI unit.",
+      "marks": 2,
+      "points": [
+        "Average speed = total distance travelled ÷ total elapsed time.",
+        "The SI unit is metres per second, m/s."
+      ],
+      "model": [
+        "Average speed = total distance ÷ total time, in m/s when distance is in metres and time in seconds."
+      ],
+      "accepted": [
+        "Accept v = d/t when the symbols are identified as average speed, total distance and total elapsed time. Accept m s⁻¹ for m/s."
+      ],
+      "common": "Speed is not distance multiplied by time. A velocity also needs a direction.",
+      "hints": [
+        "Ask how many metres are covered in each second."
+      ],
+      "teach": "#s1-2"
+    },
+    {
+      "id": "motion-recall-acceleration",
+      "title": "A change each second",
+      "stage": "recall",
+      "objectives": [
+        "motion-acceleration"
+      ],
+      "kind": "recall",
+      "prompt": "State what acceleration measures and give its SI unit.",
+      "marks": 2,
+      "points": [
+        "Acceleration measures the rate of change of velocity.",
+        "Its SI unit is m/s²."
+      ],
+      "model": [
+        "Acceleration tells you how much the velocity changes each second. Its unit is m/s²."
+      ],
+      "accepted": [
+        "Accept “change in velocity per unit time” and m s⁻². “Change in speed per second” alone does not cover changing direction."
+      ],
+      "common": "Acceleration includes a change in direction, even when speed stays constant.",
+      "hints": [
+        "Velocity includes direction."
+      ],
+      "teach": "#s1-3"
+    },
+    {
+      "id": "motion-recall-graph",
+      "title": "A flat line",
+      "stage": "recall",
+      "objectives": [
+        "motion-position-graphs"
+      ],
+      "kind": "explain",
+      "prompt": "A distance-travelled–time graph is horizontal for four seconds. Explain what the object is doing during those four seconds.",
+      "marks": 2,
+      "points": [
+        "The distance travelled does not increase during the interval.",
+        "The object is stationary during those four seconds."
+      ],
+      "model": [
+        "No extra distance is covered, so its speed is zero and the object is stationary."
+      ],
+      "accepted": [
+        "Accept “at rest” or “not moving”; the explanation must refer to unchanged distance during the interval."
+      ],
+      "common": "A horizontal line on this graph does not mean constant nonzero speed. Check the vertical axis.",
+      "hints": [
+        "What happens to the distance as time passes?"
+      ],
+      "teach": "#s1-2"
+    },
+    {
+      "id": "motion-worked-speed",
+      "title": "Worked example: a cycle ride",
+      "stage": "worked",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A cyclist covers 1.2 km in 4.0 min. Calculate her average speed in m/s. These are illustrative values.",
+      "marks": 3,
+      "points": [
+        "Convert 1.2 km to 1200 m and 4.0 min to 240 s.",
+        "Use average speed = distance ÷ time.",
+        "Obtain 5.0 m/s."
+      ],
+      "model": [
+        "1.2 km = 1200 m; 4.0 min = 4.0 × 60 = 240 s.",
+        "Average speed = 1200 ÷ 240 = 5.0 m/s.",
+        "At 5 m/s, covering 1200 m would take 240 s, so the result is consistent."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 5 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Dividing 1.2 by 4 gives km/min, not m/s.",
+      "hints": [
+        "Convert both quantities before dividing."
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 5,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-guided-time",
+      "title": "Your turn: find the time",
+      "stage": "guided",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A runner covers 600 m at an average speed of 3.0 m/s. Calculate the time in seconds.",
+      "marks": 3,
+      "points": [
+        "Rearrange speed = distance ÷ time to time = distance ÷ speed.",
+        "Substitute 600 ÷ 3.0.",
+        "Obtain 200 s."
+      ],
+      "model": [
+        "Time = distance ÷ average speed.",
+        "Time = 600 m ÷ 3.0 m/s = 200 s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 200 s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Multiplying distance by speed does not give a time.",
+      "hints": [
+        "Write speed = distance ÷ time, then isolate time."
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 200,
+        "unit": "s",
+        "tolerance": 0.01
+      },
+      "scaffold": "Time = distance ÷ ____ = 600 ÷ ____ = ____ s."
+    },
+    {
+      "id": "motion-worked-acceleration",
+      "title": "Worked example: gaining speed",
+      "stage": "worked",
+      "objectives": [
+        "motion-acceleration",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A toy vehicle moving in a straight line increases its velocity from 2.0 m/s to 10.0 m/s in 4.0 s. Calculate its average acceleration in m/s².",
+      "marks": 3,
+      "points": [
+        "Calculate the change in velocity: 10.0 − 2.0 = 8.0 m/s.",
+        "Divide the change by 4.0 s.",
+        "Obtain 2.0 m/s²."
+      ],
+      "model": [
+        "Average acceleration = (final velocity − initial velocity) ÷ time.",
+        "a = (10.0 − 2.0) ÷ 4.0 = 2.0 m/s².",
+        "The velocity changes by an average of 2 m/s each second."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 2 m/s² in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Using final velocity alone gives the wrong change.",
+      "hints": [
+        "Find the change before finding the rate."
+      ],
+      "teach": "#s1-3",
+      "numeric": {
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-guided-acceleration",
+      "title": "Your turn: a slowing scooter",
+      "stage": "guided",
+      "objectives": [
+        "motion-acceleration"
+      ],
+      "kind": "calculate",
+      "prompt": "A scooter moving east slows from 12.0 m/s to 4.0 m/s in 4.0 s. Take east as positive. Calculate its average acceleration in m/s².",
+      "marks": 3,
+      "points": [
+        "Use final minus initial velocity: 4.0 − 12.0 = −8.0 m/s.",
+        "Divide by 4.0 s.",
+        "Obtain −2.0 m/s²."
+      ],
+      "model": [
+        "a = (4.0 − 12.0) ÷ 4.0 = −2.0 m/s².",
+        "The negative sign means the acceleration points west, opposite to the eastward velocity in this case."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for -2 m/s² in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "A minus sign gives direction; here it also corresponds to slowing because the velocity is positive.",
+      "hints": [
+        "Write both velocities with their signs."
+      ],
+      "teach": "#s1-3",
+      "numeric": {
+        "value": -2,
+        "unit": "m/s²",
+        "tolerance": 0.01
+      },
+      "scaffold": "Change in velocity = ____ − ____ = ____ m/s. Average acceleration = ____ ÷ 4.0."
+    },
+    {
+      "id": "motion-worked-area",
+      "title": "Worked example: distance under a graph",
+      "stage": "worked",
+      "objectives": [
+        "motion-speed-graphs"
+      ],
+      "kind": "calculate",
+      "prompt": "A trolley starts from rest. Its speed increases uniformly to 6.0 m/s in 4.0 s, as shown. Calculate its distance travelled in those four seconds, in metres.",
+      "marks": 3,
+      "points": [
+        "Identify the triangular area under the speed–time graph.",
+        "Use ½ × 4.0 s × 6.0 m/s.",
+        "Obtain 12 m."
+      ],
+      "model": [
+        "Distance is the area under the speed–time graph.",
+        "The area is a triangle: ½ × base × height = ½ × 4.0 × 6.0 = 12 m."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 12 m in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Using 6 × 4 assumes the trolley was at its final speed for the whole interval.",
+      "hints": [
+        "Find the shape between the line and the time axis."
+      ],
+      "teach": "#s1-4",
+      "numeric": {
+        "value": 12,
+        "unit": "m",
+        "tolerance": 0.01
+      },
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Speed (m/s)",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "caption": "Illustrative trolley motion: speed increases uniformly from 0 to 6 m/s in 4 s."
+      }
+    },
+    {
+      "id": "motion-guided-area",
+      "title": "Your turn: two parts of a journey",
+      "stage": "guided",
+      "objectives": [
+        "motion-speed-graphs"
+      ],
+      "kind": "calculate",
+      "prompt": "The graph shows a cart at 3.0 m/s for 4.0 s, then slowing uniformly to rest over the next 2.0 s. Calculate the total distance travelled in metres.",
+      "marks": 3,
+      "points": [
+        "Find the rectangle: 4.0 × 3.0 = 12 m.",
+        "Find the triangle: ½ × 2.0 × 3.0 = 3 m.",
+        "Add the areas to obtain 15 m."
+      ],
+      "model": [
+        "Distance = rectangle area + triangle area.",
+        "Distance = (4.0 × 3.0) + (½ × 2.0 × 3.0) = 12 + 3 = 15 m."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 15 m in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "The final two seconds begin at t = 4 s, so their width is 2 s rather than 6 s.",
+      "hints": [
+        "Split the area at t = 4 s."
+      ],
+      "teach": "#s1-4",
+      "numeric": {
+        "value": 15,
+        "unit": "m",
+        "tolerance": 0.01
+      },
+      "scaffold": "Rectangle = ____ × ____; triangle = ½ × ____ × ____; total = ____ m.",
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Speed (m/s)",
+        "points": [
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "caption": "Illustrative cart motion: steady speed followed by uniform slowing."
+      }
+    },
+    {
+      "id": "motion-worked-frame",
+      "title": "Worked example: walking inside a carriage",
+      "stage": "worked",
+      "objectives": [
+        "motion-frames"
+      ],
+      "kind": "calculate",
+      "prompt": "In a model, a carriage moves east at 8.0 m/s relative to the ground. A passenger walks east at 1.0 m/s relative to the carriage. Calculate the passenger’s speed relative to the ground in m/s.",
+      "marks": 2,
+      "points": [
+        "Recognise that both velocities point east.",
+        "Add 8.0 + 1.0 to obtain 9.0 m/s."
+      ],
+      "model": [
+        "In one second the carriage moves 8 m east, and the passenger moves another 1 m east inside it.",
+        "Relative to the ground she moves 9 m east in that second: 9.0 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 9 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "The 1 m/s and 8 m/s refer to different frames. State the frame when describing motion.",
+      "hints": [
+        "Imagine where the passenger ends up after one second."
+      ],
+      "teach": "#s1-1",
+      "numeric": {
+        "value": 9,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-guided-position",
+      "title": "Your turn: read a gradient",
+      "stage": "guided",
+      "objectives": [
+        "motion-position-graphs"
+      ],
+      "kind": "calculate",
+      "prompt": "A walker’s position changes uniformly from 2.0 m to 10.0 m east of a marker between t = 1.0 s and t = 5.0 s. Calculate her velocity in m/s, taking east as positive.",
+      "marks": 3,
+      "points": [
+        "Find the change in position: 10.0 − 2.0 = 8.0 m.",
+        "Find the elapsed time: 5.0 − 1.0 = 4.0 s.",
+        "Divide to obtain +2.0 m/s."
+      ],
+      "model": [
+        "Velocity = change in position ÷ elapsed time.",
+        "v = (10.0 − 2.0) ÷ (5.0 − 1.0) = +2.0 m/s, towards the east."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 2 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Use changes in both coordinates; 10 ÷ 5 would ignore the starting point.",
+      "hints": [
+        "Choose two points and subtract their coordinates."
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0.01
+      },
+      "scaffold": "Gradient = change in position ÷ change in time = (____ − ____) ÷ (____ − ____)."
+    },
+    {
+      "id": "motion-independent-round-trip",
+      "title": "Back at the starting gate",
+      "stage": "independent",
+      "objectives": [
+        "motion-frames",
+        "motion-speed"
+      ],
+      "kind": "calculate",
+      "prompt": "A child walks 120 m east along a straight path, then 120 m west to the starting gate. The whole trip takes 160 s. Calculate (a) total distance, (b) displacement, and (c) average speed.",
+      "marks": 3,
+      "points": [
+        "Total distance is 120 + 120 = 240 m.",
+        "Displacement is zero because the final position equals the starting position.",
+        "Average speed is 240 ÷ 160 = 1.5 m/s."
+      ],
+      "model": [
+        "(a) Total distance = 240 m.",
+        "(b) Displacement = 0 m.",
+        "(c) Average speed = 1.5 m/s. The zero displacement does not make the distance or average speed zero."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Using zero displacement in the speed equation would calculate average velocity, not average speed.",
+      "hints": [
+        "Draw the outward and return paths."
+      ],
+      "teach": "#s1-2"
+    },
+    {
+      "id": "motion-independent-speed",
+      "title": "A ball crossing a mat",
+      "stage": "independent",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A ball travels 150 cm across a mat in 0.50 s. Calculate its average speed in m/s. The values describe a model measurement.",
+      "marks": 3,
+      "points": [
+        "Convert 150 cm to 1.50 m.",
+        "Use 1.50 ÷ 0.50.",
+        "Obtain 3.0 m/s."
+      ],
+      "model": [
+        "150 cm = 1.50 m.",
+        "Average speed = 1.50 ÷ 0.50 = 3.0 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 3 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "One metre is 100 cm, not 1000 cm.",
+      "hints": [
+        "Put the distance in metres first."
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 3,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-independent-distance",
+      "title": "How far does the model ferry go?",
+      "stage": "independent",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A model ferry moves at a constant speed of 2.0 m/s for 1.5 min. Calculate its distance travelled in metres.",
+      "marks": 3,
+      "points": [
+        "Convert 1.5 min to 90 s.",
+        "Use distance = speed × time.",
+        "Obtain 180 m."
+      ],
+      "model": [
+        "Time = 1.5 × 60 = 90 s.",
+        "Distance = 2.0 × 90 = 180 m. These are illustrative model values."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 180 m in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Minutes and metres per second must be converted to compatible units.",
+      "hints": [
+        "How many seconds are there in 1.5 minutes?"
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 180,
+        "unit": "m",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-independent-position-graph",
+      "title": "Away, waiting, and back",
+      "stage": "independent",
+      "objectives": [
+        "motion-position-graphs"
+      ],
+      "kind": "explain",
+      "prompt": "The graph shows a walker’s position east of a marker. Describe her motion during 0–4 s, 4–7 s and 7–9 s.",
+      "marks": 3,
+      "points": [
+        "From 0 to 4 s she moves east at a constant velocity.",
+        "From 4 to 7 s she is stationary at 8 m east of the marker.",
+        "From 7 to 9 s she moves west at a constant velocity, ending 2 m east of the marker."
+      ],
+      "model": [
+        "The first rising straight segment means steady eastward motion.",
+        "The horizontal segment means no change in position.",
+        "The falling straight segment means steady westward motion. She has not yet reached the marker at t = 9 s."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "This is a position graph. The decreasing position means returning west, not a negative distance travelled.",
+      "hints": [
+        "Use the direction and steepness of each segment."
+      ],
+      "teach": "#s1-2",
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Position east of marker (m)",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "caption": "Illustrative position–time graph; east is the positive direction."
+      }
+    },
+    {
+      "id": "motion-independent-acceleration",
+      "title": "A model train changes velocity",
+      "stage": "independent",
+      "objectives": [
+        "motion-acceleration"
+      ],
+      "kind": "calculate",
+      "prompt": "A model train’s velocity changes from 3.0 m/s north to 9.0 m/s north in 3.0 s. Calculate its average acceleration in m/s², taking north as positive.",
+      "marks": 3,
+      "points": [
+        "Use the velocity change 9.0 − 3.0 = 6.0 m/s.",
+        "Divide by 3.0 s.",
+        "Obtain +2.0 m/s²."
+      ],
+      "model": [
+        "a = (9.0 − 3.0) ÷ 3.0 = +2.0 m/s², towards the north."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 2 m/s² in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "An answer in m/s is a velocity rather than an acceleration.",
+      "hints": [
+        "Find how much the velocity changes in the whole interval."
+      ],
+      "teach": "#s1-3",
+      "numeric": {
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-independent-speed-graph",
+      "title": "A journey made of three shapes",
+      "stage": "independent",
+      "objectives": [
+        "motion-speed-graphs"
+      ],
+      "kind": "calculate",
+      "prompt": "The graph shows a robot speeding up uniformly, moving steadily, then slowing uniformly. Calculate its total distance travelled in metres.",
+      "marks": 4,
+      "points": [
+        "First triangle: ½ × 2 × 4 = 4 m.",
+        "Rectangle: 3 × 4 = 12 m.",
+        "Last triangle: ½ × 2 × 4 = 4 m.",
+        "Total distance is 20 m."
+      ],
+      "model": [
+        "Split the area under the graph at t = 2 s and t = 5 s.",
+        "Distance = 4 + 12 + 4 = 20 m."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 20 m in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "The steady section lasts 3 s, from 2 s to 5 s.",
+      "hints": [
+        "Break the area into two triangles and one rectangle."
+      ],
+      "teach": "#s1-4",
+      "numeric": {
+        "value": 20,
+        "unit": "m",
+        "tolerance": 0.01
+      },
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Speed (m/s)",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "caption": "Illustrative robot motion; every sloping segment is straight."
+      }
+    },
+    {
+      "id": "motion-independent-investigation",
+      "title": "Measure a toy car’s average speed",
+      "stage": "independent",
+      "objectives": [
+        "motion-investigation"
+      ],
+      "kind": "investigate",
+      "prompt": "Plan how to measure a toy car’s average speed between two marks on a clear indoor floor. State what you would measure, how you would calculate the speed, and one way to reduce timing uncertainty. You only need to describe the plan.",
+      "marks": 4,
+      "points": [
+        "Measure the distance between the marks with a ruler or tape measure.",
+        "Measure the elapsed time between the car crossing the two marks.",
+        "Calculate average speed as measured distance divided by elapsed time.",
+        "Use a suitable improvement such as timing from video frames or increasing the timed distance while keeping the route clear."
+      ],
+      "model": [
+        "Read the plan with an adult before trying it. Keep the floor clear and use a small toy car; keep away from stairs and doorways.",
+        "Measure the marked distance. Time from the front of the car crossing the first mark to the same part crossing the second. Divide distance by elapsed time.",
+        "A fixed-camera video with a known frame rate lets you identify the crossings more consistently. A longer safe timed distance also reduces the effect of reaction time."
+      ],
+      "accepted": [
+        "Accept light gates or another suitable way of detecting both crossings, if available. For repeated timings, say to calculate a mean; averaging reduces random variation, rather than removing every error."
+      ],
+      "common": "A speed measured over the whole interval is an average; it does not prove the car had that speed at every instant.",
+      "hints": [
+        "Which two measured quantities does the speed equation need?"
+      ],
+      "teach": "#s1-4"
+    },
+    {
+      "id": "motion-independent-top",
+      "title": "At the highest point",
+      "stage": "independent",
+      "objectives": [
+        "motion-free-fall"
+      ],
+      "kind": "explain",
+      "prompt": "A small ball has been thrown vertically upwards. At its highest point, state its velocity and its acceleration. Ignore air resistance and use g = 9.8 m/s². Explain why zero velocity at that instant does not mean zero acceleration.",
+      "marks": 3,
+      "points": [
+        "The instantaneous velocity is zero.",
+        "The acceleration is 9.8 m/s² downwards.",
+        "Gravity still acts and the velocity continues changing through that instant."
+      ],
+      "model": [
+        "At the highest point the ball has zero velocity, but its acceleration is still 9.8 m/s² downwards.",
+        "The ball is changing from upward velocity to downward velocity; gravity has not switched off."
+      ],
+      "accepted": [
+        "Accept acceleration written as −9.8 m/s² if upwards is explicitly chosen as positive. A downward direction must be clear."
+      ],
+      "common": "Zero velocity at one instant does not imply zero acceleration.",
+      "hints": [
+        "Think about the velocity just before and just after the highest point."
+      ],
+      "teach": "#s1-5"
+    },
+    {
+      "id": "motion-transfer-frames",
+      "title": "A parcel on a moving walkway",
+      "stage": "transfer",
+      "objectives": [
+        "motion-frames"
+      ],
+      "kind": "explain",
+      "prompt": "A parcel rests on a moving walkway that travels steadily east. A person standing on the floor says the parcel moves; a person moving beside it on the walkway says it is at rest. Explain whether their descriptions can both be correct.",
+      "marks": 3,
+      "points": [
+        "The parcel has zero velocity relative to the walkway.",
+        "The parcel has eastward velocity relative to the floor.",
+        "Both descriptions can be correct because they use different stated reference frames."
+      ],
+      "model": [
+        "The parcel keeps the same position on the walkway, so it is at rest in that frame.",
+        "Its position relative to the floor changes eastwards, so it is moving in the floor frame. Both observations describe the same event."
+      ],
+      "accepted": [
+        "Accept equivalent descriptions using “relative to the floor” and “relative to the walkway”. Both frames must be distinguished."
+      ],
+      "common": "There is no single privileged frame that makes the other steady-motion description an illusion.",
+      "hints": [
+        "Name what each person uses as the reference."
+      ],
+      "teach": "#s1-1"
+    },
+    {
+      "id": "motion-transfer-velocity",
+      "title": "The turn on the athletics track",
+      "stage": "transfer",
+      "objectives": [
+        "motion-speed",
+        "motion-acceleration"
+      ],
+      "kind": "explain",
+      "prompt": "A runner goes around a curved section of a track at a constant speed of 4.0 m/s. Explain whether her velocity changes and whether she is accelerating.",
+      "marks": 3,
+      "points": [
+        "Her velocity changes because its direction changes.",
+        "Acceleration is a rate of change of velocity.",
+        "She is therefore accelerating even though her speed is constant."
+      ],
+      "model": [
+        "The speedometer could keep the same reading while the direction of motion changes.",
+        "Velocity includes direction. A changing velocity means acceleration."
+      ],
+      "accepted": [
+        "Accept “direction changes, so velocity changes” as the reason for acceleration. A force explanation is not required here."
+      ],
+      "common": "Constant speed implies zero acceleration only when direction is also unchanged.",
+      "hints": [
+        "Write down what velocity contains that speed does not."
+      ],
+      "teach": "#s1-3"
+    },
+    {
+      "id": "motion-transfer-units",
+      "title": "Compare two journeys",
+      "stage": "transfer",
+      "objectives": [
+        "motion-units",
+        "motion-speed"
+      ],
+      "kind": "calculate",
+      "prompt": "Two model boats travel at steady speeds. Boat A covers 240 m in 2.0 min. Boat B moves at 7.2 km/h. Compare their speeds using a common unit and state which is faster.",
+      "marks": 3,
+      "points": [
+        "Boat A: 240 ÷ 120 = 2.0 m/s.",
+        "Boat B: 7.2 ÷ 3.6 = 2.0 m/s.",
+        "The speeds are equal."
+      ],
+      "model": [
+        "Boat A takes 2 × 60 = 120 s, so its speed is 2.0 m/s.",
+        "Boat B travels 7200 m in 3600 s, also 2.0 m/s. Neither is faster."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Numbers with different units cannot be compared directly.",
+      "hints": [
+        "Put both speeds in metres per second."
+      ],
+      "teach": "#s1-2"
+    },
+    {
+      "id": "motion-transfer-draw-graph",
+      "title": "Turn observations into a graph",
+      "stage": "transfer",
+      "objectives": [
+        "motion-position-graphs",
+        "motion-investigation"
+      ],
+      "kind": "graph",
+      "prompt": "The table gives illustrative measurements of distance travelled by a toy car. On paper, draw a distance-travelled–time graph. Label both axes with units, choose a sensible scale, plot the readings and join adjacent points with straight segments for this question.",
+      "marks": 4,
+      "points": [
+        "Put time (s) on the horizontal axis and distance travelled (m) on the vertical axis.",
+        "Choose uniform scales that include 0–8 s and 0–12 m.",
+        "Plot all five supplied points correctly.",
+        "Join adjacent points with straight segments, including a horizontal segment from 4 s to 6 s."
+      ],
+      "model": [
+        "Time belongs on the horizontal axis. The distance-travelled axis needs to reach at least 12 m.",
+        "Plot (0,0), (2,4), (4,8), (6,8), (8,12). Join adjacent points with a ruler.",
+        "The horizontal section from 4 to 6 s shows that the car was stationary during that interval."
+      ],
+      "accepted": [
+        "Accept any uniform axis scales that make the supplied range readable and allow the points to be plotted accurately. Hand-drawn plots should be checked on paper."
+      ],
+      "common": "The line is a graph against time, not a picture of the car’s route across the floor.",
+      "hints": [
+        "Begin by naming each axis and writing its unit."
+      ],
+      "teach": "#s1-2",
+      "data": {
+        "headers": [
+          "Time (s)",
+          "Distance travelled (m)"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      }
+    },
+    {
+      "id": "motion-transfer-negative",
+      "title": "Negative acceleration, increasing speed",
+      "stage": "transfer",
+      "objectives": [
+        "motion-acceleration"
+      ],
+      "kind": "explain",
+      "prompt": "Take east as positive. A cart’s velocity changes from −2.0 m/s to −6.0 m/s in 2.0 s. Calculate its average acceleration and explain whether it speeds up or slows down.",
+      "marks": 3,
+      "points": [
+        "Average acceleration is (−6.0 − (−2.0)) ÷ 2.0 = −2.0 m/s².",
+        "The speed increases from 2.0 m/s to 6.0 m/s.",
+        "It speeds up because velocity and acceleration both point west."
+      ],
+      "model": [
+        "The change in velocity is −4.0 m/s, giving an average acceleration of −2.0 m/s².",
+        "The minus signs mean west. The size of the velocity increases, so the cart speeds up."
+      ],
+      "accepted": [
+        "Accept “2.0 m/s² west” for −2.0 m/s². Accept “speed increases because the magnitude of velocity increases”."
+      ],
+      "common": "A negative acceleration does not always mean slowing down.",
+      "hints": [
+        "Keep the negative signs when subtracting; compare the sizes of the two velocities."
+      ],
+      "teach": "#s1-3"
+    },
+    {
+      "id": "motion-review-round-trip",
+      "title": "A different return journey",
+      "stage": "review",
+      "objectives": [
+        "motion-frames",
+        "motion-speed"
+      ],
+      "kind": "calculate",
+      "prompt": "A delivery robot travels 18 m north and then 6 m south in a total time of 8.0 s. Calculate its total distance, displacement and average speed.",
+      "marks": 3,
+      "points": [
+        "Total distance = 18 + 6 = 24 m.",
+        "Displacement = 18 − 6 = 12 m north.",
+        "Average speed = 24 ÷ 8.0 = 3.0 m/s."
+      ],
+      "model": [
+        "The route totals 24 m, but the robot ends only 12 m north of its starting point.",
+        "Average speed uses the route length: 24 ÷ 8.0 = 3.0 m/s."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Use path length for average speed and start-to-finish change for displacement.",
+      "hints": [
+        "Draw north as positive, then trace both legs."
+      ],
+      "teach": "#s1-2"
+    },
+    {
+      "id": "motion-review-speed-graph",
+      "title": "A fresh speed–time graph",
+      "stage": "review",
+      "objectives": [
+        "motion-speed-graphs",
+        "motion-acceleration"
+      ],
+      "kind": "calculate",
+      "prompt": "The graph shows a trolley accelerating uniformly along a straight line from rest to 8.0 m/s in 4.0 s. Calculate (a) its acceleration and (b) its distance travelled during these four seconds.",
+      "marks": 3,
+      "points": [
+        "Acceleration = (8.0 − 0) ÷ 4.0 = 2.0 m/s².",
+        "Distance is the triangular area ½ × 4.0 × 8.0.",
+        "Distance = 16 m."
+      ],
+      "model": [
+        "(a) The gradient gives acceleration: 8.0 ÷ 4.0 = 2.0 m/s².",
+        "(b) The area gives distance: ½ × 4.0 × 8.0 = 16 m."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "The gradient and the area represent different quantities and have different units.",
+      "hints": [
+        "Name what the gradient means, then name what the area means."
+      ],
+      "teach": "#s1-4",
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Speed (m/s)",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "caption": "Illustrative trolley motion with uniform acceleration."
+      }
+    },
+    {
+      "id": "motion-review-measurement",
+      "title": "Which measurement should be improved?",
+      "stage": "review",
+      "objectives": [
+        "motion-investigation",
+        "motion-units"
+      ],
+      "kind": "investigate",
+      "prompt": "A learner times a toy car over a fixed 80 cm distance three times. The recorded times are 0.40 s, 0.50 s and 0.60 s. Calculate the mean time and the speed found using that mean time, in m/s. Suggest one way to reduce timing uncertainty.",
+      "marks": 4,
+      "points": [
+        "Mean time = (0.40 + 0.50 + 0.60) ÷ 3 = 0.50 s.",
+        "Convert 80 cm to 0.80 m.",
+        "Speed from the mean time = 0.80 ÷ 0.50 = 1.6 m/s.",
+        "Suggest a relevant improvement, such as timing from video frames or using a longer safe timed distance."
+      ],
+      "model": [
+        "The mean time is 0.50 s.",
+        "80 cm is 0.80 m, so the speed calculated using the mean time is 1.6 m/s.",
+        "Video frames at a known rate can reduce uncertainty about the crossing times. A longer clear timed distance can reduce the fractional effect of reaction time."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Repeating and averaging can reduce random variation; it does not remove every systematic measurement error.",
+      "hints": [
+        "Add all three times before dividing by the number of trials."
+      ],
+      "teach": "#s1-4",
+      "data": {
+        "headers": [
+          "Trial",
+          "Time (s)"
+        ],
+        "rows": [
+          [
+            1,
+            0.4
+          ],
+          [
+            2,
+            0.5
+          ],
+          [
+            3,
+            0.6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "motion-review-free-fall",
+      "title": "Rising towards a balcony",
+      "stage": "review",
+      "objectives": [
+        "motion-free-fall",
+        "motion-acceleration"
+      ],
+      "kind": "explain",
+      "prompt": "A ball is already moving upwards after leaving a hand. Ignore air resistance. State the direction of its velocity, the direction of its acceleration, and how its speed changes before it reaches its highest point.",
+      "marks": 3,
+      "points": [
+        "Its velocity points upwards while it is still rising.",
+        "Its acceleration points downwards because of gravity.",
+        "Its speed decreases because the acceleration is opposite to its velocity."
+      ],
+      "model": [
+        "During the upward part of the flight, velocity is upward and acceleration is downward.",
+        "The downward acceleration reduces the upward velocity until it reaches zero at the highest point."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "The hand exerts no continuing upward force after the ball has left it.",
+      "hints": [
+        "Keep the direction of motion separate from the direction of its change."
+      ],
+      "teach": "#s1-5"
+    },
+    {
+      "id": "motion-review-position-gradient",
+      "title": "A lift’s recorded positions",
+      "stage": "review",
+      "objectives": [
+        "motion-position-graphs",
+        "motion-speed"
+      ],
+      "kind": "calculate",
+      "prompt": "A lift moves uniformly upwards from a height of 3.0 m at t = 2.0 s to a height of 15.0 m at t = 6.0 s. Calculate its velocity in m/s, taking upwards as positive.",
+      "marks": 3,
+      "points": [
+        "Change in height = 15.0 − 3.0 = 12.0 m.",
+        "Elapsed time = 6.0 − 2.0 = 4.0 s.",
+        "Velocity = +3.0 m/s."
+      ],
+      "model": [
+        "Velocity is the gradient of a height–time graph.",
+        "v = (15.0 − 3.0) ÷ (6.0 − 2.0) = +3.0 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 3 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "The elapsed time is 4 s; the final clock reading is not the journey time.",
+      "hints": [
+        "Use the differences between the two positions and the two times."
+      ],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 3,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-paper-a-1",
+      "title": "Paper A · route and displacement",
+      "stage": "paper",
+      "objectives": [
+        "motion-frames"
+      ],
+      "kind": "calculate",
+      "prompt": "A child walks 35 m east and then 15 m west. State her total distance travelled and her displacement.",
+      "marks": 2,
+      "points": [
+        "Distance = 50 m.",
+        "Displacement = 20 m east."
+      ],
+      "model": [
+        "Distance = 35 + 15 = 50 m.",
+        "Displacement = 35 − 15 = 20 m east."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Displacement needs a direction.",
+      "hints": [],
+      "teach": "#s1-1"
+    },
+    {
+      "id": "motion-paper-a-2",
+      "title": "Paper A · average speed",
+      "stage": "paper",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A model vehicle covers 540 m in 3.0 min. Calculate its average speed in m/s.",
+      "marks": 3,
+      "points": [
+        "Convert 3.0 min to 180 s.",
+        "Use 540 ÷ 180.",
+        "Obtain 3.0 m/s."
+      ],
+      "model": [
+        "Average speed = 540 ÷ (3 × 60) = 3.0 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 3 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Convert minutes to seconds before dividing.",
+      "hints": [],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 3,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-paper-a-3",
+      "title": "Paper A · describe a graph",
+      "stage": "paper",
+      "objectives": [
+        "motion-position-graphs"
+      ],
+      "kind": "explain",
+      "prompt": "The graph shows distance travelled by a walker. Describe the motion in 0–3 s and 3–5 s.",
+      "marks": 2,
+      "points": [
+        "From 0 to 3 s the walker moves at constant speed.",
+        "From 3 to 5 s the walker is stationary."
+      ],
+      "model": [
+        "The rising straight segment shows steady speed. The horizontal segment shows no extra distance, so the walker stops."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "This is a distance-travelled graph; its height is not speed.",
+      "hints": [],
+      "teach": "#s1-2",
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Distance travelled (m)",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "caption": "Illustrative distance–time graph."
+      }
+    },
+    {
+      "id": "motion-paper-a-4",
+      "title": "Paper A · acceleration",
+      "stage": "paper",
+      "objectives": [
+        "motion-acceleration"
+      ],
+      "kind": "calculate",
+      "prompt": "A cart moves in a straight line, changing velocity from 1.0 m/s to 7.0 m/s in 3.0 s. Calculate its average acceleration in m/s².",
+      "marks": 2,
+      "points": [
+        "Change in velocity = 6.0 m/s.",
+        "Divide by 3.0 s to obtain 2.0 m/s²."
+      ],
+      "model": [
+        "a = (7.0 − 1.0) ÷ 3.0 = 2.0 m/s²."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 2 m/s² in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Use a change in velocity, not the final velocity alone.",
+      "hints": [],
+      "teach": "#s1-3",
+      "numeric": {
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-paper-a-5",
+      "title": "Paper A · a fair ramp test",
+      "stage": "paper",
+      "objectives": [
+        "motion-investigation"
+      ],
+      "kind": "investigate",
+      "prompt": "A learner wants to find how the height of a gentle ramp affects the time a toy car takes to travel a fixed distance down it. State the variable to change, the variable to measure, and one variable to keep constant.",
+      "marks": 3,
+      "points": [
+        "Change the vertical height of the ramp.",
+        "Measure the time between the same two marks.",
+        "Keep a relevant variable constant, such as the car, ramp surface, distance between marks or release method."
+      ],
+      "model": [
+        "Change ramp height and measure the time over a fixed marked distance.",
+        "Use the same car and surface and release it from rest without a push. Read the plan with an adult before trying it; keep the ramp low and the stopping area clear."
+      ],
+      "accepted": [
+        "Accept “independent variable” for ramp height, “dependent variable” for time, and any relevant named control such as the same car or fixed timed distance."
+      ],
+      "common": "Changing the car at the same time would make the comparison unfair.",
+      "hints": [],
+      "teach": "#s1-4"
+    },
+    {
+      "id": "motion-paper-a-6",
+      "title": "Paper A · velocity at the top",
+      "stage": "paper",
+      "objectives": [
+        "motion-free-fall"
+      ],
+      "kind": "explain",
+      "prompt": "At the highest point of a vertical upward throw, a student says, “Its velocity is zero, so its acceleration is zero.” Explain the error. Ignore air resistance.",
+      "marks": 2,
+      "points": [
+        "Zero velocity at an instant does not mean zero rate of change of velocity.",
+        "Gravity still gives the ball downward acceleration at the highest point."
+      ],
+      "model": [
+        "The velocity passes through zero as it changes from upward to downward. Gravity still acts, so acceleration remains downward."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "A momentary zero value is different from an unchanging value.",
+      "hints": [],
+      "teach": "#s1-5"
+    },
+    {
+      "id": "motion-paper-b-1",
+      "title": "Paper B · two reference frames",
+      "stage": "paper",
+      "objectives": [
+        "motion-frames"
+      ],
+      "kind": "explain",
+      "prompt": "A passenger stays in her seat while a bus travels steadily north. State whether she is moving relative to the bus and relative to a tree beside the road.",
+      "marks": 2,
+      "points": [
+        "She is at rest relative to the bus.",
+        "She is moving north relative to the tree."
+      ],
+      "model": [
+        "Her position in the bus stays the same. Her position relative to the tree changes northwards."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "Always say what the motion is measured relative to.",
+      "hints": [],
+      "teach": "#s1-1"
+    },
+    {
+      "id": "motion-paper-b-2",
+      "title": "Paper B · speed with a stop",
+      "stage": "paper",
+      "objectives": [
+        "motion-speed",
+        "motion-units"
+      ],
+      "kind": "calculate",
+      "prompt": "A robot covers 360 m in 120 s, waits for 60 s, then covers another 360 m in 120 s. Calculate its average speed for the whole journey, including the stop, in m/s.",
+      "marks": 3,
+      "points": [
+        "Total distance = 720 m.",
+        "Total elapsed time = 120 + 60 + 120 = 300 s.",
+        "Average speed = 720 ÷ 300 = 2.4 m/s."
+      ],
+      "model": [
+        "The waiting time is part of the whole journey.",
+        "Average speed = 720 ÷ 300 = 2.4 m/s."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 2.4 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Leaving out the stop would overestimate the average speed for the whole journey.",
+      "hints": [],
+      "teach": "#s1-2",
+      "numeric": {
+        "value": 2.4,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "motion-paper-b-3",
+      "title": "Paper B · distance from a graph",
+      "stage": "paper",
+      "objectives": [
+        "motion-speed-graphs"
+      ],
+      "kind": "calculate",
+      "prompt": "A cart moves at 5.0 m/s for 4.0 s and then slows uniformly to rest over the next 4.0 s. Use the graph to calculate the total distance travelled in metres.",
+      "marks": 3,
+      "points": [
+        "Rectangle area = 4.0 × 5.0 = 20 m.",
+        "Triangle area = ½ × 4.0 × 5.0 = 10 m.",
+        "Total distance = 30 m."
+      ],
+      "model": [
+        "Distance = area under the speed–time graph.",
+        "Distance = 20 + 10 = 30 m."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 30 m in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "Use the width of the slowing interval, not the final clock reading.",
+      "hints": [],
+      "teach": "#s1-4",
+      "numeric": {
+        "value": 30,
+        "unit": "m",
+        "tolerance": 0.01
+      },
+      "graph": {
+        "xLabel": "Time (s)",
+        "yLabel": "Speed (m/s)",
+        "points": [
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "caption": "Illustrative cart motion: steady speed, then uniform slowing."
+      }
+    },
+    {
+      "id": "motion-paper-b-4",
+      "title": "Paper B · changing direction",
+      "stage": "paper",
+      "objectives": [
+        "motion-acceleration",
+        "motion-speed"
+      ],
+      "kind": "explain",
+      "prompt": "A model car travels around a circular track at constant speed. Explain why it is accelerating.",
+      "marks": 2,
+      "points": [
+        "Its direction of motion, and therefore its velocity, changes.",
+        "Acceleration is the rate of change of velocity."
+      ],
+      "model": [
+        "Velocity includes direction. Going around the circle changes velocity, so the car is accelerating even at constant speed."
+      ],
+      "accepted": [
+        "Equivalent correct scientific wording is accepted; the listed points explain what earns credit."
+      ],
+      "common": "A constant speed does not guarantee a constant velocity.",
+      "hints": [],
+      "teach": "#s1-3"
+    },
+    {
+      "id": "motion-paper-b-5",
+      "title": "Paper B · judging repeated readings",
+      "stage": "paper",
+      "objectives": [
+        "motion-investigation"
+      ],
+      "kind": "investigate",
+      "prompt": "A learner records times of 2.1 s, 2.0 s and 2.2 s for a toy car travelling the same marked distance. State the mean time and explain one reason to take repeated readings.",
+      "marks": 2,
+      "points": [
+        "Mean time = (2.1 + 2.0 + 2.2) ÷ 3 = 2.1 s.",
+        "Repeats show variation and averaging can reduce the effect of random timing error."
+      ],
+      "model": [
+        "The mean is 2.1 s.",
+        "Repeats reveal how much results vary; using a mean can reduce the effect of random timing differences."
+      ],
+      "accepted": [
+        "Accept “reduce the effect of random error” or “make a mean less affected by individual timing variations”. Repeats alone do not remove systematic error."
+      ],
+      "common": "Repeats do not automatically remove a systematic error such as a wrongly marked distance.",
+      "hints": [],
+      "teach": "#s1-4"
+    },
+    {
+      "id": "motion-paper-b-6",
+      "title": "Paper B · falling faster",
+      "stage": "paper",
+      "objectives": [
+        "motion-free-fall",
+        "motion-acceleration"
+      ],
+      "kind": "calculate",
+      "prompt": "A small ball is released from rest. Ignore air resistance and use g = 9.8 m/s². Calculate its speed after 0.50 s in m/s.",
+      "marks": 2,
+      "points": [
+        "Use change in velocity = acceleration × time, with initial velocity zero.",
+        "Obtain speed = 9.8 × 0.50 = 4.9 m/s."
+      ],
+      "model": [
+        "The ball gains 9.8 m/s of downward velocity each second.",
+        "After 0.50 s its speed is 4.9 m/s; its velocity is directed downwards."
+      ],
+      "accepted": [
+        "Accept equivalent numerical notation for 4.9 m/s in the requested unit. Award method points separately using the suggested marking guidance."
+      ],
+      "common": "The speed grows from zero; 9.8 m/s² is an acceleration, not its speed after every interval.",
+      "hints": [],
+      "teach": "#s1-5",
+      "numeric": {
+        "value": 4.9,
+        "unit": "m/s",
+        "tolerance": 0.01
+      }
+    }
+  ],
+  "papers": [
+    {
+      "id": "motion-paper-a",
+      "title": "Motion practice paper A",
+      "minutes": 15,
+      "questions": [
+        "motion-paper-a-1",
+        "motion-paper-a-2",
+        "motion-paper-a-3",
+        "motion-paper-a-4",
+        "motion-paper-a-5",
+        "motion-paper-a-6"
+      ]
+    },
+    {
+      "id": "motion-paper-b",
+      "title": "Motion practice paper B",
+      "minutes": 15,
+      "questions": [
+        "motion-paper-b-1",
+        "motion-paper-b-2",
+        "motion-paper-b-3",
+        "motion-paper-b-4",
+        "motion-paper-b-5",
+        "motion-paper-b-6"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chapter 1: Describing motion",
+      "url": "#ch1"
+    },
+    {
+      "title": "MIT OCW 8.01SC: reference frames",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-2-newtons-laws/4-3-reference-frames/"
+    },
+    {
+      "title": "MIT OCW 8.01SC: kinematics course notes",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf"
+    },
+    {
+      "title": "OpenStax Physics: speed and velocity",
+      "url": "https://openstax.org/books/physics/pages/2-2-speed-and-velocity"
+    },
+    {
+      "title": "OpenStax Physics: position–time graphs",
+      "url": "https://openstax.org/books/physics/pages/2-3-position-vs-time-graphs"
+    },
+    {
+      "title": "OpenStax College Physics 2e: falling objects",
+      "url": "https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects"
+    },
+    {
+      "title": "Cambridge Lower Secondary Science 0893",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/science/"
+    },
+    {
+      "title": "IES: Organizing Instruction and Study to Improve Student Learning",
+      "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1"
+    }
+  ]
+}
