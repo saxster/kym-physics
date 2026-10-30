@@ -63,8 +63,9 @@ def c0_hull_down():
 
 @figure
 def c0_rulers():
-    f = Fig(640, 400, 'The same short stick measured with three rulers, marked every 10 cm, every 1 cm and every 1 mm. '
-                      'The readings are about 0.4 dm, 3.6 or 3.7 cm, and 36.5 mm.')
+    f = Fig(640, 420, 'The same short stick measured with three rulers, marked every 10 cm, every 1 cm and every 1 mm. '
+                      'The readings are about 0.4 dm, 3.6 or 3.7 cm, and 36.5 mm. Below, the magnified endpoint and two '
+                      'bullseye targets contrasting precision and accuracy.')
     mm = 4.0                        # pixels per millimetre
     x0, stick = 60, 36.5 * mm        # the stick is 36.5 mm long
     panels = [
@@ -92,18 +93,28 @@ def c0_rulers():
         f.text(x0 + 520, y + 20, reading, 't b', 'end', 14)
     f.text(580, 191, 'cm', 't m', 'end', 12)
     f.text(580, 281, 'cm', 't m', 'end', 12)
-    f.text(60, 330, 'Magnify the endpoint', 't b', size=15)
-    f.text(60, 354, '36.5 lies between the marks.', 't', size=12)
-    f.text(60, 374, 'The last digit is an estimate.', 't m', size=12)
-    zx, zy, step = 350, 340, 55
-    f.rect(zx, zy-35, 1.5*step, 12, 'block', rx=1)
-    f.line(zx+1.5*step,zy-23,zx+1.5*step,zy+12,'ln p dash')
+    f.text(60, 322, 'Magnify the endpoint', 't b', size=14)
+    f.text(60, 342, '36.5 lies between the marks;', 't', size=12)
+    f.text(60, 358, 'the last digit is an estimate.', 't m', size=12)
+    zx, zy, step = 250, 344, 42
+    f.rect(zx, zy-30, 1.5*step, 12, 'block', rx=1)
+    f.line(zx+1.5*step,zy-18,zx+1.5*step,zy+10,'ln p dash')
     f.line(zx,zy,zx+4*step,zy,'ln')
     for k in range(5):
         f.line(zx+k*step,zy,zx+k*step,zy+8,'ln')
-        f.text(zx+k*step,zy+26,str(35+k),'t','middle',12)
-    f.text(zx+1.5*step,zy-42,'36.5 mm','t p b','middle',13)
-    f.text(320, 397, 'Finer divisions let you make a more precise estimate.', 't m', 'middle', 13)
+        f.text(zx+k*step,zy+23,str(35+k),'t','middle',12)
+    f.text(zx+1.5*step,zy-36,'36.5 mm','t p b','middle',12)
+    # Bullseye inset: precise vs accurate
+    for tx, lbl, pts in ((475, 'precise, not accurate', [(9, -9), (11, -7), (8, -11), (12, -10)]),
+                         (562, 'precise & accurate', [(-2, 1), (2, -1), (0, 2), (-1, -2)])):
+        ty = 342
+        f.circle(tx, ty, 19, 'ln m')
+        f.circle(tx, ty, 9, 'ln m')
+        f.circle(tx, ty, 2, 'fill-ink')
+        for dx, dy in pts:
+            f.circle(tx + dx, ty + dy, 2.3, 'fill-vol')
+        f.text(tx, ty + 33, lbl, 't m', 'middle', 10.5)
+    f.text(320, 408, 'Finer divisions give better precision; checking the zero gives accuracy.', 't m', 'middle', 13)
     return f.svg()
 
 

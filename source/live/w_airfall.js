@@ -244,11 +244,20 @@ Live.register('airfall', (stage, params, api) => {
         ctx.stroke();
       } else if (o.shape === 'sheet') {
         ctx.save();ctx.translate(cx,cy);ctx.rotate(-.12);ctx.fillStyle=c.sheet;ctx.fillRect(-14,-5,28,10);ctx.strokeRect(-14,-5,28,10);ctx.beginPath();ctx.moveTo(-9,-1);ctx.lineTo(9,-1);ctx.moveTo(-9,2);ctx.lineTo(6,2);ctx.stroke();ctx.restore();
+      } else if (o.shape.startsWith('drop')) {
+        const rad = o.shape === 'drop2' ? 7 : 10;
+        ctx.beginPath();
+        ctx.moveTo(cx - rad, cy + 3);
+        ctx.bezierCurveTo(cx - rad, cy - rad * 1.2, cx + rad, cy - rad * 1.2, cx + rad, cy + 3);
+        ctx.quadraticCurveTo(cx, cy + 6, cx - rad, cy + 3);
+        ctx.closePath();
+        ctx.fillStyle = c.electron;
+        ctx.fill();
       } else {
-        const rad = o.shape === 'drop2' ? 6 : o.shape === 'drop4' ? 9 : 8;
+        const rad = 8;
         ctx.beginPath();
         ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-        ctx.fillStyle = o.shape.startsWith('drop') ? c.electron : c.ink;
+        ctx.fillStyle = c.ink;
         ctx.fill();
       }
 

@@ -45,7 +45,9 @@ def c4_drag_balance():
                       'the same, the drag arrow grows until it matches; beside it the speed-time curve flattens at 6.5 m/s')
     f.text(160, 22, 'a 2 mm raindrop at three moments', 't b', 'middle', 14)
     for x, drag, cap in ((60, 0, 'just let go'), (160, 32, 'speeding up'), (260, 64, 'steady speed')):
-        f.circle(x, 150, 11, 'water')
+        bun = f'M{x-13},153 C{x-13},138 {x+13},138 {x+13},153 Q{x},157 {x-13},153 Z'
+        f.path(bun, 'water')
+        f.path(bun, 'ln')
         f.force(x, 162, 0, 64, 'weight', 12)
         if drag:
             f.force(x, 138, 0, -drag, 'drag', 12)

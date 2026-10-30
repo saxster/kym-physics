@@ -535,6 +535,7 @@ class Builder:
         for k, t in front_titles:
             out.append(li(k, t))
         out.append(li('cast', 'The cast'))
+        out.append(li('investigations', 'Investigate everyday things'))
         for name, title, _, _ in EXPLORERS:
             out.append(li(f'explore-{name}', title))
         out.append(li('explore-map', 'The adventure map'))
@@ -976,7 +977,7 @@ SITE_HEAD = (
     '<script>if("serviceWorker" in navigator && (location.protocol==="https:"||/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname))){{'
     'addEventListener("load",function(){{navigator.serviceWorker.register("sw.js").catch(function(){{}});}});}}</script>')
 
-BUDGET_INDEX = 4 * 1024 * 1024
+BUDGET_INDEX = int(4.5 * 1024 * 1024)
 BUDGET_CHUNK = 150 * 1024
 
 
@@ -1014,7 +1015,7 @@ def report_sizes(index, sizes):
     kb = lambda n: f'{n / 1024:8.1f} KB'
     isz = os.path.getsize(index)
     over = []
-    print('\nsizes (budget: index.html < 4 MB, each chunk < 150 KB except the shared three.js chunk)')
+    print('\nsizes (budget: index.html < 4.5 MB, each chunk < 150 KB except the shared three.js chunk)')
     print(f'  index.html {kb(isz)}' + ('   OVER BUDGET' if isz > BUDGET_INDEX else ''))
     if isz > BUDGET_INDEX:
         over.append('index.html')
@@ -1155,6 +1156,22 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
                   'or build a partial draft with --allow-missing-provenance.')
             raise SystemExit(1)
     back = []
+    investigations = [r for r in b.lessons if r.get('object') and r['id'] in b.lesson_targets]
+    if investigations:
+        entries = []
+        for r in investigations:
+            entries.append(f'<article class="inv-entry" data-object="{html.escape(r["object"], quote=True)}" data-minutes="{r["minutes"]}">'
+                          f'<p class="inv-object">{html.escape(r["object"])} · about {r["minutes"]} minutes</p>'
+                          f'<h3><a href="#{b.lesson_targets[r["id"]]}" data-open-lesson="{r["id"]}">{html.escape(r["title"])}</a></h3>'
+                          f'<p>{html.escape(r["question"])}</p><p class="inv-materials">{html.escape(r["materials"])}</p>'
+                          f'<a href="#ch{r["chapter"]}">Read chapter {r["chapter"]}</a></article>')
+        back.append('<section class="flow" id="investigations"><h2>Investigate everyday things</h2>'
+                    '<p>Begin with a thing you recognise. Predict, look closely, then explain. Each investigation has a short encounter, '
+                    'an optional longer activity, and a notebook for your evidence. Every activity has a virtual route.</p>'
+                    '<div id="investigation-filters"></div><p id="investigation-count" role="status"></p>'
+                    + ''.join(entries) + '<p>These original investigations were developed after researching Arthur W. Wiggins’s '
+                    '<i>The Joy of Physics</i>. They use the independently cited physics sources below; the text and diagrams are original. '
+                    'The book’s cartoons and procedures have not been reproduced.</p></section>')
     if stories:
         back += [ST.stories_section(stories, md_inline), ST.timeline_section(stories, md_inline)]
     back += [b.answers_html(chapters), b.glossary_html()]
@@ -1196,7 +1213,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
         'scenes': b.scenes,
         'checks': [{'anchor': a[4], 'label': a[1], 'ch': a[0]} for a in b.answers],
         'predicts': [{'id': k, 'ch': v[0], 'label': v[1]} for k, v in b.predicts.items()],
-        'lessons': [{'id': r['id'], 'title': r['title'], 'chapter': r['chapter'], 'target': b.lesson_targets[r['id']], 'stories': r.get('stories', [])} for r in b.lessons if r['id'] in b.lesson_targets],
+        'lessons': [{'id': r['id'], 'title': r['title'], 'chapter': r['chapter'], 'target': b.lesson_targets[r['id']], 'stories': r.get('stories', []),
+                     **{k: r[k] for k in ('object', 'minutes', 'observations', 'connections') if k in r}} for r in b.lessons if r['id'] in b.lesson_targets],
     }
     data_json = json.dumps(book_data, ensure_ascii=False).replace('</', '<\\/')
     scale_assets = {}

@@ -160,7 +160,7 @@
     "explanation": "A heavier bob feels a larger gravitational pull, but it is harder to accelerate by the same factor. Dividing tangential force by mass gives the same acceleration at the same angle. Red arrows show gravitational g; green arrows show the acceleration along the arc. The string also keeps the bob on its circular path. The readout keeps actual forces in newtons. Length changes the clock; mass does not.",
     "limits": "Point bob and massless string; no damping. The amplitude correction is valid for the offered angles up to 40 degrees. The displayed swing is a harmonic motion at the corrected period, rather than an exact nonlinear integration. Red gravitational g and green tangential-acceleration arrows use one fixed scale for both bobs; they do not depict total acceleration or force. Their tails are offset outside the bob for visibility.",
     "stories": [],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C09.1"
     ],
@@ -181,7 +181,7 @@
     "stories": [
       "resonance"
     ],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C09.2"
     ],
@@ -263,7 +263,7 @@
     "explanation": "The same pulse travels to the reflecting wall and returns. Distance to the wall is sound speed times return delay divided by two.",
     "limits": "Ideal flat reflector, sound speed 349 m/s for the warm-air example. The pulse drawing is not a pressure amplitude measurement.",
     "stories": [],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C09.4"
     ],
@@ -282,7 +282,7 @@
     "explanation": "Frequency controls pitch; amplitude controls the oscillation size. At fixed medium, intensity is proportional to amplitude squared.",
     "limits": "Synthetic sine tone, never a calibrated sound-level meter. Playback is optional and stops when this experiment closes or leaves view.",
     "stories": [],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C09.5"
     ],
@@ -337,7 +337,7 @@
     "stories": [
       "doppler"
     ],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C09.7"
     ],
@@ -587,7 +587,7 @@
     "stories": [
       "raman"
     ],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C11.2"
     ],
@@ -676,7 +676,7 @@
     "stories": [
       "light-wave"
     ],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C11.5"
     ],
@@ -695,7 +695,7 @@
     "explanation": "Waves leaving different parts of an opening reach the same screen point by different routes. They reinforce or cancel according to those route differences. A grating repeats the openings; a thin film supplies two reflected routes, including a phase reversal at one boundary. Changing spacing or thickness therefore selects different bright directions or colours.",
     "limits": "Fraunhofer model: 64 equal midpoint samples across one slit, eight equal grating sources, or two equal reflected film amplitudes. Plots and visible phasors use identical sums. Film one-reflection phase reversal is included; longitudinal and transverse apparatus scales are framed separately.",
     "stories": [],
-    "three": false,
+    "three": true,
     "auditIds": [
       "C11.5"
     ],

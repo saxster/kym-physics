@@ -1,0 +1,35 @@
+/* Everyday investigations use the book's existing paper, ink and type tokens. */
+#investigations h2 { margin-top:2rem; }
+#investigation-filters { display:flex; flex-wrap:wrap; gap:1rem; margin:1.5rem 0; font:.9rem/1.5 var(--sans); }
+#investigation-filters label { display:grid; gap:.4rem; flex:1 1 12rem; }
+#investigation-filters select { min-height:44px; padding:.5rem; background:var(--sheet); color:var(--ink); border:1px solid var(--rule); max-width:100%; }
+.inv-entry { border-top:1px solid var(--rule); padding:1.25rem 0; }
+.inv-entry[hidden] { display:none; }
+.inv-entry h3 { margin:.3rem 0; font-size:1.15rem; }
+.inv-object,.inv-meta,.inv-materials,#investigation-count { font:.85rem/1.6 var(--sans); }
+.inv-object { color:var(--electron); }
+.inv-entry a { display:inline-block; min-height:44px; padding:.3rem 0; }
+.inv-activity,.inv-long,.inv-theory,.inv-challenge,.inv-links,.inv-sources { margin:.8rem 1rem; font:.9rem/1.65 var(--sans); }
+.inv-activity { margin-bottom:.5rem; }
+.inv-long summary,.inv-quick summary,.inv-theory summary,.inv-sources summary,.inv-notebook-record summary { cursor:pointer; min-height:44px; padding:.6rem 0; font-weight:600; }
+.inv-long li,.inv-theory li { margin:.55rem 0; }
+.inv-meta,.inv-note { color:var(--muted); }
+.inv-field { display:block; font-weight:600; margin:1rem 0; }
+.inv-field textarea { display:block; box-sizing:border-box; width:100%; padding:.6rem; min-height:70px; font:400 .9rem/1.5 var(--sans); color:var(--ink); background:var(--sheet); border:1px solid var(--rule); resize:vertical; }
+.inv-field small { display:block; font-weight:400; }
+.inv-table-scroll { max-width:100%; overflow-x:auto; }
+.inv-table { border-collapse:collapse; width:100%; font:.85rem/1.5 var(--sans); }
+.inv-table th,.inv-table td { text-align:left; padding:.45rem; vertical-align:top; border-bottom:1px solid var(--rule); }
+.inv-table input,.inv-table select { box-sizing:border-box; width:100%; min-width:5rem; max-width:15rem; min-height:44px; padding:.4rem; border:1px solid var(--rule); background:var(--sheet); color:var(--ink); font:inherit; }
+.inv-table select { min-width:9rem; }
+.inv-actions { display:flex; flex-wrap:wrap; gap:.5rem; margin:.75rem 0; }
+.inv-challenge { border-left:3px solid var(--electron); padding:.7rem 1rem; }
+.inv-links { display:flex; flex-direction:column; align-items:flex-start; }
+.inv-links a { padding:.5rem 0; min-height:44px; }
+.inv-worked { background:var(--plate); padding:1rem; }
+.inv-sources a { overflow-wrap:anywhere; }
+.inv-chapter-links { margin:1rem 0; border-left:2px solid var(--electron); padding:.6rem 1rem; font:.9rem/1.6 var(--sans); }
+.inv-chapter-links a { display:inline-block; padding:.5rem 0; }
+.inv-chart { max-width:100%!important; width:100%!important; }
+.inv-activity :focus-visible,.inv-long :focus-visible,.inv-theory :focus-visible,#investigation-filters :focus-visible { outline:3px solid var(--electron); outline-offset:3px; }
+@media print { #investigation-filters,.inv-actions { display:none; } }

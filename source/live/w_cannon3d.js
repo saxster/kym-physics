@@ -299,11 +299,19 @@ Live.register('cannon3d', (stage, params, api) => {
     fireShot();
   });
 
+  let orbitCycle = 0;
   kit.onFrame = (dt) => {
-    if (dt > 0 && activeShot && !activeShot.done) {
-      // 1 real second = 120 seconds (2 minutes) of flight
-      advanceShot(activeShot, dt * 120);
-      updateReadout();
+    if (dt > 0 && activeShot) {
+      if (!activeShot.done) {
+        // 1 real second = 120 seconds (2 minutes) of flight
+        advanceShot(activeShot, dt * 120);
+        updateReadout();
+      } else if (activeShot.pts.length > 2) {
+        orbitCycle = (orbitCycle + dt * 0.22) % 1;
+        const idx = Math.min(activeShot.pts.length - 1, Math.floor(orbitCycle * activeShot.pts.length));
+        ball.position.copy(activeShot.pts[idx]);
+        kit.dirty = true;
+      }
     }
   };
 

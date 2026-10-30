@@ -215,8 +215,14 @@ def c12_iv_graph():
     pts = [(0, 0), (1.0, 0.05), (1.5, 0.4), (1.75, 2.0), (1.9, 8.5), (2.0, 20), (2.07, 30)]
     f.path(catmull([(X(v), Y(i)) for v, i in pts]), 'ln p', 'stroke-width="2.4"')
     f.circle(X(2.0), Y(20), 4, 'fill-ink')
-    f.text(X(2.0) + 10, Y(20) + 4, 'datasheet: 2.0 V at 20 mA', 't', 'start', 12)
-    f.text(X(2.0) + 10, Y(20) - 12, 'red LED (schematic shape)', 't p b', 'start', 13)
+    f.text(X(2.0) - 8, Y(22), 'red LED (2.0 V)', 't p b', 'end', 12)
+    # White LED curve (~3.3 V knee)
+    pts_w = [(0, 0), (2.2, 0.05), (2.8, 0.5), (3.05, 2.5), (3.2, 9.0), (3.3, 20), (3.37, 30)]
+    f.path(catmull([(X(v), Y(i)) for v, i in pts_w]), 'ln n', 'stroke-width="2.2"')
+    f.circle(X(3.3), Y(20), 4, 'fill-ink')
+    f.text(X(3.3) + 8, Y(20) - 4, 'white LED (~3.3 V)', 't b', 'start', 12)
+    f.line(X(3.0), y0 - 4, X(3.0), y0 + 4, 'ln m')
+    f.text(X(3.0), y0 + 15, '3 V', 't m', 'middle', 11)
     # 30 mA limit
     f.line(X(0), Y(30), X(10), Y(30), 'ln dash')
     f.text(X(10), Y(30) - 6, '30 mA: the most the LED survives', 't m', 'end', 12)

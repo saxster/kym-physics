@@ -197,8 +197,9 @@ def c9_compressions():
 
 @figure
 def c9_loud_high():
-    f = Fig(640, 320, 'Four microphone traces in a grid: a soft low note, a loud low note, a soft high note and a loud '
-                      'high note; loud traces are taller, high traces have crests closer together')
+    f = Fig(640, 410, 'Four microphone traces in a grid: a soft low note, a loud low note, a soft high note and a loud '
+                      'high note; loud traces are taller, high traces have crests closer together, with a fifth strip '
+                      'below showing a rich musical waveform of the same pitch and loudness')
     f.text(190, 28, 'soft', 't b', 'middle', 14)
     f.text(480, 28, 'loud', 't b', 'middle', 14)
     f.text(30, 100, 'low', 't b', 'middle', 14)
@@ -216,6 +217,21 @@ def c9_loud_high():
     f.text(480, 316, 'time →', 't m', 'middle', 12)
     f.line(330, 40, 330, 300, 'ln r')
     f.line(60, 170, 610, 170, 'ln r')
+    # 5th strip: rich instrument timbre (same period & peak height as low note, complex shape)
+    sx, sy, sw, sh = 70, 330, 530, 56
+    f.rect(sx, sy, sw, sh, 'plate', rx=4)
+    ym = sy + sh / 2
+    f.line(sx, ym, sx + sw, ym, 'ln r')
+    pts = []
+    for k in range(261):
+        x = sx + 6 + (sw - 12) * k / 260
+        phi = 2 * math.pi * (x - (sx + 6)) / 64
+        y = ym - 18 * (math.sin(phi) + 0.45 * math.sin(2 * phi) + 0.25 * math.sin(3 * phi))
+        pts.append((x, y))
+    f.path('M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in pts), 'ln g')
+    f.text(30, sy + 24, 'rich', 't b', 'middle', 13)
+    f.text(30, sy + 40, 'tone', 't b', 'middle', 13)
+    f.text(sx + sw / 2, sy + sh + 16, 'same repeat spacing (pitch) and height (loudness), different wave shape (timbre, Section 9.6)', 't m', 'middle', 12)
     return f.svg()
 
 

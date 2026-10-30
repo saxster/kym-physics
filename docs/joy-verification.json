@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-30",
+  "newInvestigations": 17,
+  "totalCatalogLessons": 126,
+  "browserCases": 179,
+  "matrices": {
+    "joy-browser": {
+      "cases": 30,
+      "engine": "chromium",
+      "indexSha256": "3c9b6b07107760edfe3bba980d020b879ae27077d968c873376039b9177ddd05"
+    },
+    "joy-final-matrix": {
+      "cases": 90,
+      "engine": "chromium",
+      "indexSha256": "2ec076452a0327387a87a7bfe11ff5894227b915938a1e08423b3b5136da1a2e"
+    },
+    "joy-webkit": {
+      "cases": 34,
+      "engine": "webkit",
+      "indexSha256": "02b6a7945b47f0b880f608453af9e53043c12d2f257f0b743d1a849137954a7b"
+    },
+    "joy-fallback": {
+      "cases": 17,
+      "engine": "chromium",
+      "indexSha256": "02b6a7945b47f0b880f608453af9e53043c12d2f257f0b743d1a849137954a7b"
+    },
+    "joy-final-controls": {
+      "cases": 8,
+      "engine": "chromium",
+      "indexSha256": "02b6a7945b47f0b880f608453af9e53043c12d2f257f0b743d1a849137954a7b"
+    }
+  },
+  "journey": "PASS: directory, records, CSV/Markdown, restore, original tracker return, incompatible modes, numeric boundaries, 320/390/768/1440px, keyboard, offline, quota fallback",
+  "independentReview": "Physics and data-flow review completed; reported findings corrected. Eddy and timing equations independently swept.",
+  "sourceSha256": {
+    "source/lessons/investigations.json": "82bb1ecf295a4039359a6981afb83b6e5c85590835d0e3e2e0a65b73062e8111",
+    "source/live/investigation_mechanics.js": "76ffade52613397babbe9faacaaa58ba90882580c59f4c17f2577eeea726ca98",
+    "source/live/investigation_records.mjs": "69fbf21655c0eafafd62bb3a1a96649b9782d9cd587e53fc768372ff069bf198",
+    "source/live/investigation_models.mjs": "0f67a33ba8cfee8d05c7cff02f645ac907b48f28106c619349c5c4346baf763b",
+    "source/live/investigation_draw.js": "fff848c78f74e7f18624d3b01274d99c2ed6f38a8172dacaa9ae5b94fa90d549",
+    "source/live/investigation_ui.js": "d2aa3bedf66e76791f15af403cb3d57dec19993756ef6eed9adb38091ba35342",
+    "source/live/investigation_modern.js": "80777a20f94d0643a124685deb83773dd331a421b198c35cefee66945ffafb32",
+    "source/live/w_investigations.js": "0cbb6c53b0234f46f72fc4835a49a4634e4a4d0f68fee6efc761e4afe6d24c97",
+    "source/app/m_notebook.js": "41686e53c6b2aed550faded738ab4a01544e6ab474f5549a2db7794ef4dc039a",
+    "source/app/m_labs.js": "4429027581d344a26c5e352cd308a46b27e18e15b277a7bad13d2ed24cdc505d",
+    "source/app/m_investigations.js": "cc71c55482709b9b9694616bc448303ffc0e867b8df93a55ff8cb9604ec8360f",
+    "source/live/core.js": "45ef8c38e668d001766e8723b631466a4ce99f1d195d70a0463af9982db7cf1f",
+    "source/app/core.js": "b417636fefa873e8273e2123aa00c67023bccde714d1ed8c743200ba681324a1",
+    "source/build.py": "6b4b23314402eeea7f4a892d436731a21490185198341db0f785c9cc07485352"
+  },
+  "finalSiteSha256": "d3577fbe65621b1b4ae3ec878d41baf7eaea3a8cb1937c582c8f7e864770f8c4",
+  "finalCache": "mw-f38d04b20593",
+  "limits": [
+    "Physical apparatus, microphone hardware, and learner comprehension were not tested.",
+    "No publication or commits performed."
+  ],
+  "artifactNotes": "Matrices precede final focused corrections; final journey covers corrected timing boundary and video routing. The last build adds a citation only."
+}

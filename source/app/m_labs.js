@@ -35,6 +35,21 @@ App.ready(() => {
   const lessons = App.data.lessons || [];
   if (!lessons.length) return;
   const byId = new Map(lessons.map(l => [l.id, l]));
+  document.addEventListener('click', e => {
+    const link = e.target.closest?.('[data-open-original]');
+    if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    const figure = document.getElementById(link.hash.slice(1));
+    if (!figure || figure.dataset.live !== link.dataset.openOriginal) return;
+    e.preventDefault(); e.stopPropagation();
+    const returnLesson = byId.get(link.dataset.returnInvestigation);
+    location.hash = figure.id;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      figure.scrollIntoView({block:'start',behavior:'instant'});
+      figure.querySelector('.lab-return')?.remove();
+      if (returnLesson) figure.prepend(App.el('a', {class:'lab-return', href:'#'+returnLesson.target, 'data-open-lesson':returnLesson.id}, 'Return to the bounce investigation'));
+      figure.dispatchEvent(new CustomEvent('open-original'));
+    }));
+  }, true);
   // Capture before the story panel's ordinary anchor handler closes the modal.
   document.addEventListener('click', e => {
     const link = e.target.closest?.('[data-open-lesson]');

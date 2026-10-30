@@ -2,7 +2,7 @@
   "date": "2026-10-29",
   "acceptanceRows": 108,
   "chapterSections": 90,
-  "lessons": 109,
+  "lessons": 126,
   "coverage": {
     "C00.1": {
       "lessons": [
@@ -59,14 +59,17 @@
     "C01.1": {
       "lessons": [
         "m-frames",
-        "m-trains"
+        "m-trains",
+        "j-lightclock"
       ],
       "preserved": [],
       "status": "VERIFIED",
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C01.2": {
@@ -187,7 +190,8 @@
     },
     "C03.1": {
       "lessons": [
-        "m-vectors"
+        "m-vectors",
+        "j-balance"
       ],
       "preserved": [
         "forces"
@@ -196,7 +200,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C03.2": {
@@ -213,14 +219,17 @@
     },
     "C03.3": {
       "lessons": [
-        "m-support"
+        "m-support",
+        "j-spring"
       ],
       "preserved": [],
       "status": "VERIFIED",
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C03.4": {
@@ -289,7 +298,8 @@
     },
     "C04.4": {
       "lessons": [
-        "m-projectile"
+        "m-projectile",
+        "j-disc"
       ],
       "preserved": [
         "projectile"
@@ -298,12 +308,16 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C04.5": {
       "lessons": [
-        "m-circle"
+        "m-circle",
+        "j-rolling",
+        "j-top"
       ],
       "preserved": [
         "whirl"
@@ -312,7 +326,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C05.1": {
@@ -442,7 +458,8 @@
     },
     "C06.5": {
       "lessons": [
-        "m-hull"
+        "m-hull",
+        "j-diver"
       ],
       "preserved": [
         "buoyancy"
@@ -451,7 +468,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C07.1": {
@@ -496,7 +515,9 @@
     },
     "C07.4": {
       "lessons": [
-        "m-energy"
+        "m-energy",
+        "j-bounce",
+        "j-bounce-timing"
       ],
       "preserved": [
         "energytrack"
@@ -505,7 +526,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-mechanics-independent.md"
+        "source/gates/visual-mechanics-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C07.5": {
@@ -548,14 +571,17 @@
     },
     "C08.2": {
       "lessons": [
-        "w8-samples"
+        "w8-samples",
+        "j-gas"
       ],
       "preserved": [],
       "status": "VERIFIED",
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-waves-independent.md"
+        "source/gates/visual-waves-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C08.3": {
@@ -611,14 +637,17 @@
     },
     "C09.1": {
       "lessons": [
-        "w9-pendulum"
+        "w9-pendulum",
+        "j-yoyo"
       ],
       "preserved": [],
       "status": "VERIFIED",
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-waves-independent.md"
+        "source/gates/visual-waves-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C09.2": {
@@ -841,7 +870,9 @@
       "lessons": [
         "w11-interference",
         "w11-diffraction",
-        "w11-arago"
+        "w11-arago",
+        "j-microwave",
+        "j-surfaces"
       ],
       "preserved": [
         "interference"
@@ -850,7 +881,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-waves-independent.md"
+        "source/gates/visual-waves-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C11.6": {
@@ -999,7 +1032,9 @@
     "C13.5": {
       "lessons": [
         "generator",
-        "transformer"
+        "transformer",
+        "j-flashlight",
+        "j-eddy"
       ],
       "preserved": [
         "induction"
@@ -1008,7 +1043,9 @@
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-fields-independent.md"
+        "source/gates/visual-fields-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C13.6": {
@@ -1105,14 +1142,18 @@
     "C15.2": {
       "lessons": [
         "atom-scale",
-        "radiation-decay"
+        "radiation-decay",
+        "j-decay",
+        "j-particles"
       ],
       "preserved": [],
       "status": "VERIFIED",
       "evidence": [
         "docs/threejs-verification.md",
         "docs/threejs-verification.json",
-        "source/gates/visual-fields-independent.md"
+        "source/gates/visual-fields-independent.md",
+        "docs/joy-implementation-plan.md",
+        "docs/joy-verification.md"
       ]
     },
     "C15.3": {

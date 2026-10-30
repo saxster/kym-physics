@@ -26,11 +26,24 @@ function energy(lab, api, c) {
   });
 }
 function impact(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.muted, 2.4, 0.32, 0.42, 0.4, 0.38, -0.32);
+  R.block(root, c.muted, 2.4, 0.32, 0.42, 0.4, -0.38, 0.32);
+  const dent1 = R.block(root, c.electron, 1, 0.14, 0.2, -0.8, 0.38, -0.2);
+  const dent2 = R.block(root, c.proton, 1, 0.14, 0.2, -0.8, -0.38, 0.44);
+  const ball1 = R.ball(root, c.electron, 0.13, -0.8, 0.38, -0.2);
+  const ball2 = R.ball(root, c.proton, 0.13, -0.8, -0.38, 0.44);
   R.slider(api, s, "speed", "First ball speed", 1, 5, 0.25, 2, "m/s", update);
   R.slider(api, s, "force", "Constant resisting force", 0.5, 3, 0.25, 1, "N", update);
   lab.redraw((ctx) => {
     const a = M.impact(0.02, s.speed, s.force), b = M.impact(0.02, 2 * s.speed, s.force), y = 190, H = s.force * 110 / 3;
+    const d1 = Math.max(0.02, a.distance), d2 = Math.max(0.02, b.distance);
+    scaled(dent1, d1, 1, 1);
+    point(dent1, -0.8 + d1 / 2, 0.38, -0.2);
+    point(ball1, -0.8 + d1, 0.38, -0.2);
+    scaled(dent2, d2, 1, 1);
+    point(dent2, -0.8 + d2 / 2, -0.38, 0.44);
+    point(ball2, -0.8 + d2, -0.38, 0.44);
     title(ctx, c, "Double speed: impulse \xD72; work \xD74 (fixed physical axes)");
     R.axes(ctx, c.ink, { x: 50, y, w: 235, h: 110, xlabel: "time (s)", ylabel: "force (N)" });
     R.axes(ctx, c.ink, { x: 365, y, w: 235, h: 110, xlabel: "distance (m)", ylabel: "force (N)" });
@@ -142,7 +155,11 @@ function work(lab, api, c) {
   });
 }
 function power(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.ink, 4.2, 0.08, 1.2, 0, -0.65);
+  const geyserMesh = R.rod(root, c.proton, 0.28, 0.85, -1.35, -0.18);
+  const lampMesh = R.ball(root, c.electron, 0.22, 0, -0.18);
+  const meterBar = R.block(root, c.neutron, 0.42, 1, 0.42, 1.35, -0.15);
   let household = false, presets = null;
   const custom = () => { if (!household) presets?.setActive?.(-1); update(); };
   const ps = R.slider(api, s, "power", "Power", 10, 2e3, 10, 2e3, "W", custom), ts = R.slider(api, s, "hours", "Elapsed / operating time", 0.25, 24, 0.25, 0.25, "h", custom);
@@ -156,6 +173,12 @@ function power(lab, api, c) {
     update();
   });
   lab.redraw((ctx) => {
+    const kWhVal = household ? M.household(s.hours).kWh : M.power(s.power, s.hours).kWh;
+    const hScale = Math.max(0.06, Math.min(1.4, (household ? kWhVal / 2 : kWhVal / 12) * 1.2));
+    scaled(meterBar, 1, hScale, 1);
+    point(meterBar, 1.35, -0.61 + hScale / 2);
+    scaled(geyserMesh, 1, household ? 1 : Math.max(0.25, s.power / 2e3), 1);
+    scaled(lampMesh, 0.8 + 0.4 * (s.hours / 24), 0.8 + 0.4 * (s.hours / 24), 0.8 + 0.4 * (s.hours / 24));
     title(ctx, c, household ? "Sum the scheduled appliances; each slope is power" : "Fixed axes: cumulative energy slope equals power");
     if (household) {
       const times = [0, 7, 7.25, 12, 18, 18.1, 20, 24], colors = [c.proton, c.electron, c.neutron, c.muted], values = M.household(s.hours), series = M.HOUSEHOLD.map((a2, i) => ({ color: colors[i], values: times.map((t) => [t, M.household(Math.min(t, s.hours)).appliances[i].kWh]) }));

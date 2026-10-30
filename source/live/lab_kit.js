@@ -10,7 +10,7 @@ const element = (tag, cls, text) => {
   return node;
 };
 
-export function makeLab(stage, api, { id, title, question, explanation, limits, three = true }) {
+export function makeLab(stage, api, { id, title, question, explanation, limits, three = true, diagramHeight = 240 }) {
   stage.dataset.lesson = id;
   stage.classList.add('lab-stage');
   const heading = element('h3', 'lab-title', title);
@@ -41,7 +41,7 @@ export function makeLab(stage, api, { id, title, question, explanation, limits, 
     }
   }
   if (three && !kit) stage.append(element('p', 'live-note', 'The calculated diagram below shows this experiment without 3D.'));
-  const canvas = api.canvas(640, 240, `${title}: calculated diagram and measurements`);
+  const canvas = api.canvas(640, diagramHeight, `${title}: calculated diagram and measurements`);
   const annotations = diagramAnnotations(canvas, api);
   canvas.ctx = annotations.ctx;
   const diagramScroll = element('div', 'lab-diagram-scroll');

@@ -322,7 +322,7 @@ function torsion(lab, api, c) {
   R.block(bar, c.ink, 2, 0.04, 0.04);
   R.ball(bar, c.electron, 0.04, -1, 0);
   R.ball(bar, c.electron, 0.04, 1, 0);
-  const large = [R.ball(root, c.proton, 0.08, -1, 0.6), R.ball(root, c.proton, 0.08, 1, -0.6)], equilibrium = R.wire(root, c.rule, [[-1, 0, 0], [1, 0, 0]]), dial = R.vector(root, c.proton), update = () => lab.refresh();
+  const large = [R.ball(root, c.proton, 0.08, -1, 0, 0.6), R.ball(root, c.proton, 0.08, 1, 0, -0.6)], equilibrium = R.wire(root, c.rule, [[-1, -0.05, 0], [1, -0.05, 0]]), dial = R.vector(root, c.proton), update = () => lab.refresh();
   R.ring(root, c.ink, 0.5, "z", 2, 0, 0);
   lab.kit?.label?.("suspended small masses",bar,{color:c.ink,offset:[0,55]});
   lab.kit?.label?.("large attracting mass",large[0],{color:c.proton,offset:[-20,-40]});
@@ -343,12 +343,12 @@ function torsion(lab, api, c) {
   });
   lab.redraw((ctx) => {
     const p = M.torsion(s.mass, s.distance * s.sign), d = M.torsionResponse(p.angle, s.time, s.disturbance * Math.PI / (180 * 3600));
-    point(large[0], -1, -s.sign * s.distance * 2.5);
-    point(large[1], 1, s.sign * s.distance * 2.5);
-    if (bar) bar.rotation.z = d.angle;
+    point(large[0], -1, 0, -s.sign * s.distance * 2.5);
+    point(large[1], 1, 0, s.sign * s.distance * 2.5);
+    if (bar) bar.rotation.y = d.angle;
     dial.set([2, 0, 0], [2 - 0.5 * Math.sin(d.angle * 800), 0.5 * Math.cos(d.angle * 800), 0]);
     const a = p.angle;
-    R.path(equilibrium, [[-Math.cos(a), -Math.sin(a), 0.05], [Math.cos(a), Math.sin(a), 0.05]]);
+    R.path(equilibrium, [[-Math.cos(a), -0.05, Math.sin(a)], [Math.cos(a), -0.05, -Math.sin(a)]]);
     primary(ctx, c, "A disturbed balance settles towards gravity equilibrium");
     const unit = 180 * 3600 / Math.PI, max = 250;
     const ax = R.plot(ctx, c, [{ color: c.proton, values: R.samples(151, (u) => [u * 5e3, M.torsionResponse(p.angle, u * 5e3, s.disturbance / unit).angle * unit]) }, { color: c.rule, values: [[0, p.angle * unit], [5e3, p.angle * unit]], dash: [4, 4] }], { x: 55, y: 185, w: 500, h: 105, xmax: 5e3, ymin: -max, ymax: max, xlabel: "time (s)" });

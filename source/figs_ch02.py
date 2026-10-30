@@ -127,6 +127,11 @@ def c2_train_brake():
     f.vector(60, 72, 90, 0, 'train slowing', 13)
     # the passenger, tilting forward (to the right, the way the train moves)
     _person(f, 150, 215, 92, lean=18)
+    # hanging grab-strap tilted forward at angle theta (tan theta = a/g)
+    f.line(315, 95, 315, 132, 'ln m dash')
+    f.line(315, 95, 329, 130, 'ln')
+    f.circle(331, 134, 4.5, 'ln')
+    f.text(338, 128, 'strap tilts', 't m', 'start', 11)
     f.force(150, 212, -60, 0)
     f.text(172, 206, 'friction from the floor', 't p b', 'start', 12)
     f.text(172, 221, 'slows her feet', 't p b', 'start', 12)
@@ -135,10 +140,14 @@ def c2_train_brake():
     f.text(256, 127, 'the old velocity', 't e', 'start', 12)
     # inside view
     f.ground(430, 215, 190)
+    f.line(430, 95, 610, 95, 'ln m')
+    f.line(585, 95, 585, 132, 'ln m dash')
+    f.line(585, 95, 599, 130, 'ln')
+    f.circle(601, 134, 4.5, 'ln')
     _person(f, 525, 215, 92, lean=18)
     f.arrow(505, 152, 567, 152, 'muted', dash=True)
-    f.text(430, 100, 'feels like a push forward,', 't m', 'start', 12)
-    f.text(430, 115, 'but nothing exerts it', 't m', 'start', 12)
+    f.text(430, 108, 'feels like a push forward,', 't m', 'start', 12)
+    f.text(430, 123, 'but nothing exerts it', 't m', 'start', 12)
     return f.svg()
 
 

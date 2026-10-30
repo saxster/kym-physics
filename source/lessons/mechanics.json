@@ -331,13 +331,13 @@
     "figure": "c3_f_ma",
     "stories": [],
     "question": "If the same resultant acts on twice the mass, how does its acceleration change?",
-    "explanation": "Add vectors head to tail. The resultant depends on their directions; acceleration is the resultant divided by mass.",
+    "explanation": "Apply the same net force to different masses or vary the force on a fixed mass; acceleration scales with force and inversely with mass (a = F/m).",
     "limits": "Point-mass cart on a frictionless horizontal surface; force and acceleration scales differ.",
     "sources": [
       "https://openstax.org/books/college-physics-2e/pages/3-2-vector-addition-and-subtraction-graphical-methods",
       "https://openstax.org/books/college-physics-2e/pages/4-3-newtons-second-law-of-motion-concept-of-a-system"
     ],
-    "renderer": "vectors"
+    "renderer": "newton"
   },
   {
     "id": "m-support",

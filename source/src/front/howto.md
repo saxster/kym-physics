@@ -19,7 +19,7 @@ As you read, you will meet a few kinds of boxes. Each one has one job.
 <dt>Try it at home</dt><dd>A real experiment with things from the kitchen, a torch or your phone. Everything in these boxes is safe to do, but ask an adult first, and never use mains electricity.</dd>
 <dt>Watch and play</dt><dd>Many pictures come alive: a button under them starts an animation, a sound, or a 3D model you can turn with your finger. Some can use your phone's microphone or motion sensor, but only if you say yes, and nothing you record ever leaves your phone. They only move when you ask.</dd>
 <dt>At school</dt><dd>A sentence on how your school book or exam might say the same thing in different words.</dd>
-<dt>Check yourself</dt><dd>One question at the end of a section. The answers, with the reasoning, are at the back of the book.</dd>
+<dt>Check yourself</dt><dd>One question at the end of a section. Tap or click to open the answer and the reasoning right below, and test yourself again later at the back of the book.</dd>
 <dt>Back from Chapter N</dt><dd>An old wrong idea, returning in a new place. Wrong ideas have a habit of creeping back, so the book checks on them.</dd>
 <dt>Case file</dt><dd>A mystery at the end of each chapter. You get the clues; you work out what is going on. The solution is hidden until you ask for it.</dd>
 </dl>

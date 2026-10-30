@@ -219,7 +219,7 @@ Live.register('ramp', (stage, params, api) => {
     ctx.lineTo(xEnd, yEnd);
     ctx.stroke();
 
-    hatch(ctx,xStart,yStart,20,Math.max(0,vy-yStart),c.muted,10);
+    if (mu > 0) hatch(ctx,xStart,yStart,20,Math.max(0,vy-yStart),c.muted,10);
     dimension(ctx,24,yStart,24,vy,c.electron);
     api.draw.text(ctx,'1 m',34,(yStart+vy)/2,{size:12,color:c.electron});
     if(deg2===0){api.draw.arrow(ctx,560,vy-15,612,vy-15,c.electron,2,7);api.draw.text(ctx,'continues',585,vy-25,{size:12,color:c.electron,align:'center'});}

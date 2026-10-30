@@ -21,6 +21,14 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(widgets_from_html(f'<figure data-live="field3d" data-labs="{attrs}">'),
                          ['field3d', 'fieldslab'])
 
+    def test_connected_lessons_must_exist(self):
+        with tempfile.TemporaryDirectory() as folder:
+            row = self.row()
+            row['connections'] = ['missing-investigation']
+            (Path(folder) / 'catalog.json').write_text(json.dumps([row]))
+            with self.assertRaisesRegex(ValueError, 'unknown connected lessons'):
+                load_catalog(folder)
+
     def test_unsupported_or_duplicate_lessons_fail_the_build(self):
         with tempfile.TemporaryDirectory() as folder:
             p = Path(folder) / 'catalog.json'

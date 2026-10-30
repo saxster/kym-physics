@@ -41,11 +41,16 @@ def c6_pressure():
     f.text(480, 28, 'A fluid pushes on every face', 't b', 'middle', 14)
     f.rect(340, 60, 280, 200, 'water', rx=0)
     f.text(348, 76, 'water', 't m', 'start', 12)
-    f.mass_block(450, 120, 80, 60, '')
-    _press_arrows(f, [(465, 94, 465, 117), (490, 94, 490, 117), (515, 94, 515, 117),       # top, down
-                      (465, 208, 465, 183), (490, 208, 490, 183), (515, 208, 515, 183),   # bottom, up (a little longer)
-                      (420, 135, 447, 135), (420, 150, 447, 150), (420, 165, 447, 165),   # left, inward
-                      (560, 135, 533, 135), (560, 150, 533, 150), (560, 165, 533, 165)])  # right, inward
+    # Isometric 3D cube under water showing all six face directions
+    f.path('M 444,134 L 512,134 L 512,186 L 444,186 Z', 'block')
+    f.path('M 444,134 L 466,114 L 534,114 L 512,134 Z', 'plate')
+    f.path('M 512,134 L 534,114 L 534,166 L 512,186 Z', 'plate')
+    _press_arrows(f, [(475, 92, 475, 118), (502, 92, 502, 118),       # top, down
+                      (465, 212, 465, 188), (495, 212, 495, 188),     # bottom, up (longer)
+                      (416, 148, 441, 148), (416, 170, 441, 170),     # left, inward
+                      (558, 138, 536, 138), (558, 160, 536, 160),     # right, inward
+                      (458, 174, 474, 160),                           # front face, inward
+                      (520, 102, 504, 116)])                          # back face, inward
     f.text(480, 242, 'the water pushes on all six faces,', 't e', 'middle', 12)
     f.text(480, 256, 'at right angles to each one', 't e', 'middle', 12)
     return f.svg()

@@ -4,7 +4,7 @@ When you have finished this book, the adventure does not stop. Here are some pla
 
 **MIT OpenCourseWare.** The Massachusetts Institute of Technology puts many of its courses online for anyone. Much of this book was built on them.
 
-- [Physics Demonstration Videos](https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/): short films of the experiments MIT shows its students, from spinning wheels to glowing tubes. For watching: the real versions need a lab.
+- [Physics Demonstration Videos](https://ocw.mit.edu/courses/res-8-003-physics-demonstration-videos-spring-2012/): short films of the experiments MIT shows its students, from spinning wheels to glowing tubes (if an older video player does not load on the course page, search the demonstration title on the MIT Physics Technical Services / OpenCourseWare YouTube channels). For watching: the real versions need a lab.
 - When you are older: [Classical Mechanics (8.01SC)](https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/), [Electricity and Magnetism (8.02)](https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/), [Vibrations and Waves (8.03SC)](https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/) and [Introduction to Astronomy (8.282J)](https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/).
 
 **OpenStax.** Free textbooks written by teachers: [Physics](https://openstax.org/books/physics/pages/1-introduction) for school, and [Astronomy 2e](https://openstax.org/books/astronomy-2e/pages/1-introduction) for the sky.

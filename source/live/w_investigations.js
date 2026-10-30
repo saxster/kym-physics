@@ -1,0 +1,22 @@
+import {Live} from './core.js';
+import {makeLab} from './lab_kit.js';
+import {activity} from './investigation_ui.js';
+import lessons from '../lessons/investigations.json';
+import * as mechanics from './investigation_mechanics.js';
+import * as modern from './investigation_modern.js';
+const renderers={...mechanics,...modern};
+Live.register('investigations',(stage,params,api)=>{
+ const lesson=lessons.find(l=>l.id===params.lesson);
+ if(!lesson)throw new Error('Unknown investigation');
+ api.playback(false);
+ const lab=makeLab(stage,api,{...lesson,three:false,diagramHeight:330});
+ const record=activity(stage,api,lesson);
+ const reading=renderers[lesson.renderer](lab,api,api.colors());
+ if(reading.predict)record.compare(reading.predict,'Compare only observations made under the same conditions as the current controls. Off-scale model values are given in the text.');
+ const capture=api.button('Record model reading',()=>{const value=reading();if(value)record.record(value);});
+ capture.title='Records the quantities named in the measurement table. Switch to the matching mode if unavailable.';
+ capture.disabled=!reading();
+ api.loop(()=>{capture.disabled=!reading();});
+ api.onChange?.(()=>{capture.disabled=!reading();record.redraw();});
+ return {destroy(){}};
+},{label:'Make an investigation'});

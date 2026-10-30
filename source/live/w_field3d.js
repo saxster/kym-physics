@@ -97,8 +97,8 @@ Live.register('field3d', (stage, params, api) => {
     rebuild();
   }, { pressed: false });
 
-  // Control 3: Tabs Wire / Coil and magnet
-  api.tabs(['Wire', 'Coil and magnet'], (i) => {
+  // Control 3: Tabs Wire / Coil and magnet / Electromagnet (iron core)
+  api.tabs(['Wire', 'Coil and magnet', 'Electromagnet (iron core)'], (i) => {
     tab = i;
     rebuild();
   });
@@ -236,7 +236,13 @@ Live.register('field3d', (stage, params, api) => {
         turn.position.set(coilX, y, 0);
         dynGroup.add(turn);
       }
-      buildDipoleLoops(dynGroup, coilX, currentA / 1.5, reversed);
+      if (tab === 2) {
+        const coreMat = new MeshStandardMaterial({ color: new Color(c.muted), roughness: 0.35, metalness: 0.3 });
+        const core = new Mesh(new CylinderGeometry(0.24, 0.24, 1.55, 20), coreMat);
+        core.position.set(coilX, 0, 0);
+        dynGroup.add(core);
+      }
+      buildDipoleLoops(dynGroup, coilX, (currentA / 1.5) * (tab === 2 ? 1.6 : 1.0), reversed);
 
       // Bar magnet at x = +1.45 (North top in red, South bottom in blue)
       const nMat = new MeshStandardMaterial({ color: new Color(c.proton), roughness: 0.5 });

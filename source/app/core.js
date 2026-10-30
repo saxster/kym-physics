@@ -22,13 +22,14 @@ const store = {
   available: canStore,
   get(key, dflt) {
     try {
-      const raw = canStore ? localStorage.getItem(PREFIX + key) : mem[key];
+      const raw = Object.hasOwn(mem, key) ? mem[key] : canStore ? localStorage.getItem(PREFIX + key) : null;
       return raw == null ? dflt : JSON.parse(raw);
     } catch (e) { return dflt; }
   },
   set(key, val) {
     const raw = JSON.stringify(val);
-    try { if (canStore) localStorage.setItem(PREFIX + key, raw); else mem[key] = raw; } catch (e) { mem[key] = raw; }
+    try { if (canStore) { localStorage.setItem(PREFIX + key, raw); delete mem[key]; } else mem[key] = raw; }
+    catch (e) { mem[key] = raw; store.available = false; }
   },
   remove(key) { try { if (canStore) localStorage.removeItem(PREFIX + key); } catch (e) {} delete mem[key]; },
   keys() {

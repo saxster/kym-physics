@@ -1,0 +1,1079 @@
+[
+  {
+    "id": "j-rolling",
+    "widget": "investigations",
+    "renderer": "rolling",
+    "title": "Race a hoop and a cylinder",
+    "chapter": 4,
+    "section": "4.5",
+    "stories": [
+      "circular"
+    ],
+    "object": "Wheels",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Model: nothing. Physical route: gentle book ramp, two sturdy round objects, clear desk; adult helps secure the ramp.",
+    "question": "Does equal mass mean an equal finish time?",
+    "encounter": "Before touching the controls, predict which wins: a hoop or a solid cylinder of equal mass and radius. Move the mass inward and watch the race again.",
+    "procedure": [
+      "Choose two round objects and a gentle ramp over a clear desk, or use the model. Release together without a push.",
+      "Keep the ramp and starting height fixed. Compare finish times; repeat three times.",
+      "In the model, vary the inertia factor while leaving mass and radius fixed. Record model readings separately from physical observations."
+    ],
+    "explanation": "Mass farther from the axis needs more energy for the same spin rate. Less of the height loss becomes forward kinetic energy.",
+    "limits": "Rigid objects, no slipping, constant slope and negligible rolling resistance. The bodies are equal in mass and radius. Household containers may have moving contents; that needs a different model.",
+    "derivation": [
+      "The height loss gives energy mgh (m in kg, g in m/s², h in m).",
+      "Rolling shares it: mgh = ½mv² + ½Iω². I is rotational inertia in kg·m².",
+      "No slip gives v = Rω. Write I = k mR², where k describes mass distribution.",
+      "Then v² = 2gh/(1+k) and a = g sin(θ)/(1+k)."
+    ],
+    "worked": "On a 30° ramp, a solid cylinder (k = 0.5) accelerates at 3.27 m/s²; a hoop (k = 1) at 2.45 m/s².",
+    "challenge": "If you move the same mass towards the axis, which object now wins? Explain without calculating.",
+    "observations": {
+      "x": "Inertia factor",
+      "xUnit": "1",
+      "y": "Finish time",
+      "yUnit": "s",
+      "samples": [
+        [
+          0.4,
+          1.069
+        ],
+        [
+          0.5,
+          1.107
+        ],
+        [
+          1,
+          1.278
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Illustrative model: 30° slope, 1 m height"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-1/pages/11-1-rolling-motion"
+    ],
+    "connections": [
+      "m-work",
+      "m-energy"
+    ]
+  },
+  {
+    "id": "j-balance",
+    "widget": "investigations",
+    "renderer": "balance",
+    "title": "Balance is more than equal forces",
+    "chapter": 3,
+    "section": "3.1",
+    "stories": [
+      "vectors"
+    ],
+    "object": "A ruler",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Model: nothing. Physical route: ruler, stable desk support, tiny known loads; no heavy balancing objects.",
+    "question": "Can forces balance while the object starts turning?",
+    "encounter": "Imagine pushing a door near the hinge, then near the handle with the same force. Which push turns it more easily?",
+    "procedure": [
+      "Balance a ruler across a stable narrow support on a desk; keep loads small and off feet. Or use the beam model.",
+      "Put loads on opposite sides. Keep one position fixed and find a position that balances.",
+      "Repeat with a different pivot. Record distance from pivot, not distance from the ruler end."
+    ],
+    "explanation": "A balanced beam needs zero net force and zero net torque. The separate free-bar force pair shows how zero net force can coexist with a turning effect.",
+    "limits": "Beam: massless rigid beam with two point loads on a fixed frictionless pivot, shown horizontal at release. An unbalanced beam has angular acceleration and a downward centre-of-mass acceleration; the support reaction is calculated from both. Pair mode: view from above of a free bar; equal opposite in-plane forces, no pivot.",
+    "derivation": [
+      "A downward load produces torque τ=−mg(x−p), in N·m, about pivot p. Counterclockwise is positive.",
+      "At balance, both torques cancel and the support equals total weight.",
+      "At release when unbalanced, Iα=Στ and the centre accelerates vertically: a_y=α(x_CM−p). The support is Mg+Ma_y, not generally Mg.",
+      "The separate free-bar example has equal opposite forces 0.4 m apart. Net force is zero but torque is −2×0.4=−0.8 N·m."
+    ],
+    "worked": "A 0.2 kg load 0.2 m left balances 0.4 kg placed 0.1 m right of the pivot: both turning effects are 0.392 N·m.",
+    "challenge": "Could two equal weights fail to balance? Give a placement and explain it.",
+    "observations": {
+      "x": "Right lever arm",
+      "xUnit": "m",
+      "y": "Right load",
+      "yUnit": "kg",
+      "samples": [
+        [
+          0.1,
+          0.4
+        ],
+        [
+          0.2,
+          0.2
+        ],
+        [
+          0.4,
+          0.1
+        ]
+      ],
+      "minY": 0,
+      "sampleNote": "Illustrative balanced cases: pivot0, left .2 kg at −.2 m"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-1/pages/12-1-conditions-for-static-equilibrium",
+      "https://openstax.org/books/university-physics-volume-1/pages/10-7-newtons-second-law-for-rotation"
+    ],
+    "connections": [
+      "m-vectors",
+      "m-support"
+    ]
+  },
+  {
+    "id": "j-bounce",
+    "widget": "investigations",
+    "renderer": "bounce",
+    "title": "Measure what a bounce returns",
+    "chapter": 7,
+    "section": "7.4",
+    "stories": [],
+    "object": "A ball",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Soft ball, ruler, clear floor and optional local slow-motion clip. Supplied observations need no equipment.",
+    "question": "If 80% of the speed returns, does 80% of the energy return?",
+    "encounter": "Predict the next bounce height before lowering the restitution control. Does losing half the height mean losing half the speed?",
+    "procedure": [
+      "Use the linked local video tracker to mark the highest point after each bounce; put a ruler in the same plane. Or use the supplied observations.",
+      "Keep ball, surface and camera position fixed. Enter successive drop and rebound heights in metres; repeat a height three times.",
+      "Compare your height ratios with the model. Explain where mechanical energy went and what measurement could test your account."
+    ],
+    "explanation": "Height measures gravitational energy. Speed depends on the square root of height; speed ratio and energy ratio therefore differ.",
+    "limits": "Vertical bounce from rest on a fixed floor, negligible air drag and rotation. Restitution is a ball/surface/impact-condition property, not a universal constant. Microphone echoes are not used as measurements.",
+    "derivation": [
+      "Just before contact, ½mu² = mgH. After contact, ½mv² = mgh.",
+      "Restitution e = v/u = √(h/H). H and h are positive heights in the same unit.",
+      "Returned mechanical-energy fraction is h/H = e².",
+      "Ball-only momentum changes during contact because the floor exerts an external impulse. Total energy includes the floor and air."
+    ],
+    "worked": "From 1.00 m to 0.64 m: e = 0.80 and mechanical-energy fraction = 0.64; 36% became other stores and sound.",
+    "challenge": "A ball returns to half its height. Is its speed ratio one half? Explain.",
+    "observations": {
+      "x": "Drop height",
+      "xUnit": "m",
+      "y": "Rebound height",
+      "yUnit": "m",
+      "samples": [
+        [
+          1,
+          0.64
+        ],
+        [
+          1,
+          0.62
+        ],
+        [
+          1,
+          0.65
+        ],
+        [
+          0.5,
+          0.32
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Illustrative observations; same ball and surface"
+    },
+    "sources": [
+      "https://openstax.org/books/college-physics/pages/8-5-inelastic-collisions-in-one-dimension",
+      "https://arxiv.org/abs/physics/0210092"
+    ],
+    "connections": [
+      "m-toss",
+      "m-energy",
+      "m-impact"
+    ]
+  },
+  {
+    "id": "j-diver",
+    "widget": "investigations",
+    "renderer": "diver",
+    "title": "Make a sealed diver sink",
+    "chapter": 6,
+    "section": "6.5",
+    "stories": [
+      "floating"
+    ],
+    "object": "A bottle",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Model: nothing. Physical route: sealed flexible packet, water and plastic bottle; adult helps choose a barely floating packet.",
+    "question": "What changes when a sealed packet sinks after a squeeze?",
+    "encounter": "A sealed flexible packet barely floats in water. Predict whether squeezing the bottle changes its mass, its volume, or both.",
+    "procedure": [
+      "Use the supplied packet model, or with an adult select a sealed condiment packet that barely floats inside a plastic water bottle.",
+      "Squeeze gently, release, and describe the change before explaining it. Keep the packet sealed.",
+      "Compare air-pocket volume and displaced water at several pressures. This model uses fixed packet mass, not water entering an open diver."
+    ],
+    "explanation": "The air compresses, making the sealed packet smaller. The packet displaces less water, so buoyancy can drop below its unchanged weight.",
+    "limits": "Illustrative sealed packet: 9 mL incompressible material plus 1 mL air at 101.325 kPa, mass 9.8 g. Slow, approximately isothermal compression; water compression is neglected. A real packet may be too dense to float.",
+    "derivation": [
+      "At fixed temperature and gas amount, P V_air is constant; pressure P must be absolute.",
+      "Total packet volume = 9 mL + compressed air volume. Mass remains 9.8 g.",
+      "Buoyancy = water density × g × displaced volume; water density is about 1000 kg/m³.",
+      "At a smaller packet volume, buoyancy can be less than weight. Sinking is a result of that force imbalance."
+    ],
+    "worked": "Doubling pressure halves the 1 mL air pocket. Packet volume becomes 9.5 mL, below the 9.8 mL needed to support 9.8 g.",
+    "challenge": "Would squeezing a completely solid incompressible packet work the same way? Why?",
+    "observations": {
+      "x": "Absolute pressure",
+      "xUnit": "kPa",
+      "y": "Air volume",
+      "yUnit": "mL",
+      "samples": [
+        [
+          101.325,
+          1
+        ],
+        [
+          135.1,
+          0.75
+        ],
+        [
+          202.65,
+          0.5
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Ideal model: fixed temperature, initial air1 mL"
+    },
+    "sources": [
+      "https://www.exploratorium.edu/snacks/condiment-diver",
+      "https://openstax.org/books/college-physics-2e/pages/13-3-the-ideal-gas-law"
+    ],
+    "connections": [
+      "m-hull",
+      "m-pressure",
+      "w8-phase"
+    ]
+  },
+  {
+    "id": "j-gas",
+    "widget": "investigations",
+    "renderer": "gas",
+    "title": "Warm it or squeeze it?",
+    "chapter": 8,
+    "section": "8.2",
+    "stories": [
+      "latent-heat"
+    ],
+    "object": "A bottle",
+    "minutes": 8,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Can two different changes produce the same pressure?",
+    "encounter": "Predict the pressure when a fixed amount of gas is squeezed to half its volume. Then restore the volume and double its absolute temperature.",
+    "procedure": [
+      "Choose the constant-temperature route and vary volume.",
+      "Choose the fixed-volume route and vary temperature in kelvin. Record the pressure each time.",
+      "Compare both with the baseline. Keep the amount of gas fixed; no heated sealed container is needed."
+    ],
+    "explanation": "Gas pressure depends on amount, volume and absolute temperature. Compression and warming are different changes that can produce the same pressure ratio.",
+    "limits": "Fixed gas amount, ideal gas, equilibrium states. Baseline: 1 L at 300 K and 101325 Pa. No real container heating or molecular collision trajectories are simulated.",
+    "derivation": [
+      "The ideal gas relationship is PV = nRT; P in Pa, V in m³ and T in K.",
+      "For fixed n, P/P₀ = (T/T₀)(V₀/V).",
+      "At fixed T, halving V doubles P. At fixed V, doubling T doubles P.",
+      "A temperature ratio uses kelvin: doubling degrees Celsius is not doubling absolute temperature."
+    ],
+    "worked": "1 L at 600 K and 0.5 L at 300 K both give 202650 Pa for this fixed amount.",
+    "challenge": "Does warming from 20°C to 40°C double pressure in a rigid container? Explain.",
+    "observations": {
+      "x": "Volume at 300 K",
+      "xUnit": "L",
+      "y": "Pressure",
+      "yUnit": "kPa",
+      "samples": [
+        [
+          1,
+          101.325
+        ],
+        [
+          0.5,
+          202.65
+        ],
+        [
+          2,
+          50.6625
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Ideal model: fixed amount at300 K"
+    },
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/13-3-the-ideal-gas-law"
+    ],
+    "connections": [
+      "m-hydrostatic",
+      "w8-samples"
+    ]
+  },
+  {
+    "id": "j-yoyo",
+    "widget": "investigations",
+    "renderer": "yoyo",
+    "title": "One yo-yo, two questions",
+    "chapter": 9,
+    "section": "9.1",
+    "stories": [],
+    "object": "A yo-yo",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Does a smaller axle make an unwinding yo-yo fall faster?",
+    "encounter": "First imagine a yo-yo hanging without unwinding as a small-angle pendulum. Then let its string unwind. Are these the same model?",
+    "procedure": [
+      "Use Pendulum to vary string length and predict the period.",
+      "Use Unwinding to compare axle radii while outer radius and mass distribution stay fixed.",
+      "Trace the same height loss into translation and rotation; record a model reading and explain why the pendulum formula no longer applies."
+    ],
+    "explanation": "Unwinding couples the fall to spin through string tension. A small axle requires more spin for the same downward speed.",
+    "limits": "Pendulum: point-bob approximation, small angle, no unwinding. Unwinding: fixed end, massless string, no slip on axle, no return tug, outer radius 4 cm and mass 1 kg. Illustrated angle is slowed.",
+    "derivation": [
+      "For the pendulum, T = 2π√(L/g); bob mass cancels.",
+      "For unwinding, mg−tension = ma and tension × r = Iα.",
+      "No slip at the axle gives a = rα, hence a = g/(1+I/(mr²)).",
+      "With outer radius R and I = k mR², reduce axle r and more energy goes into rotation."
+    ],
+    "worked": "For k=0.5, R=4 cm and r=1 cm, a=g/9≈1.09 m/s². This is not free fall.",
+    "challenge": "Why does the same yo-yo need different equations when it hangs and when it unwinds?",
+    "observations": {
+      "x": "Axle radius",
+      "xUnit": "cm",
+      "y": "Acceleration",
+      "yUnit": "m/s²",
+      "samples": [
+        [
+          1,
+          1.0889
+        ],
+        [
+          2,
+          3.2667
+        ],
+        [
+          3,
+          5.1882
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Ideal unwinding model: R4 cm, inertia factor.5"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-1/pages/11-1-rolling-motion",
+      "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    ],
+    "connections": [
+      "w9-pendulum",
+      "m-work"
+    ]
+  },
+  {
+    "id": "j-spring",
+    "widget": "investigations",
+    "renderer": "spring",
+    "title": "Calibrate a spring; question a rubber band",
+    "chapter": 3,
+    "section": "3.3",
+    "stories": [],
+    "object": "A spring",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Model: nothing. Physical route: small spring, ruler and tiny known loads over a desk; adult helps secure it.",
+    "question": "Must every stretch graph be a straight line?",
+    "encounter": "Predict whether doubling the load doubles the stretch. Compare an ideal spring with a stiffening rubber-like material.",
+    "procedure": [
+      "Use a small spring and tiny known loads over a desk, or use the supplied observations. Mark the unloaded position.",
+      "Add loads gently and record extension, not total length. Repeat each load; hold the spring and ruler fixed.",
+      "Plot force against extension. Compare a straight-line model with the curved model. Real rubber may also show different loading and unloading paths."
+    ],
+    "explanation": "A straight load–extension graph describes an approximately linear spring. Elastic recovery alone does not require a straight graph.",
+    "limits": "Quasistatic loading; linear F=kx or illustrative nonlinear F=kx+800x³ (SI). The rubber-like curve is not a fit to a particular band and has no hysteresis. Do not stretch bands near eyes.",
+    "derivation": [
+      "For a linear spring, force F=kx; stiffness k is in N/m.",
+      "Stored energy is the area under the force–extension graph.",
+      "For F=kx, that triangle has area ½kx² joules.",
+      "The nonlinear illustration adds 800x³ to force and 200x⁴ to energy. Real materials require measurements."
+    ],
+    "worked": "A 20 N/m linear spring stretches 0.10 m under 2 N, storing 0.10 J.",
+    "challenge": "If a rubber band springs back, must its graph be a straight line? What would you measure?",
+    "observations": {
+      "x": "Force",
+      "xUnit": "N",
+      "y": "Extension",
+      "yUnit": "m",
+      "samples": [
+        [
+          0.5,
+          0.025
+        ],
+        [
+          1,
+          0.05
+        ],
+        [
+          2,
+          0.1
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Ideal linear spring20 N/m"
+    },
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/5-3-elasticity-stress-and-strain"
+    ],
+    "connections": [
+      "m-support",
+      "w9-pendulum"
+    ]
+  },
+  {
+    "id": "j-top",
+    "widget": "investigations",
+    "renderer": "top",
+    "title": "Why a spinning top precesses",
+    "chapter": 4,
+    "section": "4.5",
+    "stories": [
+      "circular"
+    ],
+    "object": "A spinning top",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Does spin remove the downward force of gravity?",
+    "encounter": "Predict what happens to the rate of precession if spin doubles while tilt stays the same. Keep the gravity arrow in view.",
+    "procedure": [
+      "Choose a tilt and spin rate in the virtual top.",
+      "Follow the angular momentum arrow and the horizontal torque that turns it.",
+      "Record precession at several spin rates and compare the inverse trend. This is a steady-precession approximation, not a full top falling to rest."
+    ],
+    "explanation": "Gravity still acts. Its torque changes the direction of angular momentum, so the axis sweeps around.",
+    "limits": "Fast symmetric top, slow steady precession, fixed tilt; ignores nutation and spin loss. m=0.1 kg, centre 0.04 m from support, I=0.0001 kg·m². Spin 80–160 rad/s; precession is much slower. No physical balancing required. Torque projection is drawn about the support; the centre is not the pivot.",
+    "derivation": [
+      "Spin angular momentum L≈Iω, in kg·m²/s.",
+      "Gravity produces torque magnitude mgℓ sinθ, in N·m.",
+      "A slowly precessing L sweeps at rate Ω, giving |dL/dt|≈ΩL sinθ.",
+      "Equate them: Ω≈mgℓ/(Iω). Doubling spin halves this precession rate."
+    ],
+    "worked": "At ω=80 rad/s, Ω≈4.9 rad/s. At 160 rad/s it is≈2.45 rad/s.",
+    "challenge": "Which force disappeared when the top began to spin? If none, what changed?",
+    "observations": {
+      "x": "Spin rate",
+      "xUnit": "rad/s",
+      "y": "Precession rate",
+      "yUnit": "rad/s",
+      "samples": [
+        [
+          80,
+          4.9
+        ],
+        [
+          120,
+          3.2667
+        ],
+        [
+          160,
+          2.45
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Fast steady-precession approximation"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope"
+    ],
+    "connections": [
+      "m-circle",
+      "m-vectors"
+    ]
+  },
+  {
+    "id": "j-disc",
+    "widget": "investigations",
+    "renderer": "disc",
+    "title": "A flying disc needs more than a parabola",
+    "chapter": 4,
+    "section": "4.4",
+    "stories": [],
+    "object": "A flying disc",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "What does a gravity-only prediction leave out?",
+    "encounter": "Predict a disc trajectory first with gravity only. Switch on the simple aerodynamic model and compare the paths.",
+    "procedure": [
+      "Choose the same launch speed and elevation for both models.",
+      "Compare range and flight time; record the model used beside every reading.",
+      "Explain which observations would need a better model: wind, changing angle of attack, wobble or spin loss. Use the virtual route indoors."
+    ],
+    "explanation": "Moving air produces lift normal to the flight velocity and drag opposite it in this simplified model. Spin helps orientation stability but does not supply forward energy.",
+    "limits": "Two-dimensional illustrative flight from 1 m, mass 0.175 kg, area 0.057 m², density 1.2 kg/m³, fixed C_L=.30 and C_D=.12. No attitude, spin or stall dynamics; launch elevation is not angle of attack. This is not a prediction for a particular disc.",
+    "derivation": [
+      "Gravity-only motion has x=v₀ cosθ t and y=h+v₀ sinθ t−½gt².",
+      "Simple air forces have magnitudes L=½ρAv²C_L and D=½ρAv²C_D.",
+      "Here lift is perpendicular to velocity and drag opposes it; numerical integration follows their changing directions.",
+      "A real disc needs changing aerodynamic coefficients and attitude dynamics; equal transit time is not a valid explanation of lift."
+    ],
+    "worked": "At 10 m/s and 30° from 1 m above the floor, the gravity-only range is about 10.32 m.",
+    "challenge": "Can a decorative spinning disc on a parabolic path demonstrate lift? Explain what is missing.",
+    "observations": {
+      "x": "Launch speed",
+      "xUnit": "m/s",
+      "y": "Flight range",
+      "yUnit": "m",
+      "samples": [
+        [
+          5,
+          3.3511
+        ],
+        [
+          10,
+          10.3201
+        ],
+        [
+          15,
+          21.4861
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Gravity-only model;30° elevation; release height1 m"
+    },
+    "sources": [
+      "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/lift-equation/",
+      "https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/wrong1.html"
+    ],
+    "connections": [
+      "m-projectile",
+      "m-circle"
+    ]
+  },
+  {
+    "id": "j-flashlight",
+    "widget": "investigations",
+    "renderer": "flashlight",
+    "title": "Shake, store, shine",
+    "chapter": 13,
+    "section": "13.5",
+    "stories": [
+      "induction"
+    ],
+    "object": "A flashlight",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Can a stationary magnet keep a flashlight lit?",
+    "encounter": "Set magnet speed to zero. Predict the generated voltage, then compare it with a moving magnet and stored charge.",
+    "procedure": [
+      "Choose a representative magnet speed and a charging duration.",
+      "Stop shaking and increase the time since stopping. Watch the capacitor discharge into the lamp-equivalent load.",
+      "Record energy values and check the complete account, including winding heat. Compare with the linked generator."
+    ],
+    "explanation": "Changing flux induces voltage. Hand work can become stored electrical energy, light and heat; taking energy out opposes the driving motion.",
+    "limits": "Ideal rectified source E=2v, a 0.1 F capacitor charged through 10Ω, then discharged through a 10Ω lamp-equivalent. No LED threshold, real magnetic waveform or conversion efficiency is modeled. No mains or physical wiring needed.",
+    "derivation": [
+      "Faraday: changing magnetic flux through a coil produces EMF; a stationary magnet gives none.",
+      "During charging, V_C=E(1−exp(−t/RC)). Capacitor energy is ½CV_C².",
+      "Hand work in this ideal source is C E V_C; the remainder becomes resistor heat.",
+      "After shaking, V_C decays exponentially; stored energy supplies the load. Opposing force times drive speed equals input power."
+    ],
+    "worked": "At 2 m/s the representative EMF is 4 V. A capacitor approaches but does not exceed that voltage in this circuit.",
+    "challenge": "Where does the lamp energy come from after your hand stops? Why is the magnet not a fuel?",
+    "observations": {
+      "x": "Charge time",
+      "xUnit": "s",
+      "y": "Capacitor voltage before discharge",
+      "yUnit": "V",
+      "samples": [
+        [
+          1,
+          2.5285
+        ],
+        [
+          2,
+          3.4587
+        ],
+        [
+          4,
+          3.9267
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Ideal RC charging; magnet speed2 m/s"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-2/pages/13-1-faradays-law",
+      "https://www.exploratorium.edu/snacks/eddy-currents",
+      "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits"
+    ],
+    "connections": [
+      "generator",
+      "circuit-diagnose",
+      "m-station",
+      "photoelectric"
+    ]
+  },
+  {
+    "id": "j-microwave",
+    "widget": "investigations",
+    "renderer": "microwave",
+    "title": "Measure waves with virtual chocolate",
+    "chapter": 11,
+    "section": "11.5",
+    "stories": [],
+    "object": "Chocolate",
+    "minutes": 8,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Are neighbouring hot regions a whole wavelength apart?",
+    "encounter": "Measure the gap between neighbouring hot regions in the ideal field map. Predict whether doubling that gap gives the wavelength.",
+    "procedure": [
+      "Use the supplied virtual pattern. Enter adjacent hot-region spacing in centimetres and frequency in GHz.",
+      "Repeat several spacings and record the resolution. Compare the resulting estimates.",
+      "Explain why arbitrary melt spots in a real oven may not be adjacent antinodes. No appliance experiment is required."
+    ],
+    "explanation": "A simple standing wave has neighbouring antinodes half a wavelength apart. Wave speed equals frequency times wavelength.",
+    "limits": "One-dimensional ideal standing-wave pattern. A real oven has several cavity modes and nonuniform heating. Virtual food only; never modify an appliance or require a child to handle hot food.",
+    "derivation": [
+      "Adjacent ideal hot regions correspond to adjacent antinodes: d=λ/2.",
+      "Therefore λ=2d, not d.",
+      "Use c≈fλ=2df, with d in metres and f in hertz.",
+      "Repeat spacings and examine resolution; melting alone is not precision metrology."
+    ],
+    "worked": "6.1 cm and 2.45 GHz give λ=.122 m and speed≈2.989×10⁸ m/s.",
+    "challenge": "A learner uses c=df. What factor is missing, and what observation justifies it?",
+    "observations": {
+      "x": "Hot-region spacing",
+      "xUnit": "cm",
+      "y": "Frequency",
+      "yUnit": "GHz",
+      "samples": [
+        [
+          6,
+          2.45
+        ],
+        [
+          6.1,
+          2.45
+        ],
+        [
+          6.2,
+          2.45
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Illustrative hot-region readings"
+    },
+    "sources": [
+      "https://www.open.edu/openlearn/course/view.php?id=9655"
+    ],
+    "connections": [
+      "w11-interference",
+      "em-wave",
+      "w9-water"
+    ]
+  },
+  {
+    "id": "j-lightclock",
+    "widget": "investigations",
+    "renderer": "lightclock",
+    "title": "One light clock, two observers",
+    "chapter": 1,
+    "section": "1.1",
+    "stories": [
+      "earth-turns",
+      "p-aryabhata"
+    ],
+    "object": "A train",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "How can the same light have a longer path and the same speed?",
+    "encounter": "Compare a light pulse between mirrors aboard a carriage with its path in the ground frame. Predict which clock interval is longer.",
+    "procedure": [
+      "Begin at zero relative speed; both frame accounts coincide.",
+      "Set speed to0.6c and move the ground-time control through a complete tick.",
+      "Compare the same reflection events in both panels. The proper-time clock is aboard the carriage. This is a coordinate account, not delayed camera footage."
+    ],
+    "explanation": "The moving clock has a diagonal light path in the ground frame. Both accounts use the same light speed; the ground-frame tick interval is longer.",
+    "limits": "Inertial frames, ideal mirrors 1 light-second apart transversely; units c=1. Ground-frame time drives both panels, and ship proper time is t/γ. No acceleration, journey turnaround or gravity. Light travel delay is not time dilation.",
+    "derivation": [
+      "In the ship frame, half a tick takes D/c.",
+      "In the ground frame, light travels diagonally: (cΔt)²=D²+(vΔt)² for a half tick.",
+      "Solve: Δt=γD/c, where γ=1/√(1−v²/c²).",
+      "For the same two mirror events, Δτ=Δt/γ. Each inertial observer may describe the other clock as moving; there is no universal resting frame."
+    ],
+    "worked": "At 0.6c, γ=1.25. A 2 s ship tick takes 2.5 s in the ground frame.",
+    "challenge": "Is this just waiting longer for light to reach a camera? Explain how the two panels define their times.",
+    "observations": {
+      "x": "Relative speed",
+      "xUnit": "c",
+      "y": "Time factor γ",
+      "yUnit": "1",
+      "samples": [
+        [
+          0,
+          1
+        ],
+        [
+          0.6,
+          1.25
+        ],
+        [
+          0.8,
+          1.6667
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Special-relativity time factor"
+    },
+    "sources": [
+      "https://openstax.org/books/college-physics/pages/28-2-simultaneity-and-time-dilation"
+    ],
+    "connections": [
+      "m-frames",
+      "w10-delay",
+      "eclipse-evidence"
+    ]
+  },
+  {
+    "id": "j-decay",
+    "widget": "investigations",
+    "renderer": "decay",
+    "title": "Many samples, one probability law",
+    "chapter": 15,
+    "section": "15.2",
+    "stories": [
+      "radiation",
+      "p-bhabha"
+    ],
+    "object": "Coins",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Model: nothing. Physical route: coins or two-sided counters on a tray; no radioactive materials.",
+    "question": "Must exactly half of a small sample remain after one half-life?",
+    "encounter": "Predict whether five independent samples will follow the same staircase. Compare a small population with a larger one.",
+    "procedure": [
+      "Use the virtual samples or toss a set of coins. Remove heads after each round and toss only the survivors.",
+      "Enter round number and survivor count. Repeat the whole experiment with the same initial number.",
+      "Compare separate runs with the expectation curve. Do not pool supplied model values with physical observations."
+    ],
+    "explanation": "Half-life is a probability statement. Individual lifetimes vary; an expectation curve describes the ensemble, and small samples fluctuate visibly.",
+    "limits": "Independent exponential lifetimes with a fixed half-life of 2 model s; five pseudorandom seeded samples. Coins are a probability analogy, not the mechanism of nuclear decay. No radioactive material is used.",
+    "derivation": [
+      "A nucleus has a 50% chance to survive one half-life; previous survival does not make it due.",
+      "Expected survivors after time t: N=N₀2^(−t/T_half).",
+      "Individual random lifetimes produce staircases; the expected curve is smooth.",
+      "For coins, each round is one half-life in the analogy. Compare repeated whole runs, including unusually long survivors."
+    ],
+    "worked": "For 64 initial nuclei, the expected number after 4 s is 16. A particular sample need not contain exactly 16.",
+    "challenge": "If a nucleus survived ten half-lives, is it now more likely to decay in the next half-life?",
+    "observations": {
+      "x": "Coin round",
+      "xUnit": "1",
+      "y": "Survivors",
+      "yUnit": "coins",
+      "samples": [
+        [
+          0,
+          32
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Illustrative coin-run observations"
+    },
+    "sources": [
+      "https://openstax.org/books/college-physics-2e/pages/31-5-half-life-and-activity"
+    ],
+    "connections": [
+      "radiation-decay",
+      "atom-scale"
+    ]
+  },
+  {
+    "id": "j-particles",
+    "widget": "investigations",
+    "renderer": "particles",
+    "title": "Build a nucleon; explore the particle families",
+    "chapter": 15,
+    "section": "15.2",
+    "stories": [
+      "p-chowdhuri"
+    ],
+    "object": "An atom",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Paper and pencil; the model works without equipment.",
+    "question": "Is a proton elementary, or does it have constituents?",
+    "encounter": "Choose a proton or neutron and add the charges of its three valence quarks. Then explore which particles are matter constituents and which mediate interactions.",
+    "procedure": [
+      "Compare uud and udd. Add charges before revealing the sum.",
+      "Select each particle family and read what the model can and cannot explain.",
+      "Connect the atom-scale, tracks and parity lessons. Write an evidence-based question that this simple constituent diagram cannot answer."
+    ],
+    "explanation": "Protons and neutrons are composite. Quarks and leptons are elementary matter particles in the Standard Model; interaction bosons and the Higgs have different roles.",
+    "limits": "Valence-quark bookkeeping, not a picture of quark orbits or a complete proton wavefunction. Additional sea quarks and gluons matter. Gravity is outside the Standard Model; most nucleon mass comes from strong-interaction energy, not simply quark Higgs masses.",
+    "derivation": [
+      "Up quark charge is+⅔e; down is−⅓e. e is the positive elementary charge.",
+      "uud totals+1e; udd totals 0. A neutron still contains charged constituents.",
+      "Quarks feel the strong interaction; leptons do not. Photon, gluons and W/Z mediate the included interactions.",
+      "The Higgs field gives elementary particles mass through their couplings; the Higgs boson discovery was announced 4 July 2012. This does not explain all mass in a proton."
+    ],
+    "worked": "uud:2/3+2/3−1/3=1. udd:2/3−1/3−1/3=0.",
+    "challenge": "Why is a neutron neutral without each constituent being neutral? What important physics is missing from three colored circles?",
+    "observations": {
+      "x": "Up quarks among three",
+      "xUnit": "quarks",
+      "y": "Total charge",
+      "yUnit": "e",
+      "samples": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "minX": 0,
+      "minY": 0,
+      "sampleNote": "Valence-quark charge bookkeeping"
+    },
+    "sources": [
+      "https://home.web.cern.ch/science/physics/standard-model",
+      "https://home.web.cern.ch/science/physics/higgs-boson/how/",
+      "https://www.energy.gov/science/np/articles/scientists-locate-missing-mass-inside-proton"
+    ],
+    "connections": [
+      "atom-scale",
+      "tracks",
+      "parity",
+      "bose-counting"
+    ]
+  },
+  {
+    "id": "j-surfaces",
+    "widget": "investigations",
+    "renderer": "surfaces",
+    "title": "Find the right model for a colourful surface",
+    "chapter": 11,
+    "section": "11.5",
+    "stories": [
+      "light-wave"
+    ],
+    "object": "A colourful surface",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Model and linked experiments: nothing. Optional CD, soap-film image and polarising sunglasses; ordinary reflected light only.",
+    "question": "Must every rainbow-coloured object act like a prism?",
+    "encounter": "Compare a prism, a disc with fine tracks, a thin film and a polarising filter. Predict which change in viewing conditions would help tell them apart.",
+    "procedure": [
+      "Choose a surface and make a prediction before opening its linked experiment.",
+      "Observe changes with angle, filter rotation or illumination. Record what changed and what stayed fixed.",
+      "Return here and explain which model fits. A colour name alone is not an explanation. Use supplied descriptions if the objects are unavailable."
+    ],
+    "explanation": "Different mechanisms can sort or select wavelengths. A grating, a thin film, a prism and a polariser require different accounts.",
+    "limits": "Schematics and links to the existing calculated optics lessons. Thin-film and grating colours depend on geometry and material; this directory is not a quantitative fit to a particular photographed surface. No laser is required. The filter panel uses Malus’s law for an ideal analyser and initially linearly polarised incident light; it is not a complete model of unpolarised glare.",
+    "derivation": [
+      "A prism disperses wavelengths through wavelength-dependent refraction.",
+      "A grating combines contributions from regularly spaced tracks; path differences select bright directions.",
+      "A thin film combines reflected paths separated by a thickness; reflection phase matters too.",
+      "A polariser selects field orientation. It can change glare without producing a prism rainbow."
+    ],
+    "worked": "Rotating a polariser can reduce a reflected glare patch while a neighbouring matte surface changes less.",
+    "challenge": "What observation could distinguish a prism rainbow from colours produced by fine tracks?",
+    "observations": {
+      "x": "Analyser angle",
+      "xUnit": "°",
+      "y": "Transmitted fraction",
+      "yUnit": "1",
+      "minX": 0,
+      "minY": 0,
+      "samples": [
+        [
+          0,
+          1
+        ],
+        [
+          45,
+          0.5
+        ],
+        [
+          90,
+          0
+        ]
+      ],
+      "sampleNote": "Malus law; initially linearly polarised light"
+    },
+    "sources": [
+      "https://openstax.org/books/university-physics-volume-3/pages/3-3-youngs-double-slit-experiment",
+      "https://openstax.org/books/college-physics-2e/pages/27-8-polarization"
+    ],
+    "connections": [
+      "w11-prism",
+      "w11-diffraction",
+      "w11-interference",
+      "w11-polarisation"
+    ]
+  },
+  {
+    "id": "j-eddy",
+    "widget": "investigations",
+    "renderer": "eddy",
+    "title": "A magnet falls through a conducting tube",
+    "chapter": 13,
+    "section": "13.5",
+    "stories": [
+      "induction"
+    ],
+    "object": "A magnet and a tube",
+    "minutes": 12,
+    "preparation": 1,
+    "materials": "Virtual experiment: no equipment. A physical magnet-and-tube demonstration requires adult handling of strong magnets.",
+    "question": "Can a nonmagnetic metal slow a falling magnet?",
+    "encounter": "Predict which reaches the bottom first: a magnet in a plastic tube or the same magnet in a conducting tube. Is the conductor attracting it like iron?",
+    "procedure": [
+      "Compare the virtual nonconducting tube with the conducting-tube model. No strong magnets are needed.",
+      "Change the drag coefficient and follow the shared time control. Record fall times and compare the two energy accounts.",
+      "Explain where gravitational energy goes before the magnet hits the bottom."
+    ],
+    "explanation": "Moving magnetic flux induces currents in the conducting tube. Their magnetic effect resists the motion, transferring energy into warming.",
+    "limits": "Illustrative low-speed electromagnetic drag F=−bv, mass0.020 kg, one-metre tube. Constant b is a lumped approximation, not a conductivity measurement. No entry/exit field detail. The scene ends at first contact; contact energy is not modeled.",
+    "derivation": [
+      "A conducting tube can carry induced currents even when it is not ferromagnetic.",
+      "In this simple model, m dv/dt=mg−bv. At terminal speed, v=mg/b.",
+      "For b>0, v(t)=(mg/b)(1−exp(−bt/m)); integrate to get distance.",
+      "Before contact, lost gravitational energy equals kinetic energy plus energy transferred into warming."
+    ],
+    "worked": "With no electromagnetic drag, a one-metre fall takes about0.452 s. A conducting tube takes longer in this model.",
+    "challenge": "Would cutting a lengthwise slot in the conducting tube change the braking? Explain using the current paths.",
+    "observations": {
+      "x": "Drag coefficient",
+      "xUnit": "N·s/m",
+      "y": "One-metre fall time",
+      "yUnit": "s",
+      "minX": 0,
+      "minY": 0,
+      "samples": [
+        [
+          0,
+          0.45175
+        ],
+        [
+          0.1,
+          0.70429
+        ],
+        [
+          0.2,
+          1.12041
+        ],
+        [
+          0.5,
+          2.59102
+        ]
+      ],
+      "sampleNote": "Illustrative drag model, mass0.020 kg, height1 m"
+    },
+    "sources": [
+      "https://www.exploratorium.edu/snacks/eddy-currents"
+    ],
+    "connections": [
+      "generator",
+      "j-flashlight",
+      "m-energy"
+    ]
+  },
+  {
+    "id": "j-bounce-timing",
+    "widget": "investigations",
+    "renderer": "bounceTiming",
+    "title": "Listen to the time between bounces",
+    "chapter": 7,
+    "section": "7.4",
+    "stories": [],
+    "object": "A ball",
+    "minutes": 10,
+    "preparation": 1,
+    "materials": "Supplied intervals need nothing. Optional local audio editor or slow-motion recording for manually identified impact times.",
+    "question": "What can three impact times tell you about the next bounce?",
+    "encounter": "Listen for three successive impacts. Predict whether the ratio of the two intervals measures a speed ratio or an energy ratio.",
+    "procedure": [
+      "Use the supplied intervals, or identify three consecutive floor impacts in a local recording using an audio editor or a slow-motion clip. A recording is not uploaded here.",
+      "Measure the time between the first two impacts, then the time between the next two. Enter both in seconds. Do not include the initial release-to-first-impact interval.",
+      "Repeat the identification and check for echoes or missed impacts. Compare with the video-height route."
+    ],
+    "explanation": "Between two floor impacts, a vertical ball rises and falls. The flight interval is proportional to its launch speed, so the ratio of consecutive intervals estimates restitution.",
+    "limits": "Manual or supplied impact intervals; no automatic microphone detection. Negligible drag, short contacts, same-height floor, consecutive impacts. Echoes, missed impacts and varying restitution can invalidate the inference.",
+    "derivation": [
+      "Between floor impacts, flight time Δt=2v/g, where v is the upward speed just after a bounce.",
+      "Thus the next interval divided by this interval estimates the collision speed ratio e.",
+      "The returned mechanical-energy fraction is e², not e.",
+      "The peak after an impact is h=g(Δt)²/8; this is not the initial release height."
+    ],
+    "worked": "Intervals1.00 s and0.80 s give e=.80 and energy fraction.64; their peak heights are1.225 m and.784 m.",
+    "challenge": "If you mistake an echo for the next impact, will the inferred restitution still be trustworthy?",
+    "observations": {
+      "x": "First flight interval",
+      "xUnit": "s",
+      "y": "Next flight interval",
+      "yUnit": "s",
+      "minX": 1e-09,
+      "minY": 1e-09,
+      "samples": [
+        [
+          1,
+          0.8
+        ],
+        [
+          0.8,
+          0.64
+        ],
+        [
+          0.64,
+          0.512
+        ]
+      ],
+      "sampleNote": "Illustrative constant-restitution bounce intervals"
+    },
+    "sources": [
+      "https://arxiv.org/abs/physics/0210092"
+    ],
+    "connections": [
+      "j-bounce",
+      "m-toss",
+      "w9-echo"
+    ]
+  }
+]

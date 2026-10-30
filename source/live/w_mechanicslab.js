@@ -68,12 +68,17 @@ function shadowshapes(lab, api, c) {
   });
 }
 function measurement(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.ink, 4.2, 0.08, 0.35, 0, -0.35);
+  R.block(root, c.proton, 1.8, 0.14, 0.25, -0.5, -0.22);
+  R.wire(root, c.proton, [[0.4, -0.45, 0.2], [0.4, 0.35, 0.2]]);
+  const readingDots = Array.from({ length: 5 }, (_, i) => R.ball(root, c.electron, 0.055, 0, -0.05 + i * 0.11, 0.18));
   R.slider(api, s, "resolution", "Ruler division", 0.1, 1, 0.1, 0.1, "mm", update);
   R.slider(api, s, "bias", "Zero error", -3, 3, 0.1, 0, "mm", update);
   R.slider(api, s, "scatter", "Repeat scatter", 0, 2, 0.1, 0.6, "mm", update);
   lab.redraw((ctx) => {
     const p = M.measurement(36.5, s.resolution, s.bias, s.scatter), X = (v) => 60 + (v - 32) / 10 * 520;
+    readingDots.forEach((m, i) => point(m, 0.4 + (p.readings[i] - 36.5) * 0.35, -0.05 + i * 0.11, 0.18));
     primary(ctx, c, "Five readings, then a magnified view of the ruler endpoint");
     p.readings.forEach((v, i) => {
       R.dot(ctx, c.electron, X(v), 55 + i * 17, 5);
@@ -246,13 +251,19 @@ function braking(lab,api,c){
  });
 }
 function graph(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.rule, 4.4, 0.05, 0.6, 0, -0.4);
+  for (let i = 0; i <= 6; i++) R.rod(root, c.muted, 0.02, 0.2, -1.8 + i * 0.6, -0.28, -0.25);
+  const walker = R.ball(root, c.proton, 0.14, -1.8, -0.22), velVec = R.vector(root, c.electron);
   R.clock(api, s, update, 12, 0.8);
   R.slider(api, s, "interval", "Slope measurement interval", 0.05, 2, 0.05, 1, "s", update);
   R.tabs(api, s, ["Figure walk", "Out and back", "Smooth motion"], update);
   const position = (t) => s.mode === 2 ? 6 * Math.sin(Math.PI * t / 12) : s.mode === 1 ? t <= 6 ? t : 12 - t : M.walk(t).x;
   lab.redraw((ctx) => {
     const t = s.time, x = position(t), distance = s.mode === 2 ? t <= 6 ? x : 12 - x : s.mode === 1 ? t : M.walk(t).distance, velocity = s.mode === 2 ? Math.PI / 2 * Math.cos(Math.PI * t / 12) : s.mode === 1 ? t < 6 ? 1 : -1 : M.walk(t).velocity;
+    const wx = -1.8 + x * 0.6;
+    point(walker, wx, -0.22);
+    velVec.set([wx, 0.02, 0], [wx + velocity * 0.35, 0.02, 0]);
     const start = Math.max(0, t - s.interval / 2), end = Math.min(12, t + s.interval / 2), slope = (position(end) - position(start)) / (end - start), a = R.plot(ctx, c, [{ color: c.electron, values: R.samples(121, (u) => [u * 12, position(u * 12)]) }], { xmax: 12, ymax: 6, xlabel: "time (s)", ylabel: "position (m)" });
     R.line(ctx, c.proton, [[a.X(start), a.Y(position(start))], [a.X(end), a.Y(position(end))]], 4);
     R.dot(ctx, c.proton, a.X(t), a.Y(x), 6);
@@ -262,12 +273,18 @@ function graph(lab, api, c) {
   });
 }
 function acceleration(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.rule, 4.8, 0.05, 0.6, 0, -0.35);
+  const car = R.block(root, c.ink, 0.55, 0.22, 0.36, 0, -0.2), vVec = R.vector(root, c.electron), aVec = R.vector(root, c.proton);
   R.clock(api, s, update, 4, 0.5);
   R.slider(api, s, "v0", "Initial velocity", -4, 4, 0.5, -4, "m/s", update);
   R.slider(api, s, "a", "Acceleration", -2, 2, 0.5, -1, "m/s\xB2", update);
   lab.redraw((ctx) => {
     const p = M.constantAcceleration(s.time, s.v0, s.a);
+    const cx = 1.8 * Math.tanh(p.x / 8);
+    point(car, cx, -0.2);
+    vVec.set([cx, 0.05, 0], [cx + p.v * 0.22, 0.05, 0]);
+    aVec.set([cx, -0.48, 0], [cx + s.a * 0.45, -0.48, 0]);
     primary(ctx, c, "Right is positive; arrows determine speeding or slowing");
     R.line(ctx, c.rule, [[30, 151], [610, 151]], 1);
     const x = 320 + 120 * Math.tanh(p.x / 8);
@@ -281,12 +298,27 @@ function acceleration(lab, api, c) {
   });
 }
 function galileo(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  const beam = R.block(root, c.ink, 4.4, 0.07, 0.45, 0, -0.1);
+  const bells = Array.from({ length: 5 }, () => R.ball(root, c.muted, 0.045));
+  const sliderBox = R.block(root, c.proton, 0.22, 0.12, 0.22), roller = R.ball(root, c.proton, 0.11);
   R.clock(api, s, update, 4, 0.45);
   R.slider(api, s, "angle", "Ramp angle", 1, 10, 1, 5, "\xB0", update);
   R.tabs(api, s, ["Sliding particle", "Rolling solid sphere"], update);
   lab.redraw((ctx) => {
     const p = M.ramp(s.angle, s.time, !!s.mode), at4 = M.ramp(s.angle, 4, !!s.mode), ref=M.ramp(s.angle,4,false), X = (x2) => 45 + x2 / ref.x * 540;
+    const th = s.angle * Math.PI / 180, cth = Math.cos(th), sth = Math.sin(th);
+    if (beam) beam.rotation.z = -th;
+    for (let i = 0; i <= 4; i++) {
+      const q = M.ramp(s.angle, i, !!s.mode), u = (q.x / ref.x - 0.5) * 3.8;
+      point(bells[i], u * cth, -0.1 - u * sth + 0.09, 0.18);
+    }
+    const uNow = (p.x / ref.x - 0.5) * 3.8;
+    show(sliderBox, !s.mode);
+    show(roller, !!s.mode);
+    if (sliderBox) sliderBox.rotation.z = -th;
+    point(sliderBox, uNow * cth, -0.1 - uNow * sth + 0.1);
+    point(roller, uNow * cth, -0.1 - uNow * sth + 0.14);
     primary(ctx, c, "One clock links equal-time markers, distance and velocity");
     R.line(ctx, c.ink, [[45, 51], [585, 73]], 2);
     for (let i = 0; i <= 4; i++) {
@@ -304,11 +336,18 @@ function galileo(lab, api, c) {
   });
 }
 function toss(lab, api, c) {
-  const s = {}, update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), update = () => lab.refresh();
+  R.block(root, c.ink, 1.8, 0.06, 0.8, 0, -0.9);
+  R.rod(root, c.rule, 0.02, 1.8, -0.5, 0);
+  const ball = R.ball(root, c.proton, 0.13, 0, -0.8), vVec = R.vector(root, c.electron), gVec = R.vector(root, c.proton);
   R.clock(api, s, update, 2 * 4.43 / 9.8, 0.15);
   R.tabs(api, s, ["Height", "Velocity", "Acceleration"], update);
   lab.redraw((ctx) => {
     const p = M.toss(s.time), T = 2 * 4.43 / 9.8, key = ["height", "v", "a"][s.mode], bounds = [[0, 1.05], [-4.5, 4.5], [-11, 0]][s.mode];
+    const by = -0.8 + p.height * 1.4;
+    point(ball, 0, by);
+    vVec.set([0.28, by, 0], [0.28, by + p.v * 0.18, 0]);
+    gVec.set([-0.28, by, 0], [-0.28, by - 0.55, 0]);
     const a = R.plot(ctx, c, [{ color: c.electron, values: R.samples(121, (u) => {
       const q = M.toss(u * T);
       return [u * T, q[key]];
@@ -424,7 +463,7 @@ function tablecloth(lab, api, c) {
   });
 }
 function vectors(lab, api, c) {
-  const s = {}, root = R.scene(lab), cart = R.block(root, c.ink, 0.5, 0.25, 0.6, 0, -0.3), v1 = R.vector(root, c.electron), v2 = R.vector(root, c.electron), net = R.vector(root, c.proton), accel = R.vector(root,c.neutron), update = () => lab.refresh();
+  const s = {}, root = R.scene(lab), cart = R.block(root, c.ink, 0.5, 0.25, 0.6, 0, -0.3), v1 = R.vector(root, c.electron), v2 = R.vector(root, c.electron), net = R.vector(root, c.proton), accel = R.vector(root,c.neutron), para = R.wire(root, c.rule, [[0, 0, 0], [0, 0, 0], [0, 0, 0]]), update = () => lab.refresh();
   lab.kit?.label?.("pull 1",v1.group?.children[1],{color:c.electron});
   lab.kit?.label?.("pull 2",v2.group?.children[1],{color:c.electron});
   lab.kit?.label?.("resultant force",net.group?.children[1],{color:c.proton});
@@ -438,6 +477,7 @@ function vectors(lab, api, c) {
     v2.set([0, 0, 0], [s.force / 8 * Math.cos(th), s.force / 8 * Math.sin(th), 0]);
     net.set([0, 0, 0.1], [p.x / 8, p.y / 8, 0.1]);
     accel.set([0,-.85,.1],[p.x/(8*s.mass),-.85+p.y/(8*s.mass),.1]);
+    R.path(para, [[s.force / 8, 0, 0], [p.x / 8, p.y / 8, 0], [s.force / 8 * Math.cos(th), s.force / 8 * Math.sin(th), 0]]);
     primary(ctx, c, "Head-to-tail addition; 1 screen unit represents the same force");
     const x = 190, y = 180, k = 15;
     R.arrow(ctx, c.electron, x, y, s.force * k, 0);
@@ -448,6 +488,41 @@ function vectors(lab, api, c) {
     R.text(ctx,c.neutron,"Acceleration: separate arrow scale",375,135,12);
     R.arrow(ctx,c.neutron,415,190,p.x/s.mass*8,-p.y/s.mass*8);
     lab.say(`Two ${fmt(s.force, 1)} N pulls at ${s.angle}\xB0 give a resultant of ${fmt(p.magnitude)} N. Dividing by ${fmt(s.mass, 1)} kg gives acceleration ${fmt(p.magnitude / s.mass)} m/s\xB2. Blue/red arrows share the force scale (8 N per scene unit); the yellow acceleration arrow has its own scale (8 m/s² per scene unit). Changing mass leaves the forces fixed and changes the acceleration.`);
+  });
+}
+function newton(lab, api, c) {
+  const s = {}, root = R.scene(lab);
+  R.block(root, c.rule, 4.2, 0.05, 0.45, 0, -0.35, -0.45);
+  R.block(root, c.rule, 4.2, 0.05, 0.45, 0, -0.35, 0.45);
+  const refCart = R.block(root, c.electron, 0.42, 0.22, 0.34, -1.6, -0.2, -0.45);
+  const testCart = R.block(root, c.proton, 0.42, 0.22, 0.34, -1.6, -0.2, 0.45);
+  const refF = R.vector(root, c.electron), testF = R.vector(root, c.proton), testA = R.vector(root, c.neutron), update = () => lab.refresh();
+  lab.kit?.label?.("reference 1 kg cart", refCart, { color: c.electron });
+  lab.kit?.label?.("adjustable cart", testCart, { color: c.proton });
+  R.clock(api, s, update, 1.5, 0.05);
+  R.slider(api, s, "force", "Applied net force", 1, 10, 0.5, 4, "N", update);
+  R.slider(api, s, "mass", "Cart mass", 0.5, 5, 0.5, 2, "kg", update);
+  lab.redraw((ctx) => {
+    const aRef = 4 / 1, aTest = s.force / s.mass, t = s.time;
+    const xRef = Math.min(1.6, -1.6 + 0.5 * aRef * t * t * 0.65);
+    const xTest = Math.min(1.6, -1.6 + 0.5 * aTest * t * t * 0.65);
+    point(refCart, xRef, -0.2, -0.45);
+    point(testCart, xTest, -0.2, 0.45);
+    scaled(testCart, 1, 0.75 + 0.15 * s.mass, 1);
+    refF.set([xRef + 0.22, -0.2, -0.45], [xRef + 0.22 + 4 / 10, -0.2, -0.45]);
+    testF.set([xTest + 0.22, -0.2, 0.45], [xTest + 0.22 + s.force / 10, -0.2, 0.45]);
+    testA.set([xTest, 0.08, 0.45], [xTest + aTest / 12, 0.08, 0.45]);
+    primary(ctx, c, "Same force on more mass gives smaller acceleration (a = F / m)");
+    const ax = R.plot(ctx, c, [
+      { color: c.electron, values: R.samples(61, (u) => [u * 1.5, aRef * u * 1.5]), dash: [4, 4] },
+      { color: c.proton, values: R.samples(61, (u) => [u * 1.5, aTest * u * 1.5]) }
+    ], { x: 45, y: 195, w: 280, h: 120, xmax: 1.5, ymax: 30, xlabel: "time (s)" });
+    R.dot(ctx, c.proton, ax.X(t), ax.Y(aTest * t), 5);
+    R.text(ctx, c.electron, "reference: 4 N on 1 kg → 4.00 m/s\xB2", 355, 78, 14);
+    R.text(ctx, c.proton, `test cart: ${fmt(s.force, 1)} N on ${fmt(s.mass, 1)} kg`, 355, 114, 15);
+    R.text(ctx, c.ink, `a = F / m = ${fmt(aTest)} m/s\xB2`, 355, 150, 17);
+    R.text(ctx, c.neutron, `speed at ${fmt(t)} s: ${fmt(aTest * t)} m/s`, 355, 186, 14);
+    lab.say(`Applying ${fmt(s.force, 1)} N to a ${fmt(s.mass, 1)} kg cart produces acceleration a = F/m = ${fmt(aTest)} m/s\xB2, compared with 4.00 m/s\xB2 for the 1 kg reference cart under 4 N. Doubling mass at fixed force halves the slope of v(t); doubling force at fixed mass doubles it.`);
   });
 }
 function support(lab, api, c) {
@@ -593,9 +668,9 @@ function rocket(lab, api, c) {
     lab.say(`Total momentum ${fmt(pr + pg, 8)} kg\xB7m/s; centre of mass ${fmt(centre, 8)} m, marked by the stationary ring. Forward speed ${fmt(vr, 3)} m/s. ${s.mode ? "The craft accelerates only at its discrete ejections." : "The heavy astronaut moves much less than the spanner."} All displayed positions share one common scale; body sizes are enlarged.`);
   });
 }
-const RENDERERS = { horizon, shadowshapes, measurement, scale, rain, shadows, frames, trains, graph, acceleration, galileo, toss, inertia, arrowflight, braking, friction, tablecloth, vectors, support, pairs, rocket, projectile: (...a) => frames(...a, "projectile"), ...Space, ...Fluids, ...Energy };
-const TWO_D = /* @__PURE__ */ new Set(["measurement", "graph", "acceleration", "galileo", "toss", "power", "impact"]);
-const TEMPORAL = new Set(["frames", "trains", "graph", "acceleration", "galileo", "toss", "inertia", "arrowflight", "braking", "friction", "rocket", "fall", "projectile", "circle", "weightless", "torsion", "perturbation", "mission", "work", "station", "engine"]);
+const RENDERERS = { horizon, shadowshapes, measurement, scale, rain, shadows, frames, trains, graph, acceleration, galileo, toss, inertia, arrowflight, braking, friction, tablecloth, vectors, newton, support, pairs, rocket, projectile: (...a) => frames(...a, "projectile"), ...Space, ...Fluids, ...Energy };
+const TWO_D = /* @__PURE__ */ new Set([]);
+const TEMPORAL = new Set(["frames", "trains", "graph", "acceleration", "galileo", "toss", "inertia", "arrowflight", "braking", "friction", "newton", "rocket", "fall", "projectile", "circle", "weightless", "torsion", "perturbation", "mission", "work", "station", "engine"]);
 Live.register("mechanicslab", (stage, params, api) => {
   const lesson = lessons.find((l) => l.id === params.lesson) || lessons[0];
   const lab = makeLab(stage, api, { ...lesson, three: !TWO_D.has(lesson.renderer) }), c = api.colors();

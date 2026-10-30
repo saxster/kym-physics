@@ -194,11 +194,8 @@ Live.register('graphwalk', (stage, params, api) => {
     // Friend on corridor (in Replay mode)
     if (mode === 0) {
       const fx = corX0 + friendPos(simT) * pxPerM;
-      ctx.beginPath();
-      ctx.arc(fx, corY - 12, 6, 0, Math.PI * 2);
-      ctx.fillStyle = c.muted;
-      ctx.fill();
-      api.draw.text(ctx, 'friend', fx, corY - 22, { size: 11, color: c.muted, align: 'center' });
+      person(ctx, fx, corY, 31, c.muted);
+      api.draw.text(ctx, 'friend', fx, corY - 36, { size: 11, color: c.muted, align: 'center' });
     }
 
     // Fixed-height people establish the corridor's physical scene.

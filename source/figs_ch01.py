@@ -89,30 +89,33 @@ def _car(f, x, y, w=76, h=24):
 
 @figure
 def c1_four_cars():
-    f = Fig(640, 350, 'Four cars on a road with the positive direction to the right. The velocity arrow shows which way each '
-                      'car moves; the acceleration arrow shows which way its velocity is changing. When the two arrows point '
-                      'the same way the car speeds up; when they point opposite ways it slows down, whatever the signs.')
+    f = Fig(640, 355, 'Four cars on a road with the positive direction to the right. The velocity arrow shows which way each '
+                      'car moves; the acceleration arrow shows which way its velocity is changing, and equal-time motion dots '
+                      'under each car show the spacing widening when speeding up and tightening when slowing down.')
     f.vector(250, 16, 120, 0, 'positive direction', 13)
     rows = [
-        (68, 1, 1, 'moving right', '(a) speeding up: a is positive'),
-        (140, 1, -1, 'moving right', '(b) slowing down: a is negative'),
-        (212, -1, -1, 'moving left', '(c) speeding up: a is negative'),
-        (284, -1, 1, 'moving left', '(d) slowing down: a is positive'),
+        (68, 1, 1, 'moving right', '(a) speeding up: a is positive', [252, 260, 274, 294, 320]),
+        (140, 1, -1, 'moving right', '(b) slowing down: a is negative', [252, 278, 298, 312, 320]),
+        (212, -1, -1, 'moving left', '(c) speeding up: a is negative', [328, 320, 306, 286, 260]),
+        (284, -1, 1, 'moving left', '(d) slowing down: a is positive', [328, 302, 282, 268, 260]),
     ]
-    for y, sv, sa, left, right in rows:
+    for y, sv, sa, left, right, dots in rows:
         _car(f, 290, y)
+        for dx in dots:
+            f.circle(dx, y + 18, 2.3, 'fill-vol')
         f.vector(290 + sv * 44, y - 28, sv * 70, 0, 'v', 13)
-        f.vector(290 + sa * 44, y + 24, sa * 48, 0, 'a', 13, kind='muted')
+        f.vector(290 + sa * 44, y + 29, sa * 48, 0, 'a', 13, kind='muted')
         f.text(20, y + 5, left, 't m', 'start', 13)
         f.text(430, y + 5, right, 't', 'start', 13)
-    f.text(320, 344, 'v is the velocity, a the acceleration; opposite arrows always mean slowing down', 't m', 'middle', 12)
+    f.text(320, 348, 'v is the velocity, a the acceleration; equal-time dots widen when arrows match', 't m', 'middle', 12)
     return f.svg()
 
 
 @figure
 def c1_ramp():
     f = Fig(640, 300, 'A ball rolling down a long ramp, drawn at five equally spaced moments. The distances from the start '
-                      'are 0, 1, 4, 9 and 16 units, so the gaps between the moments are 1, 3, 5 and 7 units.')
+                      'are 0, 1, 4, 9 and 16 units, so the gaps between the moments are 1, 3, 5 and 7 units. An inset velocity–time '
+                      'graph shows that the areas under v = at in successive beats are 1, 3, 5 and 7.')
     x1, y1, x2, y2 = 70, 62, 590, 232
     L = math.hypot(x2 - x1, y2 - y1)
     ux, uy = (x2 - x1) / L, (y2 - y1) / L          # along the ramp
@@ -143,6 +146,19 @@ def c1_ramp():
     f.text(dx - 10, dy + 5, 'distance:', 't m', 'end', 12)
     mx, my = at(0, -42)
     f.text(mx - 10, my + 5, 'gaps:', 't m', 'end', 12)
+    # Inset v-t area diagram in upper right
+    ix, iy, iw, ih = 430, 112, 160, 76
+    f.path(f'M{ix},{iy} L{ix+iw},{iy} L{ix+iw},{iy-ih} Z', 'wash')
+    f.line(ix, iy, ix + iw, iy, 'ax')
+    f.line(ix, iy, ix, iy - ih - 6, 'ax')
+    f.line(ix, iy, ix + iw, iy - ih, 'ln e')
+    for k, area_lbl in ((1, '+1'), (2, '+3'), (3, '+5'), (4, '+7')):
+        xk = ix + k * (iw / 4)
+        yk = iy - k * (ih / 4)
+        f.line(xk, iy, xk, yk, 'ln m dash')
+        f.text(xk - iw / 8, iy - (k - 0.5) * (ih / 8) + 4, area_lbl, 't e b', 'middle', 10.5)
+    f.text(ix + 6, iy - ih + 4, 'v = at (area = distance)', 't m', 'start', 11)
+    f.text(ix + iw, iy + 13, 'beats (t)', 't m', 'end', 10.5)
     f.text(600, 292, 'the ramp is drawn steeper than Galileo would have used it', 't m', 'end', 12)
     return f.svg()
 
@@ -248,8 +264,9 @@ def c1_toss_graphs():
 
 @figure
 def c1_trains():
-    f = Fig(640, 370, 'Three Mumbai local trains. Track-frame arrows use the same speed scale: an oncoming train 60 km/h left, your train 60 km/h right, and a faster train 70 km/h right. In your frame the oncoming train approaches at 120 km/h and the faster train gains at 10 km/h.')
+    f = Fig(640, 370, 'Three Mumbai local trains. Track-frame arrows use the same speed scale: an oncoming train 60 km/h left (south), your train 60 km/h right (north), and a faster train 70 km/h right (north). In your frame the oncoming train approaches at 120 km/h and the faster train gains at 10 km/h.')
     f.text(24,28,'What the platform sees', 't b',size=16)
+    f.text(396,28,'← South  |  North →', 't m', 'end', 12)
     f.text(440,28,'What you see', 't b',size=16)
     f.line(420,42,420,340,'ln r')
     rows=[(94,220,-90,'an oncoming local','120 km/h','approaching you'),

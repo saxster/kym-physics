@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import re
+import math
 
 
 def load_catalog(folder):
@@ -25,8 +26,24 @@ def load_catalog(folder):
                 raise ValueError(f'lesson {row["id"]}: needs a figure or section placement')
             if not isinstance(row['sources'], list) or not all(isinstance(u, str) and u.startswith('https://') for u in row['sources']):
                 raise ValueError(f'lesson {row["id"]}: sources must be HTTPS URLs')
+            if row['widget'] == 'investigations':
+                for key in ('renderer', 'object', 'materials', 'minutes', 'preparation', 'encounter', 'procedure', 'derivation', 'worked', 'challenge', 'observations'):
+                    if not row.get(key):
+                        raise ValueError(f'lesson {row["id"]}: investigation needs {key}')
+                for key in ('procedure', 'derivation'):
+                    if not isinstance(row[key], list) or not all(isinstance(s, str) and s.strip() for s in row[key]):
+                        raise ValueError(f'lesson {row["id"]}: {key} must be nonempty steps')
+                spec = row['observations']
+                if not isinstance(spec, dict) or not all(isinstance(spec.get(k), str) and spec[k] for k in ('x', 'y', 'xUnit', 'yUnit')):
+                    raise ValueError(f'lesson {row["id"]}: observation labels and units required')
+                if not isinstance(spec.get('samples'), list) or not all(isinstance(pair, list) and len(pair) == 2 and all(isinstance(n, (int, float)) and math.isfinite(n) for n in pair) for pair in spec['samples']):
+                    raise ValueError(f'lesson {row["id"]}: invalid supplied samples')
             seen.add(row['id'])
             lessons.append(row)
+    for row in lessons:
+        unknown = set(row.get('connections', [])) - seen
+        if unknown:
+            raise ValueError(f'lesson {row["id"]}: unknown connected lessons {sorted(unknown)}')
     return lessons
 
 

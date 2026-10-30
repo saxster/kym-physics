@@ -222,10 +222,16 @@ Live.register('eye3d', (stage, params, api) => {
         transparent: true,
         opacity: 0.45,
       });
-      const gLens = new Mesh(new CylinderGeometry(0.55, 0.55, eyeType === 1 ? 0.08 : 0.16, 24), glassMat);
+      const gLens = new Mesh(new CylinderGeometry(0.55, 0.55, eyeType === 1 ? 0.06 : 0.16, 24), glassMat);
       gLens.rotation.z = Math.PI / 2;
       gLens.position.set(-0.55, 0, 0);
       dynGroup.add(gLens);
+      if (eyeType === 1) {
+        const rim = new Mesh(new TorusGeometry(0.52, 0.055, 12, 28), glassMat);
+        rim.rotation.y = Math.PI / 2;
+        rim.position.set(-0.55, 0, 0);
+        dynGroup.add(rim);
+      }
     }
 
     // Optional half-pupil cover at x = 0.0
@@ -250,28 +256,32 @@ Live.register('eye3d', (stage, params, api) => {
 
     // Rays from object tip (objX, +objH) and base (objX, -objH) through cornea/lens to focusX, then to retinaX
     const rayMat = new LineBasicMaterial({ color: new Color(c.neutron) });
-    const pupilOffsets = optMode === 2 ? [-0.26, -0.06] : [0.26, 0.0, -0.26];
+    const pupilPoints = optMode === 2
+      ? [[-0.26, 0], [-0.06, 0], [-0.14, 0.18], [-0.14, -0.18]]
+      : [[0.26, 0], [0.0, 0], [-0.26, 0], [0.0, 0.24], [0.0, -0.24]];
 
     for (const srcSign of [1, -1]) {
       const srcY = srcSign * objH;
       const imgYAtFocus = -srcSign * 0.34;
-      for (const py of pupilOffsets) {
+      for (const [py, pz] of pupilPoints) {
         const pts = [];
         pts.push(new Vector3(objX, srcY, 0));
         if (optMode === 1 && eyeType !== 0) {
           const gy = py * 0.92 + srcY * 0.15;
-          pts.push(new Vector3(-0.55, gy, 0));
+          pts.push(new Vector3(-0.55, gy, pz * 0.92));
         }
         // Cornea bend at x = -0.10, lens bend at x = 0.20
-        pts.push(new Vector3(-0.10, py * 1.06, 0));
-        pts.push(new Vector3(0.20, py, 0));
-        // Straight line from (0.20, py) through (focusX, imgYAtFocus) to x = retinaX
-        const slope = (imgYAtFocus - py) / (focusX - 0.20);
-        const yAtRetina = py + slope * (retinaX - 0.20);
+        pts.push(new Vector3(-0.10, py * 1.06, pz * 1.06));
+        pts.push(new Vector3(0.20, py, pz));
+        // Straight line from (0.20, py, pz) through (focusX, imgYAtFocus, 0) to x = retinaX
+        const slopeY = (imgYAtFocus - py) / (focusX - 0.20);
+        const slopeZ = (0 - pz) / (focusX - 0.20);
+        const yAtRetina = py + slopeY * (retinaX - 0.20);
+        const zAtRetina = pz + slopeZ * (retinaX - 0.20);
         if (focusX < retinaX) {
           pts.push(new Vector3(focusX, imgYAtFocus, 0));
         }
-        pts.push(new Vector3(retinaX, yAtRetina, 0));
+        pts.push(new Vector3(retinaX, yAtRetina, zAtRetina));
         const geo = new BufferGeometry().setFromPoints(pts);
         dynGroup.add(new Line(geo, rayMat));
       }

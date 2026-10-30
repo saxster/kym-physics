@@ -136,6 +136,9 @@ Live.register('seriesparallel', (stage, params, api) => {
 
     // Current arrows and identical labels round the single path
     const iStr = `${Math.round(iMa)} mA`;
+    if (!unclipped) {
+      drawChargeTokens(ctx, [[leftX, topY], [rightX, topY], [rightX, botY], [leftX, botY], [leftX, topY]], iMa, 28);
+    }
     api.draw.arrow(ctx, 145, topY - 16, 170, topY - 16, c.proton, 2.2, 7);
     api.draw.text(ctx, iStr, 158, topY - 23, { size: 11, color: c.proton, align: 'center', weight: 700 });
 
@@ -236,11 +239,18 @@ Live.register('seriesparallel', (stage, params, api) => {
 
       drawResistor(ctx, 315, by, 78, 22, br.broken ? '330 Ω (0 V)' : '330 Ω (7 V)');
       drawLed(ctx, 435, by, br.pLed, br.broken, `LED ${i + 1} (2 V)`);
+      if (!br.broken) {
+        drawChargeTokens(ctx, [[forkX, by], [joinX, by]], br.iMa, 32);
+      }
 
       api.draw.arrow(ctx, 232, by - 12, 264, by - 12, br.broken ? c.muted : c.proton, 1.8, 6);
       api.draw.text(ctx, `${Math.round(br.iMa)} mA`, 248, by - 18, {
         size: 10.5, color: br.broken ? c.muted : c.proton, align: 'center', weight: 700,
       });
+    }
+    if (iBatMa > 0) {
+      drawChargeTokens(ctx, [[leftX, botY], [leftX, branchYs[0]], [forkX, branchYs[0]]], iBatMa, 28);
+      drawChargeTokens(ctx, [[joinX, branchYs[0]], [joinX, botY], [leftX, botY]], iBatMa, 28);
     }
 
     if (unclipped) {
@@ -254,6 +264,27 @@ Live.register('seriesparallel', (stage, params, api) => {
         `so with ${nLeds} branch${nLeds > 1 ? 'es' : ''} the currents add at the fork to ${Math.round(iBatMa)} mA and the battery runs down ×${nLeds} as fast. ` +
         `Unclip one LED and the others do not change (a real battery sags a little under load, Section 12.4).`
       );
+    }
+  }
+
+  function drawChargeTokens(ctx, pts, iMa, spacing = 30) {
+    if (iMa <= 0 || pts.length < 2) return;
+    const segs = [];
+    let total = 0;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const dx = pts[i + 1][0] - pts[i][0], dy = pts[i + 1][1] - pts[i][1];
+      const len = Math.hypot(dx, dy);
+      segs.push({ x0: pts[i][0], y0: pts[i][1], dx, dy, len, start: total });
+      total += len;
+    }
+    const shift = ((phase * iMa * 1.8) % spacing + spacing) % spacing;
+    ctx.fillStyle = c.electron;
+    for (let d = shift; d < total; d += spacing) {
+      const seg = segs.find((s) => d >= s.start && d <= s.start + s.len) || segs[segs.length - 1];
+      const u = seg.len > 0 ? (d - seg.start) / seg.len : 0;
+      ctx.beginPath();
+      ctx.arc(seg.x0 + seg.dx * u, seg.y0 + seg.dy * u, 2.7, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 

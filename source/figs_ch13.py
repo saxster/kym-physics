@@ -217,8 +217,14 @@ def c13_motor_force():
     f.text(404,89,'push up','t p b','middle',12)
     f.text(550,255,'push down','t p b','middle',12)
     f.curved_arrow(447,112,514,112,bend=-27,kind='proton')
+    # Split-ring commutator and carbon brushes around the axle
+    f.path('M473,210 A14,14 0 0,0 473,236', 'ln p', 'stroke-width="3.5"')
+    f.path('M487,210 A14,14 0 0,1 487,236', 'ln e', 'stroke-width="3.5"')
+    f.rect(454, 217, 11, 12, 'fill-ink', rx=1)
+    f.rect(495, 217, 11, 12, 'fill-ink', rx=1)
+    f.text(480, 254, 'split-ring commutator & brushes', 't m', 'middle', 11)
     f.text(480,283,'opposite forces turn the loop','t b','middle',13)
-    f.text(480,304,'current reverses every half-turn','t m','middle',12)
+    f.text(480,304,'commutator reverses current every half-turn','t m','middle',12)
     f.text(320,338,'⊙ current towards you     ⊗ current away from you','t','middle',14)
     return f.svg()
 

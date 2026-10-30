@@ -334,6 +334,8 @@ function makeApi(fig, stage, controls, state) {
     },
     /** Register a per-frame function fn(dt seconds, t seconds). Runs only while the figure plays; dt = 0 means draw a still frame. */
     loop(fn) { loops.add(fn); return () => loops.delete(fn); },
+    /** Redraw derived evidence when a reader changes a control; removed on close. */
+    onChange(fn) { changeListeners.add(fn); const remove = () => changeListeners.delete(fn); cleanups.push(remove); return remove; },
     button(label, onClick, opts = {}) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'live-ctl'; b.textContent = label;
@@ -1205,6 +1207,10 @@ function setup(fig) {
     if (option) openLive(option, e.detail?.story || null);
   });
   fig.addEventListener('close-lesson', () => closeLive(false));
+  fig.addEventListener('open-original', () => {
+    const original = available.find(o => o.original);
+    if (original) openLive(original);
+  });
   window.addEventListener('still:change', (e) => {
     if (!api || !w) return;
     const stillOn = !!(e.detail && e.detail.still);

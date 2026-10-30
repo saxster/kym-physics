@@ -1,10 +1,11 @@
 // Highlights and notes (select text in a chapter section or a story), and the Notebook
 // that gathers highlights, predictions, check answers and experiment journals in one place.
 import App from './core.js';
+import { normaliseRecord, markdown as recordMarkdown, sourceLabel } from '../live/investigation_records.mjs';
 
 const { el, store } = App;
 const HL_KEY = 'hl';
-const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:') || k.startsWith('lab:');
+const OWNED = k => k === HL_KEY || k.startsWith('chk:') || k.startsWith('home:') || k.startsWith('pred:') || k.startsWith('lab:') || k.startsWith('investigation:');
 const BOOK = () => App.data.title || document.title;
 const SLUG = () => BOOK().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const SKIP = 'svg, figure, button, textarea, input, template, script, style, .chk-ui, .home-ui, .pred-opts, .pred-you, .hl-pop, .live-controls, .scene, .bh, h2, h3, h4';
@@ -275,11 +276,14 @@ function gather() {
   const hls = all();
   for (const lesson of App.data.lessons || []) {
     const saved = store.get('lab:' + lesson.id, null);
-    if (!saved || (!saved.prediction && !saved.explanation)) continue;
+    const raw = lesson.observations ? store.get('investigation:' + lesson.id, null) : null;
+    const record = raw ? normaliseRecord(raw) : null;
+    if ((!saved || (!saved.prediction && !saved.explanation)) && !record) continue;
     const root = document.getElementById(lesson.target);
     if (!root) continue;
     add(placeOf(root), { type: 'lab', target: lesson.target, lesson: lesson.id, title: lesson.title,
-      pred: saved.prediction, res: saved.explanation, t: saved.t });
+      pred: saved?.prediction, res: saved?.explanation, t: saved?.t || raw?.t,
+      record, spec: lesson.observations });
   }
   hls.forEach(h => {
     const root = document.getElementById(h.c);
@@ -337,7 +341,8 @@ function item(it) {
   if (it.type === 'lab') return el('article', { class: 'nb-item' },
     el('p', { class: 'nb-kind' }, 'Live experiment', where), el('p', { class: 'nb-q' }, it.title),
     it.pred ? el('p', { class: 'nb-a' }, 'I predicted: ' + it.pred) : null,
-    it.res ? el('p', { class: 'nb-a' }, 'My explanation: ' + it.res) : null, go);
+    it.res ? el('p', { class: 'nb-a' }, 'My explanation: ' + it.res) : null,
+    it.record ? recordView(it.record, it.spec) : null, go);
   if (it.type === 'hl') {
     return el('article', { class: 'nb-item hl-item' }, el('p', { class: 'nb-kind' }, 'Highlight', where),
       el('blockquote', {}, it.quote.trim()), it.note ? el('p', { class: 'nb-note' }, it.note) : null, go);
@@ -359,6 +364,19 @@ function item(it) {
     it.res ? el('p', { class: 'nb-a' }, el('span', {}, 'What happened: '), it.res) : null, go);
 }
 
+function recordView(record, spec) {
+  const wrap = el('details', { class: 'inv-notebook-record' }, el('summary', {}, `Investigation record · ${record.rows.length} trials`));
+  const table = el('table', { class: 'inv-table' }, el('thead', {}, el('tr', {},
+    el('th', { scope: 'col' }, `${spec.x} (${spec.xUnit})`), el('th', { scope: 'col' }, `${spec.y} (${spec.yUnit})`), el('th', { scope: 'col' }, 'Source'), el('th', { scope: 'col' }, 'Note'))));
+  const body = el('tbody', {});
+  record.rows.forEach(row => body.append(el('tr', {}, [row.x, row.y, sourceLabel(row.source), row.note].map(s => el('td', {}, s)))));
+  table.append(body); wrap.append(el('div', { class: 'inv-table-scroll', tabindex: '0', role: 'region', 'aria-label': 'Saved measurements' }, table));
+  for (const [label, key] of [['Held fixed','controlled'],['Resolution','resolution'],['Setup notes','notes'],['Claim','claim'],['What would change my explanation','changeMind']]) {
+    if (record[key]) wrap.append(el('p', {}, `${label}: ${record[key]}`));
+  }
+  return wrap;
+}
+
 function markdown() {
   const { list, stats } = gather();
   const L = [`# My notebook: ${BOOK()}`, '', `Saved ${fmtDate(Date.now())}.`, '',
@@ -373,7 +391,8 @@ function markdown() {
       else if (it.type === 'pred') { L.push(`**Prediction${w}.** ${it.q}`, '', `I predicted: ${it.o}`, ''); }
       else if (it.type === 'check') { L.push(`**Check yourself${w}.** ${it.q}`, '', `My answer: ${it.a || '(in my head)'}${it.r ? ` · ${RLABEL[it.r]}` : ''}`, ''); }
       else if (it.type === 'lab') { L.push(`**Live experiment${w}: ${it.title}**`, '');
-        if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`My explanation: ${it.res}`, ''); }
+        if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`My explanation: ${it.res}`, '');
+        if (it.record) L.push(recordMarkdown(it.record, it.spec), ''); }
       else { L.push(`**Try it at home${w}: ${it.title}**${it.done ? ` (done ${fmtDate(it.date)})` : ''}`, '');
         if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`What happened: ${it.res}`, ''); }
     });
