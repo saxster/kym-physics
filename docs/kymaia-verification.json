@@ -34,11 +34,25 @@
     "kymaia-independent-review.md",
     "kymaia-app-code-review.md"
   ],
-  "liveVerification": "pending publication",
+  "liveVerification": {
+    "result": "PASS",
+    "publishedCodeCommit": "902157fd3a562191418e8d88743f6ac68b2a9889",
+    "cache": "mw-f5f2d753496c",
+    "indexSha256": "0aa3a24f4fb8186c430ee85f0008224e3116710c3205744ac021bc690f7d78fa",
+    "allPrecachedFilesMatch": 76,
+    "oldCacheRemoved": true,
+    "oldCacheCheck": "controlled replay of the captured previous live index and cache",
+    "offlineNewLesson": true,
+    "retainedDemonstrationCases": 20,
+    "readerLayouts": 15,
+    "browserErrors": []
+  },
   "screenshots": [
     "kymaia-review/01-opening-before.jpg",
     "kymaia-review/02-opening-after.png",
-    "kymaia-review/03-first-puzzle.png"
+    "kymaia-review/03-first-puzzle.png",
+    "kymaia-review/04-live-opening.jpg",
+    "kymaia-review/05-live-puzzle.jpg"
   ],
   "limits": [
     "No physical household or sensor trial",

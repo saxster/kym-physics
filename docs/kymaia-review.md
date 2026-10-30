@@ -40,3 +40,13 @@ All verification runs locally. `./source/check-reader.sh` repeats the release ch
 The review covers keyboard behavior, visible focus, labels, five screen widths and three themes, search, prediction/reveal persistence, disclosure deep links, narration selection, print content, observation editing, invalid input, CSV/Markdown/JSON exports, backup restoration, storage fallback and offline behavior. It does not certify complete accessibility, physical sensors, household apparatus, speech quality or Kymaia’s comprehension; those need a real learner and device trial.
 
 [The verification receipt](kymaia-verification.json) records exact counts, artifact hashes, deployment evidence and screenshots. The incoming live index matched `origin/main` exactly, so no direct live edits were overwritten. For rollback, the previous public static artifact is available in commit `f2a005e233d4c8b09914a4d37dd2d191b5d971f6`; restore its generated delivery files and publish them as a new commit, then verify its service-worker hash. Notebook data uses the same browser keys throughout.
+
+## Published result
+
+Published at [The Moving World](https://saxster.github.io/kym-physics/). The live index SHA-256 matches the final local artifact, and all 76 precached delivery files match byte for byte. A controlled replay of the captured previous live index/cache upgrades to the new cache and removes the old one; a previously unopened lesson works after an offline reload. Retained demonstrations work at 390 and 1440 px. The full reader journey also passes live at five widths and three themes with no relevant browser errors. The original in-app-browser visit was reloaded into the new edition, and its starter puzzle was opened and played.
+
+The complete catalog check covers 252 mobile/desktop cases: 240 passed the original raster check, and twelve text-only calculation cases passed the corrected narrow label check on rerun. The six exceptions still reject hidden labels; other scenes still require drawn marks. Local checks also passed nineteen Node test files, four catalog checks, three build-integrity checks, the new reader and narration journeys, existing investigation/export/storage/offline integration, 36 original live figures and four explorers. The main document is 3,984,873 bytes, below the 4 MiB budget.
+
+![The published opening](kymaia-review/04-live-opening.jpg)
+
+![The published starter puzzle](kymaia-review/05-live-puzzle.jpg)
