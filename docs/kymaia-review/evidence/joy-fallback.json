@@ -1,0 +1,213 @@
+{
+  "url": "http://127.0.0.1:56493/",
+  "engine": "chromium",
+  "fallback": true,
+  "mode": "smoke",
+  "indexSha256": "02b6a7945b47f0b880f608453af9e53043c12d2f257f0b743d1a849137954a7b",
+  "runtimeSha256": "b064c4a3253cf330ad94f487154ca0d97dacdd1e2c733219e11c0ee829741e06",
+  "cache": "mw-a788f84aec97",
+  "chunks": {
+    "x_map": "live/x_map-2T63VRNY.js",
+    "x_scale": "live/x_scale-4ZERKXRF.js",
+    "x_sky": "live/x_sky-GIV75YEE.js",
+    "x_spectrum": "live/x_spectrum-OKPVWXHX.js",
+    "three": "live/three-3K6EQOUE.js",
+    "w_seasons": "live/w_seasons-IEWFJL3F.js",
+    "w_seriesparallel": "live/w_seriesparallel-QNXGOSPS.js",
+    "w_shadow": "live/w_shadow-Y3O6WH43.js",
+    "w_skycolour": "live/w_skycolour-KFHUOPR2.js",
+    "w_tides": "live/w_tides-S5C2I752.js",
+    "w_videotrack": "live/w_videotrack-HK7LVJUD.js",
+    "w_waveslab": "live/w_waveslab-SXZKCP4K.js",
+    "w_whirl": "live/w_whirl-4LI2VJHN.js",
+    "w_parallax": "live/w_parallax-PLHU2DVK.js",
+    "w_phases": "live/w_phases-5UMNCSVO.js",
+    "w_pressuretank": "live/w_pressuretank-ST2BNSD2.js",
+    "w_projectile": "live/w_projectile-3YQMZ7ZQ.js",
+    "w_ramp": "live/w_ramp-6GLZEA33.js",
+    "w_refraction": "live/w_refraction-CYHC7PBE.js",
+    "w_ripple": "live/w_ripple-GAO3NIHK.js",
+    "w_scope": "live/w_scope-WGOF4QP7.js",
+    "w_harmonics": "live/w_harmonics-6HK7QAUA.js",
+    "w_induction": "live/w_induction-5ZQV4UPP.js",
+    "w_interference": "live/w_interference-ZNGTWL5K.js",
+    "w_investigations": "live/w_investigations-VTVQHXAN.js",
+    "w_magnetometer": "live/w_magnetometer-GWMA4TJ2.js",
+    "w_mechanicslab": "live/w_mechanicslab-6LHV3YB5.js",
+    "w_mirror": "live/w_mirror-GECZW2FH.js",
+    "w_momentum_carts": "live/w_momentum_carts-65EP2BJN.js",
+    "w_energytrack": "live/w_energytrack-KTJNYB62.js",
+    "w_expansion": "live/w_expansion-QHRQZBFS.js",
+    "w_eye3d": "live/w_eye3d-KNHOT3QY.js",
+    "w_field3d": "live/w_field3d-6ENI4SZD.js",
+    "w_fieldslab": "live/w_fieldslab-BF5ZTN55.js",
+    "w_forces": "live/w_forces-WEFDIHSY.js",
+    "w_freefall": "live/w_freefall-TOKTISK6.js",
+    "w_graphwalk": "live/w_graphwalk-ZOCRHDS3.js",
+    "w_airfall": "live/w_airfall-SE7Z7CQQ.js",
+    "w_buoyancy": "live/w_buoyancy-IFFGF7K2.js",
+    "w_cannon3d": "live/w_cannon3d-4TEYI6H4.js",
+    "w_circuit": "live/w_circuit-FVJGQB4O.js",
+    "w_colourmix": "live/w_colourmix-QJI2NLEG.js",
+    "w_conduction": "live/w_conduction-3JHUQSS6.js",
+    "w_doppler": "live/w_doppler-ZZND3U42.js",
+    "w_energystores": "live/w_energystores-43S4NG6K.js"
+  },
+  "cases": [
+    {
+      "id": "j-rolling",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-balance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-diver",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-gas",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-yoyo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-spring",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-top",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-disc",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-flashlight",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-microwave",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-lightclock",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-decay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-particles",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-surfaces",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-eddy",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce-timing",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "dark",
+      "controls": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "finished": "2026-10-29T20:41:20Z"
+}

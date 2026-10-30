@@ -1,0 +1,2544 @@
+{
+  "result": "PASS",
+  "lessons": 126,
+  "cases": 252,
+  "sources": [
+    {
+      "receipt": "lesson-smoke-original.json",
+      "cache": "mw-b40d29f4ece9",
+      "indexSha256": "e3b40a042a245ad7ce9dfc0dbda5751b8ea4838777d78b3b0e0e0c8e29cdceee"
+    },
+    {
+      "receipt": "calculated-rerun.json",
+      "cache": "mw-f0492d3e17c5",
+      "indexSha256": "4479a39c8f71775fec5363f8efd5cc7284b34cd3ff552f8466b61327e36e0b03"
+    },
+    {
+      "receipt": "starter-final.json",
+      "cache": "mw-890a5f44d7be",
+      "indexSha256": "8c81acf79cc01702d751c3d84c57400f92140fd6238d09481039bd5e4e2bda1a"
+    }
+  ],
+  "results": [
+    {
+      "id": "atom-scale",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "atom-scale",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "bose-counting",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "bose-counting",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "cage",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "cage",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "charge",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "charge",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-diagnose",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-diagnose",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-probes",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-probes",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-signal",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "circuit-signal",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "cosmos",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "cosmos",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "day-night",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "day-night",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "distance-ladder",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "distance-ladder",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "domains",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "domains",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "earth-field",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "earth-field",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "eclipse-evidence",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "eclipse-evidence",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "eclipses",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "eclipses",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "em-wave",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "em-wave",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "field-probe",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "field-probe",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "foucault",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "foucault",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "generator",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "generator",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "halo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "halo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-balance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-balance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-bounce",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "starter-final.json"
+    },
+    {
+      "id": "j-bounce",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "starter-final.json"
+    },
+    {
+      "id": "j-bounce-timing",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-bounce-timing",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-decay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-decay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-disc",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-disc",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-diver",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-diver",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-eddy",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-eddy",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-flashlight",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-flashlight",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-gas",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-gas",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-lightclock",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-lightclock",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-microwave",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-microwave",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-particles",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-particles",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-rolling",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-rolling",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-spring",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-spring",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-surfaces",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-surfaces",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-top",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-top",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-yoyo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "j-yoyo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-acceleration",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-acceleration",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-arrow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-arrow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-braking",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-braking",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-circle",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-circle",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-energy",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-energy",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-engine",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-engine",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-fall",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-fall",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-frames",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-frames",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-friction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-friction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-galileo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-galileo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-graph",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-graph",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-gravity",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-gravity",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-horizon",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-horizon",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-hull",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-hull",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-hydrostatic",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-hydrostatic",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-impact",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-impact",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-inertia",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-inertia",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-kepler",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-kepler",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-measurement",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-measurement",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-mission",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-mission",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-newton",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-newton",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-pairs",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-pairs",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-perturbation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-perturbation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-power",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-power",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-pressure",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-pressure",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-projectile",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-projectile",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-rain",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-rain",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-rocket",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-rocket",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-scale",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-scale",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-shadow-shapes",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-shadow-shapes",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-shadows",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-shadows",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-station",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-station",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-stevin",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-stevin",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "m-suction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-suction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-support",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-support",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-tablecloth",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-tablecloth",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-torsion",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-torsion",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-toss",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-toss",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-trains",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-trains",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-vectors",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-vectors",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-weightless",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-weightless",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-work",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "m-work",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "moon-rotation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "moon-rotation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "motor",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "motor",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "parity",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "parity",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "photoelectric",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "photoelectric",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "protection",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "protection",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "radiation-decay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "radiation-decay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "seasons3d",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "seasons3d",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "solar-fusion",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "solar-fusion",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "stellar-spectrum",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "stellar-spectrum",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "telescope",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "telescope",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "tides3d",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "tides3d",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "tracks",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "tracks",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "transformer",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "transformer",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-coin",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-coin",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-delay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "w10-delay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "calculated-rerun.json"
+    },
+    {
+      "id": "w10-eye",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-eye",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-fizeau",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-fizeau",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-guide",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-guide",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-mirror",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-mirror",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-pinhole",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-pinhole",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-seeing",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-seeing",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-shadow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w10-shadow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-arago",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-arago",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-diffraction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-diffraction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-interference",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-interference",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-polarisation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-polarisation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-prism",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-prism",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-rainbow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-rainbow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-raman",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-raman",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-reflectance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-reflectance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-sky",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w11-sky",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-convection",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-convection",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-engine",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-engine",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-evaporation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-evaporation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-insulation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-insulation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-joule",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-joule",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-phase",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-phase",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-samples",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w8-samples",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-doppler",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-doppler",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-echo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-echo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-flutter",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-flutter",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-membrane",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-membrane",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-pendulum",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-pendulum",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-resonance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-resonance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-sound",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-sound",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-tone",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-tone",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-water",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "w9-water",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "white-dwarf",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    },
+    {
+      "id": "white-dwarf",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true,
+      "receipt": "lesson-smoke-original.json"
+    }
+  ]
+}

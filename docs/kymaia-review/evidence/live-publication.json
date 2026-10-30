@@ -1,0 +1,195 @@
+{
+  "url": "https://saxster.github.io/kym-physics/",
+  "expectedCache": "mw-f5f2d753496c",
+  "expectedIndexSha256": "0aa3a24f4fb8186c430ee85f0008224e3116710c3205744ac021bc690f7d78fa",
+  "cases": [
+    {
+      "id": "cannon3d",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "eye3d",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "field3d",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "phases",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "ripple",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "skycolour",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "circuit",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "explorer-scale",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "explorer-sky",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "explorer-spectrum",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "id": "cannon3d",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "eye3d",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "field3d",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "phases",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "ripple",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "skycolour",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "circuit",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "explorer-scale",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "explorer-sky",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "id": "explorer-spectrum",
+      "width": 1440,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "controlledOldCacheReplay": {
+    "cache": "mw-bacfbd2923c0",
+    "indexSha256": "56c78a320df99706f9def63238e288bae3e5d6656937201de0e5b750fef2f03a",
+    "fixture": "/tmp/kymaia-live-before.html"
+  },
+  "precacheFiles": {
+    "./": "0aa3a24f4fb8186c430ee85f0008224e3116710c3205744ac021bc690f7d78fa",
+    "./index.html": "0aa3a24f4fb8186c430ee85f0008224e3116710c3205744ac021bc690f7d78fa",
+    "./manifest.webmanifest": "625a758ea3860f147fde7aebfdfafb985fdc0736bb464f9179c74b179023cb51",
+    "./icon-192.png": "71ee4385aafa14b6431e101b74c271b386d5cf437e948e588ed770cf5267d404",
+    "./icon-512.png": "b89a97bea1cb232aca38f71c96a97275ce2d523c50d7a5c059bda314fd2f69c6",
+    "./live/chunk-CFOTGZ3T.js": "86b597c84567d14df08b8b601d913e3c8e89e37265b28c69490b91f29ad2613e",
+    "./live/chunk-G54ALBCI.js": "6856200ea0aecbf11aa1c0762fdee49cf5414e8c25a50f14419ba98c844d8ea5",
+    "./live/chunk-I4KURCN4.js": "254b336664acb2dc9a4f8ab823dfcd9429fba87b69bc835cb9ffe4571f5c3c41",
+    "./live/chunk-M4YHM7B4.js": "986232ec1387946de9322c91eae741ea4421b66b7459e0a6b82a512e51ac0693",
+    "./live/chunk-TKF4ZEXY.js": "0086568bc08d64b78626817e947a2a326b71587528ef61e8160c4ca0a45ecc8b",
+    "./live/chunk-UGQNDQER.js": "e032fb7825707954c8fa9c1bb429a6e92db54ffef4ff00c7909137bcba90a45d",
+    "./live/chunk-WOT6VMZA.js": "ff9e0dca4365b7b1581e7275f3c6dbcf1474ffb874d81a3375ecf7a835dbaa6f",
+    "./live/chunk-XUAL2ZCV.js": "66e7b45685a0b541dd34e1dfa55116636c12210771c572e0998e4145e088abbf",
+    "./live/chunk-YS2AE7XY.js": "0442ce12ea2fb3bbff7da4b1745307b0f3ec3fa9c9d6b067c562f5d674ce5361",
+    "./live/chunk-YVAPA4BS.js": "6bc4826c136a72db8f51ff2491d93c39c486332eed5341933069280076922e8c",
+    "./live/three-3K6EQOUE.js": "96abe42b0055e379adcb777188adfbfa9c77d26e4913deef6357e45e28af83ab",
+    "./live/w_airfall-YSY2I5NY.js": "9b0101db426db241f80b0675ca69c9d4894c4968493c12418e55a9d228e81895",
+    "./live/w_buoyancy-IFFGF7K2.js": "da9a110bd792d452ec2cc8c03d6a3a329aa756e98b646a04bb275dbd0c3c0148",
+    "./live/w_cannon3d-VU3F23KY.js": "498fc8b40952d05e1055fe78f75caa58309b1284f055ab448cbeb4fbdd8b98b6",
+    "./live/w_circuit-FVJGQB4O.js": "4ea2ea9127f60f2304a9497b8b2bfbf9e1e8c58581cb7fe34fba01992867065b",
+    "./live/w_colourmix-QJI2NLEG.js": "5ba0d683cc9e10ebbc268dbf320ae2b7ef73f87f2cdde48bd00e82a7e84536f8",
+    "./live/w_conduction-3JHUQSS6.js": "44e500228c10809dec41ba37eefcb2f9fe2524d58f732985bd1cf315af7416c3",
+    "./live/w_doppler-ZZND3U42.js": "6a197322eeab4ded6c2709e9cbb2a201232708ab6ca58f7bb63dd783e0473898",
+    "./live/w_energystores-43S4NG6K.js": "9d64bf67dcbb1817784e8cd675c463839524de8a59264b6f72fddd1fe943e211",
+    "./live/w_energytrack-KTJNYB62.js": "664b490eba54dfe27aa18c3704163408ed9c101c64aaad044cec0986039533ae",
+    "./live/w_expansion-QHRQZBFS.js": "e4ba1fd7bd3c7aa86b97255ba0a5c9420eed768dbda929b888596ccc017aab18",
+    "./live/w_eye3d-ITU5BI6M.js": "066ce9f2291719c0fc61aea54086fee0a6ce50a33a9e069e624b056fc15f2454",
+    "./live/w_field3d-BCAFCKTD.js": "aeb8a8f271f9caeef785c9b7465f22160efed1008177e543c54d090a8f9a432b",
+    "./live/w_fieldslab-BF5ZTN55.js": "af4c0de1255eed6420fe090bd0d7f6b09ffd2a5cf26469916f623fccfefcf871",
+    "./live/w_forces-WEFDIHSY.js": "e85a5d5439344798c87395b02c1377c7befa7d2f2e99153c33e34ce5c4637285",
+    "./live/w_freefall-TOKTISK6.js": "ae430d96087471d6c1207510742dbcee2cf5327aca08a197850b8b53e706f067",
+    "./live/w_graphwalk-LOQPOG3K.js": "b5bf6c6be05f5395bef1412e6fe32f1af51afac3e3d0e628c2454d059af80292",
+    "./live/w_harmonics-6HK7QAUA.js": "d7ecc19a44395067f0c3931a6cbf823deba9cfa94834a75dfba2b2b408d7c812",
+    "./live/w_induction-5ZQV4UPP.js": "0adfdedf08f003d57142cda1804c2df35b3476a70f231f17bbcac8932673dc0c",
+    "./live/w_interference-ZNGTWL5K.js": "dd59c568cd7f71b3c8686b014948d359a099c217044aae224f21150313f5cb2d",
+    "./live/w_investigations-CPXVKTRR.js": "8bf4e1181f7c18eb728f54e18f389476fe215b59478dfb13350025f391b63105",
+    "./live/w_magnetometer-GWMA4TJ2.js": "818656ed53a4fea36b392e0326f44ff20dac35d4dc45e7d79de8ca69e751a0ac",
+    "./live/w_mechanicslab-ZULEF2TB.js": "6284a69401fc72043624d239b4f028dcc707303efea63c92be7eff2dc79cfa61",
+    "./live/w_mirror-GECZW2FH.js": "2cf88aa624f4d18edb75911a205376cb946015bc2a3310d83a6a00a241857c6c",
+    "./live/w_momentum_carts-65EP2BJN.js": "5e1dfa42ff0c198626cef46ad8d4c0a302f94b93a2ac103d6c7edf1a3ca0b7dc",
+    "./live/w_parallax-PLHU2DVK.js": "3d79d6613212e7ace76206c333da528c1e0622404f1fd2a3fa24877c03d04969",
+    "./live/w_phases-5UMNCSVO.js": "8f0ff2b7d36f5d11aaab35eaa9a703d7bc5f82c7ad370643539f73b13e8dd68f",
+    "./live/w_pressuretank-ST2BNSD2.js": "51c1625015511e7745ef41197bfcb2e2a060e36ac55433f134c83591e210a449",
+    "./live/w_projectile-3YQMZ7ZQ.js": "7d6f4ae4f54c97685e804a356e61600f2bfa9c1b743929283470661b46c03cd9",
+    "./live/w_ramp-6MUXVENX.js": "740effb712f5be6fa39919b5f79e6c5145ac0532a88fe7a34ed32b389a79fdd0",
+    "./live/w_refraction-CYHC7PBE.js": "0efdbc4b12c8f7d4a2ed524db4afd3d378420e1f0c0de03a59b8d8da0f017b16",
+    "./live/w_ripple-GAO3NIHK.js": "20b8aa8a54c85d9a5cc52181f01ac31570e6eaf5afed73ae667d57e50eeb82cc",
+    "./live/w_scope-WGOF4QP7.js": "f53fd6099316a40c9f4f10fa42ae199637ec8df70f87cec2235640cbb9064747",
+    "./live/w_seasons-IEWFJL3F.js": "fadc78c2fd1390cad0fd164710a03f7870037845df8fb2a533252b1a054b1bb1",
+    "./live/w_seriesparallel-PW7XQKQ5.js": "578e47300b726256a97ac965a915c390e45fbf81d08b189eac1c1e28c6706177",
+    "./live/w_shadow-Y3O6WH43.js": "44b768d6f451389d30f65f32f8562ad5a85064c366f283923d952bb3fda44169",
+    "./live/w_skycolour-KFHUOPR2.js": "216524d9b3570658d33e1f1ceb38ccecceac726f809f55f0fbf54d5b3cd8a434",
+    "./live/w_tides-S5C2I752.js": "9b52fe636b7213320e22064ed9da75f072a1f21e74a6c57a58a942548b901e7b",
+    "./live/w_videotrack-HK7LVJUD.js": "1b4a874acb21eb03c00b5ac70f8ae9480393ae444a30b1eb26ccc7171e4a3b8d",
+    "./live/w_waveslab-53R3NW7O.js": "70244d59de6392a43afbcc2faaa6d72da4957c9a9ae038ed5a18f95a0e38f9dd",
+    "./live/w_whirl-4LI2VJHN.js": "c49e9869e7c2637840a8b05fa6babbc553eb4f120260f935db7372355877245a",
+    "./live/x_map-2T63VRNY.js": "d8ad9ec5a8f3c3b89fb621ee934133ad81d71f0dfaf183fee986eedf11f5265b",
+    "./live/x_scale-4ZERKXRF.js": "4c5f4964645b06f5fefb4bb1c2369dc1258a946d67166cc96c7424688cc55f49",
+    "./live/x_sky-GIV75YEE.js": "7051e70116348702d775d52cdfb11ccbbf58367e84c7d6c2b29c06d3aa437c95",
+    "./live/x_spectrum-OKPVWXHX.js": "ec3446ce84872bc88232033471bf48b86ccc491f2825aa466ef7640eb8b09a11",
+    "./assets/scale/neighbourhood.webp": "5fb04b846f9b05fc00b9646647b369239bc007dc8b57f88384bcab3d20b4df0d",
+    "./assets/scale/coast.webp": "ef31cf30a09fb0ff5618d451115bae1121d47089b063b06d849c42d2626144d1",
+    "./assets/scale/room.webp": "fe5eb912033a8eb33ea6942ce0caffa6e34107d11b26dc6bf86cdfa5064f2fb3",
+    "./assets/fonts/595363fdbe272992.woff2": "595363fdbe272992f202a0ffdbd39ebec4c1634ed6b784ea4188f562f6476607",
+    "./assets/fonts/4753b4dbc9fb9b51.woff2": "4753b4dbc9fb9b51faf1a64ae043f84e4f68765293c92d5efa2c7cb55532cf81",
+    "./assets/fonts/b11ea66234a86b02.woff2": "b11ea66234a86b02b6d8b979dfbd9dad704bb0962eed8a282d193f63433200de",
+    "./assets/fonts/c55ca68bd120289d.woff2": "c55ca68bd120289dba6c3023aa9a5f76331ec366a3f08bfb8030b7f9fe028ff5",
+    "./assets/fonts/26796d89b46366a5.woff2": "26796d89b46366a5fc059aa3c8c4aec828d4e9dba472a2baa37eddeb0800b566",
+    "./assets/fonts/b2e93a375fdb7eca.woff2": "b2e93a375fdb7ecac81a8ddd9d3ce020a97782afc78f3c2159ff00808d5a6a7c",
+    "./assets/fonts/172cc9806576509f.woff2": "172cc9806576509f78276357888413674940d71f2adfc8975d374c953bf04554",
+    "./assets/fonts/d35efb8a915cb4eb.woff2": "d35efb8a915cb4ebc0dbaaf50cdb3f8b3b14116b419527fda768e123bc9a3b0c",
+    "./assets/fonts/870bd3e429b69075.woff2": "870bd3e429b69075fbef77ca29e32cc83f434d7c220d9ead0c6fd2ebf2c8275d",
+    "./assets/fonts/ed6b7c3451796541.woff2": "ed6b7c3451796541f3a7961401b1014c29c2a3488f6df1ff708990d47755d299",
+    "./assets/fonts/1ecdc8123dc9cb5d.woff2": "1ecdc8123dc9cb5d21c70fe52fb094bd88880d24cc3ed4f6bef8d5b882f70e25",
+    "./assets/fonts/3da966b4d0119c14.woff2": "3da966b4d0119c14d46e2bbaeb3e66fdb5fd1385e6c63609b3c9e12d417f9372",
+    "./assets/fonts/8a322a81875e1ed6.woff2": "8a322a81875e1ed64d1c0a90a6b4266dd39cd41814b91cea6c297ce3ce4aaef1"
+  },
+  "oldCacheRemoved": true,
+  "offlineNewLesson": true,
+  "passed": true,
+  "finished": "2026-10-30T03:13:46Z"
+}

@@ -1,0 +1,5 @@
+{
+  "url": "http://127.0.0.1:64779/",
+  "errors": [],
+  "checks": "journey, exports, persistence, original tracker, control modes, responsive, offline"
+}

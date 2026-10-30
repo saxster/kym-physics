@@ -1,0 +1,132 @@
+{
+  "url": "https://saxster.github.io/kym-physics/",
+  "checks": [
+    "fresh visit, quiet default, separate letter, starter, filter recovery, title alignment, optional work, return",
+    "prediction stays hidden after choice, explicit reveal, persisted reveal, change guess and keyboard focus",
+    "optional review, deep link unfolds review, search opens experiment"
+  ],
+  "layouts": [
+    {
+      "width": 390,
+      "theme": "light",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "sepia",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 820,
+      "theme": "light",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 820,
+      "theme": "sepia",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 820,
+      "theme": "dark",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1024,
+      "theme": "sepia",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1180,
+      "theme": "light",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1180,
+      "theme": "sepia",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1180,
+      "theme": "dark",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1440,
+      "theme": "sepia",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "surfaces": [
+        "cover",
+        "directory"
+      ]
+    }
+  ],
+  "errors": [],
+  "result": "PASS"
+}

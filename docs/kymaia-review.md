@@ -50,3 +50,9 @@ The complete catalog check covers 252 mobile/desktop cases: 240 passed the origi
 ![The published opening](kymaia-review/04-live-opening.jpg)
 
 ![The published starter puzzle](kymaia-review/05-live-puzzle.jpg)
+
+## Cleanup after publication
+
+Removed about 311 MiB of generated builds, duplicate test screenshots, Python bytecode and named task-owned temporary files after preserving [compact verification evidence](kymaia-review/evidence/final-lesson-results.json), [live publication hashes](kymaia-review/evidence/live-publication.json), and the selected screenshots above. The original smoke receipt and narrow reruns are retained beside the combined result. Earlier investigation receipts are retained there too. The full removal inventory is in [the cleanup record](kymaia-cleanup.json).
+
+The published artifact remains at the repository root. `source/build` is disposable and can be regenerated with `./source/check-reader.sh`; it is no longer retained as a duplicate of the deployed site. Build dependencies and the Python environment shared with another active project remain installed. No unrelated temporary files, processes, branches, worktrees or stashes were removed.

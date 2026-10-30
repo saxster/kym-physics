@@ -1,0 +1,227 @@
+{
+  "date": "2026-10-30",
+  "removedAllocatedBytes": 325988352,
+  "removedEntries": 1969,
+  "removed": [
+    {
+      "path": "/Users/amarsukhi/src/MyCode/kym_physics/source/build",
+      "allocatedBytes": 214847488,
+      "entries": 1336
+    },
+    {
+      "path": "/Users/amarsukhi/src/MyCode/kym_physics/source/__pycache__",
+      "allocatedBytes": 933888,
+      "entries": 27
+    },
+    {
+      "path": "/Users/amarsukhi/src/MyCode/kym_physics/source/tests/__pycache__",
+      "allocatedBytes": 8192,
+      "entries": 2
+    },
+    {
+      "path": "/private/tmp/joy-browser",
+      "allocatedBytes": 55803904,
+      "entries": 325
+    },
+    {
+      "path": "/private/tmp/joy-fallback",
+      "allocatedBytes": 4247552,
+      "entries": 20
+    },
+    {
+      "path": "/private/tmp/joy-final-controls",
+      "allocatedBytes": 16625664,
+      "entries": 81
+    },
+    {
+      "path": "/private/tmp/joy-final-matrix",
+      "allocatedBytes": 16424960,
+      "entries": 93
+    },
+    {
+      "path": "/private/tmp/joy-journey",
+      "allocatedBytes": 323584,
+      "entries": 8
+    },
+    {
+      "path": "/private/tmp/joy-webkit",
+      "allocatedBytes": 7798784,
+      "entries": 37
+    },
+    {
+      "path": "/private/tmp/joy-node-final.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-review",
+      "allocatedBytes": 458752,
+      "entries": 7
+    },
+    {
+      "path": "/private/tmp/kymaia-diagram-probe",
+      "allocatedBytes": 225280,
+      "entries": 3
+    },
+    {
+      "path": "/private/tmp/kymaia-delay-probe",
+      "allocatedBytes": 4096,
+      "entries": 2
+    },
+    {
+      "path": "/private/tmp/kymaia-all-lessons-smoke.log",
+      "allocatedBytes": 16384,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-all-lessons.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-build-final.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-build-integrity-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-build.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-calculated-recheck.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-explorers.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-figures.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-investigations-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-investigations.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-kepler.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-labs.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-live-before-sw.js",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-live-before.html",
+      "allocatedBytes": 4153344,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-live-final.html",
+      "allocatedBytes": 3985408,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-live-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-live-reader.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-node-final.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-node.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-publication-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-publication.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-readaloud-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-readaloud.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-reader-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-reader-journey.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kymaia-starter-final.log",
+      "allocatedBytes": 4096,
+      "entries": 1
+    },
+    {
+      "path": "/private/tmp/kym-physics-cleanup-node.log",
+      "allocatedBytes": 8192,
+      "entries": 1
+    }
+  ],
+  "retained": [
+    "All tracked source and public delivery files",
+    "Committed review screenshots and compact JSON evidence",
+    "Git history, rollback commit and main branch",
+    "source/node_modules required by build tools",
+    ".venv shared with the active kym_bio project"
+  ],
+  "scope": "Only named physics-project build/test output and known task-owned temporary files; no broad /tmp or global cache purge",
+  "otherProjectProcesses": "Left running; their shared Python environment was preserved.",
+  "verificationBeforeCleanup": {
+    "nodeTestFiles": 19,
+    "nodeResult": "PASS",
+    "buildIntegrityTests": 3,
+    "buildIntegrityResult": "PASS"
+  },
+  "verificationAfterCleanup": {
+    "publishedFilesPresent": 76,
+    "indexSha256": "0aa3a24f4fb8186c430ee85f0008224e3116710c3205744ac021bc690f7d78fa",
+    "sourceAndPublicFilesChanged": false
+  }
+}

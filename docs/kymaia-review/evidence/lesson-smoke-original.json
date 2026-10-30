@@ -1,0 +1,2340 @@
+{
+  "url": "http://127.0.0.1:63284/",
+  "engine": "chromium",
+  "fallback": false,
+  "mode": "smoke",
+  "indexSha256": "e3b40a042a245ad7ce9dfc0dbda5751b8ea4838777d78b3b0e0e0c8e29cdceee",
+  "runtimeSha256": "e3b40a042a245ad7ce9dfc0dbda5751b8ea4838777d78b3b0e0e0c8e29cdceee",
+  "cache": "mw-b40d29f4ece9",
+  "chunks": {
+    "x_map": "live/x_map-2T63VRNY.js",
+    "x_scale": "live/x_scale-4ZERKXRF.js",
+    "x_sky": "live/x_sky-GIV75YEE.js",
+    "x_spectrum": "live/x_spectrum-OKPVWXHX.js",
+    "three": "live/three-3K6EQOUE.js",
+    "w_seasons": "live/w_seasons-IEWFJL3F.js",
+    "w_seriesparallel": "live/w_seriesparallel-PW7XQKQ5.js",
+    "w_shadow": "live/w_shadow-Y3O6WH43.js",
+    "w_skycolour": "live/w_skycolour-KFHUOPR2.js",
+    "w_tides": "live/w_tides-S5C2I752.js",
+    "w_videotrack": "live/w_videotrack-HK7LVJUD.js",
+    "w_waveslab": "live/w_waveslab-53R3NW7O.js",
+    "w_whirl": "live/w_whirl-4LI2VJHN.js",
+    "w_parallax": "live/w_parallax-PLHU2DVK.js",
+    "w_phases": "live/w_phases-5UMNCSVO.js",
+    "w_pressuretank": "live/w_pressuretank-ST2BNSD2.js",
+    "w_projectile": "live/w_projectile-3YQMZ7ZQ.js",
+    "w_ramp": "live/w_ramp-6MUXVENX.js",
+    "w_refraction": "live/w_refraction-CYHC7PBE.js",
+    "w_ripple": "live/w_ripple-GAO3NIHK.js",
+    "w_scope": "live/w_scope-WGOF4QP7.js",
+    "w_harmonics": "live/w_harmonics-6HK7QAUA.js",
+    "w_induction": "live/w_induction-5ZQV4UPP.js",
+    "w_interference": "live/w_interference-ZNGTWL5K.js",
+    "w_investigations": "live/w_investigations-ZDHXWUJF.js",
+    "w_magnetometer": "live/w_magnetometer-GWMA4TJ2.js",
+    "w_mechanicslab": "live/w_mechanicslab-ZULEF2TB.js",
+    "w_mirror": "live/w_mirror-GECZW2FH.js",
+    "w_momentum_carts": "live/w_momentum_carts-65EP2BJN.js",
+    "w_energytrack": "live/w_energytrack-KTJNYB62.js",
+    "w_expansion": "live/w_expansion-QHRQZBFS.js",
+    "w_eye3d": "live/w_eye3d-ITU5BI6M.js",
+    "w_field3d": "live/w_field3d-BCAFCKTD.js",
+    "w_fieldslab": "live/w_fieldslab-BF5ZTN55.js",
+    "w_forces": "live/w_forces-WEFDIHSY.js",
+    "w_freefall": "live/w_freefall-TOKTISK6.js",
+    "w_graphwalk": "live/w_graphwalk-LOQPOG3K.js",
+    "w_airfall": "live/w_airfall-YSY2I5NY.js",
+    "w_buoyancy": "live/w_buoyancy-IFFGF7K2.js",
+    "w_cannon3d": "live/w_cannon3d-VU3F23KY.js",
+    "w_circuit": "live/w_circuit-FVJGQB4O.js",
+    "w_colourmix": "live/w_colourmix-QJI2NLEG.js",
+    "w_conduction": "live/w_conduction-3JHUQSS6.js",
+    "w_doppler": "live/w_doppler-ZZND3U42.js",
+    "w_energystores": "live/w_energystores-43S4NG6K.js"
+  },
+  "cases": [
+    {
+      "id": "charge",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "cage",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-signal",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-diagnose",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-probes",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "protection",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "domains",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "earth-field",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "field-probe",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "motor",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "generator",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "transformer",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "em-wave",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "day-night",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "seasons3d",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "moon-rotation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "eclipses",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "tides3d",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "photoelectric",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "atom-scale",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "radiation-decay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "solar-fusion",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "halo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "stellar-spectrum",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "distance-ladder",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "white-dwarf",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "cosmos",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "foucault",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "telescope",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "tracks",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "parity",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "bose-counting",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "eclipse-evidence",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-rolling",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-balance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-diver",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-gas",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-yoyo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-spring",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-top",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-disc",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-flashlight",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-microwave",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-lightclock",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-decay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-particles",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-surfaces",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-eddy",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce-timing",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-horizon",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-shadow-shapes",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-measurement",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-scale",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-rain",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-shadows",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-frames",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-trains",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-graph",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-acceleration",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-galileo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-toss",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-inertia",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-arrow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-braking",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-friction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-tablecloth",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-vectors",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-newton",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-support",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-pairs",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-rocket",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-fall",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-projectile",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-circle",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-gravity",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-weightless",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-kepler",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-torsion",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-perturbation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-mission",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-pressure",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-suction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-hydrostatic",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-hull",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-energy",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-impact",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-work",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-power",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-station",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-stevin",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-engine",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-joule",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-samples",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-insulation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-phase",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-evaporation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-convection",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-engine",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-pendulum",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-resonance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-flutter",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-water",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-sound",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-echo",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-tone",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-membrane",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-doppler",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-seeing",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-pinhole",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-shadow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-mirror",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-coin",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-guide",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-eye",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-delay",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "w10-fizeau",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-prism",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-rainbow",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-reflectance",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "w11-sky",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-polarisation",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-interference",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-diffraction",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-arago",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-raman",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "charge",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "cage",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-signal",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-diagnose",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "circuit-probes",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "protection",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "domains",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "earth-field",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "field-probe",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "motor",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "generator",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "transformer",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "em-wave",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "day-night",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "seasons3d",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "moon-rotation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "eclipses",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "tides3d",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "photoelectric",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "atom-scale",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "radiation-decay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "solar-fusion",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "halo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "stellar-spectrum",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "distance-ladder",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "white-dwarf",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "cosmos",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "foucault",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "telescope",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "tracks",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "parity",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "bose-counting",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "eclipse-evidence",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-rolling",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-balance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-diver",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-gas",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-yoyo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-spring",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-top",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-disc",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-flashlight",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-microwave",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-lightclock",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-decay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-particles",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-surfaces",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "j-eddy",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "j-bounce-timing",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-horizon",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-shadow-shapes",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-measurement",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-scale",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-rain",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-shadows",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-frames",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-trains",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-graph",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-acceleration",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-galileo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-toss",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-inertia",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-arrow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-braking",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-friction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-tablecloth",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-vectors",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-newton",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-support",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-pairs",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-rocket",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-fall",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-projectile",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-circle",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-gravity",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-weightless",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-kepler",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-torsion",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-perturbation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-mission",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-pressure",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-suction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-hydrostatic",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-hull",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-energy",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-impact",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-work",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-power",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-station",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "m-stevin",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "m-engine",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-joule",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-samples",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-insulation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-phase",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-evaporation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-convection",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w8-engine",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-pendulum",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-resonance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-flutter",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-water",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-sound",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-echo",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-tone",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-membrane",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w9-doppler",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-seeing",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-pinhole",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-shadow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-mirror",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-coin",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-guide",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-eye",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w10-delay",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": false,
+      "error": "Blank calculated diagram"
+    },
+    {
+      "id": "w10-fizeau",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-prism",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-rainbow",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-reflectance",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 0,
+      "passed": true
+    },
+    {
+      "id": "w11-sky",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-polarisation",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-interference",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-diffraction",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-arago",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    },
+    {
+      "id": "w11-raman",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "theme": "sepia",
+      "controls": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "finished": "2026-10-30T03:09:18Z"
+}
