@@ -114,10 +114,15 @@ App.ready(() => {
     let left = r.left - host.left + r.width / 2 - w / 2;
     left = Math.max(8, Math.min(left, host.width - w - 8));
     card.style.left = left + 'px';
-    card.style.top = (r.bottom - host.top + 8) + 'px';
+    const cardH = card.offsetHeight || 200;
+    const belowTop = r.bottom - host.top + 8;
+    const aboveTop = r.top - host.top - cardH - 8;
+    const top = (belowTop + cardH > host.height && aboveTop >= 0) ? aboveTop : Math.max(8, belowTop);
+    card.style.top = top + 'px';
   }
 
   function open(g, item) {
+    if (!card.hidden && current === g) { close(); return; }
     if (current) current.classList.remove('cv-sel');
     current = g; g.classList.add('cv-sel');
     card.replaceChildren(
@@ -142,6 +147,16 @@ App.ready(() => {
     if (current) { current.classList.remove('cv-sel'); current.focus({ preventScroll: true }); current = null; }
   }
 
+  const details = svg.closest('details.cover-chapters');
+  if (details) {
+    details.addEventListener('toggle', () => {
+      if (!details.open) { close(); return; }
+      const rect = details.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight && location.hash !== '#cover') {
+        details.scrollIntoView({ block: 'nearest', behavior: App.reduceMotion() ? 'instant' : 'smooth' });
+      }
+    });
+  }
   document.addEventListener('click', ev => { if (!card.hidden && !card.contains(ev.target)) close(); });
   window.addEventListener('resize', () => { if (!card.hidden && current) place(current); });
 });

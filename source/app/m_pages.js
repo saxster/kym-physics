@@ -131,7 +131,7 @@ function targetFor(hash) {
   if (!hash || hash === '#') return null;
   const id = decodeURIComponent(hash.slice(1));
   const el = document.getElementById(id);
-  if (el && el.matches('article.story')) return 'story';
+  if (el && el.closest('article.story')) return 'story';
   return el;
 }
 
@@ -153,11 +153,11 @@ function route({ anim = true, initial = false, pop = false, y = null } = {}) {
     unfold(t);
     if (y != null) { scrollTo({ top: y, behavior: 'instant' }); return; }
     const behavior = changed || App.reduceMotion() ? 'instant' : 'smooth';
-    if (t === u.els[0]) scrollTo({ top: 0, behavior: 'instant' });
+    if (t === u.els[0] || (u.kind === 'back' && t.id === u.id)) scrollTo({ top: 0, behavior: 'instant' });
     else origScroll.call(t, { block: 'start', behavior });
   };
   if (!changed) { scroll(); return; }
-  const go = () => { setVisible(u); scroll(); afterShow(); };
+  const go = () => { setVisible(u); afterShow(); scroll(); };
   if (anim && !initial) App.transition(go); else go();
 }
 

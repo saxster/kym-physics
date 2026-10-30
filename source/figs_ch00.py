@@ -314,17 +314,17 @@ def cover_art():
         (2, 'v constant', 'Inertia', 1, 0),
         (3, 'F = ma', 'Pairs of force', 1, 0),
         (4, '9.8', 'Free fall', 1, 0),
-        (5, 'GMm/r²', 'Orbits', 2, 1),
+        (5, 'GMm/r²', 'Orbits', 2, 0),
         (6, 'ρgh', 'Ocean of air', 2, 0),
         (7, '½mv²', 'Energy', 2, 0),
         (8, 'ΔQ', 'Heat & monsoon', 2, 0),
         (9, 'v = fλ', 'Waves & tabla', 3, 0),
         (10, 'θᵢ = θᵣ', 'Light & sight', 3, 0),
-        (11, 'Δλ', 'Raman’s sea', 3, 1),
+        (11, 'Δλ', 'Raman’s sea', 3, 0),
         (12, 'V = IR', 'Circuits', 4, 0),
         (13, '∇×B', 'Fields & trams', 4, 0),
         (14, '23.4°', 'Earth, Moon, Sun', 4, 0),
-        (15, 'E = mc²', 'Starlight', 4, 1),
+        (15, 'E = mc²', 'Starlight', 4, 0),
     ]
     W, H = 640, 530
     cw, ch, gap = 146, 118, 10

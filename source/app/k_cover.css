@@ -5,9 +5,11 @@ header.cover figure { position: relative; }
 .cover .cover-welcome, .cover .cover-letter { font: .95rem/1.6 var(--sans); max-width: 36rem; }
 .cover .cover-welcome { margin: 1rem 0 0; }
 .cover .cover-letter { margin: .5rem 0 0; }
-.cover-chapters { width: 100%; max-width: 50rem; }
+.cover-chapters { width: 100%; max-width: 44rem; }
 .cover-chapters > summary { font: 600 1rem/1.5 var(--sans); min-height: 44px; padding: .6rem 0; cursor: pointer; border-top: 1px solid var(--rule); }
-.cover-chapters[open] > summary { margin-bottom: 1rem; }
+.cover-chapters[open] > summary { margin-bottom: .75rem; }
+.cover-chapters > figure.art { margin: 0; width: 100%; }
+.cover-chapters > figure.art > svg { width: 100%; height: auto; display: block; }
 .cover .begin a:focus-visible, .cover-chapters > summary:focus-visible { outline: 3px solid var(--electron); outline-offset: 4px; }
 @media print { .cover-chapters > figure { display: block !important; } }
 .cover-live g.el { cursor: pointer; outline: none; }

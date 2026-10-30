@@ -575,7 +575,8 @@ class Builder:
                    + li('stories', 'Stories behind the ideas') + li('timeline', 'The adventure in time')
                    + li('answers', 'Answers to Check yourself') + li('glossary', 'Words worth knowing')
                    + li('models', 'About the models and numbers in this book') + li('further', 'Further adventures')
-                   + li('credits', 'Where this book comes from') + '</ol>')
+                   + li('credits', 'Where this book comes from')
+                   + li('experiment-sources', 'Sources for the live experiments') + '</ol>')
         out.append('</div></section>')
         return ''.join(out)
 
@@ -1201,7 +1202,7 @@ def write_exam_pages(main_page, catalogs, site_dir):
     mixed = create_mixed(catalogs)
     banks = catalogs + ([validate_exam(mixed)] if mixed else [])
     adir = os.path.join(ROOT, 'app')
-    modules = ['m_base.js', 'm_settings.js', 'm_pages.js', 'm_notebook.js', 'm_search.js', 'm_exam.js']
+    modules = ['m_base.js', 'm_settings.js', 'm_exam.js', 'm_pages.js', 'm_notebook.js', 'm_search.js']
     js = iife("import './core.js';\n" + ''.join(f"import './{name}';\n" for name in modules), 'exam', adir)
     head = main_page.split('<body', 1)[0]
     head = head.replace('url(assets/', 'url(../assets/').replace('href="manifest.webmanifest"', 'href="../manifest.webmanifest"').replace('register("sw.js")', 'register("../sw.js")').replace('href="icon-192.png"', 'href="../icon-192.png"')
@@ -1259,7 +1260,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
 <p class="begin"><a href="#investigations">Try a quick puzzle</a><a class="begin-read" href="#ch0">Start reading · Chapter 0</a></p>
 <p class="cover-welcome">One puzzle is plenty for today. Guess, play, and see what surprises you.</p>
 <p class="cover-letter"><a href="#letter">A letter to you, from Amar</a></p>{'<p class="cover-exam"><a href="#exam-prep">Prepare for my exam · motion</a></p><p class="cover-exam"><a href="#exam-directory">Prepare every chapter</a></p>' if b.exam_catalog else ''}</div>
-{f'<details class="cover-chapters"><summary>Browse the sixteen chapters</summary><figure class="art">{cover}{legend}</figure></details>' if cover else ''}</header>''']
+{f'<details class="cover-chapters"><summary>Browse the sixteen chapters</summary><figure class="art" id="cover">{cover}{legend}</figure></details>' if cover else ''}</header>''']
     front_titles = []
     for k, cls, default in (('letter', 'letter', 'A letter to Kym'), ('howto', 'howto', 'How this book works'),
                             ('ideas', 'ideas-page', 'Five big ideas')):
@@ -1303,7 +1304,8 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
             raise SystemExit(1)
     back = []
     if b.exam_catalog:
-        back.append(render_exam(b.exam_catalog) + exam_directory(b.exam_catalogs))
+        back.append(render_exam(b.exam_catalog))
+        back.append(exam_directory(b.exam_catalogs))
     investigations = [r for r in b.lessons if r.get('object') and r['id'] in b.lesson_targets]
     if investigations:
         entries = []

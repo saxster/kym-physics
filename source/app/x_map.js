@@ -270,9 +270,13 @@ function buildMap(mount) {
 
 // ------------------------------------------------------------------ lifelines
 function buildLifelines(mount) {
+  const parseYr = v => {
+    const m = String(v || '').match(/\d+/);
+    return m ? (+m[0] * (/BCE/i.test(v) ? -1 : 1)) : NaN;
+  };
   const people = (App.data.stories || []).filter(s => s.born).map(s => ({
-    id: s.id, name: decode(s.name || s.title), born: parseInt(s.born, 10), died: parseInt(s.died, 10) || Y1, role: s.role,
-  })).filter(p => p.born).sort((a, b) => a.born - b.born);
+    id: s.id, name: decode(s.name || s.title), born: parseYr(s.born), died: parseYr(s.died) || Y1, role: s.role,
+  })).filter(p => !isNaN(p.born)).sort((a, b) => a.born - b.born);
   if (!people.length) return;
   const start = Math.floor(Math.min(...people.map(p => p.born)) / 50) * 50, end = Y1;
 
@@ -283,7 +287,7 @@ function buildLifelines(mount) {
   const cursor = el('div', { class: 'll-cursor', hidden: true }, el('span', {}));
   scroller.append(track);
   mount.append(el('div', { class: 'll-head' }, el('h3', {}, 'Lifelines'),
-    el('p', {}, 'Every person in the cast, on one timeline. Dalton was a boy when Lavoisier was weighing tin; Faraday was born while Priestley was still alive.')),
+    el('p', {}, 'Every person in the cast, on one timeline. Newton was born the year Galileo died; J. C. Bose was a boy while Faraday was still lecturing.')),
   wrap);
   wrap.append(scroller, caption);
 

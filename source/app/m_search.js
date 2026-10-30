@@ -62,7 +62,7 @@ function buildIndex() {
   document.querySelectorAll('#exam-prep .exam-word').forEach(card => {
     out.push({ kind: 'Revision', label: 'Motion revision card', title: card.querySelector('h4')?.textContent.trim() || 'Motion word', text: cleanText(card, 'details'), target: card.id });
   });
-  ['letter', 'howto', 'ideas', 'investigations', 'exam-prep', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'timeline', 'further', 'credits'].forEach(id => {
+  ['letter', 'howto', 'ideas', 'investigations', 'exam-prep', 'exam-directory', 'explore-scale', 'explore-sky', 'explore-spectrum', 'explore-map', 'stories', 'timeline', 'models', 'further', 'credits', 'experiment-sources'].forEach(id => {
     const s = document.getElementById(id);
     if (!s) return;
     const h = s.querySelector('h2');

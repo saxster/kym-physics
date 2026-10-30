@@ -66,13 +66,12 @@ article.story .fin { margin-top: 3rem; }
 .cover .art svg { overflow: visible; }
 .cover .legend { margin-top: 1rem; }
 
-/* the one orchestrated moment: the table assembles itself, then the elements of this book are inked in */
+/* the one orchestrated moment: the cover rises, and the chapter tiles appear cleanly when opened */
 @media (prefers-reduced-motion: no-preference) {
-  .cover .art g.el { transform-box: fill-box; transform-origin: center; animation: el-in .55s cubic-bezier(.2, .75, .25, 1) both; animation-delay: calc(var(--i) * 9ms + 200ms); }
-  .cover .art g.el.on { animation: el-ink .7s cubic-bezier(.2, .75, .25, 1) both; animation-delay: calc(var(--i) * 11ms + 1300ms); }
+  .cover .art g.el, .cover .art g.el.on { transform-box: fill-box; transform-origin: center; animation: el-in .35s cubic-bezier(.2, .75, .25, 1) both; animation-delay: calc(var(--i) * 8ms); }
   .cover h1, .cover .sub, .cover .for, .cover .begin { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
   .cover .sub { animation-delay: .12s; } .cover .for { animation-delay: .22s; } .cover .begin { animation-delay: .3s; }
-  .cover .legend { animation: rise .8s 2.2s both; }
+  .cover .legend { animation: rise .4s .1s both; }
 }
 @keyframes el-in { from { opacity: 0; transform: scale(.55); } }
 @keyframes el-ink { from { opacity: 0; transform: scale(1.35); } 60% { opacity: 1; } }

@@ -264,21 +264,32 @@ DIALOG_JS = r'''
     body.innerHTML=''; body.appendChild(art); body.scrollTop=0;
     title.textContent=art.getAttribute('data-story-title')||'';
   }
-  function show(id, mode){            // mode: 'push' (from a click), 'pop' (from history), 'load'
+  function resolveStoryHash(hash){
+    if(!hash || hash==='#') return null;
+    var m=/^#story-([\w-]+)$/.exec(hash);
+    if(m){ var a=document.getElementById('story-'+m[1]); return a ? {id:m[1], sub:null} : null; }
+    var id; try { id=decodeURIComponent(hash.slice(1)); } catch(e){ return null; }
+    var el=document.getElementById(id); if(!el) return null;
+    var art=el.closest && el.closest('article.story');
+    if(!art || !/^story-/.test(art.id)) return null;
+    return {id:art.id.slice(6), sub:el===art ? null : el};
+  }
+  function show(id, mode, subEl){            // mode: 'push' (from a click), 'pop' (from history), 'load'
     var art=document.getElementById('story-'+id); if(!art) return false;
     var go=function(){ swap(art); };
     if(window.App && dlg.open) window.App.transition(go); else go();
-    if(mode==='push'){ history.pushState({story:id}, '', '#story-'+id); depth++; }
+    if(mode==='push'){ history.pushState({story:id}, '', subEl && subEl.id ? '#'+subEl.id : '#story-'+id); depth++; }
     back.hidden = depth<2;
     if(!dlg.open){ dlg.showModal(); document.documentElement.classList.add('sd-open'); }
     body.setAttribute('tabindex','-1'); body.focus({preventScroll:true});
+    if(subEl && subEl!==art){ subEl.scrollIntoView({block:'start', behavior:'instant'}); }
     document.title = (art.getAttribute('data-story-title')||'') + ' · ' + baseTitle;
     emit('story:open', {id:id, el:art});
     return true;
   }
   var baseTitle=document.title;
   function hide(){ restore(); if(dlg.open) dlg.close(); document.documentElement.classList.remove('sd-open'); document.title=baseTitle; emit('story:close'); }
-  function close(){ if(depth>0){ var n=depth; depth=0; history.go(-n); } else { if(/^#story-/.test(location.hash)) history.replaceState(null,'',location.pathname+location.search); hide(); } }
+  function close(){ if(depth>0){ var n=depth; depth=0; history.go(-n); } else { if(resolveStoryHash(location.hash)) history.replaceState(null,'',location.pathname+location.search); hide(); } }
   window.__openStory=function(id){ return show(id,'push'); };
   window.__closeStory=close;
   // Explicit experiment navigation preserves a return link rather than racing history.go().
@@ -288,22 +299,34 @@ DIALOG_JS = r'''
   back.addEventListener('click',function(){ history.back(); });
   dlg.addEventListener('click',function(e){ if(e.target===dlg) close(); });
   window.addEventListener('popstate',function(){
-    var m=/^#story-([\w-]+)$/.exec(location.hash);
-    if(m){ if(depth>0) depth--; show(m[1],'pop'); } else { depth=0; hide(); }
+    var r=resolveStoryHash(location.hash);
+    if(r){ if(depth>0) depth--; show(r.id,'pop',r.sub); } else { depth=0; hide(); }
+  });
+  window.addEventListener('hashchange',function(){
+    var r=resolveStoryHash(location.hash);
+    if(r && (!dlg.open || current!==document.getElementById('story-'+r.id))) show(r.id,'pop',r.sub);
+    else if(r && r.sub) r.sub.scrollIntoView({block:'start', behavior:'instant'});
   });
   document.addEventListener('click',function(e){
-    var a=e.target.closest && e.target.closest('a.sl[data-story]'); if(!a) return;
-    if(e.metaKey||e.ctrlKey||e.shiftKey||e.button) return;
-    if(show(a.getAttribute('data-story'),'push')) e.preventDefault();
+    if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    var a=e.target.closest && e.target.closest('a[href^="#"]'); if(!a || a.hasAttribute('data-noopen')) return;
+    if(a.hasAttribute('data-story')){
+      if(show(a.getAttribute('data-story'),'push')) e.preventDefault();
+      return;
+    }
+    var r=resolveStoryHash(a.getAttribute('href'));
+    if(r && show(r.id,'push',r.sub)) e.preventDefault();
   });
   // jump links inside an open story (e.g. to a section of the book) close the panel first
   body.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="#"]:not([data-story])'); if(!a) return;
-    e.preventDefault(); var target=a.getAttribute('href'); depth=0; hide();
+    var target=a.getAttribute('href');
+    if(resolveStoryHash(target)) return;
+    e.preventDefault(); depth=0; hide();
     history.pushState(null,'',target); var t=document.querySelector(target); if(t) t.scrollIntoView();
   });
-  var m=/^#story-([\w-]+)$/.exec(location.hash);
-  if(m) setTimeout(function(){ show(m[1],'load'); },0);
+  var initR=resolveStoryHash(location.hash);
+  if(initR) setTimeout(function(){ show(initR.id,'load',initR.sub); },0);
 })();
 '''
 
