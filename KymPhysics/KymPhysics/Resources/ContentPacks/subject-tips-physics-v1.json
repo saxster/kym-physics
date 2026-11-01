@@ -1,0 +1,912 @@
+{
+  "schemaVersion": 1,
+  "subject": "physics",
+  "tips": [
+    {
+      "id": "PHY-01",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Forces and energy",
+      "title": "Energy is never used up, it moves between stores",
+      "summary": "A dropped ball never destroys energy; its energy moves from store to store until it all ends up as warmth.",
+      "prediction": "Drop a bouncy ball from shoulder height. Each bounce is lower than the last, and soon it lies still. Where did its energy go? Pick one before you look: it was used up; it turned into something else; it is still inside the ball. It is fine to be unsure. The whole tip is about this question.",
+      "why": "Energy is a way of keeping accounts. Physicists sort it into stores: a gravitational store (something is high up), a kinetic store (something is moving), an elastic store (something is stretched or squashed), a thermal store (something is warm) and a chemical store (fuel, food, a cell). An event such as a drop, a push or a burn transfers energy from one store to another. You may also see stores called 'types of energy'; it is the same idea.\n\nThe rule that never breaks: the total stays the same. Energy is conserved. When the ball falls, its gravitational store empties and its kinetic store fills by the same amount (ignoring air resistance). When it squashes against the floor, some energy goes briefly into an elastic store and springs back out, but some goes into the thermal stores of the ball, the floor and the air, and a little leaves as sound.\n\nThat thermal share never comes back. Each bounce hands a bit more energy to warmth, so each bounce is lower. When the ball is still, all of its original energy sits in thermal stores, spread so thinly that nothing feels warm. Nothing was lost. It changed address.",
+      "whenToUse": "Use the stores idea whenever something changes: a drop, a bounce, a burn, a stretch, a brake. Name the store that empties and the store that fills, and check that the total is the same. The model does not say what energy is made of, only how the total is shared out. At Stage 7 the stores to know are chemical, kinetic, gravitational (its full name is gravitational potential), elastic and thermal.",
+      "watchFor": "The classic mistake is to say the energy was 'used up' or 'ran out' when the ball stops. Energy cannot be used up: it is conserved. Say instead that it was transferred to thermal stores (ball, floor and air). A flat cell has not lost its energy either; its chemical store has been transferred to the lamp and the room. A second slip is to treat 'force' and 'energy' as the same thing. Forces push and pull; energy is the account that changes when they do.",
+      "explainPrompt": "In your own words: why is each bounce lower than the one before, if no energy has been destroyed?",
+      "visual": {
+        "kind": "stepSequence",
+        "steps": [
+          {
+            "title": "Held high",
+            "caption": "You hold the ball at shoulder height. Its gravitational store is full and nothing else is happening yet.",
+            "symbol": "hand.raised.fill"
+          },
+          {
+            "title": "Falling",
+            "caption": "Gravity pulls the ball down. The gravitational store empties while the kinetic store fills by the same amount, so the ball speeds up.",
+            "symbol": "arrow.down.circle.fill"
+          },
+          {
+            "title": "Squash",
+            "caption": "The ball squashes against the floor. Most of the energy goes briefly into an elastic store, but some is transferred to the thermal stores of ball, floor and air, and a little to sound.",
+            "symbol": "burst.fill"
+          },
+          {
+            "title": "Bounce",
+            "caption": "The elastic store springs back into the kinetic store and the ball rises. It climbs less high than before: the thermal share is gone for good.",
+            "symbol": "arrow.up.circle"
+          },
+          {
+            "title": "Still",
+            "caption": "After many bounces the ball lies still. Every joule it started with now sits in thermal stores, spread so thinly that nothing feels warm.",
+            "symbol": "thermometer.medium"
+          }
+        ]
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "A ball is lifted so that its gravitational store holds 10 J. It is dropped and each bounce reaches 60 % of the height of the one before. How much energy is in thermal stores after the first bounce, after the second, and when the ball finally lies still?",
+            "steps": [
+              "Start: gravitational store 10 J, kinetic store 0 J. Total 10 J.",
+              "Just before the first hit (ignoring air resistance): gravitational store 0 J, kinetic store 10 J. Total still 10 J.",
+              "Top of the first bounce: the ball reaches 60 % of its height, so the gravitational store holds 60 % of 10 J = 6 J. The missing 10 J - 6 J = 4 J went into thermal stores (and a little sound) during the squash.",
+              "Top of the second bounce: 60 % of 6 J = 3.6 J in the gravitational store. Thermal stores now hold 10 J - 3.6 J = 6.4 J.",
+              "At rest: gravitational 0 J, kinetic 0 J, thermal stores 10 J. At every step the stores add up to 10 J."
+            ],
+            "answer": "4 J after the first bounce, 6.4 J after the second, and all 10 J when the ball is still. The total is 10 J at every moment."
+          },
+          {
+            "problem": "A torch is left switched on until its cells are flat. Describe the energy changes from start to finish.",
+            "steps": [
+              "Before switching on: the energy is in the chemical store of the cells.",
+              "Switched on: the circuit transfers energy electrically from the cells to the lamp.",
+              "The lamp transfers energy to the surroundings by light (the useful part) and by heating (the lamp gets warm).",
+              "Light that hits the walls is absorbed and warms them very slightly, so the energy ends up in the thermal stores of the room.",
+              "'Flat' cells: the chemical store is nearly empty. The energy was not destroyed; it is now spread through the room."
+            ],
+            "answer": "Chemical store of the cells, transferred electrically, then by light and heating, ending in the thermal stores of the lamp and the room. The total is unchanged."
+          }
+        ],
+        "mistakes": [
+          "Saying energy is 'used up', 'made' or 'runs out'. Energy is transferred; a flat cell has an empty chemical store, not destroyed energy.",
+          "Treating force and energy as the same thing. A force is a push or pull measured in newtons; energy is measured in joules.",
+          "Forgetting the thermal store. In almost every real event some energy ends up as warmth; if your account does not balance, that is usually where the missing joules are.",
+          "Saying an object at rest has no energy. A book on a high shelf has a full gravitational store, and even a cold stone has a thermal store."
+        ],
+        "realWorld": "A hydroelectric dam is this chain on a huge scale. Rain fills a high lake (gravitational store); water falls through pipes (kinetic store) and spins a turbine and generator, which transfer energy electrically to homes hundreds of kilometres away. The Tehri Dam in Uttarakhand, one of the tallest dams in the world, holds its lake far above its turbines for exactly this reason."
+      },
+      "practice": [
+        {
+          "question": "A wind-up toy car is wound, released, runs across the floor and stops. Name the store that fills when you wind it, the store that fills as it moves, and where the energy is once it has stopped.",
+          "answer": "Elastic store (the spring), then kinetic store (the moving car), then thermal stores of the axles, wheels, floor and air, plus a little sound.",
+          "explanation": "Winding squashes a spring, which is an elastic store. Releasing lets the spring turn the wheels, filling the kinetic store. Friction then warms the moving parts and the floor very slightly, so the energy is dissipated, not destroyed."
+        },
+        {
+          "question": "A pendulum is pulled aside so that its gravitational store holds 2 J, then released. Ignoring air resistance, how much energy is in its kinetic store at the bottom of the swing?",
+          "answer": "2 J.",
+          "explanation": "At the lowest point the gravitational store is empty, so all 2 J has moved into the kinetic store. In real life a little goes to thermal stores on every swing, which is why a pendulum slowly stops."
+        },
+        {
+          "question": "True or false: a stone resting on top of a wall has no energy. Explain your answer.",
+          "answer": "False.",
+          "explanation": "The stone has a gravitational store because it is above the ground (push it off and it falls), and a thermal store because it is warm compared with absolute zero. 'Not moving' is not the same as 'no energy'."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pf.01 Describe changes in energy that are a result of an event or process.",
+        "7Pf.02 Know that energy tends to dissipate and in doing so it becomes less useful."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/science/",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy",
+        "https://phet.colorado.edu/en/simulations/energy-skate-park-basics"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18",
+      "computationalClaims": [
+        {
+          "excerpt": "Top of the first bounce: the ball reaches 60 % of its height, so the gravitational store holds 60 % of 10 J = 6 J. The missing 10 J - 6 J = 4 J went into thermal stores (and a little sound) during the squash.",
+          "left": "10-10*0.6",
+          "right": "4",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "21fa24bce8c35abf6da54dc86d5502c9c44e72a280d08fa0fb674b11113d5a64",
+          "leftUnit": "J",
+          "rightUnit": "J"
+        },
+        {
+          "excerpt": "Top of the second bounce: 60 % of 6 J = 3.6 J in the gravitational store. Thermal stores now hold 10 J - 3.6 J = 6.4 J.",
+          "left": "10-6*0.6",
+          "right": "6.4",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "21fa24bce8c35abf6da54dc86d5502c9c44e72a280d08fa0fb674b11113d5a64",
+          "leftUnit": "J",
+          "rightUnit": "J"
+        }
+      ]
+    },
+    {
+      "id": "PHY-02",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Forces and energy",
+      "title": "Energy spreads out, and spread-out energy is hard to use",
+      "summary": "Energy is conserved, yet every machine warms its surroundings: that spreading out is called dissipation.",
+      "prediction": "A phone charger feels warm after an hour. Is the warmth (a) a sign that the charger is broken, (b) energy that has been destroyed, or (c) energy that reached a store we did not want? Make a guess; being unsure is fine, and the sorting game will settle it.",
+      "why": "Every event transfers energy from one store to others, and the total never changes. But the transfers are not tidy. A torch is meant to fill the room with light; it also warms its lamp. A bicycle is meant to move; its brakes and tyres warm up. Some of the energy always leaks into the thermal stores of the surroundings.\n\nEnergy sitting in a thermal store that is spread across a whole room, a road or the open air is still energy, but it is almost impossible to gather up and use again. This spreading out is called dissipation. Dissipated energy is not destroyed. It is simply no longer useful to us.\n\nSo two separate statements are both true at once. Energy is conserved: the total is fixed. Energy dissipates: with every transfer, a bigger share ends up in thermal stores where it does little for anyone. Engineers fight the second statement with good design: smooth bearings, insulation, LED lamps.",
+      "whenToUse": "Use this whenever you are asked why a device warms up while working, why a machine is described as inefficient, or where the energy 'went'. Useful energy does the job you wanted; dissipated energy ends up in the thermal stores of the surroundings. The idea applies to every machine and every living thing, including you: you warm the air around you all day. The limit: 'useful' depends on the job. In a heater, warming is the useful transfer.",
+      "watchFor": "Dissipated does not mean destroyed. It is tempting to write 'the energy is lost' or 'wasted away'. The energy still exists; it has been transferred to thermal stores so spread out that it cannot be collected. A second slip is to mix up sources of energy (the Sun, wind, coal, a cell) with stores (chemical, kinetic, thermal). The Sun is a source; the warmth it leaves in a wall is a thermal store.",
+      "explainPrompt": "Why can we not just collect the warmth from a cooling cup of tea and use it to boil the kettle again? Explain in your own words, using the word 'spread'.",
+      "visual": {
+        "kind": "sortClassify",
+        "prompt": "Useful transfer or dissipated? Sort where each bit of energy ends up.",
+        "bins": [
+          "Useful",
+          "Dissipated"
+        ],
+        "items": [
+          {
+            "label": "Light from a torch lamp",
+            "bin": "Useful",
+            "reason": "Lighting things up is the torch's job: this is the transfer we wanted."
+          },
+          {
+            "label": "Warmth in the same torch lamp",
+            "bin": "Dissipated",
+            "reason": "The lamp warms the air around it. That energy spreads out and does nothing useful."
+          },
+          {
+            "label": "Water getting hot inside a kettle",
+            "bin": "Useful",
+            "reason": "Heating the water is exactly what a kettle is for."
+          },
+          {
+            "label": "Steam and warmth escaping from the kettle's sides and spout",
+            "bin": "Dissipated",
+            "reason": "Energy that warms the kitchen instead of the water is spread out and gone from our use."
+          },
+          {
+            "label": "A cyclist's kinetic store as they ride along",
+            "bin": "Useful",
+            "reason": "Moving the bike and rider is the point of pedalling."
+          },
+          {
+            "label": "Warm brake pads after the cyclist stops",
+            "bin": "Dissipated",
+            "reason": "Braking transfers the kinetic store to the thermal stores of the pads, wheel rims and air."
+          },
+          {
+            "label": "Music from headphones reaching your ears",
+            "bin": "Useful",
+            "reason": "That sound carries the music you asked for."
+          },
+          {
+            "label": "The hum of a washing machine heard across the house",
+            "bin": "Dissipated",
+            "reason": "Sound nobody wanted spreads through the house and ends up as a tiny amount of warmth."
+          }
+        ]
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "An old filament lamp receives 10 J of energy every second. Only 1 J of that leaves as light; the rest warms the lamp and the air. How much energy is dissipated each second, and what fraction of the energy is useful?",
+            "steps": [
+              "Total energy in each second: 10 J.",
+              "Useful energy out each second (light): 1 J.",
+              "Dissipated each second = 10 J - 1 J = 9 J, transferred to the thermal stores of the lamp and the room.",
+              "Useful fraction = 1 J / 10 J = 1/10, which is 10 %."
+            ],
+            "answer": "9 J is dissipated every second; only 10 % of the energy is useful."
+          },
+          {
+            "problem": "An LED lamp gives the same 1 J of light each second but needs only 2 J each second. How much does it dissipate each second, and how much less is that than the filament lamp?",
+            "steps": [
+              "Total in each second: 2 J. Useful out: 1 J.",
+              "Dissipated each second = 2 J - 1 J = 1 J.",
+              "The filament lamp dissipated 9 J each second, so the LED dissipates 9 J - 1 J = 8 J less every second.",
+              "Useful fraction for the LED = 1 J / 2 J = 1/2, which is 50 %."
+            ],
+            "answer": "1 J dissipated each second, 8 J less than the filament lamp; half of its energy is useful."
+          }
+        ],
+        "mistakes": [
+          "Writing 'the energy is lost' as if it vanished. Say 'dissipated to the thermal stores of the surroundings'.",
+          "Thinking a warm device must be faulty. Some warmth is the normal sign of dissipation; a very hot one may be faulty.",
+          "Calling thermal energy useless in every case. In a kettle or a heater, warming is the useful transfer. 'Dissipated' means 'not where we wanted it', not 'thermal'.",
+          "Mixing up sources and stores, for example writing 'the energy is in the Sun store'. The Sun is a source; chemical, kinetic and thermal are stores."
+        ],
+        "realWorld": "A petrol car engine transfers only about a quarter to a third of the fuel's chemical store into moving the car. The rest leaves through the radiator and the exhaust into the thermal stores of the air, which is why bonnets are hot after a drive. Engineers chase every percent of improvement, because on India's roads a small gain in efficiency saves an enormous amount of fuel."
+      },
+      "practice": [
+        {
+          "question": "An electric fan has run all afternoon in a closed room. The room is no cooler than before and the motor is warm. Explain where the energy supplied to the fan has ended up.",
+          "answer": "In the thermal stores of the air, the motor and everything in the room.",
+          "explanation": "The fan gives the air a kinetic store, but friction with the walls, furniture and the air itself slows it again, warming the room very slightly; the motor warms up directly as well. A fan does not cool the air; it moves it, and it is sweat evaporating from your skin that cools you."
+        },
+        {
+          "question": "A phone charger takes in 20 J each second and delivers 17 J each second to the phone's battery. How much is dissipated each second, and where does it go?",
+          "answer": "3 J each second, into the thermal store of the charger and the air around it.",
+          "explanation": "20 J - 17 J = 3 J. That is why the charger feels warm. The 3 J spreads into the room and cannot be collected again."
+        },
+        {
+          "question": "Which is more useful: 100 J spread evenly through a swimming pool, or 100 J in a cup of hot tea? Why?",
+          "answer": "The tea.",
+          "explanation": "Both are the same amount of energy, but the tea's is concentrated: it can warm your hands or your throat. The pool's 100 J raises its temperature by a tiny fraction of a degree and can never be gathered back. Spread out means less useful, and that is what dissipation means."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pf.02 Know that energy tends to dissipate and in doing so it becomes less useful.",
+        "7Pf.01 Describe changes in energy that are a result of an event or process."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/science/",
+        "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy",
+        "https://phet.colorado.edu/en/simulations/energy-skate-park-basics"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18",
+      "computationalClaims": [
+        {
+          "excerpt": "Dissipated each second = 10 J - 1 J = 9 J, transferred to the thermal stores of the lamp and the room.",
+          "left": "10-1",
+          "right": "9",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "c1b33e3c2a08714fe799c5f1fcada4495e0a9add237f334cc942160f2d6b653d",
+          "leftUnit": "J",
+          "rightUnit": "J"
+        }
+      ]
+    },
+    {
+      "id": "PHY-03",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Forces and energy",
+      "title": "Mass is how much; weight is how hard gravity pulls",
+      "summary": "Gravity pulls every pair of objects together; your weight is that pull, and it changes from world to world.",
+      "prediction": "An astronaut with a mass of 60 kg lands on the Moon, where gravity is about one sixth as strong as on Earth. What is her mass there: 10 kg, 60 kg or 360 kg? And is her weight more, less or the same as on Earth? Guess first. If you are unsure, good: wrong guesses are the useful ones here.",
+      "why": "Gravity is a force of attraction between any two objects that have mass. You attract the Earth and the Earth attracts you, with equal pulls. The size of the pull depends on both masses: bigger masses, bigger pull. Between you and a friend the pull is real but far too small to feel. Between you and a planet it is the force you call your weight.\n\nMass is the amount of matter in something, measured in kilograms. It does not change when you travel. Weight is the gravitational pull on that mass, measured in newtons, and it depends on where you are. On Earth each kilogram is pulled with about 9.8 N (many Stage 7 questions round this to 10 N/kg; say which you use). So weight (N) = mass (kg) × gravitational field strength (N/kg).\n\nThe astronaut's 60 kg stays 60 kg everywhere. On Earth she weighs 60 × 9.8 = 588 N. On the Moon, where the field strength is about 1.6 N/kg, she weighs 60 × 1.6 = 96 N. She could jump about six times higher, yet she would be just as hard to push sideways, because that depends on mass, not weight.\n\nThe same attraction reaches across space. It keeps the Moon circling the Earth and the planets circling the Sun; gravity is what holds the Solar System together.",
+      "whenToUse": "Use mass when the question is about how much matter there is or how hard something is to get moving; use weight when it is about a force, a reading on a newton meter, or anything in newtons. Weight = mass × g works on any planet as long as you use that planet's g: Moon 1.6, Mars 3.7, Earth 9.8, Jupiter about 23 N/kg. The pull also weakens with distance, which is why satellites far from Earth feel it less, but at Stage 7 the key idea is that it depends on the masses.",
+      "watchFor": "Weight and mass are not the same quantity in different units. 'I weigh 45 kg' is everyday talk; in physics 45 kg is a mass, and the weight is about 440 N. A second slip is to believe gravity only exists on Earth or only depends on distance: every object with mass attracts every other object, and the pull grows with the masses involved. A third is to think heavier things fall faster: in a vacuum a hammer and a feather land together.",
+      "explainPrompt": "Why does a bathroom scale give a different reading on the Moon, when nothing about your body has changed? Explain using the words mass, weight and pull.",
+      "visual": {
+        "kind": "massWeight",
+        "mass": {
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "initial": 60
+        },
+        "worlds": [
+          {
+            "name": "Deep space",
+            "g": 0
+          },
+          {
+            "name": "Moon",
+            "g": 1.6
+          },
+          {
+            "name": "Mars",
+            "g": 3.7
+          },
+          {
+            "name": "Earth",
+            "g": 9.8
+          },
+          {
+            "name": "Jupiter",
+            "g": 23
+          }
+        ],
+        "initialWorld": "Earth",
+        "observation": "Tap Moon, then Jupiter. Which reading changed, the balance or the spring scale? Now go back to Earth and halve the mass: what happens to the weight?"
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "A learner has a mass of 45 kg. Find their weight on Earth (g = 9.8 N/kg) and on Mars (g = 3.7 N/kg).",
+            "steps": [
+              "Write the relation: weight = mass × g.",
+              "Earth: W = 45 kg × 9.8 N/kg = 441 N.",
+              "Mars: W = 45 kg × 3.7 N/kg = 166.5 N, which rounds to 167 N.",
+              "Check the mass: it is still 45 kg in both places. Only the pull changed."
+            ],
+            "answer": "441 N on Earth and about 167 N on Mars; the mass is 45 kg in both places."
+          },
+          {
+            "problem": "A rover weighs 3600 N on Earth. Taking g = 10 N/kg, find its mass, and then its weight on the Moon where g = 1.6 N/kg.",
+            "steps": [
+              "Rearrange the relation: mass = weight / g.",
+              "Mass = 3600 N / 10 N/kg = 360 kg.",
+              "Moon weight = 360 kg × 1.6 N/kg = 576 N.",
+              "Sense check: 576 N is about a sixth of 3600 N, as expected for the Moon."
+            ],
+            "answer": "Mass 360 kg; weight on the Moon 576 N."
+          }
+        ],
+        "mistakes": [
+          "Writing a weight in kilograms or a mass in newtons. Mass: kg. Weight: N.",
+          "Using Earth's g on another world. Each has its own value: Moon 1.6, Mars 3.7, Earth 9.8, Jupiter about 23 N/kg.",
+          "Thinking the mass shrinks when the weight does. Mass is the amount of matter and only changes if matter is added or removed.",
+          "Believing a heavier object falls faster. With no air, everything falls together; it is air resistance, not weight, that slows a feather."
+        ],
+        "realWorld": "The Chandrayaan-3 lander had a mass of about 1750 kg. On the Moon its weight was only about 2800 N, roughly the weight of four adults on Earth. Its four landing engines could push with about 800 N each, 3200 N in total: on Earth that could not even have lifted it, but on the Moon it was enough to hover and touch down gently. Its mass, though, was exactly the same on the Moon as it had been on the launch pad at Sriharikota."
+      },
+      "practice": [
+        {
+          "question": "A bag of rice has a mass of 5 kg. What is its weight on Earth? Use g = 9.8 N/kg.",
+          "answer": "49 N.",
+          "explanation": "W = 5 kg × 9.8 N/kg = 49 N. With g rounded to 10 N/kg the answer would be 50 N; always say which value you used."
+        },
+        {
+          "question": "Two astronauts float inside a space station. One says, 'We have no mass up here.' What should the other reply?",
+          "answer": "'We have exactly the same mass as on Earth. We float because we are in orbit, not because our mass has gone.'",
+          "explanation": "Mass never changes with location. Gravity is still pulling on the station (it is what keeps it circling the Earth); orbiting is a special kind of falling, not an escape from gravity, and certainly not a loss of mass."
+        },
+        {
+          "question": "The Earth pulls an apple down with a force of 1 N. How hard does the apple pull the Earth, and why does only the apple move noticeably?",
+          "answer": "Also 1 N. The Earth's mass is enormous, so the same force barely moves it.",
+          "explanation": "Gravity is a mutual attraction: both objects pull with the same force. A force of 1 N visibly moves a 0.1 kg apple but has no visible effect on a planet."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pf.03 Describe gravity as a force of attraction between any two objects and describe how the size of the force is related to the masses of the objects.",
+        "7ESs.02 Know that gravity is the force that holds components of the Solar System in orbit around the Sun."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://openstax.org/books/college-physics-2e/pages/6-5-newtons-universal-law-of-gravitation",
+        "https://openstax.org/books/college-physics-2e/pages/4-3-newtons-second-law-of-motion-concept-of-a-system",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+        "https://phet.colorado.edu/en/simulations/gravity-force-lab-basics"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18",
+      "computationalClaims": [
+        {
+          "excerpt": "Earth: W = 45 kg × 9.8 N/kg = 441 N.",
+          "left": "45*9.8",
+          "right": "441",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "ad320b6a35424a161ff6fd6f7ed62f7df4558176cfcbaa81b1085ab354aa9b31",
+          "leftUnit": "kg*N/kg",
+          "rightUnit": "N"
+        },
+        {
+          "excerpt": "Mars: W = 45 kg × 3.7 N/kg = 166.5 N, which rounds to 167 N.",
+          "left": "45*3.7",
+          "right": "166.5",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "ad320b6a35424a161ff6fd6f7ed62f7df4558176cfcbaa81b1085ab354aa9b31",
+          "leftUnit": "kg*N/kg",
+          "rightUnit": "N"
+        },
+        {
+          "excerpt": "Mass = 3600 N / 10 N/kg = 360 kg.",
+          "left": "3600/10",
+          "right": "360",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "ad320b6a35424a161ff6fd6f7ed62f7df4558176cfcbaa81b1085ab354aa9b31",
+          "leftUnit": "N*kg/N",
+          "rightUnit": "kg"
+        },
+        {
+          "excerpt": "Moon weight = 360 kg × 1.6 N/kg = 576 N.",
+          "left": "360*1.6",
+          "right": "576",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "ad320b6a35424a161ff6fd6f7ed62f7df4558176cfcbaa81b1085ab354aa9b31",
+          "leftUnit": "kg*N/kg",
+          "rightUnit": "N"
+        }
+      ]
+    },
+    {
+      "id": "PHY-04",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Forces and energy",
+      "title": "In a vacuum, nothing pushes back",
+      "summary": "Air resistance is a real push from air particles; take the air away and moving things simply keep moving.",
+      "prediction": "A spacecraft far from any planet switches off its engine. Over the next year, does it (a) slow down and stop, (b) keep the same speed, or (c) speed up? Decide before you play. If you are unsure, think about what a bicycle does when you stop pedalling, then ask what is different in space.",
+      "why": "When something moves through air it has to shove air particles out of the way, and those particles push back. That backward push is air resistance, a force that always acts against the motion. You feel it as wind on your face when you cycle fast. A parachute is a machine for making it large.\n\nA vacuum is a space with no particles in it. No particles, no shoving, no push back: there is no air resistance in a vacuum. Space is very close to a perfect vacuum, so a spacecraft coasting with its engine off has nothing slowing it. It keeps the same speed in the same direction for years.\n\nThis also settles an old argument. On Earth a feather drifts down slowly because air resistance props it up, while a hammer drops fast. In 1971 the Apollo 15 astronaut David Scott dropped a hammer and a falcon feather together on the Moon, where there is almost no air. They hit the ground at the same instant. Gravity treats them alike; only the air ever made them different.",
+      "whenToUse": "Use this whenever a question mentions space, the Moon or a vacuum chamber. On Earth, air resistance matters most for light, wide or fast things: feathers, parachutes, cyclists, cars. Remember that gravity still works in a vacuum. A hammer dropped on the Moon still falls, just more gently, because the Moon's gravity is weaker. The missing air makes no difference to a hammer and all the difference to a feather. It is the air that is missing, not the pull.",
+      "watchFor": "Two misconceptions to avoid. First, that only solids and liquids can resist motion: air is made of particles too, and they push back, which is exactly what a parachute relies on. Second, that a moving object needs a constant push or it stops. On Earth things stop because friction and air resistance act against them; remove those and no push is needed to keep going. Also remember that heavy and light objects fall together in a vacuum.",
+      "explainPrompt": "Why does a feather fall slowly on Earth but exactly as fast as a hammer on the Moon? Explain using the words particles, push back and vacuum.",
+      "visual": {
+        "kind": "forceArrows",
+        "objectName": "probe",
+        "leftLabel": "air resistance",
+        "rightLabel": "thrust",
+        "leftInitial": 30,
+        "rightInitial": 20,
+        "maxForce": 60,
+        "stepSize": 5,
+        "movingInitially": true
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "A probe moving to the right has a thrust of 20 N and meets air resistance of 30 N while still in the thin upper atmosphere. Describe its motion. It then leaves the atmosphere with the thrust still at 20 N. Describe its motion now.",
+            "steps": [
+              "List the forces on the probe: 20 N to the right (thrust) and 30 N to the left (air resistance).",
+              "The forces are unbalanced by 30 N - 20 N = 10 N, acting to the left, against the motion.",
+              "A force acting against the motion makes the probe slow down.",
+              "Outside the atmosphere the air resistance is 0 N, so the only force is 20 N to the right, with the motion.",
+              "A force with the motion makes it speed up, and it keeps speeding up for as long as the thrust lasts."
+            ],
+            "answer": "In the atmosphere the probe slows down; in the vacuum it speeds up continuously."
+          },
+          {
+            "problem": "The engine is switched off in space (thrust 0 N, air resistance 0 N). The probe is moving at 15 km/s. What is its speed one year later, if it stays far from any planet?",
+            "steps": [
+              "List the forces: 0 N and 0 N. Nothing pushes forward and nothing pushes back.",
+              "With no force acting, the motion does not change: same speed, same direction.",
+              "Speed after one year = 15 km/s.",
+              "Compare with Earth: a cyclist who stops pedalling slows because air resistance and friction push against the motion."
+            ],
+            "answer": "Still 15 km/s, in the same direction."
+          }
+        ],
+        "mistakes": [
+          "Thinking a vacuum has no gravity. The Moon has almost no air but plenty of gravity: things fall, with nothing slowing them.",
+          "Saying 'there are no forces in space'. Gravity reaches across space and holds the planets in orbit; it is air resistance that is absent.",
+          "Assuming the probe stops when the engine stops. With nothing pushing back, it coasts for ever.",
+          "Forgetting that air resistance grows with speed and with the size of the surface facing the air, which is why a racing cyclist crouches."
+        ],
+        "realWorld": "Voyager 1 and Voyager 2 were launched in 1977 and are still travelling, now beyond the Sun's heliosphere, covering more than 3 astronomical units every year. No engine has pushed them along for decades. Nothing in the near-vacuum of space pushes back, so they will keep going long after their instruments fall silent."
+      },
+      "practice": [
+        {
+          "question": "Why can a spacecraft not use a parachute to land on the Moon?",
+          "answer": "A parachute needs air to push against. The Moon has almost no atmosphere, so a parachute would do nothing; landers use rocket engines instead.",
+          "explanation": "Air resistance comes from air particles pushing back on a moving object. No particles, no force."
+        },
+        {
+          "question": "A probe in space has a thrust of 5 N forwards and no air resistance. Does it speed up, slow down or stay at the same speed?",
+          "answer": "It speeds up, and keeps speeding up for as long as the thrust lasts.",
+          "explanation": "Nothing opposes the 5 N, so the force is unbalanced in the direction of motion. Even a tiny push changes the motion when nothing pushes back. Ion engines push with less than one newton, yet over months they reach enormous speeds."
+        },
+        {
+          "question": "A learner says: 'A hammer fell faster than a feather in class, so heavier things always fall faster.' What is wrong with this reasoning?",
+          "answer": "The classroom test included air. Air resistance slows the light, wide feather far more than the compact hammer. Remove the air, as on the Moon, and they fall together.",
+          "explanation": "Gravity pulls each kilogram equally hard, so the difference seen in class came from the air, not from the masses."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pf.04 Understand that there is no air resistance to oppose movement in a vacuum.",
+        "7Pf.03 Describe gravity as a force of attraction between any two objects and describe how the size of the force is related to the masses of the objects."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html",
+        "https://science.nasa.gov/mission/voyager/",
+        "https://openstax.org/books/college-physics-2e/pages/4-2-newtons-first-law-of-motion-inertia",
+        "https://phet.colorado.edu/en/simulations/forces-and-motion-basics"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18"
+    },
+    {
+      "id": "PHY-05",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Light and sound",
+      "title": "Sound is a vibration passed from particle to particle",
+      "summary": "A sound is a vibration handed from particle to particle; where there are no particles, there is no sound.",
+      "prediction": "Two astronauts float a metre apart outside the space station, with no air between them. One shouts. Does the other hear anything? Now imagine they touch helmets: does that change your answer? It is fine to be unsure; the second question is the clever one.",
+      "why": "Every sound starts with something vibrating: a drum skin, a guitar string, your vocal cords, the cone of a loudspeaker. As the surface moves out it squashes the air particles next to it; as it moves back it leaves them spread out. Those particles bump their neighbours, who bump theirs, and the squash-and-stretch pattern races away from the source. That travelling pattern is a sound wave.\n\nNotice what does not travel: the particles. Each one only jiggles to and fro about its own spot and passes the vibration on, like fans doing a stadium wave who never leave their seats. In air the vibration travels at about 340 m/s. In water (about 1500 m/s) and steel (about 6000 m/s) it travels faster still, because the particles are packed together and strongly linked, so each one passes the push on quickly.\n\nThat is why a vacuum is silent. A vacuum has no particles, so there is nothing to squash, nothing to stretch and nothing to pass the vibration on. Light crosses empty space happily because it does not need particles; sound cannot. Explosions in space films would, in reality, be completely silent.",
+      "whenToUse": "Use this whenever you need to explain how a sound gets from one place to another, why it fades with distance, why you can hear a train through the rail before you hear it through the air, or why there is no sound in space. The vibrating-particles model works for solids, liquids and gases. Its limit: it says nothing about light, which needs no particles at all.",
+      "watchFor": "The classic error is 'sound can travel through space because light can'. Light and sound are different kinds of wave. Light needs no particles; sound is nothing but particles passing on a vibration, so with no particles there is no sound. A second slip is to picture the air itself blowing from the drum to your ear. It does not. The particles stay roughly where they are; only the vibration travels.",
+      "explainPrompt": "Why can you hear a friend knock on the other side of a closed door, but could not hear them if that door opened onto empty space? Use the words particles and vibration.",
+      "visual": {
+        "kind": "stepSequence",
+        "steps": [
+          {
+            "title": "A surface vibrates",
+            "caption": "A drum skin moves out and back many times every second. Every sound begins with a vibration like this.",
+            "symbol": "speaker.wave.3.fill"
+          },
+          {
+            "title": "Air is squashed, then stretched",
+            "caption": "The skin moving out bunches up the air particles next to it; moving back lets them spread out. A squash-and-stretch pattern forms.",
+            "symbol": "circle.grid.3x3.fill"
+          },
+          {
+            "title": "Neighbours pass it on",
+            "caption": "Each particle bumps the next, then bounces back to roughly where it was. The pattern travels at about 340 m/s in air; the particles themselves go nowhere.",
+            "symbol": "arrow.right.to.line"
+          },
+          {
+            "title": "Your eardrum vibrates",
+            "caption": "When the pattern reaches your ear it pushes your eardrum in and out at the same rate. That vibration is what your brain reads as sound.",
+            "symbol": "ear.fill"
+          },
+          {
+            "title": "No particles, no sound",
+            "caption": "In the vacuum of space there is nothing to squash or stretch, so the vibration cannot be passed on. A drum in space is silent, even while you watch it move.",
+            "symbol": "moon.stars.fill"
+          }
+        ]
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "An electric bell is sealed inside a glass jar and set ringing. A pump slowly removes the air from the jar. Describe what you hear and explain it.",
+            "steps": [
+              "With air in the jar, the bell's vibration is passed through the air to the glass, through the glass, and through the room's air to your ears: you hear it clearly.",
+              "As the air is pumped out there are fewer particles to pass the vibration on, so the sound gets quieter.",
+              "With almost no air left, you can still see the hammer striking the bell, but you hear almost nothing. A faint sound may still reach you through the bell's stand and the glass, which are solids.",
+              "Let the air back in and the sound returns."
+            ],
+            "answer": "The sound fades to almost nothing as the air leaves, and returns when air is let back in. Sound needs particles."
+          },
+          {
+            "problem": "Thunder is heard 3 s after a lightning flash is seen. Taking the speed of sound in air as 340 m/s, how far away was the lightning, and why did the flash arrive first?",
+            "steps": [
+              "From maths: distance = speed × time.",
+              "Distance = 340 m/s × 3 s = 1020 m.",
+              "That is about 1 km.",
+              "Light crosses 1 km in about three millionths of a second, so the flash arrives practically at once; the sound takes the full 3 s."
+            ],
+            "answer": "About 1 km away. Light travels so much faster than sound that the flash is seen before the thunder is heard."
+          }
+        ],
+        "mistakes": [
+          "Saying 'the air moves from the drum to my ear'. Only the vibration travels; each particle stays near its own spot.",
+          "Thinking sound travels through a vacuum because light does. Light is not a vibration of particles; sound is.",
+          "Assuming sound is slowest in solids because solids are 'harder to get through'. It is the opposite: tightly linked particles pass the vibration on faster.",
+          "Hoping a louder sound could cross a vacuum. Loudness makes the vibration bigger; it does not create particles to carry it."
+        ],
+        "realWorld": "Astronauts on a spacewalk talk by radio, which uses waves that need no particles. But if two helmets touch, a voice can pass as a vibration through the solid helmets, exactly as this tip predicts. Back on Earth, satellites, including India's, are tested in large vacuum chambers before launch; inside one, a ringing bell would fall silent while still visibly vibrating."
+      },
+      "practice": [
+        {
+          "question": "Why do people in old films put an ear to the railway track to find out whether a train is coming?",
+          "answer": "The train's vibration travels through the solid steel rail, where the particles are tightly linked, faster and more clearly than through the air.",
+          "explanation": "In steel the vibration travels at roughly 6000 m/s, about 17 times faster than in air, and it loses less on the way."
+        },
+        {
+          "question": "A learner says a loudspeaker 'blows sound' to your ears. Improve the explanation.",
+          "answer": "The speaker cone vibrates, squashing and stretching the air next to it; each particle passes that vibration to the next until it reaches your eardrum. The air itself is not blown across the room.",
+          "explanation": "If the air itself travelled, you would feel a draught with every song."
+        },
+        {
+          "question": "You see a firework burst, then hear the bang 2 s later. About how far away was it? Take the speed of sound in air as 340 m/s.",
+          "answer": "About 680 m.",
+          "explanation": "Distance = speed × time = 340 m/s × 2 s = 680 m. The light reached you almost instantly, so the 2 s is all sound-travel time."
+        }
+      ],
+      "syllabusRefs": [
+        "7Ps.01 Describe the vibration of particles in a sound wave and explain why sound does not travel in a vacuum."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://openstax.org/books/college-physics-2e/pages/17-1-sound",
+        "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength",
+        "https://phet.colorado.edu/en/simulations/sound-waves"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18"
+    },
+    {
+      "id": "PHY-06",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Light and sound",
+      "title": "An echo is sound that has bounced back",
+      "summary": "Sound bounces off hard, flat surfaces like light off a mirror; a reflection you hear separately is an echo.",
+      "prediction": "You shout towards a tall cliff and hear your voice come back a moment later. Now shout towards a thick hedge of the same size: will the echo be louder, the same, or weaker? And why might it matter whether you shout straight at the cliff or at an angle? Guess before you test; being unsure is fine.",
+      "why": "When a sound wave meets a surface, some of it is absorbed and some bounces off. We say the sound is reflected, just as light is reflected by a mirror. Hard, smooth, flat surfaces such as a cliff, a bare wall or a tiled hall reflect most of the sound. Soft or uneven surfaces such as curtains, foam or a crowd absorb it or scatter it in all directions.\n\nAn echo is reflected sound that reaches you late enough to be heard separately from the original. Your ear needs about a tenth of a second between the two. Sound travels about 340 m in a second, so in 0.1 s it covers about 34 m: there and back to a wall 17 m away. Nearer walls still reflect, but the reflection blurs into the original sound. In a small room you hear a ring or reverberation, not a distinct echo.\n\nReflected sound follows the same simple rule as reflected light: it leaves the surface at the same angle it arrived, measured from the normal, the imaginary line at right angles to the surface. Shout straight at a wall and the sound comes straight back to you. Shout at an angle and it goes off at the matching angle on the other side, as the mirror picture shows.",
+      "whenToUse": "Use it to explain echoes in valleys and empty halls, how sonar and ultrasound scans work, and why recording studios line their walls with soft foam. The picture in this tip draws a mirror and a light ray, but the rule it shows, angle in equals angle out, works for sound bouncing off any large flat surface. It stops working when the surface is rough or small compared with the sound wave: then the sound scatters in many directions.",
+      "watchFor": "A common belief is that only light reflects. Sound reflects too; that is all an echo is. Another is that soft surfaces 'trap' the sound. They absorb it: their particles are set vibrating and the energy ends up as a little warmth, so less bounces back. And remember that the angle rule is measured from the normal, the line at right angles to the surface, not from the surface itself.",
+      "explainPrompt": "Why do you hear a clear echo in an empty hall but not once the same hall is full of people and curtains? Explain using the words reflect and absorb.",
+      "visual": {
+        "kind": "reflection",
+        "initialAngle": 30,
+        "observation": "Think of the mirror as a flat cliff and the ray as the path of your shout. Set the angle to 0 and the sound comes straight back to you. Raise it to 30 and then 60 degrees: where would a friend need to stand to hear your echo? The two angles always match."
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "A learner claps in front of a large wall and hears the echo 0.5 s later. How far away is the wall? Take the speed of sound in air as 340 m/s.",
+            "steps": [
+              "The sound goes to the wall and back, so it travels twice the distance to the wall.",
+              "Total distance = speed × time = 340 m/s × 0.5 s = 170 m.",
+              "Distance to the wall = 170 m / 2 = 85 m."
+            ],
+            "answer": "85 m."
+          },
+          {
+            "problem": "A ship's sonar sends a sound pulse straight down and detects the reflection from the seabed 2 s later. Sound travels at about 1500 m/s in sea water. How deep is the sea there?",
+            "steps": [
+              "Total path = speed × time = 1500 m/s × 2 s = 3000 m.",
+              "The pulse went down and back, so depth = 3000 m / 2 = 1500 m.",
+              "Check the units: m/s × s gives m."
+            ],
+            "answer": "1500 m, or 1.5 km, deep."
+          }
+        ],
+        "mistakes": [
+          "Forgetting that the echo time is a round trip. Multiply speed by time, then halve the result.",
+          "Measuring the angle from the surface instead of from the normal. In the picture the dotted normal is at right angles to the surface; both angles are measured from it.",
+          "Expecting a clear echo from a soft or bumpy surface. Soft surfaces absorb; bumpy ones scatter, so little comes back in one direction.",
+          "Thinking an echo is a new sound. It is the same sound arriving late because it took the longer path via the wall."
+        ],
+        "realWorld": "Bats and dolphins hunt with echoes, sending out clicks and timing the reflections. Doctors do the same with ultrasound scans, which bounce sound off a baby before it is born. And at Golconda Fort in Hyderabad, a clap at the main gate is said to be heard at the hilltop pavilion about a kilometre away, because the hard curved dome above the gate reflects the sound so well."
+      },
+      "practice": [
+        {
+          "question": "A new sports hall has bare brick walls and a tiled floor. Players complain they cannot hear the coach clearly. What is happening, and what would fix it?",
+          "answer": "Sound reflects off the hard surfaces many times, so each word is smeared out by its own reflections. Hanging soft panels or curtains would absorb the sound and cut the reflections.",
+          "explanation": "Hard, flat surfaces reflect sound; soft, uneven ones absorb and scatter it."
+        },
+        {
+          "question": "An echo returns 1 s after a shout. How far away is the reflecting surface? Take the speed of sound as 340 m/s.",
+          "answer": "170 m.",
+          "explanation": "Total path = 340 m/s × 1 s = 340 m. The surface is half of that distance away: 170 m."
+        },
+        {
+          "question": "You stand near a wall but cannot hear a separate echo, only a slight ring to your voice. What does that tell you about the distance to the wall?",
+          "answer": "It is less than about 17 m away.",
+          "explanation": "The reflection arrives in under 0.1 s and blends with the original. An echo heard separately needs a round trip of at least about 34 m."
+        }
+      ],
+      "syllabusRefs": [
+        "7Ps.02 Explain echoes in terms of the reflection of sound waves.",
+        "7Ps.01 Describe the vibration of particles in a sound wave and explain why sound does not travel in a vacuum."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://www.thenational.academy/teachers/programmes/science-secondary-ks3/units/sound-light-and-vision/lessons/reflecting-and-absorbing-sound",
+        "https://openstax.org/books/college-physics-2e/pages/17-2-speed-of-sound-frequency-and-wavelength",
+        "https://phet.colorado.edu/en/simulations/sound-waves"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18",
+      "computationalClaims": [
+        {
+          "excerpt": "85 m.",
+          "left": "340*0.5/2",
+          "right": "85",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "31f818f0d43d0550136ddb75f5ab1caae806b39a2ac64272437def318133304a",
+          "leftUnit": "m/s*s",
+          "rightUnit": "m"
+        },
+        {
+          "excerpt": "1500 m, or 1.5 km, deep.",
+          "left": "1500*2/2",
+          "right": "1500",
+          "assumptions": "Use the exact stated field strength/speed and idealised model; rounded prose remains separate.",
+          "sourceFingerprint": "31f818f0d43d0550136ddb75f5ab1caae806b39a2ac64272437def318133304a",
+          "leftUnit": "m/s*s",
+          "rightUnit": "m"
+        }
+      ]
+    },
+    {
+      "id": "PHY-07",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Electricity and magnetism",
+      "title": "Current is a flow of electrons, and it is not used up",
+      "summary": "In a series loop the same current flows through every part; break the loop anywhere and everything stops.",
+      "prediction": "Two identical lamps sit in one loop with a cell. Which lamp is brighter: the one nearer the cell's positive end, the one nearer its negative end, or neither? And if you unscrew one lamp, what happens to the other? Make a guess; being unsure is fine, and the circuit will tell you.",
+      "why": "A metal wire is full of electrons that are free to move. Connect a cell and it pushes on all of them at once, so they drift around the loop together. That drift is the electric current. Because the push starts everywhere at the same moment, the lamp lights the instant you close the switch, even though each electron itself creeps along slower than a snail.\n\nIn a series circuit there is only one path. The electrons that pass through the first lamp are the same electrons that pass through the second, and they carry on back to the cell. None are used up and none leak out, so an ammeter reads the same current wherever you place it in the loop. What the lamps use is energy: the cell transfers energy to the moving electrons, and the lamps transfer it to light and warmth.\n\nThat single path has a cost. Break it anywhere, with a switch, a loose wire or a blown lamp, and the whole loop stops: every lamp goes out. Add a second lamp in series and the cell has to push the electrons through two obstacles, so the current is smaller and both lamps are dimmer. Add a second cell the same way round and the push is stronger: more current, brighter lamps.",
+      "whenToUse": "Use it for any single-loop circuit: cell, switch, lamps, buzzer, ammeter. The rules: the current is the same at every point; the ammeter goes in the loop, in series; any break stops everything; more lamps in series means less current, more cells the same way round means more. Circuits with more than one path (parallel circuits) follow different rules and come later in Stage 9.",
+      "watchFor": "The big one: 'the current gets used up as it goes round, so the second lamp is dimmer'. It is not. Current is a count of electrons passing each second, and the same electrons pass every point in the loop, so identical series lamps are equally bright and an ammeter reads the same on both sides of a lamp. Two more: the wires are not empty before you switch on (the electrons are already there), and a cell does not contain electricity; it provides the push.",
+      "explainPrompt": "Why does an ammeter read the same current whether you place it before or after the lamp? Explain using the word electrons.",
+      "visual": {
+        "kind": "circuitToggle",
+        "layout": "series",
+        "observation": "Open the switch: both lamps go out together. Close it again and compare the two lamps: are they equally bright? An ammeter would read the same current anywhere in this loop."
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "A series circuit has one cell, a switch and two identical lamps. An ammeter placed next to the cell reads 0.2 A. What does it read when moved to the far side of the second lamp? What happens when the switch is opened?",
+            "steps": [
+              "In a series loop there is only one path, so every electron that passes the cell also passes through both lamps.",
+              "The current is therefore the same at every point: the ammeter reads 0.2 A on the far side as well.",
+              "Opening the switch breaks the only path. The current everywhere becomes 0 A and both lamps go out."
+            ],
+            "answer": "0.2 A; then 0 A, with both lamps off."
+          },
+          {
+            "problem": "A circuit has one cell and one lamp, and the ammeter reads 0.3 A. Predict the reading and the brightness when (a) a second identical lamp is added in series, and (b) instead, a second identical cell is added the same way round.",
+            "steps": [
+              "(a) Two lamps are a bigger obstacle for the same push, so the current falls below 0.3 A. Both lamps glow, but more dimly than the single lamp did. Exactly how much the current falls depends on the lamps.",
+              "(b) Two cells the same way round push harder, so the current rises above 0.3 A and the lamp is brighter.",
+              "In both cases the current is still the same at every point of the loop; the ammeter position does not matter."
+            ],
+            "answer": "(a) Less than 0.3 A and dimmer; (b) more than 0.3 A and brighter."
+          }
+        ],
+        "mistakes": [
+          "Connecting the ammeter across a lamp or in a side branch. An ammeter goes in the loop, in series, so the whole current passes through it.",
+          "Saying electrons are used up, or that the lamp nearest the cell is brightest.",
+          "Mixing up current (electrons passing each second, measured in amperes) with energy. Lamps transfer energy; they do not consume current.",
+          "Adding a second cell the wrong way round. Two identical cells facing each other cancel each other's push, so the current drops to nothing.",
+          "Drawing symbols loosely. A cell is one unit, and its long thin line is the positive terminal; a battery is two or more cells together."
+        ],
+        "realWorld": "Old-style fairy lights were one long series loop: when a single lamp blew, the whole string went dark, and finding the dead one meant testing them one at a time. Modern strings arrange small groups in parallel so that one failure does not black out the lot. A torch is the simplest series circuit of all: cell, switch, lamp. One loose contact and it stays dark."
+      },
+      "practice": [
+        {
+          "question": "In a series circuit with two identical lamps, lamp A is nearer the cell than lamp B. A learner says A must be brighter because it gets the current first. Correct them.",
+          "answer": "They are equally bright. The same electrons flow through A and then B, so the current is the same at both and each transfers energy at the same rate.",
+          "explanation": "Current is not used up; identical components in one loop carry identical current."
+        },
+        {
+          "question": "An ammeter in a series circuit reads 0.4 A next to the cell. What will it read next to the lamp, and what will it read if one wire is disconnected?",
+          "answer": "0.4 A, then 0 A.",
+          "explanation": "The current is the same everywhere in a single loop, and a break anywhere stops the whole flow."
+        },
+        {
+          "question": "Why does a lamp light the moment you flick the switch, if electrons only drift along a wire at less than a millimetre per second?",
+          "answer": "The wire is already full of electrons. The cell's push acts on all of them at once, so the electrons already inside the lamp start moving immediately.",
+          "explanation": "Think of a bicycle chain: push one link and the whole chain moves at once, even though no single link has travelled far."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pe.01 Use a simple model to describe electricity as a flow of electrons around a circuit.",
+        "7Pe.03 Know how to measure the current in series circuits.",
+        "7Pe.04 Describe how adding components into a series circuit can affect the current (limited to addition of cells and lamps).",
+        "7Pe.05 Use diagrams and conventional symbols to represent, make and compare circuits that include cells, switches, lamps, buzzers and ammeters."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://openstax.org/books/college-physics-2e/pages/20-1-current",
+        "https://openstax.org/books/physics/pages/19-2-series-circuits",
+        "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18"
+    },
+    {
+      "id": "PHY-08",
+      "version": 1,
+      "subject": "physics",
+      "strand": "Electricity and magnetism",
+      "title": "Conductors let electrons through; insulators hold them tight",
+      "summary": "A material conducts if some of its electrons are free to drift: metals and graphite yes; plastic, glass and rubber no.",
+      "prediction": "Which of these will let a lamp light when put into a gap in a circuit: a plastic ruler, a steel paper clip, the 'lead' of a pencil, a glass marble, a rubber eraser? Sort them in your head first. It is fine to be unsure: one of them surprises almost everyone.",
+      "why": "Electric current is electrons drifting through a material. In a metal, each atom lets go of one or more of its outer electrons, and those free electrons wander through the whole piece. Connect a cell and they drift together: the metal conducts. Copper, aluminium, iron, steel, silver and gold are all electrical conductors. So is graphite, the form of carbon in a pencil, which is why a pencil line can carry a current.\n\nIn an electrical insulator the electrons are held tightly to their own atoms. The cell pushes, but nothing is free to move, so no current flows. Plastics, rubber, glass, ceramics, dry wood, paper, dry air and most fabrics are insulators. Being an insulator does not mean a material has no electrons; it means its electrons are not free to drift.\n\nReal circuits use both on purpose. A wire is a conductor wrapped in an insulator: copper inside, plastic outside, so the current goes where it should and not into you. Switch contacts are metal; the switch body is plastic. Choosing the right material for each job is half of electrical safety.",
+      "whenToUse": "Use it to decide whether something will complete a circuit, to choose materials for wires, plugs, pylons and tools, and to run the Stage 7 test: put the sample in a gap in a circuit with a lamp or an ammeter and see whether current flows. Limits: this is about electrical conduction, not thermal. Tap water and the human body are poor fits for the simple model; they conduct through moving charged particles called ions rather than free electrons, which is why wet hands and electricity are a dangerous mix.",
+      "watchFor": "A specific confusion is electrical versus thermal conductors. They often overlap (metals conduct both), but a question about circuits means electrical conduction, so say 'electrical conductor'. A second slip: 'insulators have no electrons'. Every material is full of electrons; in an insulator they simply cannot drift. And do not assume every non-metal is an insulator: graphite conducts well.",
+      "explainPrompt": "Why does copper carry a current while the plastic around it does not, when both are made of atoms full of electrons? Explain using the word free.",
+      "visual": {
+        "kind": "sortClassify",
+        "prompt": "Electrical conductor or insulator? Sort each item.",
+        "bins": [
+          "Conductor",
+          "Insulator"
+        ],
+        "items": [
+          {
+            "label": "Copper wire",
+            "bin": "Conductor",
+            "reason": "Copper has many free electrons; it is the standard material for wires."
+          },
+          {
+            "label": "Steel paper clip",
+            "bin": "Conductor",
+            "reason": "Steel is mostly iron, a metal with free electrons, so it completes the circuit."
+          },
+          {
+            "label": "Pencil 'lead' (graphite)",
+            "bin": "Conductor",
+            "reason": "Graphite is a non-metal with electrons free to move along its layers, so it conducts. The surprise of the set."
+          },
+          {
+            "label": "Aluminium foil",
+            "bin": "Conductor",
+            "reason": "Aluminium is a metal; foil conducts well, which is why it must be kept away from live sockets."
+          },
+          {
+            "label": "Plastic ruler",
+            "bin": "Insulator",
+            "reason": "The electrons in plastic are held tightly; no current flows."
+          },
+          {
+            "label": "Glass marble",
+            "bin": "Insulator",
+            "reason": "Glass holds its electrons firmly. Glass discs are used to insulate the cables on electricity pylons."
+          },
+          {
+            "label": "Rubber eraser",
+            "bin": "Insulator",
+            "reason": "Rubber's electrons are not free. Rubber coats tool handles and cables for exactly this reason."
+          },
+          {
+            "label": "Dry wooden stick",
+            "bin": "Insulator",
+            "reason": "Dry wood has no free electrons. Damp wood is different: water with dissolved substances lets charge through."
+          }
+        ]
+      },
+      "goDeeper": {
+        "workedExamples": [
+          {
+            "problem": "Design a fair test to find out whether a mystery material is an electrical conductor.",
+            "steps": [
+              "Build a series circuit: cell, switch, lamp (or ammeter) and two leads with crocodile clips, leaving a gap between the clips.",
+              "Close the switch with the gap empty. The lamp must stay off; this proves the gap really breaks the circuit.",
+              "Touch the two clips together and close the switch. The lamp must light; this proves the cell and lamp work.",
+              "Clip the sample into the gap and close the switch.",
+              "Lamp on (or ammeter above zero): the sample is a conductor. Lamp off with a circuit you have just proved works: the sample is an insulator."
+            ],
+            "answer": "Lamp lights means conductor; lamp stays dark in a proven circuit means insulator. The two checks make the result trustworthy."
+          },
+          {
+            "problem": "Explain why a thick pencil line drawn on paper can form part of a working circuit, but the paper itself cannot.",
+            "steps": [
+              "The pencil line is graphite: carbon atoms arranged in flat layers.",
+              "In graphite each carbon atom gives one electron that is free to move along the layers, so the line conducts. A faint line carries only a small current; a thick, dark line carries more.",
+              "Paper is made of cellulose fibres whose electrons are tightly held, so it is an insulator.",
+              "The current therefore follows the graphite path and not the paper around it."
+            ],
+            "answer": "Graphite has free electrons; paper does not."
+          }
+        ],
+        "mistakes": [
+          "Saying 'non-metals never conduct'. Graphite does.",
+          "Confusing electrical and thermal insulation. A woollen jumper insulates against heat; a plastic plug insulates against electricity.",
+          "Treating water as a simple insulator. Pure water barely conducts, but tap water, sea water and sweat contain dissolved charged particles and do conduct: keep electrical devices away from wet hands.",
+          "Forgetting the control test. A lamp that stays off might mean a flat cell, not an insulator."
+        ],
+        "realWorld": "Look at an overhead power line. The cables are aluminium with a steel core, both conductors, and they hang from stacks of glass or ceramic discs, insulators, so that the current cannot run down the pylon into the ground. Your phone charger lead is the same idea in miniature: copper inside, plastic outside."
+      },
+      "practice": [
+        {
+          "question": "Why are the pins of a plug made of brass but its body made of plastic?",
+          "answer": "Brass is a metal and conducts, so the pins carry the current into the appliance. Plastic insulates, so the hand holding the plug does not become part of the circuit.",
+          "explanation": "Use a conductor where the current must go and an insulator where it must not."
+        },
+        {
+          "question": "A learner tests a spoon in a circuit and the lamp lights. They conclude that 'all spoons are conductors'. What is wrong with the conclusion?",
+          "answer": "They tested a metal spoon. A plastic or wooden spoon would be an insulator. The conclusion should be about the material, steel, not about spoons.",
+          "explanation": "Conduction is a property of the material, not of the object's shape or use."
+        },
+        {
+          "question": "Explain, using free electrons, why a thick line of pencil graphite on paper can light an LED, while the same line drawn in wax crayon cannot.",
+          "answer": "Graphite has free electrons that drift along the line when a cell pushes them; wax holds its electrons tightly, so no current flows.",
+          "explanation": "Being a conductor is about whether electrons are free to move, not about the colour or thickness of the line, though thicker graphite lines do carry current more easily."
+        }
+      ],
+      "syllabusRefs": [
+        "7Pe.02 Describe electrical conductors as substances that allow electron flow and electrical insulators as substances that inhibit electron flow.",
+        "7Pe.01 Use a simple model to describe electricity as a flow of electrons around a circuit."
+      ],
+      "sources": [
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-curriculum-framework-2020_tcm143-595685-pdf/273093313",
+        "https://www.slideshare.net/slideshow/0893-lower-secondary-science-stage-7-scheme-of-work_tcm143-595695-docx/273093320",
+        "https://assets.cambridge.org/97811087/42788/excerpt/9781108742788_excerpt.pdf",
+        "https://openstax.org/books/college-physics-2e/pages/18-2-conductors-and-insulators",
+        "https://openstax.org/books/college-physics-2e/pages/20-1-current",
+        "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+      ],
+      "rights": "Original Kymaia explanations, examples and interactive demonstrations. Curriculum alignment: Cambridge Lower Secondary Science framework. No copied text or third-party assets.",
+      "reviewedOn": "2026-10-18"
+    }
+  ]
+}

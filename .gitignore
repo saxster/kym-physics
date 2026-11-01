@@ -1,5 +1,11 @@
 node_modules/
 build/
+.build/
+DerivedData/
+.swiftpm/
+xcuserdata/
+*.xcuserstate
 __pycache__/
 .DS_Store
 .venv/
+

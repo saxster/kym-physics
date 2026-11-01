@@ -1,0 +1,222 @@
+name: KymPhysics
+options:
+  bundleIdPrefix: com.kymaia
+  deploymentTarget:
+    macOS: "14.0"
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+  defaultConfig: Debug
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    GENERATE_INFOPLIST_FILE: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+
+packages:
+  GRDB:
+    url: https://github.com/groue/GRDB.swift.git
+    from: "6.24.0"
+
+targets:
+  KymPhysics:
+    type: application
+    platform: macOS
+    sources:
+      - path: KymPhysics
+        excludes:
+          - "**/*.md"
+          - "**/*.plist"
+          - "**/*.entitlements"
+          - "**/Resources/**"
+      - path: KymPhysics/Resources/ContentPacks
+        type: folder
+        buildPhase: resources
+      - path: KymPhysics/Resources/MovingWorldBook
+        type: folder
+        buildPhase: resources
+      - path: KymPhysics/Resources/SoulDocuments
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: GRDB
+        product: GRDB
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics
+        INFOPLIST_KEY_CFBundleDisplayName: "KymPhysics"
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.education"
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "KymPhysics transcribes your spoken answers on device for Physics practice."
+        INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription: "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask."
+        INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription: "KymPhysics creates Physics study blocks on your calendar."
+        CODE_SIGN_ENTITLEMENTS: KymPhysics/KymPhysics.entitlements
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: YES
+    entitlements:
+      path: KymPhysics/KymPhysics.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.network.client: true
+        com.apple.security.device.audio-input: true
+        com.apple.security.personal-information.calendars: true
+
+  KymPhysics-iPad:
+    type: application
+    platform: iOS
+    sources:
+      - path: KymPhysics
+        excludes:
+          - "**/*.md"
+          - "**/*.plist"
+          - "**/*.entitlements"
+          - "**/Resources/**"
+      - path: KymPhysics/Resources/ContentPacks
+        type: folder
+        buildPhase: resources
+      - path: KymPhysics/Resources/MovingWorldBook
+        type: folder
+        buildPhase: resources
+      - path: KymPhysics/Resources/SoulDocuments
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: GRDB
+        product: GRDB
+      - target: KymPhysicsWidgets
+        embed: true
+      - target: KymPhysicsShareExtension
+        embed: true
+    info:
+      path: KymPhysics/Info-iPad.plist
+      properties:
+        CFBundleURLTypes:
+          - CFBundleURLName: com.kymaia.physics.deeplink
+            CFBundleURLSchemes:
+              - kymphysics
+        LSApplicationQueriesSchemes:
+          - kymphysics
+          - kymbio
+          - kymchem
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics.ipad
+        PRODUCT_NAME: KymPhysics
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        INFOPLIST_KEY_CFBundleDisplayName: "KymPhysics"
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.education"
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UIRequiresFullScreen: NO
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "KymPhysics transcribes your spoken answers on device for Physics practice."
+        INFOPLIST_KEY_NSCameraUsageDescription: "KymPhysics uses the camera to scan pages from your Cambridge Science 8 Learner's Book, Workbook and slow-motion physics experiments."
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "KymPhysics imports diagram photos, 240 fps slow-motion videos and textbook pages from your library."
+        INFOPLIST_KEY_NSMotionUsageDescription: "KymPhysics reads the iPad accelerometer, gyroscope and magnetometer for live elevator, pendulum and magnetic-field labs."
+        INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription: "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask."
+        INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription: "KymPhysics creates Physics study blocks on your calendar."
+        CODE_SIGN_ENTITLEMENTS: KymPhysics/KymPhysics-iPad.entitlements
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      path: KymPhysics/KymPhysics-iPad.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.kymaia.science
+          - group.com.kymaia.physics
+
+  KymPhysicsWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: KymPhysicsWidgets
+    info:
+      path: KymPhysicsWidgets/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: KymPhysicsWidgets/KymPhysicsWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.kymaia.science
+          - group.com.kymaia.physics
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics.ipad.widgets
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+  KymPhysicsShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: KymPhysicsShareExtension
+    info:
+      path: KymPhysicsShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: "Send to KymPhysics"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsFileWithMaxCount: 10
+              NSExtensionActivationSupportsImageWithMaxCount: 10
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 5
+    entitlements:
+      path: KymPhysicsShareExtension/KymPhysicsShareExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.kymaia.science
+          - group.com.kymaia.physics
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics.ipad.share
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+  KymPhysicsTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: KymPhysics
+      - package: GRDB
+        product: GRDB
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics.tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/KymPhysics.app/Contents/MacOS/KymPhysics"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+
+schemes:
+  KymPhysics:
+    build:
+      targets:
+        KymPhysics: all
+        KymPhysicsTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - KymPhysicsTests
+  KymPhysics-iPad:
+    build:
+      targets:
+        KymPhysics-iPad: all
+    run:
+      config: Debug

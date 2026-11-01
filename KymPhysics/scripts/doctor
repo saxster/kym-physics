@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "==> 1. Verifying KymPhysics seed pack compilation..."
+python3 ../source/export_kymphysics_pack.py
+
+if command -v xcodegen >/dev/null 2>&1; then
+  echo "==> 1b. Generating KymPhysics.xcodeproj via xcodegen..."
+  xcodegen generate
+fi
+
+echo "==> 2. Checking design-language guardrails (no raw Color(hex:) or Material in Features/)..."
+if grep -rn "Color(hex:" KymPhysics/Features/ >/dev/null 2>&1; then
+  echo "ERROR: Raw Color(hex:) found in KymPhysics/Features/. Use Color.kymaia* tokens."
+  exit 1
+fi
+if grep -rnE "\.regularMaterial|\.ultraThinMaterial|\.thinMaterial" KymPhysics/Features/ >/dev/null 2>&1; then
+  echo "ERROR: Material blur found in KymPhysics/Features/. Use solid paper surfaces."
+  exit 1
+fi
+
+echo "==> 3. Running SwiftPM unit & domain tests..."
+swift test
+
+echo "==> KymPhysics doctor passed!"

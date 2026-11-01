@@ -1,0 +1,1633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D8BB1B3976E97DE06C544 /* ParticleStatesVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DFA012051444397ADDE808 /* ParticleStatesVisual.swift */; };
+		00A76831854F765B2060404F /* SubjectTipPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */; };
+		011733ED3547983A18EE9044 /* AgentSoulSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */; };
+		026C97B0D8FB3873596B592C /* MassWeightVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */; };
+		02CF7F226C345D0BE4029717 /* KymPhysicsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */; };
+		03A819A7BFE72647561C33E2 /* LearnerTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F1E84A7E64A176A80B995 /* LearnerTextInput.swift */; };
+		03C294F0631DA7ED292A8FF7 /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
+		063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
+		08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
+		099CD7C44FD7493ACE1158B6 /* ThemePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22060617968740DE11AF42 /* ThemePickerMenu.swift */; };
+		0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */; };
+		0C6E71365B0286025D236312 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558E0C87DD339093F18BD5E3 /* FlowLayout.swift */; };
+		0CA8FD8F47E6FB350627D213 /* ArduinoMissionVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */; };
+		0F57FE75CE3F5EC33FB8C9BD /* PeriodicGridVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BBE54AC81920146D70ACCF /* PeriodicGridVisual.swift */; };
+		1163070FC28AF79588CCB496 /* PhysicsVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */; };
+		13CA6A073CD398FEFBC33A7F /* ArduinoMissionCatalog+Nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */; };
+		145079DC4EEB399BD401E698 /* KymaiaMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9045AF4585A07959AAE103 /* KymaiaMotion.swift */; };
+		15367C4A09D862582E09B35F /* JournalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86331A6B6B0BFADE9AA60303 /* JournalRow.swift */; };
+		16B367F7414991E31CDDB374 /* ArduinoMissionCatalog+Nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */; };
+		175A632EBFD5D3933BD01652 /* ForceArrowsVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86198E83B644723005117F78 /* ForceArrowsVisual.swift */; };
+		178D21E707CDB11399C7C246 /* SliderRelationVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6926F2DF03C51DBED1B39AC0 /* SliderRelationVisual.swift */; };
+		189E975C2826EBD08DADFBD0 /* SortClassifyVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E7A8CDE3CA80AF8BC2907 /* SortClassifyVisual.swift */; };
+		19780FBED4662D5384DCF35F /* LiveTextPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */; };
+		19A835A89C2301A5D67F53B2 /* JournalFocusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C435D2AEA6F500464E418 /* JournalFocusPage.swift */; };
+		19FD95754752A2FEFA7C9DA7 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
+		1B925E3B491E2DA05EC9E795 /* JournalGlanceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AAF6DD1FC4CADBD8DCBF4 /* JournalGlanceTile.swift */; };
+		1CBCC5EAF987DF403AA06EE7 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
+		1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
+		1F10E1781E2A21C1942C05CA /* HandwritingRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4C491E0C5FFC3125241A0F /* HandwritingRecognition.swift */; };
+		203DC66D184E6939CD028C07 /* PlatformAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C76BC069F9104F679140A2 /* PlatformAdaptive.swift */; };
+		20504FBF3EDE0AB92E846C06 /* ArduinoMissionSimulator+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */; };
+		2516C1A27CE8416E1805CB7F /* LabJournalHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */; };
+		25B8B39AE482C83E19AAB292 /* ArduinoMissionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */; };
+		25DB912639D75404E9CE96FB /* PhysicsDailyRitualSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */; };
+		26A35B1594288A5AB8676316 /* SubjectTipPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */; };
+		2926300095E55791EBFAC282 /* ThemePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22060617968740DE11AF42 /* ThemePickerMenu.swift */; };
+		2A42DC23C527F09AB2AD5F64 /* TutorConstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4F74624526D5F7B3A498AA /* TutorConstitution.swift */; };
+		2BFBA460E21908D999419981 /* JournalSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D93681D171CA38A2CA19A /* JournalSection.swift */; };
+		2C391D7E16F393B6F1D35BE5 /* KymPhysicsWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F8EB165B1A4758DAF4B7D /* KymPhysicsWidgets.swift */; };
+		2C39ADD7C7C40099FC6926C1 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
+		2CDCCA5FFCBBA5747CD5057B /* AccessibilityHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2A4744346F800592925CB /* AccessibilityHelpers.swift */; };
+		2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
+		300479AD12C50F4198F482CC /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
+		338829FEA3CF26079AE7EFDB /* JournalGlanceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AAF6DD1FC4CADBD8DCBF4 /* JournalGlanceTile.swift */; };
+		35CF04D6A5719E2DD3057536 /* QuizAnswerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107EF67B6A470478E15B6C5 /* QuizAnswerOption.swift */; };
+		35FC78D1724A0EAC944F419B /* ArduinoBoardTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */; };
+		36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */; };
+		3940641920281C23253E3815 /* MentoringEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22817F9367139130C144E6E /* MentoringEngines.swift */; };
+		3A4811C1602D738556EDD16D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789824E28C78305BC1D434FE /* ShareViewController.swift */; };
+		3A5D4680CCF4165549F1EF44 /* WritingPageFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF91410D105D8BAF85B4BB34 /* WritingPageFocus.swift */; };
+		3A711267A44467C1944C8966 /* LearningEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */; };
+		3B1EEE88AEDF527107591C11 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */; };
+		3BD0034277B652666BADEE8C /* LabsExplorersHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */; };
+		3C403EA062675E6361F74DEC /* PhysicsCoachHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7638CC05BB4DB52B9AFD70B /* PhysicsCoachHomeView.swift */; };
+		3C6DB0224AA199CA2D7C8CB9 /* SubjectTipVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */; };
+		3FB509C17C4909846E2A3028 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
+		445813761316819264D4CD24 /* JournalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86331A6B6B0BFADE9AA60303 /* JournalRow.swift */; };
+		46411B181A3046A1338362A7 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93636A7CC90B3CBEC350019D /* Animations.swift */; };
+		468B265C26D8B10ADC6141AD /* ParentMentorDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CD8ABC29F92794301F3BE /* ParentMentorDashboardView.swift */; };
+		49EF9D0F54749B32B7FFFDB7 /* JournalPageChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BB91FA549DAA9A5170EB0 /* JournalPageChrome.swift */; };
+		4A46D43CBB03ABE18828116A /* KymaiaGlanceTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCB070B2D7737E76F365F8 /* KymaiaGlanceTokens.swift */; };
+		4AF96631222F66239BCEDCD1 /* JournalCardParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332410178E900FB6AC180CB3 /* JournalCardParts.swift */; };
+		4B4C70E0ECDE15360696C3FF /* QuantitativePhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */; };
+		4B7ECACA71006F89FE18F8E4 /* PhysicsOmnisearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9ACFA364F86DD0C367FE96 /* PhysicsOmnisearchSheet.swift */; };
+		4D3B00EB7F5DEA196DBC85A4 /* MentoringEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22817F9367139130C144E6E /* MentoringEngines.swift */; };
+		4D64E56B5C27674CA2D398B7 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */; };
+		4E4AC5BC94F38597CF5AC43A /* CircuitToggleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */; };
+		4E543550F0ED5F519E7988A3 /* ContentPacks in Resources */ = {isa = PBXBuildFile; fileRef = DD27583198A03CF73DD13EF6 /* ContentPacks */; };
+		4E88A428AC06354475622B12 /* ArduinoMissionVisualView+Stages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */; };
+		4ECF28B519F23106445E5F84 /* JournalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F69A5A36B4E335686F48C /* JournalPage.swift */; };
+		506D33F1F970013E398B09F7 /* CalendarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */; };
+		50D3FE10F4A62236CA13527D /* KymaiaGlanceTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCB070B2D7737E76F365F8 /* KymaiaGlanceTokens.swift */; };
+		53FA772702A84C3E5B2D97AD /* KymPhysicsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */; };
+		5659EFD9E779B2E7B11C2FA1 /* ViewTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF2847D572894540F771D1 /* ViewTransitions.swift */; };
+		56DB6F859FC747EB371B5371 /* ContentPacks in Resources */ = {isa = PBXBuildFile; fileRef = DD27583198A03CF73DD13EF6 /* ContentPacks */; };
+		56EA5AF60755A90B2CC8D3EE /* JournalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBC3353D18DC1DCD6A68268 /* JournalForm.swift */; };
+		5776CEAD914E5B93A2AA363D /* MissingDesignElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63792AD452005385630E4E77 /* MissingDesignElements.swift */; };
+		586B3F49CE6595282F2DCB11 /* QuantitativePhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */; };
+		590296AD92A2AC51C4321AC5 /* KymPhysicsShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDAB2EF88237A9101E85F102 /* KymPhysicsShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5AC1C947A2651D995B99D831 /* SubjectTipDetailSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */; };
+		5B564B673F448C992EC84813 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */; };
+		5C6E0962A6DBDA75CA15FF30 /* JournalFocusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C435D2AEA6F500464E418 /* JournalFocusPage.swift */; };
+		5E964672259A4A47A96CBE95 /* PhysicsDailyRitualSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */; };
+		5EE057EB0332BEF3DAA0D233 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
+		6194E9D2364405D97AE5C7E0 /* PhysicsMemoryPalaceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E35F0F15B155116A0F91FB /* PhysicsMemoryPalaceSection.swift */; };
+		619D06E2FD560AB07740A44A /* WritingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D84CD33080E38C594B1452E /* WritingTextEditor.swift */; };
+		637D35374771EAB5EE0D6265 /* LabsExplorersHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */; };
+		64DC0BD53673A2662F525540 /* MovingWorldHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FF3CC134BA34EE0C15D19 /* MovingWorldHomeView.swift */; };
+		67D3F60624DFA171A5D5FBD8 /* ArduinoMissionSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */; };
+		68B9D7800CC0D3D5560A0B50 /* JournalEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB07BD60CF812AE30D74F0 /* JournalEmptyState.swift */; };
+		698B1E1A12D59C522F361897 /* ParticleStatesVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DFA012051444397ADDE808 /* ParticleStatesVisual.swift */; };
+		6AE1F45C836A7B0BDCF54279 /* JournalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBC3353D18DC1DCD6A68268 /* JournalForm.swift */; };
+		6D00F33C0BDD277F424B9D6F /* JournalSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D93681D171CA38A2CA19A /* JournalSection.swift */; };
+		6D23ED152B6C0C033028FBF2 /* DocumentScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA732F2C9596056F5B6CBB /* DocumentScannerSheet.swift */; };
+		6D2B249E3A8C27FD6A071A01 /* CircuitToggleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */; };
+		6EA68C599F7F6ECEB0C847FD /* SubjectTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730901F53675F6155F5A4FD1 /* SubjectTip.swift */; };
+		6F7D4611A3226445E4A33A8F /* PhysicsMemoryPalaceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E35F0F15B155116A0F91FB /* PhysicsMemoryPalaceSection.swift */; };
+		72CD03C00BDA291CB1F321B6 /* LearnerTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F1E84A7E64A176A80B995 /* LearnerTextInput.swift */; };
+		7301363B5BAFADC40A35F239 /* SafetyEscalationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CAF3D5128EE2884822BAC /* SafetyEscalationService.swift */; };
+		73296A6E04D24A01C624BD10 /* SliderRelationVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6926F2DF03C51DBED1B39AC0 /* SliderRelationVisual.swift */; };
+		73F23AD2EF5542A9FAE98D23 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93636A7CC90B3CBEC350019D /* Animations.swift */; };
+		7446442B4CFCA87DDDDE5F95 /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */; };
+		75D7A5968BC12126109B7F18 /* PhysicsHardwareSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */; };
+		762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BD3240E55928B56218107 /* ReflectionVisual.swift */; };
+		76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
+		788BFF0F828702D443979214 /* SoulDocuments in Resources */ = {isa = PBXBuildFile; fileRef = B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */; };
+		7915F966CDA33935A3372160 /* JournalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F69A5A36B4E335686F48C /* JournalPage.swift */; };
+		793AF37057B3A0D6F18C3732 /* ArduinoMissionSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */; };
+		7A92E571658512C535EA142A /* MissingDesignElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63792AD452005385630E4E77 /* MissingDesignElements.swift */; };
+		7B55F3777657FCB0822C545F /* ArduinoMissionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2957807B2D4716C00950A /* ArduinoMissionModels.swift */; };
+		7B917330130D38865B0853B2 /* JournalEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB07BD60CF812AE30D74F0 /* JournalEmptyState.swift */; };
+		7CAAD42E09313823B9B1C6DC /* LearningEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */; };
+		7DC6CACEE8659BAFBF4DA98E /* SpeedPhysicsGymSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */; };
+		805906FE6CAA8A8B0A169B4E /* SubjectTipVisualLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */; };
+		807C619A1701963FB1FB1A81 /* ParentMentorDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CD8ABC29F92794301F3BE /* ParentMentorDashboardView.swift */; };
+		809E60954BE1BCB8793A0183 /* PhysicsOmnisearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9ACFA364F86DD0C367FE96 /* PhysicsOmnisearchSheet.swift */; };
+		8120676A429C1704B2DC6B81 /* ReflectionVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BD3240E55928B56218107 /* ReflectionVisual.swift */; };
+		85D24443C0769C700E8BA3F9 /* LiveTextPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */; };
+		886599CF1F8897601FA16CAF /* ArduinoBoardTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */; };
+		894D3C3A979AE1379F55F997 /* MassWeightVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */; };
+		89E4B8DFC0B8C525E5DFBCE7 /* SafetyEscalationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CAF3D5128EE2884822BAC /* SafetyEscalationService.swift */; };
+		8F376B1BF3A95162E5448D29 /* JournalReaderPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104445A6368DB9728C37A50E /* JournalReaderPage.swift */; };
+		8F4045E95E73C80E4AAA70E1 /* SpeedPhysicsGymSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */; };
+		91C18AC592DC98D869648563 /* WritingPageFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF91410D105D8BAF85B4BB34 /* WritingPageFocus.swift */; };
+		9250EFC20619CD02C69CD20A /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558E0C87DD339093F18BD5E3 /* FlowLayout.swift */; };
+		9348BBFA999D2F4C40784E80 /* JournalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD933D82C32CA0A3CD29B66 /* JournalLayout.swift */; };
+		93CECD73D943A14F95D59070 /* SubjectTipDetailSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */; };
+		950C9DC2FF47A2AA35C340DA /* SeedPackModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */; };
+		96F5E3C1AEDC05FDC970945A /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
+		973BB833E8DEC4ADA5C20981 /* MovingWorldHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FF3CC134BA34EE0C15D19 /* MovingWorldHomeView.swift */; };
+		9D5464FB477708DE5114F597 /* MovingWorldBook in Resources */ = {isa = PBXBuildFile; fileRef = 8702D8B2E15BD1D03DF902F6 /* MovingWorldBook */; };
+		9DD11504CF6D39F76EAC759E /* KymaiaMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9045AF4585A07959AAE103 /* KymaiaMotion.swift */; };
+		9EC307A2803BDFAAD932F606 /* JournalReaderPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104445A6368DB9728C37A50E /* JournalReaderPage.swift */; };
+		9F45BAFA6D2C4485088A43A9 /* EquationBalanceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD92500FD9952B221A4A8F35 /* EquationBalanceVisual.swift */; };
+		9FA3C7773622EA12AE106FEE /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0E491E7513A1E5793592C8C5 /* GRDB */; };
+		A1E26BC9E784CC839C778862 /* JournalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD933D82C32CA0A3CD29B66 /* JournalLayout.swift */; };
+		A1FF5BA89802B5B17F4BCB6E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DE51CC73CFA9BE23544DB7 /* Theme.swift */; };
+		A59CF62F8985923F459BE37B /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */; };
+		A80FD35616D2CAA6CF91C0F0 /* PhysicsVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */; };
+		AC150BF23DB139790B4541DD /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
+		AC61164C2369BA6D0AC6DD53 /* PhysicsHardwareSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */; };
+		ADD3D948A76F820C0842E2F8 /* ArduinoMissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */; };
+		AF971B7AEDA9976278181EB4 /* ArduinoMissionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2957807B2D4716C00950A /* ArduinoMissionModels.swift */; };
+		B21C6EDABB59A312A20791EB /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
+		B36FC4BC655B3B3BC1163801 /* PlatformAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C76BC069F9104F679140A2 /* PlatformAdaptive.swift */; };
+		B755EADB3EE6CB59DBDEE8B0 /* SchoolScienceHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11307A59B316631C5516284F /* SchoolScienceHomeView.swift */; };
+		B7D9EF41BEDE56DA82B8C177 /* PencilWritingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */; };
+		B842F0A221B6764B00898892 /* ArduinoMissionVisualView+Stages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */; };
+		BE0AAAEBD68B308E60B875AE /* ForceArrowsVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86198E83B644723005117F78 /* ForceArrowsVisual.swift */; };
+		C2665986D9FF0200ECE19A35 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
+		C5785CE964B0BD7F93CE3405 /* PracticeExamsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5A57040A9FE96D4C174FA /* PracticeExamsHomeView.swift */; };
+		C6A1B496B05CCA60A2C7D591 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = FDB0E0EE5D34B01C26D015C5 /* GRDB */; };
+		C8A01A4F1AE40FD6D657EC68 /* SortClassifyVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E7A8CDE3CA80AF8BC2907 /* SortClassifyVisual.swift */; };
+		C8EFFD2C8F91DA1F7E1F11F8 /* MovingWorldBook in Resources */ = {isa = PBXBuildFile; fileRef = 8702D8B2E15BD1D03DF902F6 /* MovingWorldBook */; };
+		CA375CD08D7B5BCB5EF96DED /* PeriodicGridVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BBE54AC81920146D70ACCF /* PeriodicGridVisual.swift */; };
+		CC4B834B3C923C64166DFD5C /* AgentSoulSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */; };
+		CF17AF6516C5BC5102707F1A /* DrawingCanvasBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */; };
+		CF49201DC33107037B6F386F /* JournalCardParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332410178E900FB6AC180CB3 /* JournalCardParts.swift */; };
+		CF75D1182667820FF2E93A2C /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4A2EBEA3AFAF1B794D5AE /* KeyboardShortcuts.swift */; };
+		D1700EE31865FD47FFED9F55 /* QuizAnswerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107EF67B6A470478E15B6C5 /* QuizAnswerOption.swift */; };
+		D32B058FEEF35B9504973CB6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */; };
+		D41E0B9FE013D2905D03620B /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
+		D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
+		D4A1F47CEB6C833F1337C0C3 /* ArduinoMissionSimulator+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */; };
+		D5BB48B81C585F4F06C3921A /* PointerHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D0372B554015511A92CE83 /* PointerHighlight.swift */; };
+		D8B35E67E6F5E70BB65C7219 /* HandwritingRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4C491E0C5FFC3125241A0F /* HandwritingRecognition.swift */; };
+		D987E2CC298D7D94181D75F1 /* WritingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D84CD33080E38C594B1452E /* WritingTextEditor.swift */; };
+		D9F327B7724E0D250F85BA0A /* DrawingCanvasBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */; };
+		DAB6C48F1CCD4DFA58700455 /* StepSequenceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */; };
+		DBBFF26884F6A2CF20ABA6BC /* DocumentScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA732F2C9596056F5B6CBB /* DocumentScannerSheet.swift */; };
+		DC848105CE7747D1E460C4ED /* LabJournalHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */; };
+		DDC393A343495EA3C2668004 /* PracticeExamsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5A57040A9FE96D4C174FA /* PracticeExamsHomeView.swift */; };
+		DF2ADD68F6CD0821624E7704 /* SoulDocuments in Resources */ = {isa = PBXBuildFile; fileRef = B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */; };
+		DF46CE61CFD6AA1A5500C1D4 /* AccessibilityHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2A4744346F800592925CB /* AccessibilityHelpers.swift */; };
+		E1754F3285EC62FFFDF3E865 /* PhysicsCoachHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7638CC05BB4DB52B9AFD70B /* PhysicsCoachHomeView.swift */; };
+		E268310E1CAF97598B06430D /* PencilWritingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */; };
+		E2D7417499488134C09E5856 /* TodayHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3995A6E656885952AB95B /* TodayHomeView.swift */; };
+		E441354C4AD21ACB7C8CE6FA /* EquationBalanceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD92500FD9952B221A4A8F35 /* EquationBalanceVisual.swift */; };
+		E47554405A54D1D32C758A4D /* ArduinoMissionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */; };
+		E55921B2DD7194EABB539673 /* SeedPackModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */; };
+		E820A4B09E504A38A8AF64FA /* SchoolScienceHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11307A59B316631C5516284F /* SchoolScienceHomeView.swift */; };
+		E9EE0D377717F59FABF48045 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
+		EA28E828E211FC65DF340699 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */; };
+		ECEBDF3ABE98F25DD61EA9D3 /* SubjectTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730901F53675F6155F5A4FD1 /* SubjectTip.swift */; };
+		ED4E14858A1129908B1B82F9 /* TodayHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3995A6E656885952AB95B /* TodayHomeView.swift */; };
+		EE2460619E5BC82276066324 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4A2EBEA3AFAF1B794D5AE /* KeyboardShortcuts.swift */; };
+		EE6EC07AEF4BCBF1B9F59595 /* SubjectTipVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */; };
+		EEC5F5B959AAC36B2744763A /* KymPhysicsWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EED6D8B4E149A2A4ABF35115 /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
+		F0276174D5A60CC5D628D042 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DE51CC73CFA9BE23544DB7 /* Theme.swift */; };
+		F04FDEA7BD7A0224A2C52FA7 /* PointerHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D0372B554015511A92CE83 /* PointerHighlight.swift */; };
+		F0A986703C3E14545EE95054 /* JournalPageChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7BB91FA549DAA9A5170EB0 /* JournalPageChrome.swift */; };
+		F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 41DBBA27116ABDADD820B4D8 /* GRDB */; };
+		F4112FE6F7133855CD9FBCED /* ViewTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF2847D572894540F771D1 /* ViewTransitions.swift */; };
+		F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
+		F73E9B3FE56BB0FA944F246B /* AdaptiveOptionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DDD54FC3A06F1646E74B3C /* AdaptiveOptionPicker.swift */; };
+		F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
+		F9685DBF5146878FC2E39815 /* TutorConstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4F74624526D5F7B3A498AA /* TutorConstitution.swift */; };
+		F9A26C0E853525DCA33B7922 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
+		FBA552AD693229722F242E15 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
+		FBE388DF63B60488972E23C6 /* AdaptiveOptionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DDD54FC3A06F1646E74B3C /* AdaptiveOptionPicker.swift */; };
+		FC1861291BFB3194B1700063 /* StepSequenceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */; };
+		FED3352E47665A8B18B65A49 /* ArduinoMissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */; };
+		FF24FA7A30AA7089B7E5CAFD /* ArduinoMissionVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3798D6AE9D0BD2A27A4F0309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AF1B360088B768B8022666E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A393D49E0F56699510A94E3;
+			remoteInfo = KymPhysicsWidgets;
+		};
+		A720790DAE955670E652FC8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AF1B360088B768B8022666E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3475330CEB82A09493BB93F7;
+			remoteInfo = KymPhysics;
+		};
+		FF8DA4FE2AB6ABFD2EF581D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AF1B360088B768B8022666E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A4F846E14CD318E3A483A6A;
+			remoteInfo = KymPhysicsShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4771D6F6708C2188546FC387 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EEC5F5B959AAC36B2744763A /* KymPhysicsWidgets.appex in Embed Foundation Extensions */,
+				590296AD92A2AC51C4321AC5 /* KymPhysicsShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSubjectTipsView.swift; sourceTree = "<group>"; };
+		0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
+		02DDD54FC3A06F1646E74B3C /* AdaptiveOptionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveOptionPicker.swift; sourceTree = "<group>"; };
+		030C435D2AEA6F500464E418 /* JournalFocusPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalFocusPage.swift; sourceTree = "<group>"; };
+		03BA732F2C9596056F5B6CBB /* DocumentScannerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerSheet.swift; sourceTree = "<group>"; };
+		08925A55112EFE9EF26CEB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipVisualLogic.swift; sourceTree = "<group>"; };
+		0D84CD33080E38C594B1452E /* WritingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTextEditor.swift; sourceTree = "<group>"; };
+		0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsHardwareSensorManager.swift; sourceTree = "<group>"; };
+		104445A6368DB9728C37A50E /* JournalReaderPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalReaderPage.swift; sourceTree = "<group>"; };
+		109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionVisualView+Stages.swift"; sourceTree = "<group>"; };
+		11307A59B316631C5516284F /* SchoolScienceHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolScienceHomeView.swift; sourceTree = "<group>"; };
+		1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsExplorersHomeView.swift; sourceTree = "<group>"; };
+		1B06238C9A3E287025234927 /* KymPhysicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KymPhysicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C9D93681D171CA38A2CA19A /* JournalSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalSection.swift; sourceTree = "<group>"; };
+		1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
+		2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsDailyRitualSessionView.swift; sourceTree = "<group>"; };
+		22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEngines.swift; sourceTree = "<group>"; };
+		23FCB070B2D7737E76F365F8 /* KymaiaGlanceTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymaiaGlanceTokens.swift; sourceTree = "<group>"; };
+		26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionSimulator+Audio.swift"; sourceTree = "<group>"; };
+		267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCodeCardView.swift; sourceTree = "<group>"; };
+		2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipVisualView.swift; sourceTree = "<group>"; };
+		2DBC3353D18DC1DCD6A68268 /* JournalForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalForm.swift; sourceTree = "<group>"; };
+		2E22060617968740DE11AF42 /* ThemePickerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerMenu.swift; sourceTree = "<group>"; };
+		2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentSoulSystem.swift; sourceTree = "<group>"; };
+		2F4835B06F7A1B207BA85620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		332410178E900FB6AC180CB3 /* JournalCardParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCardParts.swift; sourceTree = "<group>"; };
+		36E35F0F15B155116A0F91FB /* PhysicsMemoryPalaceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsMemoryPalaceSection.swift; sourceTree = "<group>"; };
+		3CE2957807B2D4716C00950A /* ArduinoMissionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionModels.swift; sourceTree = "<group>"; };
+		3D4C491E0C5FFC3125241A0F /* HandwritingRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandwritingRecognition.swift; sourceTree = "<group>"; };
+		3E4CAF3D5128EE2884822BAC /* SafetyEscalationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyEscalationService.swift; sourceTree = "<group>"; };
+		3EFB07BD60CF812AE30D74F0 /* JournalEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEmptyState.swift; sourceTree = "<group>"; };
+		3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSequenceVisual.swift; sourceTree = "<group>"; };
+		46A2A4744346F800592925CB /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHelpers.swift; sourceTree = "<group>"; };
+		4A7BB91FA549DAA9A5170EB0 /* JournalPageChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPageChrome.swift; sourceTree = "<group>"; };
+		4B2F69A5A36B4E335686F48C /* JournalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPage.swift; sourceTree = "<group>"; };
+		522D2F9240900DE73BFD5764 /* KymPhysicsWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KymPhysicsWidgets.entitlements; sourceTree = "<group>"; };
+		558E0C87DD339093F18BD5E3 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoBoardTourView.swift; sourceTree = "<group>"; };
+		5AD933D82C32CA0A3CD29B66 /* JournalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalLayout.swift; sourceTree = "<group>"; };
+		5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionsGalleryView.swift; sourceTree = "<group>"; };
+		5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionCatalog+Nature.swift"; sourceTree = "<group>"; };
+		62BFE2226B6A2B22A08659EC /* KymPhysics-iPad.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "KymPhysics-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63792AD452005385630E4E77 /* MissingDesignElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingDesignElements.swift; sourceTree = "<group>"; };
+		6926F2DF03C51DBED1B39AC0 /* SliderRelationVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRelationVisual.swift; sourceTree = "<group>"; };
+		69C76BC069F9104F679140A2 /* PlatformAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAdaptive.swift; sourceTree = "<group>"; };
+		6DA65BBC989085FEC1905ED0 /* KymPhysics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KymPhysics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassWeightVisual.swift; sourceTree = "<group>"; };
+		6F5CD8ABC29F92794301F3BE /* ParentMentorDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentMentorDashboardView.swift; sourceTree = "<group>"; };
+		718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionVisualView.swift; sourceTree = "<group>"; };
+		730901F53675F6155F5A4FD1 /* SubjectTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTip.swift; sourceTree = "<group>"; };
+		73B3995A6E656885952AB95B /* TodayHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHomeView.swift; sourceTree = "<group>"; };
+		744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymPhysicsApp.swift; sourceTree = "<group>"; };
+		789824E28C78305BC1D434FE /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomBuilderVisual.swift; sourceTree = "<group>"; };
+		7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPaper.swift; sourceTree = "<group>"; };
+		7F6F8EB165B1A4758DAF4B7D /* KymPhysicsWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymPhysicsWidgets.swift; sourceTree = "<group>"; };
+		7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilWritingCanvas.swift; sourceTree = "<group>"; };
+		80A4A2EBEA3AFAF1B794D5AE /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
+		86198E83B644723005117F78 /* ForceArrowsVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceArrowsVisual.swift; sourceTree = "<group>"; };
+		86331A6B6B0BFADE9AA60303 /* JournalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRow.swift; sourceTree = "<group>"; };
+		8702D8B2E15BD1D03DF902F6 /* MovingWorldBook */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MovingWorldBook; path = KymPhysics/Resources/MovingWorldBook; sourceTree = SOURCE_ROOT; };
+		8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipDetailSections.swift; sourceTree = "<group>"; };
+		904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHScaleVisual.swift; sourceTree = "<group>"; };
+		93636A7CC90B3CBEC350019D /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedColorScheme.swift; sourceTree = "<group>"; };
+		9E7F1E84A7E64A176A80B995 /* LearnerTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerTextInput.swift; sourceTree = "<group>"; };
+		A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabJournalHomeView.swift; sourceTree = "<group>"; };
+		A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitativePhysicsEngine.swift; sourceTree = "<group>"; };
+		A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasBackground.swift; sourceTree = "<group>"; };
+		ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionSimulator.swift; sourceTree = "<group>"; };
+		AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsVoiceService.swift; sourceTree = "<group>"; };
+		ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipPalette.swift; sourceTree = "<group>"; };
+		AD9ACFA364F86DD0C367FE96 /* PhysicsOmnisearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsOmnisearchSheet.swift; sourceTree = "<group>"; };
+		ADD5A57040A9FE96D4C174FA /* PracticeExamsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeExamsHomeView.swift; sourceTree = "<group>"; };
+		AF9E7A8CDE3CA80AF8BC2907 /* SortClassifyVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortClassifyVisual.swift; sourceTree = "<group>"; };
+		B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SoulDocuments; path = KymPhysics/Resources/SoulDocuments; sourceTree = SOURCE_ROOT; };
+		B62BD3240E55928B56218107 /* ReflectionVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionVisual.swift; sourceTree = "<group>"; };
+		B65AAF6DD1FC4CADBD8DCBF4 /* JournalGlanceTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalGlanceTile.swift; sourceTree = "<group>"; };
+		B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSurfaceAppIntents.swift; sourceTree = "<group>"; };
+		BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPackModels.swift; sourceTree = "<group>"; };
+		BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextPageImage.swift; sourceTree = "<group>"; };
+		C0BBE54AC81920146D70ACCF /* PeriodicGridVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicGridVisual.swift; sourceTree = "<group>"; };
+		C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = KymPhysicsWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BF2847D572894540F771D1 /* ViewTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTransitions.swift; sourceTree = "<group>"; };
+		C5DFA012051444397ADDE808 /* ParticleStatesVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleStatesVisual.swift; sourceTree = "<group>"; };
+		C7638CC05BB4DB52B9AFD70B /* PhysicsCoachHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCoachHomeView.swift; sourceTree = "<group>"; };
+		C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHomeView.swift; sourceTree = "<group>"; };
+		CD3FF3CC134BA34EE0C15D19 /* MovingWorldHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingWorldHomeView.swift; sourceTree = "<group>"; };
+		CDAB2EF88237A9101E85F102 /* KymPhysicsShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = KymPhysicsShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionCatalog.swift; sourceTree = "<group>"; };
+		D22817F9367139130C144E6E /* MentoringEngines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoringEngines.swift; sourceTree = "<group>"; };
+		D7DE51CC73CFA9BE23544DB7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		DD27583198A03CF73DD13EF6 /* ContentPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ContentPacks; path = KymPhysics/Resources/ContentPacks; sourceTree = SOURCE_ROOT; };
+		DD92500FD9952B221A4A8F35 /* EquationBalanceVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationBalanceVisual.swift; sourceTree = "<group>"; };
+		E107EF67B6A470478E15B6C5 /* QuizAnswerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerOption.swift; sourceTree = "<group>"; };
+		E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToggleVisual.swift; sourceTree = "<group>"; };
+		EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingWorldBridgeController.swift; sourceTree = "<group>"; };
+		ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticStyles.swift; sourceTree = "<group>"; };
+		EF9045AF4585A07959AAE103 /* KymaiaMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymaiaMotion.swift; sourceTree = "<group>"; };
+		EF91410D105D8BAF85B4BB34 /* WritingPageFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPageFocus.swift; sourceTree = "<group>"; };
+		EFD3FF2429CE43302BFB4203 /* KymPhysicsShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KymPhysicsShareExtension.entitlements; sourceTree = "<group>"; };
+		F5D0372B554015511A92CE83 /* PointerHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerHighlight.swift; sourceTree = "<group>"; };
+		F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPhysicsGymSection.swift; sourceTree = "<group>"; };
+		FA4F74624526D5F7B3A498AA /* TutorConstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorConstitution.swift; sourceTree = "<group>"; };
+		FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionDetailView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		677EE5A81C8F84AEDA071D4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FA3C7773622EA12AE106FEE /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BEDB665C6FB11AD372E0EF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A1B496B05CCA60A2C7D591 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6DF313340C1DD467D6174E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		004AF05CCEA6A60F38AE0EB8 /* KymPhysicsShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				08925A55112EFE9EF26CEB80 /* Info.plist */,
+				EFD3FF2429CE43302BFB4203 /* KymPhysicsShareExtension.entitlements */,
+				789824E28C78305BC1D434FE /* ShareViewController.swift */,
+			);
+			path = KymPhysicsShareExtension;
+			sourceTree = "<group>";
+		};
+		107B142FAC6AB596498903DD = {
+			isa = PBXGroup;
+			children = (
+				F3431641972C7D150A96408A /* KymPhysics */,
+				004AF05CCEA6A60F38AE0EB8 /* KymPhysicsShareExtension */,
+				1D3E159BABC521EE9CF0A29D /* KymPhysicsWidgets */,
+				DD27006BC6CCEB357931B635 /* Tests */,
+				EF212B22ED5C909FF41BC5A9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		159E49E18848A2E9A6B465B2 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				C7638CC05BB4DB52B9AFD70B /* PhysicsCoachHomeView.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		15B7453D97AF8262172B9391 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */,
+				332410178E900FB6AC180CB3 /* JournalCardParts.swift */,
+				3EFB07BD60CF812AE30D74F0 /* JournalEmptyState.swift */,
+				030C435D2AEA6F500464E418 /* JournalFocusPage.swift */,
+				2DBC3353D18DC1DCD6A68268 /* JournalForm.swift */,
+				B65AAF6DD1FC4CADBD8DCBF4 /* JournalGlanceTile.swift */,
+				5AD933D82C32CA0A3CD29B66 /* JournalLayout.swift */,
+				4B2F69A5A36B4E335686F48C /* JournalPage.swift */,
+				4A7BB91FA549DAA9A5170EB0 /* JournalPageChrome.swift */,
+				7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */,
+				104445A6368DB9728C37A50E /* JournalReaderPage.swift */,
+				86331A6B6B0BFADE9AA60303 /* JournalRow.swift */,
+				1C9D93681D171CA38A2CA19A /* JournalSection.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		15C002DC7CC5D7A5F37D8B91 /* SystemSurfaces */ = {
+			isa = PBXGroup;
+			children = (
+				B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */,
+			);
+			path = SystemSurfaces;
+			sourceTree = "<group>";
+		};
+		16881DB319ECBBBC22A34058 /* Visuals */ = {
+			isa = PBXGroup;
+			children = (
+				7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */,
+				E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */,
+				DD92500FD9952B221A4A8F35 /* EquationBalanceVisual.swift */,
+				86198E83B644723005117F78 /* ForceArrowsVisual.swift */,
+				6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */,
+				C5DFA012051444397ADDE808 /* ParticleStatesVisual.swift */,
+				C0BBE54AC81920146D70ACCF /* PeriodicGridVisual.swift */,
+				907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */,
+				B62BD3240E55928B56218107 /* ReflectionVisual.swift */,
+				6926F2DF03C51DBED1B39AC0 /* SliderRelationVisual.swift */,
+				AF9E7A8CDE3CA80AF8BC2907 /* SortClassifyVisual.swift */,
+				3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */,
+				ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */,
+				2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */,
+			);
+			path = Visuals;
+			sourceTree = "<group>";
+		};
+		16906330EB652A063CFC2905 /* SchoolScience */ = {
+			isa = PBXGroup;
+			children = (
+				11307A59B316631C5516284F /* SchoolScienceHomeView.swift */,
+			);
+			path = SchoolScience;
+			sourceTree = "<group>";
+		};
+		1D3E159BABC521EE9CF0A29D /* KymPhysicsWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				2F4835B06F7A1B207BA85620 /* Info.plist */,
+				522D2F9240900DE73BFD5764 /* KymPhysicsWidgets.entitlements */,
+				7F6F8EB165B1A4758DAF4B7D /* KymPhysicsWidgets.swift */,
+			);
+			path = KymPhysicsWidgets;
+			sourceTree = "<group>";
+		};
+		250CC9B8340A1F9B2A7026E5 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */,
+				73B3995A6E656885952AB95B /* TodayHomeView.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		27206D5394CFD0EFABB74DE7 /* Labs */ = {
+			isa = PBXGroup;
+			children = (
+				1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */,
+				0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */,
+			);
+			path = Labs;
+			sourceTree = "<group>";
+		};
+		35ECA98498B9622163946BAC /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		3C07EC886CD37E6E9E36886F /* ArduinoMissions */ = {
+			isa = PBXGroup;
+			children = (
+				57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */,
+				267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */,
+				D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */,
+				60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */,
+				FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */,
+				3CE2957807B2D4716C00950A /* ArduinoMissionModels.swift */,
+				5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */,
+				ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */,
+				26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */,
+				718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */,
+				109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */,
+			);
+			path = ArduinoMissions;
+			sourceTree = "<group>";
+		};
+		4707CDE47FF3C8308C08D282 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */,
+				9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */,
+				23FCB070B2D7737E76F365F8 /* KymaiaGlanceTokens.swift */,
+				63792AD452005385630E4E77 /* MissingDesignElements.swift */,
+				69C76BC069F9104F679140A2 /* PlatformAdaptive.swift */,
+				ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */,
+				D7DE51CC73CFA9BE23544DB7 /* Theme.swift */,
+				D590F8B650984ECA7B0A97E0 /* Components */,
+				15B7453D97AF8262172B9391 /* Journal */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		4B8E6F5A2A6D4304C68029C2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD27583198A03CF73DD13EF6 /* ContentPacks */,
+				8702D8B2E15BD1D03DF902F6 /* MovingWorldBook */,
+				B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5BBD96DD6BEA09C206656D5F /* State */ = {
+			isa = PBXGroup;
+			children = (
+				5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		735A5E5EE31BB2DE5BC1AC8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		797352E179D2313BB2E33BE2 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				ADD5A57040A9FE96D4C174FA /* PracticeExamsHomeView.swift */,
+				F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		8569A6AFF97098890FC1F5A5 /* Learning */ = {
+			isa = PBXGroup;
+			children = (
+				22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */,
+				A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */,
+			);
+			path = Learning;
+			sourceTree = "<group>";
+		};
+		86ACB1DD359460CA92C2C5FB /* MovingWorld */ = {
+			isa = PBXGroup;
+			children = (
+				EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */,
+				CD3FF3CC134BA34EE0C15D19 /* MovingWorldHomeView.swift */,
+			);
+			path = MovingWorld;
+			sourceTree = "<group>";
+		};
+		B326129BE55E902209220AC1 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */,
+				36E35F0F15B155116A0F91FB /* PhysicsMemoryPalaceSection.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		C87CEAB200EBEE5FA0B30704 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AD9ACFA364F86DD0C367FE96 /* PhysicsOmnisearchSheet.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CEE68902BED39B504B49EBC9 /* SubjectTips */ = {
+			isa = PBXGroup;
+			children = (
+				00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */,
+				730901F53675F6155F5A4FD1 /* SubjectTip.swift */,
+				8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */,
+				0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */,
+				16881DB319ECBBBC22A34058 /* Visuals */,
+			);
+			path = SubjectTips;
+			sourceTree = "<group>";
+		};
+		D1FDB9CCE8E2A3A245DD7F2B /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */,
+				D22817F9367139130C144E6E /* MentoringEngines.swift */,
+				3E4CAF3D5128EE2884822BAC /* SafetyEscalationService.swift */,
+				FA4F74624526D5F7B3A498AA /* TutorConstitution.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		D468C7749F00C608D3805F30 /* ParentDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				6F5CD8ABC29F92794301F3BE /* ParentMentorDashboardView.swift */,
+			);
+			path = ParentDashboard;
+			sourceTree = "<group>";
+		};
+		D590F8B650984ECA7B0A97E0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				46A2A4744346F800592925CB /* AccessibilityHelpers.swift */,
+				02DDD54FC3A06F1646E74B3C /* AdaptiveOptionPicker.swift */,
+				93636A7CC90B3CBEC350019D /* Animations.swift */,
+				03BA732F2C9596056F5B6CBB /* DocumentScannerSheet.swift */,
+				20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */,
+				A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */,
+				558E0C87DD339093F18BD5E3 /* FlowLayout.swift */,
+				3D4C491E0C5FFC3125241A0F /* HandwritingRecognition.swift */,
+				80A4A2EBEA3AFAF1B794D5AE /* KeyboardShortcuts.swift */,
+				EF9045AF4585A07959AAE103 /* KymaiaMotion.swift */,
+				9E7F1E84A7E64A176A80B995 /* LearnerTextInput.swift */,
+				BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */,
+				7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */,
+				F5D0372B554015511A92CE83 /* PointerHighlight.swift */,
+				E107EF67B6A470478E15B6C5 /* QuizAnswerOption.swift */,
+				2E22060617968740DE11AF42 /* ThemePickerMenu.swift */,
+				C4BF2847D572894540F771D1 /* ViewTransitions.swift */,
+				EF91410D105D8BAF85B4BB34 /* WritingPageFocus.swift */,
+				0D84CD33080E38C594B1452E /* WritingTextEditor.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DD27006BC6CCEB357931B635 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E2C7BCACED77CE0EA927BAC3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E7E678345AFDCCDE7BF3FB51 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3C07EC886CD37E6E9E36886F /* ArduinoMissions */,
+				35ECA98498B9622163946BAC /* Calendar */,
+				159E49E18848A2E9A6B465B2 /* Coach */,
+				B326129BE55E902209220AC1 /* Journal */,
+				27206D5394CFD0EFABB74DE7 /* Labs */,
+				86ACB1DD359460CA92C2C5FB /* MovingWorld */,
+				D468C7749F00C608D3805F30 /* ParentDashboard */,
+				797352E179D2313BB2E33BE2 /* Practice */,
+				16906330EB652A063CFC2905 /* SchoolScience */,
+				C87CEAB200EBEE5FA0B30704 /* Search */,
+				CEE68902BED39B504B49EBC9 /* SubjectTips */,
+				250CC9B8340A1F9B2A7026E5 /* Today */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EF212B22ED5C909FF41BC5A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62BFE2226B6A2B22A08659EC /* KymPhysics-iPad.app */,
+				6DA65BBC989085FEC1905ED0 /* KymPhysics.app */,
+				CDAB2EF88237A9101E85F102 /* KymPhysicsShareExtension.appex */,
+				1B06238C9A3E287025234927 /* KymPhysicsTests.xctest */,
+				C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3431641972C7D150A96408A /* KymPhysics */ = {
+			isa = PBXGroup;
+			children = (
+				E2C7BCACED77CE0EA927BAC3 /* App */,
+				FAD0CF23CA8AE66E08071917 /* Core */,
+				4707CDE47FF3C8308C08D282 /* Design */,
+				E7E678345AFDCCDE7BF3FB51 /* Features */,
+				4B8E6F5A2A6D4304C68029C2 /* Resources */,
+			);
+			path = KymPhysics;
+			sourceTree = "<group>";
+		};
+		F770EB6715F82CF854F0669D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		FAD0CF23CA8AE66E08071917 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D1FDB9CCE8E2A3A245DD7F2B /* AI */,
+				F770EB6715F82CF854F0669D /* Database */,
+				8569A6AFF97098890FC1F5A5 /* Learning */,
+				735A5E5EE31BB2DE5BC1AC8A /* Models */,
+				FFB7F21673918EF7F6EE145E /* Services */,
+				5BBD96DD6BEA09C206656D5F /* State */,
+				15C002DC7CC5D7A5F37D8B91 /* SystemSurfaces */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FFB7F21673918EF7F6EE145E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3475330CEB82A09493BB93F7 /* KymPhysics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DFC87E0E08C60F9C1B17212 /* Build configuration list for PBXNativeTarget "KymPhysics" */;
+			buildPhases = (
+				DF832220BBB4AEC9985179BD /* Sources */,
+				83DCCADAE62E8C81A3BC0B2D /* Resources */,
+				A6DF313340C1DD467D6174E7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KymPhysics;
+			packageProductDependencies = (
+				41DBBA27116ABDADD820B4D8 /* GRDB */,
+			);
+			productName = KymPhysics;
+			productReference = 6DA65BBC989085FEC1905ED0 /* KymPhysics.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4A4F846E14CD318E3A483A6A /* KymPhysicsShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 392A7C1502EBE6404A5B6899 /* Build configuration list for PBXNativeTarget "KymPhysicsShareExtension" */;
+			buildPhases = (
+				FDDCDA417F20F0C2F80C56AE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KymPhysicsShareExtension;
+			packageProductDependencies = (
+			);
+			productName = KymPhysicsShareExtension;
+			productReference = CDAB2EF88237A9101E85F102 /* KymPhysicsShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		7CA41CE28E0C1FC7919415F1 /* KymPhysics-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C7EB0D9984CC48E0A60B48B /* Build configuration list for PBXNativeTarget "KymPhysics-iPad" */;
+			buildPhases = (
+				C265E6C71CEB31644F67CE41 /* Sources */,
+				FF62130A787D04ECEF3915C4 /* Resources */,
+				677EE5A81C8F84AEDA071D4E /* Frameworks */,
+				4771D6F6708C2188546FC387 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E976FAD2DD0BEE7A375A6890 /* PBXTargetDependency */,
+				1DEEF410F7DFB1EFA796E6F8 /* PBXTargetDependency */,
+			);
+			name = "KymPhysics-iPad";
+			packageProductDependencies = (
+				0E491E7513A1E5793592C8C5 /* GRDB */,
+			);
+			productName = "KymPhysics-iPad";
+			productReference = 62BFE2226B6A2B22A08659EC /* KymPhysics-iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8A393D49E0F56699510A94E3 /* KymPhysicsWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 752D4526065237FE2B9A2CB9 /* Build configuration list for PBXNativeTarget "KymPhysicsWidgets" */;
+			buildPhases = (
+				970D8CCE0611D964D696E543 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KymPhysicsWidgets;
+			packageProductDependencies = (
+			);
+			productName = KymPhysicsWidgets;
+			productReference = C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F42B9C96519D8857AA9DAFF0 /* KymPhysicsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F1C4165C1066A2BFD7C213F /* Build configuration list for PBXNativeTarget "KymPhysicsTests" */;
+			buildPhases = (
+				D7A985F569897451C51564FC /* Sources */,
+				6BEDB665C6FB11AD372E0EF4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B1582A7D424EE30531A8B39 /* PBXTargetDependency */,
+			);
+			name = KymPhysicsTests;
+			packageProductDependencies = (
+				FDB0E0EE5D34B01C26D015C5 /* GRDB */,
+			);
+			productName = KymPhysicsTests;
+			productReference = 1B06238C9A3E287025234927 /* KymPhysicsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AF1B360088B768B8022666E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					3475330CEB82A09493BB93F7 = {
+						ProvisioningStyle = Manual;
+					};
+					4A4F846E14CD318E3A483A6A = {
+						ProvisioningStyle = Automatic;
+					};
+					7CA41CE28E0C1FC7919415F1 = {
+						ProvisioningStyle = Automatic;
+					};
+					8A393D49E0F56699510A94E3 = {
+						ProvisioningStyle = Automatic;
+					};
+					F42B9C96519D8857AA9DAFF0 = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = EFE556531E592A151FB0E911 /* Build configuration list for PBXProject "KymPhysics" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 107B142FAC6AB596498903DD;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EF212B22ED5C909FF41BC5A9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3475330CEB82A09493BB93F7 /* KymPhysics */,
+				7CA41CE28E0C1FC7919415F1 /* KymPhysics-iPad */,
+				8A393D49E0F56699510A94E3 /* KymPhysicsWidgets */,
+				4A4F846E14CD318E3A483A6A /* KymPhysicsShareExtension */,
+				F42B9C96519D8857AA9DAFF0 /* KymPhysicsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83DCCADAE62E8C81A3BC0B2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DB6F859FC747EB371B5371 /* ContentPacks in Resources */,
+				9D5464FB477708DE5114F597 /* MovingWorldBook in Resources */,
+				DF2ADD68F6CD0821624E7704 /* SoulDocuments in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF62130A787D04ECEF3915C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E543550F0ED5F519E7988A3 /* ContentPacks in Resources */,
+				C8EFFD2C8F91DA1F7E1F11F8 /* MovingWorldBook in Resources */,
+				788BFF0F828702D443979214 /* SoulDocuments in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		970D8CCE0611D964D696E543 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C391D7E16F393B6F1D35BE5 /* KymPhysicsWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C265E6C71CEB31644F67CE41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CDCCA5FFCBBA5747CD5057B /* AccessibilityHelpers.swift in Sources */,
+				FBE388DF63B60488972E23C6 /* AdaptiveOptionPicker.swift in Sources */,
+				CC4B834B3C923C64166DFD5C /* AgentSoulSystem.swift in Sources */,
+				73F23AD2EF5542A9FAE98D23 /* Animations.swift in Sources */,
+				EA28E828E211FC65DF340699 /* AppStore.swift in Sources */,
+				886599CF1F8897601FA16CAF /* ArduinoBoardTourView.swift in Sources */,
+				F9A26C0E853525DCA33B7922 /* ArduinoCodeCardView.swift in Sources */,
+				13CA6A073CD398FEFBC33A7F /* ArduinoMissionCatalog+Nature.swift in Sources */,
+				25B8B39AE482C83E19AAB292 /* ArduinoMissionCatalog.swift in Sources */,
+				ADD3D948A76F820C0842E2F8 /* ArduinoMissionDetailView.swift in Sources */,
+				7B55F3777657FCB0822C545F /* ArduinoMissionModels.swift in Sources */,
+				20504FBF3EDE0AB92E846C06 /* ArduinoMissionSimulator+Audio.swift in Sources */,
+				67D3F60624DFA171A5D5FBD8 /* ArduinoMissionSimulator.swift in Sources */,
+				4E88A428AC06354475622B12 /* ArduinoMissionVisualView+Stages.swift in Sources */,
+				FF24FA7A30AA7089B7E5CAFD /* ArduinoMissionVisualView.swift in Sources */,
+				1CBCC5EAF987DF403AA06EE7 /* ArduinoMissionsGalleryView.swift in Sources */,
+				D41E0B9FE013D2905D03620B /* AtomBuilderVisual.swift in Sources */,
+				506D33F1F970013E398B09F7 /* CalendarHomeView.swift in Sources */,
+				4E4AC5BC94F38597CF5AC43A /* CircuitToggleVisual.swift in Sources */,
+				C2665986D9FF0200ECE19A35 /* ColorExtensions.swift in Sources */,
+				E9EE0D377717F59FABF48045 /* CuratedColorScheme.swift in Sources */,
+				D32B058FEEF35B9504973CB6 /* DatabaseManager.swift in Sources */,
+				6D23ED152B6C0C033028FBF2 /* DocumentScannerSheet.swift in Sources */,
+				D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */,
+				D9F327B7724E0D250F85BA0A /* DrawingCanvasBackground.swift in Sources */,
+				E441354C4AD21ACB7C8CE6FA /* EquationBalanceVisual.swift in Sources */,
+				9250EFC20619CD02C69CD20A /* FlowLayout.swift in Sources */,
+				175A632EBFD5D3933BD01652 /* ForceArrowsVisual.swift in Sources */,
+				D8B35E67E6F5E70BB65C7219 /* HandwritingRecognition.swift in Sources */,
+				A59CF62F8985923F459BE37B /* JournalCard.swift in Sources */,
+				CF49201DC33107037B6F386F /* JournalCardParts.swift in Sources */,
+				7B917330130D38865B0853B2 /* JournalEmptyState.swift in Sources */,
+				19A835A89C2301A5D67F53B2 /* JournalFocusPage.swift in Sources */,
+				56EA5AF60755A90B2CC8D3EE /* JournalForm.swift in Sources */,
+				338829FEA3CF26079AE7EFDB /* JournalGlanceTile.swift in Sources */,
+				A1E26BC9E784CC839C778862 /* JournalLayout.swift in Sources */,
+				7915F966CDA33935A3372160 /* JournalPage.swift in Sources */,
+				49EF9D0F54749B32B7FFFDB7 /* JournalPageChrome.swift in Sources */,
+				AC150BF23DB139790B4541DD /* JournalPaper.swift in Sources */,
+				9EC307A2803BDFAAD932F606 /* JournalReaderPage.swift in Sources */,
+				15367C4A09D862582E09B35F /* JournalRow.swift in Sources */,
+				2BFBA460E21908D999419981 /* JournalSection.swift in Sources */,
+				CF75D1182667820FF2E93A2C /* KeyboardShortcuts.swift in Sources */,
+				02CF7F226C345D0BE4029717 /* KymPhysicsApp.swift in Sources */,
+				4A46D43CBB03ABE18828116A /* KymaiaGlanceTokens.swift in Sources */,
+				145079DC4EEB399BD401E698 /* KymaiaMotion.swift in Sources */,
+				DC848105CE7747D1E460C4ED /* LabJournalHomeView.swift in Sources */,
+				637D35374771EAB5EE0D6265 /* LabsExplorersHomeView.swift in Sources */,
+				72CD03C00BDA291CB1F321B6 /* LearnerTextInput.swift in Sources */,
+				3A711267A44467C1944C8966 /* LearningEngines.swift in Sources */,
+				85D24443C0769C700E8BA3F9 /* LiveTextPageImage.swift in Sources */,
+				026C97B0D8FB3873596B592C /* MassWeightVisual.swift in Sources */,
+				4D3B00EB7F5DEA196DBC85A4 /* MentoringEngines.swift in Sources */,
+				5776CEAD914E5B93A2AA363D /* MissingDesignElements.swift in Sources */,
+				F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */,
+				973BB833E8DEC4ADA5C20981 /* MovingWorldHomeView.swift in Sources */,
+				B21C6EDABB59A312A20791EB /* PHScaleVisual.swift in Sources */,
+				468B265C26D8B10ADC6141AD /* ParentMentorDashboardView.swift in Sources */,
+				698B1E1A12D59C522F361897 /* ParticleStatesVisual.swift in Sources */,
+				E268310E1CAF97598B06430D /* PencilWritingCanvas.swift in Sources */,
+				0F57FE75CE3F5EC33FB8C9BD /* PeriodicGridVisual.swift in Sources */,
+				E1754F3285EC62FFFDF3E865 /* PhysicsCoachHomeView.swift in Sources */,
+				25DB912639D75404E9CE96FB /* PhysicsDailyRitualSessionView.swift in Sources */,
+				AC61164C2369BA6D0AC6DD53 /* PhysicsHardwareSensorManager.swift in Sources */,
+				6194E9D2364405D97AE5C7E0 /* PhysicsMemoryPalaceSection.swift in Sources */,
+				809E60954BE1BCB8793A0183 /* PhysicsOmnisearchSheet.swift in Sources */,
+				5EE057EB0332BEF3DAA0D233 /* PhysicsSubjectTipsView.swift in Sources */,
+				A80FD35616D2CAA6CF91C0F0 /* PhysicsVoiceService.swift in Sources */,
+				203DC66D184E6939CD028C07 /* PlatformAdaptive.swift in Sources */,
+				D5BB48B81C585F4F06C3921A /* PointerHighlight.swift in Sources */,
+				C5785CE964B0BD7F93CE3405 /* PracticeExamsHomeView.swift in Sources */,
+				586B3F49CE6595282F2DCB11 /* QuantitativePhysicsEngine.swift in Sources */,
+				35CF04D6A5719E2DD3057536 /* QuizAnswerOption.swift in Sources */,
+				762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */,
+				89E4B8DFC0B8C525E5DFBCE7 /* SafetyEscalationService.swift in Sources */,
+				B755EADB3EE6CB59DBDEE8B0 /* SchoolScienceHomeView.swift in Sources */,
+				E55921B2DD7194EABB539673 /* SeedPackModels.swift in Sources */,
+				76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */,
+				73296A6E04D24A01C624BD10 /* SliderRelationVisual.swift in Sources */,
+				189E975C2826EBD08DADFBD0 /* SortClassifyVisual.swift in Sources */,
+				8F4045E95E73C80E4AAA70E1 /* SpeedPhysicsGymSection.swift in Sources */,
+				FC1861291BFB3194B1700063 /* StepSequenceVisual.swift in Sources */,
+				6EA68C599F7F6ECEB0C847FD /* SubjectTip.swift in Sources */,
+				5AC1C947A2651D995B99D831 /* SubjectTipDetailSections.swift in Sources */,
+				00A76831854F765B2060404F /* SubjectTipPalette.swift in Sources */,
+				805906FE6CAA8A8B0A169B4E /* SubjectTipVisualLogic.swift in Sources */,
+				EE6EC07AEF4BCBF1B9F59595 /* SubjectTipVisualView.swift in Sources */,
+				063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */,
+				F0276174D5A60CC5D628D042 /* Theme.swift in Sources */,
+				2926300095E55791EBFAC282 /* ThemePickerMenu.swift in Sources */,
+				E2D7417499488134C09E5856 /* TodayHomeView.swift in Sources */,
+				F9685DBF5146878FC2E39815 /* TutorConstitution.swift in Sources */,
+				5659EFD9E779B2E7B11C2FA1 /* ViewTransitions.swift in Sources */,
+				3A5D4680CCF4165549F1EF44 /* WritingPageFocus.swift in Sources */,
+				619D06E2FD560AB07740A44A /* WritingTextEditor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7A985F569897451C51564FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7446442B4CFCA87DDDDE5F95 /* ThemeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF832220BBB4AEC9985179BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF46CE61CFD6AA1A5500C1D4 /* AccessibilityHelpers.swift in Sources */,
+				F73E9B3FE56BB0FA944F246B /* AdaptiveOptionPicker.swift in Sources */,
+				011733ED3547983A18EE9044 /* AgentSoulSystem.swift in Sources */,
+				46411B181A3046A1338362A7 /* Animations.swift in Sources */,
+				5B564B673F448C992EC84813 /* AppStore.swift in Sources */,
+				35FC78D1724A0EAC944F419B /* ArduinoBoardTourView.swift in Sources */,
+				19FD95754752A2FEFA7C9DA7 /* ArduinoCodeCardView.swift in Sources */,
+				16B367F7414991E31CDDB374 /* ArduinoMissionCatalog+Nature.swift in Sources */,
+				E47554405A54D1D32C758A4D /* ArduinoMissionCatalog.swift in Sources */,
+				FED3352E47665A8B18B65A49 /* ArduinoMissionDetailView.swift in Sources */,
+				AF971B7AEDA9976278181EB4 /* ArduinoMissionModels.swift in Sources */,
+				D4A1F47CEB6C833F1337C0C3 /* ArduinoMissionSimulator+Audio.swift in Sources */,
+				793AF37057B3A0D6F18C3732 /* ArduinoMissionSimulator.swift in Sources */,
+				B842F0A221B6764B00898892 /* ArduinoMissionVisualView+Stages.swift in Sources */,
+				0CA8FD8F47E6FB350627D213 /* ArduinoMissionVisualView.swift in Sources */,
+				2C39ADD7C7C40099FC6926C1 /* ArduinoMissionsGalleryView.swift in Sources */,
+				EED6D8B4E149A2A4ABF35115 /* AtomBuilderVisual.swift in Sources */,
+				36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */,
+				6D2B249E3A8C27FD6A071A01 /* CircuitToggleVisual.swift in Sources */,
+				2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */,
+				FBA552AD693229722F242E15 /* CuratedColorScheme.swift in Sources */,
+				3B1EEE88AEDF527107591C11 /* DatabaseManager.swift in Sources */,
+				DBBFF26884F6A2CF20ABA6BC /* DocumentScannerSheet.swift in Sources */,
+				1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */,
+				CF17AF6516C5BC5102707F1A /* DrawingCanvasBackground.swift in Sources */,
+				9F45BAFA6D2C4485088A43A9 /* EquationBalanceVisual.swift in Sources */,
+				0C6E71365B0286025D236312 /* FlowLayout.swift in Sources */,
+				BE0AAAEBD68B308E60B875AE /* ForceArrowsVisual.swift in Sources */,
+				1F10E1781E2A21C1942C05CA /* HandwritingRecognition.swift in Sources */,
+				4D64E56B5C27674CA2D398B7 /* JournalCard.swift in Sources */,
+				4AF96631222F66239BCEDCD1 /* JournalCardParts.swift in Sources */,
+				68B9D7800CC0D3D5560A0B50 /* JournalEmptyState.swift in Sources */,
+				5C6E0962A6DBDA75CA15FF30 /* JournalFocusPage.swift in Sources */,
+				6AE1F45C836A7B0BDCF54279 /* JournalForm.swift in Sources */,
+				1B925E3B491E2DA05EC9E795 /* JournalGlanceTile.swift in Sources */,
+				9348BBFA999D2F4C40784E80 /* JournalLayout.swift in Sources */,
+				4ECF28B519F23106445E5F84 /* JournalPage.swift in Sources */,
+				F0A986703C3E14545EE95054 /* JournalPageChrome.swift in Sources */,
+				03C294F0631DA7ED292A8FF7 /* JournalPaper.swift in Sources */,
+				8F376B1BF3A95162E5448D29 /* JournalReaderPage.swift in Sources */,
+				445813761316819264D4CD24 /* JournalRow.swift in Sources */,
+				6D00F33C0BDD277F424B9D6F /* JournalSection.swift in Sources */,
+				EE2460619E5BC82276066324 /* KeyboardShortcuts.swift in Sources */,
+				53FA772702A84C3E5B2D97AD /* KymPhysicsApp.swift in Sources */,
+				50D3FE10F4A62236CA13527D /* KymaiaGlanceTokens.swift in Sources */,
+				9DD11504CF6D39F76EAC759E /* KymaiaMotion.swift in Sources */,
+				2516C1A27CE8416E1805CB7F /* LabJournalHomeView.swift in Sources */,
+				3BD0034277B652666BADEE8C /* LabsExplorersHomeView.swift in Sources */,
+				03A819A7BFE72647561C33E2 /* LearnerTextInput.swift in Sources */,
+				7CAAD42E09313823B9B1C6DC /* LearningEngines.swift in Sources */,
+				19780FBED4662D5384DCF35F /* LiveTextPageImage.swift in Sources */,
+				894D3C3A979AE1379F55F997 /* MassWeightVisual.swift in Sources */,
+				3940641920281C23253E3815 /* MentoringEngines.swift in Sources */,
+				7A92E571658512C535EA142A /* MissingDesignElements.swift in Sources */,
+				3FB509C17C4909846E2A3028 /* MovingWorldBridgeController.swift in Sources */,
+				64DC0BD53673A2662F525540 /* MovingWorldHomeView.swift in Sources */,
+				F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */,
+				807C619A1701963FB1FB1A81 /* ParentMentorDashboardView.swift in Sources */,
+				006D8BB1B3976E97DE06C544 /* ParticleStatesVisual.swift in Sources */,
+				B7D9EF41BEDE56DA82B8C177 /* PencilWritingCanvas.swift in Sources */,
+				CA375CD08D7B5BCB5EF96DED /* PeriodicGridVisual.swift in Sources */,
+				3C403EA062675E6361F74DEC /* PhysicsCoachHomeView.swift in Sources */,
+				5E964672259A4A47A96CBE95 /* PhysicsDailyRitualSessionView.swift in Sources */,
+				75D7A5968BC12126109B7F18 /* PhysicsHardwareSensorManager.swift in Sources */,
+				6F7D4611A3226445E4A33A8F /* PhysicsMemoryPalaceSection.swift in Sources */,
+				4B7ECACA71006F89FE18F8E4 /* PhysicsOmnisearchSheet.swift in Sources */,
+				08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */,
+				1163070FC28AF79588CCB496 /* PhysicsVoiceService.swift in Sources */,
+				B36FC4BC655B3B3BC1163801 /* PlatformAdaptive.swift in Sources */,
+				F04FDEA7BD7A0224A2C52FA7 /* PointerHighlight.swift in Sources */,
+				DDC393A343495EA3C2668004 /* PracticeExamsHomeView.swift in Sources */,
+				4B4C70E0ECDE15360696C3FF /* QuantitativePhysicsEngine.swift in Sources */,
+				D1700EE31865FD47FFED9F55 /* QuizAnswerOption.swift in Sources */,
+				8120676A429C1704B2DC6B81 /* ReflectionVisual.swift in Sources */,
+				7301363B5BAFADC40A35F239 /* SafetyEscalationService.swift in Sources */,
+				E820A4B09E504A38A8AF64FA /* SchoolScienceHomeView.swift in Sources */,
+				950C9DC2FF47A2AA35C340DA /* SeedPackModels.swift in Sources */,
+				96F5E3C1AEDC05FDC970945A /* SemanticStyles.swift in Sources */,
+				178D21E707CDB11399C7C246 /* SliderRelationVisual.swift in Sources */,
+				C8A01A4F1AE40FD6D657EC68 /* SortClassifyVisual.swift in Sources */,
+				7DC6CACEE8659BAFBF4DA98E /* SpeedPhysicsGymSection.swift in Sources */,
+				DAB6C48F1CCD4DFA58700455 /* StepSequenceVisual.swift in Sources */,
+				ECEBDF3ABE98F25DD61EA9D3 /* SubjectTip.swift in Sources */,
+				93CECD73D943A14F95D59070 /* SubjectTipDetailSections.swift in Sources */,
+				26A35B1594288A5AB8676316 /* SubjectTipPalette.swift in Sources */,
+				0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */,
+				3C6DB0224AA199CA2D7C8CB9 /* SubjectTipVisualView.swift in Sources */,
+				300479AD12C50F4198F482CC /* SystemSurfaceAppIntents.swift in Sources */,
+				A1FF5BA89802B5B17F4BCB6E /* Theme.swift in Sources */,
+				099CD7C44FD7493ACE1158B6 /* ThemePickerMenu.swift in Sources */,
+				ED4E14858A1129908B1B82F9 /* TodayHomeView.swift in Sources */,
+				2A42DC23C527F09AB2AD5F64 /* TutorConstitution.swift in Sources */,
+				F4112FE6F7133855CD9FBCED /* ViewTransitions.swift in Sources */,
+				91C18AC592DC98D869648563 /* WritingPageFocus.swift in Sources */,
+				D987E2CC298D7D94181D75F1 /* WritingTextEditor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDCDA417F20F0C2F80C56AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A4811C1602D738556EDD16D /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1DEEF410F7DFB1EFA796E6F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A4F846E14CD318E3A483A6A /* KymPhysicsShareExtension */;
+			targetProxy = FF8DA4FE2AB6ABFD2EF581D0 /* PBXContainerItemProxy */;
+		};
+		4B1582A7D424EE30531A8B39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3475330CEB82A09493BB93F7 /* KymPhysics */;
+			targetProxy = A720790DAE955670E652FC8C /* PBXContainerItemProxy */;
+		};
+		E976FAD2DD0BEE7A375A6890 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A393D49E0F56699510A94E3 /* KymPhysicsWidgets */;
+			targetProxy = 3798D6AE9D0BD2A27A4F0309 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		14E49D0F094C19B15518505E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "KymPhysics/KymPhysics-iPad.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "KymPhysics/Info-iPad.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = KymPhysics;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask.";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "KymPhysics creates Physics study blocks on your calendar.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "KymPhysics uses the camera to scan pages from your Cambridge Science 8 Learner's Book, Workbook and slow-motion physics experiments.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "KymPhysics reads the iPad accelerometer, gyroscope and magnetometer for live elevator, pendulum and magnetic-field labs.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "KymPhysics imports diagram photos, 240 fps slow-motion videos and textbook pages from your library.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KymPhysics transcribes your spoken answers on device for Physics practice.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad;
+				PRODUCT_NAME = KymPhysics;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24224E961389316931071B00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KymPhysics.app/Contents/MacOS/KymPhysics";
+			};
+			name = Debug;
+		};
+		2E5C870FEDF030E94679F0A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KymPhysicsWidgets/KymPhysicsWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KymPhysicsWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48A37CE31FD3960B29F1F638 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KymPhysicsWidgets/KymPhysicsWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KymPhysicsWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D6FBAA57BF1078C8B5C369C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KymPhysicsShareExtension/KymPhysicsShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KymPhysicsShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad.share;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BD651CD1C3AC247FA71316F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		C1B8E837454935DE5CA4B25C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		C20C88585A0DD9F49A486E22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KymPhysicsShareExtension/KymPhysicsShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KymPhysicsShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad.share;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C3134C26EF234DD219A14E9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KymPhysics/KymPhysics.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KymPhysics;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask.";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "KymPhysics creates Physics study blocks on your calendar.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KymPhysics transcribes your spoken answers on device for Physics practice.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C6863CE91123533FD35687E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KymPhysics/KymPhysics.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KymPhysics;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask.";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "KymPhysics creates Physics study blocks on your calendar.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KymPhysics transcribes your spoken answers on device for Physics practice.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E74F317E8CA69BB37CBE7D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "KymPhysics/KymPhysics-iPad.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "KymPhysics/Info-iPad.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = KymPhysics;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "KymPhysics reads your school calendar to plan revision around Science tests and creates study blocks when you ask.";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "KymPhysics creates Physics study blocks on your calendar.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "KymPhysics uses the camera to scan pages from your Cambridge Science 8 Learner's Book, Workbook and slow-motion physics experiments.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KymPhysics uses the microphone for acoustic pitch/frequency labs and Socratic Physics Coach voice sessions.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "KymPhysics reads the iPad accelerometer, gyroscope and magnetometer for live elevator, pendulum and magnetic-field labs.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "KymPhysics imports diagram photos, 240 fps slow-motion videos and textbook pages from your library.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KymPhysics transcribes your spoken answers on device for Physics practice.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.ipad;
+				PRODUCT_NAME = KymPhysics;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7CDD7FCA8D9693A593CDB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kymaia.physics.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KymPhysics.app/Contents/MacOS/KymPhysics";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		392A7C1502EBE6404A5B6899 /* Build configuration list for PBXNativeTarget "KymPhysicsShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D6FBAA57BF1078C8B5C369C /* Debug */,
+				C20C88585A0DD9F49A486E22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4F1C4165C1066A2BFD7C213F /* Build configuration list for PBXNativeTarget "KymPhysicsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24224E961389316931071B00 /* Debug */,
+				E7CDD7FCA8D9693A593CDB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		752D4526065237FE2B9A2CB9 /* Build configuration list for PBXNativeTarget "KymPhysicsWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48A37CE31FD3960B29F1F638 /* Debug */,
+				2E5C870FEDF030E94679F0A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7C7EB0D9984CC48E0A60B48B /* Build configuration list for PBXNativeTarget "KymPhysics-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14E49D0F094C19B15518505E /* Debug */,
+				E74F317E8CA69BB37CBE7D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8DFC87E0E08C60F9C1B17212 /* Build configuration list for PBXNativeTarget "KymPhysics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3134C26EF234DD219A14E9D /* Debug */,
+				C6863CE91123533FD35687E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EFE556531E592A151FB0E911 /* Build configuration list for PBXProject "KymPhysics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD651CD1C3AC247FA71316F6 /* Debug */,
+				C1B8E837454935DE5CA4B25C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.24.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E491E7513A1E5793592C8C5 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+		41DBBA27116ABDADD820B4D8 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+		FDB0E0EE5D34B01C26D015C5 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 9AF1B360088B768B8022666E /* Project object */;
+}
