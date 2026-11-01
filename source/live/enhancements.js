@@ -5,6 +5,19 @@
 // 4. "What the model simplifies" 1-sentence honesty footnote (idealised)
 
 const G = 9.8;
+const A = (prompt, check, yourNumbers, cutaway, c1, a1, c2, a2, c3, c4, a4, idealised) => ({
+  challenge: { prompt, check },
+  yourNumbers,
+  cutaway,
+  watch: [
+    { title: '1. Wide view', caption: '1/5 Wide shot: ' + c1, act: a1 },
+    { title: '2. Close-up', caption: '2/5 Close-up: ' + c2, act: a2 },
+    { title: '3. Cut-away', caption: '3/5 Cut-away: ' + c3, cutaway: true },
+    { title: '4. Side-on trend', caption: '4/5 Trend: ' + c4, act: a4 },
+    { title: '5. Your turn', caption: '5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts.', cutaway: false },
+  ],
+  idealised,
+});
 
 export const ENHANCEMENTS = {
   videotrack: {
@@ -842,4 +855,257 @@ export const ENHANCEMENTS = {
     ],
     idealised: 'Damping is omitted so the oscillation amplitude stays constant.',
   },
+
+  atlas_period: A(
+    'Inspect the 3D pendulum and spring pair, or switch to X-ray / Section cutaway mode to see why 4× length gives 2× period.',
+    (s) => s.interacted || s.watched,
+    () => 'T = 2π √(L ÷ g)  |  L₂ = 4 L₁  →  T₂ = √4 × T₁ = 2 T₁',
+    'Inside the small-angle restoring torque: F_restore ≈ −(mg/L) s, so longer L softens stiffness while increasing arc length.',
+    'Two springs and two pendulums side by side in 3D.', undefined,
+    'The 4× longer pendulum takes exactly twice as long per swing.', undefined,
+    'Restoring force scales as 1/L, giving T ∝ √L.',
+    'A 4× heavier mass on an identical spring also doubles the period (T = 2π√(m/k)).', undefined,
+    'Small-angle approximation sin θ ≈ θ and zero air resistance keep period independent of amplitude.'
+  ),
+
+  atlas_ch00: A(
+    'Move Ship distance beyond 15 km or adjust Ruler viewing angle θ to 0° to eliminate parallax error!',
+    (s) => s.num('Ship distance', 13) >= 15 || Math.abs(s.num('Ruler viewing angle', 18)) <= 2 || s.interacted,
+    (s) => {
+      const h = s.num('Observer eye height', 2.0), d = s.num('Ship distance', 13);
+      return `d_hz = √(2 R_E h) = ${Math.sqrt(2 * 6371 * h * 1e-3).toFixed(2)} km (h = ${h.toFixed(1)} m)  |  Ship at ${d.toFixed(1)} km`;
+    },
+    'The horizon is where your line of sight grazes Earth’s 6,371 km sphere; in rain gauges, V = A × h cancels mouth area A.',
+    'An outbound ship drops hull-first behind the curved sea.', (s) => s.setSlider('Ship distance', 16),
+    'Raising eye height h pushes the horizon kilometres farther out.', (s) => s.setSlider('Observer eye height', 15),
+    'Geometry decides what is hidden behind Earth’s curve or shifted by parallax.',
+    'Looking straight down (θ = 0°) reduces parallax Δx = t tan θ to 0 mm.', (s) => s.setSlider('Ruler viewing angle', 0),
+    'Atmospheric refraction over warm seawater is omitted.'
+  ),
+
+  atlas_ch01: A(
+    'Steepen the Galileo ramp angle θ above 18° or set opposite train velocities to watch relative speed v_AB = v_A − v_B!',
+    (s) => s.num('Galileo ramp angle', 12) >= 18 || s.interacted,
+    (s) => {
+      const th = s.num('Galileo ramp angle', 12);
+      return `a = (5/7) g sin(${th}°) = ${((5 / 7) * 9.8 * Math.sin((th * Math.PI) / 180)).toFixed(2)} m/s²  |  odd-number gaps 1 : 3 : 5 : 7`;
+    },
+    'Tilting the groove dilutes gravity by sin θ (and rolling inertia by 5/7), slowing fall so bell gates verify Δx ∝ t².',
+    'Platform frame S and carriage frame S′ relate positions by x′ = x − v t.', undefined,
+    'On Galileo’s ramp, bells at 1, 4, 9, and 16 units ring on a steady beat.', (s) => s.setSlider('Galileo ramp angle', 16),
+    'At the peak of a vertical toss, v = 0 while acceleration stays −9.8 m/s².',
+    'Opposite trains add their speeds in v_AB = v_A − v_B.', (s) => s.setSlider('Train A ground velocity', 18),
+    'Rolling resistance and air drag on the bronze sphere are neglected.'
+  ),
+
+  atlas_ch02: A(
+    'Flatten the Galileo recovery slope θ₂ toward 0° or push the block past its static friction peak (F_push > 25 N)!',
+    (s) => s.num('Galileo recovery slope', 14) <= 2 || s.num('Horizontal push', 22) >= 26 || s.interacted,
+    (s) => {
+      const F = s.num('Horizontal push', 22), m = s.num('Block mass', 5.0), fs = 0.5 * m * 9.8, fk = 0.35 * m * 9.8;
+      return F > fs ? `F (${F} N) > f_s,max (${fs.toFixed(1)} N) → SLIDING a = ${((F - fk) / m).toFixed(2)} m/s²` : `F (${F} N) ≤ f_s,max (${fs.toFixed(1)} N) → LOCKED (a = 0)`;
+    },
+    'Polished surfaces touch at micron-scale asperity peaks whose cold-welded tips shear when F_push exceeds μ_s N.',
+    'On Galileo’s double ramp, the ball climbs back to its starting height h.', (s) => s.setSlider('Galileo recovery slope', 15),
+    'Flattening the second slope toward 0° sends run distance L = h / sin θ₂ to infinity!', (s) => s.setSlider('Galileo recovery slope', 0),
+    'Inside microscopic surface asperities under normal load N.',
+    'Pushing above μ_s N breaks static welds onto the lower kinetic plateau μ_k N.', (s) => s.setSlider('Horizontal push', 32),
+    'Amontons–Coulomb friction treats μ_s and μ_k as constant across sliding speeds.'
+  ),
+
+  atlas_ch03: A(
+    'Increase Applied pull force F above 36 N and inspect how tension drops 3 : 2 : 1 along the three-car chain!',
+    (s) => s.num('Applied pull force', 24) >= 36 || s.interacted,
+    (s) => {
+      const F = s.num('Applied pull force', 24), m = s.num('Test cart mass', 3.0);
+      return `a = F ÷ m = ${(F / m).toFixed(2)} m/s²  |  3-car tensions: ${F} N : ${((2 * F) / 3).toFixed(0)} N : ${(F / 3).toFixed(0)} N`;
+    },
+    'Each coupling pulls only the mass trailing behind it; a rocket accelerates in vacuum by pushing its own exhaust gas.',
+    'Doubling net force doubles acceleration; doubling mass halves it.', (s) => s.setSlider('Applied pull force', 24),
+    'Along a 3-car train, tension drops 3ma → 2ma → 1ma from front to rear.', (s) => s.setSlider('Applied pull force', 36),
+    'Inside two hooked spring scales, F_AB = −F_BA holds at every instant.',
+    'Faster rocket exhaust speed v_ex linearly boosts thrust F = v_ex dm/dt.', (s) => s.setSlider('Rocket exhaust speed', 3400),
+    'Coupling hooks and spring scale casings are treated as massless.'
+  ),
+
+  atlas_ch04: A(
+    'Increase Horizontal flick speed v_x to 7.0 m/s and verify that both coins still land at the exact same millisecond!',
+    (s) => s.num('Horizontal flick speed', 4.5) >= 6.5 || s.interacted,
+    (s) => {
+      const h = s.num('Release table height', 1.25), vx = s.num('Horizontal flick speed', 4.5), t = Math.sqrt((2 * h) / 9.8);
+      return `t_fall = √(2h ÷ g) = ${t.toFixed(3)} s (independent of v_x!)  |  range x = v_x t = ${(vx * t).toFixed(2)} m`;
+    },
+    'Gravity pulls only along vertical y while horizontal v_x stays constant; on a circle, Δv = v₂ − v₁ points straight inward.',
+    'One coin drops straight down while its twin shoots out horizontally at v_x.', (s) => s.setSlider('Horizontal flick speed', 4.5),
+    'Horizontal strobe bars prove both coins share the exact same height y(t) at every instant.', (s) => s.setSlider('Horizontal flick speed', 7.5),
+    'Why velocity change Δv in uniform circular motion points radially inward.',
+    'Doubling orbital speed v quadruples inward centripetal acceleration a_c = v²/r.', (s) => s.setSlider('Orbital tangent speed', 8.0),
+    'Air resistance is omitted so horizontal and vertical motions are strictly independent.'
+  ),
+
+  atlas_ch05: A(
+    'Set Orbit distance to 60 R_E to verify Newton’s 1.36 mm Moon fall, or raise eccentricity e above 0.70!',
+    (s) => s.num('Orbital eccentricity', 0.55) >= 0.7 || s.interacted,
+    (s) => {
+      const r = s.num('Orbit distance', 60), e = s.num('Orbital eccentricity', 0.55);
+      return `At r = ${r} R_E: 1-s drop = 4.9 m ÷ ${r}² = ${(4900 / (r * r)).toFixed(2)} mm  |  v_p/v_a = ${((1 + e) / (1 - e)).toFixed(2)}×`;
+    },
+    'Inside Cavendish’s box: a quartz torsion fibre twists under a 1.5 × 10⁻⁷ N pull between lead spheres, deflecting a mirror beam.',
+    'At 60 R_E, gravity is diluted by 3,600× so the Moon falls 1.36 mm/s beneath its tangent.', (s) => s.setSlider('Orbit distance', 60),
+    'A taut loop of string around two focal pins traces an ellipse with r₁ + r₂ = 2a.', (s) => s.setSlider('Orbital eccentricity', 0.65),
+    'Inside Cavendish’s 1798 torsion balance and optical lever mirror.',
+    'Comets sweep equal areas in equal times, racing past perihelion.', (s) => s.setSlider('Orbital eccentricity', 0.8),
+    'Two-body Keplerian orbits neglect perturbations from neighbouring planets.'
+  ),
+
+  atlas_ch06: A(
+    'Raise Bottle water column H to 0.60 m to boost the bottom jet, or lower external P_atm to watch the barometer drop!',
+    (s) => s.num('Bottle water column', 0.45) >= 0.55 || s.num('External atmospheric pressure', 101.3) <= 75 || s.interacted,
+    (s) => {
+      const H = s.num('Bottle water column', 0.45), P = s.num('External atmospheric pressure', 101.3);
+      return `ΔP_bottom = ρgH = ${(9.8 * H).toFixed(2)} kPa  |  P_atm = ${P.toFixed(1)} kPa → ${(((P * 1000) / (13595 * 9.8)) * 1000).toFixed(0)} mm Hg`;
+    },
+    'Fluid pressure P = P₀ + ρgh depends only on vertical depth h, while air molecules hammer upward on an inverted glass card with ~390 N.',
+    'Deeper holes experience greater pressure ρgh and shoot faster jets v = √(2gh).', (s) => s.setSlider('Bottle water column', 0.55),
+    'Sea-level air pressure (101.3 kPa) holds up 760 mm of dense mercury.', (s) => s.setSlider('External atmospheric pressure', 101.3),
+    'At high altitude, lower P_atm lets the mercury column sink.',
+    'Upward atmospheric force on a postcard exceeds the weight of 12 cm of water by 86×!', (s) => s.setSlider('External atmospheric pressure', 65),
+    'Viscous nozzle losses and orifice surface tension are omitted.'
+  ),
+
+  atlas_ch07: A(
+    'Double Clay impact speed v from 2.0 to 4.0 m/s to see crater depth quadruple (4×), or raise Household load P to 3,000 W!',
+    (s) => Math.abs(s.num('Clay test impact speed', 4.0) - 4.0) <= 0.6 && s.interacted,
+    (s) => {
+      const v = s.num('Clay test impact speed', 4.0), P = s.num('Household appliance load', 1500), ke = 0.5 * v * v;
+      return `E_k = ½mv² = ${ke.toFixed(1)} J → dent d = ${(ke / 2).toFixed(2)} cm  |  ${P} W × 180 h = ${((P * 180) / 1000).toFixed(0)} kWh`;
+    },
+    'Stopping a sphere in clay requires work W = F_clay d = ½mv²; in an inelastic bounce, (1 − e²) of KE turns into heat.',
+    'A sphere hitting clay at 2v carves a crater 4× deeper than at v.', (s) => s.setSlider('Clay test impact speed', 4.0),
+    'Each bounce peaks at e² of the previous height while warming the floor.', (s) => s.setSlider('Bounce restitution', 0.7),
+    'Inside the kWh meter: disc speed measures Watts, total turns count kWh.',
+    'City Sankey pipes split 100% fuel input into useful work and ambient heat.', (s) => s.setSlider('Household appliance load', 2800),
+    'Clay resistance force F_clay is modelled as uniform with penetration depth.'
+  ),
+
+  atlas_ch08: A(
+    'Sweep Added heat per kg into the 100 °C plateau (850–3,000 kJ/kg) to see temperature lock flat during boiling!',
+    (s) => (s.num('Added heat per kg', 550) >= 850 && s.num('Added heat per kg', 550) <= 3000) || s.interacted,
+    (s) => {
+      const ev = s.num('Matka water evaporated', 1.5), dT = ((ev / 100) * 2260000) / ((1 - ev / 100) * 4184);
+      return `Matka: ${ev.toFixed(1)}% evaporated × L_v ÷ c_w → cools pot by −${dT.toFixed(1)} °C (to ${(32 - dT).toFixed(1)} °C)`;
+    },
+    'During boiling or matka evaporation, incoming energy breaks hydrogen bonds (L_v = 2,260 kJ/kg) instead of raising kinetic energy.',
+    'Joule’s falling weights churn water: 4,184 J warms 1 kg by 1 °C.', (s) => s.setSlider('Joule weight drops', 30),
+    'A 40 °C bucket holds vastly more thermal energy Q = mcΔT than a 100 °C spoon.', undefined,
+    'A wool sweater traps dead air, blocking room heat from melting ice.',
+    'Evaporating 1.8% of water through porous matka clay cools the pot by ~10 °C.', (s) => s.setSlider('Matka water evaporated', 1.8),
+    'Calorimeter walls are treated as adiabatic outside the modelled heat flux.'
+  ),
+
+  atlas_ch09: A(
+    'Tune Barton driver frequency f_drive to 1.5 Hz or 2.0 Hz to trigger a sharp resonance peak on the matching pendulum!',
+    (s) => Math.abs(s.num('Barton driver frequency', 1.5) - 2.0) <= 0.15 || s.interacted,
+    (s) => {
+      const f = s.num('Acoustic frequency', 343);
+      return `v_sound = f λ → 343 m/s = ${f} Hz × ${(343 / f).toFixed(2)} m  |  Barton f_drive = ${s.num('Barton driver frequency', 1.5).toFixed(2)} Hz`;
+    },
+    'At resonance f_drive = f₀, pushes arrive in phase with velocity; in sound waves, air rings oscillate locally while compressions travel at 343 m/s.',
+    'On Barton’s cord, only the responder matching the driver builds a huge swing.', (s) => s.setSlider('Barton driver frequency', 1.5),
+    'Shifting f_drive to 2.0 Hz hands resonance to the next shorter pendulum.', (s) => s.setSlider('Barton driver frequency', 2.0),
+    'Above 15 m/s crosswind, vortex shedding locks onto bridge deck twist.',
+    'Doubling acoustic frequency f halves wavelength λ = v/f.', (s) => s.setSlider('Acoustic frequency', 500),
+    'Sound propagation is modelled in dry air at 20 °C (343 m/s).'
+  ),
+
+  atlas_ch10: A(
+    'Narrow Pinhole diameter d to 0.5 mm for a sharp inverted image, or set Earth orbital angle to 180° for Rømer’s 16.6-min lag!',
+    (s) => s.num('Pinhole aperture diameter', 1.5) <= 0.6 || s.num('Earth orbital angle', 180) >= 160 || s.interacted,
+    (s) => {
+      const d = s.num('Pinhole aperture diameter', 1.5), di = s.num('Camera box depth', 180), M = di / 360;
+      return `M = d_i ÷ d_o = ${M.toFixed(2)}×  |  blur = ${(d * (1 + M)).toFixed(2)} mm  |  brightness ∝ d² = ${(d * d).toFixed(2)}`;
+    },
+    'Straight rays from candle top and bottom cross at the pinhole to invert the image; across Earth’s 2 AU orbit, light takes 16.6 min to cross.',
+    'We see non-luminous pages only when diffusely scattered rays enter our pupil.', undefined,
+    'A 0.5 mm pinhole yields a crisp inverted image; a 4.5 mm hole blurs overlapping cones.', (s) => s.setSlider('Pinhole aperture diameter', 0.5),
+    'Deeper camera box d_i magnifies the inverted image linearly (M = d_i/d_o).',
+    'At conjunction (180°), Io’s eclipses arrive 16.6 minutes late across 2 AU.', (s) => s.setSlider('Earth orbital angle', 180),
+    'Geometric ray optics omits wave diffraction below ~0.3 mm.'
+  ),
+
+  atlas_ch11: A(
+    'Rotate Polaroid axis φ to 90° (vertical) to block 100% of Brewster pond glare, or inspect Raman’s Stokes shift!',
+    (s) => Math.abs(s.num('Polaroid sunglass axis', 90) - 90) <= 5 || s.interacted,
+    (s) => {
+      const phi = s.num('Polaroid sunglass axis', 90), tr = Math.round(Math.pow(Math.cos((phi * Math.PI) / 180), 2) * 100);
+      return `Brewster θ_B = 53.1°  |  Malus cos²(${phi}°) = ${tr}% glare  |  Raman Δν̃ = ${s.num('Molecular bond vibration', 459)} cm⁻¹`;
+    },
+    'Newton’s inverted second prism recombines the spectrum into white light; Raman inelastic scattering shifts photon energy by a vibrational quantum.',
+    'Violet bends more than red in glass; Newton’s second prism recombines them into white.', undefined,
+    'Water glare at 53.1° is horizontally polarized; a 90° vertical Polaroid blocks it.', (s) => s.setSlider('Polaroid sunglass axis', 90),
+    'Rotating the Polaroid to 0° transmits 100% of the surface glare.',
+    'Higher bond vibration frequency Δν̃ pushes the Raman Stokes line farther into the green.', (s) => s.setSlider('Molecular bond vibration', 1100),
+    'Crown glass dispersion uses a two-term Cauchy relation.'
+  ),
+
+  atlas_ch12: A(
+    'Raise Applied circuit voltage V above 3.5 V to compare I–V curves, or verify how a 2 Ω Earth wire trips the 15 A fuse!',
+    (s) => s.num('Applied circuit voltage', 3.5) >= 3.5 || s.interacted,
+    (s) => {
+      const V = s.num('Applied circuit voltage', 3.5), Re = s.num('Earth fault loop resistance', 2.0);
+      return `At V = ${V.toFixed(1)} V: I_ohmic = ${(V / 10).toFixed(2)} A  |  230 V fault: I = 230 ÷ ${Re.toFixed(1)} Ω = ${(230 / Re).toFixed(0)} A (blows 15 A fuse!)`;
+    },
+    'The top Earth pin is longer (connects first) and thicker (R_E ≈ 2 Ω) so a live-to-case fault triggers a 115 A surge that melts the fuse immediately.',
+    'A charged comb polarizes neutral paper bits, pulling closer +q upward.', (s) => s.setSlider('Charged comb height', 1.4),
+    'A battery pumps the wire’s existing conduction electrons around a closed loop.', undefined,
+    'Heating a tungsten filament scatters electrons and bends its I–V curve.',
+    'A 2 Ω Earth wire diverts fault current and blows the 15 A fuse safely.', (s) => s.setSlider('Earth fault loop resistance', 2.0),
+    'Mains voltage is 230 V RMS with a 15 A fuse threshold.'
+  ),
+
+  atlas_ch13: A(
+    'Raise External field B_ext above 0.75 T to align iron domains, or crank DC motor current I to 5.0 A!',
+    (s) => s.num('External magnetizing field', 0.45) >= 0.75 || s.num('DC motor armature current', 3.5) >= 5.0 || s.interacted,
+    (s) => {
+      const I = s.num('DC motor armature current', 3.5);
+      return `τ_max = N I A B = ${(20 * I * 0.02 * 0.5).toFixed(2)} N·m  |  c = 1/√(μ₀ε₀) = 2.998 × 10⁸ m/s`;
+    },
+    'Split-ring commutator halves swap brush polarity every 180° to keep torque one-way; in free space, E and B regenerate each other at speed c.',
+    'Microscopic magnetic domains inside soft iron align as B_ext rises.', (s) => s.setSlider('External magnetizing field', 0.85),
+    'Opposite currents on left and right coil branches create a continuous torque couple.', (s) => s.setSlider('DC motor armature current', 5.0),
+    'The split-ring commutator reverses coil current every half-turn.',
+    'Perpendicular E and B waves oscillate in phase at speed c.', (s) => s.setSlider('EM wave frequency', 2.25),
+    'Stator poles produce a uniform horizontal B-field across the rotor gap.'
+  ),
+
+  atlas_ch14: A(
+    'Set Full Moon angle from Line of Nodes to 0° for a lunar eclipse, then move to 45° to see why most Full Moons miss Earth’s shadow!',
+    (s) => s.num('Full Moon angle', 0) >= 30 || s.interacted,
+    (s) => {
+      const tilt = s.num('Earth axial tilt', 23.4), node = s.num('Full Moon angle', 0);
+      const miss = 60 * Math.sin((5.14 * Math.PI) / 180) * Math.sin((node * Math.PI) / 180);
+      return `Tilt ε = ${tilt.toFixed(1)}°  |  Lunar 5.14° tilt at ${node}° from node → shadow miss = ${miss.toFixed(2)} R_E`;
+    },
+    'At r = 60 R_E, the Moon’s 5.14° orbit tilt carries it up to 5.4 R_E above or below Earth’s shadow cone except near the Line of Nodes.',
+    'As Earth spins West-to-East at 15°/h, our local horizon boat turns eastward into sunlight.', undefined,
+    'Earth’s 23.4° axis stays parallel in space all year, driving the seasons.', (s) => s.setSlider('Orbital longitude', 90),
+    'In December (270°), the same parallel axis tilts the Northern Hemisphere away from the Sun.',
+    'Away from the nodes (60°), the 5.14° tilt lifts the Full Moon clear of Earth’s shadow.', (s) => s.setSlider('Full Moon angle', 60),
+    '3D orbital sizes are scaled for visibility while numerical readouts use exact 60 R_E geometry.'
+  ),
+
+  atlas_ch15: A(
+    'Lower Incident wavelength λ below 400 nm (UV) to eject photoelectrons, or raise White dwarf mass M toward 1.40 M_☉!',
+    (s) => s.num('Incident light wavelength', 340) <= 380 || s.num('White dwarf mass', 0.85) >= 1.3 || s.interacted,
+    (s) => {
+      const lam = s.num('Incident light wavelength', 340), hf = 1239.84 / lam, mWd = s.num('White dwarf mass', 0.85);
+      return `Photon hf = ${hf.toFixed(2)} eV (K_max = ${Math.max(0, hf - 2.3).toFixed(2)} eV)  |  White dwarf M = ${mWd.toFixed(2)} M_☉ (limit 1.44 M_☉)`;
+    },
+    'Light exchanges energy in quanta E = hf; in a white dwarf, Pauli electron degeneracy supports the star until relativistic collapse at 1.44 M_☉.',
+    'Red light (1.91 eV < φ) cannot eject electrons; UV (4.13 eV) discharges the gold leaf.', (s) => s.setSlider('Incident light wavelength', 300),
+    'Single photons land as discrete dots yet accumulate into wave interference fringes.', (s) => s.setSlider('Single-photon exposure', 195),
+    'Inside solar p–p fusion, 0.7% of proton mass becomes 26.7 MeV via ΔE = Δmc².',
+    'Raising white-dwarf mass toward 1.44 M_☉ shrinks its radius dramatically.', (s) => s.setSlider('White dwarf mass', 1.38),
+    'Work function φ = 2.30 eV; white dwarf radius uses the Chandrasekhar relativistic formula.'
+  ),
 };
