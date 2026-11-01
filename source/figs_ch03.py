@@ -185,6 +185,90 @@ def c3_pairs_person():
 
 
 @figure
+def c3_atwood():
+    f = Fig(640, 310, 'Left: George Atwood\'s pulley machine with m1 = 0.55 kg (weight 5.39 N) descending on the left '
+                      'and m2 = 0.45 kg (weight 4.41 N) rising on the right; tension T = 4.85 N pulls upward on both '
+                      'masses. Right: unfolding the rope into a straight coupled train shows net force (m1 - m2)g = 0.98 N '
+                      'accelerating total mass m1 + m2 = 1.00 kg at a = 0.98 m/s², with T sandwiched between m2 g and m1 g.')
+    f.line(292, 18, 292, 294, 'ln r')
+
+    # ---- Left panel: vertical pulley and hanging masses
+    f.text(146, 26, 'Atwood machine (1784)', 't b', 'middle', 13.5)
+    px, py, pr = 146, 78, 34
+    f.ground(96, 40, 100)
+    # Pulley bracket and wheel
+    f.path(f'M{px - 6},40 L{px - 6},{py} L{px + 6},{py} L{px + 6},40 Z', 'block')
+    f.circle(px, py, pr, 'plate')
+    f.circle(px, py, pr - 5, 'ln m')
+    f.circle(px, py, 4, 'fill-ink')
+
+    # Rope legs at xL = 112, xR = 180
+    xL, xR = px - pr, px + pr
+    y1, y2 = 176, 200  # block top y positions
+    f.line(xL, py, xL, y1, 'ln')
+    f.line(xR, py, xR, y2, 'ln')
+
+    # Blocks m1 (heavier, left) and m2 (lighter, right)
+    f.mass_block(xL - 26, y1, 52, 42, 'm₁', 13)
+    f.text(xL, y1 + 36, '0.55 kg', 't m', 'middle', 10.5)
+    f.mass_block(xR - 24, y2, 48, 36, 'm₂', 13)
+    f.text(xR, y2 + 31, '0.45 kg', 't m', 'middle', 10.5)
+
+    # Force arrows to scale (10 px per N): m1 g = 53.9 px, T = 48.5 px, m2 g = 44.1 px
+    f.force(xL, y1, 0, -49, '', 12)
+    f.text(xL - 8, y1 - 36, 'T = 4.85 N', 't p b', 'end', 11.5)
+    f.force(xL, y1 + 42, 0, 54, '', 12)
+    f.text(xL - 8, y1 + 88, 'm₁g = 5.39 N', 't p b', 'end', 11.5)
+
+    f.force(xR, y2, 0, -49, '', 12)
+    f.text(xR + 8, y2 - 36, 'T = 4.85 N', 't p b', 'start', 11.5)
+    f.force(xR, y2 + 36, 0, 44, '', 12)
+    f.text(xR + 8, y2 + 74, 'm₂g = 4.41 N', 't p b', 'start', 11.5)
+
+    # Acceleration vectors a on both sides
+    f.vector(xL - 38, y1 + 6, 0, 30, '', 12)
+    f.text(xL - 44, y1 + 24, 'a ↓', 't e b', 'end', 12)
+    f.vector(xR + 36, y2 + 32, 0, -30, '', 12)
+    f.text(xR + 42, y2 + 18, '↑ a', 't e b', 'start', 12)
+
+    # ---- Right panel: unfolded rope & Tension Sandwich
+    f.text(466, 26, 'Unfolded along the rope', 't b', 'middle', 13.5)
+    uy = 92
+    # Coupled blocks on a 1D line
+    f.mass_block(376, uy - 18, 56, 36, 'm₂', 12.5)
+    f.mass_block(500, uy - 20, 62, 40, 'm₁', 12.5)
+    # Rope between them with internal T arrows cancelling
+    f.line(432, uy, 500, uy, 'ln')
+    f.arrow(432, uy - 6, 462, uy - 6, 'force')
+    f.arrow(500, uy - 6, 470, uy - 6, 'force')
+    f.text(466, uy - 14, 'T and −T cancel inside', 't m', 'middle', 11)
+    # External weight pulls at ends
+    f.force(376, uy, -44, 0, '', 12)
+    f.text(350, uy + 24, 'm₂g = 4.41 N', 't p b', 'middle', 11.5)
+    f.force(562, uy, 54, 0, '', 12)
+    f.text(584, uy + 24, 'm₁g = 5.39 N', 't p b', 'middle', 11.5)
+
+    # Formulas & sandwich bar
+    f.text(466, 148, 'net pull = (m₁ − m₂)g = 0.98 N   |   total mass = m₁ + m₂ = 1.00 kg', 't m', 'middle', 11.5)
+    f.text(466, 172, 'a = (m₁ − m₂)g / (m₁ + m₂) = 0.98 m/s²  (1/10 of g)', 't s b', 'middle', 13)
+    f.text(466, 196, 'T = 2m₁m₂g / (m₁ + m₂) = 4.85 N', 't s b', 'middle', 13)
+
+    # Tension Sandwich visual scale
+    f.text(466, 228, 'The Tension Sandwich:  m₂g  &lt;  T  &lt;  m₁g', 't b', 'middle', 12.5)
+    bx0, bx1, by_bar = 346, 586, 254
+    f.line(bx0, by_bar, bx1, by_bar, 'ln', 'stroke-width="2"')
+    for x_tick, lab, sub, col in (
+        (bx0, 'm₂g = 4.41 N', 'so m₂ accelerates up', 't m'),
+        (454, 'T = 4.85 N', 'string tension', 't p b'),
+        (bx1, 'm₁g = 5.39 N', 'so m₁ accelerates down', 't m'),
+    ):
+        f.circle(x_tick, by_bar, 4.5, 'pt-p' if 'T =' in lab else 'fill-ink')
+        f.text(x_tick, by_bar + 18, lab, col, 'middle', 11.5)
+        f.text(x_tick, by_bar + 33, sub, 't m', 'middle', 10.5)
+    return f.svg()
+
+
+@figure
 def c3_momentum_carts():
     f = Fig(640, 236, 'Two rows of two carts. Before: a 0.350 kg cart moves right at 2 m/s towards a 0.500 kg cart '
                       'moving left at 0.5 m/s. After: the light cart moves left at 0.94 m/s and the heavy cart right at '

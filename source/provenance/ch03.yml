@@ -60,12 +60,14 @@
   research:
     - {what: "FCI truck-and-car item: 73% of about 900 students before instruction, 39% after; two luggage scales read equal to about ±0.1 kg", source: "research/misconceptions.md §3 (Maries & Singh, arXiv 1307.7177)", url: "https://arxiv.org/pdf/1307.7177"}
   history:
-    - {what: "Principia, London, 1687", source: "research/history.md §1 (Halley and the Principia)", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
+    - {what: "Principia, London, 1687; George Atwood's 1784 Cambridge pulley machine", source: "research/history.md §1 (Halley and the Principia)", url: "https://mathshistory.st-andrews.ac.uk/Biographies/Halley.html"}
   computed:
     - "Kym 40 kg (ASSUMED): weight 392 N; Earth's acceleration from her pull 392/5.97e24 = 6.6 × 10⁻²³ m/s² (written 'about 7 × 10⁻²³'); dial 10 kg → 98 N"
+    - "Atwood machine m1 = 0.55 kg, m2 = 0.45 kg (ASSUMED): m1 g = 5.39 N, m2 g = 4.41 N, a = 0.98 m/s², T = 4.851 N (4.85 N)"
   figures:
     - {name: c3_luggage_scales, origin: ours}
     - {name: c3_pairs_person, origin: "ours; the person-standing pairs follow 8.01SC Lesson 4.2"}
+    - {name: c3_atwood, origin: "ours; coupled pulley and unfolded-rope model following 8.01SC Week 2"}
   licence: "CC BY-NC-SA 4.0"
 "3.5":
   ocw:

@@ -232,45 +232,99 @@ def s_walk_graphs():
 # ---------------------------------------------------------------- vectors
 @figure
 def s_vectors():
-    f = Fig(640, 320, 'Left: a tug-of-war rope with four children pulling left (120, 100, 90 and 80 newtons, total 390) and '
-                      'three pulling right (150, 130 and 110 newtons, total 390), so the net force is zero. Right: a boat '
-                      'heading straight across a river at 3 metres per second while the current carries it along at 4 '
-                      'metres per second; the two arrows add head to tail to a resultant of 5 metres per second at about '
-                      '37 degrees to the bank.')
-    # ---- tug of war
-    f.text(160, 28, 'Adding along a line', 't b', 'middle', 14)
-    f.line(40, 150, 280, 150, 'ln', 'stroke-width="3"')
-    f.circle(160, 150, 5, 'fill-ink')
-    f.force(160, 150, -117, 0, '', 12)
-    f.force(160, 150, 117, 0, '', 12)
-    f.text(100, 134, '390 N left', 't p b', 'middle', 13)
-    f.text(220, 134, '390 N right', 't p b', 'middle', 13)
-    f.text(100, 180, '120 + 100 + 90 + 80', 't m', 'middle', 12)
-    f.text(220, 180, '150 + 130 + 110', 't m', 'middle', 12)
-    f.text(160, 212, 'net force on the rope: 390 − 390 = 0', 't b', 'middle', 13)
-    f.text(160, 232, 'so its motion does not change', 't m', 'middle', 12)
-    f.text(160, 262, 'arrows along one line: add the ones pointing', 't m', 'middle', 12)
-    f.text(160, 278, 'one way, subtract the ones pointing the other', 't m', 'middle', 12)
-    # ---- boat crossing a river
-    f.text(480, 28, 'Adding at an angle', 't b', 'middle', 14)
-    f.rect(340, 60, 280, 200, 'water', rx=0)
-    f.line(340, 60, 620, 60, 'ln')
-    f.line(340, 260, 620, 260, 'ln')
-    f.text(346, 76, 'far bank', 't m', 'start', 12)
-    f.text(346, 276, 'near bank', 't m', 'start', 12)
-    for y in (84, 104):
-        f.arrow(556, y, 604, y, 'muted', dash=True)
-    f.text(604, 76, 'current', 't m', 'end', 12)
-    bx, by = 400, 240
-    u = 30                                        # pixels per m/s
+    f = Fig(640, 320, 'Three vector diagrams side by side. Left: resolving one vector R into perpendicular horizontal '
+                      '(R_x = R cos theta) and vertical (R_y = R sin theta) components with R = sqrt(R_x^2 + R_y^2). '
+                      'Middle: a boat heading across a river at 3 m/s while a 4 m/s current carries it downstream, '
+                      'adding head to tail to 5 m/s at 37 degrees. Right: the parallelogram law for two vectors P and Q '
+                      'at angle theta, projecting P into P cos theta along Q and P sin theta perpendicular to Q so '
+                      'R = sqrt(P^2 + Q^2 + 2 P Q cos theta).')
+    # Dividers between the three panels
+    f.line(208, 18, 208, 304, 'ln r')
+    f.line(416, 18, 416, 304, 'ln r')
+
+    # ---- Panel 1: Resolving a vector into components
+    f.text(104, 26, '1. Resolve into shadows', 't b', 'middle', 13)
+    ox, oy = 34, 210
+    rx_len, ry_len = 128, 92
+    tx, ty = ox + rx_len, oy - ry_len
+    # Axes x and y
+    f.axis(ox, oy, 154, 128, 'x', 'y', size=12)
+    # Dashed projection drop-lines
+    f.line(tx, ty, tx, oy, 'ln m dash')
+    f.line(tx, ty, ox, ty, 'ln m dash')
+    # Right-angle box at (tx, oy)
+    f.path(f'M{tx - 8},{oy} L{tx - 8},{oy - 8} L{tx},{oy - 8}', 'ln m')
+    # Components Rx (horizontal) and Ry (vertical)
+    f.vector(ox, oy, rx_len, 0, '', 12)
+    f.vector(ox, oy, 0, -ry_len, '', 12)
+    # Resultant R
+    f.arrow(ox, oy, tx, ty, 'ink', width=2.5)
+    # Angle arc theta
+    f.path(f'M{ox + 34},{oy} A34,34 0 0 0 {ox + 28},{oy - 20}', 'ln')
+    f.text(ox + 42, oy - 7, 'θ', 't s b', 'start', 13)
+    f.text(ox + rx_len * 0.45, oy - ry_len * 0.56 - 8, 'R', 't s b', 'middle', 14)
+    f.text(ox + rx_len * 0.5, oy + 20, 'R_x = R cos θ', 't e b', 'middle', 12)
+    f.text(ox - 6, oy - ry_len * 0.5 + 4, 'R_y', 't e b', 'end', 12)
+    f.text(104, 262, 'R_y = R sin θ', 't e', 'middle', 12)
+    f.text(104, 282, 'R = √(R_x² + R_y²)', 't s b', 'middle', 12.5)
+    f.text(104, 300, 'one arrow → two 90° pieces', 't m', 'middle', 11.5)
+
+    # ---- Panel 2: Adding at 90 degrees (Boat in a river)
+    f.text(312, 26, '2. Add at 90° (head to tail)', 't b', 'middle', 13)
+    f.rect(220, 48, 184, 172, 'water', rx=0)
+    f.line(220, 48, 404, 48, 'ln')
+    f.line(220, 220, 404, 220, 'ln')
+    f.text(226, 62, 'far bank', 't m', 'start', 11)
+    f.text(226, 234, 'near bank', 't m', 'start', 11)
+    bx, by = 262, 204
+    u = 28  # px per m/s
     f.vector(bx, by, 0, -3 * u, '', 12)
-    f.text(bx - 8, by - 1.5 * u + 4, '3 m/s across', 't e', 'end', 12)
+    f.text(bx - 6, by - 1.5 * u + 4, '3 m/s', 't e b', 'end', 12)
     f.vector(bx, by - 3 * u, 4 * u, 0, '', 12, kind='muted', dash=True)
-    f.text(bx + 2 * u, by - 3 * u - 8, '4 m/s with the current', 't m', 'middle', 12)
+    f.text(bx + 2 * u, by - 3 * u - 8, '4 m/s current', 't m', 'middle', 11.5)
     f.arrow(bx, by, bx + 4 * u, by - 3 * u, 'ink', width=2.5)
-    f.text(bx + 2 * u + 14, by - 1.2 * u, 'resultant 5 m/s', 't b', 'start', 13)
-    f.text(bx + 2 * u + 14, by - 1.2 * u + 16, 'about 37° to the bank', 't m', 'start', 12)
-    f.text(480, 300, 'head to tail: each arrow starts where the last ends', 't m', 'middle', 12)
+    f.text(bx + 2 * u + 10, by - 1.35 * u, '5 m/s', 't b', 'start', 13)
+    f.text(bx + 2 * u + 10, by - 1.35 * u + 15, 'at 37°', 't m', 'start', 11.5)
+    f.text(312, 262, 'tug of war on 1 line:', 't m', 'middle', 11.5)
+    f.text(312, 280, '390 N left − 390 N right = 0 N', 't b', 'middle', 11.5)
+    f.text(312, 300, 'at 90°: R = √(3² + 4²) = 5 m/s', 't m', 'middle', 11.5)
+
+    # ---- Panel 3: Parallelogram Law at any angle theta
+    f.text(528, 26, '3. Parallelogram law (any θ)', 't b', 'middle', 13)
+    px0, py0 = 432, 210
+    q_len = 104
+    p_len = 86
+    ang = math.radians(55)
+    p_dx = round(p_len * math.cos(ang), 1)   # ~49.3
+    p_dy = round(p_len * math.sin(ang), 1)   # ~70.4
+    qx, qy = px0 + q_len, py0
+    px_top, py_top = px0 + p_dx, py0 - p_dy
+    rx_tip, ry_tip = qx + p_dx, py0 - p_dy
+
+    # Parallelogram dashed top and slant sides
+    f.line(px_top, py_top, rx_tip, ry_tip, 'ln m dash')
+    f.line(qx, qy, rx_tip, ry_tip, 'ln m dash')
+    # Right-triangle extension showing P cos theta and P sin theta
+    f.line(qx, qy, rx_tip, qy, 'ln e dash')
+    f.line(rx_tip, ry_tip, rx_tip, qy, 'ln e dash')
+    f.path(f'M{rx_tip - 8},{qy} L{rx_tip - 8},{qy - 8} L{rx_tip},{qy - 8}', 'ln m')
+
+    # Vectors P, Q, and resultant R
+    f.force(px0, py0, q_len, 0, '', 12)
+    f.force(px0, py0, p_dx, -p_dy, '', 12)
+    f.arrow(px0, py0, rx_tip, ry_tip, 'ink', width=2.5)
+    # Angle arc theta between P and Q
+    f.path(f'M{px0 + 28},{py0} A28,28 0 0 0 {px0 + 16},{py0 - 23}', 'ln')
+    f.text(px0 + 33, py0 - 8, 'θ', 't s b', 'start', 13)
+    # Labels for P, Q, R, P cos theta, P sin theta
+    f.text(px0 + p_dx * 0.42 - 10, py0 - p_dy * 0.55, 'P', 't p b', 'end', 13)
+    f.text(px0 + q_len * 0.48, py0 + 18, 'Q', 't p b', 'middle', 13)
+    f.text(px0 + (q_len + p_dx) * 0.48 - 4, py0 - p_dy * 0.55 - 6, 'R', 't s b', 'end', 14)
+    f.text((qx + rx_tip) / 2, qy + 18, 'P cos θ', 't e', 'middle', 11.5)
+    f.text(rx_tip + 6, (qy + ry_tip) / 2 + 4, 'P sin θ', 't e', 'start', 11.5)
+    f.text(528, 258, 'base = Q + P cos θ, height = P sin θ', 't m', 'middle', 11.5)
+    f.text(528, 280, 'R = √(P² + Q² + 2PQ cos θ)', 't s b', 'middle', 12.5)
+    f.text(528, 300, '2PQ cos θ is the alignment bonus', 't m', 'middle', 11.5)
     return f.svg()
 
 

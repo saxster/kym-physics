@@ -1108,4 +1108,55 @@ export const ENHANCEMENTS = {
     'Raising white-dwarf mass toward 1.44 M_☉ shrinks its radius dramatically.', (s) => s.setSlider('White dwarf mass', 1.38),
     'Work function φ = 2.30 eV; white dwarf radius uses the Chandrasekhar relativistic formula.'
   ),
+
+  vectors: {
+    challenge: {
+      prompt: 'Switch to "Parallelogram law", set P = 60 N, Q = 80 N, and find the angle θ where the resultant R is exactly 100 N (Pythagoras!).',
+      check: (s) => s.tab(0) === 1 && Math.abs(s.num('Angle θ', 50) - 90) <= 5 && Math.abs(s.num('Arrow P', 80) - 60) <= 5 && Math.abs(s.num('Arrow Q', 60) - 80) <= 5,
+    },
+    yourNumbers: (s) => {
+      const deg = s.num('Angle θ', 50), rad = (deg * Math.PI) / 180;
+      const P = s.num('Arrow P', 80), Q = s.num('Arrow Q', 60);
+      if (s.tab(0) === 0) return `R_x = ${P} cos ${deg}° = ${(P * Math.cos(rad)).toFixed(1)} N  |  R_y = ${P} sin ${deg}° = ${(P * Math.sin(rad)).toFixed(1)} N  |  √(R_x² + R_y²) = ${P.toFixed(1)} N`;
+      if (s.tab(0) === 1) {
+        const R = Math.sqrt(P * P + Q * Q + 2 * P * Q * Math.cos(rad));
+        return `R = √(${P}² + ${Q}² + 2·${P}·${Q} cos ${deg}°) = ${R.toFixed(1)} N`;
+      }
+      const rDeg = Math.min(deg, 75), rRad = (rDeg * Math.PI) / 180;
+      return `Down-slope: mg sin ${rDeg}° = ${(P * Math.sin(rRad)).toFixed(1)} N  |  Into slope: mg cos ${rDeg}° = ${(P * Math.cos(rRad)).toFixed(1)} N`;
+    },
+    cutaway: 'Every 2D vector equation is two independent 1D equations at right angles: what happens along x has zero projection along y because cos 90° = 0.',
+    watch: [
+      { title: '1. Wide view', caption: '1/5 Wide shot: One tilted arrow R casts two perpendicular shadows, R_x = R cos θ and R_y = R sin θ.', act: (s) => { s.selectTab(0, 0); s.setSlider('Angle θ', 40); s.setSlider('Arrow P', 80); } },
+      { title: '2. Close-up', caption: '2/5 Close-up: In the Parallelogram Law, projecting P into P cos θ and P sin θ builds a right triangle of base Q + P cos θ.', act: (s) => { s.selectTab(0, 1); s.setSlider('Angle θ', 60); s.setSlider('Arrow P', 60); s.setSlider('Arrow Q', 80); } },
+      { title: '3. Cut-away', caption: '3/5 Cut-away: At θ = 90°, cos 90° = 0 so the 2PQ cos θ alignment bonus vanishes and R = √(P² + Q²).', cutaway: true, act: (s) => s.setSlider('Angle θ', 90) },
+      { title: '4. Side-on trend', caption: '4/5 Trend: On a tilted ramp, gravity mg splits into mg sin θ along the slope and mg cos θ into the boards.', act: (s) => { s.selectTab(0, 2); s.setSlider('Angle θ', 30); } },
+      { title: '5. Your turn', caption: '5/5 Your turn: Sweep θ from 0° to 180° or test ramp components.', cutaway: false },
+    ],
+    idealised: 'Vectors here lie in a flat 2D plane; in 3D space a third perpendicular component R_z joins so R = √(R_x² + R_y² + R_z²).',
+  },
+
+  atwood: {
+    challenge: {
+      prompt: 'Dilute gravity to exactly one-tenth of free fall (a = 0.98 m/s²): set m₁ = 0.55 kg and m₂ = 0.45 kg.',
+      check: (s) => Math.abs(s.num('Left mass m₁', 0.55) - 0.55) < 0.02 && Math.abs(s.num('Right mass m₂', 0.45) - 0.45) < 0.02 && s.interacted,
+    },
+    yourNumbers: (s) => {
+      const m1 = s.num('Left mass m₁', 0.55), m2 = s.num('Right mass m₂', 0.45);
+      const a = ((m1 - m2) * G) / (m1 + m2);
+      const T = (2 * m1 * m2 * G) / (m1 + m2);
+      return `a = (${m1.toFixed(2)} − ${m2.toFixed(2)}) × 9.8 ÷ ${(m1 + m2).toFixed(2)} = ${a.toFixed(2)} m/s²  |  T = ${T.toFixed(2)} N`;
+    },
+    cutaway: 'Unfolding the rope reveals a 1D coupled train: internal tensions +T and −T cancel across the rope while the external weight difference (m₁ − m₂)g accelerates the combined inertia m₁ + m₂.',
+    watch: [
+      { title: '1. Wide view', caption: '1/5 Wide shot: Two nearly equal masses (0.55 kg and 0.45 kg) dilute free fall to a gentle 0.98 m/s².', act: (s) => { s.setSlider('Left mass m₁', 0.55); s.setSlider('Right mass m₂', 0.45); } },
+      { title: '2. Close-up', caption: '2/5 Close-up: Equal masses (0.50 kg each) give zero net driving force and T = mg = 4.90 N.', act: (s) => { s.setSlider('Left mass m₁', 0.50); s.setSlider('Right mass m₂', 0.50); } },
+      { title: '3. Cut-away', caption: '3/5 Cut-away: Inside the Tension Sandwich, T must beat the lighter weight m₂g so m₂ rises, yet stay below m₁g so m₁ falls.', cutaway: true, act: (s) => { s.selectTab(0, 1); s.setSlider('Left mass m₁', 0.80); s.setSlider('Right mass m₂', 0.30); } },
+      { title: '4. Side-on trend', caption: '4/5 Trend: A large imbalance (1.00 kg vs 0.20 kg) drives acceleration up to two-thirds of g (6.53 m/s²).', act: (s) => { s.selectTab(0, 0); s.setSlider('Left mass m₁', 1.00); s.setSlider('Right mass m₂', 0.20); } },
+      { title: '5. Your turn', caption: '5/5 Your turn: Adjust m₁ and m₂ to test any mass ratio on Atwood’s pulley.', cutaway: false },
+    ],
+    idealised: 'The rope is treated as massless and unstretchable, and the pulley wheel as frictionless and massless (a real pulley adds rotational inertia I/R² to the denominator).',
+  },
 };
+
+if (typeof window !== 'undefined') window.__liveEnhancements = ENHANCEMENTS;

@@ -39,5 +39,19 @@ class ReaderBuild(unittest.TestCase):
             self.assertTrue((SITE/font).is_file(), font)
             self.assertIn('./'+font, files)
 
+    def test_every_equation_matches_equation_inspector_db(self):
+        import html as html_mod
+        page = (SITE/'index.html').read_text()
+        eq_blocks = [
+            re.sub(r'\s+', ' ', html_mod.unescape(re.sub(r'<[^>]+>', '', raw))).strip()
+            for raw in re.findall(r'<p class="eq">(.*?)</p>', page, re.S)
+        ]
+        self.assertGreaterEqual(len(eq_blocks), 45)
+        eq_js = (Path(__file__).resolve().parents[1] / 'app/m_equations.js').read_text()
+        patterns = [re.compile(m, re.I) for m in re.findall(r'match:\s*/(.*?)/i', eq_js)]
+        self.assertGreaterEqual(len(patterns), 35)
+        unmatched = [eq for eq in eq_blocks if not any(p.search(eq) for p in patterns)]
+        self.assertEqual(unmatched, [], f'Unmatched :::eq blocks: {unmatched}')
+
 if __name__ == '__main__':
     unittest.main()

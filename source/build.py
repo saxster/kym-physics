@@ -865,15 +865,15 @@ def widget_meta(name):
 
 
 def bundle_live_inline(names, tag):
-    """--out mode: live/core.js + every widget the build uses, in one IIFE."""
+    """--out mode: live/core.js + enhancements.js + every widget the build uses, in one IIFE."""
     if not names:
         return ''
-    src = "import './core.js';\n" + ''.join(f"import './w_{n}.js';\n" for n in names)
+    src = "import './enhancements.js';\nimport './core.js';\n" + ''.join(f"import './w_{n}.js';\n" for n in names)
     return iife(src, tag, os.path.join(ROOT, 'live'))
 
 
 def bundle_live_runtime(tag):
-    """--site mode: only the runtime (buttons, controls, lazy loading); widgets arrive as chunks."""
+    """--site mode: only the runtime (buttons, controls, lazy loading); widgets and enhancements arrive as chunks."""
     return iife("import './core.js';\n", tag, os.path.join(ROOT, 'live'))
 
 
@@ -930,6 +930,9 @@ def build_chunks(site_dir, widget_names):
     shutil.rmtree(live_out, ignore_errors=True)
     os.makedirs(live_out)
     entries = {f'w_{n}': os.path.join(ROOT, 'live', f'w_{n}.js') for n in widget_names}
+    enh_path = os.path.join(ROOT, 'live', 'enhancements.js')
+    if os.path.exists(enh_path):
+        entries['enhancements'] = enh_path
     entries.update({os.path.splitext(os.path.basename(p))[0]: p for p in sorted(glob.glob(os.path.join(ROOT, 'app', 'x_*.js')))})
     entries.update({f'spread_{k}': p for k, p in spread_entries().items()})
     tmp = os.path.join(ROOT, 'build', '.chunks')

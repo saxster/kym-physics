@@ -4,7 +4,6 @@
 // In the single-file build every widget is bundled with this runtime; in the --site build each widget is a
 // lazy ES-module chunk (window.BOOK_CHUNKS maps "w_<name>" to its file) imported when the reader taps its button.
 
-import { ENHANCEMENTS } from './enhancements.js';
 import { makeColourResolver } from './css_colour.mjs';
 
 const EL = {
@@ -807,7 +806,7 @@ function makeSnapshot(ext) {
 }
 
 function attachEnhancements(name, fig, stage, controls, api, openBtn) {
-  const def = ENHANCEMENTS[name] || {};
+  const def = (window.__liveEnhancements || {})[name] || {};
   const ext = api._ext;
   const snap = makeSnapshot(ext);
   const chal = ext.challenge || def.challenge;
@@ -1103,7 +1102,12 @@ function setup(fig) {
     const setLabel = text => { const span = option.button.querySelector('span'); if (span) span.textContent = text; else option.button.textContent = text; };
     if (!widgets[name]) {
       available.forEach(o => { o.button.disabled = true; }); setLabel('Loading…');
-      try { await loadChunk('w_' + name); } catch (e) { /* reported below */ }
+      try {
+        await Promise.all([
+          loadChunk('w_' + name),
+          !window.__liveEnhancements && chunkURL('enhancements') ? loadChunk('enhancements').catch(() => {}) : null,
+        ]);
+      } catch (e) { /* reported below */ }
       if (ticket !== generation || requestOrder!==liveRequestSequence) {
         if(ticket===generation)available.forEach(o=>{o.button.disabled=false;});
         setLabel(option.label);return;
@@ -1117,6 +1121,9 @@ function setup(fig) {
           : 'This live figure could not load. Check the connection and try again.';
         return;
       }
+    } else if (!window.__liveEnhancements && chunkURL('enhancements')) {
+      try { await loadChunk('enhancements'); } catch (_) { /* optional */ }
+      if (ticket !== generation || requestOrder !== liveRequestSequence) return;
     }
     w = widgets[name];
     fig.querySelector('.live-fail')?.remove();

@@ -88,3 +88,49 @@ for colour in ('light-blue','light-red'):
             y=float(e.attrib['y1'])+(310-288)/(325-288)*(float(e.attrib['y2'])-float(e.attrib['y1']))
             assert 134.5<y<211.5
 print('Eye: two points focus inverted and all model rays clear the pupil')
+
+# Vector diagram (s_vectors): Panel 1 component resolution must obey Pythagoras (R = hypot(Rx, Ry)),
+# and Panel 3 parallelogram law must obey R = hypot(Q + P cos theta, P sin theta).
+from figs_stories_energy import s_vectors
+vec_lines = svg_elements(s_vectors(), 'line')
+# Panel 1 origin is (34, 210): check Rx, Ry, and resultant R
+p1_from_origin = [
+    e for e in vec_lines
+    if e.attrib.get('x1') == '34' and e.attrib.get('y1') == '210'
+    and 'ar-' in e.attrib.get('class', '')
+]
+assert len(p1_from_origin) == 3, len(p1_from_origin)
+p1_vecs = [(float(e.attrib['x2']) - 34, 210 - float(e.attrib['y2'])) for e in p1_from_origin]
+rx_vec = next(v for v in p1_vecs if v[1] == 0 and v[0] > 0)
+ry_vec = next(v for v in p1_vecs if v[0] == 0 and v[1] > 0)
+r_vec = next(v for v in p1_vecs if v[0] > 0 and v[1] > 0)
+assert math.isclose(r_vec[0], rx_vec[0], abs_tol=0.1)
+assert math.isclose(r_vec[1], ry_vec[1], abs_tol=0.1)
+assert math.isclose(math.hypot(*r_vec), math.hypot(rx_vec[0], ry_vec[1]), abs_tol=0.1)
+# Panel 3 origin is (432, 210): check Q, P, and resultant R = P + Q
+p3_from_origin = [
+    e for e in vec_lines
+    if e.attrib.get('x1') == '432' and e.attrib.get('y1') == '210'
+    and 'ar-' in e.attrib.get('class', '')
+]
+assert len(p3_from_origin) == 3, len(p3_from_origin)
+p3_vecs = [(float(e.attrib['x2']) - 432, 210 - float(e.attrib['y2'])) for e in p3_from_origin]
+q_vec = next(v for v in p3_vecs if v[1] == 0)
+p_vec, r3_vec = sorted([v for v in p3_vecs if v[1] > 0], key=lambda v: v[0])
+assert math.isclose(r3_vec[0], q_vec[0] + p_vec[0], abs_tol=0.2)
+assert math.isclose(r3_vec[1], q_vec[1] + p_vec[1], abs_tol=0.2)
+print('s_vectors: component resolution and parallelogram addition geometry verified')
+
+# Atwood machine (c3_atwood): Tension arrow length (49 px) must be strictly sandwiched
+# between m2 g arrow length (44 px) and m1 g arrow length (54 px).
+from figs_ch03 import c3_atwood
+atw_forces = [
+    e for e in svg_elements(c3_atwood(), 'line')
+    if 'ar-force' in e.attrib.get('class', '') and float(e.attrib['x1']) < 250
+]
+assert len(atw_forces) == 4
+up_tensions = [float(e.attrib['y1']) - float(e.attrib['y2']) for e in atw_forces if float(e.attrib['y2']) < float(e.attrib['y1'])]
+down_weights = sorted([float(e.attrib['y2']) - float(e.attrib['y1']) for e in atw_forces if float(e.attrib['y2']) > float(e.attrib['y1'])])
+assert len(up_tensions) == 2 and up_tensions[0] == up_tensions[1]
+assert down_weights[0] < up_tensions[0] < down_weights[1]
+print('c3_atwood: equal upward tensions strictly sandwiched between m2 g and m1 g')
