@@ -48,7 +48,7 @@ export function createAssemblyController(ASM = {}) {
     }
   }
   const toPlane = p => p?.isPlane ? p : Array.isArray(p) ? new THREE.Plane(new THREE.Vector3(p[0], p[1], p[2]).normalize(), p[3] ?? 0) : null;
-  function setCutaway(planes, asmKeys = null) {
+  function setCutaway(planes, asmKeys = null, opts = {}) {
     const list = (Array.isArray(planes) && typeof planes[0] !== 'number' ? planes : planes ? [planes] : []).map(toPlane).filter(Boolean);
     const groups = asmKeys ? asmKeys.map(k => ASM[k]).filter(Boolean) : Object.values(ASM);
     for (const g of groups) {
@@ -56,11 +56,24 @@ export function createAssemblyController(ASM = {}) {
       for (const m of meshesOf(g)) {
         if (m.userData.noCut) continue;
         const mat = ensureOwnMat(m);
+        const isTrans = !!mat.transparent;
         mat.clipping = list.length > 0;
         mat.clippingPlanes = list.length ? list : null;
-        mat.side = list.length ? THREE.DoubleSide : THREE.FrontSide;
+        mat.side = list.length && !isTrans ? THREE.DoubleSide : THREE.FrontSide;
+        if (mat.uniforms?.uHasPoche) {
+          const usePoche = list.length > 0 && !isTrans && (m.userData.poche ?? !!opts.poche);
+          mat.uniforms.uHasPoche.value = usePoche ? 1 : 0;
+        }
         mat.needsUpdate = true;
       }
+      g.traverse(o => {
+        if (!(o.isLine || o.isLineSegments)) return;
+        for (let p = o; p && p !== g; p = p.parent) if (p.userData?.noCut) return;
+        const mat = ensureOwnMat(o);
+        mat.clipping = list.length > 0;
+        mat.clippingPlanes = list.length ? list : null;
+        mat.needsUpdate = true;
+      });
     }
   }
   function setXray(amount = 0, asmKeys = null) {
@@ -85,6 +98,15 @@ export function createAssemblyController(ASM = {}) {
       }
     }
   }
+  function applyEx(o, k) {
+    const u = o.userData, p = u._postEx;
+    if (!p) { u.home.copy(o.position); u._postEx = o.position.clone(); }
+    else { if (o.position.x !== p.x) u.home.x = o.position.x; if (o.position.y !== p.y) u.home.y = o.position.y; if (o.position.z !== p.z) u.home.z = o.position.z; }
+    o.position.copy(u.home).addScaledVector(u.ex, k); u._postEx.copy(o.position);
+  }
+  function resetExplode() {
+    for (const g of Object.values(ASM)) g.traverse(o => { if (o !== g && o.userData.home && o.userData.ex?.lengthSq() > 0) applyEx(o, 0); });
+  }
   function setExplode(amount = 0, asmKeys = null, immediate = false) {
     const k = Math.max(0, amount);
     const groups = asmKeys ? asmKeys.map(key => ASM[key]).filter(Boolean) : Object.values(ASM);
@@ -93,7 +115,7 @@ export function createAssemblyController(ASM = {}) {
       if (immediate) {
         g.userData.explode = k;
         g.userData.vel = 0;
-        g.traverse(o => { if (o !== g && o.userData.home && o.userData.ex && o.userData.ex.lengthSq() > 0) o.position.copy(o.userData.home).addScaledVector(o.userData.ex, k); });
+        g.traverse(o => { if (o !== g && o.userData.home && o.userData.ex && o.userData.ex.lengthSq() > 0) applyEx(o, k); });
       }
     }
   }
@@ -104,10 +126,10 @@ export function createAssemblyController(ASM = {}) {
       u.explode += u.vel * dt;
       if (Math.abs(u.explode - u.target) < 1e-4 && Math.abs(u.vel) < 1e-4) { u.explode = u.target; u.vel = 0; }
       const e = Math.max(u.explode, 0);
-      g.traverse(o => { if (o !== g && o.userData.home && o.userData.ex && o.userData.ex.lengthSq() > 0) o.position.copy(o.userData.home).addScaledVector(o.userData.ex, e); });
+      g.traverse(o => { if (o !== g && o.userData.home && o.userData.ex && o.userData.ex.lengthSq() > 0) applyEx(o, e); });
     }
   }
-  return { ASM, meshesOf, asm, setLit, setCutaway, setXray, setIsolate, setExplode, stepExplode };
+  return { ASM, meshesOf, asm, setLit, setCutaway, setXray, setIsolate, resetExplode, setExplode, stepExplode };
 }
 
 // theme: a host book's colours ({ sheet, ink, red?, blue?, … }, see parts.js applyTheme); without one, the atlas's paper
@@ -122,7 +144,7 @@ export function createEngine(canvas, { fov = 18, near = 0.1, far = 400, bg = '#f
   renderer.localClippingEnabled = true;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(fov, 1, near, far);
-  const { ASM, meshesOf, asm, setLit, setCutaway, setXray, setIsolate, setExplode, stepExplode } = createAssemblyController({});
+  const { ASM, meshesOf, asm, setLit, setCutaway, setXray, setIsolate, resetExplode, setExplode, stepExplode } = createAssemblyController({});
 
   // ---------- normal pass: view normal in rgb, line tone in alpha ----------
   const nmats = new Map();
@@ -150,7 +172,8 @@ export function createEngine(canvas, { fov = 18, near = 0.1, far = 400, bg = '#f
         #include <clipping_planes_pars_fragment>
         uniform float uTone; varying vec3 vN; void main(){
         #include <clipping_planes_fragment>
-        gl_FragColor = vec4(normalize(vN) * 0.5 + 0.5, uTone);
+        vec3 n = normalize(vN) * (gl_FrontFacing ? 1.0 : -1.0);
+        gl_FragColor = vec4(n * 0.5 + 0.5, uTone);
       }`,
     }));
     return nmats.get(key);
@@ -276,7 +299,18 @@ export function createEngine(canvas, { fov = 18, near = 0.1, far = 400, bg = '#f
     return best;
   }
 
-  function placeCamera({ target, az, el, dist }) {
+  function placeCamera({ target, az, el, dist, fov }) {
+    const nextFov = fov ?? camera.fov;
+    const nPlane = Math.max(0.08, dist > 40 ? dist * 0.15 : near);
+    const fPlane = Math.max(far, dist * 2.5);
+    if (Math.abs(camera.fov - nextFov) > 1e-4 || Math.abs(camera.near - nPlane) > 1e-3 || Math.abs(camera.far - fPlane) > 1e-2) {
+      camera.fov = nextFov;
+      camera.near = nPlane;
+      camera.far = fPlane;
+      camera.updateProjectionMatrix();
+      edges.uniforms.cameraNear.value = nPlane;
+      edges.uniforms.cameraFar.value = fPlane;
+    }
     const a = THREE.MathUtils.degToRad(az), e = THREE.MathUtils.degToRad(el);
     camera.position.set(target[0] + dist * Math.sin(a) * Math.cos(e), target[1] + dist * Math.sin(e), target[2] + dist * Math.cos(a) * Math.cos(e));
     camera.lookAt(...target);
@@ -297,5 +331,5 @@ export function createEngine(canvas, { fov = 18, near = 0.1, far = 400, bg = '#f
     if (!retainContext && !renderer.getContext().isContextLost()) renderer.forceContextLoss();
   }
 
-  return { THREE, renderer, scene, camera, ASM, asm, resize, setDprCap, render, setLit, setCutaway, setXray, setIsolate, setExplode, warm, pick, stepExplode, placeCamera, distFor, toScreen, theme: th, dispose };
+  return { THREE, renderer, scene, camera, ASM, asm, resize, setDprCap, render, setLit, setCutaway, setXray, setIsolate, resetExplode, setExplode, warm, pick, stepExplode, placeCamera, distFor, toScreen, theme: th, dispose };
 }

@@ -105,16 +105,16 @@ def c0_rulers():
         f.text(zx+k*step,zy+23,str(35+k),'t','middle',12)
     f.text(zx+1.5*step,zy-36,'36.5 mm','t p b','middle',12)
     # Bullseye inset: precise vs accurate
-    for tx, lbl, pts in ((475, 'precise, not accurate', [(9, -9), (11, -7), (8, -11), (12, -10)]),
-                         (562, 'precise & accurate', [(-2, 1), (2, -1), (0, 2), (-1, -2)])):
-        ty = 342
-        f.circle(tx, ty, 19, 'ln m')
-        f.circle(tx, ty, 9, 'ln m')
+    for tx, lbl_lines, pts in ((470, ['precise,', 'not accurate'], [(9, -9), (11, -7), (8, -11), (12, -10)]),
+                               (574, ['precise &', 'accurate'], [(-2, 1), (2, -1), (0, 2), (-1, -2)])):
+        ty = 338
+        f.circle(tx, ty, 18, 'ln m')
+        f.circle(tx, ty, 8.5, 'ln m')
         f.circle(tx, ty, 2, 'fill-ink')
         for dx, dy in pts:
             f.circle(tx + dx, ty + dy, 2.3, 'fill-vol')
-        f.text(tx, ty + 33, lbl, 't m', 'middle', 10.5)
-    f.text(320, 408, 'Finer divisions give better precision; checking the zero gives accuracy.', 't m', 'middle', 13)
+        f.lines(tx, ty + 30, lbl_lines, 't m', 'middle', 12, lh=1.18)
+    f.text(320, 410, 'Finer divisions give better precision; checking the zero gives accuracy.', 't m', 'middle', 13)
     return f.svg()
 
 

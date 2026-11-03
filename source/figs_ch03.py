@@ -209,10 +209,12 @@ def c3_atwood():
     f.line(xR, py, xR, y2, 'ln')
 
     # Blocks m1 (heavier, left) and m2 (lighter, right)
-    f.mass_block(xL - 26, y1, 52, 42, 'm₁', 13)
-    f.text(xL, y1 + 36, '0.55 kg', 't m', 'middle', 10.5)
-    f.mass_block(xR - 24, y2, 48, 36, 'm₂', 13)
-    f.text(xR, y2 + 31, '0.45 kg', 't m', 'middle', 10.5)
+    f.mass_block(xL - 26, y1, 52, 42, '', 13)
+    f.text(xL, y1 + 18, 'm₁', 't b', 'middle', 13)
+    f.text(xL, y1 + 35, '0.55 kg', 't m', 'middle', 11)
+    f.mass_block(xR - 24, y2, 48, 36, '', 13)
+    f.text(xR, y2 + 15, 'm₂', 't b', 'middle', 13)
+    f.text(xR, y2 + 31, '0.45 kg', 't m', 'middle', 11)
 
     # Force arrows to scale (10 px per N): m1 g = 53.9 px, T = 48.5 px, m2 g = 44.1 px
     f.force(xL, y1, 0, -49, '', 12)
@@ -255,11 +257,11 @@ def c3_atwood():
 
     # Tension Sandwich visual scale
     f.text(466, 228, 'The Tension Sandwich:  m₂g  &lt;  T  &lt;  m₁g', 't b', 'middle', 12.5)
-    bx0, bx1, by_bar = 346, 586, 254
+    bx0, bx1, by_bar = 352, 574, 254
     f.line(bx0, by_bar, bx1, by_bar, 'ln', 'stroke-width="2"')
     for x_tick, lab, sub, col in (
         (bx0, 'm₂g = 4.41 N', 'so m₂ accelerates up', 't m'),
-        (454, 'T = 4.85 N', 'string tension', 't p b'),
+        (463, 'T = 4.85 N', 'string tension', 't p b'),
         (bx1, 'm₁g = 5.39 N', 'so m₁ accelerates down', 't m'),
     ):
         f.circle(x_tick, by_bar, 4.5, 'pt-p' if 'T =' in lab else 'fill-ink')

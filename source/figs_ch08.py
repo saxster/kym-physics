@@ -207,11 +207,11 @@ def c8_heating_curve():
     pts = [(X(0), Y(-20)), (X(41.8), Y(0)), (X(375.8), Y(0)), (X(794.4), Y(100)), (X(total), Y(100))]
     d = 'M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in pts)
     f.path(d, 'ln e')
-    # labels, each with a leader line so none sits on the axes
-    f.line(X(21), Y(-10), X(420), Y(-12), 'ln m')
-    f.text(X(430), Y(-12) + 4, 'ice warms from −20 to 0 °C: 42 kJ', 't m', 'start', 12)
-    f.line(X(210), Y(0), X(520), Y(28), 'ln m')
-    f.text(X(530), Y(28) + 4, 'melting at 0 °C: 334 kJ, no temperature change', 't m', 'start', 12)
+    # labels, each with a leader line so none sits on the axes or crosses the curve
+    f.line(X(21), Y(-11), X(430), Y(-13.5), 'ln m')
+    f.text(X(440), Y(-13.5) + 4, 'ice warms from −20 to 0 °C: 42 kJ', 't m', 'start', 12)
+    f.line(X(250), Y(0), X(430), Y(-2.5), 'ln m')
+    f.text(X(440), Y(-2.5) + 4, 'melting at 0 °C: 334 kJ, no temperature change', 't m', 'start', 12)
     f.line(X(600), Y(55), X(980), Y(55), 'ln m')
     f.text(X(990), Y(55) + 4, 'water warms from 0 to 100 °C: 419 kJ', 't m', 'start', 12)
     f.bracket_label(X(794.4), X(total), Y(100) - 8, 'boiling at 100 °C: 2256 kJ, no temperature change', 12, up=True)

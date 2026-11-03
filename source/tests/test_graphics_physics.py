@@ -134,3 +134,30 @@ down_weights = sorted([float(e.attrib['y2']) - float(e.attrib['y1']) for e in at
 assert len(up_tensions) == 2 and up_tensions[0] == up_tensions[1]
 assert down_weights[0] < up_tensions[0] < down_weights[1]
 print('c3_atwood: equal upward tensions strictly sandwiched between m2 g and m1 g')
+
+# Heating curve (c8_heating_curve): leader lines for ice-warming and melting at 0 °C
+# must stay below the rising water-warming segment (X(375.8), Y(0)) -> (X(794.4), Y(100))
+# and never cross it.
+from figs_ch08 import c8_heating_curve
+hc_svg = c8_heating_curve()
+hc_paths = [p for p in svg_elements(hc_svg, 'path') if p.attrib.get('class') == 'ln e']
+assert len(hc_paths) == 1
+hc_pts = points(hc_paths[0])
+# Water-warming segment is hc_pts[2] -> hc_pts[3]
+wx1, wy1 = hc_pts[2]
+wx2, wy2 = hc_pts[3]
+hc_leaders = [
+    l for l in svg_elements(hc_svg, 'line')
+    if l.attrib.get('class') == 'ln m' and abs(float(l.attrib['x2']) - float(l.attrib['x1'])) > 15
+]
+assert len(hc_leaders) == 3
+for l in hc_leaders:
+    lx1, ly1 = float(l.attrib['x1']), float(l.attrib['y1'])
+    lx2, ly2 = float(l.attrib['x2']), float(l.attrib['y2'])
+    if lx1 < wx1 and lx2 > wx1:
+        # Leader passes horizontally past the melting-to-warming corner (wx1, wy1):
+        # its y at wx1 must be strictly below wy1 (i.e. y > wy1 in SVG coordinates).
+        y_at_corner = ly1 + (ly2 - ly1) * (wx1 - lx1) / (lx2 - lx1)
+        assert y_at_corner > wy1 + 1.0, (lx1, ly1, lx2, ly2, y_at_corner, wy1)
+print('c8_heating_curve: leader lines stay clear of the water-warming slope')
+

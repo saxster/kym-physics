@@ -90,4 +90,94 @@ for (let idx = 0; idx < CHAPTER_SLUGS.length; idx++) {
   totalParts += asmCount;
 }
 
-console.log(`PASS test_atlas_physics.mjs: ${CHAPTER_SLUGS.length} chapters, ${totalStations} 3D stations, ${totalLessons} figure lessons, ${totalParts} 3D parts, ${totalControls} controls verified.`);
+// --- Quantitative 3D domain and engine invariants ---
+function buildChapterScene(ch) {
+  const scene = new THREE.Scene();
+  const ASM = {};
+  const ctrl = createAssemblyController(ASM);
+  const world = ch.buildWorld({ scene, asm: ctrl.asm });
+  return { scene, ASM, ctrl, world };
+}
+
+// 1. stepExplode + resetExplode preserves dynamic motion on exploded parts (ch01 vertical toss)
+{
+  const { CHAPTER: ch01 } = await import('../live/atlas/physics/ch01-describing-motion/chapter.js');
+  ch01.params = { ...ch01.defaultParams, v0Mps: 10 };
+  const { ASM, ctrl, world } = buildChapterScene(ch01);
+  ctrl.setExplode(1.0);
+  const st0 = ch01.state(0.05, false);
+  ctrl.resetExplode();
+  world.update(st0);
+  ctrl.stepExplode(0.2);
+  const tossBall = ASM.toss_column.children.find(c => c.userData?.part === 'Tossed ball');
+  const yA = tossBall.position.y;
+
+  const st1 = ch01.state(0.45, false);
+  ctrl.resetExplode();
+  world.update(st1);
+  ctrl.stepExplode(0.2);
+  const yB = tossBall.position.y;
+  assert.ok(Math.abs(yB - yA) > 0.25, `ch01 exploded tossBall must move across time steps (${yA} vs ${yB})`);
+
+  // Also verify peak height scales monotonically with v0Toss
+  ctrl.setExplode(0);
+  const yBar = ASM.kinematic_bars.children.find(c => c.userData?.part === 'Height y(t)');
+  ch01.params = { ...ch01.defaultParams, v0Toss: 5 };
+  world.update(ch01.state(0.5, false));
+  const yLow = yBar.scale.y;
+  ch01.params = { ...ch01.defaultParams, v0Toss: 11 };
+  world.update(ch01.state(0.5, false));
+  const yHigh = yBar.scale.y;
+  assert.ok(yHigh > yLow * 1.9, `ch01 y_bar scale must grow with v0Toss (${yLow} -> ${yHigh})`);
+}
+
+// 2. ch05 Kepler equal-area sectors originate at Sun focus (-c, 0, 0) and perihelion speed > aphelion speed
+{
+  const { CHAPTER: ch05 } = await import('../live/atlas/physics/ch05-universal-gravitation/chapter.js');
+  ch05.params = { ...ch05.defaultParams, eccentricity: 0.6 };
+  const { ASM, world } = buildChapterScene(ch05);
+  world.update(ch05.state(0.0, false));
+  const [, sunKep, periSector, apoSector] = ASM.area_wedges.children;
+  const periPos = periSector.geometry.attributes.position;
+  const apoPos = apoSector.geometry.attributes.position;
+  const focusX = sunKep.position.x;
+  assert.ok(Math.abs(periPos.getX(0) - focusX) < 1e-4, `ch05 periSector vertex 0 at Sun focus (${periPos.getX(0)} vs ${focusX})`);
+  assert.ok(Math.abs(apoPos.getX(0) - focusX) < 1e-4, `ch05 apoSector vertex 0 at Sun focus (${apoPos.getX(0)} vs ${focusX})`);
+}
+
+// 3. ch08 phase staircase keeps thermometer marker flat on both 0 °C melting and 100 °C boiling plateaus
+{
+  const { CHAPTER: ch08 } = await import('../live/atlas/physics/ch08-heat-matter/chapter.js');
+  const { ASM, world } = buildChapterScene(ch08);
+  const marker = ASM.phase_stair.children.find(c => c.geometry?.type === 'SphereGeometry');
+  ch08.params = { ...ch08.defaultParams, addedHeatKj: 100 };
+  world.update(ch08.state(0, true));
+  const yMelt1 = marker.position.y;
+  ch08.params = { ...ch08.defaultParams, addedHeatKj: 320 };
+  world.update(ch08.state(0, true));
+  const yMelt2 = marker.position.y;
+  assert.ok(Math.abs(yMelt1 - 0.5) < 1e-4 && Math.abs(yMelt2 - 0.5) < 1e-4, `ch08 melting plateau must stay flat at y=0.5 (${yMelt1}, ${yMelt2})`);
+
+  ch08.params = { ...ch08.defaultParams, addedHeatKj: 1100 };
+  world.update(ch08.state(0, true));
+  const yBoil1 = marker.position.y;
+  ch08.params = { ...ch08.defaultParams, addedHeatKj: 2600 };
+  world.update(ch08.state(0, true));
+  const yBoil2 = marker.position.y;
+  assert.ok(Math.abs(yBoil1 - 1.35) < 1e-4 && Math.abs(yBoil2 - 1.35) < 1e-4, `ch08 boiling plateau must stay flat at y=1.35 (${yBoil1}, ${yBoil2})`);
+}
+
+// 4. ch14 seasonal globes tilt North Pole toward the Sun at June solstice (+Z)
+{
+  const { CHAPTER: ch14 } = await import('../live/atlas/physics/ch14-earth-sky/chapter.js');
+  ch14.params = { ...ch14.defaultParams, axialTiltDeg: 23.5, nodeOffsetDeg: 5.0 };
+  const { ASM, world } = buildChapterScene(ch14);
+  world.update(ch14.state(0, true));
+  const globes = ASM.tilted_earths.children.filter(c => c.type === 'Group' && !c.userData?.arrow);
+  assert.equal(globes.length, 4, 'ch14 should have 4 seasonal globes');
+  for (const g of globes) {
+    assert.ok(g.rotation.x < -0.35, `ch14 seasonal globe rotation.x should be -tiltRad (${g.rotation.x})`);
+  }
+}
+
+console.log(`PASS test_atlas_physics.mjs: ${CHAPTER_SLUGS.length} chapters, ${totalStations} 3D stations, ${totalLessons} figure lessons, ${totalParts} 3D parts, ${totalControls} controls + quantitative 3D domain invariants verified.`);
