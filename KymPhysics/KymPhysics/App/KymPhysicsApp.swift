@@ -1,3 +1,4 @@
+import os
 import SwiftUI
 
 @main
@@ -7,6 +8,14 @@ struct KymPhysicsApp: App {
 
     init() {
         CuratedColorScheme.registerAsKymaiaTheme()
+        TutorConstitution.register(.kymPhysics)
+        let policyLogger = Logger(subsystem: "com.kymaia.physics", category: "TutorPolicy")
+        TutorPolicyLog.setHandler { level, message in
+            switch level {
+            case .error: policyLogger.error("\(message, privacy: .public)")
+            case .warning: policyLogger.warning("\(message, privacy: .public)")
+            }
+        }
     }
 
     private var activeScheme: CuratedColorScheme {

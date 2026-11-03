@@ -501,7 +501,7 @@ struct PhysicsCoachHomeView: View {
         )
 
         // 1. MANDATORY ON-DEVICE CHILD-SAFETY ESCALATION CHECK BEFORE ANY AI OR TUTORING CALL
-        let safetyScan = SafetyEscalationService.scan(prompt)
+        let safetyScan = PhysicsSafetyGate.scan(prompt)
         if safetyScan.triggered, let supportive = safetyScan.supportiveResponse {
             activeSafetyBanner = safetyScan
             exchanges.append(
@@ -516,7 +516,7 @@ struct PhysicsCoachHomeView: View {
                 )
             )
             Task {
-                await SafetyEscalationService.notifyParentIfNeeded(safetyScan, sourceSurface: "physics_coach_chat")
+                await PhysicsSafetyGate.notifyParentIfNeeded(safetyScan, sourceSurface: "physics_coach_chat")
             }
             return
         }
@@ -528,9 +528,9 @@ struct PhysicsCoachHomeView: View {
             learnerTurnCount: learnerTurnCount,
             current: understandingPhase
         )
-        let effectiveStyle = TutorGuidanceStyle.effectiveStyle(
-            selectedStyle: selectedGuidanceStyle,
-            learnerMessage: prompt
+        let effectiveStyle = MotivationalDialoguePolicy.resolvedStyle(
+            requested: selectedGuidanceStyle,
+            learnerText: prompt
         )
         if effectiveStyle == .explainDirectly && selectedGuidanceStyle != .explainDirectly {
             selectedGuidanceStyle = .explainDirectly
@@ -595,7 +595,7 @@ struct PhysicsCoachHomeView: View {
 
         let requestContext = AIRequestContext.learnerDialogue(
             feature: .tutorChat,
-            style: effectiveStyle,
+            requestedStyle: effectiveStyle,
             learnerText: prompt
         )
         let soulDoc = AgentSoulLoader.soulDocument(for: persona)
@@ -625,7 +625,7 @@ struct PhysicsCoachHomeView: View {
                     linkedEquation: fallback.linkedEquation,
                     suggestedWidgetId: fallback.suggestedWidgetId,
                     suggestedChapter: fallback.suggestedChapter,
-                    supportModeLabel: "\(effectiveStyle.shortLabel) · \(requestContext.dialogueSupportMode.rawValue)"
+                    supportModeLabel: "\(effectiveStyle.shortLabel) · \((requestContext.dialogueSupportMode ?? .standard).rawValue)"
                 )
             }
 

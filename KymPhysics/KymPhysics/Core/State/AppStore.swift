@@ -233,11 +233,11 @@ final class AppStore: ObservableObject {
         usedAssistance: Bool,
         now: Date = Date()
     ) -> QuestionEvaluationResult {
-        let safetyScan = SafetyEscalationService.scan(answerText)
+        let safetyScan = PhysicsSafetyGate.scan(answerText)
         if safetyScan.triggered {
             latestSafetyEscalation = safetyScan
             Task {
-                await SafetyEscalationService.notifyParentIfNeeded(safetyScan, sourceSurface: "question_proof")
+                await PhysicsSafetyGate.notifyParentIfNeeded(safetyScan, sourceSurface: "question_proof")
             }
             return QuestionEvaluationResult(
                 matchedKeywords: [],
@@ -279,11 +279,11 @@ final class AppStore: ObservableObject {
     }
 
     func recordExamQuestionAttempt(question: PhysicsExamQuestion, awardedMarks: Int, answerText: String) {
-        let safetyScan = SafetyEscalationService.scan(answerText)
+        let safetyScan = PhysicsSafetyGate.scan(answerText)
         if safetyScan.triggered {
             latestSafetyEscalation = safetyScan
             Task {
-                await SafetyEscalationService.notifyParentIfNeeded(safetyScan, sourceSurface: "exam_attempt")
+                await PhysicsSafetyGate.notifyParentIfNeeded(safetyScan, sourceSurface: "exam_attempt")
             }
             return
         }
@@ -374,11 +374,11 @@ final class AppStore: ObservableObject {
 
     func saveJournalEntry(_ entry: LabJournalEntryRecord) {
         let combinedText = [entry.title, entry.cueColumnText, entry.bodyNotesText, entry.summaryText].joined(separator: " ")
-        let safetyScan = SafetyEscalationService.scan(combinedText)
+        let safetyScan = PhysicsSafetyGate.scan(combinedText)
         if safetyScan.triggered {
             latestSafetyEscalation = safetyScan
             Task {
-                await SafetyEscalationService.notifyParentIfNeeded(safetyScan, sourceSurface: "lab_journal")
+                await PhysicsSafetyGate.notifyParentIfNeeded(safetyScan, sourceSurface: "lab_journal")
             }
             return
         }

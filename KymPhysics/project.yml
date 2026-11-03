@@ -48,6 +48,8 @@ targets:
         product: KymDesign
       - package: TeachingKit
         product: KymLearning
+      - package: TeachingKit
+        product: KymTutorAI
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics
@@ -95,6 +97,8 @@ targets:
         product: KymDesign
       - package: TeachingKit
         product: KymLearning
+      - package: TeachingKit
+        product: KymTutorAI
       - target: KymPhysicsWidgets
         embed: true
       - target: KymPhysicsShareExtension

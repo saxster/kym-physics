@@ -233,27 +233,27 @@ final class ThemeTests: XCTestCase {
     @MainActor
     func testAIMentoringConstitutionGuardrailsAndSouls() throws {
         // 1. TutorConstitution version, SHA-256 hash & composition
-        XCTAssertEqual(TutorConstitution.version, "2026-07-16.v1")
+        XCTAssertEqual(TutorConstitution.version, "2026-11-03.v2")
         XCTAssertEqual(TutorConstitution.policyHash.count, 64)
         let composed = TutorConstitution.applying(
             to: "Focus on Unit 9.3 Electromagnets.",
-            context: .learnerDialogue(feature: .tutorChat, style: .adaptive, learnerText: "Why soft iron?")
+            context: .learnerDialogue(feature: .tutorChat, requestedStyle: .adaptive, learnerText: "Why soft iron?")
         )
-        XCTAssertTrue(composed.contains("TUTOR CONSTITUTION (HIGHEST PRIORITY)"))
-        XCTAssertTrue(composed.contains("LEARNER AGENCY AND DEVELOPMENTAL INTEGRITY"))
-        XCTAssertTrue(composed.contains("MOTIVATIONAL DIALOGUE POLICY"))
+        XCTAssertTrue(composed.contains("TUTOR CONSTITUTION — VERSION"))
+        XCTAssertTrue(composed.contains("LEARNER AGENCY AND NON-MANIPULATION"))
+        XCTAssertTrue(composed.contains("AUTONOMY-SUPPORTIVE EDUCATIONAL DIALOGUE"))
 
         // 2. Learner Agency immediate opt-outs ("just explain", "stop asking", "give me the answer", "explain directly")
         XCTAssertEqual(
-            TutorGuidanceStyle.effectiveStyle(selectedStyle: .askMeQuestions, learnerMessage: "Please just explain how refraction works"),
+            MotivationalDialoguePolicy.resolvedStyle(requested: .askMeQuestions, learnerText: "Please just explain how refraction works"),
             .explainDirectly
         )
         XCTAssertEqual(
-            TutorGuidanceStyle.effectiveStyle(selectedStyle: .askMeQuestions, learnerMessage: "Please explain directly without questions"),
+            MotivationalDialoguePolicy.resolvedStyle(requested: .askMeQuestions, learnerText: "Please explain directly without questions"),
             .explainDirectly
         )
         XCTAssertEqual(
-            TutorGuidanceStyle.effectiveStyle(selectedStyle: .adaptive, learnerMessage: "Stop asking and give me the answer"),
+            MotivationalDialoguePolicy.resolvedStyle(requested: .adaptive, learnerText: "Stop asking and give me the answer"),
             .explainDirectly
         )
         XCTAssertEqual(
@@ -262,7 +262,7 @@ final class ThemeTests: XCTestCase {
         )
         // Idempotence & learnerAssessment agency inclusion
         let assessInstruction = TutorConstitution.applying(to: "Grade strictly.", context: .learnerAssessment)
-        XCTAssertTrue(assessInstruction.contains("LEARNER AGENCY AND DEVELOPMENTAL INTEGRITY"))
+        XCTAssertTrue(assessInstruction.contains("LEARNER AGENCY AND NON-MANIPULATION"))
         XCTAssertEqual(TutorConstitution.applying(to: assessInstruction, context: .learnerAssessment), assessInstruction)
 
         // 3. DevelopmentalResponseValidator catches all 7 prohibited categories
@@ -273,16 +273,16 @@ final class ThemeTests: XCTestCase {
         let tranceCheck = DevelopmentalResponseValidator.validate("As you relax, your unconscious mind will absorb formulas.")
         XCTAssertFalse(tranceCheck.isValid)
         XCTAssertTrue(tranceCheck.violations.contains(.covertSuggestion))
-        let sanitized = DevelopmentalResponseValidator.sanitizeOrFallback("Keep this between us.")
+        let sanitized = DevelopmentalResponseValidator.sanitizeOrFallback("Keep this between us.", context: .learnerChat)
         XCTAssertEqual(sanitized.text, DevelopmentalResponseValidator.safeFallback)
 
         // 4. On-Device Child-Safety Escalation Scanner & AppStore surface gating
-        XCTAssertFalse(SafetyEscalationService.scan("Why does a blue shirt look black in red light?").triggered)
-        let crisisScan = SafetyEscalationService.scan("I feel completely hopeless and want to hurt myself")
+        XCTAssertFalse(PhysicsSafetyGate.scan("Why does a blue shirt look black in red light?").triggered)
+        let crisisScan = PhysicsSafetyGate.scan("I feel completely hopeless and want to hurt myself")
         XCTAssertTrue(crisisScan.triggered)
         XCTAssertNotNil(crisisScan.supportiveResponse)
         XCTAssertTrue(crisisScan.supportiveResponse?.contains("112") == true || crisisScan.supportiveResponse?.contains("trusted adult") == true)
-        XCTAssertTrue(SafetyEscalationService.scan("Someone hits me and I feel hopeless").triggered)
+        XCTAssertTrue(PhysicsSafetyGate.scan("Someone hits me and I feel hopeless").triggered)
 
         let testStore = AppStore(db: DatabaseManager(inMemory: true), pack: SeedPackLoader.shared)
         let sampleQuestion = SeedPackLoader.shared.schoolQuestions.first!
