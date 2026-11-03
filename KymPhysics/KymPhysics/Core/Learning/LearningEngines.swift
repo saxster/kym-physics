@@ -1,9 +1,14 @@
 import Foundation
 import GRDB
 
-// The review scheduler (IntervalReviewScheduler), BKTEngine and FSRSRating live in the shared
+// The review scheduler (FSRSScheduler, FSRS v5), BKTEngine and FSRSRating live in the shared
 // KymLearning package. These conformances let the engines read and write the app's GRDB records.
-extension FSRSCardRecord: IntervalReviewCard {}
+extension FSRSCardRecord: ReviewCard {}
+
+extension FSRSScheduler {
+    /// This app's review schedule: FSRS v5, and a card rated again comes back the next day.
+    static let app = FSRSScheduler(relearningStepDays: 1)
+}
 extension BKTSkillRecord: BKTSkill {}
 
 // MARK: - Question Proof Service (Worked Example -> Faded -> Independent Proof)

@@ -307,7 +307,7 @@ final class AppStore: ObservableObject {
     }
 
     func reviewFSRSCard(_ card: FSRSCardRecord, rating: FSRSRating, now: Date = Date()) {
-        let updated = IntervalReviewScheduler.schedule(card: card, rating: rating, now: now)
+        let updated = FSRSScheduler.app.schedule(card: card, rating: rating, now: now)
         do {
             try db.statePool.write { conn in
                 try updated.save(conn)
