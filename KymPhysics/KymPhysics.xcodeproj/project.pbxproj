@@ -172,6 +172,7 @@
 		D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
 		D4A1F47CEB6C833F1337C0C3 /* ArduinoMissionSimulator+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */; };
 		D5BB48B81C585F4F06C3921A /* PointerHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D0372B554015511A92CE83 /* PointerHighlight.swift */; };
+		D805CF53E8585D666639BB73 /* theme-characterization.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C659D2BE8DC8CE7921537F /* theme-characterization.json */; };
 		D8B35E67E6F5E70BB65C7219 /* HandwritingRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4C491E0C5FFC3125241A0F /* HandwritingRecognition.swift */; };
 		D987E2CC298D7D94181D75F1 /* WritingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D84CD33080E38C594B1452E /* WritingTextEditor.swift */; };
 		D9F327B7724E0D250F85BA0A /* DrawingCanvasBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */; };
@@ -209,6 +210,7 @@
 		FBA552AD693229722F242E15 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
 		FBE388DF63B60488972E23C6 /* AdaptiveOptionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DDD54FC3A06F1646E74B3C /* AdaptiveOptionPicker.swift */; };
 		FC1861291BFB3194B1700063 /* StepSequenceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */; };
+		FD65487F2E7645595C447A48 /* ThemeCharacterizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */; };
 		FED3352E47665A8B18B65A49 /* ArduinoMissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */; };
 		FF24FA7A30AA7089B7E5CAFD /* ArduinoMissionVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */; };
 /* End PBXBuildFile section */
@@ -266,6 +268,7 @@
 		109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionVisualView+Stages.swift"; sourceTree = "<group>"; };
 		11307A59B316631C5516284F /* SchoolScienceHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolScienceHomeView.swift; sourceTree = "<group>"; };
 		1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsExplorersHomeView.swift; sourceTree = "<group>"; };
+		12C659D2BE8DC8CE7921537F /* theme-characterization.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "theme-characterization.json"; sourceTree = "<group>"; };
 		1B06238C9A3E287025234927 /* KymPhysicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KymPhysicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C9D93681D171CA38A2CA19A /* JournalSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalSection.swift; sourceTree = "<group>"; };
 		1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
@@ -326,6 +329,7 @@
 		9E7F1E84A7E64A176A80B995 /* LearnerTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerTextInput.swift; sourceTree = "<group>"; };
 		A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabJournalHomeView.swift; sourceTree = "<group>"; };
 		A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitativePhysicsEngine.swift; sourceTree = "<group>"; };
+		A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCharacterizationTests.swift; sourceTree = "<group>"; };
 		A8FFEA8664921D91506358D1 /* DrawingCanvasBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasBackground.swift; sourceTree = "<group>"; };
 		ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionSimulator.swift; sourceTree = "<group>"; };
 		AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsVoiceService.swift; sourceTree = "<group>"; };
@@ -679,7 +683,9 @@
 		DD27006BC6CCEB357931B635 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */,
 				1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */,
+				E8D070044BF2A3A50888498E /* Golden */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -709,6 +715,14 @@
 				250CC9B8340A1F9B2A7026E5 /* Today */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		E8D070044BF2A3A50888498E /* Golden */ = {
+			isa = PBXGroup;
+			children = (
+				12C659D2BE8DC8CE7921537F /* theme-characterization.json */,
+			);
+			path = Golden;
 			sourceTree = "<group>";
 		};
 		EF212B22ED5C909FF41BC5A9 /* Products */ = {
@@ -850,6 +864,7 @@
 			buildConfigurationList = 4F1C4165C1066A2BFD7C213F /* Build configuration list for PBXNativeTarget "KymPhysicsTests" */;
 			buildPhases = (
 				D7A985F569897451C51564FC /* Sources */,
+				135B6F414CCE0558EA9E29E4 /* Resources */,
 				6BEDB665C6FB11AD372E0EF4 /* Frameworks */,
 			);
 			buildRules = (
@@ -918,6 +933,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		135B6F414CCE0558EA9E29E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D805CF53E8585D666639BB73 /* theme-characterization.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83DCCADAE62E8C81A3BC0B2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1055,6 +1078,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD65487F2E7645595C447A48 /* ThemeCharacterizationTests.swift in Sources */,
 				7446442B4CFCA87DDDDE5F95 /* ThemeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
