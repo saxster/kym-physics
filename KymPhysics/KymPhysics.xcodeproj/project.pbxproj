@@ -16,9 +16,11 @@
 		063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
 		08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
 		099CD7C44FD7493ACE1158B6 /* ThemePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22060617968740DE11AF42 /* ThemePickerMenu.swift */; };
+		0B4D125B4B20E1CB555AAF9F /* LearningEngineCharacterizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */; };
 		0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */; };
 		0CA8FD8F47E6FB350627D213 /* ArduinoMissionVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */; };
 		0F57FE75CE3F5EC33FB8C9BD /* PeriodicGridVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BBE54AC81920146D70ACCF /* PeriodicGridVisual.swift */; };
+		0F9DE82F0DD2ECF4CF84E5A8 /* learning-engines.json in Resources */ = {isa = PBXBuildFile; fileRef = 20D2406DBCEB46B16C3E3CF6 /* learning-engines.json */; };
 		1163070FC28AF79588CCB496 /* PhysicsVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */; };
 		13CA6A073CD398FEFBC33A7F /* ArduinoMissionCatalog+Nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */; };
 		15367C4A09D862582E09B35F /* JournalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86331A6B6B0BFADE9AA60303 /* JournalRow.swift */; };
@@ -221,6 +223,7 @@
 		1B06238C9A3E287025234927 /* KymPhysicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KymPhysicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
+		20D2406DBCEB46B16C3E3CF6 /* learning-engines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "learning-engines.json"; sourceTree = "<group>"; };
 		2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsDailyRitualSessionView.swift; sourceTree = "<group>"; };
 		22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEngines.swift; sourceTree = "<group>"; };
 		26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionSimulator+Audio.swift"; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 		8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipDetailSections.swift; sourceTree = "<group>"; };
 		904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHScaleVisual.swift; sourceTree = "<group>"; };
+		911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEngineCharacterizationTests.swift; sourceTree = "<group>"; };
 		9BBE34BB70E042A3C9E78DBB /* teaching_kit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = teaching_kit; path = ../../teaching_kit; sourceTree = SOURCE_ROOT; };
 		9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedColorScheme.swift; sourceTree = "<group>"; };
 		A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabJournalHomeView.swift; sourceTree = "<group>"; };
@@ -600,6 +604,7 @@
 		DD27006BC6CCEB357931B635 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */,
 				A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */,
 				1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */,
 				E8D070044BF2A3A50888498E /* Golden */,
@@ -638,6 +643,7 @@
 		E8D070044BF2A3A50888498E /* Golden */ = {
 			isa = PBXGroup;
 			children = (
+				20D2406DBCEB46B16C3E3CF6 /* learning-engines.json */,
 				12C659D2BE8DC8CE7921537F /* theme-characterization.json */,
 			);
 			path = Golden;
@@ -858,6 +864,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F9DE82F0DD2ECF4CF84E5A8 /* learning-engines.json in Resources */,
 				D805CF53E8585D666639BB73 /* theme-characterization.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -975,6 +982,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4D125B4B20E1CB555AAF9F /* LearningEngineCharacterizationTests.swift in Sources */,
 				FD65487F2E7645595C447A48 /* ThemeCharacterizationTests.swift in Sources */,
 				7446442B4CFCA87DDDDE5F95 /* ThemeTests.swift in Sources */,
 			);
