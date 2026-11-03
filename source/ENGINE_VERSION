@@ -1,0 +1,65 @@
+Book engine from teaching_kit (web/book-engine) at 4cd5b82, vendored by web/vendor.mjs.
+Do not edit these files here: change teaching_kit/web/book-engine, then run
+  node web/vendor.mjs <this directory>
+in teaching_kit. Check before publishing with --check.
+Files:
+  FORMAT.md
+  GATES.md
+  LIVE.md
+  SKILL.md
+  STORYWRITING.md
+  WRITING.md
+  app/d_map.css
+  app/e_readaloud.css
+  app/explore_shell.js
+  app/explorer_art.js
+  app/h_figures.css
+  app/i_explore.css
+  app/i_explorer_scenes.css
+  app/i_scale.css
+  app/m_base.js
+  app/m_beauty.js
+  app/m_figures.js
+  app/m_map.js
+  app/m_progress.js
+  app/m_scale.js
+  app/o_labs.css
+  app/orbit_model.mjs
+  app/scale_earth.js
+  app/scale_model.mjs
+  assets/scale/coast.webp
+  assets/scale/neighbourhood.webp
+  assets/scale/room.webp
+  figs_core.py
+  figsheet.py
+  fonts/Atkinson-400.ttf
+  fonts/Atkinson-400i.ttf
+  fonts/Atkinson-700.ttf
+  fonts/Lexend-400.ttf
+  fonts/Lexend-600.ttf
+  fonts/Literata-300.ttf
+  fonts/Literata-400.ttf
+  fonts/Literata-400i.ttf
+  fonts/Literata-600.ttf
+  fonts/Literata-600i.ttf
+  fonts/Literata-700.ttf
+  fonts/var/OFL-Literata.txt
+  fonts/var/caveat-latin-ext-wght-normal.woff2
+  fonts/var/caveat-latin-wght-normal.woff2
+  fonts/var/literata-greek-opsz-italic.woff2
+  fonts/var/literata-greek-opsz-normal.woff2
+  fonts/var/literata-latin-ext-opsz-italic.woff2
+  fonts/var/literata-latin-ext-opsz-normal.woff2
+  fonts/var/literata-latin-opsz-italic.woff2
+  fonts/var/literata-latin-opsz-normal.woff2
+  fonts_prep.py
+  graphics_audit.py
+  live/annotations.js
+  live/css_colour.mjs
+  live/label_layout.mjs
+  live/scene_bounds.mjs
+  live/w_selftest.js
+  live/w_selftest3d.js
+  live/w_selftestapi.js
+  livetest.py
+  shoot.py
