@@ -1,20 +1,5 @@
 import SwiftUI
 
-// MARK: - Corner radii (the one scale)
-public enum CornerRadius {
-    public static let micro: CGFloat = 4
-    public static let small: CGFloat = 8
-    public static let medium: CGFloat = 14
-    public static let large: CGFloat = 18
-    public static let extraLarge: CGFloat = 26
-    /// Short aliases
-    public static let sm: CGFloat = small
-    public static let md: CGFloat = medium
-    public static let lg: CGFloat = large
-    /// Every card's corner: set by the chosen theme.
-    public static var card: CGFloat { CuratedColorScheme.current.style.cardRadius }
-}
-
 // MARK: - Accessibility Layout Constants
 public enum AccessibilityLayout {
     public static let minTouchTarget: CGFloat = 44
@@ -85,12 +70,6 @@ extension Font {
 
 extension KymaiaMotion {
     public static let celebration = Animation.spring(response: 0.45, dampingFraction: 0.65)
-}
-
-extension Animation {
-    public static let kymaiaStandard = Animation.spring(response: 0.4, dampingFraction: 0.6)
-    public static let kymaiaFast = Animation.easeOut(duration: 0.2)
-    public static let kymaiaQuick = Animation.easeOut(duration: 0.2)
 }
 
 extension StrokeWidth {

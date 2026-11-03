@@ -11,13 +11,15 @@ let package = Package(
         .executable(name: "KymPhysics", targets: ["KymPhysics"])
     ],
     dependencies: [
-        .package(url: "https://github.com/groue/GRDB.swift.git", from: "6.24.0")
+        .package(url: "https://github.com/groue/GRDB.swift.git", from: "6.24.0"),
+        .package(path: "../../teaching_kit")
     ],
     targets: [
         .executableTarget(
             name: "KymPhysics",
             dependencies: [
-                .product(name: "GRDB", package: "GRDB.swift")
+                .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "KymDesign", package: "teaching_kit")
             ],
             path: "KymPhysics",
             exclude: [

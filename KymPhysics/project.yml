@@ -18,6 +18,8 @@ packages:
   GRDB:
     url: https://github.com/groue/GRDB.swift.git
     from: "6.24.0"
+  TeachingKit:
+    path: ../../teaching_kit
 
 targets:
   KymPhysics:
@@ -42,6 +44,8 @@ targets:
     dependencies:
       - package: GRDB
         product: GRDB
+      - package: TeachingKit
+        product: KymDesign
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics
@@ -85,6 +89,8 @@ targets:
     dependencies:
       - package: GRDB
         product: GRDB
+      - package: TeachingKit
+        product: KymDesign
       - target: KymPhysicsWidgets
         embed: true
       - target: KymPhysicsShareExtension

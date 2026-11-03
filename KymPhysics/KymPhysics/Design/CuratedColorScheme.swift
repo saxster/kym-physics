@@ -4,7 +4,7 @@ import SwiftUI
 /// The app-wide themes a learner can choose in Settings or the toolbar. A theme is a palette
 /// plus a heading face and a card shape. Raw values are persisted in `UserDefaults`, so a case
 /// may be renamed for display but its raw value never changes.
-enum CuratedColorScheme: String, Codable, CaseIterable, Identifiable, Sendable {
+enum CuratedColorScheme: String, Codable, CaseIterable, Identifiable, KymaiaThemeDescribing {
     case journal
     case movingWorld
     case monsoon
@@ -23,6 +23,13 @@ enum CuratedColorScheme: String, Codable, CaseIterable, Identifiable, Sendable {
     /// Reads the active theme from `UserDefaults.standard`.
     static var current: CuratedColorScheme {
         selected(in: .standard)
+    }
+
+    /// Makes this catalogue the design system's source of the active theme. The provider
+    /// re-reads `UserDefaults.standard` on every access, so a new choice shows up at once.
+    /// Call it first thing in every process that draws UI.
+    static func registerAsKymaiaTheme() {
+        KymaiaThemeRuntime.register { CuratedColorScheme.current }
     }
 
     static func selected(in defaults: UserDefaults) -> CuratedColorScheme {
@@ -266,173 +273,6 @@ enum CuratedColorScheme: String, Codable, CaseIterable, Identifiable, Sendable {
     }
 }
 
-/// How a theme sets type and shape: the face of titles and headlines (learning content stays
-/// serif in every theme) and the corner radius of cards.
-struct CuratedThemeStyle: Sendable, Equatable {
-    enum HeadingFace: Sendable {
-        case system
-        case rounded
-        case serif
-
-        var design: Font.Design {
-            switch self {
-            case .system: return .default
-            case .rounded: return .rounded
-            case .serif: return .serif
-            }
-        }
-    }
-
-    /// How a card separates from the page: a soft shadow and no outline (Apple Journal), or
-    /// a hairline outline (paper themes).
-    enum CardChrome: Sendable {
-        case hairline
-        case shadow
-    }
-
-    let headingFace: HeadingFace
-    let cardRadius: CGFloat
-    var cardChrome: CardChrome = .hairline
-}
-
-/// Paper, ink and line colors. Themes that tint their paper (cream, clay) tint the ink to match;
-/// the rest use the neutral set.
-struct CuratedThemeNeutrals: Sendable {
-    let surface: KymaiaAdaptiveColor
-    let elevatedSurface: KymaiaAdaptiveColor
-    let ink: KymaiaAdaptiveColor
-    let mutedInk: KymaiaAdaptiveColor
-    let tertiaryInk: KymaiaAdaptiveColor
-    let hairline: KymaiaAdaptiveColor
-    /// The ruling on a Journal paper page: quieter than a hairline, because a page of them
-    /// must sit behind handwriting. Derived from the ink, like the hairline.
-    let paperRule: KymaiaAdaptiveColor
-    /// A paper rule that has to read at a glance: dot-grid dots and the Cornell column rule.
-    let paperRuleStrong: KymaiaAdaptiveColor
-    /// The resting outline of an interactive control (answer options, text fields, ghost
-    /// buttons): at least 3:1 against every surface it sits on (WCAG 1.4.11).
-    let controlBorder: KymaiaAdaptiveColor
-
-    static let standard = CuratedThemeNeutrals(
-        surfaceLight: 0xFFFFFF,
-        surfaceDark: 0x1C1C20,
-        elevatedLight: 0xFFFFFF,
-        elevatedDark: 0x27272D,
-        inkLight: 0x1D1B20,
-        inkDark: 0xF7F5F2,
-        mutedLight: 0x625F68,
-        mutedDark: 0xB9B4C0,
-        tertiaryLight: 0x6A6670,
-        tertiaryDark: 0xAAA5B0,
-        controlBorderLight: 0x85808C,
-        controlBorderDark: 0x6E6A78
-    )
-
-    init(
-        surfaceLight: UInt32,
-        surfaceDark: UInt32,
-        elevatedLight: UInt32,
-        elevatedDark: UInt32,
-        inkLight: UInt32,
-        inkDark: UInt32,
-        mutedLight: UInt32,
-        mutedDark: UInt32,
-        tertiaryLight: UInt32,
-        tertiaryDark: UInt32,
-        controlBorderLight: UInt32,
-        controlBorderDark: UInt32
-    ) {
-        surface = KymaiaAdaptiveColor(light: KymaiaRGBA(hex: surfaceLight), dark: KymaiaRGBA(hex: surfaceDark))
-        elevatedSurface = KymaiaAdaptiveColor(light: KymaiaRGBA(hex: elevatedLight), dark: KymaiaRGBA(hex: elevatedDark))
-        ink = KymaiaAdaptiveColor(light: KymaiaRGBA(hex: inkLight), dark: KymaiaRGBA(hex: inkDark))
-        mutedInk = KymaiaAdaptiveColor(light: KymaiaRGBA(hex: mutedLight), dark: KymaiaRGBA(hex: mutedDark))
-        tertiaryInk = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: tertiaryLight),
-            dark: KymaiaRGBA(hex: tertiaryDark),
-            highContrastLight: KymaiaRGBA(hex: mutedLight),
-            highContrastDark: KymaiaRGBA(hex: mutedDark)
-        )
-        hairline = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: inkLight, opacity: 0.12),
-            dark: KymaiaRGBA(hex: inkDark, opacity: 0.16),
-            highContrastLight: KymaiaRGBA(hex: inkLight, opacity: 0.32),
-            highContrastDark: KymaiaRGBA(hex: inkDark, opacity: 0.38)
-        )
-        paperRule = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: inkLight, opacity: 0.10),
-            dark: KymaiaRGBA(hex: inkDark, opacity: 0.12),
-            highContrastLight: KymaiaRGBA(hex: inkLight, opacity: 0.32),
-            highContrastDark: KymaiaRGBA(hex: inkDark, opacity: 0.38)
-        )
-        paperRuleStrong = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: inkLight, opacity: 0.22),
-            dark: KymaiaRGBA(hex: inkDark, opacity: 0.26),
-            highContrastLight: KymaiaRGBA(hex: inkLight, opacity: 0.45),
-            highContrastDark: KymaiaRGBA(hex: inkDark, opacity: 0.50)
-        )
-        controlBorder = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: controlBorderLight),
-            dark: KymaiaRGBA(hex: controlBorderDark),
-            highContrastLight: KymaiaRGBA(hex: mutedLight),
-            highContrastDark: KymaiaRGBA(hex: mutedDark)
-        )
-    }
-}
-
-struct CuratedThemePalette: Sendable {
-    let background: KymaiaAdaptiveColor
-    let groupedBackground: KymaiaAdaptiveColor
-    let primary: KymaiaAdaptiveColor
-    let secondary: KymaiaAdaptiveColor
-    let selectionFill: KymaiaAdaptiveColor
-    let focusRing: KymaiaAdaptiveColor
-    let neutrals: CuratedThemeNeutrals
-
-    init(
-        backgroundLight: UInt32,
-        groupedLight: UInt32,
-        backgroundDark: UInt32,
-        groupedDark: UInt32,
-        primaryLight: UInt32,
-        primaryDark: UInt32,
-        primaryHighContrastLight: UInt32,
-        primaryHighContrastDark: UInt32,
-        secondaryLight: UInt32,
-        secondaryDark: UInt32,
-        neutrals: CuratedThemeNeutrals = .standard
-    ) {
-        background = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: backgroundLight),
-            dark: KymaiaRGBA(hex: backgroundDark)
-        )
-        groupedBackground = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: groupedLight),
-            dark: KymaiaRGBA(hex: groupedDark)
-        )
-        primary = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: primaryLight),
-            dark: KymaiaRGBA(hex: primaryDark),
-            highContrastLight: KymaiaRGBA(hex: primaryHighContrastLight),
-            highContrastDark: KymaiaRGBA(hex: primaryHighContrastDark)
-        )
-        secondary = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: secondaryLight),
-            dark: KymaiaRGBA(hex: secondaryDark)
-        )
-        selectionFill = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: primaryLight, opacity: 0.14),
-            dark: KymaiaRGBA(hex: primaryDark, opacity: 0.20),
-            highContrastLight: KymaiaRGBA(hex: primaryHighContrastLight, opacity: 0.22),
-            highContrastDark: KymaiaRGBA(hex: primaryHighContrastDark, opacity: 0.28)
-        )
-        focusRing = KymaiaAdaptiveColor(
-            light: KymaiaRGBA(hex: primaryHighContrastLight),
-            dark: KymaiaRGBA(hex: primaryHighContrastDark)
-        )
-        self.neutrals = neutrals
-    }
-}
-
 private struct CuratedColorSchemeKey: EnvironmentKey {
     static let defaultValue = CuratedColorScheme.defaultScheme
 }
@@ -441,24 +281,5 @@ extension EnvironmentValues {
     var curatedColorScheme: CuratedColorScheme {
         get { self[CuratedColorSchemeKey.self] }
         set { self[CuratedColorSchemeKey.self] = newValue }
-    }
-}
-
-extension KymaiaRGBA {
-    func contrastRatio(with other: KymaiaRGBA) -> Double {
-        let lighter = max(relativeLuminance, other.relativeLuminance)
-        let darker = min(relativeLuminance, other.relativeLuminance)
-        return (lighter + 0.05) / (darker + 0.05)
-    }
-
-    var relativeLuminance: Double {
-        func linearized(_ component: Double) -> Double {
-            component <= 0.04045
-                ? component / 12.92
-                : pow((component + 0.055) / 1.055, 2.4)
-        }
-        return 0.2126 * linearized(red)
-            + 0.7152 * linearized(green)
-            + 0.0722 * linearized(blue)
     }
 }
