@@ -44,6 +44,7 @@
 		2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
 		300479AD12C50F4198F482CC /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
 		335F04CD61070C4548B02E1B /* KymDesignExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6C19E1EFC25E33AFEB1D1 /* KymDesignExport.swift */; };
+		33EC363E2458D2C4F9680DC3 /* KymLearning in Frameworks */ = {isa = PBXBuildFile; productRef = FABBF38B2A3DB81CC8722725 /* KymLearning */; };
 		35FC78D1724A0EAC944F419B /* ArduinoBoardTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */; };
 		36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */; };
 		3940641920281C23253E3815 /* MentoringEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22817F9367139130C144E6E /* MentoringEngines.swift */; };
@@ -153,6 +154,7 @@
 		E820A4B09E504A38A8AF64FA /* SchoolScienceHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11307A59B316631C5516284F /* SchoolScienceHomeView.swift */; };
 		E9EE0D377717F59FABF48045 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
 		EA28E828E211FC65DF340699 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */; };
+		ECE425D9668CFF83747A8B0B /* KymLearning in Frameworks */ = {isa = PBXBuildFile; productRef = 0C67A5024666CB9A94F30D1C /* KymLearning */; };
 		ECEBDF3ABE98F25DD61EA9D3 /* SubjectTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730901F53675F6155F5A4FD1 /* SubjectTip.swift */; };
 		ED4E14858A1129908B1B82F9 /* TodayHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3995A6E656885952AB95B /* TodayHomeView.swift */; };
 		EE6EC07AEF4BCBF1B9F59595 /* SubjectTipVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */; };
@@ -311,6 +313,7 @@
 			files = (
 				9FA3C7773622EA12AE106FEE /* GRDB in Frameworks */,
 				66A3470283932F305FB95186 /* KymDesign in Frameworks */,
+				ECE425D9668CFF83747A8B0B /* KymLearning in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +331,7 @@
 			files = (
 				F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */,
 				FA407B2F0E088B7B0748EB88 /* KymDesign in Frameworks */,
+				33EC363E2458D2C4F9680DC3 /* KymLearning in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +726,7 @@
 			packageProductDependencies = (
 				41DBBA27116ABDADD820B4D8 /* GRDB */,
 				E48420D089CBF2A2DF82BC63 /* KymDesign */,
+				FABBF38B2A3DB81CC8722725 /* KymLearning */,
 			);
 			productName = KymPhysics;
 			productReference = 6DA65BBC989085FEC1905ED0 /* KymPhysics.app */;
@@ -763,6 +768,7 @@
 			packageProductDependencies = (
 				0E491E7513A1E5793592C8C5 /* GRDB */,
 				BD5889889CB5CE850FA8DBF6 /* KymDesign */,
+				0C67A5024666CB9A94F30D1C /* KymLearning */,
 			);
 			productName = "KymPhysics-iPad";
 			productReference = 62BFE2226B6A2B22A08659EC /* KymPhysics-iPad.app */;
@@ -1524,6 +1530,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0C67A5024666CB9A94F30D1C /* KymLearning */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymLearning;
+		};
 		0E491E7513A1E5793592C8C5 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
@@ -1541,6 +1551,10 @@
 		E48420D089CBF2A2DF82BC63 /* KymDesign */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KymDesign;
+		};
+		FABBF38B2A3DB81CC8722725 /* KymLearning */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymLearning;
 		};
 		FDB0E0EE5D34B01C26D015C5 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;

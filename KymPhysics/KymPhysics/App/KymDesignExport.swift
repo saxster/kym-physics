@@ -1,3 +1,5 @@
-// The design system lives in the shared KymDesign package (teaching_kit). Re-exporting it here
-// keeps it visible to every file in this target without per-file imports.
+// The design system (KymDesign) and the learning engines (KymLearning) live in the shared
+// teaching_kit package. Re-exporting them here keeps them visible to every file in this target
+// without per-file imports.
 @_exported import KymDesign
+@_exported import KymLearning

@@ -126,7 +126,7 @@ struct LearningEngineCharacterizationTests {
         for input in cards {
             for now in reviewTimes {
                 for rating in FSRSRating.allCases {
-                    let output = FSRSScheduler.schedule(card: input, rating: rating, now: now)
+                    let output = IntervalReviewScheduler.schedule(card: input, rating: rating, now: now)
                     cardCases.append(CardCase(label: input.id, rating: rating.rawValue, now: now, input: input, output: output))
                 }
             }
@@ -134,7 +134,7 @@ struct LearningEngineCharacterizationTests {
         var chained = cards[0]
         var chainNow = t0
         for (step, rating) in [FSRSRating.good, .good, .hard, .again, .easy, .good].enumerated() {
-            let output = FSRSScheduler.schedule(card: chained, rating: rating, now: chainNow)
+            let output = IntervalReviewScheduler.schedule(card: chained, rating: rating, now: chainNow)
             cardCases.append(CardCase(label: "chain-\(step)", rating: rating.rawValue, now: chainNow, input: chained, output: output))
             chained = output
             chainNow = chainNow.addingTimeInterval((output.scheduledDays + 0.3) * day)

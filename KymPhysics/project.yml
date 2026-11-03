@@ -46,6 +46,8 @@ targets:
         product: GRDB
       - package: TeachingKit
         product: KymDesign
+      - package: TeachingKit
+        product: KymLearning
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics
@@ -91,6 +93,8 @@ targets:
         product: GRDB
       - package: TeachingKit
         product: KymDesign
+      - package: TeachingKit
+        product: KymLearning
       - target: KymPhysicsWidgets
         embed: true
       - target: KymPhysicsShareExtension
