@@ -10,6 +10,6 @@
 Per the Kymaia pedagogical honesty contract:
 - **Unit Readiness (`UnitReadinessSnapshot`):** Three-stage readiness for a school unit (*Material In* → *Checked Learning* → *Independent Proof*).
 - **Concept Mastery (`BKTSkillRecord`):** Bayesian Knowledge Tracing posterior $P(L)$ per sub-topic. **Honesty rule:** Opening a worked example, faded completion blank, or Socratic hint records `assistedEvidenceCount` and caps $P(L)$ below mastery until proven independently.
-- **Card Progress (`FSRSCardRecord`):** FSRS v4 spaced-repetition stability $S$, difficulty $D$, and due interval for flashcard retrieval.
+- **Card Progress (`FSRSCardRecord`):** FSRS v5 spaced-repetition stability $S$, difficulty $D$, and due interval for flashcard retrieval.
 - **Question Proof (`QuestionProofRecord` / `QuestionProofLevel`):** Five-state progression (`unseen`, `assisted`, `shaky`, `proven`, `secure`). A question reaches `.proven` only when answered independently on the current day, and `.secure` only when proven independently across $2+$ separate calendar days.
 - **Lab Challenge Stamp (`WidgetChallengeStampRecord`):** Earned by reaching a quantitative target state inside an interactive simulation or sensor lab.
