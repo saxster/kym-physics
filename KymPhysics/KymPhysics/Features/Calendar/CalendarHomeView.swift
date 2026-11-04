@@ -63,7 +63,7 @@ struct CalendarHomeView: View {
                     .buttonStyle(.borderedProminent)
                     .tint(Color.kymaiaPrimary)
 
-                    ThemePickerMenu()
+                    StandardThemeMenu()
                 }
             }
         ) {

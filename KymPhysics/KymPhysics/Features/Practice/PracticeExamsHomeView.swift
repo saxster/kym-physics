@@ -23,7 +23,7 @@ struct PracticeExamsHomeView: View {
             title: "Proofs, 507 Exam Questions & Diagram Recall",
             subtitle: "16 Chapter Exam Banks · 16 Wolfram Quantitative Drills · Apple Pencil Physics Diagram Recall",
             headerAccessory: {
-                ThemePickerMenu()
+                StandardThemeMenu()
             }
         ) {
             // 1. Mode Switcher

@@ -58,10 +58,10 @@ extension Font {
     public static var kymaiaCardTitle: Font { .kymaiaHeadline }
     public static var kymaiaDisplayHero: Font { .kymaiaDisplay }
     public static var kymaiaTitle2: Font {
-        .system(.title2, design: CuratedColorScheme.current.style.headingFace.design).weight(.bold)
+        .system(.title2, design: KymaiaThemeRuntime.current.style.headingFace.design).weight(.bold)
     }
     public static var kymaiaTitle3: Font {
-        .system(.title3, design: CuratedColorScheme.current.style.headingFace.design).weight(.semibold)
+        .system(.title3, design: KymaiaThemeRuntime.current.style.headingFace.design).weight(.semibold)
     }
     public static var kymaiaCaption2: Font { .caption2 }
     public static var kymaiaMonospaced: Font { .system(.callout, design: .monospaced) }

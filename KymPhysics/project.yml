@@ -150,6 +150,9 @@ targets:
     platform: iOS
     sources:
       - path: KymPhysicsWidgets
+    dependencies:
+      - package: TeachingKit
+        product: KymDesign
     info:
       path: KymPhysicsWidgets/Info.plist
       properties:

@@ -1,3 +1,4 @@
+import KymDesign
 import SwiftUI
 import WidgetKit
 #if canImport(ActivityKit) && os(iOS)
@@ -75,20 +76,21 @@ struct KymPhysicsDailyGlanceWidgetView: View {
             HStack {
                 Label("KymPhysics", systemImage: "gyroscope")
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(Color(red: 0.34, green: 0.25, blue: 0.68))
+                    .foregroundStyle(Color.kymaiaPrimary)
                 Spacer()
                 Text(entry.provenRatioText)
                     .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.kymaiaMutedInk)
             }
 
             Text(entry.activeUnitTitle)
                 .font(.subheadline.weight(.bold))
+                .foregroundStyle(Color.kymaiaInk)
                 .lineLimit(1)
 
             Text("\(entry.activeChapterTitle) · \(entry.nextDeadlineTitle)")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.kymaiaMutedInk)
                 .lineLimit(2)
 
             Spacer(minLength: 0)
@@ -96,19 +98,26 @@ struct KymPhysicsDailyGlanceWidgetView: View {
             HStack {
                 Label("\(entry.dueCardsCount) cards due", systemImage: "rectangle.stack.fill")
                     .font(.caption2.weight(.semibold))
+                    .foregroundStyle(Color.kymaiaInk)
                 Spacer()
                 Text("Open Lab →")
                     .font(.caption2.weight(.bold))
-                    .foregroundStyle(Color(red: 0.34, green: 0.25, blue: 0.68))
+                    .foregroundStyle(Color.kymaiaPrimary)
             }
         }
         .padding(12)
-        .containerBackground(.fill.tertiary, for: .widget)
+        .containerBackground(Color.kymaiaBackground, for: .widget)
     }
 }
 
 @main
 struct KymPhysicsWidgetsBundle: WidgetBundle {
+    /// The widget runs in its own process, so it registers The Standard itself, reading the choice
+    /// the app copies into the physics app group (Vivid until the app has run).
+    init() {
+        StandardThemeStore.register(defaults: UserDefaults(suiteName: "group.com.kymaia.physics") ?? .standard)
+    }
+
     var body: some Widget {
         KymPhysicsDailyGlanceWidget()
     }

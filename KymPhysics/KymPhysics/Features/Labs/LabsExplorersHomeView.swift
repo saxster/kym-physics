@@ -55,7 +55,7 @@ struct LabsExplorersHomeView: View {
             title: "3D Physics Labs, Sensors & Explorers",
             subtitle: "56 Interactive Simulations · 4 Front-Matter Explorers · 126 Investigations · iPad Sensor Bench",
             headerAccessory: {
-                ThemePickerMenu()
+                StandardThemeMenu()
             }
         ) {
             // 1. Mode Switcher

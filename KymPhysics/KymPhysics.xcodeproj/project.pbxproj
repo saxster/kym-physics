@@ -15,7 +15,6 @@
 		03C294F0631DA7ED292A8FF7 /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
 		063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
 		08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
-		099CD7C44FD7493ACE1158B6 /* ThemePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22060617968740DE11AF42 /* ThemePickerMenu.swift */; };
 		0B4D125B4B20E1CB555AAF9F /* LearningEngineCharacterizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */; };
 		0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */; };
 		0CA8FD8F47E6FB350627D213 /* ArduinoMissionVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FC6C55F49352C33BCC6B7 /* ArduinoMissionVisualView.swift */; };
@@ -34,12 +33,12 @@
 		19FD95754752A2FEFA7C9DA7 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
 		1CBCC5EAF987DF403AA06EE7 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
 		1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
+		1EE5FFFC1B606E8B6466DA98 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */; };
 		20504FBF3EDE0AB92E846C06 /* ArduinoMissionSimulator+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */; };
 		2516C1A27CE8416E1805CB7F /* LabJournalHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */; };
 		25B8B39AE482C83E19AAB292 /* ArduinoMissionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */; };
 		25DB912639D75404E9CE96FB /* PhysicsDailyRitualSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */; };
 		26A35B1594288A5AB8676316 /* SubjectTipPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */; };
-		2926300095E55791EBFAC282 /* ThemePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22060617968740DE11AF42 /* ThemePickerMenu.swift */; };
 		2C391D7E16F393B6F1D35BE5 /* KymPhysicsWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F8EB165B1A4758DAF4B7D /* KymPhysicsWidgets.swift */; };
 		2C39ADD7C7C40099FC6926C1 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
 		2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
@@ -130,6 +129,7 @@
 		B7D9EF41BEDE56DA82B8C177 /* PencilWritingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */; };
 		B842F0A221B6764B00898892 /* ArduinoMissionVisualView+Stages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109255F326A4FAF739FDA35A /* ArduinoMissionVisualView+Stages.swift */; };
 		B93173D31E8294BBB6E995F5 /* KymPhysicsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CAED8DDF57A4083339050D /* KymPhysicsProfile.swift */; };
+		BA88AFC9DF83C779E3C42E5E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */; };
 		BE0AAAEBD68B308E60B875AE /* ForceArrowsVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86198E83B644723005117F78 /* ForceArrowsVisual.swift */; };
 		BE42E783AE7D4292304BF1A4 /* KymPhysicsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CAED8DDF57A4083339050D /* KymPhysicsProfile.swift */; };
 		C2665986D9FF0200ECE19A35 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
@@ -141,6 +141,7 @@
 		CC4B834B3C923C64166DFD5C /* AgentSoulSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */; };
 		CD0831637227A5304759A9DC /* TutorProfileRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3009D9D0E43575906AAF1C /* TutorProfileRegistrationTests.swift */; };
 		CF49201DC33107037B6F386F /* JournalCardParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332410178E900FB6AC180CB3 /* JournalCardParts.swift */; };
+		D30033A70FB7D3AA1041D07F /* KymDesign in Frameworks */ = {isa = PBXBuildFile; productRef = A1511D7FCC5124A84465C335 /* KymDesign */; };
 		D32B058FEEF35B9504973CB6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */; };
 		D41E0B9FE013D2905D03620B /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
 		D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
@@ -158,7 +159,6 @@
 		E55921B2DD7194EABB539673 /* SeedPackModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */; };
 		E815999700241C5EB9E9690B /* AIFeature+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAE9EAED0F38A81C0D1B8E /* AIFeature+Physics.swift */; };
 		E820A4B09E504A38A8AF64FA /* SchoolScienceHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11307A59B316631C5516284F /* SchoolScienceHomeView.swift */; };
-		E9EE0D377717F59FABF48045 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
 		EA28E828E211FC65DF340699 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1DFCA9E189E31CD0CB98CC /* AppStore.swift */; };
 		ECE425D9668CFF83747A8B0B /* KymLearning in Frameworks */ = {isa = PBXBuildFile; productRef = 0C67A5024666CB9A94F30D1C /* KymLearning */; };
 		ECEBDF3ABE98F25DD61EA9D3 /* SubjectTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730901F53675F6155F5A4FD1 /* SubjectTip.swift */; };
@@ -171,7 +171,6 @@
 		F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
 		F9A26C0E853525DCA33B7922 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
 		FA407B2F0E088B7B0748EB88 /* KymDesign in Frameworks */ = {isa = PBXBuildFile; productRef = E48420D089CBF2A2DF82BC63 /* KymDesign */; };
-		FBA552AD693229722F242E15 /* CuratedColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */; };
 		FC1861291BFB3194B1700063 /* StepSequenceVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */; };
 		FD65487F2E7645595C447A48 /* ThemeCharacterizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */; };
 		FED3352E47665A8B18B65A49 /* ArduinoMissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */; };
@@ -237,7 +236,6 @@
 		26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionSimulator+Audio.swift"; sourceTree = "<group>"; };
 		267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCodeCardView.swift; sourceTree = "<group>"; };
 		2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipVisualView.swift; sourceTree = "<group>"; };
-		2E22060617968740DE11AF42 /* ThemePickerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerMenu.swift; sourceTree = "<group>"; };
 		2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentSoulSystem.swift; sourceTree = "<group>"; };
 		2F4835B06F7A1B207BA85620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		332410178E900FB6AC180CB3 /* JournalCardParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCardParts.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 		907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHScaleVisual.swift; sourceTree = "<group>"; };
 		911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEngineCharacterizationTests.swift; sourceTree = "<group>"; };
 		9BBE34BB70E042A3C9E78DBB /* teaching_kit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = teaching_kit; path = ../../teaching_kit; sourceTree = SOURCE_ROOT; };
-		9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedColorScheme.swift; sourceTree = "<group>"; };
 		A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabJournalHomeView.swift; sourceTree = "<group>"; };
 		A271E29C9FAC41A6D8AC3046 /* QuantitativePhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitativePhysicsEngine.swift; sourceTree = "<group>"; };
 		A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCharacterizationTests.swift; sourceTree = "<group>"; };
@@ -304,6 +301,7 @@
 		DD27583198A03CF73DD13EF6 /* ContentPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ContentPacks; path = KymPhysics/Resources/ContentPacks; sourceTree = SOURCE_ROOT; };
 		DD92500FD9952B221A4A8F35 /* EquationBalanceVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationBalanceVisual.swift; sourceTree = "<group>"; };
 		DED6C19E1EFC25E33AFEB1D1 /* KymDesignExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymDesignExport.swift; sourceTree = "<group>"; };
+		DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToggleVisual.swift; sourceTree = "<group>"; };
 		EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingWorldBridgeController.swift; sourceTree = "<group>"; };
 		ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticStyles.swift; sourceTree = "<group>"; };
@@ -314,6 +312,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		00B75098060B8A1F18FF56D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D30033A70FB7D3AA1041D07F /* KymDesign in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		677EE5A81C8F84AEDA071D4E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -484,8 +490,8 @@
 		4707CDE47FF3C8308C08D282 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */,
 				8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */,
-				9E6E8209974EFA7A8537452C /* CuratedColorScheme.swift */,
 				63792AD452005385630E4E77 /* MissingDesignElements.swift */,
 				ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */,
 				D590F8B650984ECA7B0A97E0 /* Components */,
@@ -610,7 +616,6 @@
 				20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */,
 				BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */,
 				7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */,
-				2E22060617968740DE11AF42 /* ThemePickerMenu.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -792,6 +797,7 @@
 			buildConfigurationList = 752D4526065237FE2B9A2CB9 /* Build configuration list for PBXNativeTarget "KymPhysicsWidgets" */;
 			buildPhases = (
 				970D8CCE0611D964D696E543 /* Sources */,
+				00B75098060B8A1F18FF56D1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -799,6 +805,7 @@
 			);
 			name = KymPhysicsWidgets;
 			packageProductDependencies = (
+				A1511D7FCC5124A84465C335 /* KymDesign */,
 			);
 			productName = KymPhysicsWidgets;
 			productReference = C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */;
@@ -926,6 +933,7 @@
 				E815999700241C5EB9E9690B /* AIFeature+Physics.swift in Sources */,
 				CC4B834B3C923C64166DFD5C /* AgentSoulSystem.swift in Sources */,
 				EA28E828E211FC65DF340699 /* AppStore.swift in Sources */,
+				1EE5FFFC1B606E8B6466DA98 /* AppTheme.swift in Sources */,
 				886599CF1F8897601FA16CAF /* ArduinoBoardTourView.swift in Sources */,
 				F9A26C0E853525DCA33B7922 /* ArduinoCodeCardView.swift in Sources */,
 				13CA6A073CD398FEFBC33A7F /* ArduinoMissionCatalog+Nature.swift in Sources */,
@@ -941,7 +949,6 @@
 				506D33F1F970013E398B09F7 /* CalendarHomeView.swift in Sources */,
 				4E4AC5BC94F38597CF5AC43A /* CircuitToggleVisual.swift in Sources */,
 				C2665986D9FF0200ECE19A35 /* ColorExtensions.swift in Sources */,
-				E9EE0D377717F59FABF48045 /* CuratedColorScheme.swift in Sources */,
 				D32B058FEEF35B9504973CB6 /* DatabaseManager.swift in Sources */,
 				D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */,
 				E441354C4AD21ACB7C8CE6FA /* EquationBalanceVisual.swift in Sources */,
@@ -993,7 +1000,6 @@
 				805906FE6CAA8A8B0A169B4E /* SubjectTipVisualLogic.swift in Sources */,
 				EE6EC07AEF4BCBF1B9F59595 /* SubjectTipVisualView.swift in Sources */,
 				063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */,
-				2926300095E55791EBFAC282 /* ThemePickerMenu.swift in Sources */,
 				E2D7417499488134C09E5856 /* TodayHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1016,6 +1022,7 @@
 				845EC7C33C0A1165478284D4 /* AIFeature+Physics.swift in Sources */,
 				011733ED3547983A18EE9044 /* AgentSoulSystem.swift in Sources */,
 				5B564B673F448C992EC84813 /* AppStore.swift in Sources */,
+				BA88AFC9DF83C779E3C42E5E /* AppTheme.swift in Sources */,
 				35FC78D1724A0EAC944F419B /* ArduinoBoardTourView.swift in Sources */,
 				19FD95754752A2FEFA7C9DA7 /* ArduinoCodeCardView.swift in Sources */,
 				16B367F7414991E31CDDB374 /* ArduinoMissionCatalog+Nature.swift in Sources */,
@@ -1031,7 +1038,6 @@
 				36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */,
 				6D2B249E3A8C27FD6A071A01 /* CircuitToggleVisual.swift in Sources */,
 				2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */,
-				FBA552AD693229722F242E15 /* CuratedColorScheme.swift in Sources */,
 				3B1EEE88AEDF527107591C11 /* DatabaseManager.swift in Sources */,
 				1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */,
 				9F45BAFA6D2C4485088A43A9 /* EquationBalanceVisual.swift in Sources */,
@@ -1083,7 +1089,6 @@
 				0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */,
 				3C6DB0224AA199CA2D7C8CB9 /* SubjectTipVisualView.swift in Sources */,
 				300479AD12C50F4198F482CC /* SystemSurfaceAppIntents.swift in Sources */,
-				099CD7C44FD7493ACE1158B6 /* ThemePickerMenu.swift in Sources */,
 				ED4E14858A1129908B1B82F9 /* TodayHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1563,6 +1568,10 @@
 		83B4D3D293EC6357B1F9A1EC /* KymTutorAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KymTutorAI;
+		};
+		A1511D7FCC5124A84465C335 /* KymDesign */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymDesign;
 		};
 		BD5889889CB5CE850FA8DBF6 /* KymDesign */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -86,7 +86,7 @@ struct PhysicsCoachHomeView: View {
                     }
                     .buttonStyle(.bordered)
 
-                    ThemePickerMenu()
+                    StandardThemeMenu()
                 }
             }
         ) {

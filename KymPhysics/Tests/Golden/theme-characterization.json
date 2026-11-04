@@ -1,43 +1,44 @@
 {
   "themes" : {
-    "botanical" : {
+    "dark-graphite" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
       "cardChrome" : "falseContent",
-      "cardRadius" : 16,
+      "cardRadius" : 26,
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#2E604A@1.000",
-            "light" : "#2E604A@1.000",
+            "dark" : "#D7AA5F@1.000",
+            "light" : "#D7AA5F@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#8A3B28@1.000",
-            "light" : "#8A3B28@1.000",
+            "dark" : "#A8BFA8@1.000",
+            "light" : "#A8BFA8@1.000",
             "location" : "1.000"
           }
         ]
       },
       "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
         "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
         "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
       },
       "palette" : {
         "background" : {
-          "dark" : "#0F1916@1.000",
-          "light" : "#F7F3E8@1.000"
+          "dark" : "#181A1D@1.000",
+          "light" : "#181A1D@1.000"
         },
         "controlBorder" : {
-          "dark" : "#58736A@1.000",
-          "highContrastDark" : "#A7C0B6@1.000",
-          "highContrastLight" : "#4A655D@1.000",
-          "light" : "#6D857D@1.000"
+          "dark" : "#7B7B78@1.000",
+          "highContrastDark" : "#ABA9A3@1.000",
+          "highContrastLight" : "#ABA9A3@1.000",
+          "light" : "#7B7B78@1.000"
         },
         "controlFill" : {
           "dark" : "#F7F5F2@0.100",
@@ -46,260 +47,530 @@
           "light" : "#1D1B20@0.070"
         },
         "elevatedSurface" : {
-          "dark" : "#1F322C@1.000",
-          "light" : "#FFFFFF@1.000"
+          "dark" : "#22262A@1.000",
+          "light" : "#22262A@1.000"
         },
         "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
+          "dark" : "#E09B7A@1.000",
+          "light" : "#E09B7A@1.000"
         },
         "focusRing" : {
-          "dark" : "#8CE0B9@1.000",
-          "light" : "#1E4735@1.000"
+          "dark" : "#D7AA5F@1.000",
+          "light" : "#D7AA5F@1.000"
         },
         "groupedBackground" : {
-          "dark" : "#0A1210@1.000",
-          "light" : "#EFE9D8@1.000"
+          "dark" : "#22262A@1.000",
+          "light" : "#22262A@1.000"
         },
         "hairline" : {
-          "dark" : "#ECF4F0@0.160",
-          "highContrastDark" : "#ECF4F0@0.380",
-          "highContrastLight" : "#203D36@0.320",
-          "light" : "#203D36@0.120"
+          "dark" : "#F0ECE2@0.160",
+          "highContrastDark" : "#F0ECE2@0.380",
+          "highContrastLight" : "#F0ECE2@0.320",
+          "light" : "#F0ECE2@0.120"
         },
         "ink" : {
-          "dark" : "#ECF4F0@1.000",
-          "light" : "#203D36@1.000"
+          "dark" : "#F0ECE2@1.000",
+          "light" : "#F0ECE2@1.000"
         },
         "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
+          "dark" : "#E09B7A@1.000",
+          "light" : "#E09B7A@1.000"
         },
         "mutedInk" : {
-          "dark" : "#A7C0B6@1.000",
-          "light" : "#4A655D@1.000"
+          "dark" : "#ABA9A3@1.000",
+          "light" : "#ABA9A3@1.000"
         },
         "paperRule" : {
-          "dark" : "#ECF4F0@0.120",
-          "highContrastDark" : "#ECF4F0@0.380",
-          "highContrastLight" : "#203D36@0.320",
-          "light" : "#203D36@0.100"
+          "dark" : "#F0ECE2@0.120",
+          "highContrastDark" : "#F0ECE2@0.380",
+          "highContrastLight" : "#F0ECE2@0.320",
+          "light" : "#F0ECE2@0.100"
         },
         "paperRuleStrong" : {
-          "dark" : "#ECF4F0@0.260",
-          "highContrastDark" : "#ECF4F0@0.500",
-          "highContrastLight" : "#203D36@0.450",
-          "light" : "#203D36@0.220"
+          "dark" : "#F0ECE2@0.260",
+          "highContrastDark" : "#F0ECE2@0.500",
+          "highContrastLight" : "#F0ECE2@0.450",
+          "light" : "#F0ECE2@0.220"
         },
         "primary" : {
-          "dark" : "#58B88C@1.000",
-          "highContrastDark" : "#8CE0B9@1.000",
-          "highContrastLight" : "#1E4735@1.000",
-          "light" : "#2E604A@1.000"
+          "dark" : "#D7AA5F@1.000",
+          "highContrastDark" : "#D7AA5F@1.000",
+          "highContrastLight" : "#D7AA5F@1.000",
+          "light" : "#D7AA5F@1.000"
         },
         "scrim" : {
           "dark" : "#000000@0.600",
           "light" : "#000000@0.340"
         },
         "secondary" : {
-          "dark" : "#E0866E@1.000",
-          "light" : "#8A3B28@1.000"
+          "dark" : "#A8BFA8@1.000",
+          "light" : "#A8BFA8@1.000"
         },
         "selectionFill" : {
-          "dark" : "#58B88C@0.200",
-          "highContrastDark" : "#8CE0B9@0.280",
-          "highContrastLight" : "#1E4735@0.220",
-          "light" : "#2E604A@0.140"
+          "dark" : "#D7AA5F@0.200",
+          "highContrastDark" : "#D7AA5F@0.280",
+          "highContrastLight" : "#D7AA5F@0.220",
+          "light" : "#D7AA5F@0.140"
         },
         "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
+          "dark" : "#A8BFA8@1.000",
+          "light" : "#A8BFA8@1.000"
         },
         "surface" : {
-          "dark" : "#162420@1.000",
+          "dark" : "#22262A@1.000",
+          "light" : "#22262A@1.000"
+        },
+        "tertiaryInk" : {
+          "dark" : "#8F8E89@1.000",
+          "highContrastDark" : "#ABA9A3@1.000",
+          "highContrastLight" : "#ABA9A3@1.000",
+          "light" : "#8F8E89@1.000"
+        },
+        "warning" : {
+          "dark" : "#D7AA5F@1.000",
+          "light" : "#D7AA5F@1.000"
+        }
+      },
+      "preferredColorScheme" : "dark"
+    },
+    "dark-ink" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
+      "cardChrome" : "falseContent",
+      "cardRadius" : 26,
+      "glance" : {
+        "streakFill" : [
+          {
+            "dark" : "#C3A36E@1.000",
+            "light" : "#C3A36E@1.000",
+            "location" : "0.000"
+          },
+          {
+            "dark" : "#9CB6A2@1.000",
+            "light" : "#9CB6A2@1.000",
+            "location" : "1.000"
+          }
+        ]
+      },
+      "headingFonts" : {
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
+        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
+      },
+      "palette" : {
+        "background" : {
+          "dark" : "#10151C@1.000",
+          "light" : "#10151C@1.000"
+        },
+        "controlBorder" : {
+          "dark" : "#747980@1.000",
+          "highContrastDark" : "#A4A9B0@1.000",
+          "highContrastLight" : "#A4A9B0@1.000",
+          "light" : "#747980@1.000"
+        },
+        "controlFill" : {
+          "dark" : "#F7F5F2@0.100",
+          "highContrastDark" : "#F7F5F2@0.180",
+          "highContrastLight" : "#1D1B20@0.150",
+          "light" : "#1D1B20@0.070"
+        },
+        "elevatedSurface" : {
+          "dark" : "#19212B@1.000",
+          "light" : "#19212B@1.000"
+        },
+        "error" : {
+          "dark" : "#D09178@1.000",
+          "light" : "#D09178@1.000"
+        },
+        "focusRing" : {
+          "dark" : "#C3A36E@1.000",
+          "light" : "#C3A36E@1.000"
+        },
+        "groupedBackground" : {
+          "dark" : "#19212B@1.000",
+          "light" : "#19212B@1.000"
+        },
+        "hairline" : {
+          "dark" : "#E9EEF6@0.160",
+          "highContrastDark" : "#E9EEF6@0.380",
+          "highContrastLight" : "#E9EEF6@0.320",
+          "light" : "#E9EEF6@0.120"
+        },
+        "ink" : {
+          "dark" : "#E9EEF6@1.000",
+          "light" : "#E9EEF6@1.000"
+        },
+        "live" : {
+          "dark" : "#D09178@1.000",
+          "light" : "#D09178@1.000"
+        },
+        "mutedInk" : {
+          "dark" : "#A4A9B0@1.000",
+          "light" : "#A4A9B0@1.000"
+        },
+        "paperRule" : {
+          "dark" : "#E9EEF6@0.120",
+          "highContrastDark" : "#E9EEF6@0.380",
+          "highContrastLight" : "#E9EEF6@0.320",
+          "light" : "#E9EEF6@0.100"
+        },
+        "paperRuleStrong" : {
+          "dark" : "#E9EEF6@0.260",
+          "highContrastDark" : "#E9EEF6@0.500",
+          "highContrastLight" : "#E9EEF6@0.450",
+          "light" : "#E9EEF6@0.220"
+        },
+        "primary" : {
+          "dark" : "#C3A36E@1.000",
+          "highContrastDark" : "#C3A36E@1.000",
+          "highContrastLight" : "#C3A36E@1.000",
+          "light" : "#C3A36E@1.000"
+        },
+        "scrim" : {
+          "dark" : "#000000@0.600",
+          "light" : "#000000@0.340"
+        },
+        "secondary" : {
+          "dark" : "#9CB6A2@1.000",
+          "light" : "#9CB6A2@1.000"
+        },
+        "selectionFill" : {
+          "dark" : "#C3A36E@0.200",
+          "highContrastDark" : "#C3A36E@0.280",
+          "highContrastLight" : "#C3A36E@0.220",
+          "light" : "#C3A36E@0.140"
+        },
+        "success" : {
+          "dark" : "#9CB6A2@1.000",
+          "light" : "#9CB6A2@1.000"
+        },
+        "surface" : {
+          "dark" : "#19212B@1.000",
+          "light" : "#19212B@1.000"
+        },
+        "tertiaryInk" : {
+          "dark" : "#838890@1.000",
+          "highContrastDark" : "#A4A9B0@1.000",
+          "highContrastLight" : "#A4A9B0@1.000",
+          "light" : "#838890@1.000"
+        },
+        "warning" : {
+          "dark" : "#C3A36E@1.000",
+          "light" : "#C3A36E@1.000"
+        }
+      },
+      "preferredColorScheme" : "dark"
+    },
+    "dark-true" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
+      "cardChrome" : "falseContent",
+      "cardRadius" : 26,
+      "glance" : {
+        "streakFill" : [
+          {
+            "dark" : "#D0A35A@1.000",
+            "light" : "#D0A35A@1.000",
+            "location" : "0.000"
+          },
+          {
+            "dark" : "#A6BEA0@1.000",
+            "light" : "#A6BEA0@1.000",
+            "location" : "1.000"
+          }
+        ]
+      },
+      "headingFonts" : {
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
+        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
+      },
+      "palette" : {
+        "background" : {
+          "dark" : "#000000@1.000",
+          "light" : "#000000@1.000"
+        },
+        "controlBorder" : {
+          "dark" : "#6F6C66@1.000",
+          "highContrastDark" : "#A4A096@1.000",
+          "highContrastLight" : "#A4A096@1.000",
+          "light" : "#6F6C66@1.000"
+        },
+        "controlFill" : {
+          "dark" : "#F7F5F2@0.100",
+          "highContrastDark" : "#F7F5F2@0.180",
+          "highContrastLight" : "#1D1B20@0.150",
+          "light" : "#1D1B20@0.070"
+        },
+        "elevatedSurface" : {
+          "dark" : "#111111@1.000",
+          "light" : "#111111@1.000"
+        },
+        "error" : {
+          "dark" : "#DA9877@1.000",
+          "light" : "#DA9877@1.000"
+        },
+        "focusRing" : {
+          "dark" : "#D0A35A@1.000",
+          "light" : "#D0A35A@1.000"
+        },
+        "groupedBackground" : {
+          "dark" : "#111111@1.000",
+          "light" : "#111111@1.000"
+        },
+        "hairline" : {
+          "dark" : "#F1EBDD@0.160",
+          "highContrastDark" : "#F1EBDD@0.380",
+          "highContrastLight" : "#F1EBDD@0.320",
+          "light" : "#F1EBDD@0.120"
+        },
+        "ink" : {
+          "dark" : "#F1EBDD@1.000",
+          "light" : "#F1EBDD@1.000"
+        },
+        "live" : {
+          "dark" : "#DA9877@1.000",
+          "light" : "#DA9877@1.000"
+        },
+        "mutedInk" : {
+          "dark" : "#A4A096@1.000",
+          "light" : "#A4A096@1.000"
+        },
+        "paperRule" : {
+          "dark" : "#F1EBDD@0.120",
+          "highContrastDark" : "#F1EBDD@0.380",
+          "highContrastLight" : "#F1EBDD@0.320",
+          "light" : "#F1EBDD@0.100"
+        },
+        "paperRuleStrong" : {
+          "dark" : "#F1EBDD@0.260",
+          "highContrastDark" : "#F1EBDD@0.500",
+          "highContrastLight" : "#F1EBDD@0.450",
+          "light" : "#F1EBDD@0.220"
+        },
+        "primary" : {
+          "dark" : "#D0A35A@1.000",
+          "highContrastDark" : "#D0A35A@1.000",
+          "highContrastLight" : "#D0A35A@1.000",
+          "light" : "#D0A35A@1.000"
+        },
+        "scrim" : {
+          "dark" : "#000000@0.600",
+          "light" : "#000000@0.340"
+        },
+        "secondary" : {
+          "dark" : "#A6BEA0@1.000",
+          "light" : "#A6BEA0@1.000"
+        },
+        "selectionFill" : {
+          "dark" : "#D0A35A@0.200",
+          "highContrastDark" : "#D0A35A@0.280",
+          "highContrastLight" : "#D0A35A@0.220",
+          "light" : "#D0A35A@0.140"
+        },
+        "success" : {
+          "dark" : "#A6BEA0@1.000",
+          "light" : "#A6BEA0@1.000"
+        },
+        "surface" : {
+          "dark" : "#111111@1.000",
+          "light" : "#111111@1.000"
+        },
+        "tertiaryInk" : {
+          "dark" : "#807D75@1.000",
+          "highContrastDark" : "#A4A096@1.000",
+          "highContrastLight" : "#A4A096@1.000",
+          "light" : "#807D75@1.000"
+        },
+        "warning" : {
+          "dark" : "#D0A35A@1.000",
+          "light" : "#D0A35A@1.000"
+        }
+      },
+      "preferredColorScheme" : "dark"
+    },
+    "parchment" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
+      "cardChrome" : "falseContent",
+      "cardRadius" : 26,
+      "glance" : {
+        "streakFill" : [
+          {
+            "dark" : "#8F641F@1.000",
+            "light" : "#8F641F@1.000",
+            "location" : "0.000"
+          },
+          {
+            "dark" : "#4F6A58@1.000",
+            "light" : "#4F6A58@1.000",
+            "location" : "1.000"
+          }
+        ]
+      },
+      "headingFonts" : {
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
+        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
+      },
+      "palette" : {
+        "background" : {
+          "dark" : "#F7F4EC@1.000",
+          "light" : "#F7F4EC@1.000"
+        },
+        "controlBorder" : {
+          "dark" : "#8F8C85@1.000",
+          "highContrastDark" : "#64605A@1.000",
+          "highContrastLight" : "#64605A@1.000",
+          "light" : "#8F8C85@1.000"
+        },
+        "controlFill" : {
+          "dark" : "#F7F5F2@0.100",
+          "highContrastDark" : "#F7F5F2@0.180",
+          "highContrastLight" : "#1D1B20@0.150",
+          "light" : "#1D1B20@0.070"
+        },
+        "elevatedSurface" : {
+          "dark" : "#FFFDF7@1.000",
+          "light" : "#FFFDF7@1.000"
+        },
+        "error" : {
+          "dark" : "#8B4C38@1.000",
+          "light" : "#8B4C38@1.000"
+        },
+        "focusRing" : {
+          "dark" : "#8F641F@1.000",
+          "light" : "#8F641F@1.000"
+        },
+        "groupedBackground" : {
+          "dark" : "#FFFDF7@1.000",
+          "light" : "#FFFDF7@1.000"
+        },
+        "hairline" : {
+          "dark" : "#1F1B16@0.160",
+          "highContrastDark" : "#1F1B16@0.380",
+          "highContrastLight" : "#1F1B16@0.320",
+          "light" : "#1F1B16@0.120"
+        },
+        "ink" : {
+          "dark" : "#1F1B16@1.000",
+          "light" : "#1F1B16@1.000"
+        },
+        "live" : {
+          "dark" : "#8B4C38@1.000",
+          "light" : "#8B4C38@1.000"
+        },
+        "mutedInk" : {
+          "dark" : "#64605A@1.000",
+          "light" : "#64605A@1.000"
+        },
+        "paperRule" : {
+          "dark" : "#1F1B16@0.120",
+          "highContrastDark" : "#1F1B16@0.380",
+          "highContrastLight" : "#1F1B16@0.320",
+          "light" : "#1F1B16@0.100"
+        },
+        "paperRuleStrong" : {
+          "dark" : "#1F1B16@0.260",
+          "highContrastDark" : "#1F1B16@0.500",
+          "highContrastLight" : "#1F1B16@0.450",
+          "light" : "#1F1B16@0.220"
+        },
+        "primary" : {
+          "dark" : "#8F641F@1.000",
+          "highContrastDark" : "#8F641F@1.000",
+          "highContrastLight" : "#8F641F@1.000",
+          "light" : "#8F641F@1.000"
+        },
+        "scrim" : {
+          "dark" : "#000000@0.600",
+          "light" : "#000000@0.340"
+        },
+        "secondary" : {
+          "dark" : "#4F6A58@1.000",
+          "light" : "#4F6A58@1.000"
+        },
+        "selectionFill" : {
+          "dark" : "#8F641F@0.200",
+          "highContrastDark" : "#8F641F@0.280",
+          "highContrastLight" : "#8F641F@0.220",
+          "light" : "#8F641F@0.140"
+        },
+        "success" : {
+          "dark" : "#4F6A58@1.000",
+          "light" : "#4F6A58@1.000"
+        },
+        "surface" : {
+          "dark" : "#FFFDF7@1.000",
           "light" : "#FFFDF7@1.000"
         },
         "tertiaryInk" : {
-          "dark" : "#98B5AA@1.000",
-          "highContrastDark" : "#A7C0B6@1.000",
-          "highContrastLight" : "#4A655D@1.000",
-          "light" : "#526B63@1.000"
+          "dark" : "#716D67@1.000",
+          "highContrastDark" : "#64605A@1.000",
+          "highContrastLight" : "#64605A@1.000",
+          "light" : "#716D67@1.000"
         },
         "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
+          "dark" : "#8F641F@1.000",
+          "light" : "#8F641F@1.000"
         }
-      }
+      },
+      "preferredColorScheme" : "light"
     },
-    "dusk" : {
+    "sepia" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
       "cardChrome" : "falseContent",
-      "cardRadius" : 14,
+      "cardRadius" : 26,
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#7A365E@1.000",
-            "light" : "#7A365E@1.000",
+            "dark" : "#8B6325@1.000",
+            "light" : "#8B6325@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#765466@1.000",
-            "light" : "#765466@1.000",
+            "dark" : "#526642@1.000",
+            "light" : "#526642@1.000",
             "location" : "1.000"
           }
         ]
       },
       "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
-      },
-      "palette" : {
-        "background" : {
-          "dark" : "#171116@1.000",
-          "light" : "#F8F3F6@1.000"
-        },
-        "controlBorder" : {
-          "dark" : "#6E6A78@1.000",
-          "highContrastDark" : "#B9B4C0@1.000",
-          "highContrastLight" : "#625F68@1.000",
-          "light" : "#85808C@1.000"
-        },
-        "controlFill" : {
-          "dark" : "#F7F5F2@0.100",
-          "highContrastDark" : "#F7F5F2@0.180",
-          "highContrastLight" : "#1D1B20@0.150",
-          "light" : "#1D1B20@0.070"
-        },
-        "elevatedSurface" : {
-          "dark" : "#27272D@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
-        },
-        "focusRing" : {
-          "dark" : "#FFB4D6@1.000",
-          "light" : "#612547@1.000"
-        },
-        "groupedBackground" : {
-          "dark" : "#100B0F@1.000",
-          "light" : "#EFE6EC@1.000"
-        },
-        "hairline" : {
-          "dark" : "#F7F5F2@0.160",
-          "highContrastDark" : "#F7F5F2@0.380",
-          "highContrastLight" : "#1D1B20@0.320",
-          "light" : "#1D1B20@0.120"
-        },
-        "ink" : {
-          "dark" : "#F7F5F2@1.000",
-          "light" : "#1D1B20@1.000"
-        },
-        "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
-        },
-        "mutedInk" : {
-          "dark" : "#B9B4C0@1.000",
-          "light" : "#625F68@1.000"
-        },
-        "paperRule" : {
-          "dark" : "#F7F5F2@0.120",
-          "highContrastDark" : "#F7F5F2@0.380",
-          "highContrastLight" : "#1D1B20@0.320",
-          "light" : "#1D1B20@0.100"
-        },
-        "paperRuleStrong" : {
-          "dark" : "#F7F5F2@0.260",
-          "highContrastDark" : "#F7F5F2@0.500",
-          "highContrastLight" : "#1D1B20@0.450",
-          "light" : "#1D1B20@0.220"
-        },
-        "primary" : {
-          "dark" : "#E78BB9@1.000",
-          "highContrastDark" : "#FFB4D6@1.000",
-          "highContrastLight" : "#612547@1.000",
-          "light" : "#7A365E@1.000"
-        },
-        "scrim" : {
-          "dark" : "#000000@0.600",
-          "light" : "#000000@0.340"
-        },
-        "secondary" : {
-          "dark" : "#C9A6B8@1.000",
-          "light" : "#765466@1.000"
-        },
-        "selectionFill" : {
-          "dark" : "#E78BB9@0.200",
-          "highContrastDark" : "#FFB4D6@0.280",
-          "highContrastLight" : "#612547@0.220",
-          "light" : "#7A365E@0.140"
-        },
-        "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
-        },
-        "surface" : {
-          "dark" : "#1C1C20@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "tertiaryInk" : {
-          "dark" : "#AAA5B0@1.000",
-          "highContrastDark" : "#B9B4C0@1.000",
-          "highContrastLight" : "#625F68@1.000",
-          "light" : "#6A6670@1.000"
-        },
-        "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
-        }
-      }
-    },
-    "hearth" : {
-      "cardChrome" : "falseContent",
-      "cardRadius" : 10,
-      "glance" : {
-        "streakFill" : [
-          {
-            "dark" : "#9C4722@1.000",
-            "light" : "#9C4722@1.000",
-            "location" : "0.000"
-          },
-          {
-            "dark" : "#6E5A3A@1.000",
-            "light" : "#6E5A3A@1.000",
-            "location" : "1.000"
-          }
-        ]
-      },
-      "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
         "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
         "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
       },
       "palette" : {
         "background" : {
-          "dark" : "#191411@1.000",
-          "light" : "#F6EFE4@1.000"
+          "dark" : "#EEE5D1@1.000",
+          "light" : "#EEE5D1@1.000"
         },
         "controlBorder" : {
-          "dark" : "#77665A@1.000",
-          "highContrastDark" : "#C4B3A3@1.000",
-          "highContrastLight" : "#6B5B50@1.000",
-          "light" : "#8C7B6C@1.000"
+          "dark" : "#8B8172@1.000",
+          "highContrastDark" : "#696053@1.000",
+          "highContrastLight" : "#696053@1.000",
+          "light" : "#8B8172@1.000"
         },
         "controlFill" : {
           "dark" : "#F7F5F2@0.100",
@@ -308,391 +579,131 @@
           "light" : "#1D1B20@0.070"
         },
         "elevatedSurface" : {
-          "dark" : "#2E2620@1.000",
-          "light" : "#FFFFFF@1.000"
+          "dark" : "#FAF3E2@1.000",
+          "light" : "#FAF3E2@1.000"
         },
         "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
+          "dark" : "#88482F@1.000",
+          "light" : "#88482F@1.000"
         },
         "focusRing" : {
-          "dark" : "#F7C3A3@1.000",
-          "light" : "#7E3815@1.000"
+          "dark" : "#855F24@1.000",
+          "light" : "#855F24@1.000"
         },
         "groupedBackground" : {
-          "dark" : "#110D0B@1.000",
-          "light" : "#EDE3D3@1.000"
+          "dark" : "#FAF3E2@1.000",
+          "light" : "#FAF3E2@1.000"
         },
         "hairline" : {
-          "dark" : "#F5EBDD@0.160",
-          "highContrastDark" : "#F5EBDD@0.380",
-          "highContrastLight" : "#2B211B@0.320",
-          "light" : "#2B211B@0.120"
+          "dark" : "#2B2117@0.160",
+          "highContrastDark" : "#2B2117@0.380",
+          "highContrastLight" : "#2B2117@0.320",
+          "light" : "#2B2117@0.120"
         },
         "ink" : {
-          "dark" : "#F5EBDD@1.000",
-          "light" : "#2B211B@1.000"
+          "dark" : "#2B2117@1.000",
+          "light" : "#2B2117@1.000"
         },
         "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
+          "dark" : "#88482F@1.000",
+          "light" : "#88482F@1.000"
         },
         "mutedInk" : {
-          "dark" : "#C4B3A3@1.000",
-          "light" : "#6B5B50@1.000"
+          "dark" : "#696053@1.000",
+          "light" : "#696053@1.000"
         },
         "paperRule" : {
-          "dark" : "#F5EBDD@0.120",
-          "highContrastDark" : "#F5EBDD@0.380",
-          "highContrastLight" : "#2B211B@0.320",
-          "light" : "#2B211B@0.100"
+          "dark" : "#2B2117@0.120",
+          "highContrastDark" : "#2B2117@0.380",
+          "highContrastLight" : "#2B2117@0.320",
+          "light" : "#2B2117@0.100"
         },
         "paperRuleStrong" : {
-          "dark" : "#F5EBDD@0.260",
-          "highContrastDark" : "#F5EBDD@0.500",
-          "highContrastLight" : "#2B211B@0.450",
-          "light" : "#2B211B@0.220"
+          "dark" : "#2B2117@0.260",
+          "highContrastDark" : "#2B2117@0.500",
+          "highContrastLight" : "#2B2117@0.450",
+          "light" : "#2B2117@0.220"
         },
         "primary" : {
-          "dark" : "#E8956A@1.000",
-          "highContrastDark" : "#F7C3A3@1.000",
-          "highContrastLight" : "#7E3815@1.000",
-          "light" : "#9C4722@1.000"
+          "dark" : "#8B6325@1.000",
+          "highContrastDark" : "#855F24@1.000",
+          "highContrastLight" : "#855F24@1.000",
+          "light" : "#8B6325@1.000"
         },
         "scrim" : {
           "dark" : "#000000@0.600",
           "light" : "#000000@0.340"
         },
         "secondary" : {
-          "dark" : "#C9A58D@1.000",
-          "light" : "#6E5A3A@1.000"
+          "dark" : "#526642@1.000",
+          "light" : "#526642@1.000"
         },
         "selectionFill" : {
-          "dark" : "#E8956A@0.200",
-          "highContrastDark" : "#F7C3A3@0.280",
-          "highContrastLight" : "#7E3815@0.220",
-          "light" : "#9C4722@0.140"
+          "dark" : "#8B6325@0.200",
+          "highContrastDark" : "#855F24@0.280",
+          "highContrastLight" : "#855F24@0.220",
+          "light" : "#8B6325@0.140"
         },
         "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
+          "dark" : "#526642@1.000",
+          "light" : "#526642@1.000"
         },
         "surface" : {
-          "dark" : "#241D19@1.000",
-          "light" : "#FFFAF2@1.000"
+          "dark" : "#FAF3E2@1.000",
+          "light" : "#FAF3E2@1.000"
         },
         "tertiaryInk" : {
-          "dark" : "#B5A393@1.000",
-          "highContrastDark" : "#C4B3A3@1.000",
-          "highContrastLight" : "#6B5B50@1.000",
-          "light" : "#6F5F54@1.000"
+          "dark" : "#6F6658@1.000",
+          "highContrastDark" : "#696053@1.000",
+          "highContrastLight" : "#696053@1.000",
+          "light" : "#6F6658@1.000"
         },
         "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
+          "dark" : "#855F24@1.000",
+          "light" : "#855F24@1.000"
         }
-      }
+      },
+      "preferredColorScheme" : "light"
     },
-    "journal" : {
-      "cardChrome" : "trueContent",
-      "cardRadius" : 20,
-      "glance" : {
-        "streakFill" : [
-          {
-            "dark" : "#5856D6@1.000",
-            "light" : "#5856D6@1.000",
-            "location" : "0.000"
-          },
-          {
-            "dark" : "#675A8C@1.000",
-            "light" : "#675A8C@1.000",
-            "location" : "1.000"
-          }
-        ]
-      },
-      "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
-      },
-      "palette" : {
-        "background" : {
-          "dark" : "#0E0E12@1.000",
-          "light" : "#F3F1F7@1.000"
-        },
-        "controlBorder" : {
-          "dark" : "#6C6A76@1.000",
-          "highContrastDark" : "#A9A7B2@1.000",
-          "highContrastLight" : "#6B6A72@1.000",
-          "light" : "#85838D@1.000"
-        },
-        "controlFill" : {
-          "dark" : "#F7F5F2@0.100",
-          "highContrastDark" : "#F7F5F2@0.180",
-          "highContrastLight" : "#1D1B20@0.150",
-          "light" : "#1D1B20@0.070"
-        },
-        "elevatedSurface" : {
-          "dark" : "#26252D@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
-        },
-        "focusRing" : {
-          "dark" : "#A9A7FF@1.000",
-          "light" : "#4038B8@1.000"
-        },
-        "groupedBackground" : {
-          "dark" : "#141218@1.000",
-          "light" : "#F7F5FA@1.000"
-        },
-        "hairline" : {
-          "dark" : "#F4F3F7@0.160",
-          "highContrastDark" : "#F4F3F7@0.380",
-          "highContrastLight" : "#1C1B1F@0.320",
-          "light" : "#1C1B1F@0.120"
-        },
-        "ink" : {
-          "dark" : "#F4F3F7@1.000",
-          "light" : "#1C1B1F@1.000"
-        },
-        "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
-        },
-        "mutedInk" : {
-          "dark" : "#A9A7B2@1.000",
-          "light" : "#6B6A72@1.000"
-        },
-        "paperRule" : {
-          "dark" : "#F4F3F7@0.120",
-          "highContrastDark" : "#F4F3F7@0.380",
-          "highContrastLight" : "#1C1B1F@0.320",
-          "light" : "#1C1B1F@0.100"
-        },
-        "paperRuleStrong" : {
-          "dark" : "#F4F3F7@0.260",
-          "highContrastDark" : "#F4F3F7@0.500",
-          "highContrastLight" : "#1C1B1F@0.450",
-          "light" : "#1C1B1F@0.220"
-        },
-        "primary" : {
-          "dark" : "#7D7AFF@1.000",
-          "highContrastDark" : "#A9A7FF@1.000",
-          "highContrastLight" : "#4038B8@1.000",
-          "light" : "#5856D6@1.000"
-        },
-        "scrim" : {
-          "dark" : "#000000@0.600",
-          "light" : "#000000@0.340"
-        },
-        "secondary" : {
-          "dark" : "#B8ACDA@1.000",
-          "light" : "#675A8C@1.000"
-        },
-        "selectionFill" : {
-          "dark" : "#7D7AFF@0.200",
-          "highContrastDark" : "#A9A7FF@0.280",
-          "highContrastLight" : "#4038B8@0.220",
-          "light" : "#5856D6@0.140"
-        },
-        "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
-        },
-        "surface" : {
-          "dark" : "#1C1B22@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "tertiaryInk" : {
-          "dark" : "#9C9AA5@1.000",
-          "highContrastDark" : "#A9A7B2@1.000",
-          "highContrastLight" : "#6B6A72@1.000",
-          "light" : "#6A6970@1.000"
-        },
-        "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
-        }
-      }
-    },
-    "monsoon" : {
-      "cardChrome" : "trueContent",
-      "cardRadius" : 18,
-      "glance" : {
-        "streakFill" : [
-          {
-            "dark" : "#125E7A@1.000",
-            "light" : "#125E7A@1.000",
-            "location" : "0.000"
-          },
-          {
-            "dark" : "#7A4A10@1.000",
-            "light" : "#7A4A10@1.000",
-            "location" : "1.000"
-          }
-        ]
-      },
-      "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: default), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
-      },
-      "palette" : {
-        "background" : {
-          "dark" : "#0C1418@1.000",
-          "light" : "#F1F5F7@1.000"
-        },
-        "controlBorder" : {
-          "dark" : "#56707E@1.000",
-          "highContrastDark" : "#A3BAC6@1.000",
-          "highContrastLight" : "#425A68@1.000",
-          "light" : "#6A8290@1.000"
-        },
-        "controlFill" : {
-          "dark" : "#F7F5F2@0.100",
-          "highContrastDark" : "#F7F5F2@0.180",
-          "highContrastLight" : "#1D1B20@0.150",
-          "light" : "#1D1B20@0.070"
-        },
-        "elevatedSurface" : {
-          "dark" : "#1B2C34@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
-        },
-        "focusRing" : {
-          "dark" : "#92D8F0@1.000",
-          "light" : "#0B465C@1.000"
-        },
-        "groupedBackground" : {
-          "dark" : "#080E11@1.000",
-          "light" : "#E3ECF0@1.000"
-        },
-        "hairline" : {
-          "dark" : "#EAF2F6@0.160",
-          "highContrastDark" : "#EAF2F6@0.380",
-          "highContrastLight" : "#142630@0.320",
-          "light" : "#142630@0.120"
-        },
-        "ink" : {
-          "dark" : "#EAF2F6@1.000",
-          "light" : "#142630@1.000"
-        },
-        "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
-        },
-        "mutedInk" : {
-          "dark" : "#A3BAC6@1.000",
-          "light" : "#425A68@1.000"
-        },
-        "paperRule" : {
-          "dark" : "#EAF2F6@0.120",
-          "highContrastDark" : "#EAF2F6@0.380",
-          "highContrastLight" : "#142630@0.320",
-          "light" : "#142630@0.100"
-        },
-        "paperRuleStrong" : {
-          "dark" : "#EAF2F6@0.260",
-          "highContrastDark" : "#EAF2F6@0.500",
-          "highContrastLight" : "#142630@0.450",
-          "light" : "#142630@0.220"
-        },
-        "primary" : {
-          "dark" : "#57B8D9@1.000",
-          "highContrastDark" : "#92D8F0@1.000",
-          "highContrastLight" : "#0B465C@1.000",
-          "light" : "#125E7A@1.000"
-        },
-        "scrim" : {
-          "dark" : "#000000@0.600",
-          "light" : "#000000@0.340"
-        },
-        "secondary" : {
-          "dark" : "#E8B268@1.000",
-          "light" : "#7A4A10@1.000"
-        },
-        "selectionFill" : {
-          "dark" : "#57B8D9@0.200",
-          "highContrastDark" : "#92D8F0@0.280",
-          "highContrastLight" : "#0B465C@0.220",
-          "light" : "#125E7A@0.140"
-        },
-        "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
-        },
-        "surface" : {
-          "dark" : "#132026@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "tertiaryInk" : {
-          "dark" : "#94B0BE@1.000",
-          "highContrastDark" : "#A3BAC6@1.000",
-          "highContrastLight" : "#425A68@1.000",
-          "light" : "#4E6876@1.000"
-        },
-        "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
-        }
-      }
-    },
-    "movingWorld" : {
+    "system" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
       "cardChrome" : "falseContent",
-      "cardRadius" : 16,
+      "cardRadius" : 26,
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#A3291E@1.000",
-            "light" : "#A3291E@1.000",
+            "dark" : "#8F641F@1.000",
+            "light" : "#8F641F@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#1E4D8B@1.000",
-            "light" : "#1E4D8B@1.000",
+            "dark" : "#4F6A58@1.000",
+            "light" : "#4F6A58@1.000",
             "location" : "1.000"
           }
         ]
       },
       "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
         "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
         "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
       },
       "palette" : {
         "background" : {
-          "dark" : "#161410@1.000",
-          "light" : "#FBF7EF@1.000"
+          "dark" : "#181A1D@1.000",
+          "light" : "#F7F4EC@1.000"
         },
         "controlBorder" : {
-          "dark" : "#706457@1.000",
-          "highContrastDark" : "#C2B6A6@1.000",
-          "highContrastLight" : "#5C5145@1.000",
-          "light" : "#827566@1.000"
+          "dark" : "#7B7B78@1.000",
+          "highContrastDark" : "#ABA9A3@1.000",
+          "highContrastLight" : "#64605A@1.000",
+          "light" : "#8F8C85@1.000"
         },
         "controlFill" : {
           "dark" : "#F7F5F2@0.100",
@@ -701,129 +712,131 @@
           "light" : "#1D1B20@0.070"
         },
         "elevatedSurface" : {
-          "dark" : "#2B2720@1.000",
-          "light" : "#FFFFFF@1.000"
+          "dark" : "#22262A@1.000",
+          "light" : "#FFFDF7@1.000"
         },
         "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
+          "dark" : "#E09B7A@1.000",
+          "light" : "#8B4C38@1.000"
         },
         "focusRing" : {
-          "dark" : "#FFB3AA@1.000",
-          "light" : "#7C1B12@1.000"
+          "dark" : "#D7AA5F@1.000",
+          "light" : "#8F641F@1.000"
         },
         "groupedBackground" : {
-          "dark" : "#100E0B@1.000",
-          "light" : "#F2EBDD@1.000"
+          "dark" : "#22262A@1.000",
+          "light" : "#FFFDF7@1.000"
         },
         "hairline" : {
-          "dark" : "#F5EFE4@0.160",
-          "highContrastDark" : "#F5EFE4@0.380",
-          "highContrastLight" : "#1F1A14@0.320",
-          "light" : "#1F1A14@0.120"
+          "dark" : "#F0ECE2@0.160",
+          "highContrastDark" : "#F0ECE2@0.380",
+          "highContrastLight" : "#1F1B16@0.320",
+          "light" : "#1F1B16@0.120"
         },
         "ink" : {
-          "dark" : "#F5EFE4@1.000",
-          "light" : "#1F1A14@1.000"
+          "dark" : "#F0ECE2@1.000",
+          "light" : "#1F1B16@1.000"
         },
         "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
+          "dark" : "#E09B7A@1.000",
+          "light" : "#8B4C38@1.000"
         },
         "mutedInk" : {
-          "dark" : "#C2B6A6@1.000",
-          "light" : "#5C5145@1.000"
+          "dark" : "#ABA9A3@1.000",
+          "light" : "#64605A@1.000"
         },
         "paperRule" : {
-          "dark" : "#F5EFE4@0.120",
-          "highContrastDark" : "#F5EFE4@0.380",
-          "highContrastLight" : "#1F1A14@0.320",
-          "light" : "#1F1A14@0.100"
+          "dark" : "#F0ECE2@0.120",
+          "highContrastDark" : "#F0ECE2@0.380",
+          "highContrastLight" : "#1F1B16@0.320",
+          "light" : "#1F1B16@0.100"
         },
         "paperRuleStrong" : {
-          "dark" : "#F5EFE4@0.260",
-          "highContrastDark" : "#F5EFE4@0.500",
-          "highContrastLight" : "#1F1A14@0.450",
-          "light" : "#1F1A14@0.220"
+          "dark" : "#F0ECE2@0.260",
+          "highContrastDark" : "#F0ECE2@0.500",
+          "highContrastLight" : "#1F1B16@0.450",
+          "light" : "#1F1B16@0.220"
         },
         "primary" : {
-          "dark" : "#F27D70@1.000",
-          "highContrastDark" : "#FFB3AA@1.000",
-          "highContrastLight" : "#7C1B12@1.000",
-          "light" : "#A3291E@1.000"
+          "dark" : "#D7AA5F@1.000",
+          "highContrastDark" : "#D7AA5F@1.000",
+          "highContrastLight" : "#8F641F@1.000",
+          "light" : "#8F641F@1.000"
         },
         "scrim" : {
           "dark" : "#000000@0.600",
           "light" : "#000000@0.340"
         },
         "secondary" : {
-          "dark" : "#82B4F5@1.000",
-          "light" : "#1E4D8B@1.000"
+          "dark" : "#A8BFA8@1.000",
+          "light" : "#4F6A58@1.000"
         },
         "selectionFill" : {
-          "dark" : "#F27D70@0.200",
-          "highContrastDark" : "#FFB3AA@0.280",
-          "highContrastLight" : "#7C1B12@0.220",
-          "light" : "#A3291E@0.140"
+          "dark" : "#D7AA5F@0.200",
+          "highContrastDark" : "#D7AA5F@0.280",
+          "highContrastLight" : "#8F641F@0.220",
+          "light" : "#8F641F@0.140"
         },
         "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
+          "dark" : "#A8BFA8@1.000",
+          "light" : "#4F6A58@1.000"
         },
         "surface" : {
-          "dark" : "#211E18@1.000",
-          "light" : "#FFFDF8@1.000"
+          "dark" : "#22262A@1.000",
+          "light" : "#FFFDF7@1.000"
         },
         "tertiaryInk" : {
-          "dark" : "#B5A897@1.000",
-          "highContrastDark" : "#C2B6A6@1.000",
-          "highContrastLight" : "#5C5145@1.000",
-          "light" : "#665A4D@1.000"
+          "dark" : "#8F8E89@1.000",
+          "highContrastDark" : "#ABA9A3@1.000",
+          "highContrastLight" : "#64605A@1.000",
+          "light" : "#716D67@1.000"
         },
         "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
+          "dark" : "#D7AA5F@1.000",
+          "light" : "#8F641F@1.000"
         }
-      }
+      },
+      "preferredColorScheme" : "system"
     },
-    "scholar" : {
+    "vivid" : {
+      "bodyFont" : "Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: body, design: Optional<Design>(some: serif), weight: nil)))",
       "cardChrome" : "falseContent",
-      "cardRadius" : 12,
+      "cardRadius" : 26,
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#315C85@1.000",
-            "light" : "#315C85@1.000",
+            "dark" : "#FF8906@1.000",
+            "light" : "#FF8906@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#725E2B@1.000",
-            "light" : "#725E2B@1.000",
+            "dark" : "#F25F4C@1.000",
+            "light" : "#F25F4C@1.000",
             "location" : "1.000"
           }
         ]
       },
       "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
+        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23))))))))",
+        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
+        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.23)))))",
         "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
         "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: serif), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
       },
       "palette" : {
         "background" : {
-          "dark" : "#10151B@1.000",
-          "light" : "#F8F3E8@1.000"
+          "dark" : "#0F0E17@1.000",
+          "light" : "#0F0E17@1.000"
         },
         "controlBorder" : {
-          "dark" : "#6E6A78@1.000",
-          "highContrastDark" : "#B9B4C0@1.000",
-          "highContrastLight" : "#625F68@1.000",
-          "light" : "#85808C@1.000"
+          "dark" : "#7D7D81@1.000",
+          "highContrastDark" : "#B2B2B4@1.000",
+          "highContrastLight" : "#B2B2B4@1.000",
+          "light" : "#7D7D81@1.000"
         },
         "controlFill" : {
           "dark" : "#F7F5F2@0.100",
@@ -832,221 +845,91 @@
           "light" : "#1D1B20@0.070"
         },
         "elevatedSurface" : {
-          "dark" : "#27272D@1.000",
-          "light" : "#FFFFFF@1.000"
+          "dark" : "#1A1824@1.000",
+          "light" : "#1A1824@1.000"
         },
         "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
+          "dark" : "#F25F4C@1.000",
+          "light" : "#F25F4C@1.000"
         },
         "focusRing" : {
-          "dark" : "#B5D7F4@1.000",
-          "light" : "#1F466D@1.000"
+          "dark" : "#FF8906@1.000",
+          "light" : "#FF8906@1.000"
         },
         "groupedBackground" : {
-          "dark" : "#0A0E12@1.000",
-          "light" : "#EFE7D7@1.000"
+          "dark" : "#1A1824@1.000",
+          "light" : "#1A1824@1.000"
         },
         "hairline" : {
-          "dark" : "#F7F5F2@0.160",
-          "highContrastDark" : "#F7F5F2@0.380",
-          "highContrastLight" : "#1D1B20@0.320",
-          "light" : "#1D1B20@0.120"
+          "dark" : "#FFFFFE@0.160",
+          "highContrastDark" : "#FFFFFE@0.380",
+          "highContrastLight" : "#FFFFFE@0.320",
+          "light" : "#FFFFFE@0.120"
         },
         "ink" : {
-          "dark" : "#F7F5F2@1.000",
-          "light" : "#1D1B20@1.000"
+          "dark" : "#FFFFFE@1.000",
+          "light" : "#FFFFFE@1.000"
         },
         "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
+          "dark" : "#E7417B@1.000",
+          "light" : "#E7417B@1.000"
         },
         "mutedInk" : {
-          "dark" : "#B9B4C0@1.000",
-          "light" : "#625F68@1.000"
+          "dark" : "#B2B2B4@1.000",
+          "light" : "#B2B2B4@1.000"
         },
         "paperRule" : {
-          "dark" : "#F7F5F2@0.120",
-          "highContrastDark" : "#F7F5F2@0.380",
-          "highContrastLight" : "#1D1B20@0.320",
-          "light" : "#1D1B20@0.100"
+          "dark" : "#FFFFFE@0.120",
+          "highContrastDark" : "#FFFFFE@0.380",
+          "highContrastLight" : "#FFFFFE@0.320",
+          "light" : "#FFFFFE@0.100"
         },
         "paperRuleStrong" : {
-          "dark" : "#F7F5F2@0.260",
-          "highContrastDark" : "#F7F5F2@0.500",
-          "highContrastLight" : "#1D1B20@0.450",
-          "light" : "#1D1B20@0.220"
+          "dark" : "#FFFFFE@0.260",
+          "highContrastDark" : "#FFFFFE@0.500",
+          "highContrastLight" : "#FFFFFE@0.450",
+          "light" : "#FFFFFE@0.220"
         },
         "primary" : {
-          "dark" : "#8AB9E3@1.000",
-          "highContrastDark" : "#B5D7F4@1.000",
-          "highContrastLight" : "#1F466D@1.000",
-          "light" : "#315C85@1.000"
+          "dark" : "#FF8906@1.000",
+          "highContrastDark" : "#FF8906@1.000",
+          "highContrastLight" : "#FF8906@1.000",
+          "light" : "#FF8906@1.000"
         },
         "scrim" : {
           "dark" : "#000000@0.600",
           "light" : "#000000@0.340"
         },
         "secondary" : {
-          "dark" : "#D4BD7A@1.000",
-          "light" : "#725E2B@1.000"
+          "dark" : "#F25F4C@1.000",
+          "light" : "#F25F4C@1.000"
         },
         "selectionFill" : {
-          "dark" : "#8AB9E3@0.200",
-          "highContrastDark" : "#B5D7F4@0.280",
-          "highContrastLight" : "#1F466D@0.220",
-          "light" : "#315C85@0.140"
+          "dark" : "#FF8906@0.200",
+          "highContrastDark" : "#FF8906@0.280",
+          "highContrastLight" : "#FF8906@0.220",
+          "light" : "#FF8906@0.140"
         },
         "success" : {
           "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
+          "light" : "#83C69B@1.000"
         },
         "surface" : {
-          "dark" : "#1C1C20@1.000",
-          "light" : "#FFFFFF@1.000"
+          "dark" : "#1A1824@1.000",
+          "light" : "#1A1824@1.000"
         },
         "tertiaryInk" : {
-          "dark" : "#AAA5B0@1.000",
-          "highContrastDark" : "#B9B4C0@1.000",
-          "highContrastLight" : "#625F68@1.000",
-          "light" : "#6A6670@1.000"
+          "dark" : "#828286@1.000",
+          "highContrastDark" : "#B2B2B4@1.000",
+          "highContrastLight" : "#B2B2B4@1.000",
+          "light" : "#828286@1.000"
         },
         "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
+          "dark" : "#FF8906@1.000",
+          "light" : "#FF8906@1.000"
         }
-      }
-    },
-    "sketchbook" : {
-      "cardChrome" : "falseContent",
-      "cardRadius" : 20,
-      "glance" : {
-        "streakFill" : [
-          {
-            "dark" : "#0A6C5E@1.000",
-            "light" : "#0A6C5E@1.000",
-            "location" : "0.000"
-          },
-          {
-            "dark" : "#7A5A2E@1.000",
-            "light" : "#7A5A2E@1.000",
-            "location" : "1.000"
-          }
-        ]
       },
-      "headingFonts" : {
-        "kymaiaAppTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaDisplay" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: largeTitle, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaHeadline" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: headline, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaMetric" : "Font(provider: FontBox<StaticModifierProvider<MonospacedDigitModifier>>(base: StaticModifierProvider<MonospacedDigitModifier>(base: Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3))))))))",
-        "kymaiaPageTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaSectionTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))",
-        "kymaiaTitle2" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title2, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.4)))))",
-        "kymaiaTitle3" : "Font(provider: FontBox<ModifierProvider<WeightModifier>>(base: ModifierProvider<WeightModifier>(base: Font(provider: FontBox<TextStyleProvider>(base: TextStyleProvider(style: title3, design: Optional<Design>(some: rounded), weight: nil))), modifier: WeightModifier(weight: Weight(value: 0.3)))))"
-      },
-      "palette" : {
-        "background" : {
-          "dark" : "#0F1717@1.000",
-          "light" : "#F4EDE0@1.000"
-        },
-        "controlBorder" : {
-          "dark" : "#5E7370@1.000",
-          "highContrastDark" : "#A9BDB8@1.000",
-          "highContrastLight" : "#56625F@1.000",
-          "light" : "#768180@1.000"
-        },
-        "controlFill" : {
-          "dark" : "#F7F5F2@0.100",
-          "highContrastDark" : "#F7F5F2@0.180",
-          "highContrastLight" : "#1D1B20@0.150",
-          "light" : "#1D1B20@0.070"
-        },
-        "elevatedSurface" : {
-          "dark" : "#1F2C2C@1.000",
-          "light" : "#FFFFFF@1.000"
-        },
-        "error" : {
-          "dark" : "#FF8A80@1.000",
-          "light" : "#B3261E@1.000"
-        },
-        "focusRing" : {
-          "dark" : "#9DEBDD@1.000",
-          "light" : "#075247@1.000"
-        },
-        "groupedBackground" : {
-          "dark" : "#0A1111@1.000",
-          "light" : "#EBE3D4@1.000"
-        },
-        "hairline" : {
-          "dark" : "#ECF4F1@0.160",
-          "highContrastDark" : "#ECF4F1@0.380",
-          "highContrastLight" : "#1E2A2B@0.320",
-          "light" : "#1E2A2B@0.120"
-        },
-        "ink" : {
-          "dark" : "#ECF4F1@1.000",
-          "light" : "#1E2A2B@1.000"
-        },
-        "live" : {
-          "dark" : "#F27BAD@1.000",
-          "light" : "#99345F@1.000"
-        },
-        "mutedInk" : {
-          "dark" : "#A9BDB8@1.000",
-          "light" : "#56625F@1.000"
-        },
-        "paperRule" : {
-          "dark" : "#ECF4F1@0.120",
-          "highContrastDark" : "#ECF4F1@0.380",
-          "highContrastLight" : "#1E2A2B@0.320",
-          "light" : "#1E2A2B@0.100"
-        },
-        "paperRuleStrong" : {
-          "dark" : "#ECF4F1@0.260",
-          "highContrastDark" : "#ECF4F1@0.500",
-          "highContrastLight" : "#1E2A2B@0.450",
-          "light" : "#1E2A2B@0.220"
-        },
-        "primary" : {
-          "dark" : "#4FD1BC@1.000",
-          "highContrastDark" : "#9DEBDD@1.000",
-          "highContrastLight" : "#075247@1.000",
-          "light" : "#0A6C5E@1.000"
-        },
-        "scrim" : {
-          "dark" : "#000000@0.600",
-          "light" : "#000000@0.340"
-        },
-        "secondary" : {
-          "dark" : "#D9B98A@1.000",
-          "light" : "#7A5A2E@1.000"
-        },
-        "selectionFill" : {
-          "dark" : "#4FD1BC@0.200",
-          "highContrastDark" : "#9DEBDD@0.280",
-          "highContrastLight" : "#075247@0.220",
-          "light" : "#0A6C5E@0.140"
-        },
-        "success" : {
-          "dark" : "#83C69B@1.000",
-          "light" : "#2F6B47@1.000"
-        },
-        "surface" : {
-          "dark" : "#172222@1.000",
-          "light" : "#FFFCF5@1.000"
-        },
-        "tertiaryInk" : {
-          "dark" : "#9DB1AC@1.000",
-          "highContrastDark" : "#A9BDB8@1.000",
-          "highContrastLight" : "#56625F@1.000",
-          "light" : "#545F5C@1.000"
-        },
-        "warning" : {
-          "dark" : "#F3B562@1.000",
-          "light" : "#8A5400@1.000"
-        }
-      }
+      "preferredColorScheme" : "dark"
     }
   }
 }

@@ -56,7 +56,7 @@ struct SchoolScienceHomeView: View {
                             .font(.kymaiaCaption.weight(.semibold))
                     }
                     .buttonStyle(.bordered)
-                    ThemePickerMenu()
+                    StandardThemeMenu()
                 }
             }
         ) {

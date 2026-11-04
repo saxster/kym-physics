@@ -33,7 +33,7 @@ struct LabJournalHomeView: View {
             title: "Lab Notebook, Learn-by-Heart Vault & Thinking Fortress",
             subtitle: "Cornell & Lab Composers · Progressive Deletion Vault · 16-Chapter Concept Mind-Map · Misconception Buster",
             headerAccessory: {
-                ThemePickerMenu()
+                StandardThemeMenu()
             }
         ) {
             // Top Studio Switcher

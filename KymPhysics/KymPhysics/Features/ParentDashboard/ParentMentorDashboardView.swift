@@ -91,7 +91,7 @@ struct ParentMentorDashboardView: View {
                     .buttonStyle(.borderedProminent)
                     .tint(Color.kymaiaPrimary)
 
-                    ThemePickerMenu()
+                    StandardThemeMenu()
                 }
             }
         ) {

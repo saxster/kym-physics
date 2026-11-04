@@ -4,10 +4,10 @@ import SwiftUI
 @main
 struct KymPhysicsApp: App {
     @StateObject private var store = AppStore.shared
-    @AppStorage(CuratedColorScheme.storageKey) private var selectedSchemeRaw: String = CuratedColorScheme.defaultScheme.rawValue
+    @AppStorage(StandardThemeStore.subjectAppStorageKey) private var themeID: String = StandardTheme.defaultID
 
     init() {
-        CuratedColorScheme.registerAsKymaiaTheme()
+        AppTheme.register()
         TutorConstitution.register(.kymPhysics)
         let policyLogger = Logger(subsystem: "com.kymaia.physics", category: "TutorPolicy")
         TutorPolicyLog.setHandler { level, message in
@@ -18,18 +18,19 @@ struct KymPhysicsApp: App {
         }
     }
 
-    private var activeScheme: CuratedColorScheme {
-        CuratedColorScheme(rawValue: selectedSchemeRaw) ?? .defaultScheme
-    }
-
     var body: some Scene {
         WindowGroup {
-            KymPhysicsRootShellView()
-                .environmentObject(store)
-                .environment(\.curatedColorScheme, activeScheme)
-                .onOpenURL { url in
-                    store.openDeepLink(url)
-                }
+            StandardIdiomReader {
+                KymPhysicsRootShellView()
+                    .environmentObject(store)
+                    .standardThemeHost()
+                    .onOpenURL { url in
+                        store.openDeepLink(url)
+                    }
+            }
+            .onChange(of: themeID, initial: true) {
+                AppTheme.shareWithExtensions(themeID)
+            }
         }
         .commands {
             CommandMenu("Rooms") {

@@ -6,8 +6,8 @@ import AppKit
 #endif
 @testable import KymPhysics
 
-/// Pins what every design token resolves to under every theme. For each `CuratedColorScheme`
-/// case, the test selects the theme through its `UserDefaults` store, reads every
+/// Pins what every design token resolves to under every theme. For each Standard theme id (and
+/// Follow System), the test selects the theme through its `UserDefaults` store, reads every
 /// `KymaiaPalette` token, the heading fonts, the card radius and chrome, and the Glance tile
 /// gradient that reads the palette, and compares the JSON dump against a committed golden file.
 ///
@@ -38,10 +38,10 @@ struct ThemeCharacterizationTests {
     @MainActor
     private static func dumpAllThemes() throws -> String {
         #if canImport(KymDesign)
-        CuratedColorScheme.registerAsKymaiaTheme()
+        AppTheme.register()
         #endif
         let defaults = UserDefaults.standard
-        let key = CuratedColorScheme.storageKey
+        let key = StandardThemeStore.subjectAppStorageKey
         let saved = defaults.object(forKey: key)
         defer {
             if let saved {
@@ -52,9 +52,9 @@ struct ThemeCharacterizationTests {
         }
 
         var themes: [String: Any] = [:]
-        for scheme in CuratedColorScheme.allCases {
-            defaults.set(scheme.rawValue, forKey: key)
-            themes[scheme.rawValue] = dumpCurrentTheme()
+        for id in [StandardTheme.systemID] + StandardTheme.all.map(\.id) {
+            defaults.set(id, forKey: key)
+            themes[id] = dumpCurrentTheme()
         }
         let data = try JSONSerialization.data(
             withJSONObject: ["themes": themes],
@@ -102,6 +102,8 @@ struct ThemeCharacterizationTests {
         return [
             "palette": palette.mapValues(describe),
             "headingFonts": headingFonts.mapValues(fontSignature),
+            "bodyFont": fontSignature(.kymaiaBody),
+            "preferredColorScheme": KymaiaThemeRuntime.current.preferredColorScheme.map { $0 == .dark ? "dark" : "light" } ?? "system",
             "cardRadius": Double(CornerRadius.card),
             "cardChrome": cardChromeBranch(),
             "glance": ["streakFill": gradientStops(KymaiaTileStyle.streakFill)]
