@@ -42,6 +42,12 @@ struct KymPhysicsApp: App {
                 }
             }
         }
+        #if os(macOS)
+        Settings {
+            StandardAppearanceSettings(appName: "KymPhysics")
+                .standardThemeHost(rebuildsOnThemeChange: false)
+        }
+        #endif
     }
 }
 
@@ -122,6 +128,11 @@ struct KymPhysicsRootShellView: View {
                 }
             }
             .navigationTitle("KymPhysics")
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    StandardSettingsButton(appName: "KymPhysics")
+                }
+            }
         } detail: {
             VStack(spacing: 0) {
                 if let safety = store.latestSafetyEscalation, let response = safety.supportiveResponse {
