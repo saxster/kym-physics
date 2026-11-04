@@ -20,6 +20,7 @@ struct PracticeExamsHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.practiceExams.title,
             title: "Proofs, 507 Exam Questions & Diagram Recall",
             subtitle: "16 Chapter Exam Banks · 16 Wolfram Quantitative Drills · Apple Pencil Physics Diagram Recall",
             headerAccessory: {
@@ -28,45 +29,15 @@ struct PracticeExamsHomeView: View {
         ) {
             // 1. Mode Switcher
             HStack(spacing: Spacing.sm) {
-                Button { selectedSection = "exams" } label: {
-                    JournalChip(
-                        title: "507 Chapter Exam Questions (\(store.examAttempts.count) done)",
-                        isSelected: selectedSection == "exams"
-                    )
-                }
-                .buttonStyle(.plain)
+                StandardFilterChip("507 Chapter Exam Questions (\(store.examAttempts.count) done)", isSelected: selectedSection == "exams") { selectedSection = "exams" }
 
-                Button { selectedSection = "wolfram" } label: {
-                    JournalChip(
-                        title: "16 Wolfram Quantitative Drills",
-                        isSelected: selectedSection == "wolfram"
-                    )
-                }
-                .buttonStyle(.plain)
+                StandardFilterChip("16 Wolfram Quantitative Drills", isSelected: selectedSection == "wolfram") { selectedSection = "wolfram" }
 
-                Button { selectedSection = "diagrams" } label: {
-                    JournalChip(
-                        title: "Apple Pencil Diagram Recall (\(store.pack.diagramPlates.count) Plates)",
-                        isSelected: selectedSection == "diagrams"
-                    )
-                }
-                .buttonStyle(.plain)
+                StandardFilterChip("Apple Pencil Diagram Recall (\(store.pack.diagramPlates.count) Plates)", isSelected: selectedSection == "diagrams") { selectedSection = "diagrams" }
 
-                Button { selectedSection = "papers" } label: {
-                    JournalChip(
-                        title: "17 Printable & Interactive Papers",
-                        isSelected: selectedSection == "papers"
-                    )
-                }
-                .buttonStyle(.plain)
+                StandardFilterChip("17 Printable & Interactive Papers", isSelected: selectedSection == "papers") { selectedSection = "papers" }
 
-                Button { selectedSection = "speedgym" } label: {
-                    JournalChip(
-                        title: "SpeedPhysics Mental Gym",
-                        isSelected: selectedSection == "speedgym"
-                    )
-                }
-                .buttonStyle(.plain)
+                StandardFilterChip("SpeedPhysics Mental Gym", isSelected: selectedSection == "speedgym") { selectedSection = "speedgym" }
 
                 Spacer()
             }
@@ -88,30 +59,18 @@ struct PracticeExamsHomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Spacing.xs) {
                             ForEach(store.pack.examBanks) { bank in
-                                Button {
+                                StandardFilterChip("Ch \(bank.chapter) · \(bank.title) (\(bank.questions.count))", isSelected: selectedExamChapter == bank.chapter) {
                                     selectedExamChapter = bank.chapter
-                                } label: {
-                                    JournalChip(
-                                        title: "Ch \(bank.chapter) · \(bank.title) (\(bank.questions.count))",
-                                        isSelected: selectedExamChapter == bank.chapter
-                                    )
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
 
                     HStack(spacing: Spacing.xs) {
                         ForEach(["all", "guided", "independent", "transfer", "paper"], id: \.self) { st in
-                            Button {
+                            StandardFilterChip(st == "all" ? "All Stages" : st.capitalized, isSelected: selectedStage == st) {
                                 selectedStage = st
-                            } label: {
-                                JournalChip(
-                                    title: st == "all" ? "All Stages" : st.capitalized,
-                                    isSelected: selectedStage == st
-                                )
                             }
-                            .buttonStyle(.plain)
                         }
                         Spacer()
                     }
@@ -360,16 +319,10 @@ private struct PhysicsDiagramRecallSection: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(store.pack.diagramPlates) { plate in
-                        Button {
+                        StandardFilterChip("U\(plate.unitNumber) · \(plate.title)", isSelected: activePlate.id == plate.id) {
                             selectedPlateId = plate.id
                             revealedPins.removeAll()
-                        } label: {
-                            JournalChip(
-                                title: "U\(plate.unitNumber) · \(plate.title)",
-                                isSelected: activePlate.id == plate.id
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -388,20 +341,11 @@ private struct PhysicsDiagramRecallSection: View {
                     }
 
                     HStack(spacing: Spacing.sm) {
-                        Button { scaffoldMode = "label_only" } label: {
-                            JournalChip(title: "1. Label Callouts", isSelected: scaffoldMode == "label_only")
-                        }
-                        .buttonStyle(.plain)
+                        StandardFilterChip("1. Label Callouts", isSelected: scaffoldMode == "label_only") { scaffoldMode = "label_only" }
 
-                        Button { scaffoldMode = "ghost_scaffold" } label: {
-                            JournalChip(title: "2. Ghost Scaffold", isSelected: scaffoldMode == "ghost_scaffold")
-                        }
-                        .buttonStyle(.plain)
+                        StandardFilterChip("2. Ghost Scaffold", isSelected: scaffoldMode == "ghost_scaffold") { scaffoldMode = "ghost_scaffold" }
 
-                        Button { scaffoldMode = "blank_recall" } label: {
-                            JournalChip(title: "3. Blank Memory Sketch", isSelected: scaffoldMode == "blank_recall")
-                        }
-                        .buttonStyle(.plain)
+                        StandardFilterChip("3. Blank Memory Sketch", isSelected: scaffoldMode == "blank_recall") { scaffoldMode = "blank_recall" }
 
                         Spacer()
                         Button("Reveal All Master Labels") {
@@ -508,15 +452,9 @@ private struct InteractivePrintableExamPapersSection: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(paperFiles, id: \.id) { item in
-                        Button {
+                        StandardFilterChip(item.label, isSelected: selectedPaperFile == item.id) {
                             selectedPaperFile = item.id
-                        } label: {
-                            JournalChip(
-                                title: item.label,
-                                isSelected: selectedPaperFile == item.id
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }

@@ -315,3 +315,12 @@ enum GreetingPeriod {
         }
     }
 }
+
+extension RitualPhase {
+    /// The phase as a stop on the ritual's `StageDial`: its step number as the glyph, and the
+    /// Struggle Zone drawn as the live stage.
+    var standardStage: StandardStage {
+        let number = (RitualPhase.allCases.firstIndex(of: self) ?? 0) + 1
+        return StandardStage(id: rawValue, label: displayName, glyph: "\(number)", isLive: self == .struggleZone)
+    }
+}

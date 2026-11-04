@@ -102,25 +102,25 @@ struct PhysicsSubjectTipsView: View {
                                 VStack(alignment: .leading, spacing: 4) {
                                     HStack(spacing: 6) {
                                         Image(systemName: tip.visual.kind.symbol)
-                                            .font(.caption.weight(.bold))
-                                            .foregroundStyle(isSelected ? .white : Color.kymaiaAccent)
+                                            .font(.kymaiaSymbolSmall)
+                                            .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaAccent)
                                         Text(tip.strand)
                                             .font(.kymaiaCaption)
-                                            .foregroundStyle(isSelected ? .white.opacity(0.9) : Color.kymaiaTextSecondary)
+                                            .foregroundStyle(isSelected ? Color.kymaiaBackground.opacity(0.9) : Color.kymaiaTextSecondary)
                                         if isBookmarked {
                                             Image(systemName: "bookmark.fill")
-                                                .font(.caption2)
-                                                .foregroundStyle(isSelected ? .white : Color.kymaiaWarning)
+                                                .font(.kymaiaCaption2)
+                                                .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaWarning)
                                         }
                                     }
                                     Text(tip.title)
                                         .font(.kymaiaSubheadline.weight(.semibold))
-                                        .foregroundStyle(isSelected ? .white : Color.kymaiaTextPrimary)
+                                        .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaTextPrimary)
                                         .lineLimit(2)
                                         .multilineTextAlignment(.leading)
                                     Text(tip.visual.kind.activity)
                                         .font(.kymaiaCaption)
-                                        .foregroundStyle(isSelected ? .white.opacity(0.85) : Color.kymaiaAccent)
+                                        .foregroundStyle(isSelected ? Color.kymaiaBackground.opacity(0.85) : Color.kymaiaAccent)
                                 }
                                 .padding(Spacing.md)
                                 .frame(width: 250, alignment: .leading)

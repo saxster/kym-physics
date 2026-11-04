@@ -312,89 +312,81 @@ struct ChapterExplainerMiniBar: View {
 
     var body: some View {
         if !player.segments.isEmpty {
-            VStack(alignment: .leading, spacing: Spacing.xs) {
-                HStack(spacing: Spacing.sm) {
-                    Image(systemName: player.isPlaying ? "waveform.circle.fill" : "headphones.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(Color.kymaiaAccent)
+            QuietPanel {
+                VStack(alignment: .leading, spacing: Spacing.xs) {
+                    HStack(spacing: Spacing.sm) {
+                        Image(systemName: player.isPlaying ? "waveform.circle.fill" : "headphones.circle.fill")
+                            .font(.kymaiaSymbolLarge)
+                            .foregroundStyle(Color.kymaiaAccent)
 
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(player.activeTitle)
-                            .font(.kymaiaCaption.weight(.bold))
-                            .foregroundStyle(Color.kymaiaTextPrimary)
-                        Text(player.segments[min(player.currentSegmentIndex, max(0, player.segments.count - 1))])
-                            .font(.kymaiaCaption)
-                            .foregroundStyle(Color.kymaiaTextSecondary)
-                            .lineLimit(2)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(player.activeTitle)
+                                .font(.kymaiaCaption.weight(.bold))
+                                .foregroundStyle(Color.kymaiaTextPrimary)
+                            Text(player.segments[min(player.currentSegmentIndex, max(0, player.segments.count - 1))])
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaTextSecondary)
+                                .lineLimit(2)
+                        }
+
+                        Spacer()
+
+                        Button {
+                            player.stepBackward()
+                        } label: {
+                            Image(systemName: "backward.fill")
+                                .font(.kymaiaSymbolSmall)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .disabled(player.currentSegmentIndex == 0)
+
+                        Button {
+                            player.togglePlayPause()
+                        } label: {
+                            Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
+                                .font(.kymaiaSymbolSmall)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(Color.kymaiaAccent)
+                        .controlSize(.small)
+
+                        Button {
+                            player.stepForward()
+                        } label: {
+                            Image(systemName: "forward.fill")
+                                .font(.kymaiaSymbolSmall)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .disabled(player.currentSegmentIndex + 1 >= player.segments.count)
+
+                        Button {
+                            player.cycleSpeed()
+                        } label: {
+                            Text(String(format: "%.2gx", player.speechRateMultiplier))
+                                .font(.kymaiaMonoCaption)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+
+                        Button {
+                            player.stop()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.kymaiaMetadata)
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(Color.kymaiaTextSecondary)
                     }
 
-                    Spacer()
-
-                    Button {
-                        player.stepBackward()
-                    } label: {
-                        Image(systemName: "backward.fill")
-                            .font(.caption.weight(.bold))
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                    .disabled(player.currentSegmentIndex == 0)
-
-                    Button {
-                        player.togglePlayPause()
-                    } label: {
-                        Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
-                            .font(.caption.weight(.bold))
-                    }
-                    .buttonStyle(.borderedProminent)
+                    ProgressView(
+                        value: Double(player.currentSegmentIndex + 1),
+                        total: Double(max(1, player.segments.count))
+                    )
                     .tint(Color.kymaiaAccent)
-                    .controlSize(.small)
-
-                    Button {
-                        player.stepForward()
-                    } label: {
-                        Image(systemName: "forward.fill")
-                            .font(.caption.weight(.bold))
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                    .disabled(player.currentSegmentIndex + 1 >= player.segments.count)
-
-                    Button {
-                        player.cycleSpeed()
-                    } label: {
-                        Text(String(format: "%.2gx", player.speechRateMultiplier))
-                            .font(.kymaiaMonoCaption)
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-
-                    Button {
-                        player.stop()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.caption)
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(Color.kymaiaTextSecondary)
                 }
-
-                ProgressView(
-                    value: Double(player.currentSegmentIndex + 1),
-                    total: Double(max(1, player.segments.count))
-                )
-                .tint(Color.kymaiaAccent)
             }
-            .padding(Spacing.sm)
-            .background(
-                RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
-                    .fill(Color.kymaiaSurfaceElevated)
-                    .shadow(color: .black.opacity(0.08), radius: 8, y: 2)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
-                    .strokeBorder(Color.kymaiaAccent.opacity(0.35), lineWidth: 1)
-            )
         }
     }
 }

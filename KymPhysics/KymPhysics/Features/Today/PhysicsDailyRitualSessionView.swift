@@ -76,7 +76,7 @@ struct TherapeuticPromptCard: View {
         VStack(alignment: .leading, spacing: Spacing.md) {
             HStack(spacing: Spacing.xs) {
                 Image(systemName: "heart.text.square.fill")
-                    .font(.body)
+                    .font(.kymaiaBody)
                     .foregroundStyle(Color.kymaiaPrimary)
                 Text("Pause & Reset · Physicist's Mindset")
                     .font(.kymaiaSubheadline.weight(.semibold))
@@ -86,7 +86,7 @@ struct TherapeuticPromptCard: View {
                     onDismiss()
                 } label: {
                     Image(systemName: "xmark")
-                        .font(.caption.weight(.semibold))
+                        .font(.kymaiaSymbolSmall)
                         .foregroundStyle(Color.kymaiaTextSecondary)
                         .frame(width: 44, height: 44)
                         .contentShape(Rectangle())
@@ -107,7 +107,7 @@ struct TherapeuticPromptCard: View {
 
             HStack(alignment: .top, spacing: Spacing.xs) {
                 Image(systemName: "lightbulb.fill")
-                    .font(.caption)
+                    .font(.kymaiaMetadata)
                     .foregroundStyle(Color.kymaiaWarning)
                     .padding(.top, 2)
                 Text(reframeSuggestion)
@@ -164,6 +164,7 @@ struct BreakthroughCelebrationCard: View {
     var onContinue: () -> Void
 
     @State private var appeared = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: Spacing.md) {
@@ -173,7 +174,7 @@ struct BreakthroughCelebrationCard: View {
                     .frame(width: 96, height: 96)
                     .scaleEffect(appeared ? 1.06 : 0.85)
                 Image(systemName: "sparkles")
-                    .font(.system(size: 40, weight: .semibold))
+                    .font(PhysicsFigureType.breakthroughGlyph)
                     .foregroundStyle(Color.kymaiaGold)
             }
 
@@ -211,7 +212,7 @@ struct BreakthroughCelebrationCard: View {
                 .strokeBorder(Color.kymaiaGold.opacity(0.55), lineWidth: StrokeWidth.emphasis)
         )
         .onAppear {
-            withAnimation(KymaiaMotion.celebration) {
+            withAnimation(reduceMotion ? nil : StandardMotion.relaxed) {
                 appeared = true
             }
         }
@@ -258,6 +259,7 @@ struct PhysicsDailyRitualSessionView: View {
         JournalFocusPage(
             title: "25-Minute Daily Physics Ritual",
             subtitle: "Phase \(currentPhaseIndex + 1) of \(phases.count) · \(currentPhase.displayName) (\(currentPhase.durationLabel))",
+            close: { dismiss() },
             headerAccessory: {
                 Button("Close Ritual") {
                     dismiss()
@@ -265,20 +267,13 @@ struct PhysicsDailyRitualSessionView: View {
                 .buttonStyle(.bordered)
             }
         ) {
-            // Phase Stepper Strip
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: Spacing.xs) {
-                    ForEach(Array(phases.enumerated()), id: \.element.rawValue) { idx, phase in
-                        Button {
-                            currentPhaseIndex = idx
-                        } label: {
-                            JournalChip(
-                                title: "\(idx + 1). \(phase.displayName)",
-                                isSelected: currentPhaseIndex == idx
-                            )
-                        }
-                        .buttonStyle(.plain)
-                    }
+            // Phase Stepper: one dial stop per ritual phase
+            StageDial(
+                stages: phases.map(\.standardStage),
+                selection: currentPhase.standardStage
+            ) { stage in
+                if let idx = phases.firstIndex(where: { $0.rawValue == stage.id }) {
+                    currentPhaseIndex = idx
                 }
             }
 
@@ -679,7 +674,7 @@ struct PhysicsDailyRitualSessionView: View {
         JournalCard {
             VStack(spacing: Spacing.md) {
                 Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 48))
+                    .font(PhysicsFigureType.completionGlyph)
                     .foregroundStyle(Color.kymaiaSuccess)
 
                 Text("Today's 25-Minute Physics Ritual Complete!")

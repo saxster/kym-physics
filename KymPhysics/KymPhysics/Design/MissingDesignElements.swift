@@ -68,10 +68,6 @@ extension Font {
     public static var kymaiaMonoBody: Font { .system(.body, design: .monospaced) }
 }
 
-extension KymaiaMotion {
-    public static let celebration = Animation.spring(response: 0.45, dampingFraction: 0.65)
-}
-
 extension StrokeWidth {
     public static let thin: CGFloat = 0.5
     public static let hairline: CGFloat = 0.25
@@ -82,24 +78,34 @@ extension StrokeWidth {
 // MARK: - Journal Component Convenience Extensions
 
 extension JournalReaderPage {
-    init<HeaderAccessory: View>(
+    /// A reader page that opens with a `RoomHeader`: the subtitle and the page's controls sit
+    /// above the reading column.
+    init<HeaderAccessory: View, Inner: View>(
+        eyebrow: String? = nil,
         title: String,
         subtitle: String? = nil,
         @ViewBuilder headerAccessory: () -> HeaderAccessory,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.init(title: title, content: content)
+        @ViewBuilder content: () -> Inner
+    ) where Content == RoomPageContent<HeaderAccessory, Inner> {
+        let header = RoomHeader(eyebrow: eyebrow, title: title, subtitle: subtitle, accessory: headerAccessory)
+        let inner = content()
+        self.init(title: title) { RoomPageContent(header: header, content: inner) }
     }
 }
 
 extension JournalFocusPage where Actions == EmptyView {
-    init<HeaderAccessory: View>(
+    /// A focus page whose card opens with the subtitle and the page's controls. `close` runs from
+    /// the toolbar's close button.
+    init<HeaderAccessory: View, Inner: View>(
         title: String,
         subtitle: String? = nil,
+        close: @escaping () -> Void,
         @ViewBuilder headerAccessory: () -> HeaderAccessory,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.init(title: title, close: {}, content: content)
+        @ViewBuilder content: () -> Inner
+    ) where Content == RoomPageContent<HeaderAccessory, Inner> {
+        let header = RoomHeader(eyebrow: nil, title: title, subtitle: subtitle, accessory: headerAccessory)
+        let inner = content()
+        self.init(title: title, close: close) { RoomPageContent(header: header, content: inner) }
     }
 }
 

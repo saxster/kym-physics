@@ -255,6 +255,7 @@ struct PhysicsOmnisearchSheet: View {
         JournalFocusPage(
             title: "Omnisearch KymPhysics (⌘K)",
             subtitle: "Search 16 chapters, 95 stories, 44 school topics, 56 simulations, 126 investigations, 507 exam questions & Wolfram drills",
+            close: { dismiss() },
             headerAccessory: {
                 Button("Done") {
                     dismiss()
@@ -282,15 +283,9 @@ struct PhysicsOmnisearchSheet: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(PhysicsOmnisearchEngine.ResultCategory.allCases) { cat in
-                        Button {
+                        StandardFilterChip(cat.rawValue, isSelected: selectedCategory == cat) {
                             selectedCategory = cat
-                        } label: {
-                            JournalChip(
-                                title: cat.rawValue,
-                                isSelected: selectedCategory == cat
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -308,7 +303,7 @@ struct PhysicsOmnisearchSheet: View {
                             JournalCard {
                                 HStack(alignment: .top, spacing: Spacing.md) {
                                     Image(systemName: hit.symbol)
-                                        .font(.title3)
+                                        .font(.kymaiaSymbolMedium)
                                         .foregroundStyle(Color.kymaiaPrimary)
                                         .frame(width: 32)
 

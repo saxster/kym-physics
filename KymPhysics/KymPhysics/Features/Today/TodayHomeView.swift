@@ -15,6 +15,7 @@ struct TodayHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.today.title,
             title: "Today in Physics",
             subtitle: "Cambridge Lower Secondary Science 8 · The Moving World",
             headerAccessory: {
@@ -25,8 +26,7 @@ struct TodayHomeView: View {
                         Label("Start 25-Min Daily Ritual", systemImage: "sparkles")
                             .font(.kymaiaCaption.weight(.semibold))
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color.kymaiaPrimary)
+                    .buttonStyle(BrassButtonStyle())
 
                     StandardThemeMenu()
                 }
@@ -36,7 +36,7 @@ struct TodayHomeView: View {
             JournalCard {
                 HStack(alignment: .center, spacing: Spacing.md) {
                     Image(systemName: "flame.circle.fill")
-                        .font(.system(size: 38))
+                        .font(PhysicsFigureType.ritualHeroGlyph)
                         .foregroundStyle(Color.kymaiaPrimary)
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -60,7 +60,7 @@ struct TodayHomeView: View {
                         Label("Launch Ritual", systemImage: "play.fill")
                             .font(.kymaiaCallout.weight(.semibold))
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.bordered)
                     .tint(Color.kymaiaPrimary)
                 }
             }
@@ -135,17 +135,11 @@ struct TodayHomeView: View {
 
                                 FlowLayout(spacing: Spacing.xs) {
                                     ForEach(unit.topics) { topic in
-                                        Button {
+                                        StandardFilterChip("\(topic.code) \(topic.title)", isSelected: store.selectedTopicCode == topic.code) {
                                             store.selectedUnitNumber = unit.unitNumber
                                             store.selectedTopicCode = topic.code
                                             store.selectedRoom = .schoolScience
-                                        } label: {
-                                            JournalChip(
-                                                title: "\(topic.code) \(topic.title)",
-                                                isSelected: store.selectedTopicCode == topic.code
-                                            )
                                         }
-                                        .buttonStyle(.plain)
                                     }
                                 }
 
@@ -158,7 +152,7 @@ struct TodayHomeView: View {
                                         Label("Open Unit \(unit.unitNumber)", systemImage: "book.closed.fill")
                                             .font(.kymaiaCallout.weight(.semibold))
                                     }
-                                    .buttonStyle(.borderedProminent)
+                                    .buttonStyle(.bordered)
                                     .tint(Color.kymaiaPrimary)
 
                                     if let firstCh = unit.movingWorldChapters.first {
@@ -217,7 +211,7 @@ struct TodayHomeView: View {
                                                 .font(.kymaiaCallout.weight(.semibold))
                                                 .frame(maxWidth: .infinity, minHeight: AccessibilityLayout.minTouchTarget)
                                         }
-                                        .buttonStyle(.borderedProminent)
+                                        .buttonStyle(.bordered)
                                         .tint(rating == .again ? Color.kymaiaWarning : Color.kymaiaPrimary)
                                     }
                                 }
@@ -229,16 +223,16 @@ struct TodayHomeView: View {
                                         .font(.kymaiaCallout.weight(.semibold))
                                         .frame(minHeight: AccessibilityLayout.minTouchTarget)
                                 }
-                                .buttonStyle(.borderedProminent)
+                                .buttonStyle(.bordered)
                                 .tint(Color.kymaiaPrimary)
                             }
                         }
                     }
                 } else {
-                    JournalEmptyState(
-                        symbol: "checkmark.circle.fill",
+                    EmptyStateCard(
+                        eyebrow: "Review",
                         title: "All due Physics cards reviewed!",
-                        message: "You are caught up for today. Jump into Unit 9 Magnetism or try a 3D Physics Lab."
+                        subtitle: "You are caught up for today. Jump into Unit 9 Magnetism or try a 3D Physics Lab."
                     )
                 }
             }

@@ -14,6 +14,7 @@
 		02CF7F226C345D0BE4029717 /* KymPhysicsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */; };
 		03C294F0631DA7ED292A8FF7 /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
 		063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
+		07705022F209C78BFED48DF7 /* RoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006CBF06E05E1824252E063F /* RoomHeader.swift */; };
 		08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
 		0B4D125B4B20E1CB555AAF9F /* LearningEngineCharacterizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */; };
 		0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */; };
@@ -120,6 +121,7 @@
 		9FA3C7773622EA12AE106FEE /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0E491E7513A1E5793592C8C5 /* GRDB */; };
 		A59CF62F8985923F459BE37B /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */; };
 		A80FD35616D2CAA6CF91C0F0 /* PhysicsVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */; };
+		AAC8D093DDD909C887EE9B45 /* RoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006CBF06E05E1824252E063F /* RoomHeader.swift */; };
 		AC150BF23DB139790B4541DD /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
 		AC61164C2369BA6D0AC6DD53 /* PhysicsHardwareSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */; };
 		ADD3D948A76F820C0842E2F8 /* ArduinoMissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */; };
@@ -217,6 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		006CBF06E05E1824252E063F /* RoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHeader.swift; sourceTree = "<group>"; };
 		00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSubjectTipsView.swift; sourceTree = "<group>"; };
 		0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
 		08925A55112EFE9EF26CEB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -493,6 +496,7 @@
 				DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */,
 				8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */,
 				63792AD452005385630E4E77 /* MissingDesignElements.swift */,
+				006CBF06E05E1824252E063F /* RoomHeader.swift */,
 				ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */,
 				D590F8B650984ECA7B0A97E0 /* Components */,
 				15B7453D97AF8262172B9391 /* Journal */,
@@ -987,6 +991,7 @@
 				C5785CE964B0BD7F93CE3405 /* PracticeExamsHomeView.swift in Sources */,
 				586B3F49CE6595282F2DCB11 /* QuantitativePhysicsEngine.swift in Sources */,
 				762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */,
+				07705022F209C78BFED48DF7 /* RoomHeader.swift in Sources */,
 				B755EADB3EE6CB59DBDEE8B0 /* SchoolScienceHomeView.swift in Sources */,
 				E55921B2DD7194EABB539673 /* SeedPackModels.swift in Sources */,
 				76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */,
@@ -1076,6 +1081,7 @@
 				DDC393A343495EA3C2668004 /* PracticeExamsHomeView.swift in Sources */,
 				4B4C70E0ECDE15360696C3FF /* QuantitativePhysicsEngine.swift in Sources */,
 				8120676A429C1704B2DC6B81 /* ReflectionVisual.swift in Sources */,
+				AAC8D093DDD909C887EE9B45 /* RoomHeader.swift in Sources */,
 				E820A4B09E504A38A8AF64FA /* SchoolScienceHomeView.swift in Sources */,
 				950C9DC2FF47A2AA35C340DA /* SeedPackModels.swift in Sources */,
 				96F5E3C1AEDC05FDC970945A /* SemanticStyles.swift in Sources */,

@@ -30,6 +30,7 @@ struct LabJournalHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.labJournal.title,
             title: "Lab Notebook, Learn-by-Heart Vault & Thinking Fortress",
             subtitle: "Cornell & Lab Composers · Progressive Deletion Vault · 16-Chapter Concept Mind-Map · Misconception Buster",
             headerAccessory: {
@@ -39,30 +40,15 @@ struct LabJournalHomeView: View {
             // Top Studio Switcher
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.sm) {
-                    Button { activeSection = "notebook" } label: {
-                        JournalChip(title: "1. Lab Notebook & 5 Composers", isSelected: activeSection == "notebook")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("1. Lab Notebook & 5 Composers", isSelected: activeSection == "notebook") { activeSection = "notebook" }
 
-                    Button { activeSection = "vault" } label: {
-                        JournalChip(title: "2. Learn by Heart Vault (Progressive Deletion)", isSelected: activeSection == "vault")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("2. Learn by Heart Vault (Progressive Deletion)", isSelected: activeSection == "vault") { activeSection = "vault" }
 
-                    Button { activeSection = "mindmap" } label: {
-                        JournalChip(title: "3. Interactive Physics Mind-Map", isSelected: activeSection == "mindmap")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("3. Interactive Physics Mind-Map", isSelected: activeSection == "mindmap") { activeSection = "mindmap" }
 
-                    Button { activeSection = "fortress" } label: {
-                        JournalChip(title: "4. Thinking Fortress (Misconception Buster)", isSelected: activeSection == "fortress")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("4. Thinking Fortress (Misconception Buster)", isSelected: activeSection == "fortress") { activeSection = "fortress" }
 
-                    Button { activeSection = "palace" } label: {
-                        JournalChip(title: "5. Mumbai Physics Memory Palaces", isSelected: activeSection == "palace")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("5. Mumbai Physics Memory Palaces", isSelected: activeSection == "palace") { activeSection = "palace" }
                 }
             }
 
@@ -159,16 +145,10 @@ struct LabJournalHomeView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: Spacing.xs) {
                 ForEach(store.journalEntries) { entry in
-                    Button {
+                    StandardFilterChip(entry.title, isSelected: activeEntry?.id == entry.id) {
                         selectedEntryId = entry.id
                         loadDraft(from: entry)
-                    } label: {
-                        JournalChip(
-                            title: entry.title,
-                            isSelected: activeEntry?.id == entry.id
-                        )
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
@@ -260,7 +240,7 @@ struct LabJournalHomeView: View {
                                     if coverNotesForSelfTest {
                                         VStack(spacing: Spacing.sm) {
                                             Image(systemName: "eye.slash.fill")
-                                                .font(.largeTitle)
+                                                .font(.kymaiaSymbolHero)
                                                 .foregroundStyle(Color.kymaiaPrimary)
                                             Text("Right column covered for active recall! Answer the cue prompts on the left out loud or with Apple Pencil, then tap to uncover.")
                                                 .font(.kymaiaCallout)
@@ -527,16 +507,10 @@ private struct PhysicsLearnByHeartVaultSection: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { idx, item in
-                        Button {
+                        StandardFilterChip("\(item.topicRef) · \(item.title)", isSelected: selectedItemIndex == idx) {
                             selectedItemIndex = idx
                             recallAttempt = ""
-                        } label: {
-                            JournalChip(
-                                title: "\(item.topicRef) · \(item.title)",
-                                isSelected: selectedItemIndex == idx
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -839,17 +813,16 @@ private struct PhysicsConceptMindMapSection: View {
                                     VStack(spacing: 2) {
                                         Text(node.title)
                                             .font(.kymaiaCaption.weight(.bold))
-                                            .foregroundStyle(isSelected ? .white : Color.kymaiaTextPrimary)
+                                            .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaTextPrimary)
                                         Text(node.equation)
                                             .font(.kymaiaMonoCaption)
-                                            .foregroundStyle(isSelected ? .white.opacity(0.9) : Color.kymaiaAccent)
+                                            .foregroundStyle(isSelected ? Color.kymaiaBackground.opacity(0.9) : Color.kymaiaAccent)
                                     }
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 6)
                                     .background(
                                         Capsule()
                                             .fill(isSelected ? Color.kymaiaAccent : Color.kymaiaSurfaceElevated)
-                                            .shadow(color: .black.opacity(0.08), radius: 4, y: 1)
                                     )
                                     .overlay(
                                         Capsule()

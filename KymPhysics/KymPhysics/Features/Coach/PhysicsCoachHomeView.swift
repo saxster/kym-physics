@@ -57,6 +57,7 @@ struct PhysicsCoachHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.coach.title,
             title: "Socratic Physics & Voice Coach",
             subtitle: "Grounded in Cambridge Science 8 (0893), The Moving World & the Kymaia Tutor Constitution (\(TutorConstitution.version))",
             headerAccessory: {
@@ -154,15 +155,9 @@ struct PhysicsCoachHomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: Spacing.xs) {
                                 ForEach(PhysicsMentorPersona.allCases) { persona in
-                                    Button {
+                                    StandardFilterChip(persona.displayName, isSelected: selectedPersona == persona) {
                                         selectedPersona = persona
-                                    } label: {
-                                        JournalChip(
-                                            title: persona.displayName,
-                                            isSelected: selectedPersona == persona
-                                        )
                                     }
-                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -183,15 +178,9 @@ struct PhysicsCoachHomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: Spacing.xs) {
                                 ForEach(TutorGuidanceStyle.allCases) { style in
-                                    Button {
+                                    StandardFilterChip(style.title, isSelected: selectedGuidanceStyle == style) {
                                         selectedGuidanceStyle = style
-                                    } label: {
-                                        JournalChip(
-                                            title: style.title,
-                                            isSelected: selectedGuidanceStyle == style
-                                        )
                                     }
-                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -277,12 +266,9 @@ struct PhysicsCoachHomeView: View {
             JournalSection(title: "One-Tap Socratic Starters") {
                 FlowLayout(spacing: Spacing.xs) {
                     ForEach(quickStarters, id: \.label) { starter in
-                        Button {
+                        StandardFilterChip(starter.label, isSelected: false) {
                             sendPrompt(starter.prompt)
-                        } label: {
-                            JournalChip(title: starter.label, isSelected: false)
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -383,8 +369,7 @@ struct PhysicsCoachHomeView: View {
                             Label("Ask \(selectedPersona.shortLabel)", systemImage: "paperplane.fill")
                                 .font(.kymaiaCallout.weight(.semibold))
                         }
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color.kymaiaPrimary)
+                        .buttonStyle(BrassButtonStyle())
                         .disabled(isThinking)
 
                         Button {

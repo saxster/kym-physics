@@ -26,6 +26,7 @@ struct SchoolScienceHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.schoolScience.title,
             title: store.pack.schoolTextbook.title,
             subtitle: "\(store.pack.schoolTextbook.authors) · Learner's Book (326 pp.) & Workbook (202 pp.)",
             headerAccessory: {
@@ -67,20 +68,14 @@ struct SchoolScienceHomeView: View {
             ) {
                 HStack(spacing: Spacing.sm) {
                     ForEach(ScienceDisciplineLens.allCases) { lens in
-                        Button {
+                        StandardFilterChip(lens.title, isSelected: store.selectedSchoolLens == lens) {
                             store.selectedSchoolLens = lens
                             if let first = store.pack.schoolTextbook.units(for: lens).first,
                                !store.pack.schoolTextbook.units(for: lens).contains(where: { $0.unitNumber == store.selectedUnitNumber }) {
                                 store.selectedUnitNumber = first.unitNumber
                                 store.selectedTopicCode = first.topics.first?.code
                             }
-                        } label: {
-                            JournalChip(
-                                title: lens.title,
-                                isSelected: store.selectedSchoolLens == lens
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                     Spacer()
                 }
@@ -141,15 +136,9 @@ struct SchoolScienceHomeView: View {
                 ) {
                     FlowLayout(spacing: Spacing.xs) {
                         ForEach(unit.topics) { topic in
-                            Button {
+                            StandardFilterChip("\(topic.code) \(topic.title) (LB p.\(topic.learnersBookPage) / WB p.\(topic.workbookPage))", isSelected: activeTopic?.code == topic.code) {
                                 store.selectedTopicCode = topic.code
-                            } label: {
-                                JournalChip(
-                                    title: "\(topic.code) \(topic.title) (LB p.\(topic.learnersBookPage) / WB p.\(topic.workbookPage))",
-                                    isSelected: activeTopic?.code == topic.code
-                                )
                             }
-                            .buttonStyle(.plain)
                         }
                     }
 
@@ -312,36 +301,24 @@ struct SchoolScienceHomeView: View {
                 ) {
                     if !allUnitQuestions.isEmpty, let topic = activeTopic {
                         HStack(spacing: Spacing.xs) {
-                            Button {
+                            StandardFilterChip("All Unit \(unit.unitNumber) (\(allUnitQuestions.count))", isSelected: !filterQuestionsByActiveTopic) {
                                 filterQuestionsByActiveTopic = false
-                            } label: {
-                                JournalChip(
-                                    title: "All Unit \(unit.unitNumber) (\(allUnitQuestions.count))",
-                                    isSelected: !filterQuestionsByActiveTopic
-                                )
                             }
-                            .buttonStyle(.plain)
 
-                            Button {
+                            let topicCount = store.questions(forUnit: unit.unitNumber, topicCode: topic.code).count
+                            StandardFilterChip("Topic \(topic.code) Only (\(topicCount))", isSelected: filterQuestionsByActiveTopic) {
                                 filterQuestionsByActiveTopic = true
-                            } label: {
-                                let topicCount = store.questions(forUnit: unit.unitNumber, topicCode: topic.code).count
-                                JournalChip(
-                                    title: "Topic \(topic.code) Only (\(topicCount))",
-                                    isSelected: filterQuestionsByActiveTopic
-                                )
                             }
-                            .buttonStyle(.plain)
 
                             Spacer()
                         }
                     }
 
                     if unitQuestions.isEmpty {
-                        JournalEmptyState(
-                            symbol: "arrow.up.forward.app.fill",
+                        EmptyStateCard(
+                            eyebrow: "Another subject",
                             title: "Sibling Science Unit",
-                            message: "This unit is primarily covered in KymBio or KymChem. Switch to Physics Units (3, 6, 9) or tap a bridge above to jump across."
+                            subtitle: "This unit is primarily covered in KymBio or KymChem. Switch to Physics Units (3, 6, 9) or tap a bridge above to jump across."
                         )
                     } else {
                         VStack(spacing: Spacing.md) {
@@ -476,28 +453,19 @@ struct SchoolQuestionProofCard: View {
 
                 // 3-Tier Scaffold Switcher
                 HStack(spacing: Spacing.sm) {
-                    Button {
+                    StandardFilterChip("1. Worked Example", isSelected: mode == "worked") {
                         mode = "worked"
                         usedAssistanceThisSession = true
-                    } label: {
-                        JournalChip(title: "1. Worked Example", isSelected: mode == "worked")
                     }
-                    .buttonStyle(.plain)
 
-                    Button {
+                    StandardFilterChip("2. Faded Blank", isSelected: mode == "faded") {
                         mode = "faded"
                         usedAssistanceThisSession = true
-                    } label: {
-                        JournalChip(title: "2. Faded Blank", isSelected: mode == "faded")
                     }
-                    .buttonStyle(.plain)
 
-                    Button {
+                    StandardFilterChip("3. Independent Proof", isSelected: mode == "independent") {
                         mode = "independent"
-                    } label: {
-                        JournalChip(title: "3. Independent Proof", isSelected: mode == "independent")
                     }
-                    .buttonStyle(.plain)
 
                     Spacer()
 
@@ -652,7 +620,8 @@ struct PhysicsScratchpadSheet: View {
     var body: some View {
         JournalFocusPage(
             title: "Physics Pencil Scratchpad · Topic \(question.topicCode)",
-            subtitle: "Attempt #\(attemptNumber) (fresh canvas per attempt — never overwrites prior working)"
+            subtitle: "Attempt #\(attemptNumber) (fresh canvas per attempt — never overwrites prior working)",
+            close: { dismiss() }
         ) {
             HStack {
                 Button("Close") { dismiss() }
@@ -670,15 +639,9 @@ struct PhysicsScratchpadSheet: View {
                     Text("Stamp:")
                         .font(.kymaiaCaption.weight(.semibold))
                     ForEach(stamps, id: \.id) { stamp in
-                        Button {
+                        StandardFilterChip(stamp.label, isSelected: selectedStamp == stamp.id) {
                             selectedStamp = stamp.id
-                        } label: {
-                            JournalChip(
-                                title: stamp.label,
-                                isSelected: selectedStamp == stamp.id
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                     Spacer()
                     Button("New Attempt #\(attemptNumber + 1)") {

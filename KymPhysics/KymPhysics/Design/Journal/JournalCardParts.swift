@@ -149,11 +149,6 @@ struct JournalChip: View {
         self.tone = tone
     }
 
-    init(title: String, isSelected: Bool) {
-        self.text = title
-        self.tone = isSelected ? .accent : .muted
-    }
-
     var body: some View {
         Text(text)
             .font(.kymaiaCaption.weight(.semibold))

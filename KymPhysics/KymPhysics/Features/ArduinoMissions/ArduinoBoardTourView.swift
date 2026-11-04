@@ -224,7 +224,7 @@ struct ArduinoBoardTourView: View {
             context.draw(
                 Text("\(idx + 1)")
                     .font(.kymaiaMonoCaption.weight(.bold))
-                    .foregroundColor(isSelected ? .white : Theme.Colors.accent),
+                    .foregroundColor(isSelected ? Color.kymaiaBackground : Theme.Colors.accent),
                 at: center
             )
         }
@@ -249,7 +249,7 @@ struct ArduinoBoardTourView: View {
                                 .padding(.vertical, 2)
                                 .background(
                                     isSelected
-                                        ? Color.white.opacity(0.22)
+                                        ? Color.kymaiaBackground.opacity(0.22)
                                         : Theme.Colors.accent.opacity(0.14),
                                     in: Capsule()
                                 )
@@ -261,7 +261,7 @@ struct ArduinoBoardTourView: View {
                         .padding(.horizontal, Theme.Spacing.medium)
                         .padding(.vertical, Theme.Spacing.small)
                         .frame(minHeight: Theme.Dimension.minimumTarget)
-                        .foregroundStyle(isSelected ? Color.white : Theme.Colors.primaryText)
+                        .foregroundStyle(isSelected ? Color.kymaiaBackground : Theme.Colors.primaryText)
                         .background(
                             isSelected ? Theme.Colors.accent : Theme.Colors.secondaryBackground,
                             in: Capsule()

@@ -76,6 +76,7 @@ struct ParentMentorDashboardView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.parentMentor.title,
             title: "Dad / Mentor Lens · Proof Telemetry & Socratic Prompts",
             subtitle: "True Independent Proof vs. Assisted Practice across Cambridge Science 8 (Units 3, 6, 9) & The Moving World",
             headerAccessory: {
@@ -88,8 +89,7 @@ struct ParentMentorDashboardView: View {
                         Label("Export Progress Report", systemImage: "square.and.arrow.up")
                             .font(.kymaiaCaption.weight(.semibold))
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color.kymaiaPrimary)
+                    .buttonStyle(BrassButtonStyle())
 
                     StandardThemeMenu()
                 }
@@ -179,17 +179,11 @@ struct ParentMentorDashboardView: View {
                                     ForEach(unit.topics) { topic in
                                         let skill = store.bktSkills[topic.code]
                                         let pct = Int(round((skill?.pLearned ?? 0.35) * 100))
-                                        Button {
+                                        StandardFilterChip("\(topic.code) \(topic.title) (\(pct)%)", isSelected: false) {
                                             store.selectedUnitNumber = unit.unitNumber
                                             store.selectedTopicCode = topic.code
                                             store.selectedRoom = .schoolScience
-                                        } label: {
-                                            JournalChip(
-                                                title: "\(topic.code) \(topic.title) (\(pct)%)",
-                                                isSelected: false
-                                            )
                                         }
-                                        .buttonStyle(.plain)
                                     }
                                 }
                             }
@@ -369,7 +363,7 @@ struct ParentMentorDashboardView: View {
                                     Label("Save Allowlisted Preferences", systemImage: "checkmark.shield")
                                         .font(.kymaiaCaption.weight(.semibold))
                                 }
-                                .buttonStyle(.borderedProminent)
+                                .buttonStyle(.bordered)
                                 .tint(Color.kymaiaPrimary)
 
                                 if let overrideStatusMessage {

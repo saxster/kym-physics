@@ -38,3 +38,29 @@ extension ShapeStyle where Self == Color {
     static var kymaiaWarningStyle: Color { KymaiaSemanticStyle.warning }
     static var kymaiaDestructive: Color { KymaiaSemanticStyle.destructive }
 }
+
+/// SF Symbol sizes for screen icons. They follow Dynamic Type through the text style they sit on.
+extension Font {
+    /// An icon beside a caption-sized label or on a small control.
+    static let kymaiaSymbolSmall = Font.kymaiaEyebrow
+    /// An icon leading a card row or a body-sized line.
+    static let kymaiaSymbolMedium = Font.title3
+    /// An icon leading a card title, or a tappable check-off.
+    static let kymaiaSymbolLarge = Font.title2
+    /// A centred icon heading an empty or covered panel.
+    static let kymaiaSymbolHero = Font.largeTitle
+}
+
+/// Fixed sizes inside physics figures and celebration glyphs, where the size is part of the
+/// drawing's geometry and must not scale with Dynamic Type. Everything outside a figure uses the
+/// `Font.kymaia*` tokens or `.standardType(_:)`.
+enum PhysicsFigureType {
+    /// The flame on Today's ritual hero card.
+    static let ritualHeroGlyph = Font.system(size: 38)
+    /// The sparkles inside the 96 pt breakthrough halo.
+    static let breakthroughGlyph = Font.system(size: 40, weight: .semibold)
+    /// The seal on the ritual's completion card.
+    static let completionGlyph = Font.system(size: 48)
+    /// The dashed cutaway frame drawn over the motor explorer canvas.
+    static let cutawayRadius: CGFloat = 12
+}

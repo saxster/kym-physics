@@ -317,18 +317,12 @@ struct PhysicsMemoryPalaceSection: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(PhysicsMemoryPalaceCatalog.allPalaces) { palace in
-                        Button {
+                        StandardFilterChip(palace.title, isSelected: selectedPalaceId == palace.id) {
                             selectedPalaceId = palace.id
                             selectedStopIndex = 0
                             recallAttempt = ""
                             recallChecked = false
-                        } label: {
-                            JournalChip(
-                                title: palace.title,
-                                isSelected: selectedPalaceId == palace.id
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }

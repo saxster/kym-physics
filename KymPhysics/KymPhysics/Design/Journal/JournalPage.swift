@@ -6,6 +6,9 @@ struct JournalPage<Content: View>: View {
     var subtitleIdentifier: String
     var floatingAction: JournalAction?
     var column: JournalLayout.Column
+    /// Set by a room's home page: the page opens with The Standard's editorial header.
+    var eyebrow: String?
+    private var accessory: AnyView?
     private let content: Content
 
     init(
@@ -25,6 +28,7 @@ struct JournalPage<Content: View>: View {
     }
 
     init<HeaderAccessory: View>(
+        eyebrow: String? = nil,
         title: String,
         subtitle: String? = nil,
         @ViewBuilder headerAccessory: () -> HeaderAccessory,
@@ -35,6 +39,8 @@ struct JournalPage<Content: View>: View {
         self.subtitleIdentifier = "journal-page.subtitle"
         self.floatingAction = nil
         self.column = .page
+        self.eyebrow = eyebrow
+        self.accessory = AnyView(headerAccessory())
         self.content = content()
     }
 
@@ -44,7 +50,11 @@ struct JournalPage<Content: View>: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: JournalLayout.sectionSpacing) {
-                    if let subtitle {
+                    if let accessory {
+                        RoomHeader(eyebrow: eyebrow, title: title, subtitle: subtitle) { accessory }
+                    } else if eyebrow != nil {
+                        RoomHeader(eyebrow: eyebrow, title: title, subtitle: subtitle) { EmptyView() }
+                    } else if let subtitle {
                         subtitleLine(subtitle)
                     }
                     content
@@ -67,7 +77,7 @@ struct JournalPage<Content: View>: View {
             }
         }
         .foregroundStyle(Color.kymaiaInk)
-        .modifier(JournalNavigationTitle(title: title, display: .large))
+        .modifier(JournalNavigationTitle(title: title, display: eyebrow == nil ? .large : .inline))
     }
 
     private func subtitleLine(_ text: String) -> some View {

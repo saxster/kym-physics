@@ -177,17 +177,11 @@ struct SpeedPhysicsGymSection: View {
             // Track Selector + Streak Counter
             HStack(spacing: Spacing.sm) {
                 ForEach(SpeedPhysicsGymEngine.Track.allCases) { track in
-                    Button {
+                    StandardFilterChip(track.rawValue, isSelected: selectedTrack == track) {
                         selectedTrack = track
                         currentIndex = 0
                         selectedAnswer = nil
-                    } label: {
-                        JournalChip(
-                            title: track.rawValue,
-                            isSelected: selectedTrack == track
-                        )
                     }
-                    .buttonStyle(.plain)
                 }
                 Spacer()
                 JournalBadge(text: "Streak: \(streakCount) · Best: \(bestStreak)", tone: .positive)

@@ -52,6 +52,7 @@ struct LabsExplorersHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.labsExplorers.title,
             title: "3D Physics Labs, Sensors & Explorers",
             subtitle: "56 Interactive Simulations · 4 Front-Matter Explorers · 126 Investigations · iPad Sensor Bench",
             headerAccessory: {
@@ -61,35 +62,17 @@ struct LabsExplorersHomeView: View {
             // 1. Mode Switcher
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.sm) {
-                    Button { selectedTab = "widgets" } label: {
-                        JournalChip(title: "56 Live Simulations", isSelected: selectedTab == "widgets")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("56 Live Simulations", isSelected: selectedTab == "widgets") { selectedTab = "widgets" }
 
-                    Button { selectedTab = "explorers" } label: {
-                        JournalChip(title: "4 Front-Matter Explorers", isSelected: selectedTab == "explorers")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("4 Front-Matter Explorers", isSelected: selectedTab == "explorers") { selectedTab = "explorers" }
 
-                    Button { selectedTab = "investigations" } label: {
-                        JournalChip(title: "126 Investigations & Atlas", isSelected: selectedTab == "investigations")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("126 Investigations & Atlas", isSelected: selectedTab == "investigations") { selectedTab = "investigations" }
 
-                    Button { selectedTab = "sensors" } label: {
-                        JournalChip(title: "iPad Hardware Sensors & 240 fps", isSelected: selectedTab == "sensors")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("iPad Hardware Sensors & 240 fps", isSelected: selectedTab == "sensors") { selectedTab = "sensors" }
 
-                    Button { selectedTab = "arduino" } label: {
-                        JournalChip(title: "Arduino Hardware Missions", isSelected: selectedTab == "arduino")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("Arduino Hardware Missions", isSelected: selectedTab == "arduino") { selectedTab = "arduino" }
 
-                    Button { selectedTab = "visuals" } label: {
-                        JournalChip(title: "Cambridge Concept Visuals", isSelected: selectedTab == "visuals")
-                    }
-                    .buttonStyle(.plain)
+                    StandardFilterChip("Cambridge Concept Visuals", isSelected: selectedTab == "visuals") { selectedTab = "visuals" }
                 }
             }
 
@@ -107,7 +90,7 @@ struct LabsExplorersHomeView: View {
                                 VStack(alignment: .leading, spacing: Spacing.sm) {
                                     HStack {
                                         Image(systemName: exp.symbol)
-                                            .font(.title2)
+                                            .font(.kymaiaSymbolLarge)
                                             .foregroundStyle(Color.kymaiaPrimary)
                                         VStack(alignment: .leading) {
                                             Text(exp.title)
@@ -118,15 +101,9 @@ struct LabsExplorersHomeView: View {
                                                 .foregroundStyle(Color.kymaiaMutedInk)
                                         }
                                         Spacer()
-                                        Button {
+                                        StandardFilterChip(store.activeExplorerId == exp.id ? "Active Below ✓" : "Open Interactive Explorer", isSelected: store.activeExplorerId == exp.id) {
                                             store.activeExplorerId = exp.id
-                                        } label: {
-                                            JournalChip(
-                                                title: store.activeExplorerId == exp.id ? "Active Below ✓" : "Open Interactive Explorer",
-                                                isSelected: store.activeExplorerId == exp.id
-                                            )
                                         }
-                                        .buttonStyle(.plain)
                                     }
                                     Text(exp.summary)
                                         .font(.kymaiaReadingBody)
@@ -170,41 +147,23 @@ struct LabsExplorersHomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Spacing.xs) {
                             ForEach(["all", "home", "lab", "thought", "atlas"], id: \.self) { cat in
-                                Button {
+                                StandardFilterChip(cat == "all" ? "All Categories (\(store.pack.investigations.count))" : cat.capitalized, isSelected: selectedInvestigationCategory == cat) {
                                     selectedInvestigationCategory = cat
-                                } label: {
-                                    JournalChip(
-                                        title: cat == "all" ? "All Categories (\(store.pack.investigations.count))" : cat.capitalized,
-                                        isSelected: selectedInvestigationCategory == cat
-                                    )
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Spacing.xs) {
-                            Button {
+                            StandardFilterChip("All Chapters", isSelected: selectedInvestigationChapter == nil) {
                                 selectedInvestigationChapter = nil
-                            } label: {
-                                JournalChip(
-                                    title: "All Chapters",
-                                    isSelected: selectedInvestigationChapter == nil
-                                )
                             }
-                            .buttonStyle(.plain)
 
                             ForEach(0..<16, id: \.self) { ch in
-                                Button {
+                                StandardFilterChip("Ch \(ch)", isSelected: selectedInvestigationChapter == ch) {
                                     selectedInvestigationChapter = ch
-                                } label: {
-                                    JournalChip(
-                                        title: "Ch \(ch)",
-                                        isSelected: selectedInvestigationChapter == ch
-                                    )
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
@@ -323,16 +282,10 @@ struct LabsExplorersHomeView: View {
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: Spacing.xs) {
                                             ForEach(Array(activeWidget.watchSteps.enumerated()), id: \.offset) { idx, step in
-                                                Button {
+                                                StandardFilterChip(step.title, isSelected: activeWatchStepIndex == idx) {
                                                     activeWatchStepIndex = idx
                                                     showingCutaway = step.title.lowercased().contains("cut-away")
-                                                } label: {
-                                                    JournalChip(
-                                                        title: step.title,
-                                                        isSelected: activeWatchStepIndex == idx
-                                                    )
                                                 }
-                                                .buttonStyle(.plain)
                                             }
                                         }
                                     }
@@ -363,8 +316,7 @@ struct LabsExplorersHomeView: View {
                                         Label("Complete Challenge & Earn Stamp", systemImage: "seal.fill")
                                             .font(.kymaiaCallout.weight(.semibold))
                                     }
-                                    .buttonStyle(.borderedProminent)
-                                    .tint(Color.kymaiaPrimary)
+                                    .buttonStyle(BrassButtonStyle())
 
                                     Button {
                                         _ = store.freezeWidgetIntoLabLog(
@@ -386,15 +338,9 @@ struct LabsExplorersHomeView: View {
                 JournalSection(title: "All \(store.pack.widgets.count) Interactive Physics Simulations") {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Spacing.xs) {
-                            Button { selectedChapterFilter = nil } label: {
-                                JournalChip(title: "All Chapters", isSelected: selectedChapterFilter == nil)
-                            }
-                            .buttonStyle(.plain)
+                            StandardFilterChip("All Chapters", isSelected: selectedChapterFilter == nil) { selectedChapterFilter = nil }
                             ForEach(0..<16, id: \.self) { ch in
-                                Button { selectedChapterFilter = ch } label: {
-                                    JournalChip(title: "Ch \(ch)", isSelected: selectedChapterFilter == ch)
-                                }
-                                .buttonStyle(.plain)
+                                StandardFilterChip("Ch \(ch)", isSelected: selectedChapterFilter == ch) { selectedChapterFilter = ch }
                             }
                         }
                     }
@@ -483,7 +429,7 @@ private struct InteractivePhysicsCanvasView: View {
 
                 if showingCutaway {
                     let rect = CGRect(x: midX - 90, y: midY - 60, width: 180, height: 120)
-                    context.stroke(Path(roundedRect: rect, cornerRadius: 12), with: .color(.kymaiaPrimary), style: StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
+                    context.stroke(Path(roundedRect: rect, cornerRadius: PhysicsFigureType.cutawayRadius), with: .color(.kymaiaPrimary), style: StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
                 }
             }
             VStack {

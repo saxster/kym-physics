@@ -42,6 +42,7 @@ struct CalendarHomeView: View {
 
     var body: some View {
         JournalPage(
+            eyebrow: AppRoom.calendar.title,
             title: "Physics & Shared Science 8 Calendar",
             subtitle: "Month / Week / Agenda Views · Backward-Scheduled Exam Prep Plan · Apple Calendar (EventKit) Sync",
             headerAccessory: {
@@ -60,8 +61,7 @@ struct CalendarHomeView: View {
                         Label("Sync Apple Calendar", systemImage: "calendar.badge.plus")
                             .font(.kymaiaCaption.weight(.semibold))
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color.kymaiaPrimary)
+                    .buttonStyle(BrassButtonStyle())
 
                     StandardThemeMenu()
                 }
@@ -129,7 +129,7 @@ struct CalendarHomeView: View {
                             Label("Add to Science Spine Calendar", systemImage: "plus.circle.fill")
                                 .font(.kymaiaCallout.weight(.semibold))
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.bordered)
                         .tint(Color.kymaiaPrimary)
                     }
                 }
@@ -159,7 +159,7 @@ struct CalendarHomeView: View {
                             if activeTimerSeconds == 0 { activeTimerSeconds = 25 * 60 }
                             updateLiveActivityIfAvailable()
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.bordered)
                         .tint(Color.kymaiaPrimary)
 
                         Button("Reset 25m") {
@@ -262,7 +262,7 @@ private struct PhysicsCrunchWarningBanner: View {
             JournalCard {
                 HStack(alignment: .center, spacing: Spacing.md) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.title2)
+                        .font(.kymaiaSymbolLarge)
                         .foregroundStyle(Color.kymaiaWarning)
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Upcoming Focus Window: \(nextDeadline.title) in \(daysLeft) days")
@@ -457,7 +457,7 @@ private struct PhysicsBackwardPrepPlanSection: View {
                                 }
                             } label: {
                                 Image(systemName: isDone ? "checkmark.circle.fill" : "circle")
-                                    .font(.title2)
+                                    .font(.kymaiaSymbolLarge)
                                     .foregroundStyle(isDone ? Color.kymaiaSuccess : Color.kymaiaAccent)
                             }
                             .buttonStyle(.plain)
@@ -544,7 +544,7 @@ private struct PhysicsCalendarMonthGridSection: View {
                                     VStack(spacing: 3) {
                                         Text("\(dayNum)")
                                             .font(.kymaiaSubheadline.weight(isSelected ? .bold : .regular))
-                                            .foregroundStyle(isSelected ? .white : Color.kymaiaTextPrimary)
+                                            .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaTextPrimary)
                                         Circle()
                                             .fill(hasDeadline ? Color.kymaiaWarning : Color.clear)
                                             .frame(width: 6, height: 6)
@@ -586,10 +586,10 @@ private struct PhysicsCalendarWeekStripSection: View {
                             VStack(spacing: 4) {
                                 Text(date.formatted(.dateTime.weekday(.abbreviated)))
                                     .font(.kymaiaCaption)
-                                    .foregroundStyle(isSelected ? .white.opacity(0.9) : Color.kymaiaTextSecondary)
+                                    .foregroundStyle(isSelected ? Color.kymaiaBackground.opacity(0.9) : Color.kymaiaTextSecondary)
                                 Text(date.formatted(.dateTime.day()))
                                     .font(.kymaiaTitle3)
-                                    .foregroundStyle(isSelected ? .white : Color.kymaiaTextPrimary)
+                                    .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaTextPrimary)
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, Spacing.sm)

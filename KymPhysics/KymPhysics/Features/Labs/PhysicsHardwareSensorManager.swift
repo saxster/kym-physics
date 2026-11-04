@@ -617,7 +617,7 @@ struct PhysicsHardwareSensorsBenchView: View {
                             .padding(.vertical, 2)
                             .padding(.horizontal, 6)
                             .background(
-                                RoundedRectangle(cornerRadius: 6)
+                                RoundedRectangle(cornerRadius: CornerRadius.small)
                                     .fill(row.frame == currentStrobeFrame ? Color.kymaiaAccent.opacity(0.14) : Color.clear)
                             )
                         }

@@ -1,16 +1,31 @@
-# KymPhysics — Apple Journal Design System (`DESIGN.md`)
+# KymPhysics design (`DESIGN.md`)
 
-## Reference App
-**Apple Journal for iPad (iPadOS 26/27)**. Every screen in `KymPhysics` is built from the eleven Journal primitives (`JournalPage`, `JournalReaderPage`, `JournalFocusPage`, `JournalCard`, `JournalMiniCard`, `JournalSection`, `JournalRow`, `JournalChip`, `JournalBadge`, `JournalPaperSheet`, `JournalForm`) using semantic tokens (`Color.kymaia*`, `Font.kymaia*`, `Spacing.*`, `CornerRadius.*`).
+## Design system: The Standard
+KymPhysics draws in **The Standard**, the design system it shares with KymBio, KymChem, KymMaths and
+apple_poem. Its colours, themes, type scale, spacing, radii, motion, components and accessibility rules
+live in one place: [`teaching_kit/docs/STANDARD.md`](../../teaching_kit/docs/STANDARD.md). The Swift is
+`teaching_kit/Sources/KymDesign/Standard/`. Do not restate its tokens here; change them in the kit.
 
-## Curated Color Schemes (`CuratedColorScheme`)
-1. **`.journal` (Default):** Soft lavender canvas (`#F3F1F7` / `#0E0E12`), white elevated cards (`20pt` continuous corner radius), indigo accent (`#5856D6`).
-2. **`.movingWorld`:** Warm rag paper (`#FBF7EF` / `#161410`), Galileo alizarin primary (`#A3291E` / `#F27D70`), celestial ultramarine secondary (`#1E4D8B` / `#82B4F5`), serif headings (`16pt` hairline cards).
-3. **`.monsoon` (Marine Drive):** Coastal slate (`#F1F5F7`), Arabian Sea teal (`#125E7A`), warm lantern gold (`#7A4A10`).
-4. **`.botanical` (Living World):** Warm cream (`#F7F3E8`), conservation emerald (`#2E604A`), terracotta (`#8A3B28`).
-5. **`.sketchbook`, `.hearth`, `.scholar`, `.dusk`:** Additional WCAG AAA/AA verified study palettes.
+- **Themes.** Six Standard themes (Vivid by default, Paper, Warm, Dusk, Black, Ink) plus Follow System.
+  `StandardThemeMenu` in each room's toolbar is the picker. `Design/AppTheme.swift` registers the theme at
+  launch and holds the legacy map that moved a learner's choice from the old physics catalogue:
+  Moving World, Living World and Sketchbook → Paper; Terracotta and Scholar → Warm; Dusk → Dusk;
+  Journal and Marine Drive → Vivid.
+- **Widget.** The Daily Study Glance widget registers The Standard itself, reading the choice the app
+  copies into the `group.com.kymaia.physics` app group, and draws with `Color.kymaia*` tokens.
+- **Tokens in screens.** `Features/` uses `Font.kymaia*` or `.standardType(role)`, `Color.kymaia*`,
+  `Spacing.*` and `CornerRadius.*` / `StandardRadius.*`. The kit's `check-consumers.mjs --lint` counts
+  radius literals, fixed and shorthand fonts, `.secondary` styles and named system colours there; the
+  count stays at zero. Fixed sizes inside drawn physics figures live in `PhysicsFigureType`
+  (`Design/SemanticStyles.swift`).
+- **Screen patterns.** Room homes open with `EditorialHeader`; filters use `StandardFilterChip`; cards
+  use `SurfaceCard`, `QuietPanel` or the Journal shells; empty states use `EmptyStateCard`; animation
+  uses `StandardMotion` and respects Reduce Motion.
 
-## Strict Visual & Accessibility Rules
-- **WCAG Contrast:** Primary ink $\ge 7.0:1$ (AAA) against page and card surfaces in both light and dark modes; muted/tertiary ink and primary/secondary accents $\ge 4.5:1$ (AA); resting control borders $\ge 3.0:1$.
-- **Typography:** `.serif` is reserved for long-form textbook prose (`JournalReaderPage`), equations, and notebook paper (`JournalPaperSheet`). Chrome, navigation, badges, and buttons use `.default` or `.rounded` with `.monospacedDigit()` on all numerical readouts and timers.
-- **Touch & Pencil Ergonomics:** Minimum $44 \times 44\text{ pt}$ hit targets (`AccessibilityLayout.minTouchTarget`); `.writingToolsBehavior(.none)` on independent proof inputs so Apple Intelligence cannot rewrite Kym's own scientific explanations.
+## Physics-specific rules
+- **Serif for the work.** Long-form textbook prose (`JournalReaderPage`), equations and notebook paper
+  (`JournalPaperSheet`) are serif. Chrome, navigation, badges and buttons are SF, with
+  `.monospacedDigit()` on every numerical readout and timer, so lab values do not reflow as they tick.
+- **Touch and Pencil.** Hit targets are at least 44 × 44 pt (`AccessibilityLayout.minTouchTarget`).
+  Independent proof inputs set `.writingToolsBehavior(.none)`, so Apple Intelligence cannot rewrite
+  Kym's own scientific explanations.

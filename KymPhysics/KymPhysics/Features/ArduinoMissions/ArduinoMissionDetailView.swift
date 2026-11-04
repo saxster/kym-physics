@@ -180,7 +180,7 @@ struct ArduinoMissionDetailView: View {
                     HStack(alignment: .center, spacing: Spacing.sm) {
                         Text("\(idx + 1)")
                             .font(.kymaiaCodeMath.weight(.bold))
-                            .foregroundStyle(isSelected ? Color.white : Color.kymaiaPrimary)
+                            .foregroundStyle(isSelected ? Color.kymaiaBackground : Color.kymaiaPrimary)
                             .frame(width: 24, height: 24)
                             .background(
                                 isSelected ? Color.kymaiaPrimary : Color.kymaiaPrimary.opacity(0.14),
@@ -258,7 +258,7 @@ struct ArduinoMissionDetailView: View {
                 HStack(alignment: .top, spacing: Spacing.sm) {
                     Text("\(index + 1)")
                         .font(.kymaiaCodeMath.weight(.bold))
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(Color.kymaiaBackground)
                         .frame(width: 24, height: 24)
                         .background(Color.kymaiaPrimary, in: Circle())
                     Text(step)

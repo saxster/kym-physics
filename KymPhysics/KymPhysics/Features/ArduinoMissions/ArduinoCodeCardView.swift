@@ -93,7 +93,7 @@ struct ArduinoCodeCardView: View {
                 .padding(.horizontal, Theme.Spacing.medium)
                 .padding(.vertical, Theme.Spacing.xs)
                 .frame(minHeight: Theme.Dimension.minimumTarget)
-                .foregroundStyle(Color.white)
+                .foregroundStyle(Color.kymaiaBackground)
                 .background(Theme.Colors.accent, in: Capsule())
                 .contentShape(Capsule())
             }
@@ -280,7 +280,7 @@ struct ArduinoCodeCardView: View {
                                 .padding(.vertical, 2)
                                 .background(
                                     isSelected
-                                        ? Color.white.opacity(0.22)
+                                        ? Color.kymaiaBackground.opacity(0.22)
                                         : Theme.Colors.accent.opacity(0.14),
                                     in: Capsule()
                                 )
@@ -290,7 +290,7 @@ struct ArduinoCodeCardView: View {
                         .padding(.horizontal, Theme.Spacing.small)
                         .padding(.vertical, Theme.Spacing.xs)
                         .frame(minHeight: Theme.Dimension.minimumTarget)
-                        .foregroundStyle(isSelected ? Color.white : Theme.Colors.primaryText)
+                        .foregroundStyle(isSelected ? Color.kymaiaBackground : Theme.Colors.primaryText)
                         .background(
                             isSelected ? Theme.Colors.accent : Theme.Colors.secondaryBackground,
                             in: Capsule()

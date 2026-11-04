@@ -32,30 +32,22 @@ struct MovingWorldHomeView: View {
 
     var body: some View {
         JournalReaderPage(
+            eyebrow: AppRoom.movingWorld.title,
             title: "The Moving World · Ch \(activeChapter.number): \(activeChapter.title)",
             subtitle: "\(activeChapter.volumeTitle) · \(activeChapter.subtitle)",
             headerAccessory: {
                 HStack(spacing: Spacing.sm) {
-                    Button {
+                    StandardFilterChip("Journal Reader", isSelected: readerMode == "native") {
                         readerMode = "native"
-                    } label: {
-                        JournalChip(title: "Journal Reader", isSelected: readerMode == "native")
                     }
-                    .buttonStyle(.plain)
 
-                    Button {
+                    StandardFilterChip("Interactive Web Book", isSelected: readerMode == "web") {
                         readerMode = "web"
-                    } label: {
-                        JournalChip(title: "Interactive Web Book", isSelected: readerMode == "web")
                     }
-                    .buttonStyle(.plain)
 
-                    Button {
+                    StandardFilterChip("95 Physics Stories", isSelected: readerMode == "stories") {
                         readerMode = "stories"
-                    } label: {
-                        JournalChip(title: "95 Physics Stories", isSelected: readerMode == "stories")
                     }
-                    .buttonStyle(.plain)
 
                     Button {
                         ChapterExplainerPlayer.shared.playChapter(activeChapter)
@@ -72,7 +64,7 @@ struct MovingWorldHomeView: View {
                         Label("2-Voice Briefing", systemImage: "person.2.wave.2.fill")
                             .font(.kymaiaCaption.weight(.semibold))
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.bordered)
                     .tint(Color.kymaiaPrimary)
 
                     StandardThemeMenu()
@@ -85,15 +77,9 @@ struct MovingWorldHomeView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.xs) {
                     ForEach(store.pack.chapters) { ch in
-                        Button {
+                        StandardFilterChip("Ch \(ch.number) · \(ch.title)", isSelected: store.activeMovingWorldChapter == ch.number) {
                             store.activeMovingWorldChapter = ch.number
-                        } label: {
-                            JournalChip(
-                                title: "Ch \(ch.number) · \(ch.title)",
-                                isSelected: store.activeMovingWorldChapter == ch.number
-                            )
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -119,18 +105,9 @@ struct MovingWorldHomeView: View {
                     subtitle: "Portraits of Galileo, Newton, Faraday, Maxwell, Bhaskara, Raman & C.V. Boys alongside Mumbai everyday physics"
                 ) {
                     HStack(spacing: Spacing.sm) {
-                        Button { storyFilter = "all" } label: {
-                            JournalChip(title: "All (\(store.pack.stories.count))", isSelected: storyFilter == "all")
-                        }
-                        .buttonStyle(.plain)
-                        Button { storyFilter = "portrait" } label: {
-                            JournalChip(title: "Physicist Portraits", isSelected: storyFilter == "portrait")
-                        }
-                        .buttonStyle(.plain)
-                        Button { storyFilter = "topic" } label: {
-                            JournalChip(title: "Everyday & Deep Topics", isSelected: storyFilter == "topic")
-                        }
-                        .buttonStyle(.plain)
+                        StandardFilterChip("All (\(store.pack.stories.count))", isSelected: storyFilter == "all") { storyFilter = "all" }
+                        StandardFilterChip("Physicist Portraits", isSelected: storyFilter == "portrait") { storyFilter = "portrait" }
+                        StandardFilterChip("Everyday & Deep Topics", isSelected: storyFilter == "topic") { storyFilter = "topic" }
                     }
 
                     LazyVGrid(
@@ -173,8 +150,7 @@ struct MovingWorldHomeView: View {
                                 Label("Mark Chapter Read", systemImage: "checkmark.circle.fill")
                                     .font(.kymaiaCaption.weight(.semibold))
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(Color.kymaiaPrimary)
+                            .buttonStyle(BrassButtonStyle())
                         }
 
                         if !activeChapter.keyTerms.isEmpty {
@@ -273,7 +249,7 @@ struct MovingWorldHomeView: View {
                                                         addPrediction: true
                                                     )
                                                 }
-                                                .buttonStyle(.borderedProminent)
+                                                .buttonStyle(.bordered)
                                                 .tint(Color.kymaiaPrimary)
                                             }
                                         }
