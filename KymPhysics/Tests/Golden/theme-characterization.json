@@ -7,13 +7,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#D7AA5F@1.000",
-            "light" : "#D7AA5F@1.000",
+            "dark" : "#F0ECE2@1.000",
+            "light" : "#F0ECE2@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#A8BFA8@1.000",
-            "light" : "#A8BFA8@1.000",
+            "dark" : "#E4CBA1@1.000",
+            "light" : "#E4CBA1@1.000",
             "location" : "1.000"
           }
         ]
@@ -140,13 +140,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#C3A36E@1.000",
-            "light" : "#C3A36E@1.000",
+            "dark" : "#E9EEF6@1.000",
+            "light" : "#E9EEF6@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#9CB6A2@1.000",
-            "light" : "#9CB6A2@1.000",
+            "dark" : "#D6C9B2@1.000",
+            "light" : "#D6C9B2@1.000",
             "location" : "1.000"
           }
         ]
@@ -273,13 +273,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#D0A35A@1.000",
-            "light" : "#D0A35A@1.000",
+            "dark" : "#F1EBDD@1.000",
+            "light" : "#F1EBDD@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#A6BEA0@1.000",
-            "light" : "#A6BEA0@1.000",
+            "dark" : "#E1C79C@1.000",
+            "light" : "#E1C79C@1.000",
             "location" : "1.000"
           }
         ]
@@ -406,13 +406,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#8F641F@1.000",
-            "light" : "#8F641F@1.000",
+            "dark" : "#1F1B16@1.000",
+            "light" : "#1F1B16@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#4F6A58@1.000",
-            "light" : "#4F6A58@1.000",
+            "dark" : "#57401B@1.000",
+            "light" : "#57401B@1.000",
             "location" : "1.000"
           }
         ]
@@ -539,13 +539,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#8B6325@1.000",
-            "light" : "#8B6325@1.000",
+            "dark" : "#2B2117@1.000",
+            "light" : "#2B2117@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#526642@1.000",
-            "light" : "#526642@1.000",
+            "dark" : "#5B421E@1.000",
+            "light" : "#5B421E@1.000",
             "location" : "1.000"
           }
         ]
@@ -672,13 +672,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#8F641F@1.000",
-            "light" : "#8F641F@1.000",
+            "dark" : "#F0ECE2@1.000",
+            "light" : "#1F1B16@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#4F6A58@1.000",
-            "light" : "#4F6A58@1.000",
+            "dark" : "#E4CBA1@1.000",
+            "light" : "#57401B@1.000",
             "location" : "1.000"
           }
         ]
@@ -805,13 +805,13 @@
       "glance" : {
         "streakFill" : [
           {
-            "dark" : "#FF8906@1.000",
-            "light" : "#FF8906@1.000",
+            "dark" : "#FFFFFE@1.000",
+            "light" : "#FFFFFE@1.000",
             "location" : "0.000"
           },
           {
-            "dark" : "#F25F4C@1.000",
-            "light" : "#F25F4C@1.000",
+            "dark" : "#FFC482@1.000",
+            "light" : "#FFC482@1.000",
             "location" : "1.000"
           }
         ]
