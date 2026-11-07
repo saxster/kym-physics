@@ -926,3 +926,276 @@ final class AIBudgetLedger: @unchecked Sendable {
         return "\(values.year ?? 0)-\(values.month ?? 0)"
     }
 }
+
+// MARK: - LearnHarness 6-Rung Progressive Hint Ladder (R0..R5) & Miss Diagnostics
+
+enum HintRung: Int, CaseIterable, Codable, Identifiable, Sendable {
+    case r0AttentionRedirect = 0
+    case r1PatternRedescription = 1
+    case r2CandidateCluster = 2
+    case r3PropositionNamed = 3
+    case r4MoveOutlined = 4
+    case r5WorkedStep = 5
+
+    var id: Int { rawValue }
+
+    var shortCode: String { "R\(rawValue)" }
+
+    var title: String {
+        switch self {
+        case .r0AttentionRedirect: return "R0 · Attention Redirect"
+        case .r1PatternRedescription: return "R1 · Pattern Re-description"
+        case .r2CandidateCluster: return "R2 · Candidate Cluster"
+        case .r3PropositionNamed: return "R3 · Proposition Named"
+        case .r4MoveOutlined: return "R4 · Move Outlined"
+        case .r5WorkedStep: return "R5 · Worked Step"
+        }
+    }
+
+    var retrievalPolicyBadge: String {
+        surrendersRetrieval ? "Assisted (re-verify on fresh surface)" : "Preserves Independent Proof"
+    }
+
+    /// LearnHarness invariant: R0 and R1 point to problem features without naming the theorem,
+    /// so solving after R0/R1 still counts as independent retrieval. R2+ surrenders retrieval.
+    var surrendersRetrieval: Bool {
+        rawValue >= 2
+    }
+}
+
+enum PracticeMissKind: String, CaseIterable, Codable, Equatable, Sendable {
+    case cueMiss = "cue_miss"
+    case discriminationError = "discrimination_error"
+    case executionSlip = "execution_slip"
+    case careless = "careless"
+    case structuralMisconception = "structural_misconception"
+
+    var title: String {
+        switch self {
+        case .cueMiss: return "Cue Miss"
+        case .discriminationError: return "Discrimination Error"
+        case .executionSlip: return "Execution / Unit Slip"
+        case .careless: return "Careless Read"
+        case .structuralMisconception: return "Structural Misconception"
+        }
+    }
+
+    var recommendedStartingRung: HintRung {
+        switch self {
+        case .cueMiss, .careless:
+            return .r0AttentionRedirect
+        case .discriminationError, .structuralMisconception:
+            return .r1PatternRedescription
+        case .executionSlip:
+            return .r4MoveOutlined
+        }
+    }
+}
+
+enum PracticeDiagnosticEngine {
+    static func diagnoseMiss(
+        demand: PhysicsPracticeDemand,
+        answerText: String,
+        confidencePercent: Int?,
+        declinedToGuess: Bool
+    ) -> (missKind: PracticeMissKind, nextRung: HintRung, coachingPrompt: String) {
+        let lower = answerText.lowercased()
+        let matchedCount = demand.markSchemeKeywords.filter { lower.contains($0.lowercased()) }.count
+        let total = max(1, demand.markSchemeKeywords.count)
+        let ratio = Double(matchedCount) / Double(total)
+
+        if declinedToGuess || lower.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return (
+                .cueMiss,
+                .r0AttentionRedirect,
+                demand.hintLadderR0ToR5.first ?? "Re-read the physical setup and notice which quantity changes first."
+            )
+        }
+        if demand.mode == "discrimination", ratio < 0.5 {
+            let kind: PracticeMissKind = (confidencePercent ?? 50) >= 70 ? .structuralMisconception : .discriminationError
+            let rung: HintRung = .r1PatternRedescription
+            let hint = demand.hintLadderR0ToR5.indices.contains(1) ? demand.hintLadderR0ToR5[1] : demand.separatingFeature
+            return (kind, rung, "\(hint) — Separating feature: \(demand.separatingFeature)")
+        }
+        if ratio >= 0.35 {
+            let hint = demand.hintLadderR0ToR5.indices.contains(4) ? demand.hintLadderR0ToR5[4] : (demand.committedSolutionSteps.last ?? "")
+            return (.executionSlip, .r4MoveOutlined, hint)
+        }
+        if (confidencePercent ?? 50) >= 70 {
+            let hint = demand.hintLadderR0ToR5.indices.contains(1) ? demand.hintLadderR0ToR5[1] : demand.commonMisconception
+            return (.structuralMisconception, .r1PatternRedescription, "Watch out for the trap: \(demand.commonMisconception) · \(hint)")
+        }
+        let hint = demand.hintLadderR0ToR5.first ?? "Check the physical boundary condition in the prompt."
+        return (.careless, .r0AttentionRedirect, hint)
+    }
+}
+
+// MARK: - LearnHarness Adaptive Prober -> Minimal Plan DAG -> Step-Checked Teacher
+
+enum StrandProbeStatus: String, Codable, CaseIterable, Equatable, Sendable {
+    case solid = "solid"
+    case shaky = "shaky"
+    case unknown = "unknown"
+    case unprobed = "unprobed"
+
+    var badgeText: String {
+        switch self {
+        case .solid: return "Solid (Pruned)"
+        case .shaky: return "Shaky (Teach)"
+        case .unknown: return "Gap (Build from Roots)"
+        case .unprobed: return "Probe Ready"
+        }
+    }
+}
+
+struct LessonStrandNode: Identifiable, Equatable, Sendable {
+    let id: String                  // propositionId
+    let statement: String
+    let chapterNumber: Int
+    let topicCodes: [String]
+    let isUnconditionalTruth: Bool
+    let intuitionAnchor: String
+    let prerequisiteIds: [String]
+    let motivationQuestion: String
+    var probeStatus: StrandProbeStatus
+    var stepPhase: String           // "predict" | "teach" | "check" | "verified"
+}
+
+struct AdaptiveLessonPlanDAG: Equatable, Sendable {
+    let targetPropositionId: String
+    let targetStatement: String
+    var strands: [LessonStrandNode]
+    var prunedSolidIds: [String]
+
+    var activeTeachingStrands: [LessonStrandNode] {
+        strands.filter { $0.probeStatus != .solid }
+    }
+
+    static func buildMinimalPlan(
+        targetPropositionId: String,
+        graph: PhysicsPropositionGraph,
+        skillsByTopic: [String: BKTSkillRecord],
+        proofsByQuestion: [String: QuestionProofRecord],
+        probeOverrides: [String: StrandProbeStatus] = [:]
+    ) -> AdaptiveLessonPlanDAG {
+        let nodeById = Dictionary(uniqueKeysWithValues: graph.nodes.map { ($0.id, $0) })
+        guard let targetNode = nodeById[targetPropositionId] else {
+            return AdaptiveLessonPlanDAG(
+                targetPropositionId: targetPropositionId,
+                targetStatement: "",
+                strands: [],
+                prunedSolidIds: []
+            )
+        }
+
+        // Collect target + all upstream prerequisite propositions via BFS, then topologically order from roots to target
+        var visited = Set<String>([targetPropositionId])
+        var queue = [targetPropositionId]
+        var chainsByConclusion: [String: PhysicsDerivationChain] = [:]
+
+        for chain in graph.chains {
+            if let existing = chainsByConclusion[chain.conclusion] {
+                if chain.premises.count < existing.premises.count {
+                    chainsByConclusion[chain.conclusion] = chain
+                }
+            } else {
+                chainsByConclusion[chain.conclusion] = chain
+            }
+        }
+
+        while let current = queue.first {
+            queue.removeFirst()
+            if let chain = chainsByConclusion[current] {
+                for p in chain.premises where !visited.contains(p) {
+                    visited.insert(p)
+                    queue.append(p)
+                }
+            }
+        }
+
+        // Depth from unconditional truths so foundations come first and target comes last
+        func depth(_ id: String, trail: Set<String> = []) -> Int {
+            guard !trail.contains(id), let chain = chainsByConclusion[id] else { return 0 }
+            let nextTrail = trail.union([id])
+            let maxPremiseDepth = chain.premises.map { depth($0, trail: nextTrail) }.max() ?? 0
+            return maxPremiseDepth + 1
+        }
+
+        let orderedIds = visited.sorted { lhs, rhs in
+            let dL = depth(lhs)
+            let dR = depth(rhs)
+            if dL != dR { return dL < dR }
+            return lhs < rhs
+        }
+
+        var strands: [LessonStrandNode] = []
+        var pruned: [String] = []
+
+        for id in orderedIds {
+            guard let node = nodeById[id] else { continue }
+            let chain = chainsByConclusion[id]
+            let status: StrandProbeStatus
+            if let override = probeOverrides[id] {
+                status = override
+            } else if id == targetPropositionId {
+                status = .shaky
+            } else {
+                let topicMasteries = node.topicCodes.compactMap { skillsByTopic[$0]?.pLearned }
+                let avgMastery = topicMasteries.isEmpty ? 0.0 : topicMasteries.reduce(0, +) / Double(topicMasteries.count)
+                let hasSecureProof = proofsByQuestion.values.contains { proof in
+                    node.topicCodes.contains(proof.topicCode) && proof.level == .secure
+                }
+                if hasSecureProof || avgMastery >= 0.82 {
+                    status = .solid
+                } else if avgMastery >= 0.45 {
+                    status = .shaky
+                } else {
+                    status = .unprobed
+                }
+            }
+
+            if status == .solid && id != targetPropositionId {
+                pruned.append(id)
+            }
+
+            strands.append(
+                LessonStrandNode(
+                    id: node.id,
+                    statement: node.statement,
+                    chapterNumber: node.chapterNumber,
+                    topicCodes: node.topicCodes,
+                    isUnconditionalTruth: node.isUnconditionalTruth,
+                    intuitionAnchor: node.intuitionAnchor,
+                    prerequisiteIds: chain?.premises ?? [],
+                    motivationQuestion: chain?.motivationQuestion ?? "How does \(node.id) work from first principles?",
+                    probeStatus: status,
+                    stepPhase: status == .solid ? "verified" : "predict"
+                )
+            )
+        }
+
+        return AdaptiveLessonPlanDAG(
+            targetPropositionId: targetPropositionId,
+            targetStatement: targetNode.statement,
+            strands: strands,
+            prunedSolidIds: pruned
+        )
+    }
+
+    /// Rewrites the lesson plan in-place when a missing foundation surfaces mid-lesson,
+    /// un-pruning the missing prerequisite strand and resetting its teaching phase to `predict`.
+    func rewritePlanForMissingFoundation(_ missingPropositionId: String) -> AdaptiveLessonPlanDAG {
+        var updatedStrands = strands
+        if let idx = updatedStrands.firstIndex(where: { $0.id == missingPropositionId }) {
+            updatedStrands[idx].probeStatus = .unknown
+            updatedStrands[idx].stepPhase = "predict"
+        }
+        let updatedPruned = prunedSolidIds.filter { $0 != missingPropositionId }
+        return AdaptiveLessonPlanDAG(
+            targetPropositionId: targetPropositionId,
+            targetStatement: targetStatement,
+            strands: updatedStrands,
+            prunedSolidIds: updatedPruned
+        )
+    }
+}

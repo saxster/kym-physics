@@ -231,7 +231,12 @@ final class AppStore: ObservableObject {
         question: SchoolScienceQuestion,
         answerText: String,
         usedAssistance: Bool,
-        now: Date = Date()
+        now: Date = Date(),
+        confidencePercent: Int? = nil,
+        declinedToGuess: Bool = false,
+        readingThinkingText: String = "",
+        answerThinkingText: String = "",
+        maxHintRungUsed: Int = 0
     ) -> QuestionEvaluationResult {
         let safetyScan = PhysicsSafetyGate.scan(answerText)
         if safetyScan.triggered {
@@ -255,20 +260,50 @@ final class AppStore: ObservableObject {
             answerText: answerText,
             usedAssistance: usedAssistance,
             existingProof: existing,
-            now: now
+            now: now,
+            confidencePercent: confidencePercent,
+            declinedToGuess: declinedToGuess,
+            readingThinkingText: readingThinkingText,
+            answerThinkingText: answerThinkingText,
+            maxHintRungUsed: maxHintRungUsed
         )
 
         do {
             try db.statePool.write { conn in
                 try record.save(conn)
-                if let skill = try BKTSkillRecord.fetchOne(conn, key: question.topicCode) {
+                if !declinedToGuess, let skill = try BKTSkillRecord.fetchOne(conn, key: question.topicCode) {
                     let updatedSkill = BKTEngine.update(
                         skill: skill,
                         isCorrect: evaluation.isPass,
-                        usedAssistance: usedAssistance,
+                        usedAssistance: record.lastUsedAssistance,
                         now: now
                     )
                     try updatedSkill.save(conn)
+                }
+            }
+            if evaluation.calibration == .committedMisconception {
+                let autopsy = LabJournalEntryRecord(
+                    id: "autopsy-\(question.id)-\(Int(now.timeIntervalSince1970))",
+                    title: "Error Autopsy · Topic \(question.topicCode) (\(confidencePercent ?? 90)% confidence)",
+                    templateKind: "error_log",
+                    paperStyle: "lined",
+                    linkedTopicCode: question.topicCode,
+                    linkedChapterNumber: question.linkedChapter,
+                    linkedWidgetId: question.linkedWidget,
+                    cueColumnText: "Prompt:\n\(question.prompt)\n\nMissing keywords:\n\(evaluation.missingKeywords.joined(separator: ", "))",
+                    bodyNotesText: "What I thought (\(confidencePercent ?? 90)% confidence):\n\(answerText)\n\nThinking notes:\n\(answerThinkingText)\n\nModel physics explanation:\n\(question.modelAnswer)",
+                    summaryText: "High-confidence miss caught by LearnHarness Confidence Calibration.",
+                    hypothesisText: "",
+                    independentVarText: "",
+                    dependentVarText: "",
+                    controlVarsText: "",
+                    drawingData: nil,
+                    snapshotPNGData: nil,
+                    createdAt: now,
+                    updatedAt: now
+                )
+                try? db.mnemosynePool.write { conn in
+                    try autopsy.save(conn)
                 }
             }
             reloadAllState()
@@ -278,7 +313,16 @@ final class AppStore: ObservableObject {
         return evaluation
     }
 
-    func recordExamQuestionAttempt(question: PhysicsExamQuestion, awardedMarks: Int, answerText: String) {
+    func recordExamQuestionAttempt(
+        question: PhysicsExamQuestion,
+        awardedMarks: Int,
+        answerText: String,
+        confidencePercent: Int? = nil,
+        declinedToGuess: Bool = false,
+        readingThinkingText: String = "",
+        answerThinkingText: String = "",
+        maxHintRungUsed: Int = 0
+    ) {
         let safetyScan = PhysicsSafetyGate.scan(answerText)
         if safetyScan.triggered {
             latestSafetyEscalation = safetyScan
@@ -288,17 +332,56 @@ final class AppStore: ObservableObject {
             return
         }
 
+        let clampedMarks = min(question.marks, max(0, awardedMarks))
+        let now = Date()
         let record = ExamQuestionAttemptRecord(
             id: question.id,
             chapterNumber: question.chapter,
-            awardedMarks: min(question.marks, max(0, awardedMarks)),
+            awardedMarks: clampedMarks,
             maxMarks: question.marks,
             answerText: answerText,
-            attemptedAt: Date()
+            attemptedAt: now,
+            confidencePercent: confidencePercent,
+            declinedToGuess: declinedToGuess,
+            readingThinkingText: readingThinkingText,
+            answerThinkingText: answerThinkingText,
+            maxHintRungUsed: maxHintRungUsed
+        )
+        let fraction = question.marks > 0 ? Double(clampedMarks) / Double(question.marks) : 0.0
+        let calibration = ConfidenceVerdictCalibration.calibrate(
+            isPass: clampedMarks == question.marks && question.marks > 0,
+            coverageFraction: fraction,
+            confidencePercent: confidencePercent,
+            declinedToGuess: declinedToGuess
         )
         do {
             try db.statePool.write { conn in
                 try record.save(conn)
+            }
+            if calibration == .committedMisconception {
+                let autopsy = LabJournalEntryRecord(
+                    id: "autopsy-exam-\(question.id)-\(Int(now.timeIntervalSince1970))",
+                    title: "Error Autopsy · \(question.title) (Ch \(question.chapter))",
+                    templateKind: "error_log",
+                    paperStyle: "lined",
+                    linkedTopicCode: nil,
+                    linkedChapterNumber: question.chapter,
+                    linkedWidgetId: nil,
+                    cueColumnText: "Question:\n\(question.prompt)\n\nCommon trap:\n\(question.common)",
+                    bodyNotesText: "My committed answer (\(confidencePercent ?? 90)% confidence):\n\(answerText)\n\nThinking notes:\n\(answerThinkingText)\n\nMark scheme points:\n• \(question.points.joined(separator: "\n• "))",
+                    summaryText: "Separating feature: \(question.common)",
+                    hypothesisText: "",
+                    independentVarText: "",
+                    dependentVarText: "",
+                    controlVarsText: "",
+                    drawingData: nil,
+                    snapshotPNGData: nil,
+                    createdAt: now,
+                    updatedAt: now
+                )
+                try? db.mnemosynePool.write { conn in
+                    try autopsy.save(conn)
+                }
             }
             reloadAllState()
         } catch {

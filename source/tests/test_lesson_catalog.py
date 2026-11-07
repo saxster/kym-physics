@@ -53,6 +53,44 @@ class CatalogTests(unittest.TestCase):
         for ident,row in coverage.items():
             self.assertTrue(row['lessons'] or row.get('files') or row.get('mechanism'),ident)
 
+    def test_predict_option_symmetry_and_no_giveaways(self):
+        root = Path(__file__).resolve().parents[1]
+        giveaway_re = re.compile(r'(\(correct\)|\[correct\]|\(right answer\)|✓|✔)', re.I)
+        count = 0
+        for ch_path in sorted((root / 'src').glob('ch*.md')):
+            txt = ch_path.read_text(encoding='utf-8')
+            for m in re.finditer(r':::predict\s+([^\n]+)\n(.*?):::', txt, re.S):
+                pid, body = m.group(1).strip(), m.group(2)
+                self.assertIn('\n???\n', body, f'{ch_path.name}:{pid} missing ??? reveal separator')
+                head, tail = body.split('\n???\n', 1)
+                opts = [line.strip()[2:].strip() for line in head.splitlines() if line.strip().startswith('- ')]
+                self.assertGreaterEqual(len(opts), 2, f'{ch_path.name}:{pid} needs at least 2 options')
+                self.assertLessEqual(len(opts), 5, f'{ch_path.name}:{pid} has too many options')
+                self.assertEqual(len(opts), len(set(opts)), f'{ch_path.name}:{pid} has duplicate options')
+                self.assertTrue(tail.strip(), f'{ch_path.name}:{pid} has empty reveal explanation')
+                for opt in opts:
+                    self.assertIsNone(giveaway_re.search(opt), f'{ch_path.name}:{pid} option leaks answer marker: {opt}')
+                count += 1
+        self.assertGreaterEqual(count, 16)
+
+    def test_learnharness_proposition_graph_and_practice_demands(self):
+        from export_kymphysics_pack import build_proposition_graph, build_practice_demands, simplify_chains
+        graph = build_proposition_graph()
+        node_ids = {n['id'] for n in graph['nodes']}
+        self.assertGreaterEqual(len(node_ids), 20)
+        self.assertEqual(simplify_chains(graph['chains']), graph['chains'])
+        for c in graph['chains']:
+            self.assertIn(c['conclusion'], node_ids)
+            for p in c['premises']:
+                self.assertIn(p, node_ids)
+        demands = build_practice_demands()
+        self.assertGreaterEqual(len(demands), 6)
+        for d in demands:
+            self.assertIn(d['propositionId'], node_ids)
+            self.assertIn(d['mode'], {'recall', 'discrimination', 'composition'})
+            self.assertIn(d['modifier'], {'standard', 'reverse', 'probe_premises'})
+            self.assertEqual(len(d['hintLadderR0ToR5']), 6)
+
 
 if __name__ == '__main__':
     unittest.main()

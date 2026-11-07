@@ -23894,5 +23894,668 @@
         }
       ]
     }
+  ],
+  "propositionGraph": {
+    "nodes": [
+      {
+        "id": "prop-ch01-rate-of-motion",
+        "name": "Speed as distance per unit time",
+        "statement": "Average speed is the total distance travelled divided by the total time elapsed (v = d / t), measured in metres per second (m/s).",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 1,
+        "topicCodes": [
+          "3.1",
+          "3.2"
+        ],
+        "aliases": [
+          "Definition of average speed",
+          "Distance-time rate"
+        ],
+        "provenanceSectionId": "ch01-s01"
+      },
+      {
+        "id": "prop-ch01-dt-gradient",
+        "name": "Distance-time slope equals speed",
+        "statement": "On a distance-time graph with time on the horizontal axis and distance on the vertical axis, the gradient (rise ÷ run) equals instantaneous speed.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 1,
+        "topicCodes": [
+          "3.2"
+        ],
+        "aliases": [
+          "Slope of d-t graph is speed"
+        ],
+        "provenanceSectionId": "ch01-s03"
+      },
+      {
+        "id": "prop-ch02-net-force-change",
+        "name": "Unbalanced force changes velocity",
+        "statement": "An object's velocity changes (speeds up, slows down, or changes direction) if and only if a non-zero resultant force acts on it (F_net = m · a).",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 2,
+        "topicCodes": [
+          "3.1",
+          "3.3"
+        ],
+        "aliases": [
+          "Newton's first and second law mechanism",
+          "Resultant force causes acceleration"
+        ],
+        "provenanceSectionId": "ch02-s02"
+      },
+      {
+        "id": "prop-ch02-balanced-constant-velocity",
+        "name": "Zero resultant force keeps velocity constant",
+        "statement": "When all forces acting on an object sum to zero (F_net = 0), a stationary object stays at rest and a moving object continues at constant speed in a straight line.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 2,
+        "topicCodes": [
+          "3.1",
+          "3.3"
+        ],
+        "aliases": [
+          "Dynamic equilibrium at constant velocity",
+          "Terminal velocity force balance"
+        ],
+        "provenanceSectionId": "ch02-s03"
+      },
+      {
+        "id": "prop-ch03-perpendicular-lever-arm",
+        "name": "Moment of a force about a pivot",
+        "statement": "The turning effect (moment) of a force about a pivot equals the force multiplied by the perpendicular distance from the line of action of the force to the pivot (M = F × d⊥).",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 3,
+        "topicCodes": [
+          "3.4",
+          "7.4"
+        ],
+        "aliases": [
+          "Definition of torque / moment",
+          "Turning effect M = F d"
+        ],
+        "provenanceSectionId": "ch03-s01"
+      },
+      {
+        "id": "prop-ch03-principle-of-moments",
+        "name": "Rotational equilibrium (Principle of Moments)",
+        "statement": "A rigid body stays balanced about a pivot when the sum of clockwise moments equals the sum of anticlockwise moments about that pivot.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 3,
+        "topicCodes": [
+          "3.4",
+          "7.4"
+        ],
+        "aliases": [
+          "Clockwise moment equals anticlockwise moment"
+        ],
+        "provenanceSectionId": "ch03-s02"
+      },
+      {
+        "id": "prop-ch03-biceps-force-multiplier",
+        "name": "Forearm biceps lever requires larger muscle force",
+        "statement": "Because the biceps tendon attaches much closer to the elbow pivot (~4 cm) than a load held in the hand (~32 cm), rotational equilibrium requires the biceps to pull with a force many times larger than the load's weight.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 3,
+        "topicCodes": [
+          "3.4",
+          "7.4"
+        ],
+        "aliases": [
+          "Skeletal third-class lever force trade-off"
+        ],
+        "provenanceSectionId": "ch03-s04"
+      },
+      {
+        "id": "prop-ch05-energy-conservation",
+        "name": "Conservation of total energy",
+        "statement": "Energy cannot be created or destroyed; in any process the total energy across all stores remains constant, though useful energy dissipates into thermal stores of the surroundings.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 5,
+        "topicCodes": [
+          "3.1",
+          "8.1"
+        ],
+        "aliases": [
+          "First law energy conservation",
+          "Invariance of total energy"
+        ],
+        "provenanceSectionId": "ch05-s01"
+      },
+      {
+        "id": "prop-ch06-pressure-area-definition",
+        "name": "Pressure as perpendicular force per unit area",
+        "statement": "Pressure on a surface equals the perpendicular force divided by the contact area over which it acts (P = F / A), measured in pascals (1 Pa = 1 N/m²).",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 6,
+        "topicCodes": [
+          "3.5",
+          "3.6",
+          "3.7"
+        ],
+        "aliases": [
+          "Solid and fluid pressure definition P = F/A"
+        ],
+        "provenanceSectionId": "ch06-s01"
+      },
+      {
+        "id": "prop-ch06-gas-particle-collisions",
+        "name": "Gas pressure arises from particle-wall collisions",
+        "statement": "Gas particles move randomly at high speed and exert pressure by colliding with and rebounding off the interior walls of their container.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 6,
+        "topicCodes": [
+          "3.7",
+          "1.3"
+        ],
+        "aliases": [
+          "Kinetic theory of gas pressure",
+          "Wall collision impulse rate"
+        ],
+        "provenanceSectionId": "ch06-s03"
+      },
+      {
+        "id": "prop-ch06-volume-expansion-drops-pressure",
+        "name": "Increasing container volume at constant temperature lowers gas pressure",
+        "statement": "When a sealed or semi-enclosed gas volume expands at constant temperature, particles travel further between walls and collide less frequently per unit area, decreasing internal gas pressure.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 6,
+        "topicCodes": [
+          "3.7",
+          "1.3"
+        ],
+        "aliases": [
+          "Boyle's law collision mechanism"
+        ],
+        "provenanceSectionId": "ch06-s04"
+      },
+      {
+        "id": "prop-ch06-thoracic-inhalation",
+        "name": "Diaphragm flattening drives inhalation by pressure difference",
+        "statement": "Contracting the diaphragm and external intercostals expands thoracic volume, lowering lung air pressure below external atmospheric pressure so outside air is pushed into the lungs.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 6,
+        "topicCodes": [
+          "1.3",
+          "3.7"
+        ],
+        "aliases": [
+          "Physics of human breathing inhalation"
+        ],
+        "provenanceSectionId": "ch06-s04"
+      },
+      {
+        "id": "prop-ch10-normal-reference-line",
+        "name": "Optical angles are measured from the 90° normal",
+        "statement": "The normal is a reference line drawn perpendicular (90°) to an optical boundary at the point of incidence; angles of incidence, reflection, and refraction are always measured between the ray and the normal.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.1",
+          "6.2"
+        ],
+        "aliases": [
+          "Definition of the optical normal",
+          "i = 90° - surface angle"
+        ],
+        "provenanceSectionId": "ch10-s01"
+      },
+      {
+        "id": "prop-ch10-wave-slowing-in-medium",
+        "name": "Light slows down in optically denser media",
+        "statement": "Light travels at c ≈ 3.0 × 10⁸ m/s in vacuum/air and slows down when entering a medium with higher refractive index n such as water or glass (v = c / n).",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.2",
+          "6.3"
+        ],
+        "aliases": [
+          "Wave speed reduction in glass and water"
+        ],
+        "provenanceSectionId": "ch10-s02"
+      },
+      {
+        "id": "prop-ch10-refraction-toward-normal",
+        "name": "Slowing obliquely at a boundary bends light toward the normal",
+        "statement": "When a wavefront of light enters a slower medium at a non-zero angle of incidence (i > 0°), the side of the wavefront entering first slows down first, pivoting the ray toward the 90° normal (r < i).",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.2"
+        ],
+        "aliases": [
+          "Air-to-glass refraction direction r < i"
+        ],
+        "provenanceSectionId": "ch10-s02"
+      },
+      {
+        "id": "prop-ch10-violet-refracts-most",
+        "name": "Violet light refracts through a larger angle than red in glass",
+        "statement": "In crown glass, shorter-wavelength violet light (~400 nm) slows down more than longer-wavelength red light (~700 nm), so a prism bends violet through the largest angle and red through the smallest angle.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.3"
+        ],
+        "aliases": [
+          "Dispersion order ROYGBIV in a prism"
+        ],
+        "provenanceSectionId": "ch10-s03"
+      },
+      {
+        "id": "prop-ch10-rgb-primary-addition",
+        "name": "White light is an additive mixture of Red, Green, and Blue wavelengths",
+        "statement": "Red, Green, and Blue are the primary colours of light; overlapping all three produces white light, while R+G=Yellow, G+B=Cyan, and R+B=Magenta.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.4"
+        ],
+        "aliases": [
+          "Additive RGB colour mixing"
+        ],
+        "provenanceSectionId": "ch10-s04"
+      },
+      {
+        "id": "prop-ch10-pigment-subtractive-absorption",
+        "name": "Coloured surfaces and filters work by wavelength subtraction",
+        "statement": "A coloured opaque surface reflects only its own colour wavelengths and absorbs all others; under pure light containing none of its reflected wavelengths (e.g., a blue shirt in pure red light), zero light reflects and the object appears black.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 10,
+        "topicCodes": [
+          "6.4"
+        ],
+        "aliases": [
+          "Subtractive absorption by filters and pigments"
+        ],
+        "provenanceSectionId": "ch10-s04"
+      },
+      {
+        "id": "prop-ch13-magnetic-pole-law",
+        "name": "Unlike magnetic poles attract and like poles repel",
+        "statement": "Magnetic field lines emerge from a North pole and enter a South pole; two like poles (N-N or S-S) repel each other while unlike poles (N-S) attract.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 13,
+        "topicCodes": [
+          "9.1",
+          "9.2"
+        ],
+        "aliases": [
+          "Fundamental law of magnetic poles"
+        ],
+        "provenanceSectionId": "ch13-s01"
+      },
+      {
+        "id": "prop-ch13-earth-magnetic-south-at-north",
+        "name": "Earth's Geographic North Pole houses a magnetic South pole",
+        "statement": "Because the north-seeking pole (N) of a suspended compass needle is attracted toward Earth's Geographic North Pole, Earth's liquid iron outer core must produce a magnetic South pole near Geographic North.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 13,
+        "topicCodes": [
+          "9.2"
+        ],
+        "aliases": [
+          "Polarity of Earth's geodynamo dipole"
+        ],
+        "provenanceSectionId": "ch13-s02"
+      },
+      {
+        "id": "prop-ch13-solenoid-ampere-field",
+        "name": "Electric current in a coil generates a magnetic field (B ∝ N · I)",
+        "statement": "Moving electric charges in a wire coil (solenoid) generate a magnetic field whose strength increases with the number of turns N and the electric current I.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 13,
+        "topicCodes": [
+          "9.3",
+          "9.4"
+        ],
+        "aliases": [
+          "Electromagnetism of a current-carrying solenoid"
+        ],
+        "provenanceSectionId": "ch13-s03"
+      },
+      {
+        "id": "prop-ch13-soft-iron-vs-steel-domains",
+        "name": "Soft iron is a temporary magnetic material while steel is permanent",
+        "statement": "Magnetic domains in soft iron align easily with an external field and randomize immediately when the field stops; steel domains resist alignment and remain permanently magnetised after the current stops.",
+        "isUnconditionalFoundation": true,
+        "chapterNumber": 13,
+        "topicCodes": [
+          "9.3",
+          "9.4"
+        ],
+        "aliases": [
+          "Temporary soft iron vs permanent steel coercivity"
+        ],
+        "provenanceSectionId": "ch13-s03"
+      },
+      {
+        "id": "prop-ch13-electromagnet-soft-iron-core",
+        "name": "Switchable electromagnets require a soft iron core",
+        "statement": "An electromagnet uses a current-carrying coil wound around a soft iron core so the magnetic field is amplified strongly when switched ON and drops to zero when switched OFF to release ferromagnetic loads.",
+        "isUnconditionalFoundation": false,
+        "chapterNumber": 13,
+        "topicCodes": [
+          "9.3",
+          "9.4"
+        ],
+        "aliases": [
+          "Why scrapyard electromagnets use soft iron instead of steel"
+        ],
+        "provenanceSectionId": "ch13-s03"
+      }
+    ],
+    "chains": [
+      {
+        "id": "chain-ch01-dt-slope",
+        "premises": [
+          "prop-ch01-rate-of-motion"
+        ],
+        "conclusion": "prop-ch01-dt-gradient",
+        "motivationQuestion": "How can we read an object's speed at a single moment directly from the geometry of its distance-time graph?",
+        "chapterNumber": 1
+      },
+      {
+        "id": "chain-ch02-equilibrium",
+        "premises": [
+          "prop-ch02-net-force-change"
+        ],
+        "conclusion": "prop-ch02-balanced-constant-velocity",
+        "motivationQuestion": "If a parachutist or train experiences huge forward and backward forces that exactly cancel, why doesn't it stop moving?",
+        "chapterNumber": 2
+      },
+      {
+        "id": "chain-ch03-forearm-lever",
+        "premises": [
+          "prop-ch03-perpendicular-lever-arm",
+          "prop-ch03-principle-of-moments"
+        ],
+        "conclusion": "prop-ch03-biceps-force-multiplier",
+        "motivationQuestion": "Why must your biceps tendon pull with 8× the weight of a book just to hold your forearm horizontal?",
+        "chapterNumber": 3
+      },
+      {
+        "id": "chain-ch06-boyle-collisions",
+        "premises": [
+          "prop-ch06-pressure-area-definition",
+          "prop-ch06-gas-particle-collisions"
+        ],
+        "conclusion": "prop-ch06-volume-expansion-drops-pressure",
+        "motivationQuestion": "When the same number of gas particles at the same speed get a larger room, why does the wall pressure drop?",
+        "chapterNumber": 6
+      },
+      {
+        "id": "chain-ch06-breathing-inhalation",
+        "premises": [
+          "prop-ch06-volume-expansion-drops-pressure",
+          "prop-ch02-net-force-change"
+        ],
+        "conclusion": "prop-ch06-thoracic-inhalation",
+        "motivationQuestion": "Your lungs have no muscles of their own—so how does flattening your diaphragm force outside air to rush down your trachea?",
+        "chapterNumber": 6
+      },
+      {
+        "id": "chain-ch10-refraction-bend",
+        "premises": [
+          "prop-ch10-normal-reference-line",
+          "prop-ch10-wave-slowing-in-medium"
+        ],
+        "conclusion": "prop-ch10-refraction-toward-normal",
+        "motivationQuestion": "Why does slowing down at an angled glass boundary force a light ray to bend toward the 90° normal rather than away from it?",
+        "chapterNumber": 10
+      },
+      {
+        "id": "chain-ch10-prism-dispersion",
+        "premises": [
+          "prop-ch10-refraction-toward-normal",
+          "prop-ch10-rgb-primary-addition"
+        ],
+        "conclusion": "prop-ch10-violet-refracts-most",
+        "motivationQuestion": "If white sunlight contains all visible wavelengths, how does a single glass prism sort them with red at the top and violet at the bottom?",
+        "chapterNumber": 10
+      },
+      {
+        "id": "chain-ch10-pigment-black-in-red",
+        "premises": [
+          "prop-ch10-rgb-primary-addition"
+        ],
+        "conclusion": "prop-ch10-pigment-subtractive-absorption",
+        "motivationQuestion": "Why does a vivid blue cricket jersey turn pitch black under a pure red stage spotlight?",
+        "chapterNumber": 10
+      },
+      {
+        "id": "chain-ch13-earth-magnetic-south",
+        "premises": [
+          "prop-ch13-magnetic-pole-law"
+        ],
+        "conclusion": "prop-ch13-earth-magnetic-south-at-north",
+        "motivationQuestion": "If the North-seeking tip of your compass needle points toward the Arctic, what magnetic pole must actually lie under Geographic North?",
+        "chapterNumber": 13
+      },
+      {
+        "id": "chain-ch13-electromagnet-design",
+        "premises": [
+          "prop-ch13-solenoid-ampere-field",
+          "prop-ch13-soft-iron-vs-steel-domains"
+        ],
+        "conclusion": "prop-ch13-electromagnet-soft-iron-core",
+        "motivationQuestion": "Why would building a scrapyard crane's electromagnet with a hard steel core make the crane useless after its very first lift?",
+        "chapterNumber": 13
+      }
+    ]
+  },
+  "practiceDemands": [
+    {
+      "id": "demand-u9-disc-iron-vs-steel",
+      "chapter": 13,
+      "unitNumber": 9,
+      "topicCode": "9.3",
+      "propositionId": "prop-ch13-electromagnet-soft-iron-core",
+      "confusablePropositionId": "prop-ch13-soft-iron-vs-steel-domains",
+      "mode": "discrimination",
+      "modifier": "standard",
+      "title": "Scrapyard Crane Core vs. Navigation Compass Needle",
+      "situationPrompt": "An engineer is choosing between Alloy A (retains 95% of its magnetisation after current is switched off) and Alloy B (loses 99% of its magnetisation within 1 ms of switching current off). Which alloy must go into a scrapyard lifting crane, which into a ship's magnetic compass needle, and what single physical property separates the two?",
+      "separatingFeature": "Whether magnetic domains must randomize immediately when current stops (temporary magnet for release) or stay aligned without a battery (permanent magnet).",
+      "committedSolutionSteps": [
+        "Identify Alloy B as soft iron (temporary magnetic material whose domains randomize when I = 0).",
+        "Assign Alloy B to the scrapyard crane so the electromagnet can drop scrap steel when switched off.",
+        "Identify Alloy A as hard steel (permanent magnetic material) and assign it to the compass needle so it stays magnetised continuously."
+      ],
+      "markSchemeKeywords": [
+        "soft iron",
+        "temporary",
+        "steel",
+        "permanent",
+        "demagnetise",
+        "drop",
+        "release"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Re-read what happens to each alloy at the exact moment the electric current is switched off.",
+        "R1 (Pattern Re-description): Compare a tool that must let go of heavy loads on command with an instrument that must point north without any power supply.",
+        "R2 (Candidate Cluster): Think about the magnetic domain difference in Unit 9.3 between temporary and permanent magnetic materials.",
+        "R3 (Proposition Named): Apply the soft-iron temporary domain rule vs. hard-steel permanent domain retention.",
+        "R4 (Move Outlined): Match Alloy B (drops to zero when current stops) to the crane and Alloy A (retains magnetisation) to the compass needle, then state the domain reason.",
+        "R5 (Worked Step): Alloy B is soft iron (temporary magnet) for the crane so it releases scrap when switched off; Alloy A is steel (permanent magnet) for the compass needle."
+      ],
+      "commonMisconception": "Thinking steel makes a 'stronger' electromagnet core, forgetting that a permanent core can never drop its load."
+    },
+    {
+      "id": "demand-u6-disc-normal-vs-surface",
+      "chapter": 10,
+      "unitNumber": 6,
+      "topicCode": "6.1",
+      "propositionId": "prop-ch10-normal-reference-line",
+      "confusablePropositionId": "prop-ch10-refraction-toward-normal",
+      "mode": "discrimination",
+      "modifier": "standard",
+      "title": "Grazing Laser Ray: Surface Angle vs. Angle of Incidence",
+      "situationPrompt": "Ray P strikes a flat mirror making an angle of 20° with the mirror surface. Ray Q strikes the same mirror at an angle of incidence of 20°. Which ray strikes closer to perpendicular, and what is the angle between the incident and reflected rays for Ray P?",
+      "separatingFeature": "Angle of incidence i is always measured from the 90° perpendicular normal, never from the mirror surface (i = 90° − θ_surface).",
+      "committedSolutionSteps": [
+        "For Ray P, subtract the 20° surface angle from 90° to get angle of incidence i_P = 70° from the normal.",
+        "Compare i_Q = 20° (close to the 90° normal) with i_P = 70° (grazing): Ray Q strikes much closer to perpendicular.",
+        "By the law of reflection (r = i), Ray P reflects at r_P = 70°, so the total angle between incident and reflected rays is 70° + 70° = 140°."
+      ],
+      "markSchemeKeywords": [
+        "normal",
+        "70",
+        "140",
+        "90",
+        "Ray Q",
+        "perpendicular"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Check which reference line the 20° is measured against for Ray P versus Ray Q.",
+        "R1 (Pattern Re-description): Sketch a flat horizontal line and a dashed vertical 90° line at the hit point; label the two complementary angles that add to 90°.",
+        "R2 (Candidate Cluster): Use the optical reference conventions from Unit 6.1.",
+        "R3 (Proposition Named): Optical angles of incidence and reflection are measured from the 90° normal (i = 90° − θ_surface) and obey r = i.",
+        "R4 (Move Outlined): Calculate i_P = 90° − 20°, compare with i_Q = 20°, then double i_P for the total angle between incident and reflected rays.",
+        "R5 (Worked Step): Ray P has i = 90° − 20° = 70° and r = 70° (total angle i + r = 140°). Ray Q has i = 20°, so Ray Q is closer to perpendicular."
+      ],
+      "commonMisconception": "Writing i = 20° for Ray P by reading the angle to the mirror surface directly as the angle of incidence."
+    },
+    {
+      "id": "demand-u3-disc-lever-perpendicular",
+      "chapter": 3,
+      "unitNumber": 3,
+      "topicCode": "3.4",
+      "propositionId": "prop-ch03-perpendicular-lever-arm",
+      "confusablePropositionId": "prop-ch03-principle-of-moments",
+      "mode": "discrimination",
+      "modifier": "standard",
+      "title": "Pushing a Spanner Straight vs. At an Angle",
+      "situationPrompt": "Two mechanics push on the end of the same 0.30 m spanner with the same 100 N force. Mechanic A pushes at 90° to the spanner handle. Mechanic B pushes at 30° to the spanner handle so the perpendicular distance from the nut pivot to the force line is 0.15 m. Calculate both moments and state why using the 0.30 m handle length for Mechanic B is wrong.",
+      "separatingFeature": "Moment depends on the perpendicular distance d⊥ from the pivot to the line of action of the force, not the length of the metal bar.",
+      "committedSolutionSteps": [
+        "For Mechanic A, the force is perpendicular to the handle, so d⊥ = 0.30 m and M_A = 100 N × 0.30 m = 30 N·m.",
+        "For Mechanic B, the perpendicular distance to the line of action is d⊥ = 0.15 m, so M_B = 100 N × 0.15 m = 15 N·m.",
+        "State that only the perpendicular distance d⊥ (or perpendicular force component) creates a turning effect around the pivot."
+      ],
+      "markSchemeKeywords": [
+        "perpendicular",
+        "30",
+        "15",
+        "line of action",
+        "pivot"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Compare the two distances given for Mechanic B: 0.30 m along the handle versus 0.15 m perpendicular to the force line.",
+        "R1 (Pattern Re-description): Imagine pulling a door handle straight outward along the door's hinges—even a long door won't turn if the force line passes near the hinge.",
+        "R2 (Candidate Cluster): Recall the exact definition of a moment in Unit 3.4 / Moving World Ch 3.",
+        "R3 (Proposition Named): Use M = F × d⊥ where d⊥ is the perpendicular distance from the pivot to the line of action of the force.",
+        "R4 (Move Outlined): Multiply 100 N × 0.30 m for A, and 100 N × 0.15 m for B.",
+        "R5 (Worked Step): M_A = 30 N·m and M_B = 15 N·m because M = F × d⊥ uses the perpendicular distance (0.15 m) from the pivot to the force's line of action."
+      ],
+      "commonMisconception": "Multiplying F by the full rod length regardless of the angle at which the force acts."
+    },
+    {
+      "id": "demand-u6-premise-normal-incidence",
+      "chapter": 10,
+      "unitNumber": 6,
+      "topicCode": "6.2",
+      "propositionId": "prop-ch10-refraction-toward-normal",
+      "confusablePropositionId": "prop-ch10-wave-slowing-in-medium",
+      "mode": "composition",
+      "modifier": "reverse",
+      "title": "Reverse Derivation: Slowing Down Without Bending",
+      "situationPrompt": "A beam of monochromatic red light passes from air into a flat glass block. Inside the glass the light definitely slows down from 3.0 × 10⁸ m/s to 2.0 × 10⁸ m/s, yet the ray continues in a dead-straight line without bending at all (r = 0°). Which premise of the refraction-bending derivation was changed, and why does slowing down fail to turn the wavefront here?",
+      "separatingFeature": "Refraction bending requires BOTH a wave speed change AND an oblique angle of incidence (i > 0°) so one side of the wavefront slows before the other.",
+      "committedSolutionSteps": [
+        "Identify that the ray entered along the 90° normal (angle of incidence i = 0°).",
+        "Explain that when i = 0°, the entire width of the wavefront hits the glass boundary at the exact same instant.",
+        "Because both edges of the wavefront slow down together, wavelength λ shrinks proportionally to speed v, but the direction of travel cannot pivot (r = 0°)."
+      ],
+      "markSchemeKeywords": [
+        "normal",
+        "0",
+        "wavefront",
+        "same time",
+        "simultaneously",
+        "both sides",
+        "wavelength"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Notice the question states r = 0° while the speed still drops by one-third.",
+        "R1 (Pattern Re-description): Think of a wide rank of marching soldiers—at what approach angle to a mud line do the left and right soldiers hit the mud at the exact same moment?",
+        "R2 (Candidate Cluster): Inspect the two joint premises that produce refraction bending in Moving World Ch 10.",
+        "R3 (Proposition Named): Bending toward the normal requires BOTH wave slowing (v_glass < v_air) AND a non-zero angle of incidence (i > 0°).",
+        "R4 (Move Outlined): Set i = 0° (along the normal) and explain what happens to both sides of the incoming wavefront.",
+        "R5 (Worked Step): The ray struck along the 90° normal (i = 0°). All parts of the wavefront hit the glass simultaneously and slow down together, so the ray does not bend (r = 0°)."
+      ],
+      "commonMisconception": "Believing that refraction means 'light always bends when it enters glass' even at i = 0°."
+    },
+    {
+      "id": "demand-u3-premise-breathing-vacuum",
+      "chapter": 6,
+      "unitNumber": 3,
+      "topicCode": "3.7",
+      "propositionId": "prop-ch06-thoracic-inhalation",
+      "confusablePropositionId": "prop-ch06-volume-expansion-drops-pressure",
+      "mode": "composition",
+      "modifier": "probe_premises",
+      "title": "Premise-Breaker: Breathing Inside an Unpressurised Space Suit",
+      "situationPrompt": "In our 3-step derivation of inhalation: (1) diaphragm flattens → thoracic volume increases; (2) lung gas particles spread out → internal lung pressure drops; (3) higher external atmospheric pressure pushes air into the lungs. Suppose an astronaut is in a vacuum (P_external = 0 Pa) without a helmet and flattens their diaphragm. Which step still holds, which step breaks, and why does no air enter?",
+      "separatingFeature": "Lungs do not 'suck' air by attractive force; inhalation requires higher external atmospheric pressure to push air down the pressure gradient.",
+      "committedSolutionSteps": [
+        "State that Step 1 (thoracic volume increases) still occurs when the diaphragm muscle contracts.",
+        "Identify that Step 3 breaks because external pressure is 0 Pa (vacuum)—there are no outside air particles to collide and push into the airway.",
+        "Conclude that instead of air entering, any remaining gas inside the lungs expands outward into the vacuum because internal lung pressure exceeds 0 Pa."
+      ],
+      "markSchemeKeywords": [
+        "vacuum",
+        "external",
+        "atmospheric pressure",
+        "push",
+        "collisions",
+        "outward",
+        "gradient"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Check the value of P_external in the prompt and compare it against Step 3 of the chain.",
+        "R1 (Pattern Re-description): Ask yourself what physical agent actually pushes air molecules down your windpipe during normal breathing.",
+        "R2 (Candidate Cluster): Connect particle collisions (Topic 3.7) to thoracic volume changes (Topic 1.3).",
+        "R3 (Proposition Named): Gas flows only from higher pressure (more frequent particle collisions) to lower pressure; there is no pulling force called 'suction'.",
+        "R4 (Move Outlined): Explain that Step 1 still expands the chest, but Step 3 fails because P_external = 0 Pa cannot push air inward.",
+        "R5 (Worked Step): Step 1 holds, but Step 3 breaks: with P_external = 0 Pa there are no outside air molecules to push into the lungs, and any gas inside the lungs flows outward instead."
+      ],
+      "commonMisconception": "Thinking the expanding chest 'sucks' air in by an attractive pull rather than relying on external atmospheric pressure."
+    },
+    {
+      "id": "demand-u6-recall-pigment-subtraction",
+      "chapter": 10,
+      "unitNumber": 6,
+      "topicCode": "6.4",
+      "propositionId": "prop-ch10-pigment-subtractive-absorption",
+      "confusablePropositionId": "prop-ch10-rgb-primary-addition",
+      "mode": "recall",
+      "modifier": "standard",
+      "title": "Yellow Taxi Under Pure Blue Streetlight",
+      "situationPrompt": "A Mumbai kaali-peeli taxi's yellow roof paint reflects red and green wavelengths and absorbs blue light. What colour does the yellow roof appear when illuminated ONLY by a pure blue LED spotlight at night, and why?",
+      "separatingFeature": "Pigments subtract wavelengths: if the incident light contains none of the wavelengths the pigment can reflect, all light is absorbed and it looks black.",
+      "committedSolutionSteps": [
+        "Note that the incident spotlight provides only blue wavelengths (no red or green light is present).",
+        "State that the yellow pigment absorbs blue light and can only reflect red and green.",
+        "Conclude that zero light is reflected to the observer's eye, so the yellow taxi roof appears black."
+      ],
+      "markSchemeKeywords": [
+        "absorbs blue",
+        "no red",
+        "no green",
+        "zero light",
+        "reflects",
+        "black"
+      ],
+      "hintLadderR0ToR5": [
+        "R0 (Attention Redirect): Look at which wavelengths the yellow paint reflects (red and green) versus which wavelength the lamp supplies (pure blue).",
+        "R1 (Pattern Re-description): Track the fate of the incoming blue photons when they hit the paint.",
+        "R2 (Candidate Cluster): Apply the subtractive colour reflection rule from Unit 6.4.",
+        "R3 (Proposition Named): An opaque pigment reflects only its own wavelengths and absorbs all others; zero reflected light appears black.",
+        "R4 (Move Outlined): State what happens to the blue light at the yellow surface and what reaches the eye.",
+        "R5 (Worked Step): The yellow paint absorbs the incoming blue light, and there is no red or green light to reflect, so zero light reaches the eye and the roof looks black."
+      ],
+      "commonMisconception": "Mixing paint rules with light rules and guessing that yellow + blue makes green."
+    }
   ]
 }

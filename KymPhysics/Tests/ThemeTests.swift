@@ -322,4 +322,138 @@ final class ThemeTests: XCTestCase {
         )
         XCTAssertTrue(gateIssues.isEmpty)
     }
+
+    func testLearnHarnessIntegrationEnginesAndCalibration() async throws {
+        let pack = SeedPackLoader.shared
+
+        // 1. Proposition Graph (⟹) & simplifyChains (prefer-fewest-premises + cycle-guarded ancestry cover)
+        XCTAssertGreaterThanOrEqual(pack.propositionGraph.nodes.count, 20)
+        XCTAssertGreaterThanOrEqual(pack.propositionGraph.chains.count, 10)
+        XCTAssertEqual(PropositionGraphEngine.simplifyChains(pack.propositionGraph.chains), pack.propositionGraph.chains)
+
+        let syntheticChains = [
+            PhysicsDerivationChain(id: "c1", premises: ["A"], conclusion: "B", motivationQuestion: "Q1", chapterNumber: 1),
+            PhysicsDerivationChain(id: "c2", premises: ["B"], conclusion: "C", motivationQuestion: "Q2", chapterNumber: 1),
+            PhysicsDerivationChain(id: "c3-redundant-subset", premises: ["B", "X"], conclusion: "C", motivationQuestion: "Q3", chapterNumber: 1),
+            PhysicsDerivationChain(id: "c4-redundant-ancestry", premises: ["A", "B"], conclusion: "C", motivationQuestion: "Q4", chapterNumber: 1)
+        ]
+        let simplified = PropositionGraphEngine.simplifyChains(syntheticChains)
+        XCTAssertEqual(simplified.map(\.id), ["c1", "c2"])
+
+        let inhalationAncestors = PropositionGraphEngine.ancestors(of: "prop-ch06-thoracic-inhalation", in: pack.propositionGraph)
+        XCTAssertTrue(inhalationAncestors.contains(where: { $0.id == "prop-ch06-volume-expansion-drops-pressure" }))
+        XCTAssertTrue(inhalationAncestors.contains(where: { $0.id == "prop-ch06-gas-particle-collisions" }))
+
+        // 2. Confidence Verdict Calibration & QuestionProofService (R0/R1 vs R2+ & Auto-Error Autopsy)
+        XCTAssertEqual(
+            ConfidenceVerdictCalibration.calibrate(isPass: true, coverageFraction: 1.0, confidencePercent: 90, declinedToGuess: false),
+            .solidMastery
+        )
+        XCTAssertEqual(
+            ConfidenceVerdictCalibration.calibrate(isPass: true, coverageFraction: 1.0, confidencePercent: 30, declinedToGuess: false),
+            .fragileLuckyGuess
+        )
+        XCTAssertEqual(
+            ConfidenceVerdictCalibration.calibrate(isPass: false, coverageFraction: 0.0, confidencePercent: 90, declinedToGuess: false),
+            .committedMisconception
+        )
+        XCTAssertEqual(
+            ConfidenceVerdictCalibration.calibrate(isPass: false, coverageFraction: 0.0, confidencePercent: nil, declinedToGuess: true),
+            .honestGap
+        )
+
+        XCTAssertFalse(HintRung.r0AttentionRedirect.surrendersRetrieval)
+        XCTAssertFalse(HintRung.r1PatternRedescription.surrendersRetrieval)
+        XCTAssertTrue(HintRung.r2CandidateCluster.surrendersRetrieval)
+        XCTAssertTrue(HintRung.r5WorkedStep.surrendersRetrieval)
+
+        let store = await MainActor.run { AppStore(db: DatabaseManager(inMemory: true), pack: pack) }
+        let q = try XCTUnwrap(pack.schoolQuestions.first)
+
+        // Declining to guess keeps proof level unseen and records honestGap
+        let honestEval = await MainActor.run {
+            store.submitQuestionAttempt(
+                question: q,
+                answerText: "",
+                usedAssistance: false,
+                confidencePercent: nil,
+                declinedToGuess: true
+            )
+        }
+        XCTAssertEqual(honestEval.calibration, .honestGap)
+        XCTAssertEqual(honestEval.resultingProofLevel, .unseen)
+
+        // High-confidence miss logs an Error Autopsy in Lab Journal
+        let initialJournalCount = await MainActor.run { store.journalEntries.count }
+        let missEval = await MainActor.run {
+            store.submitQuestionAttempt(
+                question: q,
+                answerText: "Completely unrelated guess",
+                usedAssistance: false,
+                confidencePercent: 90,
+                declinedToGuess: false,
+                answerThinkingText: "Guessed without checking keywords"
+            )
+        }
+        XCTAssertEqual(missEval.calibration, .committedMisconception)
+        let afterJournalCount = await MainActor.run { store.journalEntries.count }
+        XCTAssertEqual(afterJournalCount, initialJournalCount + 1)
+
+        // R1 hint preserves independent proof when answer passes with >= 70% confidence
+        let fullAnswer = q.markSchemeKeywords.joined(separator: " ") + " complete physical explanation"
+        let r1PassEval = await MainActor.run {
+            store.submitQuestionAttempt(
+                question: q,
+                answerText: fullAnswer,
+                usedAssistance: false,
+                confidencePercent: 90,
+                declinedToGuess: false,
+                maxHintRungUsed: 1
+            )
+        }
+        XCTAssertTrue(r1PassEval.isPass)
+        XCTAssertEqual(r1PassEval.resultingProofLevel, .proven)
+
+        // 3. PracticeStreamEngine inactivity constraint
+        XCTAssertGreaterThanOrEqual(pack.practiceDemands.count, 6)
+        let stream = PracticeStreamEngine.scheduleStream(
+            demands: pack.practiceDemands,
+            retestDemandIds: ["demand-u6-disc-normal-vs-surface"],
+            lastActivePropositionId: "prop-ch13-electromagnet-soft-iron-core"
+        )
+        XCTAssertEqual(stream.first?.id, "demand-u6-disc-normal-vs-surface")
+        for idx in 1..<stream.count {
+            XCTAssertNotEqual(stream[idx - 1].propositionId, stream[idx].propositionId)
+        }
+
+        // 4. AdaptiveLessonPlanDAG minimal prerequisite tree & missing-foundation rewrite
+        let skills = await MainActor.run { store.bktSkills }
+        let proofs = await MainActor.run { store.questionProofs }
+        let plan = AdaptiveLessonPlanDAG.buildMinimalPlan(
+            targetPropositionId: "prop-ch06-thoracic-inhalation",
+            graph: pack.propositionGraph,
+            skillsByTopic: skills,
+            proofsByQuestion: proofs,
+            probeOverrides: ["prop-ch06-pressure-area-definition": .solid]
+        )
+        XCTAssertTrue(plan.prunedSolidIds.contains("prop-ch06-pressure-area-definition"))
+        let rewritten = plan.rewritePlanForMissingFoundation("prop-ch06-pressure-area-definition")
+        XCTAssertFalse(rewritten.prunedSolidIds.contains("prop-ch06-pressure-area-definition"))
+
+        // 5. LearnerImageSVGAnnotator & MathDisplayRecovery
+        let plate = try XCTUnwrap(pack.diagramPlates.first)
+        let overlay = LearnerImageSVGAnnotator.buildPlateVerificationOverlay(
+            plate: plate,
+            revealedCalloutIds: Set(plate.callouts.map(\.id))
+        )
+        XCTAssertTrue(overlay.validation.isValid, "SVG overlay validation failed: \(overlay.validation.issues)")
+        XCTAssertTrue(overlay.svg.contains(LearnerImageSVGAnnotator.placeholderHref))
+
+        let brokenMath = "Angle \u{0009}heta and \u{000C}rac{F}{A} with \\\\Delta x and literal `\\theta`"
+        let repairedMath = MathDisplayRecovery.repairForDisplay(brokenMath)
+        XCTAssertTrue(repairedMath.contains("\\theta"))
+        XCTAssertTrue(repairedMath.contains("\\frac{F}{A}"))
+        XCTAssertTrue(repairedMath.contains("\\Delta x"))
+        XCTAssertTrue(repairedMath.contains("`\\theta`"))
+    }
 }

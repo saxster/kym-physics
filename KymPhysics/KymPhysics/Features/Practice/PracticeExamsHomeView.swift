@@ -28,21 +28,25 @@ struct PracticeExamsHomeView: View {
             }
         ) {
             // 1. Mode Switcher
-            HStack(spacing: Spacing.sm) {
-                StandardFilterChip("507 Chapter Exam Questions (\(store.examAttempts.count) done)", isSelected: selectedSection == "exams") { selectedSection = "exams" }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Spacing.sm) {
+                    StandardFilterChip("507 Chapter Exam Questions (\(store.examAttempts.count) done)", isSelected: selectedSection == "exams") { selectedSection = "exams" }
 
-                StandardFilterChip("16 Wolfram Quantitative Drills", isSelected: selectedSection == "wolfram") { selectedSection = "wolfram" }
+                    StandardFilterChip("Discrimination & Premise Lab (\(store.pack.practiceDemands.count))", isSelected: selectedSection == "demands") { selectedSection = "demands" }
 
-                StandardFilterChip("Apple Pencil Diagram Recall (\(store.pack.diagramPlates.count) Plates)", isSelected: selectedSection == "diagrams") { selectedSection = "diagrams" }
+                    StandardFilterChip("16 Wolfram Quantitative Drills", isSelected: selectedSection == "wolfram") { selectedSection = "wolfram" }
 
-                StandardFilterChip("17 Printable & Interactive Papers", isSelected: selectedSection == "papers") { selectedSection = "papers" }
+                    StandardFilterChip("Apple Pencil Diagram Recall (\(store.pack.diagramPlates.count) Plates)", isSelected: selectedSection == "diagrams") { selectedSection = "diagrams" }
 
-                StandardFilterChip("SpeedPhysics Mental Gym", isSelected: selectedSection == "speedgym") { selectedSection = "speedgym" }
+                    StandardFilterChip("17 Printable & Interactive Papers", isSelected: selectedSection == "papers") { selectedSection = "papers" }
 
-                Spacer()
+                    StandardFilterChip("SpeedPhysics Mental Gym", isSelected: selectedSection == "speedgym") { selectedSection = "speedgym" }
+                }
             }
 
-            if selectedSection == "wolfram" {
+            if selectedSection == "demands" {
+                LearnHarnessPracticeDemandsSection()
+            } else if selectedSection == "wolfram" {
                 WolframQuantitativeDrillsSection()
             } else if selectedSection == "diagrams" {
                 PhysicsDiagramRecallSection()
@@ -95,6 +99,11 @@ private struct ExamQuestionPracticeCard: View {
     @State private var learnerAnswer: String = ""
     @State private var showMarkScheme: Bool = false
     @State private var checkedPoints: Set<Int> = []
+    @State private var selectedConfidence: Int? = nil
+    @State private var declinedToGuess: Bool = false
+    @State private var readingThinkingText: String = ""
+    @State private var answerThinkingText: String = ""
+    @State private var revealedHintRung: Int = -1
 
     private var recordedAttempt: ExamQuestionAttemptRecord? {
         store.examAttempts[question.id]
@@ -119,16 +128,52 @@ private struct ExamQuestionPracticeCard: View {
                     .font(.kymaiaReadingBody)
                     .foregroundStyle(Color.kymaiaInk)
 
-                if !question.hints.isEmpty {
-                    Text("Hint: \(question.hints.joined(separator: " "))")
-                        .font(.kymaiaCaption)
-                        .foregroundStyle(Color.kymaiaMutedInk)
-                }
+                ThinkingOutLoudField(
+                    readingThinkingText: $readingThinkingText,
+                    answerThinkingText: $answerThinkingText
+                )
 
                 LearnerTextInput(
                     placeholder: "Write your physics explanation or calculation with units...",
                     text: $learnerAnswer
                 )
+
+                ConfidenceRailView(
+                    selectedConfidence: $selectedConfidence,
+                    declinedToGuess: $declinedToGuess,
+                    isDisabled: showMarkScheme
+                )
+
+                if !question.hints.isEmpty {
+                    HStack(spacing: Spacing.xs) {
+                        Button {
+                            revealedHintRung = min(question.hints.count - 1, revealedHintRung + 1)
+                        } label: {
+                            Label(
+                                revealedHintRung < 0 ? "Request R0 Redirect Hint" : "Next Hint Rung (R\(min(5, revealedHintRung + 1)))",
+                                systemImage: "lightbulb"
+                            )
+                            .font(.kymaiaCaption.weight(.semibold))
+                        }
+                        .buttonStyle(.bordered)
+                        .disabled(revealedHintRung >= question.hints.count - 1)
+
+                        if revealedHintRung >= 0, let rung = HintRung(rawValue: min(5, revealedHintRung)) {
+                            JournalBadge(
+                                text: rung.retrievalPolicyBadge,
+                                tone: rung.surrendersRetrieval ? .warning : .positive
+                            )
+                        }
+                    }
+
+                    if revealedHintRung >= 0 {
+                        ForEach(0...min(revealedHintRung, question.hints.count - 1), id: \.self) { idx in
+                            Text("R\(idx): \(question.hints[idx])")
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaMutedInk)
+                        }
+                    }
+                }
 
                 HStack {
                     Button(showMarkScheme ? "Hide Mark Scheme" : "Check Against Mark Scheme") {
@@ -142,7 +187,12 @@ private struct ExamQuestionPracticeCard: View {
                             store.recordExamQuestionAttempt(
                                 question: question,
                                 awardedMarks: checkedPoints.count,
-                                answerText: learnerAnswer
+                                answerText: learnerAnswer,
+                                confidencePercent: selectedConfidence,
+                                declinedToGuess: declinedToGuess,
+                                readingThinkingText: readingThinkingText,
+                                answerThinkingText: answerThinkingText,
+                                maxHintRungUsed: max(0, revealedHintRung)
                             )
                         }
                         .buttonStyle(.bordered)
@@ -293,6 +343,7 @@ private struct PhysicsDiagramRecallSection: View {
     @State private var sketchNotes: String = ""
     @State private var pencilDrawingData: Data = Data()
     @State private var pencilSnapshotPNG: Data? = nil
+    @State private var showSVGOverlay: Bool = false
 
     private var activePlate: DiagramRecallPlate {
         if let id = selectedPlateId ?? store.activeDiagramPlateId,
@@ -409,7 +460,7 @@ private struct PhysicsDiagramRecallSection: View {
                         .padding(Spacing.md)
                     }
 
-                    HStack {
+                    HStack(spacing: Spacing.sm) {
                         Button {
                             store.recordDiagramRecall(
                                 plate: activePlate,
@@ -421,12 +472,294 @@ private struct PhysicsDiagramRecallSection: View {
                         } label: {
                             Label("Record Diagram Recall (\(revealedPins.count)/\(activePlate.callouts.count) verified)", systemImage: "checkmark.seal.fill")
                                 .font(.kymaiaCallout.weight(.semibold))
+                                .monospacedDigit()
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(Color.kymaiaPrimary)
+
+                        Button {
+                            showSVGOverlay.toggle()
+                        } label: {
+                            Label(
+                                showSVGOverlay ? "Hide SVG Callout Overlay" : "Verify with SVG Callout Overlay",
+                                systemImage: "viewfinder.rectangular"
+                            )
+                            .font(.kymaiaCallout.weight(.semibold))
+                        }
+                        .buttonStyle(.bordered)
+                    }
+
+                    if showSVGOverlay {
+                        let overlay = LearnerImageSVGAnnotator.buildPlateVerificationOverlay(
+                            plate: activePlate,
+                            revealedCalloutIds: revealedPins
+                        )
+                        VStack(alignment: .leading, spacing: Spacing.xs) {
+                            HStack {
+                                JournalBadge(
+                                    text: overlay.validation.isValid ? "SVG Geometry Verified" : "Placement Warning",
+                                    tone: overlay.validation.isValid ? .positive : .warning
+                                )
+                                Text("Coordinate space: \(Int(overlay.validation.naturalWidth))×\(Int(overlay.validation.naturalHeight)) · \(LearnerImageSVGAnnotator.placeholderHref)")
+                                    .font(.kymaiaCaption)
+                                    .foregroundStyle(Color.kymaiaMutedInk)
+                                    .monospacedDigit()
+                            }
+
+                            ForEach(overlay.annotations) { ann in
+                                HStack(spacing: Spacing.xs) {
+                                    Image(systemName: ann.isCorrect ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
+                                        .foregroundStyle(ann.isCorrect ? Color.kymaiaSuccess : Color.kymaiaWarning)
+                                    Text(ann.label)
+                                        .font(.kymaiaCaption.weight(.semibold))
+                                        .foregroundStyle(Color.kymaiaInk)
+                                    Spacer()
+                                    Text("anchor (\(Int(ann.anchorX)), \(Int(ann.anchorY)))")
+                                        .font(.kymaiaCaption)
+                                        .foregroundStyle(Color.kymaiaMutedInk)
+                                        .monospacedDigit()
+                                }
+                            }
+                        }
+                        .padding(Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
+                                .fill(Color.kymaiaSelectionFill)
+                        )
                     }
                 }
             }
+        }
+    }
+}
+
+// MARK: - LearnHarness Practice Stream (Recall, Discrimination & Composition + R0..R5 Hint Ladder)
+
+private struct LearnHarnessPracticeDemandsSection: View {
+    @EnvironmentObject private var store: AppStore
+    @State private var selectedModeFilter: String = "all" // "all" | "recall" | "discrimination" | "composition"
+    @State private var retestDemandIds: Set<String> = []
+    @State private var lastActivePropositionId: String? = nil
+
+    private var scheduledDemands: [PhysicsPracticeDemand] {
+        let base = PracticeStreamEngine.scheduleStream(
+            demands: store.pack.practiceDemands,
+            retestDemandIds: retestDemandIds,
+            lastActivePropositionId: lastActivePropositionId
+        )
+        if selectedModeFilter == "all" { return base }
+        return base.filter { $0.mode == selectedModeFilter }
+    }
+
+    var body: some View {
+        JournalSection(
+            title: "LearnHarness Capability Demands (Recall · Discrimination · Composition)",
+            subtitle: "Enforces the proposition inactivity constraint across consecutive items and grades hints on a 6-rung ladder (R0–R1 preserve independent retrieval; R2–R5 schedule fresh-surface re-verification)"
+        ) {
+            HStack(spacing: Spacing.xs) {
+                StandardFilterChip("All Modes (\(store.pack.practiceDemands.count))", isSelected: selectedModeFilter == "all") {
+                    selectedModeFilter = "all"
+                }
+                StandardFilterChip("Recall", isSelected: selectedModeFilter == "recall") {
+                    selectedModeFilter = "recall"
+                }
+                StandardFilterChip("Discrimination (Confusable Pairs)", isSelected: selectedModeFilter == "discrimination") {
+                    selectedModeFilter = "discrimination"
+                }
+                StandardFilterChip("Composition (Multi-Premise ⟹)", isSelected: selectedModeFilter == "composition") {
+                    selectedModeFilter = "composition"
+                }
+                Spacer()
+            }
+
+            VStack(spacing: Spacing.md) {
+                ForEach(scheduledDemands) { demand in
+                    PracticeDemandCard(
+                        demand: demand,
+                        isQueuedForRetest: retestDemandIds.contains(demand.id),
+                        onEvaluated: { needsRetest, propId in
+                            lastActivePropositionId = propId
+                            if needsRetest {
+                                retestDemandIds.insert(demand.id)
+                            } else {
+                                retestDemandIds.remove(demand.id)
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+private struct PracticeDemandCard: View {
+    let demand: PhysicsPracticeDemand
+    let isQueuedForRetest: Bool
+    let onEvaluated: (Bool, String) -> Void
+
+    @State private var learnerAnswer: String = ""
+    @State private var readingThinking: String = ""
+    @State private var answerThinking: String = ""
+    @State private var selectedConfidence: Int? = nil
+    @State private var declinedToGuess: Bool = false
+    @State private var currentHintRung: Int = -1
+    @State private var isCommitted: Bool = false
+    @State private var diagnosisSummary: String = ""
+    @State private var calibrationBadge: ConfidenceVerdictCalibration? = nil
+
+    var body: some View {
+        JournalCard {
+            VStack(alignment: .leading, spacing: Spacing.sm) {
+                HStack(spacing: Spacing.xs) {
+                    JournalBadge(text: "Ch \(demand.chapter) · Topic \(demand.topicCode)", tone: .accent)
+                    JournalBadge(text: demand.mode.capitalized, tone: demand.mode == "discrimination" ? .warning : .neutral)
+                    if demand.modifier != "standard" {
+                        JournalBadge(text: demand.modifier.replacingOccurrences(of: "_", with: " ").capitalized, tone: .accent)
+                    }
+                    if isQueuedForRetest {
+                        JournalBadge(text: "Queued for Fresh Retest", tone: .warning)
+                    }
+                    Spacer()
+                    if let cal = calibrationBadge {
+                        JournalBadge(
+                            text: cal.badgeTitle,
+                            tone: cal == .solidMastery ? .positive : .warning
+                        )
+                    }
+                }
+
+                Text(demand.title)
+                    .font(.kymaiaHeadline)
+                    .foregroundStyle(Color.kymaiaInk)
+
+                Text(demand.situationPrompt)
+                    .font(.kymaiaReadingBody)
+                    .foregroundStyle(Color.kymaiaInk)
+
+                ThinkingOutLoudField(
+                    readingThinkingText: $readingThinking,
+                    answerThinkingText: $answerThinking
+                )
+
+                LearnerTextInput(
+                    placeholder: "Commit to your explanation or calculation before revealing the steps...",
+                    text: $learnerAnswer
+                )
+
+                ConfidenceRailView(
+                    selectedConfidence: $selectedConfidence,
+                    declinedToGuess: $declinedToGuess,
+                    isDisabled: isCommitted
+                )
+
+                HStack(spacing: Spacing.xs) {
+                    Button {
+                        currentHintRung = min(demand.hintLadderR0ToR5.count - 1, currentHintRung + 1)
+                    } label: {
+                        let nextR = min(5, currentHintRung + 1)
+                        Label(
+                            currentHintRung < 0 ? "R0 Attention Redirect" : "Next Hint Rung (R\(nextR))",
+                            systemImage: "lightbulb"
+                        )
+                        .font(.kymaiaCaption.weight(.semibold))
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(currentHintRung >= demand.hintLadderR0ToR5.count - 1)
+
+                    if currentHintRung >= 0, let rung = HintRung(rawValue: min(5, currentHintRung)) {
+                        JournalBadge(
+                            text: rung.retrievalPolicyBadge,
+                            tone: rung.surrendersRetrieval ? .warning : .positive
+                        )
+                    }
+
+                    Spacer()
+
+                    Button(isCommitted ? "Re-evaluate Answer" : "Commit & Check Demand") {
+                        evaluateDemand()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color.kymaiaPrimary)
+                }
+
+                if currentHintRung >= 0 {
+                    VStack(alignment: .leading, spacing: Spacing.xxs) {
+                        ForEach(0...min(currentHintRung, demand.hintLadderR0ToR5.count - 1), id: \.self) { idx in
+                            Text(demand.hintLadderR0ToR5[idx])
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaMutedInk)
+                        }
+                    }
+                    .padding(Spacing.sm)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.sm, style: .continuous)
+                            .fill(Color.kymaiaSurface)
+                    )
+                }
+
+                if isCommitted {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        if !diagnosisSummary.isEmpty {
+                            Text(diagnosisSummary)
+                                .font(.kymaiaCallout.weight(.semibold))
+                                .foregroundStyle(Color.kymaiaInk)
+                        }
+
+                        Text("Separating Feature: \(demand.separatingFeature)")
+                            .font(.kymaiaCaption.weight(.semibold))
+                            .foregroundStyle(Color.kymaiaPrimary)
+
+                        ForEach(demand.committedSolutionSteps, id: \.self) { step in
+                            Text("• \(step)")
+                                .font(.kymaiaCallout)
+                                .foregroundStyle(Color.kymaiaInk)
+                        }
+
+                        Text("Misconception Watchout: \(demand.commonMisconception)")
+                            .font(.kymaiaCaption)
+                            .foregroundStyle(Color.kymaiaWarning)
+                    }
+                    .padding(Spacing.md)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
+                            .fill(Color.kymaiaSelectionFill)
+                    )
+                }
+            }
+        }
+    }
+
+    private func evaluateDemand() {
+        let lower = learnerAnswer.lowercased()
+        let matched = demand.markSchemeKeywords.filter { lower.contains($0.lowercased()) }
+        let total = max(1, demand.markSchemeKeywords.count)
+        let coverage = Double(matched.count) / Double(total)
+        let isPass = !declinedToGuess && coverage >= 0.60 && lower.trimmingCharacters(in: .whitespacesAndNewlines).count >= 10
+
+        let cal = ConfidenceVerdictCalibration.calibrate(
+            isPass: isPass,
+            coverageFraction: coverage,
+            confidencePercent: selectedConfidence,
+            declinedToGuess: declinedToGuess
+        )
+        calibrationBadge = cal
+        isCommitted = true
+
+        if isPass && currentHintRung < 2 && cal == .solidMastery {
+            diagnosisSummary = "Independent mastery verified (\(matched.count)/\(total) key points, highest hint rung: \(currentHintRung < 0 ? "none" : "R\(currentHintRung)"))."
+            onEvaluated(false, demand.propositionId)
+        } else {
+            let diag = PracticeDiagnosticEngine.diagnoseMiss(
+                demand: demand,
+                answerText: learnerAnswer,
+                confidencePercent: selectedConfidence,
+                declinedToGuess: declinedToGuess
+            )
+            if currentHintRung < diag.nextRung.rawValue {
+                currentHintRung = diag.nextRung.rawValue
+            }
+            diagnosisSummary = "\(diag.missKind.title): \(diag.coachingPrompt)"
+            onEvaluated(true, demand.propositionId)
         }
     }
 }

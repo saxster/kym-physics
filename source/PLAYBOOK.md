@@ -256,3 +256,13 @@ A beautiful book gets read. Use everything the browser offers, but every moving 
 - A prediction is a guess to test: keep selecting it separate from revealing the answer. Avoid judgemental statistics and guaranteed kitchen results. Model limitations belong beside an experiment, and changed household instructions must be checked in linked stories too.
 - Source validation and actual learner trials answer different questions. Keep chapter/story coverage and physical-test limits explicit. The dated reader and independent reports under `docs/kymaia-*` record this pass.
 - All release verification runs locally. Use `./source/check-reader.sh` from the repository root. GitHub Pages only publishes the already-built static files; do not add GitHub Actions CI. Fonts in the site are cached hashed assets, retaining the original 4 MiB index budget and offline typography.
+
+### LearnHarness option craft & first-principles derivation discipline (7 November 2026)
+
+- **Prediction option craft (`:::predict`):**
+  1. Every distractor must represent a specific, documentable physical misconception (for example, force proportional to velocity, current used up around a loop, or optical angle measured from the mirror surface rather than the 90° normal).
+  2. Never leak the right answer through meta-markers (`(correct)`, `✓`) or by giving only the true option a mechanism ("because...") while leaving distractors bare. When a prediction tests a bare outcome, keep all options as bare claims and put the mechanism behind the `???` reveal flap.
+  3. Mutate distractors from the true claim so that options share parallel grammatical structure and register.
+- **First-principles derivation graph (`⟹`):**
+  - Distinguish **joint premises** (`P1 + P2 ⟹ C`, where neither premise alone suffices) from **alternative derivations** (separate chains to the same conclusion).
+  - Run `simplify_chains` (`prefer-fewest-premises` + cycle-guarded transitive ancestry-cover) so redundant premises are pruned before seeding the learner's knowledge base.

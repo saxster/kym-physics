@@ -26,6 +26,9 @@ struct PhysicsCoachHomeView: View {
     @State private var activeSafetyBanner: SafetyScanResult? = nil
     @State private var activeDeliberation: CouncilDeliberation? = nil
     @State private var budgetNotice: String? = nil
+    @State private var showLessonPlanDAG: Bool = false
+    @State private var selectedTargetPropId: String = "prop-ch13-electromagnet-soft-iron-core"
+    @State private var probeOverrides: [String: StrandProbeStatus] = [:]
     @AppStorage("kymphysics.gemini.apiKey") private var savedGeminiKey: String = ""
 
     @State private var exchanges: [PhysicsCoachExchange] = [
@@ -125,6 +128,17 @@ struct PhysicsCoachHomeView: View {
                         JournalBadge(text: "Phase: \(understandingPhase.title)", tone: understandingPhase == .mastered ? .positive : .accent)
                         Spacer()
                         Button {
+                            showLessonPlanDAG.toggle()
+                        } label: {
+                            Label(
+                                showLessonPlanDAG ? "Hide Plan DAG" : "Prober → Plan DAG",
+                                systemImage: "point.3.connected.trianglepath.dotted"
+                            )
+                            .font(.kymaiaCaption.weight(.semibold))
+                        }
+                        .buttonStyle(.bordered)
+
+                        Button {
                             conveneAdversarialCouncil()
                         } label: {
                             Label("Convene 3-Agent Council", systemImage: "person.3.sequence.fill")
@@ -136,6 +150,92 @@ struct PhysicsCoachHomeView: View {
                     Text("Constitutional Precedence: 1. Safety & Dignity → 2. Truth → 3. Learner Agency (say 'just explain' anytime) → 4. Evidence-Aligned Pedagogy → 5. Bounded Parent Preferences → 6. Mentor Soul.")
                         .font(.kymaiaCaption)
                         .foregroundStyle(Color.kymaiaMutedInk)
+                }
+            }
+
+            if showLessonPlanDAG {
+                let plan = AdaptiveLessonPlanDAG.buildMinimalPlan(
+                    targetPropositionId: selectedTargetPropId,
+                    graph: store.pack.propositionGraph,
+                    skillsByTopic: store.bktSkills,
+                    proofsByQuestion: store.questionProofs,
+                    probeOverrides: probeOverrides
+                )
+                JournalCard {
+                    VStack(alignment: .leading, spacing: Spacing.sm) {
+                        HStack {
+                            JournalBadge(text: "LearnHarness Prober → Minimal Plan DAG", tone: .accent)
+                            JournalBadge(text: "\(plan.prunedSolidIds.count) solid pruned", tone: .positive)
+                            JournalBadge(text: "\(plan.activeTeachingStrands.count) active strands", tone: .warning)
+                            Spacer()
+                            Button("Reset Probes") {
+                                probeOverrides.removeAll()
+                            }
+                            .font(.kymaiaCaption)
+                            .buttonStyle(.bordered)
+                        }
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: Spacing.xs) {
+                                ForEach(store.pack.propositionGraph.nodes.filter { !$0.isUnconditionalTruth }) { node in
+                                    StandardFilterChip("Ch \(node.chapterNumber) · \(node.id.replacingOccurrences(of: "prop-", with: ""))", isSelected: selectedTargetPropId == node.id) {
+                                        selectedTargetPropId = node.id
+                                    }
+                                }
+                            }
+                        }
+
+                        ForEach(plan.strands) { strand in
+                            HStack(alignment: .top, spacing: Spacing.sm) {
+                                JournalBadge(
+                                    text: strand.probeStatus.badgeText,
+                                    tone: strand.probeStatus == .solid ? .positive : (strand.probeStatus == .unknown ? .warning : .accent)
+                                )
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(strand.statement)
+                                        .font(.kymaiaCallout.weight(.semibold))
+                                        .foregroundStyle(Color.kymaiaInk)
+                                    Text("Intuition anchor: \(strand.intuitionAnchor)")
+                                        .font(.kymaiaCaption)
+                                        .foregroundStyle(Color.kymaiaMutedInk)
+                                    if !strand.prerequisiteIds.isEmpty {
+                                        Text("Premises (⟹): \(strand.prerequisiteIds.joined(separator: " + "))")
+                                            .font(.kymaiaMonoCaption)
+                                            .foregroundStyle(Color.kymaiaPrimary)
+                                    }
+                                }
+                                Spacer()
+                                VStack(alignment: .trailing, spacing: Spacing.xxs) {
+                                    Button("Ask Motivation Q") {
+                                        sendPrompt(strand.motivationQuestion)
+                                    }
+                                    .font(.kymaiaCaption.weight(.semibold))
+                                    .buttonStyle(.bordered)
+
+                                    if strand.probeStatus == .solid {
+                                        Button("Surface Gap") {
+                                            probeOverrides[strand.id] = .unknown
+                                        }
+                                        .font(.kymaiaCaption)
+                                        .buttonStyle(.plain)
+                                        .foregroundStyle(Color.kymaiaWarning)
+                                    } else {
+                                        Button("Mark Solid") {
+                                            probeOverrides[strand.id] = .solid
+                                        }
+                                        .font(.kymaiaCaption)
+                                        .buttonStyle(.plain)
+                                        .foregroundStyle(Color.kymaiaSuccess)
+                                    }
+                                }
+                            }
+                            .padding(Spacing.xs)
+                            .background(
+                                RoundedRectangle(cornerRadius: CornerRadius.sm, style: .continuous)
+                                    .fill(Color.kymaiaSurface)
+                            )
+                        }
+                    }
                 }
             }
 
@@ -303,11 +403,11 @@ struct PhysicsCoachHomeView: View {
                                         .controlSize(.small)
                                     }
                                 }
-                                Text(item.text)
+                                Text(MathDisplayRecovery.repairForDisplay(item.text))
                                     .font(.kymaiaReadingBody)
                                     .foregroundStyle(Color.kymaiaInk)
                                 if let eq = item.linkedEquation {
-                                    Text(eq)
+                                    Text(MathDisplayRecovery.repairForDisplay(eq))
                                         .font(.kymaiaMonoCaption.weight(.semibold))
                                         .foregroundStyle(Color.kymaiaPrimary)
                                         .padding(.top, 2)

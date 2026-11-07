@@ -41,6 +41,11 @@ struct QuestionProofRecord: Codable, FetchableRecord, PersistableRecord, Identif
     var lastUsedAssistance: Bool
     var matchedKeywordsCSV: String
     var missingKeywordsCSV: String
+    var confidencePercent: Int? = nil
+    var declinedToGuess: Bool = false
+    var readingThinkingText: String = ""
+    var answerThinkingText: String = ""
+    var maxHintRungUsed: Int = 0
 
     var level: QuestionProofLevel {
         QuestionProofLevel(rawValue: proofLevel) ?? .unseen
@@ -170,6 +175,11 @@ struct ExamQuestionAttemptRecord: Codable, FetchableRecord, PersistableRecord, I
     var maxMarks: Int
     var answerText: String
     var attemptedAt: Date
+    var confidencePercent: Int? = nil
+    var declinedToGuess: Bool = false
+    var readingThinkingText: String = ""
+    var answerThinkingText: String = ""
+    var maxHintRungUsed: Int = 0
 }
 
 // MARK: - 3-Database GRDB Manager (KB + State + Mnemosyne + Shared Science Spine)
@@ -245,6 +255,23 @@ final class DatabaseManager: Sendable {
                 t.column("topicCode", .text).notNull()
                 t.column("prompt", .text).notNull()
                 t.column("marks", .integer).notNull()
+            }
+        }
+        migrator.registerMigration("v2_learnharness_kb") { db in
+            try db.create(table: "kb_propositions", ifNotExists: true) { t in
+                t.primaryKey("id", .text)
+                t.column("statement", .text).notNull()
+                t.column("chapterNumber", .integer).notNull()
+                t.column("topicCodesCSV", .text).notNull()
+                t.column("isUnconditionalTruth", .boolean).notNull()
+                t.column("intuitionAnchor", .text).notNull()
+            }
+            try db.create(table: "kb_derivation_chains", ifNotExists: true) { t in
+                t.primaryKey("id", .text)
+                t.column("premisesCSV", .text).notNull()
+                t.column("conclusionId", .text).notNull()
+                t.column("motivationQuestion", .text).notNull()
+                t.column("chapterNumber", .integer).notNull()
             }
         }
         try migrator.migrate(writer)
@@ -330,6 +357,22 @@ final class DatabaseManager: Sendable {
                 t.column("attemptedAt", .datetime).notNull()
             }
         }
+        migrator.registerMigration("v2_learnharness_state") { db in
+            try db.alter(table: QuestionProofRecord.databaseTableName) { t in
+                t.add(column: "confidencePercent", .integer)
+                t.add(column: "declinedToGuess", .boolean).notNull().defaults(to: false)
+                t.add(column: "readingThinkingText", .text).notNull().defaults(to: "")
+                t.add(column: "answerThinkingText", .text).notNull().defaults(to: "")
+                t.add(column: "maxHintRungUsed", .integer).notNull().defaults(to: 0)
+            }
+            try db.alter(table: ExamQuestionAttemptRecord.databaseTableName) { t in
+                t.add(column: "confidencePercent", .integer)
+                t.add(column: "declinedToGuess", .boolean).notNull().defaults(to: false)
+                t.add(column: "readingThinkingText", .text).notNull().defaults(to: "")
+                t.add(column: "answerThinkingText", .text).notNull().defaults(to: "")
+                t.add(column: "maxHintRungUsed", .integer).notNull().defaults(to: 0)
+            }
+        }
         try migrator.migrate(writer)
     }
 
@@ -408,6 +451,18 @@ final class DatabaseManager: Sendable {
                 try db.execute(
                     sql: "INSERT OR REPLACE INTO kb_school_questions (id, unitNumber, topicCode, prompt, marks) VALUES (?, ?, ?, ?, ?)",
                     arguments: [q.id, q.unitNumber, q.topicCode, q.prompt, q.marks]
+                )
+            }
+            for node in pack.propositionGraph.nodes {
+                try db.execute(
+                    sql: "INSERT OR REPLACE INTO kb_propositions (id, statement, chapterNumber, topicCodesCSV, isUnconditionalTruth, intuitionAnchor) VALUES (?, ?, ?, ?, ?, ?)",
+                    arguments: [node.id, node.statement, node.chapterNumber, node.topicCodes.joined(separator: ","), node.isUnconditionalTruth, node.intuitionAnchor]
+                )
+            }
+            for chain in pack.propositionGraph.chains {
+                try db.execute(
+                    sql: "INSERT OR REPLACE INTO kb_derivation_chains (id, premisesCSV, conclusionId, motivationQuestion, chapterNumber) VALUES (?, ?, ?, ?, ?)",
+                    arguments: [chain.id, chain.premises.joined(separator: ","), chain.conclusion, chain.motivationQuestion, chain.chapterNumber]
                 )
             }
         }

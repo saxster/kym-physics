@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normaliseState, recordAttempt, objectiveProgress, revisionQueue, numericFeedback, paperRemaining, exportMarkdown } from '../app/exam_model.mjs';
+import { normaliseState, recordAttempt, objectiveProgress, revisionQueue, numericFeedback, paperRemaining, exportMarkdown, calibrateConfidenceVerdict } from '../app/exam_model.mjs';
 
 const day = (n) => new Date(2026, 9, n, 12).getTime();
 const q = (id, stage = 'independent') => ({ id, title: id, stage, objectives: ['speed'], marks: 2, points: ['method', 'answer'], model: ['Worked answer'], teach: '#s1-2' });
@@ -115,4 +115,19 @@ test('new chapter units accept written names and equivalent SI exponent notation
   for (const [typed, unit] of [['ohms','Ω'],['degrees','°'],['deg/h','°/h'],['newtons','N'],['joules','J'],['amperes','A'],['watts','W'],['hertz','Hz'],['becquerels','Bq'],['N m⁻¹','N/m'],['J kg⁻¹','J/kg'],['kg m s⁻¹','kg m/s']]) {
     assert.equal(numericFeedback('12', typed, {value:12,unit,tolerance:0}).correct,true,typed);
   }
+});
+
+test('confidence verdict calibration distinguishes lucky guesses, high-confidence misconceptions and honest gaps', () => {
+  assert.equal(calibrateConfidenceVerdict({ score: 2, max: 2, confidence: 90 }).category, 'solid');
+  assert.equal(calibrateConfidenceVerdict({ score: 2, max: 2, confidence: 30 }).category, 'fragile_guess');
+  assert.equal(calibrateConfidenceVerdict({ score: 0, max: 2, confidence: 90 }).category, 'committed_misconception');
+  assert.equal(calibrateConfidenceVerdict({ score: 1, max: 2, confidence: 50 }).category, 'near_miss');
+  assert.equal(calibrateConfidenceVerdict({ score: 0, max: 2, dontKnow: true }).category, 'honest_gap');
+
+  const recorded = attempt(start(), 'first', 30, { confidence: 90, points: [], thinking: 'Assumed speed equals distance × time' });
+  assert.equal(recorded.attempts[0].confidence, 90);
+  assert.equal(recorded.attempts[0].calibration.category, 'committed_misconception');
+  const md = exportMarkdown(catalog, recorded, day(30));
+  assert.match(md, /Confidence: 90%/);
+  assert.match(md, /Thinking: Assumed speed equals distance × time/);
 });

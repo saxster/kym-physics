@@ -3,8 +3,32 @@ const INDEPENDENT = new Set(['independent', 'transfer', 'review', 'paper']);
 const CHANGED = new Set(['transfer', 'review', 'paper']);
 const INTERVALS = [1, 3, 7, 14, 30];
 const ERRORS = new Set(['concept', 'method', 'units', 'graph', 'wording']);
+const CONFIDENCE_STOPS = new Set([0, 30, 50, 70, 90, 100]);
 const object = x => x && typeof x === 'object' && !Array.isArray(x);
 const validTime = x => typeof x === 'number' && Number.isFinite(x) && x > 0;
+const validConfidence = x => Number.isInteger(x) && CONFIDENCE_STOPS.has(x);
+
+export function calibrateConfidenceVerdict({ score, max, confidence, dontKnow = false } = {}) {
+  const conf = validConfidence(confidence) ? confidence : null;
+  if (dontKnow === true) {
+    return { category: 'honest_gap', label: 'Honest gap (declined to guess) — build from premises' };
+  }
+  const full = Number.isFinite(score) && Number.isFinite(max) && max > 0 && score >= max;
+  const zero = Number.isFinite(score) && score <= 0;
+  if (full) {
+    if (conf !== null && conf <= 30) {
+      return { category: 'fragile_guess', label: `Fragile / lucky guess (${conf}% confidence) — re-verify tomorrow` };
+    }
+    return { category: 'solid', label: conf !== null ? `Solid mastery (${conf}% confidence)` : 'Solid mastery' };
+  }
+  if (zero && conf !== null && conf >= 70) {
+    return { category: 'committed_misconception', label: `High-confidence miss (${conf}% confidence) — inspect separating feature` };
+  }
+  return {
+    category: 'near_miss',
+    label: conf !== null ? `Partial / shaky (${conf}% confidence) — repair missing mark point` : 'Partial / shaky — repair missing mark point',
+  };
+}
 const dayKey = time => {
   const d = new Date(time);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -19,18 +43,25 @@ export function normaliseState(raw, catalog) {
   for (const a of Array.isArray(raw.attempts) ? raw.attempts : []) {
     if (!object(a) || !questions.has(a.qid) || !validTime(a.at) || typeof a.answer !== 'string' || !a.answer.trim()) continue;
     const q = questions.get(a.qid), points = cleanPoints(a.points, q.marks);
+    const confidence = validConfidence(a.confidence) ? a.confidence : null;
+    const dontKnow = a.dontKnow === true;
+    const thinking = typeof a.thinking === 'string' ? a.thinking : '';
+    const readingThinking = typeof a.readingThinking === 'string' ? a.readingThinking : '';
     state.attempts.push({ qid: q.id, at: a.at, answer: a.answer, unit: typeof a.unit === 'string' ? a.unit : '',
       numericAnswer: typeof a.numericAnswer === 'string' ? a.numericAnswer : '', points, score: points.length, max: q.marks,
       helped: typeof a.helped === 'boolean' ? a.helped : a.assisted === true,
       assisted: a.assisted === true || state.attempts.some(old => old.qid === a.qid),
-      mistakes: (Array.isArray(a.mistakes) ? a.mistakes : []).filter(x => ERRORS.has(x)), source: a.source === 'paper' ? 'paper' : 'practice' });
+      mistakes: (Array.isArray(a.mistakes) ? a.mistakes : []).filter(x => ERRORS.has(x)), source: a.source === 'paper' ? 'paper' : 'practice',
+      confidence, dontKnow, thinking, readingThinking,
+      calibration: calibrateConfidenceVerdict({ score: points.length, max: q.marks, confidence, dontKnow }) });
   }
   for (const q of catalog.questions) {
     const d = raw.drafts?.[q.id];
     if (!object(d)) continue;
     const draft = {};
-    for (const field of ['answer', 'numericAnswer', 'unit', 'committedAnswer', 'committedUnit']) if (typeof d[field] === 'string') draft[field] = d[field];
-    for (const field of ['revealed', 'assisted', 'saved', 'solutionSeen']) draft[field] = d[field] === true;
+    for (const field of ['answer', 'numericAnswer', 'unit', 'committedAnswer', 'committedUnit', 'thinking', 'readingThinking']) if (typeof d[field] === 'string') draft[field] = d[field];
+    for (const field of ['revealed', 'assisted', 'saved', 'solutionSeen', 'dontKnow']) draft[field] = d[field] === true;
+    if (validConfidence(d.confidence)) draft.confidence = d.confidence;
     if (validTime(d.committedAt)) draft.committedAt = d.committedAt;
     draft.hintsUsed = Number.isInteger(d.hintsUsed) && d.hintsUsed >= 0 ? Math.min(d.hintsUsed, q.hints?.length || 0) : 0;
     draft.selectedPoints = cleanPoints(d.selectedPoints, q.marks);
@@ -67,11 +98,17 @@ export function recordAttempt(state, question, input) {
   const at = input.now ?? Date.now();
   if (!validTime(at)) throw new Error('Invalid attempt date.');
   const points = cleanPoints(input.points, question.marks);
+  const confidence = validConfidence(input.confidence) ? input.confidence : null;
+  const dontKnow = input.dontKnow === true;
+  const thinking = typeof input.thinking === 'string' ? input.thinking : '';
+  const readingThinking = typeof input.readingThinking === 'string' ? input.readingThinking : '';
   const a = { qid: question.id, at, answer: input.answer, unit: typeof input.unit === 'string' ? input.unit : '',
     numericAnswer: typeof input.numericAnswer === 'string' ? input.numericAnswer : '', points, score: points.length, max: question.marks,
     helped: input.assisted === true,
     assisted: input.assisted === true || state.attempts.some(old => old.qid === question.id) || state.drafts[question.id]?.solutionSeen === true,
-    mistakes: (Array.isArray(input.mistakes) ? input.mistakes : []).filter(x => ERRORS.has(x)), source: input.source === 'paper' ? 'paper' : 'practice' };
+    mistakes: (Array.isArray(input.mistakes) ? input.mistakes : []).filter(x => ERRORS.has(x)), source: input.source === 'paper' ? 'paper' : 'practice',
+    confidence, dontKnow, thinking, readingThinking,
+    calibration: calibrateConfidenceVerdict({ score: points.length, max: question.marks, confidence, dontKnow }) };
   return { ...state, attempts: [...state.attempts, a] };
 }
 
@@ -147,6 +184,10 @@ export function exportMarkdown(catalog, state, now = Date.now()) {
     const q = catalog.questions.find(q => q.id === a.qid);
     lines.push(`### ${q?.title || a.qid}`, '', `${new Date(a.at).toLocaleString('en-GB')} · ${a.score}/${a.max} · ${a.assisted ? 'with help or a previously seen solution' : 'independent before seeing the solution'} · self-marked`, '', a.answer, '');
     if (a.numericAnswer) lines.push(`Final value: ${a.numericAnswer} ${a.unit}`, '');
+    if (a.confidence !== null && a.confidence !== undefined) lines.push(`Confidence: ${a.confidence}% (${a.calibration?.label || 'calibrated'})`, '');
+    else if (a.dontKnow) lines.push(`Confidence: Declined to guess (${a.calibration?.label || 'honest gap'})`, '');
+    if (a.thinking) lines.push(`Thinking: ${a.thinking}`, '');
+    if (a.readingThinking) lines.push(`Reading thinking: ${a.readingThinking}`, '');
     if (a.mistakes.length) lines.push(`Practise: ${a.mistakes.join(', ')}`, '');
     lines.push(`Teaching: ${q?.teach || '#ch1'}`, '');
   }

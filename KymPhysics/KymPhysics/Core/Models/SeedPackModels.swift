@@ -17,6 +17,8 @@ struct KymPhysicsSeedPack: Codable, Sendable {
     let schoolTextbook: SchoolScienceTextbook
     let schoolQuestions: [SchoolScienceQuestion]
     let diagramPlates: [DiagramRecallPlate]
+    let propositionGraph: PhysicsPropositionGraph
+    let practiceDemands: [PhysicsPracticeDemand]
 }
 
 // MARK: - The Moving World (16 Chapters, 4 Volumes, 95 Stories, Explorers, Investigations, Widgets)
@@ -336,6 +338,53 @@ struct DiagramCalloutPin: Codable, Identifiable, Equatable, Sendable {
     let hint: String
 }
 
+// MARK: - LearnHarness Proposition Derivation Graph (⟹) & Practice Demands
+
+struct PhysicsPropositionGraph: Codable, Equatable, Sendable {
+    let nodes: [PhysicsPropositionNode]
+    let chains: [PhysicsDerivationChain]
+}
+
+struct PhysicsPropositionNode: Codable, Identifiable, Equatable, Sendable {
+    let id: String
+    let name: String
+    let statement: String
+    let isUnconditionalFoundation: Bool
+    let chapterNumber: Int
+    let topicCodes: [String]
+    let aliases: [String]
+    let provenanceSectionId: String
+
+    var isUnconditionalTruth: Bool { isUnconditionalFoundation }
+    var intuitionAnchor: String { "\(name) (\(provenanceSectionId))" }
+}
+
+struct PhysicsDerivationChain: Codable, Identifiable, Equatable, Sendable {
+    let id: String
+    let premises: [String]
+    let conclusion: String
+    let motivationQuestion: String
+    let chapterNumber: Int
+}
+
+struct PhysicsPracticeDemand: Codable, Identifiable, Equatable, Sendable {
+    let id: String
+    let chapter: Int
+    let unitNumber: Int
+    let topicCode: String
+    let propositionId: String
+    let confusablePropositionId: String?
+    let mode: String           // "recall" | "discrimination" | "composition"
+    let modifier: String       // "standard" | "reverse" | "probe_premises"
+    let title: String
+    let situationPrompt: String
+    let separatingFeature: String
+    let committedSolutionSteps: [String]
+    let markSchemeKeywords: [String]
+    let hintLadderR0ToR5: [String]
+    let commonMisconception: String
+}
+
 // MARK: - Seed Pack Loader
 
 enum SeedPackLoader {
@@ -384,7 +433,9 @@ enum SeedPackLoader {
                 units: []
             ),
             schoolQuestions: [],
-            diagramPlates: []
+            diagramPlates: [],
+            propositionGraph: PhysicsPropositionGraph(nodes: [], chains: []),
+            practiceDemands: []
         )
     }
 }

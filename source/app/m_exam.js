@@ -1,11 +1,12 @@
 // Motion practice sits beside the story. Attempts and due dates stay in this browser.
 import App from './core.js';
-import { normaliseState, recordAttempt, objectiveProgress, revisionQueue, numericFeedback, paperRemaining, exportMarkdown } from './exam_model.mjs';
+import { normaliseState, recordAttempt, objectiveProgress, revisionQueue, numericFeedback, paperRemaining, exportMarkdown, calibrateConfidenceVerdict } from './exam_model.mjs';
 
 const { el, store } = App;
 const KEY = 'exam:' + (App.data.exam?.key || 'motion');
 const STAGES = [['all', 'All practice questions'], ['recall', 'Recall'], ['worked', 'Worked examples'], ['guided', 'With a little help'], ['independent', 'On your own'], ['transfer', 'A new setting'], ['review', 'Come back to it']];
 const ERRORS = [['concept', 'The physics idea'], ['method', 'The calculation or method'], ['units', 'Units or conversion'], ['graph', 'Reading or drawing a graph'], ['wording', 'Explaining precisely']];
+const CONF_OPTIONS = [['', 'Confidence (optional)'], ['30', '30% · low guess'], ['50', '50% · unsure'], ['70', '70% · leaning'], ['90', '90% · confident'], ['100', '100% · certain'], ['dontKnow', 'Not sure (don’t guess)']];
 const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15l2 2 5-4"/></svg>';
 const date = t => new Date(t).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 const button = (text, fn, cls = '') => el('button', { type: 'button', class: `lj-btn ${cls}`, onclick: fn }, text);
@@ -170,17 +171,37 @@ App.ready(() => {
       if (numeric) { numeric.value = d.numericAnswer || ''; numeric.readOnly = revealed; unit.value = d.unit || ''; unit.readOnly = revealed; numeric.disabled = unit.disabled = answer.disabled; }
       const saveDraft = () => {
         d.answer = answer.value;
+        d.thinking = thinkTa.value;
         if (numeric) { d.numericAnswer = numeric.value; d.unit = unit.value; }
         persist();
       };
-      answer.addEventListener('input', saveDraft); numeric?.addEventListener('input', saveDraft); unit?.addEventListener('input', saveDraft);
+      const confSelect = el('select', { id: `exam-conf-${q.id}`, class: 'exam-conf-select', 'aria-label': 'Confidence in your answer' },
+        CONF_OPTIONS.map(([value, title]) => el('option', { value }, title)));
+      confSelect.value = d.dontKnow ? 'dontKnow' : Number.isInteger(d.confidence) ? String(d.confidence) : '';
+      confSelect.disabled = revealed || answer.disabled;
+      confSelect.addEventListener('change', () => {
+        if (confSelect.value === 'dontKnow') { d.dontKnow = true; delete d.confidence; }
+        else if (confSelect.value) { d.dontKnow = false; d.confidence = Number(confSelect.value); }
+        else { d.dontKnow = false; delete d.confidence; }
+        persist();
+      });
+      const thinkTa = el('textarea', { id: `exam-think-${q.id}`, rows: 2, class: 'lj-ta exam-think-ta', placeholder: 'What physical principle or clue are you using?' });
+      thinkTa.value = d.thinking || ''; thinkTa.readOnly = revealed; thinkTa.disabled = answer.disabled;
+      const thinkWrap = el('details', { class: 'exam-think-wrap' },
+        el('summary', {}, 'Your thinking & confidence (optional)'),
+        el('label', { class: 'exam-conf-label', for: confSelect.id }, 'Confidence before revealing', confSelect),
+        el('label', { class: 'lj-lab', for: thinkTa.id }, 'Thinking out loud'),
+        thinkTa,
+      );
+      if (d.thinking || d.dontKnow || Number.isInteger(d.confidence)) thinkWrap.open = true;
+      answer.addEventListener('input', saveDraft); thinkTa.addEventListener('input', saveDraft); numeric?.addEventListener('input', saveDraft); unit?.addEventListener('input', saveDraft);
       const help = el('input', { type: 'checkbox', id: `exam-help-${q.id}` });
       help.checked = !!(d.assisted || d.hintsUsed || q.stage === 'guided');
       help.disabled = revealed || answer.disabled || !!d.hintsUsed || q.stage === 'guided';
       help.addEventListener('change', () => { d.assisted = help.checked; persist(); });
       ui.append(label, answer);
       if (numeric) ui.append(el('div', { class: 'exam-numeric-row' }, el('label', { for: numeric.id }, 'Final number', numeric), el('label', { for: unit.id }, 'Unit in your answer', unit)));
-      ui.append(el('label', { class: 'exam-help', for: help.id }, help, 'I used a hint, the book, or someone’s help'));
+      ui.append(thinkWrap, el('label', { class: 'exam-help', for: help.id }, help, 'I used a hint, the book, or someone’s help'));
       if (d.solutionSeen) ui.append(el('p', { class: 'exam-small' }, 'You have seen this solution before. This attempt is useful practice; choose a fresh question to check independent understanding.'));
       localStatus.textContent = '';
       ui.append(localStatus);
@@ -235,11 +256,16 @@ App.ready(() => {
         mistakes.append(el('label', { for: input.id }, input, text)); return input;
       });
       marking.append(mistakes);
-      if (d.saved) marking.append(el('p', { class: 'exam-saved', role: 'status' }, `Saved: ${selected.size} / ${q.marks} marks, self-marked${d.assisted || d.hintsUsed || q.stage === 'guided' ? ' with help' : ' without help'}${d.solutionSeen ? ' · memory review' : ''}.`));
-      else marking.append(button('Save marked attempt', () => {
+      if (d.saved) {
+        marking.append(el('p', { class: 'exam-saved', role: 'status' }, `Saved: ${selected.size} / ${q.marks} marks, self-marked${d.assisted || d.hintsUsed || q.stage === 'guided' ? ' with help' : ' without help'}${d.solutionSeen ? ' · memory review' : ''}.`));
+        if (d.dontKnow || Number.isInteger(d.confidence)) {
+          const cal = calibrateConfidenceVerdict({ score: selected.size, max: q.marks, confidence: d.confidence, dontKnow: d.dontKnow });
+          marking.append(el('p', { class: 'exam-calibration', 'data-cal': cal.category }, `Calibration: ${cal.label}`));
+        }
+      } else marking.append(button('Save marked attempt', () => {
         const marked = checks.flatMap((c, i) => c.checked ? [i] : []);
         d.selectedPoints = marked;
-        state = recordAttempt(state, q, { answer: committed, unit: d.committedUnit || d.unit || '', numericAnswer: d.numericAnswer || '', points: marked, now: d.committedAt || Date.now(), assisted: !!(d.assisted || d.hintsUsed || q.stage === 'guided' || !d.committedAt), mistakes: d.mistakes || [], source: isPaper ? 'paper' : 'practice' });
+        state = recordAttempt(state, q, { answer: committed, unit: d.committedUnit || d.unit || '', numericAnswer: d.numericAnswer || '', points: marked, now: d.committedAt || Date.now(), assisted: !!(d.assisted || d.hintsUsed || q.stage === 'guided' || !d.committedAt), mistakes: d.mistakes || [], source: isPaper ? 'paper' : 'practice', confidence: d.confidence, dontKnow: d.dontKnow, thinking: d.thinking || '' });
         state.drafts[q.id] = { ...d, saved: true }; persist(); paint(); refresh();
         const saved = node.querySelector('.exam-saved');
         if (saved) { saved.tabIndex = -1; saved.focus({ preventScroll: true }); }

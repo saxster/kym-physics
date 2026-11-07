@@ -40,6 +40,12 @@
 .lj-chip[data-r="got"][aria-pressed="true"] { background: var(--green); border-color: var(--green); }
 .lj-chip[data-r="partly"][aria-pressed="true"] { background: var(--neutron); border-color: var(--neutron); }
 .lj-chip[data-r="not"][aria-pressed="true"] { background: var(--proton); border-color: var(--proton); }
+.lj-conf { display: flex; flex-wrap: wrap; gap: .32rem; align-items: center; margin: .55rem 0 .25rem; }
+.lj-conf-chip { padding: .24rem .58rem; min-height: 2rem; font-size: .76rem; font-variant-numeric: tabular-nums; }
+.lj-conf-chip[aria-pressed="true"] { background: var(--vol); border-color: var(--vol); color: var(--paper); }
+.lj-conf-chip[data-conf="ns"][aria-pressed="true"] { background: var(--neutron); border-color: var(--neutron); }
+.lj-rt-wrap { margin: .45rem 0 .2rem; font-family: var(--sans); font-size: .8rem; color: var(--muted); }
+.lj-rt-sum { cursor: pointer; font-weight: 600; padding: .15rem 0; }
 .chk-reveal .lj-link { font-size: .78rem; color: var(--muted); }
 .check .lj-back { margin-top: .4rem; }
 .check .lj-back a { color: var(--muted); }
@@ -126,7 +132,7 @@ dialog.notebook[open] { display: flex; flex-direction: column; width: min(44rem,
 }
 
 @media print {
-  .chk-ui, .home-ui, .hl-pop, dialog.lj-dlg, .pred-flap, .eq-sym-bar, .eq-lens-card, .curr-chips, .teachers-guide, .values-registry { display: none !important; }
+  .chk-ui, .home-ui, .hl-pop, dialog.lj-dlg, .pred-flap, .pred-conf, .eq-sym-bar, .eq-lens-card, .curr-chips, .teachers-guide, .values-registry { display: none !important; }
   mark.hl { background: none; }
 }
 

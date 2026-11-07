@@ -10,6 +10,14 @@ const RATINGS = [
   ['partly', 'Partly'],
   ['not', 'Not yet'],
 ];
+const CONFIDENCE_STOPS = [
+  ['30', '30%'],
+  ['50', '50%'],
+  ['70', '70%'],
+  ['90', '90%'],
+  ['100', '100%'],
+  ['ns', 'Not sure'],
+];
 
 const FLAP_CORNER_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" class="flap-ear"><path d="M4 18 L18 4 L18 14 Q18 18 14 18 Z" fill="currentColor" opacity=".18"/><path d="M4 18 L18 4 M6 12 L12 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>';
 
@@ -42,6 +50,17 @@ function setupCheck(box) {
   const ta = el('textarea', { class: 'lj-ta', rows: 2, id: id + '-mine', placeholder: 'Write it here, or just think it' });
   ta.value = saved.a || '';
   const label = el('label', { class: 'lj-lab', for: id + '-mine' }, 'Your answer');
+  const rtTa = el('textarea', { class: 'lj-ta chk-rt', rows: 2, id: id + '-rt', placeholder: 'What clue in the reading led you here?' });
+  rtTa.value = saved.rt || '';
+  const rtDetails = el('details', { class: 'lj-rt-wrap' },
+    el('summary', { class: 'lj-rt-sum' }, 'Thinking while reading (optional)'),
+    el('label', { class: 'lj-lab', for: id + '-rt' }, 'Reading notes'),
+    rtTa,
+  );
+  if (saved.rt) rtDetails.open = true;
+  const confRow = el('div', { class: 'lj-conf', role: 'group', 'aria-label': 'Confidence in your answer' });
+  const confBtns = CONFIDENCE_STOPS.map(([v, l]) => el('button', { type: 'button', class: 'lj-chip lj-conf-chip', 'data-conf': v, 'aria-pressed': 'false' }, l));
+  confRow.append(el('span', { class: 'lj-q' }, 'Confidence:'), ...confBtns);
   const showBtn = el('button', {
     type: 'button',
     class: 'lj-btn primary chk-flap-btn',
@@ -58,8 +77,18 @@ function setupCheck(box) {
   const again = el('button', { type: 'button', class: 'lj-link' }, 'Try again');
   answer.append(rateRow, again);
 
-  const save = () => { const s = store.get(key, {}); s.a = ta.value; s.t = Date.now(); store.set(key, s); App.emit('learn:change'); };
+  const save = () => { const s = store.get(key, {}); s.a = ta.value; s.rt = rtTa.value; s.t = Date.now(); store.set(key, s); App.emit('learn:change'); };
   ta.addEventListener('input', debounce(save, 400));
+  rtTa.addEventListener('input', debounce(save, 400));
+
+  function paintConf(c) {
+    confBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.conf === c)));
+  }
+  confBtns.forEach(b => b.addEventListener('click', () => {
+    playSound('tick');
+    const s = store.get(key, {}); s.conf = b.dataset.conf; s.a = ta.value; s.rt = rtTa.value; s.t = Date.now(); store.set(key, s);
+    paintConf(s.conf); App.emit('learn:change');
+  }));
 
   function paintRating(r) {
     rateBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
@@ -73,26 +102,27 @@ function setupCheck(box) {
     } else answer.hidden = false;
   }
   showBtn.addEventListener('click', () => {
-    const s = store.get(key, {}); s.a = ta.value; s.seen = true; s.t = Date.now(); store.set(key, s);
+    const s = store.get(key, {}); s.a = ta.value; s.rt = rtTa.value; s.seen = true; s.t = Date.now(); store.set(key, s);
     open(true); App.emit('learn:change');
     answer.querySelector('.lj-chip').focus({ preventScroll: true });
   });
   rateBtns.forEach(b => b.addEventListener('click', () => {
     playSound('tick');
-    const s = store.get(key, {}); s.r = b.dataset.r; s.a = ta.value; s.seen = true; s.t = Date.now(); store.set(key, s);
+    const s = store.get(key, {}); s.r = b.dataset.r; s.a = ta.value; s.rt = rtTa.value; s.seen = true; s.t = Date.now(); store.set(key, s);
     paintRating(s.r); App.emit('learn:change');
   }));
   again.addEventListener('click', () => {
     playSound('flap');
-    store.set(key, { a: '', t: Date.now() });
-    ta.value = ''; paintRating(''); answer.hidden = true; showBtn.hidden = false; showBtn.setAttribute('aria-expanded', 'false');
+    store.set(key, { a: '', rt: '', t: Date.now() });
+    ta.value = ''; rtTa.value = ''; paintConf(''); paintRating(''); answer.hidden = true; showBtn.hidden = false; showBtn.setAttribute('aria-expanded', 'false');
     ta.focus(); App.emit('learn:change');
   });
 
-  const ui = el('div', { class: 'chk-ui' }, label, ta, el('div', { class: 'lj-row' }, showBtn), answer);
+  const ui = el('div', { class: 'chk-ui' }, label, ta, rtDetails, confRow, el('div', { class: 'lj-row' }, showBtn), answer);
   if (back) box.insertBefore(ui, back); else box.append(ui);
   if (back) back.classList.add('lj-back');
   if (saved.seen) open(false);
+  paintConf(saved.conf);
   paintRating(saved.r);
 }
 
@@ -160,6 +190,9 @@ function setupPredict(box) {
     return b;
   });
   const you = el('p', { class: 'pred-you', 'aria-live': 'polite' });
+  const confRow = el('div', { class: 'pred-conf lj-conf', role: 'group', 'aria-label': 'Confidence in your prediction' });
+  const confBtns = CONFIDENCE_STOPS.map(([v, l]) => el('button', { type: 'button', class: 'lj-chip lj-conf-chip', 'data-conf': v, 'aria-pressed': 'false' }, l));
+  confRow.append(el('span', { class: 'lj-q' }, 'Confidence:'), ...confBtns);
   const flapText = el('span', { class: 'flap-t' }, 'Make a guess, then see what happens');
   const flap = el('button', {
     type: 'button',
@@ -172,11 +205,21 @@ function setupPredict(box) {
     el('span', { class: 'flap-i', html: FLAP_CORNER_SVG }),
   );
   const again = el('button', { type: 'button', class: 'lj-link' }, 'Fold flap & change my prediction');
-  list.after(you, flap);
+  list.after(you, confRow, flap);
   rev.append(again);
   rev.id = rev.id || id + '-reveal';
   flap.setAttribute('aria-controls', rev.id);
   btns.forEach(b => b.setAttribute('aria-controls', rev.id));
+
+  confBtns.forEach(b => b.addEventListener('click', () => {
+    playSound('tick');
+    const s = store.get(key, {}) || {};
+    s.conf = b.dataset.conf;
+    s.t = Date.now();
+    store.set(key, s);
+    paint(false);
+    App.emit('learn:change');
+  }));
 
   flap.addEventListener('click', () => {
     const s = store.get(key, null);
@@ -204,6 +247,7 @@ function setupPredict(box) {
     const has = s && s.c != null && btns[s.c];
     const isOpen = !!has && !!s.seen;
     btns.forEach((b, i) => { b.setAttribute('aria-pressed', String(!!has && i === s.c)); b.disabled = isOpen; });
+    confBtns.forEach(b => { b.setAttribute('aria-pressed', String(!!s && b.dataset.conf === s.conf)); b.disabled = isOpen; });
     you.textContent = has ? `Your guess: ${s.o}` : 'A guess is enough. Nobody is grading you.';
     box.dataset.chosen = has ? '1' : '';
     flap.classList.toggle('is-lifted', isOpen);
@@ -225,7 +269,8 @@ function setupPredict(box) {
   }
   function choose(i) {
     playSound('tick');
-    store.set(key, { c: i, o: clean(btns[i].querySelector('.pred-t').textContent), q, t: Date.now() });
+    const prev = store.get(key, {}) || {};
+    store.set(key, { ...prev, c: i, o: clean(btns[i].querySelector('.pred-t').textContent), q, t: Date.now() });
     paint(true); App.emit('learn:change');
   }
   again.addEventListener('click', () => {

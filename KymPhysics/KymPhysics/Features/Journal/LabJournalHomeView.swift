@@ -49,6 +49,8 @@ struct LabJournalHomeView: View {
                     StandardFilterChip("4. Thinking Fortress (Misconception Buster)", isSelected: activeSection == "fortress") { activeSection = "fortress" }
 
                     StandardFilterChip("5. Mumbai Physics Memory Palaces", isSelected: activeSection == "palace") { activeSection = "palace" }
+
+                    StandardFilterChip("6. First-Principles Derivation Graph (⟹)", isSelected: activeSection == "derivations") { activeSection = "derivations" }
                 }
             }
 
@@ -61,6 +63,8 @@ struct LabJournalHomeView: View {
                 PhysicsThinkingFortressSection()
             case "palace":
                 PhysicsMemoryPalaceSection()
+            case "derivations":
+                PhysicsPropositionGraphSection()
             default:
                 notebookComposerSection
             }
@@ -1016,6 +1020,164 @@ private struct PhysicsThinkingFortressSection: View {
                                         .fill(Color.kymaiaSurface)
                                 )
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - 6. LearnHarness First-Principles Proposition Derivation Graph (⟹)
+
+private struct PhysicsPropositionGraphSection: View {
+    @EnvironmentObject private var store: AppStore
+    @State private var selectedNodeId: String? = nil
+
+    private var graph: PhysicsPropositionGraph {
+        store.pack.propositionGraph
+    }
+
+    private var activeNode: PhysicsPropositionNode? {
+        if let id = selectedNodeId, let found = graph.nodes.first(where: { $0.id == id }) {
+            return found
+        }
+        return graph.nodes.first(where: { !$0.isUnconditionalTruth }) ?? graph.nodes.first
+    }
+
+    var body: some View {
+        JournalSection(
+            title: "First-Principles Proposition Derivation Graph (⟹)",
+            subtitle: "Distinguishes joint premises (P₁ + P₂ ⟹ C, where neither premise alone suffices) from foundational unconditional truths, simplified via cycle-guarded ancestry-cover"
+        ) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Spacing.xs) {
+                    ForEach(graph.nodes) { node in
+                        StandardFilterChip(
+                            "Ch \(node.chapterNumber) · \(node.id.replacingOccurrences(of: "prop-", with: ""))",
+                            isSelected: activeNode?.id == node.id
+                        ) {
+                            selectedNodeId = node.id
+                        }
+                    }
+                }
+            }
+
+            if let node = activeNode {
+                let ancestors = PropositionGraphEngine.ancestors(of: node.id, in: graph)
+                let consequences = PropositionGraphEngine.consequences(of: node.id, in: graph)
+                let incomingChains = graph.chains.filter { $0.conclusion == node.id }
+
+                JournalCard {
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        HStack(spacing: Spacing.xs) {
+                            JournalBadge(
+                                text: node.isUnconditionalTruth ? "Unconditional Foundation" : "Derived Proposition",
+                                tone: node.isUnconditionalTruth ? .positive : .accent
+                            )
+                            JournalBadge(text: "Ch \(node.chapterNumber)", tone: .neutral)
+                            ForEach(node.topicCodes, id: \.self) { tc in
+                                JournalBadge(text: "Topic \(tc)", tone: .neutral)
+                            }
+                            Spacer()
+                        }
+
+                        Text(node.statement)
+                            .font(.kymaiaTitle3)
+                            .foregroundStyle(Color.kymaiaInk)
+
+                        Text("Intuition anchor: \(node.intuitionAnchor)")
+                            .font(.kymaiaCallout)
+                            .foregroundStyle(Color.kymaiaMutedInk)
+
+                        if !incomingChains.isEmpty {
+                            Divider()
+                            ForEach(incomingChains) { chain in
+                                VStack(alignment: .leading, spacing: Spacing.xs) {
+                                    Text("Motivation Question: \(chain.motivationQuestion)")
+                                        .font(.kymaiaCallout.weight(.semibold))
+                                        .foregroundStyle(Color.kymaiaPrimary)
+
+                                    Text("Joint Premises (\(chain.premises.joined(separator: " + ")) ⟹ \(chain.conclusion)):")
+                                        .font(.kymaiaMonoCaption.weight(.semibold))
+                                        .foregroundStyle(Color.kymaiaSecondary)
+
+                                    ForEach(chain.premises, id: \.self) { pid in
+                                        if let pNode = graph.nodes.first(where: { $0.id == pid }) {
+                                            Button {
+                                                selectedNodeId = pNode.id
+                                            } label: {
+                                                HStack(alignment: .top, spacing: Spacing.xs) {
+                                                    Image(systemName: "arrow.turn.down.right")
+                                                        .foregroundStyle(Color.kymaiaPrimary)
+                                                    Text(pNode.statement)
+                                                        .font(.kymaiaCallout)
+                                                        .foregroundStyle(Color.kymaiaInk)
+                                                        .multilineTextAlignment(.leading)
+                                                }
+                                            }
+                                            .buttonStyle(.plain)
+                                        }
+                                    }
+                                }
+                                .padding(Spacing.sm)
+                                .background(
+                                    RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
+                                        .fill(Color.kymaiaSelectionFill)
+                                )
+                            }
+                        }
+
+                        HStack(alignment: .top, spacing: Spacing.md) {
+                            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                                Text("Upstream Foundations (\(ancestors.count))")
+                                    .font(.kymaiaCaption.weight(.bold))
+                                    .foregroundStyle(Color.kymaiaMutedInk)
+                                    .monospacedDigit()
+                                if ancestors.isEmpty {
+                                    Text("Root unconditional truth — no upstream premises.")
+                                        .font(.kymaiaCaption)
+                                        .foregroundStyle(Color.kymaiaMutedInk)
+                                } else {
+                                    ForEach(ancestors) { anc in
+                                        Button {
+                                            selectedNodeId = anc.id
+                                        } label: {
+                                            Text("• \(anc.statement)")
+                                                .font(.kymaiaCaption)
+                                                .foregroundStyle(Color.kymaiaInk)
+                                                .multilineTextAlignment(.leading)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                                Text("Downstream Consequences (\(consequences.count))")
+                                    .font(.kymaiaCaption.weight(.bold))
+                                    .foregroundStyle(Color.kymaiaMutedInk)
+                                    .monospacedDigit()
+                                if consequences.isEmpty {
+                                    Text("Leaf conclusion — apply in Practice & Exams.")
+                                        .font(.kymaiaCaption)
+                                        .foregroundStyle(Color.kymaiaMutedInk)
+                                } else {
+                                    ForEach(consequences) { cons in
+                                        Button {
+                                            selectedNodeId = cons.id
+                                        } label: {
+                                            Text("⟹ \(cons.statement)")
+                                                .font(.kymaiaCaption)
+                                                .foregroundStyle(Color.kymaiaPrimary)
+                                                .multilineTextAlignment(.leading)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                 }
