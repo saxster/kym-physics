@@ -274,6 +274,15 @@ private struct WolframQuantitativeDrillsSection: View {
                                 .font(.kymaiaReadingBody)
                                 .foregroundStyle(Color.kymaiaInk)
 
+                            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                                Text("Visual Intuition: \(tpl.visualIntuitionStep)")
+                                    .font(.kymaiaCaption)
+                                    .foregroundStyle(Color.kymaiaMutedInk)
+                                Text("Aha! Invariant: \(tpl.ahaInvariantStep)")
+                                    .font(.kymaiaCaption.weight(.medium))
+                                    .foregroundStyle(Color.kymaiaSecondary)
+                            }
+
                             HStack(spacing: Spacing.sm) {
                                 TextField(
                                     "Value + unit (e.g. \(Int(tpl.expectedValue)) \(tpl.expectedUnit))",
@@ -303,9 +312,13 @@ private struct WolframQuantitativeDrillsSection: View {
                             }
 
                             if let res = results[tpl.id] {
-                                Text(res.feedback)
-                                    .font(.kymaiaCallout.weight(.semibold))
-                                    .foregroundStyle(res.isFullPass ? Color.kymaiaSuccess : Color.kymaiaWarning)
+                                if let trap = res.matchedTrap {
+                                    PhysicsBuggyRuleTrapBanner(trap: trap)
+                                } else {
+                                    Text(res.feedback)
+                                        .font(.kymaiaCallout.weight(.semibold))
+                                        .foregroundStyle(res.isFullPass ? Color.kymaiaSuccess : Color.kymaiaWarning)
+                                }
                             }
 
                             if revealedSolutions.contains(tpl.id) {

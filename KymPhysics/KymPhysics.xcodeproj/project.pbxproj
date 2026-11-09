@@ -25,6 +25,7 @@
 		1163070FC28AF79588CCB496 /* PhysicsVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC839C33245C99F3485FD418 /* PhysicsVoiceService.swift */; };
 		13CA6A073CD398FEFBC33A7F /* ArduinoMissionCatalog+Nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */; };
 		15367C4A09D862582E09B35F /* JournalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86331A6B6B0BFADE9AA60303 /* JournalRow.swift */; };
+		1680535747916CF38F8D9FE1 /* ThinkingOutLoudField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */; };
 		16B367F7414991E31CDDB374 /* ArduinoMissionCatalog+Nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F547BE4072888ACEEE4D6E /* ArduinoMissionCatalog+Nature.swift */; };
 		16D986282F1C2909352AA194 /* KymTutorAI in Frameworks */ = {isa = PBXBuildFile; productRef = 83B4D3D293EC6357B1F9A1EC /* KymTutorAI */; };
 		175A632EBFD5D3933BD01652 /* ForceArrowsVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86198E83B644723005117F78 /* ForceArrowsVisual.swift */; };
@@ -33,9 +34,11 @@
 		19780FBED4662D5384DCF35F /* LiveTextPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */; };
 		19FD95754752A2FEFA7C9DA7 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
 		1CBCC5EAF987DF403AA06EE7 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
+		1E0B1921AA2BB10DB929765B /* LearnerImageSVGAnnotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */; };
 		1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */; };
 		1EE5FFFC1B606E8B6466DA98 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */; };
 		20504FBF3EDE0AB92E846C06 /* ArduinoMissionSimulator+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */; };
+		2469F257D4AD878C8E09399D /* ConfidenceRailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C95F8D695B5E173E7F2D /* ConfidenceRailView.swift */; };
 		2516C1A27CE8416E1805CB7F /* LabJournalHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAB43630FE2FC608B0CA23 /* LabJournalHomeView.swift */; };
 		25B8B39AE482C83E19AAB292 /* ArduinoMissionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */; };
 		25DB912639D75404E9CE96FB /* PhysicsDailyRitualSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */; };
@@ -49,12 +52,14 @@
 		35FC78D1724A0EAC944F419B /* ArduinoBoardTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */; };
 		36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B8FA6B68D11889AEECF85D /* CalendarHomeView.swift */; };
 		3940641920281C23253E3815 /* MentoringEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22817F9367139130C144E6E /* MentoringEngines.swift */; };
+		3A2A9A9DEA7A0EE33D1861CD /* ConfidenceRailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C95F8D695B5E173E7F2D /* ConfidenceRailView.swift */; };
 		3A4811C1602D738556EDD16D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789824E28C78305BC1D434FE /* ShareViewController.swift */; };
 		3A711267A44467C1944C8966 /* LearningEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */; };
 		3B1EEE88AEDF527107591C11 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904CA2AFD9E4992E274C7C14 /* DatabaseManager.swift */; };
 		3BD0034277B652666BADEE8C /* LabsExplorersHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149C790A75DD96CE8DAB0A3 /* LabsExplorersHomeView.swift */; };
 		3C403EA062675E6361F74DEC /* PhysicsCoachHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7638CC05BB4DB52B9AFD70B /* PhysicsCoachHomeView.swift */; };
 		3C6DB0224AA199CA2D7C8CB9 /* SubjectTipVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */; };
+		3F2D7DC78900F737E9FE133C /* MathDisplayRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0701095253167FB255E42 /* MathDisplayRecovery.swift */; };
 		3FB509C17C4909846E2A3028 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
 		445813761316819264D4CD24 /* JournalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86331A6B6B0BFADE9AA60303 /* JournalRow.swift */; };
 		468B265C26D8B10ADC6141AD /* ParentMentorDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CD8ABC29F92794301F3BE /* ParentMentorDashboardView.swift */; };
@@ -96,6 +101,7 @@
 		762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BD3240E55928B56218107 /* ReflectionVisual.swift */; };
 		76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
 		788BFF0F828702D443979214 /* SoulDocuments in Resources */ = {isa = PBXBuildFile; fileRef = B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */; };
+		78A77150BC5E0C3CD4DF75EC /* LearnerImageSVGAnnotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */; };
 		7915F966CDA33935A3372160 /* JournalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F69A5A36B4E335686F48C /* JournalPage.swift */; };
 		793AF37057B3A0D6F18C3732 /* ArduinoMissionSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5BBC4AFE11F5F54B98528 /* ArduinoMissionSimulator.swift */; };
 		7A92E571658512C535EA142A /* MissingDesignElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63792AD452005385630E4E77 /* MissingDesignElements.swift */; };
@@ -111,6 +117,7 @@
 		85D24443C0769C700E8BA3F9 /* LiveTextPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */; };
 		886599CF1F8897601FA16CAF /* ArduinoBoardTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7CB6FB8BFDA4AC555B199 /* ArduinoBoardTourView.swift */; };
 		894D3C3A979AE1379F55F997 /* MassWeightVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */; };
+		8BEFE4FC76525FF6605C7C0C /* MathDisplayRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0701095253167FB255E42 /* MathDisplayRecovery.swift */; };
 		8F4045E95E73C80E4AAA70E1 /* SpeedPhysicsGymSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */; };
 		93CECD73D943A14F95D59070 /* SubjectTipDetailSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */; };
 		950C9DC2FF47A2AA35C340DA /* SeedPackModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */; };
@@ -170,6 +177,7 @@
 		EED6D8B4E149A2A4ABF35115 /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
 		F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 41DBBA27116ABDADD820B4D8 /* GRDB */; };
 		F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
+		F703466BBC57226721941CA4 /* ThinkingOutLoudField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */; };
 		F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
 		F9A26C0E853525DCA33B7922 /* ArduinoCodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */; };
 		FA407B2F0E088B7B0748EB88 /* KymDesign in Frameworks */ = {isa = PBXBuildFile; productRef = E48420D089CBF2A2DF82BC63 /* KymDesign */; };
@@ -238,11 +246,13 @@
 		22F1D4AECB9DB867B9ECB2A8 /* LearningEngines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEngines.swift; sourceTree = "<group>"; };
 		26360907E9365877A16BC192 /* ArduinoMissionSimulator+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArduinoMissionSimulator+Audio.swift"; sourceTree = "<group>"; };
 		267867B18BE45A2B7CC23D9B /* ArduinoCodeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCodeCardView.swift; sourceTree = "<group>"; };
+		2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkingOutLoudField.swift; sourceTree = "<group>"; };
 		2BCEF5F13EC0435BEBCEBAD3 /* SubjectTipVisualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipVisualView.swift; sourceTree = "<group>"; };
 		2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentSoulSystem.swift; sourceTree = "<group>"; };
 		2F4835B06F7A1B207BA85620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		332410178E900FB6AC180CB3 /* JournalCardParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCardParts.swift; sourceTree = "<group>"; };
 		36E35F0F15B155116A0F91FB /* PhysicsMemoryPalaceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsMemoryPalaceSection.swift; sourceTree = "<group>"; };
+		3CA0701095253167FB255E42 /* MathDisplayRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathDisplayRecovery.swift; sourceTree = "<group>"; };
 		3CE2957807B2D4716C00950A /* ArduinoMissionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionModels.swift; sourceTree = "<group>"; };
 		3EFB07BD60CF812AE30D74F0 /* JournalEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEmptyState.swift; sourceTree = "<group>"; };
 		3F26E2E7FE309FB303C17088 /* StepSequenceVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSequenceVisual.swift; sourceTree = "<group>"; };
@@ -307,10 +317,12 @@
 		DF040A05B5F2BEDDF443A8B6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E2470213038E8E59A67A89FB /* CircuitToggleVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToggleVisual.swift; sourceTree = "<group>"; };
 		EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingWorldBridgeController.swift; sourceTree = "<group>"; };
+		ECB2C95F8D695B5E173E7F2D /* ConfidenceRailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceRailView.swift; sourceTree = "<group>"; };
 		ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticStyles.swift; sourceTree = "<group>"; };
 		EFD3FF2429CE43302BFB4203 /* KymPhysicsShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KymPhysicsShareExtension.entitlements; sourceTree = "<group>"; };
 		F3CAED8DDF57A4083339050D /* KymPhysicsProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KymPhysicsProfile.swift; sourceTree = "<group>"; };
 		F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPhysicsGymSection.swift; sourceTree = "<group>"; };
+		F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerImageSVGAnnotator.swift; sourceTree = "<group>"; };
 		FFB7D234A3EDAA7D755DF896 /* ArduinoMissionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoMissionDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -600,6 +612,8 @@
 				2E3E8A5B02FC176CDF8D325C /* AgentSoulSystem.swift */,
 				8FBAE9EAED0F38A81C0D1B8E /* AIFeature+Physics.swift */,
 				F3CAED8DDF57A4083339050D /* KymPhysicsProfile.swift */,
+				F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */,
+				3CA0701095253167FB255E42 /* MathDisplayRecovery.swift */,
 				D22817F9367139130C144E6E /* MentoringEngines.swift */,
 				22E623C11506005634D311FD /* PhysicsSafetyGate.swift */,
 			);
@@ -617,9 +631,11 @@
 		D590F8B650984ECA7B0A97E0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ECB2C95F8D695B5E173E7F2D /* ConfidenceRailView.swift */,
 				20193EE0FF7259876B5CBA49 /* DrawingCanvas.swift */,
 				BFDD1685ADBB2C4358350E77 /* LiveTextPageImage.swift */,
 				7FC5E2D5834B4555D9A46488 /* PencilWritingCanvas.swift */,
+				2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -953,6 +969,7 @@
 				506D33F1F970013E398B09F7 /* CalendarHomeView.swift in Sources */,
 				4E4AC5BC94F38597CF5AC43A /* CircuitToggleVisual.swift in Sources */,
 				C2665986D9FF0200ECE19A35 /* ColorExtensions.swift in Sources */,
+				3A2A9A9DEA7A0EE33D1861CD /* ConfidenceRailView.swift in Sources */,
 				D32B058FEEF35B9504973CB6 /* DatabaseManager.swift in Sources */,
 				D47213B66B9F49432B612FB7 /* DrawingCanvas.swift in Sources */,
 				E441354C4AD21ACB7C8CE6FA /* EquationBalanceVisual.swift in Sources */,
@@ -968,9 +985,11 @@
 				B93173D31E8294BBB6E995F5 /* KymPhysicsProfile.swift in Sources */,
 				DC848105CE7747D1E460C4ED /* LabJournalHomeView.swift in Sources */,
 				637D35374771EAB5EE0D6265 /* LabsExplorersHomeView.swift in Sources */,
+				78A77150BC5E0C3CD4DF75EC /* LearnerImageSVGAnnotator.swift in Sources */,
 				3A711267A44467C1944C8966 /* LearningEngines.swift in Sources */,
 				85D24443C0769C700E8BA3F9 /* LiveTextPageImage.swift in Sources */,
 				026C97B0D8FB3873596B592C /* MassWeightVisual.swift in Sources */,
+				8BEFE4FC76525FF6605C7C0C /* MathDisplayRecovery.swift in Sources */,
 				4D3B00EB7F5DEA196DBC85A4 /* MentoringEngines.swift in Sources */,
 				5776CEAD914E5B93A2AA363D /* MissingDesignElements.swift in Sources */,
 				F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */,
@@ -1005,6 +1024,7 @@
 				805906FE6CAA8A8B0A169B4E /* SubjectTipVisualLogic.swift in Sources */,
 				EE6EC07AEF4BCBF1B9F59595 /* SubjectTipVisualView.swift in Sources */,
 				063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */,
+				1680535747916CF38F8D9FE1 /* ThinkingOutLoudField.swift in Sources */,
 				E2D7417499488134C09E5856 /* TodayHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1043,6 +1063,7 @@
 				36C6D1E848C56E05F0319985 /* CalendarHomeView.swift in Sources */,
 				6D2B249E3A8C27FD6A071A01 /* CircuitToggleVisual.swift in Sources */,
 				2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */,
+				2469F257D4AD878C8E09399D /* ConfidenceRailView.swift in Sources */,
 				3B1EEE88AEDF527107591C11 /* DatabaseManager.swift in Sources */,
 				1E5491379B006E527019E0D7 /* DrawingCanvas.swift in Sources */,
 				9F45BAFA6D2C4485088A43A9 /* EquationBalanceVisual.swift in Sources */,
@@ -1058,9 +1079,11 @@
 				BE42E783AE7D4292304BF1A4 /* KymPhysicsProfile.swift in Sources */,
 				2516C1A27CE8416E1805CB7F /* LabJournalHomeView.swift in Sources */,
 				3BD0034277B652666BADEE8C /* LabsExplorersHomeView.swift in Sources */,
+				1E0B1921AA2BB10DB929765B /* LearnerImageSVGAnnotator.swift in Sources */,
 				7CAAD42E09313823B9B1C6DC /* LearningEngines.swift in Sources */,
 				19780FBED4662D5384DCF35F /* LiveTextPageImage.swift in Sources */,
 				894D3C3A979AE1379F55F997 /* MassWeightVisual.swift in Sources */,
+				3F2D7DC78900F737E9FE133C /* MathDisplayRecovery.swift in Sources */,
 				3940641920281C23253E3815 /* MentoringEngines.swift in Sources */,
 				7A92E571658512C535EA142A /* MissingDesignElements.swift in Sources */,
 				3FB509C17C4909846E2A3028 /* MovingWorldBridgeController.swift in Sources */,
@@ -1095,6 +1118,7 @@
 				0BBF6948DFDEA10E4FBF3216 /* SubjectTipVisualLogic.swift in Sources */,
 				3C6DB0224AA199CA2D7C8CB9 /* SubjectTipVisualView.swift in Sources */,
 				300479AD12C50F4198F482CC /* SystemSurfaceAppIntents.swift in Sources */,
+				F703466BBC57226721941CA4 /* ThinkingOutLoudField.swift in Sources */,
 				ED4E14858A1129908B1B82F9 /* TodayHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,3 +1,4 @@
+import AVFoundation
 import SwiftUI
 
 // MARK: - Accessibility Layout Constants
@@ -333,5 +334,538 @@ public struct KymaiaPrimaryButtonStyle: ButtonStyle {
             .clipShape(RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous))
             .kymaiaPointerHighlight(RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous))
             .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
+    }
+}
+
+
+// MARK: - SmartyMe-Style Synchronized Read & Listen Chapter Audio Narrator
+
+@MainActor
+@Observable
+final class ChapterAudioNarrator {
+    private let synthesizer = AVSpeechSynthesizer()
+    private let allowsHardwareSpeech: Bool
+    var isSpeaking: Bool = false
+    var activeChapterId: String? = nil
+    var activeBeatIndex: Int = 0
+    var speechRateMultiplier: Float = 1.0
+
+    init(allowsHardwareSpeech: Bool = true) {
+        self.allowsHardwareSpeech = allowsHardwareSpeech
+    }
+
+    var speedLabel: String {
+        if abs(speechRateMultiplier - 1.0) < 0.05 { return "1.0×" }
+        if abs(speechRateMultiplier - 1.25) < 0.05 { return "1.25×" }
+        return "1.5×"
+    }
+
+    func cycleRate() {
+        if abs(speechRateMultiplier - 1.0) < 0.05 {
+            speechRateMultiplier = 1.25
+        } else if abs(speechRateMultiplier - 1.25) < 0.05 {
+            speechRateMultiplier = 1.5
+        } else {
+            speechRateMultiplier = 1.0
+        }
+    }
+
+    func narrateChapter(_ chapter: MovingWorldChapter, fromSection index: Int = 0) {
+        if isSpeaking && activeChapterId == chapter.id {
+            stop()
+            return
+        }
+        synthesizer.stopSpeaking(at: .immediate)
+        activeChapterId = chapter.id
+        activeBeatIndex = index
+        isSpeaking = true
+
+        guard allowsHardwareSpeech else { return }
+
+        var scriptParts: [String] = []
+        if index == 0 {
+            scriptParts.append("Chapter \(chapter.number): \(chapter.title). \(chapter.subtitle).")
+            if !chapter.hookSummary.isEmpty {
+                scriptParts.append(chapter.hookSummary)
+            }
+        }
+        for section in chapter.sections.dropFirst(max(0, index)) {
+            scriptParts.append("\(section.heading). \(section.excerpt)")
+        }
+        scriptParts.append("Formula invariant: \(chapter.intuitionToFormula.ahaInvariant)")
+
+        speakText(scriptParts.joined(separator: " "))
+    }
+
+    func narrateBeat(_ beat: PhysicsChapterBeat, chapterId: String) {
+        if isSpeaking && activeChapterId == chapterId && activeBeatIndex == beat.index {
+            stop()
+            return
+        }
+        synthesizer.stopSpeaking(at: .immediate)
+        activeChapterId = chapterId
+        activeBeatIndex = beat.index
+        isSpeaking = true
+
+        guard allowsHardwareSpeech else { return }
+        speakText(beat.spokenScript)
+    }
+
+    func stop() {
+        if allowsHardwareSpeech {
+            synthesizer.stopSpeaking(at: .immediate)
+        }
+        isSpeaking = false
+    }
+
+    private func speakText(_ text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-IN")
+            ?? AVSpeechSynthesisVoice(language: "en-GB")
+            ?? AVSpeechSynthesisVoice(language: "en-US")
+        let baseRate = AVSpeechUtteranceDefaultSpeechRate * 0.95
+        utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, baseRate * speechRateMultiplier)
+        utterance.pitchMultiplier = 1.0
+        synthesizer.speak(utterance)
+    }
+}
+
+// MARK: - Brilliant-Style Visual Intuition → "Aha!" Invariant → Symbolic Formula Bridge Card
+
+struct PhysicsIntuitionFormulaBridgeCard: View {
+    let bridge: PhysicsIntuitionFormulaBridge
+    @State private var selectedTermSymbol: String? = nil
+    @State private var showPerturbationAnswer: Bool = false
+
+    private func termColor(for role: String) -> Color {
+        switch role {
+        case "accent": return .kymaiaPrimary
+        case "success": return .kymaiaSuccess
+        case "warning": return .kymaiaWarning
+        case "secondary": return .kymaiaSecondary
+        default: return .kymaiaPrimary
+        }
+    }
+
+    var body: some View {
+        let activeTerm = bridge.termMappings.first(where: { $0.symbol == selectedTermSymbol }) ?? bridge.termMappings.first
+
+        JournalCard {
+            VStack(alignment: .leading, spacing: Spacing.md) {
+                HStack(spacing: Spacing.xs) {
+                    JournalBadge(text: "Visual Intuition → Formula Bridge", tone: .accent)
+                    Spacer()
+                    JournalBadge(text: bridge.atlasFigureRef, tone: .neutral)
+                }
+
+                // 3-step Concrete Action -> Aha Invariant -> Symbolic Formula
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    HStack(alignment: .top, spacing: Spacing.sm) {
+                        JournalBadge(text: "1. Concrete Action", tone: .accent)
+                        Text(bridge.concreteAction)
+                            .font(.kymaiaCallout)
+                            .foregroundStyle(Color.kymaiaInk)
+                    }
+
+                    HStack(alignment: .top, spacing: Spacing.sm) {
+                        JournalBadge(text: "2. 'Aha!' Invariant", tone: .success)
+                        Text(bridge.ahaInvariant)
+                            .font(.kymaiaCallout.weight(.medium))
+                            .foregroundStyle(Color.kymaiaInk)
+                    }
+
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        JournalBadge(text: "3. Symbolic Law (Tap any term chip to perturb)", tone: .warning)
+                        Text(bridge.formulaDisplay)
+                            .font(.kymaiaMonoBody.weight(.bold))
+                            .foregroundStyle(Color.kymaiaPrimary)
+                            .padding(.vertical, Spacing.xs)
+                            .padding(.horizontal, Spacing.md)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(
+                                RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                                    .fill(Color.kymaiaControlFill)
+                            )
+                    }
+                }
+
+                if !bridge.termMappings.isEmpty {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: Spacing.xs) {
+                            ForEach(bridge.termMappings) { mapping in
+                                let isSelected = activeTerm?.symbol == mapping.symbol
+                                Button {
+                                    selectedTermSymbol = mapping.symbol
+                                    showPerturbationAnswer = false
+                                } label: {
+                                    HStack(spacing: Spacing.xxs) {
+                                        Circle()
+                                            .fill(termColor(for: mapping.colorRole))
+                                            .frame(width: 8, height: 8)
+                                        Text(mapping.symbol)
+                                            .font(.kymaiaMonospaced.weight(.bold))
+                                        Text("· \(mapping.visualPart)")
+                                            .font(.kymaiaCaption)
+                                    }
+                                }
+                                .buttonStyle(JournalFilterChipStyle(isSelected: isSelected))
+                            }
+                        }
+                    }
+                }
+
+                if let term = activeTerm {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        HStack(spacing: Spacing.xs) {
+                            Text(term.symbol)
+                                .font(.kymaiaMonoBody.weight(.bold))
+                                .foregroundStyle(termColor(for: term.colorRole))
+                            Text("→ \(term.visualPart)")
+                                .font(.kymaiaSubheadline.weight(.semibold))
+                                .foregroundStyle(Color.kymaiaInk)
+                        }
+                        Text(term.meaning)
+                            .font(.kymaiaCaption)
+                            .foregroundStyle(Color.kymaiaMutedInk)
+
+                        Divider()
+
+                        Text(bridge.perturbationPrompt(for: term))
+                            .font(.kymaiaCaption.weight(.semibold))
+                            .foregroundStyle(Color.kymaiaInk)
+
+                        if showPerturbationAnswer {
+                            Text(bridge.perturbationExplanation(for: term))
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaSuccess)
+                        } else {
+                            Button {
+                                showPerturbationAnswer = true
+                            } label: {
+                                Label("Check Perturbation Scaling", systemImage: "slider.horizontal.3")
+                            }
+                            .buttonStyle(SessionGhostButtonStyle())
+                        }
+                    }
+                    .padding(Spacing.sm)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                            .fill(Color.kymaiaControlFill.opacity(0.6))
+                    )
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Brilliant-Style Interactive Physics Manipulative Sandbox Card
+
+struct PhysicsManipulativeSandboxCard: View {
+    let spec: PhysicsManipulativeSpec
+    var onStampLaw: ((String) -> Void)? = nil
+
+    @State private var state: PhysicsManipulativeState
+
+    init(spec: PhysicsManipulativeSpec, onStampLaw: ((String) -> Void)? = nil) {
+        self.spec = spec
+        self.onStampLaw = onStampLaw
+        self._state = State(
+            initialValue: PhysicsManipulativeState(
+                primaryValue: spec.defaultPrimary,
+                secondaryValue: spec.defaultSecondary,
+                ironCoreInserted: true
+            )
+        )
+    }
+
+    var body: some View {
+        let summary = PhysicsManipulativeEngine.liveSummary(spec: spec, state: state)
+
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack(spacing: Spacing.xs) {
+                Label(spec.title, systemImage: "slider.horizontal.below.square.and.square.filled")
+                    .font(.kymaiaSubheadline.weight(.semibold))
+                    .foregroundStyle(Color.kymaiaPrimary)
+                Spacer()
+                JournalBadge(text: spec.kind.rawValue, tone: .accent)
+            }
+
+            Text(spec.instruction)
+                .font(.kymaiaCaption)
+                .foregroundStyle(Color.kymaiaMutedInk)
+
+            VStack(alignment: .leading, spacing: Spacing.xs) {
+                HStack {
+                    Text(spec.primaryLabel)
+                        .font(.kymaiaCaption.weight(.semibold))
+                    Spacer()
+                    Text(String(format: "%.1f", state.primaryValue))
+                        .font(.kymaiaMonospaced.weight(.bold))
+                        .foregroundStyle(Color.kymaiaPrimary)
+                        .monospacedDigit()
+                }
+                Slider(
+                    value: $state.primaryValue,
+                    in: spec.primaryRange,
+                    step: spec.primaryStep
+                )
+            }
+
+            VStack(alignment: .leading, spacing: Spacing.xs) {
+                HStack {
+                    Text(spec.secondaryLabel)
+                        .font(.kymaiaCaption.weight(.semibold))
+                    Spacer()
+                    Text(String(format: "%.2f", state.secondaryValue))
+                        .font(.kymaiaMonospaced.weight(.bold))
+                        .foregroundStyle(Color.kymaiaSecondary)
+                        .monospacedDigit()
+                }
+                Slider(
+                    value: $state.secondaryValue,
+                    in: spec.secondaryRange,
+                    step: spec.secondaryStep
+                )
+            }
+
+            if spec.kind == .electromagnetSolenoidField {
+                Toggle(isOn: $state.ironCoreInserted) {
+                    Text("Insert Soft-Iron Core (concentrates magnetic flux & demagnetises cleanly)")
+                        .font(.kymaiaCaption.weight(.medium))
+                }
+            }
+
+            // Live Physical Equation Readout
+            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                Text(summary)
+                    .font(.kymaiaMonospaced)
+                    .foregroundStyle(Color.kymaiaInk)
+                    .monospacedDigit()
+                Text("Invariant: \(spec.targetInvariantHint)")
+                    .font(.kymaiaCaption2)
+                    .foregroundStyle(Color.kymaiaSuccess)
+            }
+            .padding(Spacing.sm)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                    .fill(Color.kymaiaSurface)
+            )
+
+            if let onStampLaw {
+                HStack(spacing: Spacing.sm) {
+                    Button {
+                        onStampLaw(summary)
+                    } label: {
+                        Label("Stamp Live Readout into Working", systemImage: "doc.on.clipboard")
+                    }
+                    .buttonStyle(SessionGhostButtonStyle())
+
+                    Button("Reset Defaults") {
+                        state = PhysicsManipulativeState(
+                            primaryValue: spec.defaultPrimary,
+                            secondaryValue: spec.defaultSecondary,
+                            ironCoreInserted: true
+                        )
+                    }
+                    .buttonStyle(SessionGhostButtonStyle())
+                }
+            }
+        }
+        .padding(Spacing.md)
+        .background(
+            RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                .fill(Color.kymaiaControlFill.opacity(0.65))
+        )
+    }
+}
+
+// MARK: - SmartyMe & Brilliant Peer Misconception Debate Card ("Who Is Right & Why?")
+
+struct PhysicsDebateCardView: View {
+    let scenario: PhysicsDebateScenario
+    var onResolvedCorrectly: (() -> Void)? = nil
+
+    @State private var selectedChoiceId: String? = nil
+    @State private var evaluation: PhysicsDebateEvaluation? = nil
+
+    var body: some View {
+        JournalCard {
+            VStack(alignment: .leading, spacing: Spacing.md) {
+                HStack(spacing: Spacing.xs) {
+                    JournalBadge(text: "Who Is Right & Why?", tone: .warning)
+                    JournalBadge(text: "Ch \(scenario.chapterNumber) · Unit \(scenario.schoolUnitNumber)", tone: .neutral)
+                    Spacer()
+                    if evaluation?.isCorrect == true {
+                        JournalBadge(text: "Misconception Defused", tone: .success)
+                    }
+                }
+
+                Text(scenario.title)
+                    .font(.kymaiaTitle3)
+                    .foregroundStyle(Color.kymaiaInk)
+
+                Text(scenario.contextPrompt)
+                    .font(.kymaiaCallout)
+                    .foregroundStyle(Color.kymaiaMutedInk)
+
+                // Two-Speaker Competing Claims
+                HStack(alignment: .top, spacing: Spacing.sm) {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        Label(scenario.speakerAName, systemImage: "person.wave.2.fill")
+                            .font(.kymaiaCaption.weight(.bold))
+                            .foregroundStyle(Color.kymaiaPrimary)
+                        Text("\"\(scenario.speakerAClaim)\"")
+                            .font(.kymaiaCaption)
+                            .foregroundStyle(Color.kymaiaInk)
+                    }
+                    .padding(Spacing.sm)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                            .fill(Color.kymaiaControlFill)
+                    )
+
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        Label(scenario.speakerBName, systemImage: "person.crop.circle.badge.checkmark")
+                            .font(.kymaiaCaption.weight(.bold))
+                            .foregroundStyle(Color.kymaiaSecondary)
+                        Text("\"\(scenario.speakerBClaim)\"")
+                            .font(.kymaiaCaption)
+                            .foregroundStyle(Color.kymaiaInk)
+                    }
+                    .padding(Spacing.sm)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                            .fill(Color.kymaiaControlFill)
+                    )
+                }
+
+                VStack(alignment: .leading, spacing: Spacing.xs) {
+                    ForEach(scenario.choices) { choice in
+                        let isSelected = selectedChoiceId == choice.id
+                        Button {
+                            selectedChoiceId = choice.id
+                            let result = PhysicsDebateEngine.evaluate(choiceId: choice.id, in: scenario)
+                            evaluation = result
+                            if result.isCorrect {
+                                onResolvedCorrectly?()
+                            }
+                        } label: {
+                            HStack(alignment: .top, spacing: Spacing.xs) {
+                                Image(
+                                    systemName: isSelected
+                                        ? (choice.isCorrect ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                                        : "circle"
+                                )
+                                Text(choice.label)
+                                    .font(.kymaiaCaption.weight(.medium))
+                                    .multilineTextAlignment(.leading)
+                                Spacer()
+                            }
+                        }
+                        .buttonStyle(KymaiaOptionButtonStyle(isSelected: isSelected, isCorrect: isSelected ? choice.isCorrect : nil))
+                    }
+                }
+
+                if let evaluation {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        Label(
+                            evaluation.isCorrect ? "Physical Reasoning Verified" : "Socratic Rebuttal — Look Closer",
+                            systemImage: evaluation.isCorrect ? "checkmark.seal.fill" : "lightbulb.fill"
+                        )
+                        .font(.kymaiaCaption.weight(.bold))
+                        .foregroundStyle(evaluation.isCorrect ? Color.kymaiaSuccess : Color.kymaiaWarning)
+
+                        Text(evaluation.feedback)
+                            .font(.kymaiaCallout)
+                            .foregroundStyle(Color.kymaiaInk)
+
+                        if evaluation.isCorrect {
+                            Text("Invariant Takeaway: \(evaluation.invariantTakeaway)")
+                                .font(.kymaiaCaption.weight(.semibold))
+                                .foregroundStyle(Color.kymaiaPrimary)
+                        }
+                    }
+                    .padding(Spacing.sm)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                            .fill((evaluation.isCorrect ? Color.kymaiaSuccess : Color.kymaiaWarning).opacity(0.12))
+                    )
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Brilliant-Style Buggy-Rule Trap Diagnostic Banner
+
+struct PhysicsBuggyRuleTrapBanner: View {
+    let trap: PhysicsBuggyRuleTrap
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Spacing.xs) {
+            HStack(spacing: Spacing.xs) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(Color.kymaiaWarning)
+                Text("Buggy-Rule Trap Caught: \(trap.trapName)")
+                    .font(.kymaiaSubheadline.weight(.bold))
+                    .foregroundStyle(Color.kymaiaWarning)
+            }
+            Text(trap.diagnosticWhy)
+                .font(.kymaiaCallout)
+                .foregroundStyle(Color.kymaiaInk)
+            Text("Visual Fix: \(trap.visualFixNudge)")
+                .font(.kymaiaCaption.weight(.semibold))
+                .foregroundStyle(Color.kymaiaPrimary)
+        }
+        .padding(Spacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                .fill(Color.kymaiaWarning.opacity(0.14))
+        )
+    }
+}
+
+// MARK: - Physics & SI Unit Quick-Insert Symbol Ribbon
+
+struct PhysicsSymbolRibbon: View {
+    @Binding var text: String
+
+    private let symbols: [String] = [
+        "×", "÷", "=", "²", "³", "Δ", "°", "Ω", "λ", "ρ", "⇒",
+        "m/s", "m/s²", "N", "N·m", "Pa", "kPa", "J", "kJ", "W", "A", "V", "Hz", "g/cm³"
+    ]
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: Spacing.xxs) {
+                ForEach(symbols, id: \.self) { sym in
+                    Button {
+                        if text.isEmpty || text.hasSuffix(" ") {
+                            text += sym
+                        } else if sym.count > 1 && sym.first?.isLetter == true {
+                            text += " " + sym
+                        } else {
+                            text += sym
+                        }
+                    } label: {
+                        Text(sym)
+                            .font(.kymaiaMonospaced.weight(.semibold))
+                            .padding(.horizontal, Spacing.xs)
+                            .padding(.vertical, 4)
+                            .background(
+                                Capsule()
+                                    .fill(Color.kymaiaControlFill)
+                            )
+                            .foregroundStyle(Color.kymaiaInk)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
     }
 }

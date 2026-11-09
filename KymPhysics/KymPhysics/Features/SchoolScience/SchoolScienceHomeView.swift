@@ -225,6 +225,16 @@ struct SchoolScienceHomeView: View {
                     }
                 }
 
+                // 4a. Unit Peer Misconception Debate ("Who Is Right & Why?")
+                if let unitDebate = PhysicsDebateCatalog.scenarios(forSchoolUnit: unit.unitNumber).first {
+                    JournalSection(
+                        title: "Peer Physics Debate · Unit \(unit.unitNumber)",
+                        subtitle: "SmartyMe & Brilliant misconception immunity — settle the debate before tackling Workbook proofs"
+                    ) {
+                        PhysicsDebateCardView(scenario: unitDebate)
+                    }
+                }
+
                 // 4b. Scanned / Imported Book Page (VisionKit Live Text + Notes)
                 if scannedPageImageData != nil || !scannedPageNotes.isEmpty {
                     JournalSection(
@@ -425,14 +435,36 @@ struct SchoolQuestionProofCard: View {
     @State private var mode: String = "independent" // "worked" | "faded" | "independent"
     @State private var usedAssistanceThisSession = false
     @State private var fadedInput: String = ""
+    @State private var fadedEvaluation: PhysicsFadedStepEvaluation? = nil
+    @State private var revealedFadedTarget: Bool = false
     @State private var independentAnswer: String = ""
+    @State private var selectedConfidence: Int? = 70
+    @State private var declinedToGuess: Bool = false
+    @State private var showManipulativeSandbox: Bool = false
     @State private var lastResult: QuestionEvaluationResult? = nil
+    @State private var selectedElaborativeChoice: Int? = nil
+    @State private var selectedFlawStepIndex: Int? = nil
+    @State private var revealModelAnswerAfterGuided: Bool = false
 
     private var currentLevel: QuestionProofLevel {
         store.proofLevel(for: question.id)
     }
 
+    private var currentProofModeInt: Int {
+        switch mode {
+        case "worked": return 0
+        case "faded": return 1
+        default: return 2
+        }
+    }
+
+    private var concretenessStage: ConcretenessFadingStage {
+        ConcretenessFadingEngine.recommendedStage(forProofMode: currentProofModeInt, proofLevel: currentLevel)
+    }
+
     var body: some View {
+        let manipulativeSpec = PhysicsManipulativeEngine.spec(for: question)
+
         JournalCard {
             VStack(alignment: .leading, spacing: Spacing.md) {
                 HStack {
@@ -440,6 +472,7 @@ struct SchoolQuestionProofCard: View {
                     Text("\(question.bookSection) · [\(question.marks) marks]")
                         .font(.kymaiaCaption.monospacedDigit())
                         .foregroundStyle(Color.kymaiaMutedInk)
+                    JournalBadge(text: concretenessStage.rawValue, tone: .neutral)
                     Spacer()
                     JournalBadge(
                         text: currentLevel.displayTitle,
@@ -451,7 +484,7 @@ struct SchoolQuestionProofCard: View {
                     .font(.kymaiaReadingBody)
                     .foregroundStyle(Color.kymaiaInk)
 
-                // 3-Tier Scaffold Switcher
+                // 3-Tier Scaffold Switcher + Interactive Manipulative Toggle
                 HStack(spacing: Spacing.sm) {
                     StandardFilterChip("1. Worked Example", isSelected: mode == "worked") {
                         mode = "worked"
@@ -467,6 +500,18 @@ struct SchoolQuestionProofCard: View {
                         mode = "independent"
                     }
 
+                    Button {
+                        showManipulativeSandbox.toggle()
+                    } label: {
+                        Label(
+                            showManipulativeSandbox ? "Hide Sandbox" : "Physics Sandbox",
+                            systemImage: "slider.horizontal.below.square.and.square.filled"
+                        )
+                        .font(.kymaiaCaption.weight(.semibold))
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(Color.kymaiaSecondary)
+
                     Spacer()
 
                     Button {
@@ -476,6 +521,16 @@ struct SchoolQuestionProofCard: View {
                             .font(.kymaiaCaption.weight(.semibold))
                     }
                     .buttonStyle(.bordered)
+                }
+
+                if showManipulativeSandbox {
+                    PhysicsManipulativeSandboxCard(spec: manipulativeSpec) { stampedSummary in
+                        if independentAnswer.isEmpty {
+                            independentAnswer = stampedSummary
+                        } else {
+                            independentAnswer += "\n" + stampedSummary
+                        }
+                    }
                 }
 
                 if mode == "worked" {
@@ -494,17 +549,76 @@ struct SchoolQuestionProofCard: View {
                     )
                 } else if mode == "faded" {
                     VStack(alignment: .leading, spacing: Spacing.sm) {
-                        Text("Faded Completion (Fill the missing physics terms)")
-                            .font(.kymaiaCaption.weight(.bold))
-                            .foregroundStyle(Color.kymaiaSecondary)
+                        HStack {
+                            Text("Faded Completion (Non-Leaking Socratic Scaffold)")
+                                .font(.kymaiaCaption.weight(.bold))
+                                .foregroundStyle(Color.kymaiaSecondary)
+                            Spacer()
+                            if fadedEvaluation?.isComplete == true {
+                                JournalBadge(text: "Blanks Verified ✓", tone: .success)
+                            }
+                        }
+
                         Text(question.fadedPrompt)
                             .font(.kymaiaReadingBody)
                             .foregroundStyle(Color.kymaiaInk)
-                        TextField("Type the missing terms...", text: $fadedInput)
-                            .textFieldStyle(.roundedBorder)
-                        Text("Expected blanks: \(question.fadedAnswer)")
+
+                        PhysicsSymbolRibbon(text: $fadedInput)
+
+                        LearnerTextInput(
+                            placeholder: "Type the missing physics terms, numbers, or units...",
+                            text: $fadedInput
+                        )
+
+                        HStack(spacing: Spacing.sm) {
+                            Button {
+                                usedAssistanceThisSession = true
+                                fadedEvaluation = PhysicsFadedStepEvaluator.evaluateFadedStep(
+                                    studentInput: fadedInput,
+                                    expectedFadedAnswer: question.fadedAnswer,
+                                    workedHint: question.workedExample
+                                )
+                            } label: {
+                                Label("Check Faded Blanks", systemImage: "checkmark.circle.fill")
+                                    .font(.kymaiaCaption.weight(.semibold))
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color.kymaiaPrimary)
+
+                            if fadedEvaluation?.isComplete == true {
+                                Button {
+                                    mode = "independent"
+                                } label: {
+                                    Label("Advance to Stage 3 (Independent Proof)", systemImage: "arrow.right.circle.fill")
+                                        .font(.kymaiaCaption.weight(.semibold))
+                                }
+                                .buttonStyle(BrassButtonStyle())
+                            }
+
+                            Button(revealedFadedTarget ? "Hide Step Target" : "Reveal Step Target") {
+                                usedAssistanceThisSession = true
+                                revealedFadedTarget.toggle()
+                            }
                             .font(.kymaiaCaption)
-                            .foregroundStyle(Color.kymaiaMutedInk)
+                            .buttonStyle(.bordered)
+                        }
+
+                        if let eval = fadedEvaluation {
+                            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                                Text(eval.feedback)
+                                    .font(.kymaiaCaption.weight(.semibold))
+                                    .foregroundStyle(eval.isComplete ? Color.kymaiaSuccess : Color.kymaiaWarning)
+                                Text(eval.nextNudge)
+                                    .font(.kymaiaCaption2)
+                                    .foregroundStyle(Color.kymaiaMutedInk)
+                            }
+                        }
+
+                        if revealedFadedTarget {
+                            Text("Step Target Blanks: \(question.fadedAnswer)")
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaMutedInk)
+                        }
                     }
                     .padding(Spacing.md)
                     .background(
@@ -525,34 +639,50 @@ struct SchoolQuestionProofCard: View {
                                 usedAssistanceThisSession = false
                                 mode = "independent"
                                 independentAnswer = ""
+                                fadedEvaluation = nil
+                                revealedFadedTarget = false
                                 lastResult = nil
                             }
                             .font(.kymaiaCaption)
                         }
                     }
 
+                    PhysicsSymbolRibbon(text: $independentAnswer)
+
                     LearnerTextInput(
                         placeholder: "Write your full explanation or calculation with units...",
                         text: $independentAnswer
                     )
 
+                    ConfidenceRailView(
+                        selectedConfidence: $selectedConfidence,
+                        declinedToGuess: $declinedToGuess
+                    )
+
                     HStack {
                         Button {
+                            selectedElaborativeChoice = nil
+                            selectedFlawStepIndex = nil
+                            revealModelAnswerAfterGuided = false
                             lastResult = store.submitQuestionAttempt(
                                 question: question,
                                 answerText: independentAnswer,
-                                usedAssistance: usedAssistanceThisSession
+                                usedAssistance: usedAssistanceThisSession,
+                                confidencePercent: selectedConfidence,
+                                declinedToGuess: declinedToGuess
                             )
                         } label: {
                             Label(
-                                usedAssistanceThisSession ? "Check Guided Answer" : "Submit Independent Proof",
+                                declinedToGuess
+                                    ? "Record Honest Gap"
+                                    : (usedAssistanceThisSession ? "Check Guided Answer" : "Submit Independent Proof"),
                                 systemImage: "checkmark.seal.fill"
                             )
                             .font(.kymaiaCallout.weight(.semibold))
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(Color.kymaiaPrimary)
-                        .disabled(independentAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        .disabled(!declinedToGuess && independentAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
 
                         Button {
                             store.activeMovingWorldChapter = question.linkedChapter
@@ -577,13 +707,111 @@ struct SchoolQuestionProofCard: View {
                 }
 
                 if let res = lastResult {
-                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                    VStack(alignment: .leading, spacing: Spacing.sm) {
+                        HStack {
+                            JournalBadge(text: res.calibration.badgeTitle, tone: res.isPass ? .success : .warning)
+                            Spacer()
+                            Text("Keyword Coverage: \(Int((res.coverageFraction * 100).rounded()))%")
+                                .font(.kymaiaCaption.monospacedDigit())
+                                .foregroundStyle(Color.kymaiaMutedInk)
+                        }
+
                         Text(res.feedbackSummary)
                             .font(.kymaiaCallout.weight(.semibold))
                             .foregroundStyle(res.isPass ? Color.kymaiaSuccess : Color.kymaiaWarning)
-                        Text("Cambridge Model Answer: \(question.modelAnswer)")
+
+                        if res.isPass || revealModelAnswerAfterGuided {
+                            Text("Cambridge Model Answer: \(question.modelAnswer)")
+                                .font(.kymaiaCaption)
+                                .foregroundStyle(Color.kymaiaMutedInk)
+                        } else {
+                            Button("Reveal Cambridge Model Answer (Assisted)") {
+                                usedAssistanceThisSession = true
+                                revealModelAnswerAfterGuided = true
+                            }
                             .font(.kymaiaCaption)
-                            .foregroundStyle(Color.kymaiaMutedInk)
+                            .buttonStyle(.bordered)
+                        }
+
+                        // Brilliant-Style Elaborative Interrogation ("Why does this law work?") on Pass
+                        if res.isPass {
+                            let interrogation = ElaborativeInterrogationEngine.prompt(for: question)
+                            Divider()
+                            VStack(alignment: .leading, spacing: Spacing.xs) {
+                                Label("Elaborative Interrogation · Why Does This Work?", systemImage: "brain.head.profile")
+                                    .font(.kymaiaCaption.weight(.bold))
+                                    .foregroundStyle(Color.kymaiaPrimary)
+                                Text(interrogation.questionPrompt)
+                                    .font(.kymaiaCallout.weight(.medium))
+                                    .foregroundStyle(Color.kymaiaInk)
+
+                                ForEach(Array(interrogation.options.enumerated()), id: \.offset) { idx, opt in
+                                    let isChosen = selectedElaborativeChoice == idx
+                                    Button {
+                                        selectedElaborativeChoice = idx
+                                    } label: {
+                                        HStack(alignment: .top, spacing: Spacing.xs) {
+                                            Image(
+                                                systemName: isChosen
+                                                    ? (idx == interrogation.correctIndex ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                                    : "circle"
+                                            )
+                                            Text(opt)
+                                                .font(.kymaiaCaption)
+                                                .multilineTextAlignment(.leading)
+                                            Spacer()
+                                        }
+                                    }
+                                    .buttonStyle(KymaiaOptionButtonStyle(isSelected: isChosen, isCorrect: isChosen ? (idx == interrogation.correctIndex) : nil))
+                                }
+
+                                if selectedElaborativeChoice != nil {
+                                    Text(interrogation.explanation)
+                                        .font(.kymaiaCaption)
+                                        .foregroundStyle(Color.kymaiaSuccess)
+                                }
+                            }
+                        }
+
+                        // Spot-the-Flaw Misconception Repair on High-Confidence Miss (.committedMisconception)
+                        if res.calibration == .committedMisconception {
+                            let flawItem = PhysicsSpotTheFlawCatalog.item(for: question)
+                            Divider()
+                            VStack(alignment: .leading, spacing: Spacing.xs) {
+                                Label(flawItem.title, systemImage: "magnifyingglass.circle.fill")
+                                    .font(.kymaiaCaption.weight(.bold))
+                                    .foregroundStyle(Color.kymaiaWarning)
+                                Text(flawItem.scenario)
+                                    .font(.kymaiaCaption)
+                                    .foregroundStyle(Color.kymaiaInk)
+
+                                ForEach(Array(flawItem.steps.enumerated()), id: \.offset) { idx, stepText in
+                                    let isTapped = selectedFlawStepIndex == idx
+                                    Button {
+                                        selectedFlawStepIndex = idx
+                                    } label: {
+                                        HStack(alignment: .top, spacing: Spacing.xs) {
+                                            Image(
+                                                systemName: isTapped
+                                                    ? (idx == flawItem.flawedStepIndex ? "checkmark.seal.fill" : "circle.dashed")
+                                                    : "circle"
+                                            )
+                                            Text(stepText)
+                                                .font(.kymaiaCaption)
+                                                .multilineTextAlignment(.leading)
+                                            Spacer()
+                                        }
+                                    }
+                                    .buttonStyle(KymaiaOptionButtonStyle(isSelected: isTapped, isCorrect: isTapped ? (idx == flawItem.flawedStepIndex) : nil))
+                                }
+
+                                if selectedFlawStepIndex != nil {
+                                    Text(flawItem.explanation)
+                                        .font(.kymaiaCaption.weight(.medium))
+                                        .foregroundStyle(Color.kymaiaPrimary)
+                                }
+                            }
+                        }
                     }
                     .padding(Spacing.sm)
                     .background(

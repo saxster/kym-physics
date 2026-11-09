@@ -3,9 +3,13 @@ import WebKit
 
 struct MovingWorldHomeView: View {
     @EnvironmentObject private var store: AppStore
-    @State private var readerMode: String = "native" // "native" | "web" | "stories"
+    @State private var readerMode: String = "beats" // "beats" | "native" | "web" | "stories"
     @State private var revealedCallouts: Set<String> = []
     @State private var storyFilter: String = "all"   // "all" | "portrait" | "topic"
+    @State private var activeBeatIndex: Int = 0
+    @State private var resolvedDebateChapters: Set<Int> = []
+    @State private var beatPredictionDraft: String = ""
+    @State private var audioNarrator = ChapterAudioNarrator()
 
     private var activeChapter: MovingWorldChapter {
         store.pack.chapters.first(where: { $0.number == store.activeMovingWorldChapter })
@@ -37,6 +41,10 @@ struct MovingWorldHomeView: View {
             subtitle: "\(activeChapter.volumeTitle) · \(activeChapter.subtitle)",
             headerAccessory: {
                 HStack(spacing: Spacing.sm) {
+                    StandardFilterChip("Interactive Beats", isSelected: readerMode == "beats") {
+                        readerMode = "beats"
+                    }
+
                     StandardFilterChip("Journal Reader", isSelected: readerMode == "native") {
                         readerMode = "native"
                     }
@@ -50,13 +58,25 @@ struct MovingWorldHomeView: View {
                     }
 
                     Button {
-                        ChapterExplainerPlayer.shared.playChapter(activeChapter)
+                        audioNarrator.narrateChapter(activeChapter)
                     } label: {
-                        Label("Listen", systemImage: "headphones")
-                            .font(.kymaiaCaption.weight(.semibold))
+                        Label(
+                            audioNarrator.isSpeaking ? "Stop Read & Listen" : "Read & Listen (\(audioNarrator.speedLabel))",
+                            systemImage: audioNarrator.isSpeaking ? "stop.circle.fill" : "headphones"
+                        )
+                        .font(.kymaiaCaption.weight(.semibold))
                     }
                     .buttonStyle(.bordered)
                     .tint(Color.kymaiaAccent)
+
+                    Button {
+                        audioNarrator.cycleRate()
+                    } label: {
+                        Text(audioNarrator.speedLabel)
+                            .font(.kymaiaCaption.weight(.bold))
+                            .monospacedDigit()
+                    }
+                    .buttonStyle(.bordered)
 
                     Button {
                         ChapterExplainerPlayer.shared.playTwoVoiceDialogue(for: activeChapter)
@@ -79,6 +99,8 @@ struct MovingWorldHomeView: View {
                     ForEach(store.pack.chapters) { ch in
                         StandardFilterChip("Ch \(ch.number) · \(ch.title)", isSelected: store.activeMovingWorldChapter == ch.number) {
                             store.activeMovingWorldChapter = ch.number
+                            activeBeatIndex = 0
+                            beatPredictionDraft = ""
                         }
                     }
                 }
@@ -136,6 +158,204 @@ struct MovingWorldHomeView: View {
                         }
                     }
                 }
+            } else if readerMode == "beats" {
+                let beats = PhysicsChapterBeatEngine.beats(for: activeChapter)
+                let clampedIndex = min(max(0, activeBeatIndex), max(0, beats.count - 1))
+                let currentBeat = beats[clampedIndex]
+                let isGateLocked: Bool = {
+                    if currentBeat.kind == .misconceptionDebate {
+                        return !resolvedDebateChapters.contains(activeChapter.number)
+                    }
+                    if let callout = currentBeat.callout, currentBeat.requiresInteractionToAdvance {
+                        return !revealedCallouts.contains(callout.id)
+                    }
+                    return false
+                }()
+
+                JournalCard {
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        HStack(spacing: Spacing.xs) {
+                            JournalBadge(text: "Beat \(clampedIndex + 1) of \(beats.count)", tone: .accent)
+                            JournalBadge(text: currentBeat.kind.rawValue, tone: .neutral)
+                            Spacer()
+                            Button {
+                                audioNarrator.narrateBeat(currentBeat, chapterId: activeChapter.id)
+                            } label: {
+                                Label(
+                                    audioNarrator.isSpeaking ? "Pause Beat Audio" : "Listen to Beat (\(audioNarrator.speedLabel))",
+                                    systemImage: audioNarrator.isSpeaking ? "pause.circle.fill" : "speaker.wave.2.fill"
+                                )
+                                .font(.kymaiaCaption.weight(.semibold))
+                            }
+                            .buttonStyle(SessionGhostButtonStyle())
+                        }
+
+                        // Segmented Brilliant-style Beat Progress Bar
+                        HStack(spacing: Spacing.xxs) {
+                            ForEach(beats) { beat in
+                                Button {
+                                    if beat.index <= clampedIndex || !isGateLocked {
+                                        activeBeatIndex = beat.index
+                                    }
+                                } label: {
+                                    RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                                        .fill(
+                                            beat.index < clampedIndex
+                                                ? Color.kymaiaSuccess
+                                                : (beat.index == clampedIndex ? Color.kymaiaPrimary : Color.kymaiaControlFill)
+                                        )
+                                        .frame(height: 8)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+
+                        Text(currentBeat.title)
+                            .font(.kymaiaTitle2)
+                            .foregroundStyle(Color.kymaiaInk)
+
+                        Text(currentBeat.narrativeBody)
+                            .font(.kymaiaReadingBody)
+                            .foregroundStyle(Color.kymaiaInk)
+
+                        if let callout = currentBeat.callout {
+                            let parts = callout.body.components(separatedBy: "???")
+                            let promptPart = parts.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? callout.body
+                            let answerPart = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespacesAndNewlines) : nil
+
+                            VStack(alignment: .leading, spacing: Spacing.sm) {
+                                HStack {
+                                    Label(callout.badgeText, systemImage: callout.symbolName)
+                                        .font(.kymaiaCaption.weight(.bold))
+                                        .foregroundStyle(Color.kymaiaPrimary)
+                                    Spacer()
+                                    if revealedCallouts.contains(callout.id) {
+                                        JournalBadge(text: "Gate Unlocked ✓", tone: .success)
+                                    } else if currentBeat.requiresInteractionToAdvance {
+                                        JournalBadge(text: "Predict/Check to Unlock Next Beat", tone: .warning)
+                                    }
+                                }
+
+                                Text(callout.title)
+                                    .font(.kymaiaHeadline)
+                                    .foregroundStyle(Color.kymaiaInk)
+
+                                Text(promptPart)
+                                    .font(.kymaiaReadingBody)
+                                    .foregroundStyle(Color.kymaiaInk)
+
+                                if !revealedCallouts.contains(callout.id) {
+                                    LearnerTextInput(
+                                        placeholder: "Write your physical prediction or reasoning before unlocking...",
+                                        text: $beatPredictionDraft
+                                    )
+
+                                    Button {
+                                        revealedCallouts.insert(callout.id)
+                                        let frac = Double(clampedIndex + 1) / Double(max(1, beats.count))
+                                        store.updateChapterProgress(
+                                            chapterNumber: activeChapter.number,
+                                            fraction: frac,
+                                            addPrediction: callout.kind == "predict",
+                                            addCheck: callout.kind != "predict"
+                                        )
+                                    } label: {
+                                        Label("Commit Prediction & Unlock Explanation", systemImage: "lock.open.fill")
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(Color.kymaiaPrimary)
+                                } else if let ans = answerPart {
+                                    Divider()
+                                    Text(ans)
+                                        .font(.kymaiaReadingBody)
+                                        .foregroundStyle(Color.kymaiaSuccess)
+                                }
+                            }
+                            .padding(Spacing.md)
+                            .background(
+                                RoundedRectangle(cornerRadius: CornerRadius.small, style: .continuous)
+                                    .fill(Color.kymaiaControlFill)
+                            )
+                        }
+
+                        // Previous / Next Beat Navigation Bar
+                        HStack(spacing: Spacing.sm) {
+                            Button {
+                                if clampedIndex > 0 {
+                                    activeBeatIndex = clampedIndex - 1
+                                }
+                            } label: {
+                                Label("Previous Beat", systemImage: "chevron.left")
+                            }
+                            .buttonStyle(SessionGhostButtonStyle())
+                            .disabled(clampedIndex == 0)
+
+                            Spacer()
+
+                            if clampedIndex < beats.count - 1 {
+                                Button {
+                                    activeBeatIndex = clampedIndex + 1
+                                    beatPredictionDraft = ""
+                                    let frac = Double(clampedIndex + 2) / Double(max(1, beats.count))
+                                    store.updateChapterProgress(chapterNumber: activeChapter.number, fraction: frac)
+                                } label: {
+                                    Label(
+                                        isGateLocked ? "Complete Gate Above to Unlock" : "Next Beat (\(clampedIndex + 2)/\(beats.count))",
+                                        systemImage: isGateLocked ? "lock.fill" : "arrow.right.circle.fill"
+                                    )
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .tint(isGateLocked ? Color.kymaiaMutedInk : Color.kymaiaPrimary)
+                                .disabled(isGateLocked)
+                            } else {
+                                Button {
+                                    store.updateChapterProgress(chapterNumber: activeChapter.number, fraction: 1.0, addCheck: true)
+                                } label: {
+                                    Label("Complete Chapter \(activeChapter.number) ✓", systemImage: "checkmark.seal.fill")
+                                }
+                                .buttonStyle(BrassButtonStyle())
+                            }
+                        }
+                    }
+                }
+
+                if currentBeat.kind == .interactiveLabAndFormula {
+                    PhysicsIntuitionFormulaBridgeCard(bridge: activeChapter.intuitionToFormula)
+
+                    let chapterWidgets = store.pack.widgets.filter { $0.chapter == activeChapter.number }
+                    if !chapterWidgets.isEmpty {
+                        JournalCard {
+                            VStack(alignment: .leading, spacing: Spacing.xs) {
+                                Text("Launch Linked Chapter \(activeChapter.number) Simulations")
+                                    .font(.kymaiaSubheadline.weight(.semibold))
+                                FlowLayout(spacing: Spacing.xs) {
+                                    ForEach(chapterWidgets) { widget in
+                                        Button {
+                                            store.activeWidgetId = widget.id
+                                            store.selectedRoom = .labsExplorers
+                                        } label: {
+                                            Label(widget.title, systemImage: widget.is3D ? "cube.transparent.fill" : "slider.horizontal.3")
+                                                .font(.kymaiaCaption.weight(.semibold))
+                                        }
+                                        .buttonStyle(.bordered)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if currentBeat.kind == .misconceptionDebate {
+                    PhysicsDebateCardView(
+                        scenario: PhysicsDebateCatalog.scenario(forChapter: activeChapter.number),
+                        onResolvedCorrectly: {
+                            resolvedDebateChapters.insert(activeChapter.number)
+                            store.updateChapterProgress(
+                                chapterNumber: activeChapter.number,
+                                fraction: Double(clampedIndex + 1) / Double(max(1, beats.count)),
+                                addCheck: true
+                            )
+                        }
+                    )
+                }
             } else {
                 // Native Apple Journal Reader Mode
                 // Key Terms & Linked Simulations Bar
@@ -185,6 +405,16 @@ struct MovingWorldHomeView: View {
                         }
                     }
                 }
+
+                // Brilliant-Style Visual Intuition -> Formula Bridge + Peer Misconception Debate
+                PhysicsIntuitionFormulaBridgeCard(bridge: activeChapter.intuitionToFormula)
+
+                PhysicsDebateCardView(
+                    scenario: PhysicsDebateCatalog.scenario(forChapter: activeChapter.number),
+                    onResolvedCorrectly: {
+                        resolvedDebateChapters.insert(activeChapter.number)
+                    }
+                )
 
                 // Chapter Sections
                 JournalSection(

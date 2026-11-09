@@ -456,4 +456,148 @@ final class ThemeTests: XCTestCase {
         XCTAssertTrue(repairedMath.contains("\\Delta x"))
         XCTAssertTrue(repairedMath.contains("`\\theta`"))
     }
+
+    func testBuggyRuleTrapsAcrossAll16QuantitativeTemplates() {
+        XCTAssertEqual(QuantitativePhysicsEngine.templates.count, 16)
+        for tpl in QuantitativePhysicsEngine.templates {
+            XCTAssertFalse(tpl.visualIntuitionStep.isEmpty, "Missing visualIntuitionStep for \(tpl.id)")
+            XCTAssertFalse(tpl.ahaInvariantStep.isEmpty, "Missing ahaInvariantStep for \(tpl.id)")
+            XCTAssertGreaterThanOrEqual(tpl.traps.count, 2, "Expected >= 2 buggy-rule traps for \(tpl.id)")
+
+            for trap in tpl.traps {
+                let buggyInput = "\(trap.buggyValue) \(tpl.expectedUnit)"
+                let res = QuantitativePhysicsEngine.evaluate(input: buggyInput, against: tpl)
+                XCTAssertFalse(res.isFullPass, "Buggy value \(trap.buggyValue) should not pass \(tpl.id)")
+                XCTAssertNotNil(res.matchedTrap, "Expected matchedTrap for \(trap.id) in \(tpl.id)")
+                XCTAssertEqual(res.matchedTrap?.id, trap.id)
+                XCTAssertTrue(res.feedback.contains(trap.trapName))
+            }
+        }
+    }
+
+    func testFadedStepEvaluatorNeverLeaksTargetAndManipulativeSandboxWorks() throws {
+        let pack = SeedPackLoader.shared
+        let question = try XCTUnwrap(pack.schoolQuestions.first)
+
+        // Wrong attempt must not leak the expected faded answer
+        let wrongEval = PhysicsFadedStepEvaluator.evaluateFadedStep(
+            studentInput: "something unrelated",
+            expectedFadedAnswer: "55 degrees from the normal",
+            workedHint: question.workedExample
+        )
+        XCTAssertFalse(wrongEval.isComplete)
+        XCTAssertFalse(wrongEval.feedback.lowercased().contains("55"))
+        XCTAssertFalse(wrongEval.nextNudge.lowercased().contains("55"))
+
+        // Matching key anchors completes the faded step
+        let rightEval = PhysicsFadedStepEvaluator.evaluateFadedStep(
+            studentInput: "The angle is 55 degrees measured from the normal",
+            expectedFadedAnswer: "55 degrees from the normal",
+            workedHint: question.workedExample
+        )
+        XCTAssertTrue(rightEval.isComplete)
+
+        // Verify all 3 PhysicsManipulativeKind domains are reachable and produce live summaries
+        var seenKinds = Set<PhysicsManipulativeKind>()
+        for q in pack.schoolQuestions {
+            let spec = PhysicsManipulativeEngine.spec(for: q)
+            seenKinds.insert(spec.kind)
+            let state = PhysicsManipulativeState(
+                primaryValue: spec.defaultPrimary,
+                secondaryValue: spec.defaultSecondary,
+                ironCoreInserted: true
+            )
+            let summary = PhysicsManipulativeEngine.liveSummary(spec: spec, state: state)
+            XCTAssertFalse(summary.isEmpty)
+        }
+        XCTAssertEqual(seenKinds.count, 3, "Expected all 3 physics manipulative kinds across school questions")
+
+        // Verify ElaborativeInterrogationEngine & PhysicsSpotTheFlawCatalog
+        for q in pack.schoolQuestions.prefix(10) {
+            let prompt = ElaborativeInterrogationEngine.prompt(for: q)
+            XCTAssertEqual(prompt.options.count, 3)
+            XCTAssertTrue((0..<prompt.options.count).contains(prompt.correctIndex))
+
+            let flaw = PhysicsSpotTheFlawCatalog.item(for: q)
+            XCTAssertTrue((0..<flaw.steps.count).contains(flaw.flawedStepIndex))
+        }
+    }
+
+    @MainActor
+    func testInteractiveChapterBeatsPerturbationAndAudioNarrator() {
+        let pack = SeedPackLoader.shared
+        XCTAssertEqual(pack.chapters.count, 16)
+
+        for chapter in pack.chapters {
+            let bridge = chapter.intuitionToFormula
+            XCTAssertEqual(bridge.chapterNumber, chapter.number)
+            XCTAssertGreaterThanOrEqual(bridge.termMappings.count, 3)
+            if let firstTerm = bridge.termMappings.first {
+                XCTAssertFalse(bridge.perturbationPrompt(for: firstTerm).isEmpty)
+                XCTAssertFalse(bridge.perturbationExplanation(for: firstTerm).isEmpty)
+            }
+
+            let beats = PhysicsChapterBeatEngine.beats(for: chapter)
+            XCTAssertGreaterThanOrEqual(beats.count, 5, "Expected >= 5 beats for Ch \(chapter.number)")
+            XCTAssertEqual(beats.first?.kind, .everydayHook)
+            XCTAssertTrue(beats.contains(where: { $0.kind == .interactiveLabAndFormula }))
+            XCTAssertTrue(beats.contains(where: { $0.kind == .misconceptionDebate }))
+            XCTAssertEqual(beats.last?.kind, .chapterSynthesis)
+        }
+
+        let narrator = ChapterAudioNarrator(allowsHardwareSpeech: false)
+        XCTAssertEqual(narrator.speedLabel, "1.0×")
+        narrator.cycleRate()
+        XCTAssertEqual(narrator.speedLabel, "1.25×")
+        narrator.cycleRate()
+        XCTAssertEqual(narrator.speedLabel, "1.5×")
+        narrator.cycleRate()
+        XCTAssertEqual(narrator.speedLabel, "1.0×")
+
+        if let firstCh = pack.chapters.first {
+            let firstBeat = PhysicsChapterBeatEngine.beats(for: firstCh)[0]
+            narrator.narrateBeat(firstBeat, chapterId: firstCh.id)
+            XCTAssertTrue(narrator.isSpeaking)
+            XCTAssertEqual(narrator.activeChapterId, firstCh.id)
+            narrator.stop()
+            XCTAssertFalse(narrator.isSpeaking)
+        }
+    }
+
+    @MainActor
+    func testPeerPhysicsDebatesAnd15MinuteDailyFlowComposer() throws {
+        XCTAssertEqual(PhysicsDebateCatalog.allScenarios.count, 16)
+        for chNum in 0...15 {
+            let scenario = PhysicsDebateCatalog.scenario(forChapter: chNum)
+            XCTAssertEqual(scenario.chapterNumber, chNum)
+            XCTAssertEqual(scenario.choices.count, 3)
+            let correctChoices = scenario.choices.filter(\.isCorrect)
+            XCTAssertEqual(correctChoices.count, 1, "Expected 1 correct choice in \(scenario.id)")
+
+            if let right = correctChoices.first {
+                let eval = PhysicsDebateEngine.evaluate(choiceId: right.id, in: scenario)
+                XCTAssertTrue(eval.isCorrect)
+                XCTAssertFalse(eval.feedback.isEmpty)
+            }
+        }
+
+        let pack = SeedPackLoader.shared
+        let store = AppStore.shared
+        let plan = try XCTUnwrap(
+            DailyPhysicsFlowEngine.buildPlan(
+                chapters: pack.chapters,
+                schoolQuestions: pack.schoolQuestions,
+                cards: store.fsrsCards,
+                readingProgress: [:],
+                questionProofs: [:],
+                preferredChapterNumber: 13,
+                preferredUnitNumber: 9
+            )
+        )
+        XCTAssertEqual(plan.totalMinutes, 15)
+        XCTAssertEqual(plan.stages.count, 4)
+        XCTAssertEqual(plan.targetChapter.number, 13)
+        XCTAssertEqual(plan.targetDebate.chapterNumber, 13)
+        XCTAssertFalse(plan.dueCards.isEmpty)
+    }
 }
