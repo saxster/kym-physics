@@ -15,7 +15,7 @@ Retained runs compare settings and traces. A notebook finding freezes the predic
 - Branch: `codex/discovery-investigations`; application candidate through `2177719`, local gate integration through `607c2de`, test-server keep-alive correction through `c3f89f5`.
 - Main page after the contrast correction: 4,193,346 bytes, **958 bytes below** the existing 4 MiB limit. SHA-256: `cadc88a8cb5852d4d078043e75e91649adae58a85540fea6f0b6eb590b347563`.
 - Lazy discovery chunk: `live/x_discovery-PCAPADOW.js`, 107,310 bytes, below 150 KiB. SHA-256: `7eafac3f1091529d45212961148d3af839e755ac00bb874a691eecfb9b103515`.
-- Service-worker cache: `mw-5a61f77c92a1`. Built output is local under `source/build/site`; it has not been published.
+- Service-worker cache: `mw-5a61f77c92a1`. At verification completion, the built output was local under `source/build/site`. Subsequent publication is recorded in [the release report](discovery-publication.md).
 
 ## Verification
 
@@ -53,4 +53,4 @@ Image review confirmed the visible transit dip and explicit close-up caption (cl
 
 The source review's optional refinements are recorded rather than treated as failed numerical checks: a sensor resistance table, a fuller wave-opening explanation and a definition of the static field reading through a test mass/charge. The projectile's unreachable-target hint and explicit NIST component references have already been added.
 
-No test with Kym, measured learning outcome, physical apparatus trial, Safari/Firefox campaign or native iOS verification is claimed. The Foucault historical account retains its disclosed historian-source limitation. Future edits must respect the main page's small remaining byte budget. Existing Node module-type warnings are not suppressed. No hosted CI, source push, remote merge or publication was used.
+No test with Kym, measured learning outcome, physical apparatus trial, Safari/Firefox campaign or native iOS verification is claimed. The Foucault historical account retains its disclosed historian-source limitation. Future edits must respect the main page's small remaining byte budget. Existing Node module-type warnings are not suppressed. No hosted CI, source push, remote merge or publication was used during implementation verification; the later authorised release has its own report above.
