@@ -81,7 +81,7 @@ export function makeLab(stage, api, { id, title, question, explanation, limits, 
   notes.hidden = !limits;
   stage.append(notes);
   const persist = () => {
-    saved = { id, title, prediction: prediction.value, explanation: answer.value, t: Date.now() };
+    saved = { ...journal?.get(key, {}), id, title, prediction: prediction.value, explanation: answer.value, t: Date.now() };
     journal?.set(key, saved);
     status.textContent = journal?.available ? 'Saved in your notebook on this device.' : 'Saved for this visit. Export your notebook to keep a copy.';
     window.App?.emit('lab:journal', saved);
@@ -109,6 +109,7 @@ export function makeLab(stage, api, { id, title, question, explanation, limits, 
   };
   stage.addEventListener('click', refitPreset);
   api.onCleanup(() => stage.removeEventListener('click', refitPreset));
+  window.App?.emit('lesson:mounted', { id, stage, api });
   return { kit, canvas, say, redraw(fn) { diagram = fn; refresh(); }, refresh,
     teach(copy) {
       if (copy.title !== undefined) {

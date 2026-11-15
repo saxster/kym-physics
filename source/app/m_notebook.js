@@ -2,6 +2,7 @@
 // that gathers highlights, predictions, check answers and experiment journals in one place.
 import App from './core.js';
 import { normaliseRecord, markdown as recordMarkdown, sourceLabel } from '../live/investigation_records.mjs';
+import { findings as normaliseFindings, findingMarkdown, plotBounds } from '../live/discovery_records.mjs';
 
 const { el, store } = App;
 const HL_KEY = 'hl';
@@ -278,12 +279,13 @@ function gather() {
     const saved = store.get('lab:' + lesson.id, null);
     const raw = lesson.observations ? store.get('investigation:' + lesson.id, null) : null;
     const record = raw ? normaliseRecord(raw) : null;
-    if ((!saved || (!saved.prediction && !saved.explanation)) && !record) continue;
+    const findings = normaliseFindings(saved?.findings);
+    if ((!saved || (!saved.prediction && !saved.explanation && !saved.trail?.correction)) && !record && !findings.length) continue;
     const root = document.getElementById(lesson.target);
     if (!root) continue;
     add(placeOf(root), { type: 'lab', target: lesson.target, lesson: lesson.id, title: lesson.title,
       pred: saved?.prediction, res: saved?.explanation, t: saved?.t || raw?.t,
-      record, spec: lesson.observations });
+      record, spec: lesson.observations, findings, trail: saved?.trail });
   }
   hls.forEach(h => {
     const root = document.getElementById(h.c);
@@ -342,7 +344,8 @@ function item(it) {
     el('p', { class: 'nb-kind' }, 'Live experiment', where), el('p', { class: 'nb-q' }, it.title),
     it.pred ? el('p', { class: 'nb-a' }, 'I predicted: ' + it.pred) : null,
     it.res ? el('p', { class: 'nb-a' }, 'My explanation: ' + it.res) : null,
-    it.record ? recordView(it.record, it.spec) : null, go);
+    it.trail?.correction ? el('p', { class: 'nb-a' }, 'My statement repair: ' + it.trail.correction) : null,
+    it.record ? recordView(it.record, it.spec) : null, (it.findings||[]).map(findingView), go);
   if (it.type === 'hl') {
     return el('article', { class: 'nb-item hl-item' }, el('p', { class: 'nb-kind' }, 'Highlight', where),
       el('blockquote', {}, it.quote.trim()), it.note ? el('p', { class: 'nb-note' }, it.note) : null, go);
@@ -377,6 +380,25 @@ function recordView(record, spec) {
   return wrap;
 }
 
+function findingView(f) {
+  const wrap = el('details', { class: 'discovery-finding' }, el('summary', {}, `${f.title} · model case ${f.seed}`));
+  wrap.append(el('p', {}, `I predicted: ${f.prediction || '(in my head)'}`), el('p', {}, `My claim: ${f.claim || '(not recorded)'}`),
+    el('p', {}, `Settings: ${f.settings.map(s=>`${s.label}: ${s.value} ${s.unit||''}`).join('; ')}`), el('p', {}, f.summary || ''),
+    el('ul', {}, f.readings.map(r=>el('li', {}, `${r.label}: ${r.value} ${r.unit||''}`))));
+  for (const plot of f.plots) {
+    if (!plot.points.length) continue;
+    const {xmin:x0,xmax:x1,ymin:y0,ymax:y1}=plotBounds(plot);
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 520 180');svg.setAttribute('role','img');svg.setAttribute('aria-label',`${plot.label}: ${plot.yLabel} against ${plot.xLabel}`);
+    const path=document.createElementNS(svg.namespaceURI,'path');
+    path.setAttribute('d',plot.points.map(([x,y],i)=>`${i?'L':'M'}${20+(x-x0)/(x1-x0)*480},${160-(y-y0)/(y1-y0)*140}`).join(' '));
+    path.setAttribute('fill','none');path.setAttribute('stroke','currentColor');path.setAttribute('stroke-width','2');svg.append(path);
+    wrap.append(el('p',{},`${plot.label} · ${plot.yLabel} against ${plot.xLabel}`),svg);
+  }
+  wrap.append(el('p',{},`Model limits: ${f.limits||''}`));
+  return wrap;
+}
+
 function markdown() {
   const { list, stats } = gather();
   const L = [`# My notebook: ${BOOK()}`, '', `Saved ${fmtDate(Date.now())}.`, '',
@@ -392,7 +414,9 @@ function markdown() {
       else if (it.type === 'check') { L.push(`**Check yourself${w}.** ${it.q}`, '', `My answer: ${it.a || '(in my head)'}${it.r ? ` · ${RLABEL[it.r]}` : ''}`, ''); }
       else if (it.type === 'lab') { L.push(`**Live experiment${w}: ${it.title}**`, '');
         if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`My explanation: ${it.res}`, '');
-        if (it.record) L.push(recordMarkdown(it.record, it.spec), ''); }
+        if (it.record) L.push(recordMarkdown(it.record, it.spec), '');
+        if (it.trail?.correction) L.push(`Statement trail ${it.trail.seed}: ${it.trail.correction}`, '');
+        for (const f of it.findings||[]) L.push(findingMarkdown(f), ''); }
       else { L.push(`**Try it at home${w}: ${it.title}**${it.done ? ` (done ${fmtDate(it.date)})` : ''}`, '');
         if (it.pred) L.push(`I predicted: ${it.pred}`, ''); if (it.res) L.push(`What happened: ${it.res}`, ''); }
     });
