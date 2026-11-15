@@ -142,3 +142,9 @@ The integrating task corrected the source while this report was being written. A
 - **B6 closed in source:** negative field swaps pole labels and reverses the B arrow; zero field displays “off” and “B = 0.” Root still owns rendered legibility/orientation checking.
 
 Current source-review disposition: **0 remaining BLOCKER, 1 FIX awaiting root’s targeted rendering/bounds evidence (B4), 3 optional CONSIDER**. This is not a claim that the final browser or repository gate passed. The original findings remain above so the counterexamples and reasons for the corrections remain reviewable.
+
+### Rendered closure — integration owner
+
+The integrating owner subsequently verified B4 through the real reader: the transit dip is visibly resolved at phone width, and the plot explicitly discloses its close-up vertical scale. The plot-bounds regression also passes. Default/changed reader images confirm B6's reversed pole labels and magnetic arrow. This closes the remaining required rendered finding; the three optional CONSIDER items remain recorded above.
+
+The [final verification report](discovery-verification.md) and its receipt hashes record the full local reader gate, focused notebook/audio/offline journey, final build checks and 345-case activity matrix. The matrix passed with no request, page or console errors. This addendum records integration evidence; it does not expand the independent source review's original claims.

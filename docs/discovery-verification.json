@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-15T14:17:01.048816+00:00",
+  "applicationCommit": "2177719",
+  "harnessCommit": "c3f89f5",
+  "fullReaderGateMatchingCommit": "607c2de",
+  "playwrightVersion": "1.65.2",
+  "build": {
+    "indexSha256": "cadc88a8cb5852d4d078043e75e91649adae58a85540fea6f0b6eb590b347563",
+    "indexBytes": 4193346,
+    "indexLimitBytes": 4194304,
+    "discoveryChunk": "live/x_discovery-PCAPADOW.js",
+    "discoveryChunkSha256": "7eafac3f1091529d45212961148d3af839e755ac00bb874a691eecfb9b103515",
+    "discoveryChunkBytes": 107310,
+    "chunkLimitBytes": 153600,
+    "cache": "mw-5a61f77c92a1"
+  },
+  "sourceSha256": {
+    "source/app/m_discovery.js": "69ef0c3ca64e1d3ffa0c9304e5e7b9c5051ff150574a6e5dea776a22446ca7d0",
+    "source/app/x_discovery.js": "fd0bc47a88327da295b7656f988fdf780ea6410df994eadd26d6fb8cc0a8ddcb",
+    "source/app/r_discovery.css": "2839b13d0654904b2cc72a82d4efc9bdf2702295938daac45a371f6142ae3414",
+    "source/app/m_notebook.js": "12ba17ab6f2b5affa27a9bc9b146f40deb193af34a9a7fe7130fbbf0cb1a2607",
+    "source/live/lab_kit.js": "54180c6e553cfe3c315457fe82d45adab37801a723509d15d2978540d10d4345",
+    "source/live/discovery_mechanics.mjs": "c5e2feba9a17ce76f39a447f9ddab150bdea681d69d6e94e432c6c89f2f5ad64",
+    "source/live/discovery_waves.mjs": "41960049ed42e96b2e72d9c6a114dd1149fc271c2ebb184686da20f382242cbd",
+    "source/live/discovery_fields.mjs": "3970d14c6a68ef0a4ff3133f810b900b3690678530b87df243ab9b6af567bd38",
+    "source/live/discovery_records.mjs": "a33276e8ee22eb209d256f27011a1cf1d4ae7bbf4301a6d9ba4d4f9c8a64f9c4",
+    "source/tests/test_discovery_browser.py": "b51b76968bc417d7dc1ba2e7e9bad0706f90c524e01e5195442bd3f94619c110",
+    "source/check-reader.sh": "67e0a215b0dd1c06a70e7d3f04220ab11ecfb22dfd9fafa49d0125b296366aa3"
+  },
+  "readerGate": {
+    "command": "./source/check-reader.sh",
+    "exitCode": 0,
+    "indexSha256": "ff3459a0efc56bdf41930b76e1e9861050fe24f3b57d069fb4f194f4db24f0bb",
+    "logSha256": "301c1b2855bf306cdfb753d10ad261429ce57d918e856f6aefec7cb2cb6753f3",
+    "lessonCases": 756,
+    "lessonErrors": [],
+    "liveFigures": 102,
+    "explorers": 3,
+    "postGateApplicationChange": "Selected statement-trail foreground only; four final build checks and all 15 trail width/theme cases passed. Unaffected checks reused; no full reader gate repetition."
+  },
+  "discoveryJourney": {
+    "cases": 1,
+    "checks": [
+      "comparison, immutable finding, original-note preservation, solved challenge, repeatable case, paper sheet, notebook, Markdown and JSON backup/restore, draft reload",
+      "explicit audio only, concealed frequency and closed audio context",
+      "offline lazy activity and disclosed transit close-up"
+    ],
+    "errors": [],
+    "indexSha256": "ff3459a0efc56bdf41930b76e1e9861050fe24f3b57d069fb4f194f4db24f0bb"
+  },
+  "contrastRegression": {
+    "redExitCode": 1,
+    "redRatio": 1.1926655790439928,
+    "repairCases": 15,
+    "repairExitCode": 0,
+    "minimumRatio": 5.682297287405469,
+    "finalMatrixMinimumRatio": 5.682297287405469
+  },
+  "initialMatrix": {
+    "interactionCasesPassed": 345,
+    "exitCode": 1,
+    "errors": [
+      "console: Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "indexSha256": "ff3459a0efc56bdf41930b76e1e9861050fe24f3b57d069fb4f194f4db24f0bb"
+  },
+  "instrumentedStartupFailure": {
+    "activityCasesRun": 0,
+    "exitCode": 1,
+    "errors": [
+      {
+        "message": "Failed to load resource: net::ERR_CONNECTION_RESET",
+        "location": {
+          "url": "http://127.0.0.1:60186/assets/fonts/1bf5df4d800c1a75.woff2",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        },
+        "case": {
+          "id": "directory",
+          "width": 390,
+          "theme": "light"
+        },
+        "viewport": {
+          "width": 390,
+          "height": 950
+        },
+        "page": "http://127.0.0.1:60186/#investigations"
+      }
+    ],
+    "requestFailures": [
+      {
+        "url": "http://127.0.0.1:60186/assets/fonts/1bf5df4d800c1a75.woff2",
+        "method": "GET",
+        "failure": "net::ERR_CONNECTION_RESET",
+        "case": {
+          "id": "directory",
+          "width": 390,
+          "theme": "light"
+        },
+        "viewport": {
+          "width": 390,
+          "height": 950
+        },
+        "page": "http://127.0.0.1:60186/#investigations"
+      }
+    ]
+  },
+  "transportDiagnosis": {
+    "trace": "source/build/discovery-network/chromium-netlog.json",
+    "finding": "OS error 54 during TCP connect before any font HTTP response; recurring on a different font in startup-only probe 14. Underlying OS reset mechanism is not forensically claimed.",
+    "protocolComparison": [
+      {
+        "protocol": "HTTP/1.0",
+        "failures": [],
+        "console": [],
+        "fonts": {
+          "loaded": 12,
+          "unloaded": 1
+        },
+        "workerReady": true,
+        "seconds": 2.702,
+        "server": {
+          "active": 0,
+          "peak": 5,
+          "requests": 125,
+          "accepts": 125
+        }
+      },
+      {
+        "protocol": "HTTP/1.1",
+        "failures": [],
+        "console": [],
+        "fonts": {
+          "loaded": 12,
+          "unloaded": 1
+        },
+        "workerReady": true,
+        "seconds": 1.931,
+        "server": {
+          "active": 0,
+          "peak": 6,
+          "requests": 125,
+          "accepts": 6
+        }
+      }
+    ],
+    "keepAliveStartupCases": 15,
+    "keepAliveStartupErrors": 0,
+    "timeoutsRetriesOrExclusionsAdded": false,
+    "queueChanged": false
+  },
+  "finalMatrix": {
+    "command": "PLAYWRIGHT_NODEJS_PATH=<local-node> .venv/bin/python source/tests/test_discovery_browser.py --matrix --out build/discovery-matrix-final",
+    "exitCode": 0,
+    "cases": 345,
+    "activities": 23,
+    "widths": [
+      390,
+      820,
+      1024,
+      1180,
+      1440
+    ],
+    "themes": [
+      "dark",
+      "light",
+      "sepia"
+    ],
+    "screenshots": 690,
+    "errors": [],
+    "requestFailures": [],
+    "indexSha256": "cadc88a8cb5852d4d078043e75e91649adae58a85540fea6f0b6eb590b347563"
+  },
+  "receiptSha256": {
+    "source/build/reader-lessons/receipt.json": "dbbbeb10675df1aa1b4c00e1679bf434eccfb13f16f3abb9d78dea43bf4886c4",
+    "source/build/reader-discovery/receipt.json": "c74cbb6e34da285190e1ebd88b151d67692cd67d4069e4175df7d261e422ef19",
+    "source/build/discovery-matrix/receipt.json": "2a968b5b43c5fe9cb09b463d6d14a5febfa795e528abb36f9269d1a8f451dabe",
+    "source/build/discovery-matrix-instrumented/receipt.json": "a10e58999aa716fe17cb1089f8bc8c5f42e59005c0f2b1817c1e58919dd369c9",
+    "source/build/discovery-trail-contrast-red/receipt.json": "6783e6106089a005ec68152f76f3773304412377ee1494b56d64584d9281083d",
+    "source/build/discovery-trail-contrast-fixed/receipt.json": "b7d1e51c2e6fe2032ddb5d359854d9bdea9d93e14f6195e59c3326cefb33da8a",
+    "source/build/discovery-matrix-final/receipt.json": "5f23cce423a52d9057f4c3fdc25db894bc6ffe4fb2287b8bb918e92602a60311"
+  },
+  "visualReview": [
+    "All 22 investigation default/changed drawings and plots: 390 px sepia and 1440 px dark",
+    "Corrected statement trail: phone sepia and desktop dark",
+    "Representative groups at 820 px light, 1024 px sepia and 1180 px dark",
+    "Automated overflow/control/challenge checks and screenshots in all 15 width/theme combinations; not all 690 images individually read"
+  ],
+  "limits": [
+    "Chromium headless on this host; no Safari/Firefox campaign",
+    "No learner study or physical apparatus trial",
+    "Main HTML has 958 bytes of remaining budget",
+    "Source and generated site kept local; no hosted CI or publication"
+  ]
+}
