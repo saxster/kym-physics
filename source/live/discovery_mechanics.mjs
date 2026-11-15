@@ -32,7 +32,7 @@ const train={
  explanation:'Position changes by adding signed steps: forward travel adds to it and reverse travel subtracts. That is why the signed area under the velocity graph gives displacement. The slope of the velocity graph tells how quickly velocity changes: acceleration. A downward slope can still describe a train moving forward.',
  limits:'An invented 12-second train journey on a straight level track, not a timetable. Each stage has constant acceleration; the changes at its joins are idealised. Negative velocity means reverse travel.',
  sources:['https://openstax.org/books/physics/pages/3-2-representing-acceleration-with-equations-and-graphs'],
- controls:[ctl('v1','Velocity at 4 s',-12,20,1,'m/s'),ctl('v2','Velocity at 8 s',-12,20,1,'m/s'),ctl('v3','Velocity at 12 s',-12,20,1,'m/s'),ctl('time','Shared clock',0,12,.1,'s')],
+ controls:[ctl('time','Shared clock',0,12,.1,'s'),ctl('v1','Velocity at 4 s',-12,20,1,'m/s'),ctl('v2','Velocity at 8 s',-12,20,1,'m/s'),ctl('v3','Velocity at 12 s',-12,20,1,'m/s')],
  initial:seed=>({v1:8+2*pick(seed,4),v2:12+pick(seed+1,5),v3:0,time:0}),
  compute(s){const p=trainAt(s,s.time),end=trainAt(s,12);return {
   readings:[read('Position now',p.x,'m'),read('Velocity now',p.v,'m/s'),read('Acceleration now',p.a,'m/s²'),read('Journey displacement',end.x,'m')],

@@ -40,7 +40,8 @@ function mount(host,spec,api){
  const instructions=el('section',{}),prediction=el('textarea',{'aria-label':'My prediction for this investigation',rows:2}),claim=el('textarea',{'aria-label':'My claim and evidence',rows:2});
  prediction.value=typeof prior.prediction==='string'?prior.prediction:'';claim.value=typeof prior.claim==='string'?prior.claim:'';
  const picture=el('div',{class:'discovery-picture',tabindex:0,role:'region','aria-label':'Calculated picture; choose a larger drawing to inspect labels'}),canvas=el('canvas',{width:640,height:300,role:'img','aria-label':spec.title});picture.append(canvas);
- const readings=el('ul',{class:'discovery-readings'}),summary=el('p',{}),plots=el('div',{}),runList=el('p',{class:'discovery-model-note'});
+ const readings=el('ul',{class:'discovery-readings'}),summary=el('p',{}),plots=el('div',{class:'discovery-plots'}),runList=el('p',{class:'discovery-model-note'});
+ const inspect=button('Inspect larger drawings',()=>{picture.classList.toggle('is-large');plots.classList.toggle('is-large');picture.focus();});
  const target=el('p',{}),guess=el('input',{type:'text',inputmode:'decimal','aria-label':'My measurement answer'}),answer=el('p',{class:'discovery-feedback'});
  const challenge=el('section',{class:'discovery-challenge'},target,field('My measurement answer',guess));
  const check=button('Check my measurement',()=>{
@@ -73,8 +74,7 @@ function mount(host,spec,api){
   const html=`<!doctype html><html lang="en"><meta charset="utf-8"><title>${safe(spec.title)}</title><style>body{font:18px/1.6 Georgia,serif;max-width:48rem;margin:2rem auto;padding:1rem}img{max-width:100%}table{border-collapse:collapse;width:100%}td,th{border:1px solid #777;height:3rem;padding:.5rem}</style><h1>${safe(spec.title)}</h1><p>The Moving World · model case ${seed}</p><p>${safe(q)}</p><ul>${rows}</ul><img alt="Calculated apparatus" src="${canvas.toDataURL()}"><h2>My prediction</h2><p>${safe(prediction.value)||'________________________________'}</p><table><tr><th>What I changed, with units</th><th>What I measured, with units</th></tr>${'<tr><td></td><td></td></tr>'.repeat(4)}</table><h2>My claim and evidence</h2><p>________________________________</p><p>Model limits: ${safe(spec.limits)}</p><p>This sheet is a virtual investigation unless the book gives a separate safe household procedure. Do not use mains electricity, flames or hot liquids.</p><p>${spec.sources.map(s=>`<a href="${safe(s)}">Physics source</a>`).join(' · ')}</p></html>`;
   download(`${spec.id}-case-${seed}.html`,html,'text/html;charset=utf-8');
  });
- actions.append(keep,button('Clear the comparison',()=>{runs=[];persist();render();}),capture,sheet,
-  button('Inspect a larger drawing',()=>{picture.classList.toggle('is-large');picture.focus();}));
+ actions.append(keep,button('Clear the comparison',()=>{runs=[];persist();render();}),capture,sheet);
  if(spec.sound)actions.append(button('Hear this frequency',async()=>{
   stopSound();const tone=spec.sound(state,result),f=typeof tone==='number'?tone:tone.frequency;
   if(!Number.isFinite(f)||f<20||f>4000){status.textContent='This frequency is outside this short audible demonstration. Use the readings and graph.';return;}
@@ -112,7 +112,7 @@ function mount(host,spec,api){
   for(const p of (result.plots||[]).filter(p=>!concealed||!(q.hidePlots||[]).includes(p.label))){
    const old=runs.flatMap(r=>(r.plots||[]).filter(a=>a.label===p.label&&a.xLabel===p.xLabel&&a.yLabel===p.yLabel));
    const cv=el('canvas',{width:640,height:220,role:'img','aria-label':`${p.label}: ${p.yLabel} against ${p.xLabel}`});graph(cv,p,old,result.cursor);
-   plots.append(el('figure',{class:'discovery-plot'},el('figcaption',{},`${p.label} · ${p.yLabel} against ${p.xLabel}. Solid: this run. Dashed: retained runs.${p.zero===false?' Close-up vertical scale; it does not start at zero.':''}${Number.isFinite(result.cursor)?' Vertical line: the selected instant.':''}`),cv));
+   plots.append(el('figure',{class:'discovery-plot',tabindex:0,role:'region','aria-label':p.label},el('figcaption',{},`${p.label} · ${p.yLabel} against ${p.xLabel}. Solid: this run. Dashed: retained runs.${p.zero===false?' Close-up vertical scale; it does not start at zero.':''}${Number.isFinite(result.cursor)?' Vertical line: the selected instant.':''}`),cv));
   }
   runList.textContent=runs.length?runs.map((r,i)=>`Run ${i+1}, case ${r.seed}: ${spec.controls.filter(c=>!concealed||!(q.hideControls||[]).includes(c.key)).map(c=>`${c.label} ${fmt(r.state[c.key])} ${c.unit||''}`).join('; ')}`).join(' | '):'No earlier run kept yet. Change one setting at a time.';
   challenge.hidden=mode!=='Challenge';target.textContent=q.prompt;answer.hidden=!revealed;answer.textContent=`${fmt(q.answer)} ${q.unit||''}. ${q.explanation}`;
@@ -133,7 +133,7 @@ function mount(host,spec,api){
  }
  on(caseInput,'keydown',event=>{if(event.key==='Enter')newCase(caseSeed(caseInput.value));});
  const observer=new MutationObserver(()=>render());observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class']});
- host.append(title,intro,modeBar,instructions,field('My prediction, if I want to write it',prediction),controls,more,picture,summary,readings,plots,runList,challenge,actions,
+ host.append(title,intro,modeBar,instructions,field('My prediction, if I want to write it',prediction),controls,more,inspect,picture,summary,readings,plots,runList,challenge,actions,
   field('My claim and evidence',claim),caseTools,el('p',{class:'discovery-model-note'},'These readings come from a calculated model. Nothing is recorded from your microphone or sensors. Your notes stay on this device.'),status,sources,links);
  render();
  const cleanup=()=>{events.abort();observer.disconnect();stopSound();};api?.onCleanup(cleanup);
