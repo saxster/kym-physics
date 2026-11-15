@@ -5,6 +5,8 @@ source_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(dirname -- "$source_root")"
 reader_python="$project_root/.venv/bin/python"
 if [[ ! -x "$reader_python" ]]; then reader_python=python3; fi
+# Source distributions of Playwright use the existing Node executable.
+export PLAYWRIGHT_NODEJS_PATH="${PLAYWRIGHT_NODEJS_PATH:-$(command -v node)}"
 cd "$source_root"
 node --test tests/test_*.mjs
 "$reader_python" -m unittest discover -s tests -p 'test_lesson_catalog.py'
@@ -14,6 +16,7 @@ node --test tests/test_*.mjs
 "$reader_python" build.py --site build/site
 "$reader_python" tests/test_reader_build.py
 "$reader_python" tests/test_reader_journey.py
+"$reader_python" tests/test_discovery_browser.py --only discovery-train --widths 390 --journey --out build/reader-discovery
 "$reader_python" tests/test_exam_browser.py
 "$reader_python" tests/test_exam_rollout.py
 "$reader_python" tests/test_readaloud_optional.py

@@ -34,7 +34,8 @@ url = f'http://127.0.0.1:{server.server_address[1]}/'
 receipt = {'indexSha256': hashlib.sha256((site/'index.html').read_bytes()).hexdigest(),
            'cases': [], 'checks': [], 'errors': []}
 MONITOR = """window.discoveryResources={audio:0,mic:0};
-for(const key of ['AudioContext','webkitAudioContext'])if(window[key])window[key]=new Proxy(window[key],{construct(t,a){discoveryResources.audio++;return Reflect.construct(t,a);}});
+window.discoveryAudio=[];
+for(const key of ['AudioContext','webkitAudioContext'])if(window[key])window[key]=new Proxy(window[key],{construct(t,a){discoveryResources.audio++;const c=Reflect.construct(t,a);discoveryAudio.push(c);return c;}});
 if(navigator.mediaDevices)navigator.mediaDevices.getUserMedia=()=>{discoveryResources.mic++;throw Error('Unexpected microphone');};"""
 
 def settled(page):
@@ -86,17 +87,17 @@ try:
                     assert page.evaluate('discoveryResources')=={'audio':0,'mic':0},'Opening requested sound/device access'
                     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),'Page overflows'
                     prefix=f'{ident}-{width}-{theme}'
+                    activity.screenshot(path=str(out/f'{prefix}-default.png'),animations='disabled')
                     if ident=='statement-trail':
                         expect(activity.locator('.discovery-trail button')).to_have_count(9)
                         for index in [0,1,4,7,8]:activity.locator('.discovery-trail button').nth(index).click()
-                        expect(activity.get_by_role('status')).to_contain_text('reached 9')
+                        expect(activity.locator('p[role=status]')).to_contain_text('reached 9')
                         activity.get_by_role('button',name='Use a plain list',exact=True).click()
                         activity.get_by_label('My correction to a rejected statement',exact=True).fill('Interaction forces act on different objects.')
                         activity.screenshot(path=str(out/f'{prefix}-changed.png'),animations='disabled')
                     else:
                         expect(activity.get_by_role('button',name='Explore',exact=True)).to_have_attribute('aria-pressed','true')
                         assert picture_has_marks(activity.locator('.discovery-picture canvas')),'Blank scene'
-                        activity.screenshot(path=str(out/f'{prefix}-default.png'),animations='disabled')
                         control=activity.locator('.discovery-controls input:visible,.discovery-controls select:visible').first
                         old=control.input_value()
                         if control.evaluate('e=>e.tagName')=='SELECT':
@@ -114,7 +115,7 @@ try:
                         expect(activity.get_by_role('button',name='Save this finding',exact=True)).to_be_disabled()
                         activity.get_by_label('My measurement answer',exact=True).fill('not a number')
                         activity.get_by_role('button',name='Check my measurement',exact=True).click()
-                        expect(activity.get_by_role('status')).to_contain_text('finite number')
+                        expect(activity.locator('p[role=status]')).to_contain_text('finite number')
                         if ident=='discovery-train':
                             assert activity.locator('.discovery-plot figcaption').filter(has_text='Position ·').count()==0,'Integrated answer plot leaked'
                         activity.get_by_role('button',name='Show the reasoning',exact=True).click()
@@ -129,29 +130,76 @@ try:
             page=context.new_page();page.add_init_script(MONITOR)
             page.on('pageerror',lambda e:receipt['errors'].append(str(e)))
             directory(page);activity=open_activity(page,'discovery-train')
+            expect(activity.get_by_label('Shared clock',exact=True)).to_be_visible()
+            activity.get_by_role('button',name='Inspect larger drawings',exact=True).click()
+            assert activity.locator('.discovery-plot canvas').first.evaluate('c=>c.clientWidth')==640
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+            activity.get_by_role('button',name='Inspect larger drawings',exact=True).click()
+            figure=activity.locator('xpath=ancestor::figure')
+            figure.locator('.lab-prediction summary').click()
+            figure.get_by_label('My prediction',exact=True).fill('Keep this original lab note.')
             activity.get_by_label('My prediction for this investigation',exact=True).fill('More braking reduces displacement.')
             activity.get_by_label('My claim and evidence',exact=True).fill('The two velocity areas differ.')
             activity.get_by_role('button',name='Keep this run',exact=True).click()
             activity.get_by_label('Velocity at 4 s',exact=True).focus();page.keyboard.press('End')
             activity.get_by_role('button',name='Save this finding',exact=True).click()
-            expect(activity.get_by_role('status')).to_contain_text('notebook')
+            expect(activity.locator('p[role=status]')).to_contain_text('notebook')
             with page.expect_download() as download:
                 activity.get_by_role('button',name='Save a paper experiment sheet',exact=True).click()
             sheet=Path(download.value.path()).read_text()
             assert 'My prediction' in sheet and 'More braking' in sheet and 'Model limits' in sheet
             saved=page.evaluate('App.store.get("lab:m-graph")')
+            assert saved['prediction']=='Keep this original lab note.'
             assert saved['findings'][0]['claim']=='The two velocity areas differ.'
             assert saved['findings'][0]['plots'][0]['points']
+            figure.locator('.lab-explanation summary').click()
+            figure.get_by_label('My explanation',exact=True).fill('The original explanation remains too.')
+            assert page.evaluate('App.store.get("lab:m-graph").findings.length')==1
+            activity.get_by_role('button',name='Challenge',exact=True).click()
+            activity.get_by_label('My measurement answer',exact=True).fill('136')
+            activity.get_by_role('button',name='Check my measurement',exact=True).click()
+            expect(activity.locator('p[role=status]')).to_contain_text('agrees')
+            activity.get_by_role('button',name='Explore',exact=True).click()
+            activity.get_by_text('Repeat this case or try another',exact=True).click()
+            activity.get_by_label('Case number',exact=True).fill('42')
+            activity.get_by_role('button',name='Open this case',exact=True).click()
+            expect(activity.get_by_label('Velocity at 4 s',exact=True)).to_have_value('12')
+            expect(activity.locator('.discovery-readings')).to_contain_text('Journey displacement: 108 m')
+            assert page.evaluate('App.store.get("lab:m-graph").findings[0].state.v1')==20
             close_activity(page,activity)
             page.get_by_role('button',name='My notebook: highlights, notes and answers',exact=True).click()
             expect(page.locator('dialog.notebook')).to_contain_text('The two velocity areas differ.')
             with page.expect_download() as download:page.get_by_role('button',name='Save my notebook',exact=True).click()
             markdown=Path(download.value.path()).read_text();assert 'More braking' in markdown and 'Settings:' in markdown
+            assert 'Keep this original lab note.' in markdown and 'The original explanation remains too.' in markdown
+            page.locator('dialog.notebook .nb-more summary').click()
+            with page.expect_download() as backup:page.get_by_role('button',name='Save a backup',exact=True).click()
+            backup_path=out/'notebook-backup.json';backup.value.save_as(str(backup_path))
+            restored_context=browser.new_context(viewport={'width':390,'height':844},reduced_motion='reduce')
+            restored=restored_context.new_page();restored.goto(url,wait_until='networkidle')
+            restored.get_by_role('button',name='My notebook: highlights, notes and answers',exact=True).click()
+            restored.locator('dialog.notebook .nb-more summary').click()
+            with restored.expect_navigation(wait_until='networkidle'):
+                restored.locator('dialog.notebook input[type=file]').set_input_files(str(backup_path))
+            directory(restored);restored_activity=open_activity(restored,'discovery-train')
+            expect(restored_activity.get_by_label('My claim and evidence',exact=True)).to_have_value('The two velocity areas differ.')
+            expect(restored_activity.get_by_label('Velocity at 4 s',exact=True)).to_have_value('12')
+            assert restored.evaluate('App.store.get("lab:m-graph").prediction')=='Keep this original lab note.'
+            restored_context.close()
             page.keyboard.press('Escape');page.reload(wait_until='networkidle')
             directory(page);activity=open_activity(page,'discovery-train')
             expect(activity.get_by_label('My claim and evidence',exact=True)).to_have_value('The two velocity areas differ.')
-            receipt['checks'].append('comparison, finding, paper sheet, notebook, Markdown export, draft reload')
+            receipt['checks'].append('comparison, immutable finding, original-note preservation, solved challenge, repeatable case, paper sheet, notebook, Markdown and JSON backup/restore, draft reload')
             close_activity(page,activity)
+            activity=open_activity(page,'doppler-train')
+            activity.get_by_role('button',name='Challenge',exact=True).click()
+            activity.get_by_role('button',name='Hear this frequency',exact=True).click()
+            expect(activity.locator('p[role=status]')).to_contain_text('short tone')
+            assert 'Hz' not in activity.locator('p[role=status]').inner_text(),'Sound feedback exposed the concealed number'
+            assert page.evaluate('discoveryResources')=={'audio':1,'mic':0}
+            close_activity(page,activity)
+            page.wait_for_function('discoveryAudio.every(c=>c.state==="closed")')
+            receipt['checks'].append('explicit audio only, concealed frequency and closed audio context')
             page.evaluate('navigator.serviceWorker.ready.then(()=>true)')
             page.wait_for_function('navigator.serviceWorker.controller')
             context.set_offline(True);page.reload(wait_until='networkidle')
