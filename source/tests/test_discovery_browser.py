@@ -27,6 +27,8 @@ out.mkdir(parents=True, exist_ok=True)
 site = ROOT / 'build/site'
 
 class Quiet(http.server.SimpleHTTPRequestHandler):
+    # CSS fonts and offline precaching share persistent connections.
+    protocol_version = 'HTTP/1.1'
     def log_message(self, *_): pass
 
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(site)))
