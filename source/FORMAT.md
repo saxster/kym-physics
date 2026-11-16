@@ -53,6 +53,9 @@ Markdown, plus these blocks. Every block except `:::fig`, `:::live`, `:::scene` 
 | `:::story id` | A card linking to the story `src/stories/<id>.md`. |
 | `:::case Title` puzzle `???` solution `:::` | The chapter-end mystery: setup, clues, a direct question; solution hidden until revealed. |
 | `:::next` … `:::` | Last block of the chapter: what this chapter cannot explain yet. |
+| `:::comic_intro Title` … `:::` | Optional 4-panel *ligne-claire* Book Introduction strip (`---` separates panels; `>` adds a dialogue balloon). |
+| `:::comic_opener Title` … `:::` | Optional 2-panel asymmetric *ligne-claire* Chapter Opener diptych (`---` separates panels). |
+| `:::comic_closer Title` … `:::` | Optional 3-panel *ligne-claire* Chapter Resolution & Horizon strip (`---` separates panels). |
 | `:::work` … `:::` | Worked arithmetic, line by line. |
 | `:::eq` … `:::` | A single centred equation. |
 | `:::raw` … `:::` | HTML passed through unchanged (rare). |

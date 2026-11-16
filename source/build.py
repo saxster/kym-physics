@@ -498,6 +498,29 @@ class Builder:
             return f'<div class="work">{md(inner)}</div>'
         if kind == 'eq':
             return f'<p class="eq">{md_inline(inner)}</p>'
+        if kind in ('comic_intro', 'comic_opener', 'comic_closer'):
+            role = {'comic_intro': 'bookPrologue', 'comic_opener': 'chapterOpener', 'comic_closer': 'chapterCloser'}[kind]
+            role_lbl = {'comic_intro': 'Book Introduction', 'comic_opener': 'Opening Scene', 'comic_closer': 'Chapter Resolution'}[kind]
+            title_html = md_inline(arg) if arg else role_lbl
+            raw_panels = [p.strip() for p in re.split(r'\n---+\n', inner.strip()) if p.strip()]
+            cards = []
+            for idx, ptxt in enumerate(raw_panels, 1):
+                cap_lines, bal_lines = [], []
+                for ln in ptxt.splitlines():
+                    if ln.lstrip().startswith('>'):
+                        bal_lines.append(ln.lstrip()[1:].strip())
+                    else:
+                        cap_lines.append(ln.strip())
+                cap_html = md_inline(' '.join(c for c in cap_lines if c))
+                bal_html = (f'<div class="atlas-comic-balloon-wrap"><div class="atlas-comic-balloon">'
+                            f'{md_inline(" ".join(bal_lines))}</div></div>') if bal_lines else ''
+                cards.append(f'<article class="atlas-comic-panel" data-panel="{idx}">'
+                             f'<div class="atlas-comic-caption"><span class="atlas-comic-num">{idx}</span><span>{cap_html}</span></div>'
+                             f'{bal_html}</article>')
+            return (f'<section class="atlas-comic-strip" data-role="{role}">'
+                    f'<div class="atlas-comic-header"><h2 class="atlas-comic-title">{title_html}</h2>'
+                    f'<span class="atlas-comic-role-tag">{role_lbl}</span></div>'
+                    f'<div class="atlas-comic-grid">{"".join(cards)}</div></section>')
         if kind == 'raw':
             return re.sub(r"(\w)'(\w)", "\\1\u2019\\2", inner)
         raise SystemExit(f'Unknown block :::{kind} in chapter {ch.n}')

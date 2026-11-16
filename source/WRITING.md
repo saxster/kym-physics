@@ -34,8 +34,8 @@ PLAYBOOK §6's rejected list).
   (only where IB/IGCSE words it differently) and `:::story id` (ids from STORIES.md; one or two per chapter) where they
   earn their place. From Chapter 2 on, add one or two `:::recall N` blocks that bring back a misconception from an
   earlier chapter in a new setting.
-- Each chapter opens with intro prose (bridge from the previous chapter, then the big question's puzzle), and ends with an
-  unnumbered heading holding the `:::case` (clues, a direct question, `???`, solution) and `:::next`.
+- Each chapter opens with an optional `:::comic_opener` 2-panel *ligne-claire* diptych + intro prose (bridge from the previous chapter, then the big question's puzzle), and ends with an
+  unnumbered heading holding the `:::case` (clues, a direct question, `???`, solution), `:::comic_closer` 3-panel resolution strip, and `:::next`.
 - Front matter keys: `chapter`, `title`, `short`, `question` (the big question from BOOKPLAN, polished).
 
 ## Figures
