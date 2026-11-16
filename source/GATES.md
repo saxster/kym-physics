@@ -25,7 +25,7 @@ For every chapter and story assigned to you:
 2. **Safety and will-it-work** for every `:::home` and `:::try`, in an ordinary Mumbai flat: materials really
    available, safe (no flames, no mains, no hot liquids beyond warm tap water, adult present for sharp/electrical/
    outdoor), and does it actually work at the stated size (estimate the effect with Python; say what can go wrong).
-3. Also flag voice problems: exclamation marks beyond one per chapter, "wants/tries" language for objects, filler.
+3. Also flag voice and 7-Book Craft problems (and run `node /Users/amarsukhi/src/MyCode/teaching_kit/scripts/lint-book-craft.mjs <chapter.md>`): exclamation marks beyond one per chapter, "wants/tries" language for objects, Zinsser clutter phrases ("at this point in time", "due to the fact that", "it is important to note"), Pinker academic metadiscourse ("in this subsection we will") or Curse-of-Knowledge condescension ("obviously", "trivially", "simply"), zombie-noun nominalization overload, unbroken >450-word gray prose walls, >2 callouts per spread, or detached "(1)... (2)... (3)..." figure legends.
 
 ## Output
 Write your report to `gates/<volume>-<A|B>.md` (e.g. `gates/vol1-A.md`): one section per chapter/story, each finding

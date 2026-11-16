@@ -5,6 +5,7 @@ track. The book is published at https://saxster.github.io/kym-physics/. Repo roo
 All paths below are under `source/`.
 
 ## Read before writing (in this order)
+0. `/Users/amarsukhi/src/MyCode/ethan_mollick_primer/docs/READER-FIRST-VISUAL-BOOK-INSTRUCTIONAL.md` (the 7-Book Canon: Rabiner & Fortunato argument pitch, McPhee 4-draft surgery, Hart Ladder of Abstraction, Zinsser Bracket Pass & *Think Small*, Pinker Classic Style & Zombie-Noun purge, *For Dummies* dip-in signposts & Cheat Sheet closer, and *Head First* dual-coding & active friction).
 1. `BOOKPLAN.md` §2 (teaching like Feynman: the simplest **true** explanation, the movability test, the four guards) and
    your chapters in §5 (big question, sections, misconception → demo, live figures, case).
 2. `NARRATIVE.md` (the shape of every section, threads, home-experiment rules, voice, history rules).
