@@ -56,6 +56,8 @@ Markdown, plus these blocks. Every block except `:::fig`, `:::live`, `:::scene` 
 | `:::comic_intro Title` … `:::` | Optional 4-panel *ligne-claire* Book Introduction strip (`---` separates panels; `>` adds a dialogue balloon). |
 | `:::comic_opener Title` … `:::` | Optional 2-panel asymmetric *ligne-claire* Chapter Opener diptych (`---` separates panels). |
 | `:::comic_closer Title` … `:::` | Optional 3-panel *ligne-claire* Chapter Resolution & Horizon strip (`---` separates panels). |
+| `:::fireside Title` … `:::` | Optional *Head First* 2-voice Fireside Chat debate pitting the tempting hunch against the physical mechanism. |
+| `:::cheatsheet Title` … `:::` | Optional *For Dummies* Tear-Out Cheat Sheet & Part-of-Tens chapter closer table. |
 | `:::work` … `:::` | Worked arithmetic, line by line. |
 | `:::eq` … `:::` | A single centred equation. |
 | `:::raw` … `:::` | HTML passed through unchanged (rare). |

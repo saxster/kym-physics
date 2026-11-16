@@ -1,4 +1,4 @@
-Book engine from teaching_kit (web/book-engine) at 3f1c5a9, vendored by web/vendor.mjs.
+Book engine from teaching_kit (web/book-engine) at 9c902c2, vendored by web/vendor.mjs.
 Do not edit these files here: change teaching_kit/web/book-engine, then run
   node web/vendor.mjs <this directory>
 in teaching_kit. Check before publishing with --check.

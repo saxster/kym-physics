@@ -427,6 +427,24 @@ function spine() {
   const nav = App.el('nav', { class: 'spine', 'aria-label': 'Sections of this chapter', hidden: true });
   document.body.append(nav);
   let current = null, curSec = null;
+  let collapsed = !!(App.store && App.store.get('spineCollapsed', false));
+  const syncCollapsed = () => {
+    document.documentElement.classList.toggle('spine-collapsed', collapsed);
+    const btn = nav.querySelector('.sp-toggle');
+    if (btn) {
+      btn.setAttribute('aria-expanded', String(!collapsed));
+      btn.setAttribute('aria-label', collapsed ? 'Show contents spine (Command+Backslash)' : 'Hide contents spine for full width (Command+Backslash)');
+      btn.textContent = collapsed ? 'Show spine' : 'Hide spine';
+    }
+  };
+  const toggleSpine = () => {
+    collapsed = !collapsed;
+    if (App.store) App.store.set('spineCollapsed', collapsed);
+    syncCollapsed();
+  };
+  window.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === '\\') { e.preventDefault(); toggleSpine(); }
+  });
   const build = ch => {
     const n = ch.querySelector('.opener .cl')?.textContent || '';
     const title = ch.querySelector('.opener h2')?.textContent || '';
@@ -436,9 +454,12 @@ function spine() {
       return App.el('li', {}, App.el('a', { href: '#' + s.id, 'data-sec': s.id },
         App.el('span', { class: 'sp-n' }, num), App.el('span', { class: 'sp-t' }, (h?.textContent || '').trim())));
     });
+    const toggleBtn = App.el('button', { type: 'button', class: 'sp-toggle', onclick: toggleSpine }, collapsed ? 'Show spine' : 'Hide spine');
     nav.replaceChildren(
+      toggleBtn,
       App.el('a', { class: 'sp-ch', href: '#' + ch.id }, App.el('span', { class: 'sp-k' }, n), App.el('span', { class: 'sp-h' }, title)),
       App.el('ol', {}, items));
+    syncCollapsed();
   };
   const setSec = id => {
     if (id === curSec) return; curSec = id;

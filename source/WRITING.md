@@ -36,6 +36,7 @@ PLAYBOOK §6's rejected list).
   earlier chapter in a new setting.
 - Each chapter opens with an optional `:::comic_opener` 2-panel *ligne-claire* diptych + intro prose (bridge from the previous chapter, then the big question's puzzle), and ends with an
   unnumbered heading holding the `:::case` (clues, a direct question, `???`, solution), `:::comic_closer` 3-panel resolution strip, and `:::next`.
+  All comic strips use the **Recurring 6-Character Repertory Cast** from `/Users/amarsukhi/src/MyCode/ethan_mollick_primer/docs/ATELIER-COMIC-BOOKENDS-SPEC.md` (`kym` · The Investigator, `dash` · The Shortcut Sprinter, `barnaby` · Chief Jargon Officer [*Scott Adams* foil], `pip` · Dr. Zeta & Pip [*Far Side* deadpan foil], `bento` · Master Bento, and `clara` · British Archivist & Coach) set in recurring Mumbai locations (*Malabar Hill Atelier*, *Dadar Market*, *Gateway of India*, *CSMT*) and historical jump-cuts.
 - Front matter keys: `chapter`, `title`, `short`, `question` (the big question from BOOKPLAN, polished).
 
 ## Figures

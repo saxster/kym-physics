@@ -204,3 +204,105 @@
 .atlas-comic-turn-btn:hover {
   background: var(--stays-wash, #F8EACB);
 }
+
+/* Recurring 6-Character Repertory Cast Badges (Kym, Dash, Barnaby, Pip, Bento, Clara) + Datelines */
+.atlas-comic-dateline {
+  font: 600 9.5px/1.2 var(--mono, ui-monospace, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted, #686259);
+  margin-bottom: 2px;
+}
+
+.atlas-comic-char-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--faint, #D8CFC0);
+  background: var(--page, var(--paper, #F7F4EC));
+  font: 600 9.5px/1 var(--mono, ui-monospace, monospace);
+  color: var(--ink, var(--strong, #1F1B16));
+}
+
+.atlas-comic-char-badge[data-character="kym"] { border-color: var(--given, #23519C); color: var(--given, #23519C); }
+.atlas-comic-char-badge[data-character="dash"],
+.atlas-comic-char-badge[data-character="barnaby"] { border-color: var(--moves, #AE2B20); color: var(--moves, #AE2B20); }
+.atlas-comic-char-badge[data-character="pip"],
+.atlas-comic-char-badge[data-character="bento"] { background: var(--stays-wash, #F8EACB); }
+.atlas-comic-char-badge[data-character="clara"] { border-color: var(--green, #2D6A4F); color: var(--green, #2D6A4F); }
+
+/* Collapsible Left Spine (⌘\ / Ctrl+\ or 44x44 toggle) */
+.sp-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 8px;
+  margin-bottom: 6px;
+  background: transparent;
+  border: 1px solid var(--faint, #D8CFC0);
+  border-radius: 8px;
+  color: var(--muted, #686259);
+  font: 500 11px/1 var(--mono, ui-monospace, monospace);
+  cursor: pointer;
+}
+.sp-toggle:hover {
+  color: var(--ink, var(--strong, #1F1B16));
+  border-color: var(--ink, var(--strong, #1F1B16));
+}
+html.spine-collapsed nav.spine ol,
+html.spine-collapsed nav.spine .sp-ch {
+  display: none;
+}
+
+/* For Dummies x Head First Signpost Medallions, Fireside Chats, Dissection Equations & Tear-Out Cheat Sheets */
+.callout-medallion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font: 600 10px/1.2 var(--mono, ui-monospace, monospace);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.callout-remember { border-left: 3px solid var(--stays, #B07C12); background: var(--stays-wash, #F8EACB); }
+.callout-warning  { border-left: 3px solid var(--moves, #AE2B20); }
+.callout-tip      { border-left: 3px solid var(--given, #23519C); }
+.callout-technical { border-left: 3px solid var(--muted, #686259); }
+
+.fireside-chat {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 14px;
+  background: var(--margin, var(--card, #F1EADC));
+  border: 1px solid var(--faint, #D8CFC0);
+  border-radius: 10px;
+}
+
+.cheat-sheet-card {
+  margin: 22px 0;
+  padding: 16px;
+  background: var(--surface, var(--sheet, #FFFDF7));
+  border: 1.5px dashed var(--ink, var(--strong, #1F1B16));
+  border-radius: 10px;
+}
+
+.eq-callout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.eq-callout-pill {
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--faint, #D8CFC0);
+  background: var(--page, var(--paper, #F7F4EC));
+  font: 500 11px/1.3 var(--mono, ui-monospace, monospace);
+}
+
