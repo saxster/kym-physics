@@ -1,4 +1,5 @@
 import SwiftUI
+import KymBookKit
 
 struct TodayHomeView: View {
     @EnvironmentObject private var store: AppStore
@@ -45,6 +46,21 @@ struct TodayHomeView: View {
                 }
             }
         ) {
+            if let plan = dailyFlowPlan {
+                BookKitStandaloneAtelierBanner(
+                    domainSlug: "physics",
+                    learnerName: "Kym",
+                    chapterNumber: plan.targetChapter.number,
+                    chapterTitle: plan.targetChapter.title,
+                    wonderQuestion: plan.targetChapter.intuitionToFormula.concreteAction,
+                    formulaDisplay: plan.targetChapter.intuitionToFormula.formulaDisplay,
+                    onOpenChapter: {
+                        store.activeMovingWorldChapter = plan.targetChapter.number
+                        store.selectedRoom = .movingWorld
+                    }
+                )
+            }
+
             // 0. Guided 7-Phase Daily Physics Ritual Hero Card
             JournalCard {
                 HStack(alignment: .center, spacing: Spacing.md) {
@@ -55,12 +71,12 @@ struct TodayHomeView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(spacing: Spacing.xs) {
                             JournalBadge(text: "7-Phase Guided Loop · 25 min", tone: .accent)
-                            JournalBadge(text: "Identity Prime → Warm Retrieval → Struggle Zone → Breakthrough", tone: .neutral)
+                            JournalBadge(text: "Warm Recall → Active Practice → Breakthrough", tone: .neutral)
                         }
-                        Text("Ready for Today's Guided Physics Ritual?")
+                        Text("Ready for Today's Guided Physics Session?")
                             .font(.kymaiaHeadline)
                             .foregroundStyle(Color.kymaiaInk)
-                        Text("Walks through 3 guaranteed-win FSRS cards, 1 independent Workbook/Learner's Book proof with Apple Pencil & spoken dictation, a curiosity hook, and a 1-sentence lab reflection.")
+                        Text("Walks through 3 quick memory cards, 1 solo Workbook/Learner's Book question with Apple Pencil & voice, a curiosity hook, and a 1-sentence lab note.")
                             .font(.kymaiaCaption)
                             .foregroundStyle(Color.kymaiaMutedInk)
                     }

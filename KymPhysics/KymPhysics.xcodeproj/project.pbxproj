@@ -100,6 +100,7 @@
 		75D7A5968BC12126109B7F18 /* PhysicsHardwareSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */; };
 		762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BD3240E55928B56218107 /* ReflectionVisual.swift */; };
 		76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
+		783D1B59722866FCCC1A1F90 /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA7B9808DFA08631671ECB5E /* KymBookKit */; };
 		788BFF0F828702D443979214 /* SoulDocuments in Resources */ = {isa = PBXBuildFile; fileRef = B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */; };
 		78A77150BC5E0C3CD4DF75EC /* LearnerImageSVGAnnotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */; };
 		7915F966CDA33935A3372160 /* JournalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F69A5A36B4E335686F48C /* JournalPage.swift */; };
@@ -176,6 +177,7 @@
 		EEC5F5B959AAC36B2744763A /* KymPhysicsWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EED6D8B4E149A2A4ABF35115 /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
 		F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 41DBBA27116ABDADD820B4D8 /* GRDB */; };
+		F13294F92146C734C14F0100 /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = C8FD1522D5948CC247657830 /* KymBookKit */; };
 		F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
 		F703466BBC57226721941CA4 /* ThinkingOutLoudField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */; };
 		F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
@@ -343,6 +345,7 @@
 				66A3470283932F305FB95186 /* KymDesign in Frameworks */,
 				ECE425D9668CFF83747A8B0B /* KymLearning in Frameworks */,
 				16D986282F1C2909352AA194 /* KymTutorAI in Frameworks */,
+				F13294F92146C734C14F0100 /* KymBookKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +365,7 @@
 				FA407B2F0E088B7B0748EB88 /* KymDesign in Frameworks */,
 				33EC363E2458D2C4F9680DC3 /* KymLearning in Frameworks */,
 				0D485C7440E4B30A1F89189B /* KymTutorAI in Frameworks */,
+				783D1B59722866FCCC1A1F90 /* KymBookKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +768,7 @@
 				E48420D089CBF2A2DF82BC63 /* KymDesign */,
 				FABBF38B2A3DB81CC8722725 /* KymLearning */,
 				DD0ED04532D6732C6601C15A /* KymTutorAI */,
+				CA7B9808DFA08631671ECB5E /* KymBookKit */,
 			);
 			productName = KymPhysics;
 			productReference = 6DA65BBC989085FEC1905ED0 /* KymPhysics.app */;
@@ -807,6 +812,7 @@
 				BD5889889CB5CE850FA8DBF6 /* KymDesign */,
 				0C67A5024666CB9A94F30D1C /* KymLearning */,
 				83B4D3D293EC6357B1F9A1EC /* KymTutorAI */,
+				C8FD1522D5948CC247657830 /* KymBookKit */,
 			);
 			productName = "KymPhysics-iPad";
 			productReference = 62BFE2226B6A2B22A08659EC /* KymPhysics-iPad.app */;
@@ -1606,6 +1612,14 @@
 		BD5889889CB5CE850FA8DBF6 /* KymDesign */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KymDesign;
+		};
+		C8FD1522D5948CC247657830 /* KymBookKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymBookKit;
+		};
+		CA7B9808DFA08631671ECB5E /* KymBookKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymBookKit;
 		};
 		DD0ED04532D6732C6601C15A /* KymTutorAI */ = {
 			isa = XCSwiftPackageProductDependency;

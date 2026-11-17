@@ -50,6 +50,8 @@ targets:
         product: KymLearning
       - package: TeachingKit
         product: KymTutorAI
+      - package: TeachingKit
+        product: KymBookKit
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kymaia.physics
@@ -99,6 +101,8 @@ targets:
         product: KymLearning
       - package: TeachingKit
         product: KymTutorAI
+      - package: TeachingKit
+        product: KymBookKit
       - target: KymPhysicsWidgets
         embed: true
       - target: KymPhysicsShareExtension
