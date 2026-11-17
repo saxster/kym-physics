@@ -1,7 +1,7 @@
 /* Explanation-specific views keep scene labels readable at their actual CSS size. */
 .spectrum-panels {display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0;}
 .spectrum-panels .xp-tab {min-height:44px;flex:1 1 11rem;border-radius:6px;}
-.explorer-scene-note {font:.86rem/1.55 var(--sans);color:var(--ink-2);padding:.65rem .8rem;border-left:3px solid var(--vol);background:var(--vol-wash);margin:.6rem 0 1rem;}
+.explorer-scene-note {font:.86rem/1.55 var(--sans);color:var(--ink-2);padding:.65rem .8rem;border-left: 1px solid var(--vol);background:var(--vol-wash);margin:.6rem 0 1rem;}
 .spectrum-canvas {height:410px;}
 #explore-sky .xp-pane-head {font-size:.85rem;flex-wrap:wrap;}
 #explore-sky .xp-pane-head span {font-size:.8rem;}

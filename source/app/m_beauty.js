@@ -433,8 +433,8 @@ function spine() {
     const btn = nav.querySelector('.sp-toggle');
     if (btn) {
       btn.setAttribute('aria-expanded', String(!collapsed));
-      btn.setAttribute('aria-label', collapsed ? 'Show contents spine (Command+Backslash)' : 'Hide contents spine for full width (Command+Backslash)');
-      btn.textContent = collapsed ? 'Show spine' : 'Hide spine';
+      btn.setAttribute('aria-label', collapsed ? 'Show chapter contents (Command+Backslash)' : 'Hide chapter contents (Command+Backslash)');
+      btn.textContent = collapsed ? 'Contents' : 'Hide contents';
     }
   };
   const toggleSpine = () => {
@@ -454,7 +454,7 @@ function spine() {
       return App.el('li', {}, App.el('a', { href: '#' + s.id, 'data-sec': s.id },
         App.el('span', { class: 'sp-n' }, num), App.el('span', { class: 'sp-t' }, (h?.textContent || '').trim())));
     });
-    const toggleBtn = App.el('button', { type: 'button', class: 'sp-toggle', onclick: toggleSpine }, collapsed ? 'Show spine' : 'Hide spine');
+    const toggleBtn = App.el('button', { type: 'button', class: 'sp-toggle', onclick: toggleSpine }, collapsed ? 'Contents' : 'Hide contents');
     nav.replaceChildren(
       toggleBtn,
       App.el('a', { class: 'sp-ch', href: '#' + ch.id }, App.el('span', { class: 'sp-k' }, n), App.el('span', { class: 'sp-h' }, title)),

@@ -47,6 +47,6 @@
 .scale-guide, .scale-readout, .scale-secondary {min-width:0;}
 .scale-width, .scale-power, .scale-guide p {overflow-wrap:anywhere;}
 
-.scale-mechanism {font:.86rem/1.55 var(--sans);border-left:3px solid var(--vol);padding:.2rem 0 .2rem .8rem;margin:.7rem 0 1rem;color:var(--ink-2);}
+.scale-mechanism {font:.86rem/1.55 var(--sans);border-left: 1px solid var(--vol);padding:.2rem 0 .2rem .8rem;margin:.7rem 0 1rem;color:var(--ink-2);}
 .scale-reference {font:.8rem/1.5 var(--sans);color:var(--muted);margin:.4rem 0;}
 .scale-reference {overflow-wrap:anywhere;}
