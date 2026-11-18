@@ -1,4 +1,4 @@
-Book engine from teaching_kit (web/book-engine) at 927ac36, vendored by web/vendor.mjs.
+Book engine from teaching_kit (web/book-engine) at df1de75+dirty, vendored by web/vendor.mjs.
 Do not edit these files here: change teaching_kit/web/book-engine, then run
   node web/vendor.mjs <this directory>
 in teaching_kit. Check before publishing with --check.
@@ -21,8 +21,10 @@ Files:
   app/m_beauty.js
   app/m_figures.js
   app/m_map.js
+  app/m_mastery.js
   app/m_progress.js
   app/m_scale.js
+  app/mastery_model.mjs
   app/o_labs.css
   app/orbit_model.mjs
   app/p_comic.css

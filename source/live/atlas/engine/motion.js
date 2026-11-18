@@ -384,6 +384,28 @@ export function cubicBezier(x1, y1, x2, y2) {
 }
 export const bez = cubicBezier;
 
+// Emil Kowalski / Apple UI custom cubic-bezier curves (registered on `eases` for uniform lookup).
+eases.uiOut = cubicBezier(0.23, 1, 0.32, 1);
+eases.uiInOut = cubicBezier(0.77, 0, 0.175, 1);
+eases.drawer = cubicBezier(0.32, 0.72, 0, 1);
+
+// Apple WWDC (Designing Fluid Interfaces) progressive boundary resistance:
+// returns a signed displacement strictly bounded by `dimension`, with initial slope `constant` at overshoot = 0.
+export function rubberband(overshoot, dimension, constant = 0.55) {
+  const d = Math.abs(dimension);
+  if (!overshoot || d <= 0 || constant <= 0) return 0;
+  const x = Math.abs(overshoot);
+  return Math.sign(overshoot) * ((x * d * constant) / (d + constant * x));
+}
+
+// Apple WWDC exponential-decay momentum projection: projects where a gesture with `velocity` (units/s)
+// comes to rest at `decelerationRate` (0.998 normal scroll feel, 0.99 snappier).
+export function projectMomentum(velocity, decelerationRate = 0.998) {
+  if (!velocity) return 0;
+  const d = clamp(decelerationRate, 0.5, 0.9999);
+  return ((velocity / 1000) * d) / (1 - d);
+}
+
 // #002 Stagger: maps overall progress u in [0, 1] to item `index` of `count` items.
 // `overlap` in [0, 0.95] controls how much adjacent items overlap in time (0 = sequential, 0.5 = half-overlap).
 // Guaranteed 0 at u <= 0 and 1 at u >= 1 for every item.
@@ -528,5 +550,127 @@ export function camHandheld(pose, t, { ampAz = 0.45, ampEl = 0.3, ampY = 0.02, p
     el: (pose.el ?? 18) + ampEl * nEl,
   };
 }
+
+// Settled Flow: runs `cycles` finite ambient pass(es) of length `period`, then permanently
+// settles at `clamp01(settleAt)` so ambient diagrams do not loop forever. Pure function of `t`.
+export function settledFlowPhase(t, period = 4, { cycles = 1, settleAt = 1 } = {}) {
+  const p = Math.max(1e-6, Number(period) || 4);
+  const c = Math.max(1, Math.floor(Number(cycles) || 1));
+  if (!(t > 0)) return 0;
+  if (t >= c * p) return clamp01(settleAt);
+  return fract(t / p);
+}
+
+const GOVERNOR_PRIORITY = Object.freeze({
+  ambient: 10,
+  hover: 20,
+  step: 30,
+  tour: 40,
+  scrub: 50,
+  still: 100,
+  hidden: 100,
+  reduced: 100,
+});
+
+// Single-Owner Motion Governor: tokenized priority-lease arbiter so ambient loops, hover previews,
+// step/tour playback, scrubbing, Still mode, and reduced-motion never race or leave stale callbacks.
+export function createMotionGovernor({ reduced = false, still = false, hidden = false } = {}) {
+  let isReduced = !!reduced;
+  let isStill = !!still;
+  let isHidden = !!hidden;
+  let nextToken = 1;
+  let activeOwner = null;
+  let activeKind = null;
+  let activeToken = 0;
+
+  const mode = () => (isReduced ? 'reduced' : isHidden ? 'hidden' : isStill ? 'still' : 'live');
+  const blocked = () => isReduced || isStill || isHidden;
+
+  function clearActive() {
+    activeOwner = null;
+    activeKind = null;
+    activeToken = ++nextToken;
+  }
+
+  return {
+    acquire(owner, kind = 'step') {
+      const name = String(owner || '').trim();
+      if (!name || blocked()) {
+        return { granted: false, token: 0, activeOwner, activeKind };
+      }
+      const prio = GOVERNOR_PRIORITY[kind] ?? GOVERNOR_PRIORITY.step;
+      const curPrio = activeKind ? (GOVERNOR_PRIORITY[activeKind] ?? 0) : 0;
+      if (activeOwner && activeOwner !== name && prio < curPrio) {
+        return { granted: false, token: 0, activeOwner, activeKind };
+      }
+      activeOwner = name;
+      activeKind = kind;
+      activeToken = ++nextToken;
+      return { granted: true, token: activeToken, activeOwner, activeKind };
+    },
+    release(token) {
+      if (!token || token !== activeToken || !activeOwner) return false;
+      clearActive();
+      return true;
+    },
+    setStill(flag) {
+      isStill = !!flag;
+      if (isStill) clearActive();
+      return this.state();
+    },
+    setHidden(flag) {
+      isHidden = !!flag;
+      if (isHidden) clearActive();
+      return this.state();
+    },
+    setReduced(flag) {
+      isReduced = !!flag;
+      if (isReduced) clearActive();
+      return this.state();
+    },
+    state() {
+      return {
+        mode: mode(),
+        activeOwner,
+        activeKind,
+        token: activeToken,
+      };
+    },
+  };
+}
+
+// Shared Anchor Handoff: computes deterministic `stay / enter / leave` continuity sets and the
+// primary surviving anchor element across consecutive step or page transitions.
+export function sharedAnchorDelta(prevIds = [], nextIds = []) {
+  const norm = (list, label) => {
+    if (!Array.isArray(list)) throw new Error(`sharedAnchorDelta: ${label} must be an array`);
+    const seen = new Set();
+    const out = [];
+    for (const raw of list) {
+      const id = typeof raw === 'string' ? raw.trim() : '';
+      if (!id) throw new Error(`sharedAnchorDelta: empty or non-string ID in ${label}`);
+      if (seen.has(id)) throw new Error(`sharedAnchorDelta: duplicate ID "${id}" in ${label}`);
+      seen.add(id);
+      out.push(id);
+    }
+    return { list: out, set: seen };
+  };
+  const prev = norm(prevIds, 'prevIds');
+  const next = norm(nextIds, 'nextIds');
+  const stay = prev.list.filter(id => next.set.has(id));
+  const enter = next.list.filter(id => !prev.set.has(id));
+  const leave = prev.list.filter(id => !next.set.has(id));
+  const anchor = stay[0] ?? null;
+  return {
+    stay,
+    enter,
+    leave,
+    anchor,
+    status: anchor ? 'anchored' : 'no-anchor',
+    counts: { stay: stay.length, enter: enter.length, leave: leave.length },
+    summary: `=${stay.length} +${enter.length} −${leave.length}`,
+  };
+}
+
 
 

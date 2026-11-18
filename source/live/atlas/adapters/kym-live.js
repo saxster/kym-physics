@@ -13,8 +13,9 @@
 //   - Optional user-initiated Web Audio sonification (api.audio())
 //   - Optional user-initiated HTML5 sensor bridge (camera photometer, mic spirometer, device tilt)
 //   - Automatic 2D Canvas paper-and-ink fallback when WebGL is disabled
-import { createStage, DEFAULT_QUIRK, resolveQuirk } from '../engine/stage.js';
-import { readTheme, srgbLuminance } from '../engine/theme.js';
+import { createStage, QUIRKS, DEFAULT_QUIRK, resolveQuirk, mountQuirkBar } from '../engine/stage.js';
+import { foilCard } from '../engine/prose.js';
+import { readTheme, srgbLuminance, deriveAccentTokens, applyAccentTokens } from '../engine/theme.js';
 
 const CSS = `
 .atlas-stage { position: relative; width: 100%; border-radius: 6px; overflow: hidden; background: var(--sheet); touch-action: pan-y; box-sizing: border-box; }
@@ -34,7 +35,11 @@ const CSS = `
 .atlas-stage .lbl.axis { font: italic 14px/1 Georgia, serif; color: var(--muted); transform: translate(-100%, -50%); }
 .atlas-stage .atlas-title { position: absolute; top: 10px; right: 14px; font: italic 15px/1.3 Georgia, serif; color: var(--ink); pointer-events: none; text-align: right; max-width: 72%; background: color-mix(in srgb, var(--sheet) 82%, transparent); padding: 2px 7px; border-radius: 4px; }
 .atlas-stage .atlas-badge { position: absolute; bottom: 8px; left: 12px; font: 500 11px/1.3 var(--sans, system-ui, sans-serif); color: var(--muted); pointer-events: none; background: color-mix(in srgb, var(--sheet) 82%, transparent); padding: 2px 6px; border-radius: 4px; }
-.atlas-parts, .atlas-cuts, .atlas-pages { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 100%; }
+.atlas-parts, .atlas-cuts, .atlas-pages, .quirkbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 100%; }
+.atlas-foil .xref.foil { margin: 8px 0 2px; padding: 6px 0 2px 12px; border-left: 2px solid var(--proton, #b8343a); font-size: 13px; }
+.atlas-foil .xref.foil .kicker { font: 600 10px/1.2 var(--sans, system-ui, sans-serif); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.atlas-foil .xref.foil p { margin: 4px 0; }
+.atlas-foil .foil-jump { border: 0; background: none; padding: 0; font: inherit; font-weight: 600; color: var(--proton, #b8343a); cursor: pointer; text-decoration: none; }
 `;
 let styled = false;
 let activeAtlasStage = null;
@@ -286,12 +291,22 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
     }
     try {
       const q = resolveQuirk(opts.quirk || chapter.quirk || DEFAULT_QUIRK);
+      const hostTheme = readTheme(stage);
+      if (hostTheme) {
+        const acc = deriveAccentTokens(hostTheme.red || '#d63a24', {
+          page: hostTheme.sheet,
+          card: hostTheme.sheet,
+          ink: hostTheme.ink,
+        });
+        applyAccentTokens(stage, acc);
+      }
       S = createStage(canvas, labels, chapter, {
         reduced: reducedMotion(),
         touch: matchMedia('(pointer: coarse)').matches,
-        theme: readTheme(stage),
+        theme: hostTheme,
         quirk: q.id,
         medium: opts.medium || chapter.medium || q.medium,
+        transparent: Boolean(opts.transparent || chapter.transparent),
         dprCap: 2,
         frameParts: true,
         labelTopInset: () => title.offsetHeight || 24,
@@ -359,10 +374,13 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
     );
   }
 
-  // The book's frames; dt > 0 means it is playing
+  // The book's frames; dt > 0 means it is playing. Skip WebGL redraws while scrolled completely out of view.
+  let inViewport = true, hasInitialDraw = false;
   api.loop((dt, t) => {
     lastT = t;
     if (dt > 0) hostAt = performance.now();
+    if (!inViewport && hasInitialDraw) return;
+    hasInitialDraw = true;
     draw(dt, dt > 0);
   });
 
@@ -378,7 +396,7 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
     raf = 0;
     const dt = ownLast ? Math.min((ts - ownLast) / 1000, 0.05) : 1 / 60;
     ownLast = ts;
-    if (performance.now() - hostAt > 120) draw(dt, false);
+    if (inViewport && performance.now() - hostAt > 120) draw(dt, false);
     if (performance.now() < kickUntil || S?.dragging || Math.abs(page - sPos) > 0.005) {
       raf = requestAnimationFrame(own);
     } else {
@@ -402,7 +420,8 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
   const resizeObs = new ResizeObserver(kick);
   resizeObs.observe(wrap);
   const visibilityObs = new IntersectionObserver(entries => {
-    if (entries.some(entry => entry.isIntersecting)) kick();
+    for (const entry of entries) inViewport = entry.isIntersecting;
+    if (inViewport) kick();
   });
   visibilityObs.observe(wrap);
   window.addEventListener('resize', kick, { passive: true });
@@ -445,6 +464,7 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
     if (S && !keepLitOverride) S.litOverride = null;
     if (S && S.selected) S.select(null);
     rebuildPartButtons();
+    syncFoilStrip();
     kick();
     api._refresh?.();
   }
@@ -531,10 +551,85 @@ export function mountAtlas(stage, params, api, rawChapter, defaults = {}) {
     }
   }
 
-  // ---------- 4. Keyboard-Accessible Part Breakdown Buttons ----------
+  // ---------- 4. Keyboard-Accessible Part Breakdown Buttons & Lookalike Foil Strip ----------
   const partsWrap = document.createElement('div');
   partsWrap.className = 'atlas-parts';
   controlsEl.appendChild(partsWrap);
+
+  const foilWrap = document.createElement('div');
+  foilWrap.className = 'atlas-foil';
+  controlsEl.appendChild(foilWrap);
+
+  function syncFoilStrip() {
+    if (!P?.foil) {
+      foilWrap.hidden = true;
+      foilWrap.innerHTML = '';
+      return;
+    }
+    const isKymScheme = typeof location !== 'undefined' && location.protocol === 'kymbook:';
+    const rawList = (Array.isArray(P.foil) ? P.foil : [P.foil]).filter(Boolean);
+    const sanitized = isKymScheme ? rawList.map(item => (item.to ? { ...item, to: undefined } : item)) : rawList;
+    foilWrap.innerHTML = foilCard(sanitized);
+    foilWrap.hidden = !foilWrap.innerHTML;
+  }
+  foilWrap.addEventListener('click', e => {
+    const btn = e.target.closest?.('button.foil-jump');
+    if (!btn) return;
+    if (btn.dataset.turn !== undefined) {
+      setPage(Number(btn.dataset.turn));
+    } else if (btn.dataset.part) {
+      explodeAll = false;
+      S?.select?.(btn.dataset.part);
+      syncPartButtons();
+      kick();
+      api._refresh?.();
+    }
+  });
+  syncFoilStrip();
+
+  // ---------- 4b. 5-Stop Quirk Spectrum Bar & Buggy-World Counterfactual Toggle ----------
+  const initialQuirkObj = resolveQuirk(opts.quirk || chapter.quirk || DEFAULT_QUIRK);
+  const quirkBar = mountQuirkBar(partsWrap, { ...chapter, quirks: chapter.quirks || QUIRKS }, () => S, {
+    initialQuirk: initialQuirkObj.id,
+    place: 'after',
+    pill: false,
+    onChange: () => {
+      kick();
+      api._refresh?.();
+    },
+  });
+  if (quirkBar?.el) {
+    quirkBar.el.querySelectorAll('button').forEach(b => {
+      b.classList.add('live-ctl');
+      if (Array.isArray(api._buttons)) api._buttons.push(b);
+    });
+  }
+
+  const buggyKey = chapter.coherentWorldParamKey || 'buggyWorld';
+  chapter.params = chapter.params || {};
+  if (chapter.params[buggyKey] === undefined) chapter.params[buggyKey] = 0;
+  let buggyOn = Boolean(chapter.params[buggyKey]);
+  const buggyBtn = document.createElement('button');
+  buggyBtn.type = 'button';
+  buggyBtn.className = 'live-ctl atlas-buggy-toggle';
+  const syncBuggyBtn = () => {
+    buggyBtn.setAttribute('aria-pressed', String(buggyOn));
+    buggyBtn.dataset.buggy = String(buggyOn);
+    buggyBtn.textContent = buggyOn
+      ? (chapter.buggyWorldLabel || 'Buggy World: If My Hunch Were Law (Active)')
+      : (chapter.realWorldLabel || 'Compare: Physical Reality vs Buggy World');
+  };
+  syncBuggyBtn();
+  buggyBtn.addEventListener('click', () => {
+    buggyOn = !buggyOn;
+    chapter.params[buggyKey] = buggyOn ? 1 : 0;
+    syncBuggyBtn();
+    if (chapter.onParamChange) chapter.onParamChange(chapter.params, S, buggyKey, chapter.params[buggyKey]);
+    kick();
+    api._refresh?.();
+  });
+  controlsEl.appendChild(buggyBtn);
+  if (Array.isArray(api._buttons)) api._buttons.push(buggyBtn);
   let partBtnMap = new Map();
   let explodeBtn = null;
 
