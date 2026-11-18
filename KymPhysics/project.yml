@@ -51,6 +51,8 @@ targets:
       - package: TeachingKit
         product: KymTutorAI
       - package: TeachingKit
+        product: KymLiveVoice
+      - package: TeachingKit
         product: KymBookKit
     settings:
       base:
@@ -101,6 +103,8 @@ targets:
         product: KymLearning
       - package: TeachingKit
         product: KymTutorAI
+      - package: TeachingKit
+        product: KymLiveVoice
       - package: TeachingKit
         product: KymBookKit
       - target: KymPhysicsWidgets

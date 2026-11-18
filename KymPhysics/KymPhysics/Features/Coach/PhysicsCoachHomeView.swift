@@ -55,6 +55,9 @@ struct PhysicsCoachHomeView: View {
     private var activeAPIKey: String {
         let trimmed = savedGeminiKey.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmed.isEmpty { return trimmed }
+        if let familyKey = KymLiveFamilyKeychain().loadGeminiAPIKey(), !familyKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return familyKey
+        }
         return ProcessInfo.processInfo.environment["GEMINI_API_KEY"] ?? ""
     }
 
@@ -490,26 +493,21 @@ struct PhysicsCoachHomeView: View {
         .sheet(isPresented: $showingAPIKeySheet) {
             NavigationStack {
                 ScrollView {
-                    JournalSection(title: "Optional Gemini API Key (gemini-2.5-flash)") {
-                        JournalCard {
-                            VStack(alignment: .leading, spacing: Spacing.sm) {
-                                SecureField("AIza...", text: $savedGeminiKey)
-                                Text("When provided, KymPhysics streams live Socratic responses from Gemini 2.5 Flash governed by TutorConstitution (\(TutorConstitution.version)), DevelopmentalResponseValidator, and AIBudgetLedger. When blank, KymPhysics uses its built-in offline Socratic Physics engine.")
-                                    .font(.kymaiaCaption)
-                                    .foregroundStyle(Color.kymaiaMutedInk)
-                            }
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        BookKitVoiceAndTutorSettingsCard(initiallyUnlocked: true) { geminiKey, _ in
+                            savedGeminiKey = geminiKey
                         }
                     }
                     .padding()
                 }
-                .navigationTitle("Physics Coach Engine")
+                .navigationTitle("1-on-1 Voice Tutor & AI Keys")
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Done") { showingAPIKeySheet = false }
                     }
                 }
             }
-            .frame(minWidth: 420, minHeight: 240)
+            .frame(minWidth: 480, minHeight: 420)
         }
         .sheet(isPresented: $showingConstitutionSheet) {
             NavigationStack {

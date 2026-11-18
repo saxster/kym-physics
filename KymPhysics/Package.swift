@@ -22,6 +22,7 @@ let package = Package(
                 .product(name: "KymDesign", package: "teaching_kit"),
                 .product(name: "KymLearning", package: "teaching_kit"),
                 .product(name: "KymTutorAI", package: "teaching_kit"),
+                .product(name: "KymLiveVoice", package: "teaching_kit"),
                 .product(name: "KymBookKit", package: "teaching_kit")
             ],
             path: "KymPhysics",

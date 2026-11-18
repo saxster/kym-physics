@@ -44,7 +44,7 @@ struct KymPhysicsApp: App {
         }
         #if os(macOS)
         Settings {
-            StandardAppearanceSettings(appName: "KymPhysics")
+            BookKitSubjectSettingsSheet(appName: "KymPhysics")
                 .standardThemeHost(rebuildsOnThemeChange: false)
         }
         #endif
@@ -130,7 +130,7 @@ struct KymPhysicsRootShellView: View {
             .navigationTitle("KymPhysics")
             .toolbar {
                 ToolbarItem(placement: .automatic) {
-                    StandardSettingsButton(appName: "KymPhysics")
+                    BookKitSubjectSettingsButton(appName: "KymPhysics")
                 }
             }
         } detail: {
