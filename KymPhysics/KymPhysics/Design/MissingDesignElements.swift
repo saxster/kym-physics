@@ -412,6 +412,7 @@ final class ChapterAudioNarrator {
     }
 
     func stop() {
+        KymLiveStaticTextNarrator.shared.stop()
         if allowsHardwareSpeech {
             synthesizer.stopSpeaking(at: .immediate)
         }
@@ -419,9 +420,20 @@ final class ChapterAudioNarrator {
     }
 
     private func speakText(_ text: String) {
+        if KymLiveStaticTextNarrator.shared.hasElevenLabsKeyConfigured {
+            KymLiveStaticTextNarrator.shared.readAloud(
+                text: text,
+                itemID: activeChapterId,
+                rate: speechRateMultiplier,
+                allowsHardwareSpeech: allowsHardwareSpeech
+            ) { [weak self] in
+                self?.isSpeaking = false
+            }
+            return
+        }
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-IN")
-            ?? AVSpeechSynthesisVoice(language: "en-GB")
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+            ?? AVSpeechSynthesisVoice(language: "en-IN")
             ?? AVSpeechSynthesisVoice(language: "en-US")
         let baseRate = AVSpeechUtteranceDefaultSpeechRate * 0.95
         utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, baseRate * speechRateMultiplier)

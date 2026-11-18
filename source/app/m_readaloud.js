@@ -19,14 +19,13 @@ const I = {
 
 // ------------------------------------------------------------------ what to read
 const BLOCKS = 'h2, h3, h4, p, li, dt, dd';
-const SKIP = 'figure, svg, .side, button, .st-callout, code, pre, template, .chk-a, ' +
-  'details:not(.five):not(.school):not(.five-more):not(.howto-reference), details:not([open]), nav, .ans, .live-controls, ' +
+const SKIP = 'figure, svg, .side, button, .st-callout, code, pre, template, .chk-a, details, nav, .ans, .live-controls, ' +
   '.rl-player, .chapter-toc, .toolbar, .noscript, .cast, .st-index, script, style, .opener .cn';
 
 function collectBlocks(root) {
   return [...root.querySelectorAll(BLOCKS)].filter(b => {
     if (b.closest(SKIP)) return false;
-    if (/^(LI|DD)$/.test(b.tagName) && b.querySelector('p')) return false;   // its paragraphs are read instead
+    if (b.tagName === 'LI' && b.querySelector('p')) return false;   // its paragraphs are read instead
     if (b.closest('li') && b.tagName !== 'LI' && b.tagName !== 'P') return false;
     return b.textContent.trim().length > 0 && b.getClientRects().length > 0;
   });
@@ -177,6 +176,7 @@ const kokoroPossible = !!(window.Worker && window.WebAssembly && (window.AudioCo
 const useGPU = !!navigator.gpu;
 let KOKORO_RUN = useGPU ? { dtype: 'fp32', device: 'webgpu' } : { dtype: 'q8', device: 'wasm' };
 let KOKORO_MB = useGPU ? 'about 300 MB' : 'about 90 MB';
+const saveData = !!(navigator.connection && navigator.connection.saveData);
 const K = { state: 'idle', worker: null, files: {}, pct: 0, lastProgress: 0, timer: 0, waiters: [], seq: 0, pending: new Map(),
   cache: new Map(), fallback: false, slow: 0, offered: false, ctx: null, src: null };
 
@@ -205,11 +205,78 @@ self.onmessage = (e) => {
   }
 };`;
 
+const ELEVEN_PRESETS = [
+  { id: 'charlotte_oxford', label: 'Charlotte · Oxford Tutor (ElevenLabs en-GB)', elevenId: 'XB0fDUnXU5powFXDhCwa' },
+  { id: 'george_rp', label: 'George · British Fellow (ElevenLabs en-GB)', elevenId: 'JBFqnCBsd6RMkjVDRZzb' },
+  { id: 'alice_educator', label: 'Alice · British Educator (ElevenLabs en-GB)', elevenId: 'Xb7hH8MSUJpSbSDYk0k2' },
+  { id: 'daniel_story', label: 'Daniel · Storyteller (ElevenLabs en-GB)', elevenId: 'onwK4e9ZLuTAKqWW03F9' },
+];
+const elevenCache = new Map();
+let elevenAudioEl = null;
+
+function getElevenConfig() {
+  if (App.voiceKeys && typeof App.voiceKeys.get === 'function') return App.voiceKeys.get();
+  const s = App.store.get('settings', {});
+  return {
+    elevenLabsApiKey: String(s.elevenLabsApiKey || '').trim(),
+    voiceMode: s.voiceMode || 'gemini_live_duplex',
+    voicePreset: s.voicePreset || 'charlotte_oxford',
+    hasElevenLabs: !!String(s.elevenLabsApiKey || '').trim(),
+  };
+}
+
+function chosenElevenVoiceId() {
+  const v = App.store.get('readaloud:voice', null);
+  const cfg = getElevenConfig();
+  if (v && v.startsWith('elevenlabs:')) {
+    const pid = v.slice('elevenlabs:'.length);
+    const found = ELEVEN_PRESETS.find(p => p.id === pid || p.elevenId === pid);
+    if (found) return found.elevenId;
+  }
+  const preset = ELEVEN_PRESETS.find(p => p.id === cfg.voicePreset) || ELEVEN_PRESETS[0];
+  return preset.elevenId;
+}
+
+function synthEleven1(text, voiceId, apiKey) {
+  const key = voiceId + '|' + text;
+  if (elevenCache.has(key)) return elevenCache.get(key);
+  const pr = fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}/stream?optimize_streaming_latency=3`, {
+    method: 'POST',
+    headers: {
+      'xi-api-key': apiKey,
+      'Content-Type': 'application/json',
+      Accept: 'audio/mpeg',
+    },
+    body: JSON.stringify({
+      text,
+      model_id: 'eleven_flash_v2_5',
+      language_code: 'en',
+      voice_settings: { stability: 0.58, similarity_boost: 0.78, style: 0.15, use_speaker_boost: true },
+    }),
+  }).then(async r => {
+    if (!r.ok) throw new Error('ElevenLabs HTTP ' + r.status);
+    const blob = await r.blob();
+    return URL.createObjectURL(blob);
+  });
+  elevenCache.set(key, pr);
+  pr.catch(() => elevenCache.delete(key));
+  if (elevenCache.size > 40) {
+    const oldest = elevenCache.keys().next().value;
+    elevenCache.delete(oldest);
+  }
+  return pr;
+}
+
 function engine() {
   const v = App.store.get('readaloud:voice', null);
+  const cfg = getElevenConfig();
+  if (cfg.hasElevenLabs && v && v.startsWith('elevenlabs:')) return 'elevenlabs';
+  if (cfg.hasElevenLabs && v == null && (cfg.voiceMode === 'elevenlabs_british' || cfg.voiceMode === 'hybrid_duplex_elevenlabs')) {
+    return 'elevenlabs';
+  }
   if (!kokoroPossible || K.fallback || K.state === 'failed') return 'system';
   if (v === ISABELLA) return 'kokoro';
-  if (v == null) return 'kokoro';   // Offer the one-time download before starting it.
+  if (v == null) return 'kokoro';   // Isabella by default (on a data-saving connection the reader is asked first)
   return 'system';
 }
 function audioCtx() {
@@ -275,7 +342,10 @@ function synth1(text) {
   if (K.cache.size > 40) K.cache.delete(K.cache.keys().next().value);
   return pr;
 }
-function stopAudio() { if (K.src) { try { K.src.onended = null; K.src.stop(); } catch (e) {} K.src = null; } }
+function stopAudio() {
+  if (K.src) { try { K.src.onended = null; K.src.stop(); } catch (e) {} K.src = null; }
+  if (elevenAudioEl) { try { elevenAudioEl.onended = null; elevenAudioEl.onerror = null; elevenAudioEl.pause(); } catch (e) {} elevenAudioEl = null; }
+}
 
 const RATES = [0.85, 0.95, 1.1];
 const rate = () => { const r = App.store.get('readaloud:rate', 0.95); return RATES.includes(r) ? r : 0.95; };
@@ -317,8 +387,40 @@ function speakCurrent() {
   const token = ++st.token;
   highlight(s);
   updatePlayer();
-  if (engine() === 'kokoro') { speakKokoro(s, token); return; }
+  const eng = engine();
+  if (eng === 'elevenlabs') { speakElevenLabs(s, token); return; }
+  if (eng === 'kokoro') { speakKokoro(s, token); return; }
   speakSystem(s, token);
+}
+
+function speakElevenLabs(s, token) {
+  const cfg = getElevenConfig();
+  if (!cfg.hasElevenLabs) {
+    fallBack('ElevenLabs API key not set in Settings, so Isabella or this device’s voice is reading.');
+    return;
+  }
+  const voiceId = chosenElevenVoiceId();
+  const want = speakable(s.text);
+  synthEleven1(want, voiceId, cfg.elevenLabsApiKey).then(blobUrl => {
+    if (token !== st.token || !st.playing || st.paused) return;
+    for (let k = 1; k <= 2; k++) {
+      const n = st.list[st.i + k];
+      if (n) synthEleven1(speakable(n.text), voiceId, cfg.elevenLabsApiKey).catch(() => {});
+    }
+    stopAudio();
+    const a = new Audio(blobUrl);
+    a.playbackRate = rate();
+    elevenAudioEl = a;
+    a.onended = () => { if (elevenAudioEl === a) elevenAudioEl = null; advance(token); };
+    a.onerror = () => { if (token === st.token) fallBack('ElevenLabs audio playback stopped, switching to in-browser voice.'); };
+    a.play().catch(() => { if (token === st.token) fallBack('Could not start ElevenLabs audio playback, switching to in-browser voice.'); });
+  }).catch(() => {
+    if (token !== st.token) return;
+    App.store.set('readaloud:voice', kokoroPossible ? ISABELLA : 'system');
+    fillVoices();
+    note('ElevenLabs British voice could not be reached (check your API key in Settings), so Isabella’s voice is reading.');
+    if (st.playing && !st.paused) { st.token++; speakCurrent(); }
+  });
 }
 
 function speakSystem(s, token) {
@@ -336,7 +438,7 @@ function speakSystem(s, token) {
 function speakKokoro(s, token) {
   if (K.state !== 'ready') {
     // first use: fetch the voice (or ask first, on a data-saving connection), then start automatically
-    if (K.state === 'idle' && !App.store.get('readaloud:kokoro-ok', false) && !K.askedOk) { showAsk(); return; }
+    if (saveData && K.state === 'idle' && !App.store.get('readaloud:kokoro-ok', false) && !K.askedOk) { showAsk(); return; }
     showLoading();
     loadKokoro().then(() => { hideLoading(); if (token === st.token && st.playing && !st.paused && engine() === 'kokoro') speakCurrent(); })
       .catch(() => { hideLoading(); fallBack('Isabella’s natural voice could not load here, so this device’s own voice is reading.'); });
@@ -490,9 +592,18 @@ function fillVoices() {
   if (!voiceSel) return;
   const eng = engine();
   const cur = chosenVoice();
+  const cfg = getElevenConfig();
+  const savedVoice = App.store.get('readaloud:voice', null);
   voiceSel.innerHTML = '';
+  if (cfg.hasElevenLabs) {
+    ELEVEN_PRESETS.forEach(p => {
+      const val = 'elevenlabs:' + p.id;
+      const isSel = eng === 'elevenlabs' && (savedVoice === val || (!savedVoice && cfg.voicePreset === p.id));
+      voiceSel.append(App.el('option', { value: val, selected: isSel }, p.label));
+    });
+  }
   if (kokoroPossible) voiceSel.append(App.el('option', { value: ISABELLA, selected: eng === 'kokoro' }, 'Isabella (natural voice)'));
-  voices.forEach(v => voiceSel.append(App.el('option', { value: v.voiceURI, selected: eng !== 'kokoro' && cur && v.voiceURI === cur.voiceURI }, v.name.replace(/^(Microsoft|Google)\s+/, '') + ' (' + v.lang + ')')));
+  voices.forEach(v => voiceSel.append(App.el('option', { value: v.voiceURI, selected: eng === 'system' && cur && v.voiceURI === cur.voiceURI }, v.name.replace(/^(Microsoft|Google)\s+/, '') + ' (' + v.lang + ')')));
   voiceSel.hidden = voiceSel.options.length < 2;
   const tip = player && player.querySelector('.rl-tip');
   if (tip) tip.hidden = !(eng === 'system' && voicesAreBasic());
@@ -586,10 +697,70 @@ function addStoryButton() {
   bar.insertBefore(b, close || null);
 }
 
+export async function speakText(rawText, opts = {}) {
+  const clean = speakable(String(rawText || '').replace(/\*\*|__|`/g, '').trim());
+  if (!clean) return;
+  haltAll();
+  const cfg = getElevenConfig();
+  const preferEleven = opts.preferElevenLabs !== false && cfg.hasElevenLabs && (cfg.voiceMode !== 'local_isabella');
+  if (preferEleven) {
+    try {
+      const preset = ELEVEN_PRESETS.find(p => p.id === (opts.voicePreset || cfg.voicePreset)) || ELEVEN_PRESETS[0];
+      const blobUrl = await synthEleven1(clean, preset.elevenId, cfg.elevenLabsApiKey);
+      stopAudio();
+      const a = new Audio(blobUrl);
+      a.playbackRate = opts.rate || rate();
+      elevenAudioEl = a;
+      return await new Promise(res => {
+        a.onended = () => { if (elevenAudioEl === a) elevenAudioEl = null; if (opts.onEnd) opts.onEnd(); res(); };
+        a.onerror = () => { if (elevenAudioEl === a) elevenAudioEl = null; if (opts.onEnd) opts.onEnd(); res(); };
+        a.play().catch(() => { if (opts.onEnd) opts.onEnd(); res(); });
+      });
+    } catch (e) {
+      // fall through to Kokoro or system speech
+    }
+  }
+  if (kokoroPossible && K.state === 'ready') {
+    try {
+      const ctx = audioCtx();
+      if (ctx) {
+        const r = await synth1(clean);
+        const buf = ctx.createBuffer(1, r.audio.length, r.sr);
+        buf.copyToChannel ? buf.copyToChannel(r.audio, 0) : buf.getChannelData(0).set(r.audio);
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(ctx.destination);
+        stopAudio();
+        K.src = src;
+        return await new Promise(res => {
+          src.onended = () => { if (K.src === src) K.src = null; if (opts.onEnd) opts.onEnd(); res(); };
+          src.start();
+        });
+      }
+    } catch (e) {}
+  }
+  if (synth && window.SpeechSynthesisUtterance) {
+    return await new Promise(res => {
+      const u = new SpeechSynthesisUtterance(clean);
+      const v = chosenVoice();
+      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-GB';
+      u.rate = opts.rate || rate();
+      u.pitch = 1;
+      u.onend = () => { if (opts.onEnd) opts.onEnd(); res(); };
+      u.onerror = () => { if (opts.onEnd) opts.onEnd(); res(); };
+      try { synth.speak(u); } catch (e) { if (opts.onEnd) opts.onEnd(); res(); }
+    });
+  }
+  if (opts.onEnd) opts.onEnd();
+}
+
+App.readaloud = { speakable, speakText, stop: () => { stop(true); haltAll(); } };
+
 if (supported) {
   App.ready(() => {
     loadVoices();
     if (sysSupported) { try { synth.addEventListener ? synth.addEventListener('voiceschanged', loadVoices) : (synth.onvoiceschanged = loadVoices); } catch (e) {} }
+    App.on('voicekeys:change', fillVoices);
     addSectionButtons();
     addStoryButton();
     App.tool({ id: 'listen', label: 'Listen', icon: ICON, order: 40, title: 'Read aloud from here', onClick: readOnScreen });
@@ -603,4 +774,4 @@ if (supported) {
   });
 }
 
-export default { speakable };
+export default { speakable, speakText };

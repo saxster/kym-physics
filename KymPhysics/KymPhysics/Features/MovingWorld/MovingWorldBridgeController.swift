@@ -205,6 +205,12 @@ final class ChapterExplainerPlayer: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     func togglePlayPause() {
+        if KymLiveStaticTextNarrator.shared.isSpeaking {
+            KymLiveStaticTextNarrator.shared.stop()
+            isPaused = true
+            isPlaying = false
+            return
+        }
         if synthesizer.isSpeaking {
             if isPaused {
                 synthesizer.continueSpeaking()
@@ -222,6 +228,7 @@ final class ChapterExplainerPlayer: NSObject, AVSpeechSynthesizerDelegate {
 
     func stepForward() {
         guard currentSegmentIndex + 1 < segments.count else { return }
+        KymLiveStaticTextNarrator.shared.stop()
         synthesizer.stopSpeaking(at: .immediate)
         currentSegmentIndex += 1
         speakCurrentSegment()
@@ -229,6 +236,7 @@ final class ChapterExplainerPlayer: NSObject, AVSpeechSynthesizerDelegate {
 
     func stepBackward() {
         guard currentSegmentIndex > 0 else { return }
+        KymLiveStaticTextNarrator.shared.stop()
         synthesizer.stopSpeaking(at: .immediate)
         currentSegmentIndex -= 1
         speakCurrentSegment()
@@ -242,12 +250,14 @@ final class ChapterExplainerPlayer: NSObject, AVSpeechSynthesizerDelegate {
             speechRateMultiplier = 1.0
         }
         if isPlaying {
+            KymLiveStaticTextNarrator.shared.stop()
             synthesizer.stopSpeaking(at: .immediate)
             speakCurrentSegment()
         }
     }
 
     func stop() {
+        KymLiveStaticTextNarrator.shared.stop()
         synthesizer.stopSpeaking(at: .immediate)
         isPlaying = false
         isPaused = false
@@ -259,6 +269,31 @@ final class ChapterExplainerPlayer: NSObject, AVSpeechSynthesizerDelegate {
         guard currentSegmentIndex >= 0 && currentSegmentIndex < segments.count else {
             isPlaying = false
             isPaused = false
+            return
+        }
+        if KymLiveStaticTextNarrator.shared.hasElevenLabsKeyConfigured {
+            let textToRead: String
+            if currentSegmentIndex < dialogueTurns.count {
+                textToRead = dialogueTurns[currentSegmentIndex].text
+            } else {
+                textToRead = segments[currentSegmentIndex]
+            }
+            isPlaying = true
+            isPaused = false
+            KymLiveStaticTextNarrator.shared.readAloud(
+                text: textToRead,
+                itemID: "physics-explainer-\(currentSegmentIndex)",
+                rate: speechRateMultiplier
+            ) { [weak self] in
+                guard let self else { return }
+                if self.currentSegmentIndex + 1 < self.segments.count && self.isPlaying {
+                    self.currentSegmentIndex += 1
+                    self.speakCurrentSegment()
+                } else {
+                    self.isPlaying = false
+                    self.isPaused = false
+                }
+            }
             return
         }
         if currentSegmentIndex < dialogueTurns.count {
