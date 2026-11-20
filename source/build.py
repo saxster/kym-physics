@@ -888,10 +888,10 @@ def widget_meta(name):
 
 
 def bundle_live_inline(names, tag):
-    """--out mode: live/core.js + enhancements.js + every widget the build uses, in one IIFE."""
+    """--out mode: live/core.js + enhancements.js + sim_studio.js + every widget the build uses, in one IIFE."""
     if not names:
         return ''
-    src = "import './enhancements.js';\nimport './core.js';\n" + ''.join(f"import './w_{n}.js';\n" for n in names)
+    src = "import './enhancements.js';\nimport './sim_studio.js';\nimport './core.js';\n" + ''.join(f"import './w_{n}.js';\n" for n in names)
     return iife(src, tag, os.path.join(ROOT, 'live'))
 
 
@@ -900,17 +900,84 @@ def bundle_live_runtime(tag):
     return iife("import './core.js';\n", tag, os.path.join(ROOT, 'live'))
 
 
-def bundle_app(tag, inline_explorers):
+SITE_EXTERNAL_APP_GROUPS = (
+    ('app_coach', ('m_coach.js',)),
+    ('app_reader', ('m_equations.js', 'm_readaloud.js')),
+)
+
+
+def bundle_app(tag, inline_explorers, exclude=()):
     """Bundle app/core.js and every feature module app/m_*.js (plus, in --out mode, the explorer
     implementations app/x_*.js) into one script; concatenate app/*.css."""
     adir = os.path.join(ROOT, 'app')
-    skip = set(filter(None, os.environ.get('SKIP_APP', '').split(',')))
+    skip = set(filter(None, os.environ.get('SKIP_APP', '').split(','))) | set(exclude)
     mods = [m for m in sorted(glob.glob(os.path.join(adir, 'm_*.js'))) if os.path.basename(m) not in skip]
     if inline_explorers:
         mods += sorted(glob.glob(os.path.join(adir, 'x_*.js')))
     js = iife("import './core.js';\n" + ''.join(f"import './{os.path.basename(m)}';\n" for m in mods), tag, adir)
-    css = '\n'.join(open(f, encoding='utf-8').read() for f in sorted(glob.glob(os.path.join(adir, '*.css'))) if os.path.basename(f) not in skip)
+    css = '\n'.join(open(f, encoding='utf-8').read() for f in sorted(glob.glob(os.path.join(adir, '*.css'))) if os.path.basename(f) not in set(filter(None, os.environ.get('SKIP_APP', '').split(','))))
     return js, css
+
+
+EXTERNAL_APP_MJS = r'''
+import * as esbuild from 'esbuild';
+import fs from 'node:fs';
+import path from 'node:path';
+const cfg = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+const plugin = { name: 'app-shim', setup(b) {
+  b.onResolve({ filter: /core\.js$/ }, a => {
+    const p = path.resolve(a.resolveDir, a.path);
+    return p === cfg.appCore ? { path: p, namespace: 'shim' } : undefined;
+  });
+  b.onLoad({ filter: /.*/, namespace: 'shim' }, () => ({ contents: cfg.appShim, loader: 'js' }));
+} };
+const res = await esbuild.build({
+  stdin: { contents: cfg.stdin, resolveDir: cfg.appDir, loader: 'js' },
+  bundle: true, format: 'iife', minify: true, target: 'es2020',
+  legalComments: 'none', logLevel: 'warning', write: false, plugins: [plugin],
+});
+fs.writeFileSync(cfg.outFile, res.outputFiles[0].text);
+'''
+
+
+def build_external_app_scripts(site_dir):
+    """--site mode: build classic IIFE <script src> bundles for heavy optional app panels so index.html stays < 4 MiB."""
+    adir = os.path.join(ROOT, 'app')
+    live_out = os.path.join(site_dir, 'live')
+    os.makedirs(live_out, exist_ok=True)
+    skip = set(filter(None, os.environ.get('SKIP_APP', '').split(',')))
+    tmp = os.path.join(ROOT, 'build', '.extapp')
+    os.makedirs(tmp, exist_ok=True)
+    script = os.path.join(tmp, 'extapp.mjs')
+    open(script, 'w').write(EXTERNAL_APP_MJS)
+    rels, sizes = [], []
+    try:
+        for group_name, filenames in SITE_EXTERNAL_APP_GROUPS:
+            present = [f for f in filenames if f not in skip and os.path.exists(os.path.join(adir, f))]
+            if not present:
+                continue
+            raw_out = os.path.join(tmp, f'{group_name}.js')
+            cfg = {
+                'stdin': ''.join(f"import './{f}';\n" for f in present),
+                'appDir': adir,
+                'appCore': os.path.join(adir, 'core.js'),
+                'appShim': 'const App = window.App;\nexport default App;\n',
+                'outFile': raw_out,
+            }
+            cfg_path = os.path.join(tmp, f'{group_name}.json')
+            json.dump(cfg, open(cfg_path, 'w'))
+            subprocess.run(['node', script, cfg_path], check=True, cwd=ROOT)
+            js_bytes = open(raw_out, 'rb').read()
+            h = hashlib.sha1(js_bytes).hexdigest()[:8]
+            fname = f'{group_name}-{h}.js'
+            dest = os.path.join(live_out, fname)
+            open(dest, 'wb').write(js_bytes)
+            rel = f'live/{fname}'
+            rels.append(rel)
+            sizes.append((rel, len(js_bytes), 'app'))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return rels, sizes
 
 
 CHUNKS_MJS = r'''
@@ -956,6 +1023,9 @@ def build_chunks(site_dir, widget_names):
     enh_path = os.path.join(ROOT, 'live', 'enhancements.js')
     if os.path.exists(enh_path):
         entries['enhancements'] = enh_path
+    studio_path = os.path.join(ROOT, 'live', 'sim_studio.js')
+    if os.path.exists(studio_path):
+        entries['sim_studio'] = studio_path
     entries.update({os.path.splitext(os.path.basename(p))[0]: p for p in sorted(glob.glob(os.path.join(ROOT, 'app', 'x_*.js')))})
     entries.update({f'spread_{k}': p for k, p in spread_entries().items()})
     tmp = os.path.join(ROOT, 'build', '.chunks')
@@ -1377,9 +1447,15 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
     if site_dir:
         chunks, sizes = build_chunks(site_dir, widgets)
         live_js = bundle_live_runtime(tag)
+        exclude_app = {f for _, fs in SITE_EXTERNAL_APP_GROUPS for f in fs}
+        extra_scripts, extra_sizes = build_external_app_scripts(site_dir)
+        sizes.extend(extra_sizes)
+        app_extra_tags = ''.join(f'<script src="{rel}"></script>' for rel in extra_scripts)
     else:
         live_js = bundle_live_inline(widgets, tag)
-    app_js, app_css = bundle_app(tag, inline_explorers=not site_dir)
+        exclude_app = ()
+        app_extra_tags = ''
+    app_js, app_css = bundle_app(tag, inline_explorers=not site_dir, exclude=exclude_app)
     css += '\n' + app_css
     css = compact_css(css)
     book_data = {
@@ -1462,7 +1538,7 @@ def build(pdf=False, only=None, out=None, site_dir=None, head_extra=''):
 <script>{ST.DIALOG_JS}</script>
 <script>{live_js}</script>
 <script type="application/json" id="book-data">{data_json}</script>
-<script>{app_js}</script>
+<script>{app_js}</script>{app_extra_tags}
 </body>
 </html>'''
     os.makedirs(os.path.join(ROOT, 'build'), exist_ok=True)

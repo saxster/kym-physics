@@ -507,30 +507,25 @@ struct MovingWorldWebBookView: NSViewRepresentable {
 
     func makeNSView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
-        config.userContentController.addUserScript(MovingWorldBridgeController.injectedUserScript)
-        config.userContentController.add(context.coordinator, name: MovingWorldBridgeController.handlerName)
+        MovingWorldBookSchemeHandler.configure(config, bridge: context.coordinator)
         let webView = WKWebView(frame: .zero, configuration: config)
-        Self.loadBook(in: webView, chapterNumber: chapterNumber)
+        MovingWorldBookSchemeHandler.loadBook(in: webView, chapterNumber: chapterNumber)
         return webView
     }
 
     func updateNSView(_ webView: WKWebView, context: Context) {
         context.coordinator.store = store
-        let js = "if (window.location.hash !== '#c\(chapterNumber)') { window.location.hash = '#c\(chapterNumber)'; }"
-        webView.evaluateJavaScript(js, completionHandler: nil)
+        webView.callAsyncJavaScript(
+            "if (window.location.hash !== h) { window.location.hash = h; }",
+            arguments: ["h": "#ch\(chapterNumber)"],
+            in: nil,
+            in: .page,
+            completionHandler: nil
+        )
     }
 
-    static func loadBook(in webView: WKWebView, chapterNumber: Int) {
-        let candidates: [URL?] = [
-            Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "MovingWorldBook"),
-            URL(fileURLWithPath: "/Users/amarsukhi/src/MyCode/kym_physics/KymPhysics/KymPhysics/Resources/MovingWorldBook/index.html"),
-            URL(fileURLWithPath: "/Users/amarsukhi/src/MyCode/kym_physics/index.html")
-        ]
-        for case let url? in candidates where FileManager.default.fileExists(atPath: url.path) {
-            let dir = url.deletingLastPathComponent()
-            webView.loadFileURL(url, allowingReadAccessTo: dir)
-            return
-        }
+    static func dismantleNSView(_ webView: WKWebView, coordinator: MovingWorldBridgeController) {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: MovingWorldBridgeController.handlerName)
     }
 }
 #else
@@ -544,19 +539,25 @@ struct MovingWorldWebBookView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
-        config.userContentController.addUserScript(MovingWorldBridgeController.injectedUserScript)
-        config.userContentController.add(context.coordinator, name: MovingWorldBridgeController.handlerName)
+        MovingWorldBookSchemeHandler.configure(config, bridge: context.coordinator)
         let webView = WKWebView(frame: .zero, configuration: config)
-        if let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "MovingWorldBook") {
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
-        }
+        MovingWorldBookSchemeHandler.loadBook(in: webView, chapterNumber: chapterNumber)
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
         context.coordinator.store = store
-        let js = "if (window.location.hash !== '#c\(chapterNumber)') { window.location.hash = '#c\(chapterNumber)'; }"
-        webView.evaluateJavaScript(js, completionHandler: nil)
+        webView.callAsyncJavaScript(
+            "if (window.location.hash !== h) { window.location.hash = h; }",
+            arguments: ["h": "#ch\(chapterNumber)"],
+            in: nil,
+            in: .page,
+            completionHandler: nil
+        )
+    }
+
+    static func dismantleUIView(_ webView: WKWebView, coordinator: MovingWorldBridgeController) {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: MovingWorldBridgeController.handlerName)
     }
 }
 #endif

@@ -76,11 +76,47 @@ function acquireRawGL(fig) {
 }
 // End raw fragment-shader pool.
 
+const PREFS_KEY = 'mw:sim_prefs';
+const DEFAULT_PREFS = { units: 'si', colorblind: false, highlights: false, openPlay: false, sonify: false };
+function readPrefs() {
+  try {
+    const raw = localStorage.getItem(PREFS_KEY);
+    // Sonification is always opt-in per session so AudioContext never auto-starts on reload.
+    return raw ? { ...DEFAULT_PREFS, ...JSON.parse(raw), sonify: false } : { ...DEFAULT_PREFS };
+  } catch (_) { return { ...DEFAULT_PREFS }; }
+}
+let simPrefs = readPrefs();
+const prefListeners = new Set();
+function applyPrefsToRoot(p) {
+  if (typeof document === 'undefined') return;
+  const r = document.documentElement;
+  if (p.colorblind) r.setAttribute('data-sim-cb', '1'); else r.removeAttribute('data-sim-cb');
+  if (p.highlights) r.setAttribute('data-sim-highlights', '1'); else r.removeAttribute('data-sim-highlights');
+}
+
 const widgets = {};
 export const Live = {
   EL, DARK_TEXT,
   /** register(name, factory, {label}) — factory(stage, params, api) returns {start(), stop(), destroy()} */
   register(name, factory, meta = {}) { widgets[name] = { factory, meta }; },
+  getPrefs() { return simPrefs; },
+  setPrefs(patch) {
+    simPrefs = { ...simPrefs, ...patch };
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify({ ...simPrefs, sonify: false })); } catch (_) {}
+    applyPrefsToRoot(simPrefs);
+    for (const fn of prefListeners) { try { fn(simPrefs); } catch (_) {} }
+    return simPrefs;
+  },
+  onPrefs(fn) { prefListeners.add(fn); return () => prefListeners.delete(fn); },
+  async openPreset(widgetName, patch = {}) {
+    if (!window.__liveStudio && chunkURL('sim_studio')) {
+      try { await loadChunk('sim_studio'); } catch (_) {}
+    }
+    if (window.LiveIO && typeof window.LiveIO.openPreset === 'function') {
+      return window.LiveIO.openPreset(widgetName, patch);
+    }
+    return null;
+  },
 };
 window.Live = Live;
 
@@ -275,17 +311,32 @@ function makeApi(fig, stage, controls, state) {
   let interacted = false;
   let watched = false;
   let audio = null;
+  let currentActor = 'user';
+  let resetHooks = { replay: null, resetAll: null };
+  let sonifyHook = null;
+  const atlasSliders = [];
+  const atlasTabs = [];
+  const atlasButtons = [];
   const palette = colors();
+  const redraw = () => {
+    if (!state.playing) for (const fn of loops) fn(0, state.t);
+  };
   const themeObserver = new MutationObserver(() => {
     Object.assign(palette, colors());
-    for (const fn of loops) fn(0, state.t);
+    redraw();
   });
-  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-sim-cb'] });
   cleanups.push(() => themeObserver.disconnect());
+  const onPrefUpdate = () => {
+    Object.assign(palette, colors());
+    redraw();
+  };
+  prefListeners.add(onPrefUpdate);
+  cleanups.push(() => prefListeners.delete(onPrefUpdate));
 
-  const notifyChange = () => {
+  const notifyChange = (actor = currentActor, eventMeta = null) => {
     for (const fn of changeListeners) {
-      try { fn(); } catch (e) { /* ignore */ }
+      try { fn(actor, eventMeta); } catch (e) { /* ignore */ }
     }
   };
 
@@ -300,8 +351,11 @@ function makeApi(fig, stage, controls, state) {
   };
   const api = {
     get reduced() { return isReducedMotion(); },
+    get prefs() { return simPrefs; },
+    onPrefs(fn) { prefListeners.add(fn); const off = () => prefListeners.delete(fn); cleanups.push(off); return off; },
     colors: () => palette,
     draw, rng, gauss, EL,
+    controls,
     /** true while the figure is on screen */
     get visible() { return state.visible; },
     /** Start/pause from an explicit lesson button (for example, Run a motor). */
@@ -309,6 +363,13 @@ function makeApi(fig, stage, controls, state) {
     pause() { state.setPlaying?.(false); },
     /** Parameter-only lessons do not offer a Play action with no visible effect. */
     playback(enabled) { state.setPlaybackSupported?.(!!enabled); },
+    onReset(replayFn, resetAllFn) { resetHooks = { replay: replayFn || null, resetAll: resetAllFn || null }; },
+    sonify(fn) { sonifyHook = fn || null; },
+    redraw,
+    _sliders: atlasSliders,
+    _tabs: atlasTabs,
+    _buttons: atlasButtons,
+    _refresh() { notifyChange(currentActor, { kind: 'atlas' }); },
     /** Keep a lesson's controls beside its primary visual. */
     placeControls(slot) { slot.appendChild(controls); },
     /** A canvas that fills the stage at a fixed logical size (W x H); drawing uses logical units. */
@@ -340,9 +401,10 @@ function makeApi(fig, stage, controls, state) {
       b.type = 'button'; b.className = 'live-ctl'; b.textContent = label;
       if (opts.pressed != null) b.setAttribute('aria-pressed', String(!!opts.pressed));
       b.addEventListener('click', () => {
-        interacted = true;
+        if (currentActor === 'user') interacted = true;
         onClick(b);
-        notifyChange();
+        if (!state.playing) redraw();
+        notifyChange(currentActor, { kind: 'button', label });
       });
       controls.appendChild(b);
       buttons.push({ label, btn: b });
@@ -350,16 +412,17 @@ function makeApi(fig, stage, controls, state) {
     },
     tabs(labels, onSelect, start = 0) {
       const wrap = document.createElement('div'); wrap.className = 'live-tabs'; wrap.setAttribute('role', 'group');
-      const grp = { activeIdx: start, btns: [], onSelect };
+      const grp = { activeIdx: start, initialIdx: start, labels: labels.slice(), btns: [], onSelect };
       const btns = labels.map((l, i) => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'live-ctl'; b.textContent = l;
         b.setAttribute('aria-pressed', String(i === start));
         b.addEventListener('click', () => {
-          interacted = true;
+          if (currentActor === 'user') interacted = true;
           grp.activeIdx = i;
           btns.forEach((x, j) => x.setAttribute('aria-pressed', String(j === i)));
           onSelect(i);
-          notifyChange();
+          if (!state.playing) redraw();
+          notifyChange(currentActor, { kind: 'tab', label: l, value: i });
         });
         wrap.appendChild(b); return b;
       });
@@ -377,20 +440,30 @@ function makeApi(fig, stage, controls, state) {
       const lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = label;
       const inp = document.createElement('input'); inp.type = 'range'; inp.id = id; inp.min = min; inp.max = max; inp.step = step; inp.value = value;
       const out = document.createElement('output'); out.htmlFor = id; out.textContent = fmt(+value);
-      const setVal = (v, trigger = false) => {
+      const setVal = (v, trigger = false, actor = currentActor) => {
         inp.value = v;
         out.textContent = fmt(+inp.value);
-        if (trigger && onInput) onInput(+inp.value);
-        notifyChange();
+        const prevActor = currentActor;
+        currentActor = actor;
+        try {
+          if (trigger && onInput) onInput(+inp.value);
+        } finally {
+          currentActor = prevActor;
+        }
+        if (!state.playing) redraw();
+        notifyChange(actor, { kind: 'slider', label: item.label, value: +inp.value });
       };
       inp.addEventListener('input', () => {
-        interacted = true;
+        if (currentActor === 'user') interacted = true;
         out.textContent = fmt(+inp.value);
         onInput(+inp.value);
-        notifyChange();
+        if (!state.playing) redraw();
+        notifyChange(currentActor, { kind: 'slider', label: item.label, value: +inp.value });
       });
       wrap.append(lab, inp, out); controls.appendChild(wrap);
-      const item = { label, input: inp, set: (v) => setVal(v, false), drive: (v) => setVal(v, true),
+      const item = { label, wrap, input: inp, output: out, min: +min, max: +max, step: +step, initialValue: +value, fmt,
+        set: (v) => setVal(v, false, 'preset'),
+        drive: (v, actor = 'tour') => setVal(v, true, actor),
         setLabel(text) { lab.textContent = text; item.label = text; } };
       sliders.push(item);
       return item;
@@ -405,7 +478,7 @@ function makeApi(fig, stage, controls, state) {
           r.innerHTML = html;
           last = html;
           readoutText = r.textContent || '';
-          notifyChange();
+          notifyChange(currentActor, { kind: 'readout' });
         }
       };
       write.element = r;
@@ -759,11 +832,82 @@ function makeApi(fig, stage, controls, state) {
     },
     _loops: loops, _cleanups: cleanups, _hides: hides,
     _ext: {
-      sliders, tabGroups, buttons, changeListeners,
+      sliders, tabGroups, buttons, changeListeners, state, fig, stage, controls,
+      get inst() { return state.inst; },
       get readoutText() { return readoutText; },
       get interacted() { return interacted; },
       get watched() { return watched; },
-      setWatched(v) { watched = v; notifyChange(); },
+      setWatched(v) { watched = v; notifyChange('tour', { kind: 'watched' }); },
+      setActor(a) { currentActor = a || 'user'; },
+      getActor() { return currentActor; },
+      get resetHooks() { return resetHooks; },
+      get sonifyHook() { return sonifyHook; },
+      absorbAtlasControls() {
+        for (const s of atlasSliders) {
+          if (sliders.some((x) => x.input === s.input)) continue;
+          const inp = s.input;
+          const wrap = inp.closest('.live-slider');
+          const applyFn = s.apply;
+          sliders.push({
+            label: s.label,
+            wrap,
+            input: inp,
+            output: wrap?.querySelector('output') || null,
+            min: +inp.min,
+            max: +inp.max,
+            step: +(inp.step || 1),
+            initialValue: +inp.value,
+            fmt: null,
+            set(v) {
+              const prev = currentActor;
+              currentActor = 'preset';
+              try { applyFn(v); } finally { currentActor = prev; }
+            },
+            drive(v, actor = 'tour') {
+              const prev = currentActor;
+              currentActor = actor;
+              try {
+                if (actor === 'user') interacted = true;
+                applyFn(v);
+                notifyChange(actor, { kind: 'slider', label: s.label, value: +inp.value });
+              } finally {
+                currentActor = prev;
+              }
+            },
+            setLabel(text) {
+              const lab = wrap?.querySelector('label');
+              if (lab) lab.textContent = text;
+            },
+          });
+          inp.addEventListener('input', () => {
+            if (currentActor === 'user') interacted = true;
+            notifyChange(currentActor, { kind: 'slider', label: s.label, value: +inp.value });
+          });
+        }
+        for (const grpBtns of atlasTabs) {
+          if (!Array.isArray(grpBtns) || !grpBtns.length) continue;
+          if (tabGroups.some((g) => g.btns[0] === grpBtns[0])) continue;
+          const initIdx = Math.max(0, grpBtns.findIndex((b) => b.getAttribute('aria-pressed') === 'true'));
+          const grp = {
+            activeIdx: initIdx,
+            initialIdx: initIdx,
+            labels: grpBtns.map((b) => b.textContent || ''),
+            btns: grpBtns,
+          };
+          tabGroups.push(grp);
+          grpBtns.forEach((b, idx) => {
+            b.addEventListener('click', () => {
+              if (currentActor === 'user') interacted = true;
+              grp.activeIdx = idx;
+              notifyChange(currentActor, { kind: 'tab', label: b.textContent || '', value: idx });
+            });
+          });
+        }
+        for (const b of atlasButtons) {
+          if (!b || buttons.some((x) => x.btn === b)) continue;
+          buttons.push({ label: b.textContent || '', btn: b });
+        }
+      },
       get challenge() { return customChallenge; },
       get yourNumbers() { return customNumbers; },
       get watch() { return customWatch; },
@@ -773,239 +917,6 @@ function makeApi(fig, stage, controls, state) {
     },
   };
   return api;
-}
-
-function makeSnapshot(ext) {
-  return {
-    num(prefix, fallback = 0) {
-      const p = prefix.toLowerCase();
-      const s = ext.sliders.find((x) => x.label.toLowerCase().includes(p));
-      return s ? +s.input.value : fallback;
-    },
-    setSlider(prefix, val) {
-      const p = prefix.toLowerCase();
-      const s = ext.sliders.find((x) => x.label.toLowerCase().includes(p));
-      if (s) s.drive(val);
-    },
-    tab(groupIdx = 0) {
-      return ext.tabGroups[groupIdx] ? ext.tabGroups[groupIdx].activeIdx : 0;
-    },
-    selectTab(groupIdx = 0, tabIdx = 0) {
-      const g = ext.tabGroups[groupIdx];
-      if (g && g.btns[tabIdx]) g.btns[tabIdx].click();
-    },
-    clickBtn(substr) {
-      const p = substr.toLowerCase();
-      const b = ext.buttons.find((x) => x.label.toLowerCase().includes(p));
-      if (b) b.btn.click();
-    },
-    readout() { return ext.readoutText || ''; },
-    get interacted() { return ext.interacted; },
-    get watched() { return ext.watched; },
-  };
-}
-
-function attachEnhancements(name, fig, stage, controls, api, openBtn) {
-  const def = (window.__liveEnhancements || {})[name] || {};
-  const ext = api._ext;
-  const snap = makeSnapshot(ext);
-  const chal = ext.challenge || def.challenge;
-  const hasNum = ext.yourNumbers !== null || !!def.yourNumbers;
-  const shots = ext.watch || def.watch;
-  const cutawayText = ext.cutaway || def.cutaway;
-  const idealText = ext.idealised || def.idealised;
-
-  // 1. Challenge banner + circular rubber stamp at top of stage
-  let stampEl = null;
-  const stampKey = 'mw:stamp:' + name;
-  let stamped = false;
-  try { stamped = localStorage.getItem(stampKey) === '1'; } catch (e) { /* ignore */ }
-
-  if (chal && chal.prompt) {
-    const bar = document.createElement('div');
-    bar.className = 'live-challenge';
-    const txt = document.createElement('span');
-    txt.className = 'live-challenge-text';
-    txt.innerHTML = `<strong>Challenge:</strong> ${chal.prompt}`;
-    stampEl = document.createElement('span');
-    stampEl.className = 'live-stamp' + (stamped ? ' is-stamped' : '');
-    stampEl.setAttribute('role', 'status');
-    stampEl.textContent = stamped ? '✓ Stamped' : '◎ Goal';
-    bar.append(txt, stampEl);
-    stage.insertBefore(bar, stage.firstChild);
-  }
-
-  // 2. Cut-away cross-section overlay card inside stage
-  let cutawayCard = null;
-  let cutawayBtn = null;
-  let cutawayOpen = false;
-  if (cutawayText) {
-    cutawayCard = document.createElement('div');
-    cutawayCard.className = 'live-cutaway-card';
-    cutawayCard.setAttribute('data-glass', '1');
-    cutawayCard.hidden = true;
-    cutawayCard.innerHTML = `<span class="live-cutaway-badge">◐ Cut-away inside view</span><p>${cutawayText}</p>`;
-    stage.appendChild(cutawayCard);
-  }
-  const setCutaway = (on) => {
-    cutawayOpen = !!on;
-    if (cutawayCard) cutawayCard.hidden = !cutawayOpen;
-    if (cutawayBtn) cutawayBtn.setAttribute('aria-pressed', String(cutawayOpen));
-    if (typeof ext.cutawayCb === 'function') {
-      try { ext.cutawayCb(cutawayOpen); } catch (e) { /* ignore */ }
-    }
-  };
-
-  // 3. Live "Your Numbers" handwritten margin substitution strip at top of controls
-  let numEl = null;
-  if (hasNum) {
-    numEl = document.createElement('div');
-    numEl.className = 'live-your-numbers';
-    numEl.setAttribute('aria-live', 'off');
-    const badge = document.createElement('span');
-    badge.className = 'live-yn-badge';
-    badge.textContent = 'Your numbers';
-    const eq = document.createElement('span');
-    eq.className = 'live-yn-eq';
-    numEl.append(badge, eq);
-    controls.insertBefore(numEl, controls.firstChild);
-  }
-
-  // 4. 5-shot choreographed Watch tour bar
-  let watchTimer = 0;
-  if (shots && shots.length) {
-    const wBar = document.createElement('div');
-    wBar.className = 'live-watch-bar';
-
-    const wBtn = document.createElement('button');
-    wBtn.type = 'button';
-    wBtn.className = 'live-ctl live-watch-btn';
-    wBtn.textContent = '▶ Watch 5-shot tour';
-    wBtn.setAttribute('aria-pressed', 'false');
-
-    const dotsWrap = document.createElement('div');
-    dotsWrap.className = 'live-watch-dots';
-    const capEl = document.createElement('span');
-    capEl.className = 'live-watch-caption';
-    capEl.textContent = 'Tap Watch or any step 1–5 for a guided tour.';
-
-    const dotBtns = shots.map((sh, idx) => {
-      const d = document.createElement('button');
-      d.type = 'button';
-      d.className = 'live-watch-dot';
-      d.textContent = String(idx + 1);
-      d.title = sh.title || `Shot ${idx + 1}`;
-      d.setAttribute('aria-label', sh.title || `Shot ${idx + 1}`);
-      d.addEventListener('click', () => {
-        stopTour();
-        applyShot(idx);
-      });
-      dotsWrap.appendChild(d);
-      return d;
-    });
-
-    if (cutawayText || ext.cutawayCb) {
-      cutawayBtn = document.createElement('button');
-      cutawayBtn.type = 'button';
-      cutawayBtn.className = 'live-ctl live-cutaway-btn';
-      cutawayBtn.textContent = '◐ Cut-away';
-      cutawayBtn.setAttribute('aria-pressed', 'false');
-      cutawayBtn.addEventListener('click', () => {
-        setCutaway(!cutawayOpen);
-        if (window.__bookSound) window.__bookSound.play('flap');
-      });
-    }
-
-    function applyShot(idx) {
-      const sh = shots[idx];
-      if (!sh) return;
-      dotBtns.forEach((b, j) => b.classList.toggle('is-active', j === idx));
-      capEl.textContent = sh.caption || sh.title || '';
-      if (sh.cutaway != null) setCutaway(!!sh.cutaway);
-      const actFn = sh.act || sh.enter;
-      if (typeof actFn === 'function') {
-        try { actFn(snap); } catch (e) { /* ignore */ }
-      }
-      if (idx === shots.length - 1) ext.setWatched(true);
-    }
-
-    function stopTour() {
-      if (watchTimer) { clearInterval(watchTimer); watchTimer = 0; }
-      wBtn.setAttribute('aria-pressed', 'false');
-      wBtn.textContent = '▶ Watch 5-shot tour';
-    }
-
-    wBtn.addEventListener('click', () => {
-      if (watchTimer) {
-        stopTour();
-        return;
-      }
-      let stepIdx = 0;
-      wBtn.setAttribute('aria-pressed', 'true');
-      wBtn.textContent = '■ Stop tour';
-      applyShot(0);
-      watchTimer = setInterval(() => {
-        stepIdx++;
-        if (stepIdx >= shots.length) {
-          stopTour();
-          return;
-        }
-        applyShot(stepIdx);
-      }, 2100);
-    });
-
-    api.onCleanup(stopTour);
-    api.onHide(stopTour);
-
-    wBar.append(wBtn, dotsWrap);
-    if (cutawayBtn) wBar.appendChild(cutawayBtn);
-    wBar.appendChild(capEl);
-    controls.insertBefore(wBar, numEl ? numEl.nextSibling : controls.firstChild);
-  }
-
-  // 5. "What the model simplifies" 1-sentence honesty footnote
-  if (idealText) {
-    const idEl = document.createElement('p');
-    idEl.className = 'live-idealised';
-    idEl.innerHTML = `<strong>What the model simplifies:</strong> ${idealText}`;
-    controls.appendChild(idEl);
-  }
-
-  // Sync live numbers + challenge check
-  let lastNumStr = '';
-  const evaluate = () => {
-    const curNum = ext.yourNumbers !== null ? ext.yourNumbers : def.yourNumbers;
-    if (numEl && curNum != null) {
-      const val = typeof curNum === 'function' ? curNum(snap) : String(curNum);
-      if (val && val !== lastNumStr) {
-        numEl.querySelector('.live-yn-eq').textContent = val;
-        lastNumStr = val;
-      }
-    }
-    if (!stamped && chal && typeof chal.check === 'function') {
-      let ok = false;
-      try { ok = !!chal.check(snap); } catch (e) { ok = false; }
-      if (ok) {
-        stamped = true;
-        try { localStorage.setItem(stampKey, '1'); } catch (e) { /* ignore */ }
-        if (stampEl) {
-          stampEl.textContent = '✓ Stamped';
-          stampEl.classList.add('is-stamped', 'just-stamped');
-        }
-        if (openBtn && !openBtn.querySelector('.live-open-stamp')) {
-          const b = document.createElement('em');
-          b.className = 'live-open-stamp';
-          b.textContent = '✓';
-          b.title = 'Challenge completed';
-          openBtn.appendChild(b);
-        }
-        if (window.__bookSound) window.__bookSound.play('stamp');
-      }
-    }
-  };
-
-  ext.changeListeners.add(evaluate);
-  evaluate();
 }
 
 // ------------------------------------------------------------------ wiring figures
@@ -1063,8 +974,15 @@ function setup(fig) {
   }
 
   let w = null, inst = null, api = null, stage = null, controls = null, playing = false, raf = 0, last = 0, liftTimer = 0;
-  const state = { visible: true, t: 0 };
+  const state = { visible: true, t: 0, speed: 1, playing: false, inst: null };
   state.setPlaying = setPlaying;
+  state.setSpeed = (v) => { state.speed = v > 0 ? v : 1; };
+  state.stepOnce = (dtStep = 0.05) => {
+    setPlaying(false);
+    if (!api) return;
+    state.t += dtStep;
+    for (const fn of api._loops) fn(dtStep, state.t);
+  };
   state.setPlaybackSupported = (enabled) => {
     state.playbackSupported = enabled;
     playBtn.hidden = !enabled;
@@ -1075,22 +993,29 @@ function setup(fig) {
   playBtn.type = 'button'; playBtn.className = 'live-ctl live-play';
 
   function frame(ts) {
-    const dt = Math.min(0.05, last ? (ts - last) / 1000 : 0.016);
+    const dt = Math.min(0.05, last ? (ts - last) / 1000 : 0.016) * (state.speed || 1);
     last = ts; state.t += dt;
     const activeApi = api;
     for (const fn of activeApi._loops) {
       fn(dt, state.t);
       if (api !== activeApi || !playing) break;
     }
+    if (api === activeApi && simPrefs.sonify && activeApi._ext.sonifyHook) {
+      try { activeApi._ext.sonifyHook(dt, state.t, simPrefs); } catch (_) {}
+    }
     if (api === activeApi && playing && state.visible) raf = requestAnimationFrame(frame);
   }
   function setPlaying(p) {
     p = !!p && state.playbackSupported !== false;
     playing = p;
+    state.playing = p;
     playBtn.textContent = p ? 'Pause' : 'Play';
     playBtn.setAttribute('aria-pressed', String(p));
     fig.querySelectorAll('.live-readout').forEach(node => node.setAttribute('aria-live', p ? 'off' : 'polite'));
     cancelAnimationFrame(raf); last = 0;
+    if (!p && api?._ext?.sonifyHook) {
+      try { api._ext.sonifyHook(0, state.t, simPrefs); } catch (_) {}
+    }
     if (p && state.visible) raf = requestAnimationFrame(frame);
     else if (api) for (const fn of api._loops) fn(0, state.t); // draw one still frame
   }
@@ -1106,6 +1031,7 @@ function setup(fig) {
         await Promise.all([
           loadChunk('w_' + name),
           !window.__liveEnhancements && chunkURL('enhancements') ? loadChunk('enhancements').catch(() => {}) : null,
+          !window.__liveStudio && chunkURL('sim_studio') ? loadChunk('sim_studio').catch(() => {}) : null,
         ]);
       } catch (e) { /* reported below */ }
       if (ticket !== generation || requestOrder!==liveRequestSequence) {
@@ -1121,8 +1047,13 @@ function setup(fig) {
           : 'This live figure could not load. Check the connection and try again.';
         return;
       }
-    } else if (!window.__liveEnhancements && chunkURL('enhancements')) {
-      try { await loadChunk('enhancements'); } catch (_) { /* optional */ }
+    } else if ((!window.__liveEnhancements && chunkURL('enhancements')) || (!window.__liveStudio && chunkURL('sim_studio'))) {
+      try {
+        await Promise.all([
+          !window.__liveEnhancements && chunkURL('enhancements') ? loadChunk('enhancements').catch(() => {}) : null,
+          !window.__liveStudio && chunkURL('sim_studio') ? loadChunk('sim_studio').catch(() => {}) : null,
+        ]);
+      } catch (_) { /* optional */ }
       if (ticket !== generation || requestOrder !== liveRequestSequence) return;
     }
     w = widgets[name];
@@ -1142,12 +1073,12 @@ function setup(fig) {
     stage = document.createElement('div'); stage.className = 'live-stage';
     controls = document.createElement('div'); controls.className = 'live-controls';
     fig.insertBefore(stage, open); fig.insertBefore(controls, open);
-    state.t = 0;
+    state.t = 0; state.speed = 1; state.inst = null;
     state.playbackSupported = !w.meta.static;
     playBtn.hidden = !state.playbackSupported;
     api = makeApi(fig, stage, controls, state);
     if (!w.meta.static) controls.appendChild(playBtn);
-    try { inst = w.factory(stage, params, api) || {}; }
+    try { inst = w.factory(stage, params, api) || {}; state.inst = inst; }
     catch (_) {
       closeLive(false);
       const message = document.createElement('p');
@@ -1155,7 +1086,9 @@ function setup(fig) {
       message.textContent = 'This experiment could not open here. The drawing remains available; try opening it again.';
       fig.insertBefore(message, open); return;
     }
-    attachEnhancements(name, fig, stage, controls, api, open);
+    api._ext.absorbAtlasControls();
+    window.__liveStudio?.attach?.(name, fig, stage, controls, api, open, state, inst, params);
+    fig.dispatchEvent(new CustomEvent('live:mounted', { bubbles: true, detail: { name, fig } }));
     const close = document.createElement('button');
     close.type = 'button'; close.className = 'live-ctl live-close'; close.textContent = 'Back to the drawing';
     close.addEventListener('click', () => closeLive());
@@ -1203,17 +1136,18 @@ function setup(fig) {
     ++generation; // Also cancels a story experiment whose module is still loading.
     clearTimeout(liftTimer);
     cancelAnimationFrame(raf);
+    window.__liveStudio?.detach?.(name, fig);
     inst?.destroy?.();
     api?._cleanups.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
     stage?.remove(); controls?.remove();
-    fig.classList.remove('live-on', 'live-lifting');
+    fig.classList.remove('live-on', 'live-lifting', 'live-openplay');
     delete fig.dataset.activeLesson;
     for (const [attribute, value] of [['aria-label', originalFigureName.label], ['aria-labelledby', originalFigureName.by]]) {
       if (value === null) fig.removeAttribute(attribute); else fig.setAttribute(attribute, value);
     }
     available.forEach(o => { o.button.hidden = false;o.button.disabled=false;const span=o.button.querySelector('span');if(span)span.textContent=o.label;else o.button.textContent=o.label; });
     if (restoreFocus) open?.focus({ preventScroll: true });
-    inst = api = stage = controls = null; playing = false;
+    inst = api = stage = controls = null; playing = false; state.playing = false; state.inst = null;
   }
   playBtn.addEventListener('click', () => setPlaying(!playing));
   fig.addEventListener('open-lesson', e => {
@@ -1247,5 +1181,16 @@ function setup(fig) {
 // every export must be listed here.
 window.__liveModule = { Live, colors, draw, rng, gauss, loadChunk };
 
-function init() { document.querySelectorAll('figure[data-live],figure[data-labs]').forEach(setup); }
+function checkPresetUrl() {
+  if (/(?:[?&]|#)preset=/.test(location.search + location.hash) && !window.__liveStudio && chunkURL('sim_studio')) {
+    loadChunk('sim_studio').catch(() => {});
+  }
+}
+
+function init() {
+  applyPrefsToRoot(simPrefs);
+  document.querySelectorAll('figure[data-live],figure[data-labs]').forEach(setup);
+  checkPresetUrl();
+  window.addEventListener('hashchange', checkPresetUrl);
+}
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else setTimeout(init, 0);

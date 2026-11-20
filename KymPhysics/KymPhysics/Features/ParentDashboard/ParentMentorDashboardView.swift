@@ -39,11 +39,39 @@ enum ParentMentorReportGenerator {
 
         lines.append("")
         lines.append("## 3. Dinner-Table Socratic Conversation Starters for Dad")
-        lines.append("1. **Unit 9.2–9.3 (Earth's Magnetic Shield & Electromagnets):** Ask Kym why a compass north pole points toward geographic North (because geographic North is actually a magnetic South pole!) and why scrap-yard cranes use soft iron rather than steel.")
-        lines.append("2. **Unit 6.2–6.4 (Refraction & RGB Colour Filters):** Ask Kym why violet bends more than red in a glass prism, and what colour a green leaf appears under pure red light.")
-        lines.append("3. **Unit 3.4–3.6 (Moments & Particle Pressure):** Ask Kym why gas pressure rises when heated at constant volume (both collision frequency and collision force increase).")
+        let mentorWidgets = prioritizedMentorWidgets(for: store)
+        if mentorWidgets.isEmpty {
+            lines.append("1. **Unit 9.2–9.3 (Earth's Magnetic Shield & Electromagnets):** Ask Kym why a compass north pole points toward geographic North (because geographic North is actually a magnetic South pole!) and why scrap-yard cranes use soft iron rather than steel.")
+            lines.append("2. **Unit 6.2–6.4 (Refraction & RGB Colour Filters):** Ask Kym why violet bends more than red in a glass prism, and what colour a green leaf appears under pure red light.")
+            lines.append("3. **Unit 3.4–3.6 (Moments & Particle Pressure):** Ask Kym why gas pressure rises when heated at constant volume (both collision frequency and collision force increase).")
+        } else {
+            for (idx, widget) in mentorWidgets.enumerated() {
+                if let tips = widget.mentorTips {
+                    let stampLabel = store.widgetStamps[widget.id] != nil ? "Stamped ★" : "Unstamped"
+                    lines.append("\(idx + 1). **Ch \(widget.chapter) · \(widget.title)** (\(tips.cambridgeUnit) · \(stampLabel)): \"\(tips.dinnerQuestion)\" — *Open Play:* \(tips.openPlay) — *Misconception to probe:* \(tips.misconception)")
+                }
+            }
+        }
 
         return lines.joined(separator: "\n")
+    }
+
+    @MainActor
+    static func prioritizedMentorWidgets(for store: AppStore, limit: Int = 4) -> [InteractiveWidgetSpec] {
+        let withTips = store.pack.widgets.filter { $0.mentorTips != nil }
+        let sorted = withTips.sorted { lhs, rhs in
+            let lhsActive = lhs.chapter == store.activeMovingWorldChapter ? 0 : 1
+            let rhsActive = rhs.chapter == store.activeMovingWorldChapter ? 0 : 1
+            if lhsActive != rhsActive { return lhsActive < rhsActive }
+
+            let lhsUnstamped = store.widgetStamps[lhs.id] == nil ? 0 : 1
+            let rhsUnstamped = store.widgetStamps[rhs.id] == nil ? 0 : 1
+            if lhsUnstamped != rhsUnstamped { return lhsUnstamped < rhsUnstamped }
+
+            if lhs.chapter != rhs.chapter { return lhs.chapter < rhs.chapter }
+            return lhs.id < rhs.id
+        }
+        return Array(sorted.prefix(limit))
     }
 }
 
@@ -195,51 +223,61 @@ struct ParentMentorDashboardView: View {
             // 3. Dinner-Table Socratic Prompts for Dad
             JournalSection(
                 title: "3. 5-Minute Dinner-Table Socratic Prompts for Dad",
-                subtitle: "High-leverage questions you can ask Kym on a walk along Marine Drive or over dinner — no screen required"
+                subtitle: "Prioritized around Kym's active chapter and unstamped live labs — with Open Play ideas, misconceptions, and 1-tap Lab Bench launch"
             ) {
+                let mentorWidgets = ParentMentorReportGenerator.prioritizedMentorWidgets(for: store)
                 VStack(spacing: Spacing.md) {
-                    JournalCard {
-                        VStack(alignment: .leading, spacing: Spacing.xs) {
-                            HStack {
-                                JournalBadge(text: "Unit 9.2 & 9.3 · Magnetism & Electromagnets", tone: .accent)
-                                Spacer()
+                    if mentorWidgets.isEmpty {
+                        JournalCard {
+                            VStack(alignment: .leading, spacing: Spacing.xs) {
+                                HStack {
+                                    JournalBadge(text: "Unit 9.2 & 9.3 · Magnetism & Electromagnets", tone: .accent)
+                                    Spacer()
+                                }
+                                Text("\"Why does the North pole of your hiking compass point toward Earth's geographic North Pole — and why must a scrap-yard electromagnet use a soft iron core instead of hard steel?\"")
+                                    .font(.kymaiaHeadline)
+                                    .foregroundStyle(Color.kymaiaInk)
+                                Text("What to listen for: Opposite magnetic poles attract, so Earth's geographic North Pole is actually a magnetic SOUTH pole! And soft iron magnetizes strongly when current flows (B ∝ N·I) but demagnetizes the instant current stops so the crane can drop the scrap iron.")
+                                    .font(.kymaiaReadingBody)
+                                    .foregroundStyle(Color.kymaiaMutedInk)
                             }
-                            Text("\"Why does the North pole of your hiking compass point toward Earth's geographic North Pole — and why must a scrap-yard electromagnet use a soft iron core instead of hard steel?\"")
-                                .font(.kymaiaHeadline)
-                                .foregroundStyle(Color.kymaiaInk)
-                            Text("What to listen for: Opposite magnetic poles attract, so Earth's geographic North Pole is actually a magnetic SOUTH pole! And soft iron magnetizes strongly when current flows (B ∝ N·I) but demagnetizes the instant current stops so the crane can drop the scrap iron.")
-                                .font(.kymaiaReadingBody)
-                                .foregroundStyle(Color.kymaiaMutedInk)
                         }
-                    }
-
-                    JournalCard {
-                        VStack(alignment: .leading, spacing: Spacing.xs) {
-                            HStack {
-                                JournalBadge(text: "Unit 6.2–6.4 · Refraction, Dispersion & Colour", tone: .accent)
-                                Spacer()
+                    } else {
+                        ForEach(mentorWidgets) { widget in
+                            if let tips = widget.mentorTips {
+                                JournalCard {
+                                    VStack(alignment: .leading, spacing: Spacing.sm) {
+                                        HStack {
+                                            JournalBadge(text: "Ch \(widget.chapter) · \(tips.cambridgeUnit)", tone: .accent)
+                                            Spacer()
+                                            JournalBadge(
+                                                text: store.widgetStamps[widget.id] != nil ? "★ Stamped" : "◎ Open Exploration",
+                                                tone: store.widgetStamps[widget.id] != nil ? .positive : .neutral
+                                            )
+                                        }
+                                        Text("\(widget.title) — \"\(tips.dinnerQuestion)\"")
+                                            .font(.kymaiaHeadline)
+                                            .foregroundStyle(Color.kymaiaInk)
+                                        Text("Open Play prompt: \(tips.openPlay)")
+                                            .font(.kymaiaCallout.weight(.semibold))
+                                            .foregroundStyle(Color.kymaiaPrimary)
+                                        Text("Misconception to probe: \(tips.misconception)")
+                                            .font(.kymaiaReadingBody)
+                                            .foregroundStyle(Color.kymaiaMutedInk)
+                                        HStack {
+                                            Spacer()
+                                            Button {
+                                                store.activeWidgetId = widget.id
+                                                store.selectedRoom = .labsExplorers
+                                            } label: {
+                                                Label("Launch on Lab Bench", systemImage: "gyroscope")
+                                                    .font(.kymaiaCallout.weight(.semibold))
+                                            }
+                                            .buttonStyle(BrassButtonStyle())
+                                        }
+                                    }
+                                }
                             }
-                            Text("\"When white sunlight enters a glass prism, why does violet bend through a sharper angle than red — and what colour does a bright red cricket ball look under a pure green lamp?\"")
-                                .font(.kymaiaHeadline)
-                                .foregroundStyle(Color.kymaiaInk)
-                            Text("What to listen for: Shorter-wavelength violet light slows down more in glass than red light (higher refractive index n), so it refracts further toward the base. A red ball reflects red and absorbs green, so under pure green light zero light reflects and it looks black.")
-                                .font(.kymaiaReadingBody)
-                                .foregroundStyle(Color.kymaiaMutedInk)
-                        }
-                    }
-
-                    JournalCard {
-                        VStack(alignment: .leading, spacing: Spacing.xs) {
-                            HStack {
-                                JournalBadge(text: "Unit 3.4–3.6 · Moments & Particle Pressure", tone: .accent)
-                                Spacer()
-                            }
-                            Text("\"Using the particle model, what two things happen inside a sealed bicycle tyre when it sits in the hot Mumbai afternoon sun?\"")
-                                .font(.kymaiaHeadline)
-                                .foregroundStyle(Color.kymaiaInk)
-                            Text("What to listen for: Heating increases the average kinetic energy of the air molecules so they move faster; they hit the inside walls (1) more frequently and (2) with greater force per collision, increasing F/A = pressure.")
-                                .font(.kymaiaReadingBody)
-                                .foregroundStyle(Color.kymaiaMutedInk)
                         }
                     }
                 }

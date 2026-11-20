@@ -23,6 +23,7 @@ into KymPhysics/KymPhysics/Resources/MovingWorldBook/.
 import json
 import re
 import shutil
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -219,89 +220,234 @@ def parse_investigations():
 
 def parse_widgets():
     enh_path = SOURCE_DIR / "live" / "enhancements.js"
-    raw = enh_path.read_text(encoding="utf-8") if enh_path.exists() else ""
+    live_dir = SOURCE_DIR / "live"
 
     widget_to_chapter = {
-        "videotrack": 1, "graphwalk": 1, "freefall": 1, "airfall": 2, "projectile": 2,
-        "vectors": 2, "forces": 2, "ramp": 2, "atwood": 2, "momentum_carts": 2,
-        "whirl": 4, "cannon3d": 4, "energystores": 5, "energytrack": 5,
-        "pressuretank": 6, "buoyancy": 6, "expansion": 7, "conduction": 8,
-        "ripple": 9, "harmonics": 9, "scope": 9, "doppler": 9,
-        "mirror": 10, "refraction": 10, "eye3d": 10, "colourmix": 10,
-        "interference": 11, "skycolour": 11, "circuit": 12, "seriesparallel": 12,
-        "field3d": 13, "magnetometer": 13, "induction": 13,
-        "shadow": 14, "seasons": 14, "phases": 14, "tides": 14, "parallax": 15,
-        "mechanicslab": 2, "waveslab": 9, "fieldslab": 13, "investigations": 4,
+        "vectors": 2,
+        "mechanicslab": 2,
+        "waveslab": 9,
+        "fieldslab": 13,
+        "investigations": 4,
+        "atlas_period": 9,
+    }
+    for ch_n in range(16):
+        widget_to_chapter[f"atlas_ch{ch_n:02d}"] = ch_n
+    for ch_path in sorted((SOURCE_DIR / "src").glob("ch[0-9][0-9].md")):
+        ch_num_from_src = int(ch_path.stem[2:])
+        ch_text = ch_path.read_text(encoding="utf-8")
+        for m in re.finditer(r"^:{3,4}live\s+([a-z0-9_]+)", ch_text, re.M):
+            widget_to_chapter.setdefault(m.group(1), ch_num_from_src)
+
+    cambridge_unit_map = {
+        "videotrack": [3], "graphwalk": [3], "freefall": [3], "airfall": [3], "projectile": [3],
+        "vectors": [3], "forces": [3], "ramp": [3], "atwood": [3], "momentum_carts": [3],
+        "whirl": [3], "cannon3d": [3], "energystores": [3], "energytrack": [3],
+        "pressuretank": [3], "buoyancy": [3], "expansion": [3], "conduction": [3],
+        "ripple": [6], "harmonics": [6], "scope": [6], "doppler": [6],
+        "mirror": [6], "refraction": [6], "eye3d": [6], "colourmix": [6],
+        "interference": [6], "skycolour": [6],
+        "circuit": [9], "seriesparallel": [9], "field3d": [9], "magnetometer": [9], "induction": [9],
+        "shadow": [3, 6], "seasons": [3], "phases": [3, 6], "tides": [3], "parallax": [6],
+        "mechanicslab": [3], "waveslab": [6], "fieldslab": [9], "investigations": [3, 6, 9],
     }
 
-    widgets = []
-    block_starts = list(re.finditer(r"\n  ([a-zA-Z0-9_]+):\s*\{\s*\n\s*challenge:", raw))
-    for i, match in enumerate(block_starts):
-        w_id = match.group(1)
-        start_pos = match.start()
-        end_pos = block_starts[i + 1].start() if i + 1 < len(block_starts) else len(raw)
-        chunk = raw[start_pos:end_pos]
+    related_map = {
+        "forces": ["ramp", "atwood", "vectors"],
+        "energytrack": ["energystores", "ramp", "buoyancy"],
+        "circuit": ["seriesparallel", "field3d", "induction"],
+        "seriesparallel": ["circuit", "field3d", "induction"],
+        "airfall": ["freefall", "projectile", "cannon3d"],
+        "projectile": ["airfall", "cannon3d", "vectors"],
+        "refraction": ["mirror", "eye3d", "colourmix"],
+        "colourmix": ["skycolour", "refraction", "interference"],
+        "harmonics": ["scope", "doppler", "ripple"],
+        "doppler": ["ripple", "harmonics", "scope"],
+        "field3d": ["induction", "magnetometer", "fieldslab"],
+        "induction": ["field3d", "circuit", "magnetometer"],
+        "buoyancy": ["pressuretank", "energytrack", "forces"],
+        "pressuretank": ["buoyancy", "expansion", "forces"],
+        "fieldslab": ["field3d", "induction", "circuit"],
+        "mechanicslab": ["forces", "ramp", "energytrack"],
+        "waveslab": ["interference", "ripple", "harmonics"],
+        "investigations": ["forces", "refraction", "circuit"],
+    }
 
-        prompt_m = re.search(r"prompt:\s*'((?:\\'|[^'])*)'", chunk)
-        cutaway_m = re.search(r"cutaway:\s*'((?:\\'|[^'])*)'", chunk)
-        ideal_m = re.search(r"idealised:\s*'((?:\\'|[^'])*)'", chunk)
-        watch_steps = []
-        for wm in re.finditer(r"\{\s*title:\s*'((?:\\'|[^'])*)',\s*caption:\s*'((?:\\'|[^'])*)'", chunk):
-            watch_steps.append({
-                "title": wm.group(1).replace("\\'", "'"),
-                "caption": wm.group(2).replace("\\'", "'"),
-            })
+    title_overrides = {
+        "videotrack": "240 fps Video Motion Tracker",
+        "graphwalk": "Corridor Position-Time Walk",
+        "airfall": "Galileo Vacuum Feather & Coin Drop",
+        "forces": "Balanced & Unbalanced Forces Cart",
+        "seriesparallel": "Series & Parallel Circuit Bench",
+        "circuit": "Current, Voltage & Rope Circuit Loop",
+        "colourmix": "RGB Light & Filter Mixer",
+        "pressuretank": "Kinetic Gas & Liquid Pressure Tank",
+        "energytrack": "Skate & Bead Energy Track",
+        "energystores": "Sankey & Energy Stores Ledger",
+        "fieldslab": "Electromagnet & Magnetic Fields Bench",
+        "mechanicslab": "Mechanics 3D Concept & Vector Lab",
+        "waveslab": "Waves & Light PhET-Style Investigation Bench",
+        "investigations": "Controlled Physics Investigations Bench",
+        "atlas_period": "3D Pendulum & Spring Period Lab",
+    }
 
-        ch_num = widget_to_chapter.get(w_id, 1)
-        pretty_title = (
-            w_id.replace("_", " ")
-            .title()
-            .replace("3D", " 3D")
-            .replace("Videotrack", "240 fps Video Motion Tracker")
-            .replace("Graphwalk", "Corridor Position-Time Walk")
-            .replace("Airfall", "Galileo Vacuum Feather & Coin Drop")
-            .replace("Seriesparallel", "Series & Parallel Circuit Bench")
-            .replace("Colourmix", "RGB Light & Filter Mixer")
-            .replace("Pressuretank", "Kinetic Gas & Liquid Pressure Tank")
-            .replace("Energytrack", "Skate & Roller-Coaster Energy Track")
-            .replace("Energystores", "Sankey & Energy Stores Ledger")
+    raw_entries = {}
+    if enh_path.exists():
+        js_extract = (
+            "const fs = require('fs');"
+            "const code = fs.readFileSync(process.argv[1], 'utf8').replace(/export\\s+const\\s+ENHANCEMENTS/, 'const ENHANCEMENTS');"
+            "const fn = new Function('window', code + '; return ENHANCEMENTS;');"
+            "const E = fn({});"
+            "const out = {};"
+            "for (const [k, v] of Object.entries(E)) {"
+            "  out[k] = {"
+            "    prompt: v?.challenge?.prompt || '',"
+            "    cutaway: v?.cutaway || '',"
+            "    idealised: v?.idealised || '',"
+            "    watchSteps: (v?.watch || []).map(w => ({ title: w.title || '', caption: w.caption || '' })),"
+            "    presets: (v?.presets || []).map((p, idx) => ({ id: k + '_p' + idx, name: p.name || ('Preset ' + (idx+1)), prompt: p.prompt || '', stateJSON: JSON.stringify(p.state || {}) })),"
+            "    mentorTips: v?.mentorTips || null"
+            "  };"
+            "}"
+            "process.stdout.write(JSON.stringify(out));"
         )
-        widgets.append({
-            "id": w_id,
-            "title": pretty_title,
-            "chapter": ch_num,
-            "is3D": "3d" in w_id.lower() or w_id in ("seasons", "phases", "fieldslab", "mechanicslab"),
-            "challengePrompt": prompt_m.group(1).replace("\\'", "'") if prompt_m else "Adjust the physical parameters and observe the invariant relationship.",
-            "cutaway": cutaway_m.group(1).replace("\\'", "'") if cutaway_m else "Microscopic / vector mechanism view inside the apparatus.",
-            "idealised": ideal_m.group(1).replace("\\'", "'") if ideal_m else "Idealised physical model with controlled boundary conditions.",
-            "watchSteps": watch_steps,
-        })
+        res = subprocess.run(["node", "-e", js_extract, str(enh_path)], check=True, capture_output=True, text=True)
+        raw_entries = json.loads(res.stdout)
 
-    # Ensure key standalone widgets are present even if defined via helper macro A(...)
-    existing_ids = {w["id"] for w in widgets}
-    macro_matches = re.finditer(
-        r"\n  ([a-zA-Z0-9_]+):\s*A\(\s*'((?:\\'|[^'])*)'",
-        raw,
-    )
-    for m in macro_matches:
-        w_id = m.group(1)
-        if w_id in existing_ids:
-            continue
-        prompt = m.group(2).replace("\\'", "'")
+    curated_lab_entries = {
+        "fieldslab": {
+            "prompt": "Explore coil turns, current, and soft iron cores in 3D to compare permanent magnets and electromagnets.",
+            "cutaway": "Microscopic magnetic domains inside the soft iron core align while coil current flows and relax when current stops.",
+            "idealised": "Fringing end effects outside the solenoid core are simplified so field geometry reads clearly.",
+            "watchSteps": [
+                {"title": "1. Field Pattern", "caption": "Trace closed magnetic field loops around the current-carrying solenoid."},
+                {"title": "2. Soft Iron Core", "caption": "Insert the core to magnetise domains and concentrate field strength."},
+            ],
+            "presets": [
+                {"id": "fieldslab_p0", "name": "Solenoid & Compass Grid", "prompt": "Inspect magnetic field direction around coil turns.", "stateJSON": "{}"},
+            ],
+            "mentorTips": {
+                "openPlay": "Ask Kym why a scrapyard electromagnet needs soft iron instead of hard steel.",
+                "misconception": "Thinking current flows from battery straight out into iron domains to make magnets.",
+                "dinnerQuestion": "How can a port crane at Nhava Sheva lift tonnes of scrap steel and drop it cleanly on command?",
+                "cambridgeUnit": "Unit 9 · Magnetism & Electromagnets",
+            },
+        },
+        "mechanicslab": {
+            "prompt": "Explore balanced forces, friction peaks, moments, and momentum conservation in 3D guided stations.",
+            "cutaway": "Free-body vector arrows and contact asperities show every push and reaction simultaneously.",
+            "idealised": "Idealised rigid bodies isolate first-principles force and momentum laws.",
+            "watchSteps": [
+                {"title": "1. Free-Body Arrows", "caption": "Compare forward thrust, normal support, weight, and drag vectors."},
+                {"title": "2. Reference Frames", "caption": "Track impulse and motion conservation from two frames."},
+            ],
+            "presets": [
+                {"id": "mechanicslab_p0", "name": "Balanced Thrust vs Drag", "prompt": "Compare zero resultant force while moving.", "stateJSON": "{}"},
+            ],
+            "mentorTips": {
+                "openPlay": "Sketch a quick free-body arrow diagram before checking the 3D scene.",
+                "misconception": "Believing steady motion always requires a larger forward push than backward drag.",
+                "dinnerQuestion": "On a cruising Bandra–Dadar local train between stations, what is the NET horizontal force on your carriage?",
+                "cambridgeUnit": "Unit 3 · Forces, Moments & Motion",
+            },
+        },
+        "waveslab": {
+            "prompt": "Investigate superposition, Doppler compression, standing-wave harmonics, and wave diffraction in 3D.",
+            "cutaway": "Phasor summation and wavefront rings link single-cycle timing to full wave interference.",
+            "idealised": "Linear wave superposition ignores boundary dissipation at tank walls.",
+            "watchSteps": [
+                {"title": "1. Wavefront Geometry", "caption": "Track path-length differences Δr across two coherent sources."},
+                {"title": "2. Phasor Sum", "caption": "Add component amplitudes end-to-end to predict bright and dark fringes."},
+            ],
+            "presets": [
+                {"id": "waveslab_p0", "name": "Two-Source Phasors", "prompt": "Compare path difference and resulting intensity.", "stateJSON": "{}"},
+            ],
+            "mentorTips": {
+                "openPlay": "Check whether a bright nodal crest destroys energy elsewhere or redistributes it.",
+                "misconception": "Thinking light plus light turning dark violates energy conservation.",
+                "dinnerQuestion": "Where does missing light energy go when dark interference stripes form on a diffraction screen?",
+                "cambridgeUnit": "Unit 6 · Waves & Superposition",
+            },
+        },
+        "investigations": {
+            "prompt": "Design fair tests by changing one independent variable, controlling all others, and checking anomalous repeats.",
+            "cutaway": "Structured prediction–measurement–analysis cards isolate systematic vs random uncertainty.",
+            "idealised": "Controlled lab datasets model clean repeat trials before real-world lab work.",
+            "watchSteps": [
+                {"title": "1. Choose Variable", "caption": "Identify independent, dependent, and held control variables."},
+                {"title": "2. Spot Anomalies", "caption": "Discard or repeat clear outlier readings before computing means."},
+            ],
+            "presets": [
+                {"id": "investigations_p0", "name": "Fair Test Protocol", "prompt": "Inspect variable controls across repeat trials.", "stateJSON": "{}"},
+            ],
+            "mentorTips": {
+                "openPlay": "Let Kym name two variables that MUST stay fixed before running a single trial.",
+                "misconception": "Averaging an obvious misread outlier instead of flagging and repeating it.",
+                "dinnerQuestion": "Why does calling 'one more battery' a fair electrical variable fail unless you read an ammeter?",
+                "cambridgeUnit": "Unit 3, 6 & 9 · Scientific Enquiry",
+            },
+        },
+    }
+
+    combined_entries = {k: v for k, v in raw_entries.items() if k != "selftest"}
+    for lab_id, lab_data in curated_lab_entries.items():
+        if lab_id not in combined_entries:
+            combined_entries[lab_id] = lab_data
+
+    exportable_ids = set(combined_entries.keys())
+    widgets = []
+    for w_id, data in combined_entries.items():
         ch_num = widget_to_chapter.get(w_id, 1)
+        pretty = title_overrides.get(w_id) or w_id.replace("_", " ").title().replace("3D", " 3D")
+        if w_id.startswith("atlas_ch"):
+            pretty = f"3D Atlas · Chapter {ch_num}"
+
+        w_src = ""
+        w_file = live_dir / f"w_{w_id}.js"
+        if w_file.exists():
+            w_src = w_file.read_text(encoding="utf-8")
+
+        is_3d = ("3d" in w_id.lower()) or w_id.startswith("atlas_") or w_id in ("seasons", "phases", "fieldslab", "mechanicslab", "waveslab")
+        caps = []
+        if is_3d:
+            caps.append("3D")
+        if any(tok in w_src for tok in ("api.sonify", "api.audio", "sonify(", "playTone", "playClick")):
+            caps.append("Sonify")
+        if any(tok in w_src for tok in ("pointerdown", "createPathProbe", "createReferenceLine", "draggable")):
+            caps.append("DirectDrag")
+        if any(tok in w_src for tok in ("createPathProbe", "createReferenceLine", "hoverInfo")):
+            caps.append("Probe")
+        if "api.button('Schematic view'" in w_src or 'api.button("Schematic view"' in w_src:
+            caps.append("Schematic")
+        if any(tok in w_src for tok in ("api.mic(", "api.motion(", "api.video(", "Magnetometer")):
+            caps.append("Sensor")
+
+        units = cambridge_unit_map.get(w_id)
+        if units is None:
+            if ch_num <= 8 or ch_num == 14:
+                units = [3]
+            elif ch_num in (9, 10, 11):
+                units = [6]
+            else:
+                units = [9]
+
+        related = [oid for oid in related_map.get(w_id, []) if oid in exportable_ids and oid != w_id]
+        if not related:
+            related = [oid for oid in combined_entries if oid != w_id and widget_to_chapter.get(oid) == ch_num][:3]
+
         widgets.append({
             "id": w_id,
-            "title": w_id.replace("_", " ").title().replace("3D", " 3D"),
+            "title": pretty,
             "chapter": ch_num,
-            "is3D": "3d" in w_id.lower() or w_id in ("seasons", "phases"),
-            "challengePrompt": prompt,
-            "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-            "idealised": "Idealised physical model with controlled parameters.",
-            "watchSteps": [
-                {"title": "1. Wide view", "caption": "Observe the complete physical apparatus."},
-                {"title": "2. Close-up", "caption": "Zoom into the active interaction region."},
-                {"title": "3. Cut-away", "caption": "Reveal internal vectors, particles, or rays."},
-            ],
+            "is3D": is_3d,
+            "challengePrompt": data["prompt"] or "Adjust the physical parameters and observe the invariant relationship.",
+            "cutaway": data["cutaway"] or "Microscopic / vector mechanism view inside the apparatus.",
+            "idealised": data["idealised"] or "Idealised physical model with controlled boundary conditions.",
+            "watchSteps": data["watchSteps"],
+            "presets": data["presets"],
+            "mentorTips": data["mentorTips"],
+            "capabilities": caps,
+            "cambridgeUnits": units,
+            "relatedWidgetIds": related,
         })
 
     return widgets
@@ -2968,18 +3114,22 @@ def bundle_moving_world_book():
     Copies index.html, sw.js, manifest.webmanifest, live/, assets/, and exams/
     into KymPhysics/KymPhysics/Resources/MovingWorldBook/ so WKWebView can load
     the entire interactive textbook + 45 simulations + 4 Explorers 100% offline.
+    Prefers the freshly built source/build/site/ when populated, falling back to ROOT.
     """
+    site_dir = SOURCE_DIR / "build" / "site"
+    src_root = site_dir if (site_dir / "index.html").exists() else ROOT
+
     if BOOK_BUNDLE_DIR.exists():
         shutil.rmtree(BOOK_BUNDLE_DIR)
     BOOK_BUNDLE_DIR.mkdir(parents=True, exist_ok=True)
 
-    for fname in ["index.html", "sw.js", "manifest.webmanifest"]:
-        src = ROOT / fname
+    for fname in ["index.html", "sw.js", "manifest.webmanifest", "icon-192.png", "icon-512.png"]:
+        src = src_root / fname
         if src.exists():
             shutil.copy2(src, BOOK_BUNDLE_DIR / fname)
 
-    for folder in ["live", "assets", "exams"]:
-        src_dir = ROOT / folder
+    for folder in ["live", "assets", "exams", "spreads"]:
+        src_dir = src_root / folder
         if src_dir.exists():
             shutil.copytree(src_dir, BOOK_BUNDLE_DIR / folder)
 

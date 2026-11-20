@@ -1,16 +1,40 @@
 import SwiftUI
 import WebKit
 
+private enum GalleryFacet: String, CaseIterable {
+    case all
+    case unit3
+    case unit6
+    case unit9
+    case is3D
+    case sonify
+    case unstamped
+
+    var label: String {
+        switch self {
+        case .all: return "All Labs"
+        case .unit3: return "Unit 3 · Forces & Energy"
+        case .unit6: return "Unit 6 · Sound & Light"
+        case .unit9: return "Unit 9 · Circuits & Fields"
+        case .is3D: return "3D"
+        case .sonify: return "Sonified"
+        case .unstamped: return "Unstamped"
+        }
+    }
+}
+
 struct LabsExplorersHomeView: View {
     @EnvironmentObject private var store: AppStore
     @State private var selectedTab: String = "widgets" // "widgets" | "explorers" | "investigations" | "sensors" | "visuals"
     @State private var selectedChapterFilter: Int? = nil
+    @State private var selectedGalleryFacet: GalleryFacet = .all
     @State private var selectedInvestigationChapter: Int? = nil
     @State private var selectedInvestigationCategory: String = "all"
     @State private var activeWatchStepIndex: Int = 0
     @State private var showingCutaway: Bool = false
     @State private var showLiveWebGLSimulation: Bool = true
-    @State private var sliderParameter: Double = 0.60
+    @State private var bridgeSession = LiveSimulationBridgeSession()
+    @State private var isFreezingSnapshot: Bool = false
 
     // Sensor & Hardware simulator states
     @State private var elevatorAccelG: Double = 1.00
@@ -38,8 +62,18 @@ struct LabsExplorersHomeView: View {
     }
 
     private var filteredWidgets: [InteractiveWidgetSpec] {
-        guard let ch = selectedChapterFilter else { return store.pack.widgets }
-        return store.pack.widgets.filter { $0.chapter == ch }
+        store.pack.widgets.filter { w in
+            if let ch = selectedChapterFilter, w.chapter != ch { return false }
+            switch selectedGalleryFacet {
+            case .unit3: return w.cambridgeUnits.contains(3)
+            case .unit6: return w.cambridgeUnits.contains(6)
+            case .unit9: return w.cambridgeUnits.contains(9)
+            case .is3D: return w.is3D || w.capabilities.contains("3D")
+            case .sonify: return w.capabilities.contains("Sonify")
+            case .unstamped: return store.widgetStamps[w.id] == nil
+            case .all: return true
+            }
+        }
     }
 
     private var filteredInvestigations: [PhysicsInvestigation] {
@@ -133,7 +167,13 @@ struct LabsExplorersHomeView: View {
                                     .foregroundStyle(Color.kymaiaMutedInk)
                                 Spacer()
                             }
-                            MovingWorldLiveTargetWebView(targetSelector: "#explore-\(activeExpId), [data-live='\(activeExpId)']")
+                            let explorerSlug = activeExpId.replacingOccurrences(of: "x_", with: "")
+                            MovingWorldLiveTargetWebView(
+                                targetSelector: "#explore-\(explorerSlug), [data-live='\(activeExpId)']",
+                                widgetId: nil,
+                                store: store,
+                                bridgeSession: nil
+                            )
                                 .frame(minHeight: 540)
                                 .clipShape(RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous))
                         }
@@ -241,30 +281,44 @@ struct LabsExplorersHomeView: View {
 
                             if showLiveWebGLSimulation {
                                 MovingWorldLiveTargetWebView(
-                                    targetSelector: "[data-live='\(activeWidget.id)'], #c\(activeWidget.chapter)"
+                                    targetSelector: "[data-live='\(activeWidget.id)'], #ch\(activeWidget.chapter)",
+                                    widgetId: activeWidget.id,
+                                    store: store,
+                                    bridgeSession: bridgeSession
                                 )
-                                .frame(minHeight: 460)
+                                .frame(minHeight: 520)
                                 .clipShape(RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous))
                             }
 
-                            // Interactive Canvas Preview + Parameter Control
-                            InteractivePhysicsCanvasView(
-                                widget: activeWidget,
-                                parameter: sliderParameter,
-                                showingCutaway: showingCutaway
-                            )
-                            .frame(height: 200)
-                            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous))
+                            // PhET-Style Inquiry Presets Strip (one tap configures the live WKWebView via LiveIO)
+                            if !activeWidget.presets.isEmpty {
+                                VStack(alignment: .leading, spacing: Spacing.xs) {
+                                    Text("Curated Inquiry Presets")
+                                        .font(.kymaiaCaption.weight(.bold))
+                                        .foregroundStyle(Color.kymaiaMutedInk)
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: Spacing.xs) {
+                                            ForEach(activeWidget.presets) { preset in
+                                                StandardFilterChip(preset.name, isSelected: false) {
+                                                    bridgeSession.openPreset(widgetId: activeWidget.id, stateJSON: preset.stateJSON)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
 
-                            HStack {
-                                Text("Control Parameter:")
-                                    .font(.kymaiaCaption.weight(.semibold))
-                                Slider(value: $sliderParameter, in: 0.0...1.0)
-                                Text(String(format: "%.2f", sliderParameter))
-                                    .font(.system(.caption, design: .monospaced))
-                                Toggle("Inside Cut-away View", isOn: $showingCutaway)
+                            HStack(spacing: Spacing.sm) {
+                                Toggle("Inside Cut-away Note", isOn: $showingCutaway)
                                     .toggleStyle(.button)
                                     .font(.kymaiaCaption)
+
+                                if let liveReadout = bridgeSession.latestReadout, !liveReadout.isEmpty {
+                                    Text(liveReadout)
+                                        .font(.kymaiaMonoCaption)
+                                        .foregroundStyle(Color.kymaiaPrimary)
+                                        .lineLimit(2)
+                                }
                             }
 
                             if showingCutaway {
@@ -273,7 +327,7 @@ struct LabsExplorersHomeView: View {
                                     .foregroundStyle(Color.kymaiaSecondary)
                             }
 
-                            // 5-Step Choreographed Watch Tour
+                            // 5-Step Choreographed Watch Tour Notes
                             if !activeWidget.watchSteps.isEmpty {
                                 VStack(alignment: .leading, spacing: Spacing.xs) {
                                     Text("Choreographed Watch Tour")
@@ -296,7 +350,7 @@ struct LabsExplorersHomeView: View {
                                 }
                             }
 
-                            // Challenge + Freeze to Lab Log Actions
+                            // Honest Challenge Status + Real Async Freeze to Lab Notebook
                             VStack(alignment: .leading, spacing: Spacing.xs) {
                                 Text("Micro-Challenge: \(activeWidget.challengePrompt)")
                                     .font(.kymaiaCallout.weight(.semibold))
@@ -306,36 +360,73 @@ struct LabsExplorersHomeView: View {
                                     .foregroundStyle(Color.kymaiaMutedInk)
 
                                 HStack(spacing: Spacing.md) {
-                                    Button {
-                                        store.earnWidgetChallengeStamp(
-                                            widgetId: activeWidget.id,
-                                            chapterNumber: activeWidget.chapter,
-                                            readout: String(format: "param=%.2f, cutaway=%@", sliderParameter, showingCutaway.description)
-                                        )
-                                    } label: {
-                                        Label("Complete Challenge & Earn Stamp", systemImage: "seal.fill")
-                                            .font(.kymaiaCallout.weight(.semibold))
+                                    if store.widgetStamps[activeWidget.id] != nil {
+                                        JournalBadge(text: "★ Stamped from Live Simulation", tone: .positive)
+                                    } else {
+                                        JournalBadge(text: "◎ Solve inside the live simulation above to earn your stamp", tone: .neutral)
                                     }
-                                    .buttonStyle(BrassButtonStyle())
+
+                                    Spacer()
 
                                     Button {
-                                        _ = store.freezeWidgetIntoLabLog(
-                                            widget: activeWidget,
-                                            readout: String(format: "Parameter = %.2f · Watch step %d", sliderParameter, activeWatchStepIndex + 1)
-                                        )
+                                        isFreezingSnapshot = true
+                                        Task { @MainActor in
+                                            let snap = await bridgeSession.captureLiveSnapshot(widgetId: activeWidget.id)
+                                            let readoutText = snap.readout.isEmpty ? activeWidget.challengePrompt : snap.readout
+                                            _ = store.freezeWidgetIntoLabLog(
+                                                widget: activeWidget,
+                                                readout: readoutText,
+                                                snapshotPNGData: snap.pngData,
+                                                stateJSON: snap.stateJSON
+                                            )
+                                            isFreezingSnapshot = false
+                                        }
                                     } label: {
-                                        Label("Freeze State to Lab Notebook", systemImage: "camera.aperture")
-                                            .font(.kymaiaCallout)
+                                        Label(
+                                            isFreezingSnapshot ? "Capturing Live View…" : "Freeze Live State to Lab Notebook",
+                                            systemImage: "camera.aperture"
+                                        )
+                                        .font(.kymaiaCallout.weight(.semibold))
                                     }
-                                    .buttonStyle(.bordered)
+                                    .buttonStyle(BrassButtonStyle())
+                                    .disabled(isFreezingSnapshot)
+                                }
+                            }
+
+                            // Related Simulations Cross-Links
+                            if !activeWidget.relatedWidgetIds.isEmpty {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: Spacing.xs) {
+                                        Text("Related Labs:")
+                                            .font(.kymaiaCaption.weight(.semibold))
+                                            .foregroundStyle(Color.kymaiaMutedInk)
+                                        ForEach(activeWidget.relatedWidgetIds, id: \.self) { relId in
+                                            if let target = store.pack.widgets.first(where: { $0.id == relId }) {
+                                                StandardFilterChip(target.title, isSelected: false) {
+                                                    store.activeWidgetId = target.id
+                                                    activeWatchStepIndex = 0
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
 
-                // All 56 Widgets Grid
-                JournalSection(title: "All \(store.pack.widgets.count) Interactive Physics Simulations") {
+                // All Simulations Gallery with Capability & Cambridge Unit Facets
+                JournalSection(title: "All \(store.pack.widgets.count) Interactive Physics Simulations (\(filteredWidgets.count) shown)") {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: Spacing.xs) {
+                            ForEach(GalleryFacet.allCases, id: \.self) { facet in
+                                StandardFilterChip(facet.label, isSelected: selectedGalleryFacet == facet) {
+                                    selectedGalleryFacet = facet
+                                }
+                            }
+                        }
+                    }
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Spacing.xs) {
                             StandardFilterChip("All Chapters", isSelected: selectedChapterFilter == nil) { selectedChapterFilter = nil }
@@ -356,10 +447,10 @@ struct LabsExplorersHomeView: View {
                             } label: {
                                 JournalCard {
                                     VStack(alignment: .leading, spacing: Spacing.xs) {
-                                        HStack {
+                                        HStack(spacing: Spacing.xs) {
                                             JournalBadge(text: "Ch \(w.chapter)", tone: .accent)
-                                            if w.is3D {
-                                                JournalBadge(text: "3D", tone: .neutral)
+                                            ForEach(w.capabilities.prefix(3), id: \.self) { cap in
+                                                JournalBadge(text: cap, tone: .neutral)
                                             }
                                             Spacer()
                                             if store.widgetStamps[w.id] != nil {
@@ -387,111 +478,133 @@ struct LabsExplorersHomeView: View {
     }
 }
 
-// MARK: - Interactive Physics Vector / Wave / Field Canvas Preview
+// MARK: - Live WebGL / Three.js Simulation & Explorer WebView (loads MovingWorldBook/index.html & attaches LiveIO bridge)
 
-private struct InteractivePhysicsCanvasView: View {
-    let widget: InteractiveWidgetSpec
-    let parameter: Double
-    let showingCutaway: Bool
+@MainActor
+final class MovingWorldTargetCoordinator: NSObject, WKNavigationDelegate {
+    let bridge: MovingWorldBridgeController
+    var targetSelector: String
+    var widgetId: String?
+    weak var session: LiveSimulationBridgeSession?
 
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: CornerRadius.md, style: .continuous)
-                .fill(Color.kymaiaSurface)
-            Canvas { context, size in
-                let midY = size.height * 0.5
-                let midX = size.width * 0.5
+    init(store: AppStore?, session: LiveSimulationBridgeSession?, targetSelector: String, widgetId: String?) {
+        self.bridge = MovingWorldBridgeController(store: store, bridgeSession: session)
+        self.targetSelector = targetSelector
+        self.widgetId = widgetId
+        self.session = session
+    }
 
-                // Draw sinusoidal wave / field lines + vector arrow responsive to parameter
-                var wave = Path()
-                let amp = CGFloat(25.0 + parameter * 55.0)
-                let freq = CGFloat(2.0 + parameter * 4.0)
-                for x in stride(from: 24.0, through: size.width - 24.0, by: 3.0) {
-                    let normX = (x - 24.0) / (size.width - 48.0)
-                    let y = midY + sin(normX * .pi * 2.0 * freq) * amp * 0.65
-                    if x == 24.0 {
-                        wave.move(to: CGPoint(x: x, y: y))
-                    } else {
-                        wave.addLine(to: CGPoint(x: x, y: y))
-                    }
-                }
-                context.stroke(wave, with: .color(.kymaiaSecondary), lineWidth: 2.5)
-
-                // Vector arrow
-                var arrow = Path()
-                let len = CGFloat(50.0 + parameter * 140.0)
-                arrow.move(to: CGPoint(x: midX - len * 0.5, y: midY))
-                arrow.addLine(to: CGPoint(x: midX + len * 0.5, y: midY))
-                arrow.move(to: CGPoint(x: midX + len * 0.5 - 12, y: midY - 8))
-                arrow.addLine(to: CGPoint(x: midX + len * 0.5, y: midY))
-                arrow.addLine(to: CGPoint(x: midX + len * 0.5 - 12, y: midY + 8))
-                context.stroke(arrow, with: .color(.kymaiaPrimary), lineWidth: 3.5)
-
-                if showingCutaway {
-                    let rect = CGRect(x: midX - 90, y: midY - 60, width: 180, height: 120)
-                    context.stroke(Path(roundedRect: rect, cornerRadius: PhysicsFigureType.cutawayRadius), with: .color(.kymaiaPrimary), style: StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
-                }
+    @MainActor
+    func focusCurrentTarget(in webView: WKWebView) {
+        if let widgetId, let session {
+            if let pending = bridge.store?.pendingWidgetStateJSON, !pending.isEmpty {
+                bridge.store?.pendingWidgetStateJSON = nil
+                session.openPreset(widgetId: widgetId, stateJSON: pending)
+            } else {
+                session.focusWidget(widgetId: widgetId)
             }
-            VStack {
-                HStack {
-                    Text("\(widget.id) · Live Readout = \(String(format: "%.2f", parameter * 10.0)) SI units")
-                        .font(.system(.caption, design: .monospaced).weight(.semibold))
-                        .padding(Spacing.xs)
-                        .background(Color.kymaiaSurfaceElevated, in: Capsule())
-                        .overlay(Capsule().strokeBorder(Color.kymaiaSurfaceBorder, lineWidth: 1))
-                    Spacer()
-                }
-                Spacer()
-            }
-            .padding(Spacing.sm)
+            return
+        }
+        webView.callAsyncJavaScript(
+            "const el = document.querySelector(sel); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }",
+            arguments: ["sel": targetSelector],
+            in: nil,
+            in: .page,
+            completionHandler: nil
+        )
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        Task { @MainActor in
+            focusCurrentTarget(in: webView)
         }
     }
 }
 
-// MARK: - Live WebGL / Three.js Simulation & Explorer WebView (loads MovingWorldBook/index.html & focuses target widget/explorer)
-
 #if os(macOS)
 struct MovingWorldLiveTargetWebView: NSViewRepresentable {
     let targetSelector: String
+    var widgetId: String? = nil
+    var store: AppStore? = nil
+    var bridgeSession: LiveSimulationBridgeSession? = nil
+
+    func makeCoordinator() -> MovingWorldTargetCoordinator {
+        MovingWorldTargetCoordinator(store: store, session: bridgeSession, targetSelector: targetSelector, widgetId: widgetId)
+    }
 
     func makeNSView(context: Context) -> WKWebView {
-        let webView = WKWebView(frame: .zero)
-        MovingWorldWebBookView.loadBook(in: webView, chapterNumber: 0)
+        let config = WKWebViewConfiguration()
+        MovingWorldBookSchemeHandler.configure(config, bridge: context.coordinator.bridge)
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = context.coordinator
+        bridgeSession?.activeWebView = webView
+        MovingWorldBookSchemeHandler.loadBook(in: webView, chapterNumber: 0)
         return webView
     }
 
     func updateNSView(_ webView: WKWebView, context: Context) {
-        let escaped = targetSelector.replacingOccurrences(of: "\"", with: "\\\"")
-        let js = """
-        (function() {
-            const el = document.querySelector("\(escaped)");
-            if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        })();
-        """
-        webView.evaluateJavaScript(js, completionHandler: nil)
+        context.coordinator.bridge.store = store
+        context.coordinator.bridge.bridgeSession = bridgeSession
+        context.coordinator.session = bridgeSession
+        bridgeSession?.activeWebView = webView
+        let changed = context.coordinator.targetSelector != targetSelector || context.coordinator.widgetId != widgetId
+        context.coordinator.targetSelector = targetSelector
+        context.coordinator.widgetId = widgetId
+        if changed {
+            bridgeSession?.latestReadout = nil
+            bridgeSession?.latestStateJSON = nil
+            context.coordinator.focusCurrentTarget(in: webView)
+        }
+    }
+
+    static func dismantleNSView(_ webView: WKWebView, coordinator: MovingWorldTargetCoordinator) {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: MovingWorldBridgeController.handlerName)
+        if coordinator.session?.activeWebView === webView {
+            coordinator.session?.activeWebView = nil
+        }
     }
 }
 #else
 struct MovingWorldLiveTargetWebView: UIViewRepresentable {
     let targetSelector: String
+    var widgetId: String? = nil
+    var store: AppStore? = nil
+    var bridgeSession: LiveSimulationBridgeSession? = nil
+
+    func makeCoordinator() -> MovingWorldTargetCoordinator {
+        MovingWorldTargetCoordinator(store: store, session: bridgeSession, targetSelector: targetSelector, widgetId: widgetId)
+    }
 
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView(frame: .zero)
-        if let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "MovingWorldBook") {
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
-        }
+        let config = WKWebViewConfiguration()
+        MovingWorldBookSchemeHandler.configure(config, bridge: context.coordinator.bridge)
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = context.coordinator
+        bridgeSession?.activeWebView = webView
+        MovingWorldBookSchemeHandler.loadBook(in: webView, chapterNumber: 0)
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        let escaped = targetSelector.replacingOccurrences(of: "\"", with: "\\\"")
-        let js = """
-        (function() {
-            const el = document.querySelector("\(escaped)");
-            if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        })();
-        """
-        webView.evaluateJavaScript(js, completionHandler: nil)
+        context.coordinator.bridge.store = store
+        context.coordinator.bridge.bridgeSession = bridgeSession
+        context.coordinator.session = bridgeSession
+        bridgeSession?.activeWebView = webView
+        let changed = context.coordinator.targetSelector != targetSelector || context.coordinator.widgetId != widgetId
+        context.coordinator.targetSelector = targetSelector
+        context.coordinator.widgetId = widgetId
+        if changed {
+            bridgeSession?.latestReadout = nil
+            bridgeSession?.latestStateJSON = nil
+            context.coordinator.focusCurrentTarget(in: webView)
+        }
+    }
+
+    static func dismantleUIView(_ webView: WKWebView, coordinator: MovingWorldTargetCoordinator) {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: MovingWorldBridgeController.handlerName)
+        if coordinator.session?.activeWebView === webView {
+            coordinator.session?.activeWebView = nil
+        }
     }
 }
 #endif

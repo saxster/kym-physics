@@ -168,6 +168,18 @@ struct LabJournalHomeView: View {
                         if let ch = entry.linkedChapterNumber {
                             JournalBadge(text: "Ch \(ch)", tone: .neutral)
                         }
+                        if let widgetId = entry.linkedWidgetId, !widgetId.isEmpty {
+                            Button {
+                                store.activeWidgetId = widgetId
+                                store.pendingWidgetStateJSON = entry.widgetStateJSON
+                                store.selectedRoom = .labsExplorers
+                            } label: {
+                                Label("Reopen in Lab Bench", systemImage: "play.rectangle.on.rectangle")
+                                    .font(.kymaiaCaption.weight(.semibold))
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(Color.kymaiaPrimary)
+                        }
                         Spacer()
                         Toggle("Cover Right Column & Test Me", isOn: $coverNotesForSelfTest)
                             .toggleStyle(.button)

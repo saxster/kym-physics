@@ -13,6 +13,7 @@
 		026C97B0D8FB3873596B592C /* MassWeightVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E93E5757CEFBEFB67A5B369 /* MassWeightVisual.swift */; };
 		02CF7F226C345D0BE4029717 /* KymPhysicsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D202DBE8AF39CF2EF42EB /* KymPhysicsApp.swift */; };
 		03C294F0631DA7ED292A8FF7 /* JournalPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC5A1F55A05FECB4A6AAB3 /* JournalPaper.swift */; };
+		04AE942038F8E93096DE4D1C /* LiveIOBridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031674BB9E5C68D270C076DA /* LiveIOBridgeTests.swift */; };
 		063B82A11CD0674317B084D6 /* SystemSurfaceAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED22EAD1AB1060580C0207 /* SystemSurfaceAppIntents.swift */; };
 		07705022F209C78BFED48DF7 /* RoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006CBF06E05E1824252E063F /* RoomHeader.swift */; };
 		08FAEAFD92BE8AF04ACF3DB7 /* PhysicsSubjectTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */; };
@@ -43,6 +44,7 @@
 		25B8B39AE482C83E19AAB292 /* ArduinoMissionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A91505770AEAD1EF61B5E4 /* ArduinoMissionCatalog.swift */; };
 		25DB912639D75404E9CE96FB /* PhysicsDailyRitualSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205B954BCBE37286DD25209 /* PhysicsDailyRitualSessionView.swift */; };
 		26A35B1594288A5AB8676316 /* SubjectTipPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA782EB2EB607B64EC29FD /* SubjectTipPalette.swift */; };
+		2898E956DB563268C6C509B7 /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = C8FD1522D5948CC247657830 /* KymBookKit */; };
 		2C391D7E16F393B6F1D35BE5 /* KymPhysicsWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F8EB165B1A4758DAF4B7D /* KymPhysicsWidgets.swift */; };
 		2C39ADD7C7C40099FC6926C1 /* ArduinoMissionsGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E215D9D12732C638BBABD59 /* ArduinoMissionsGalleryView.swift */; };
 		2F5CB31217593832332CA9F5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BFE415F2783D5F4DB8644 /* ColorExtensions.swift */; };
@@ -100,7 +102,7 @@
 		75D7A5968BC12126109B7F18 /* PhysicsHardwareSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */; };
 		762BA4E320D026EF7FCA59F6 /* ReflectionVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BD3240E55928B56218107 /* ReflectionVisual.swift */; };
 		76995BD7EDB70302248E0CC7 /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
-		783D1B59722866FCCC1A1F90 /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA7B9808DFA08631671ECB5E /* KymBookKit */; };
+		783D1B59722866FCCC1A1F90 /* KymLiveVoice in Frameworks */ = {isa = PBXBuildFile; productRef = 28CDED2F1F3496C643A60697 /* KymLiveVoice */; };
 		788BFF0F828702D443979214 /* SoulDocuments in Resources */ = {isa = PBXBuildFile; fileRef = B0B45C555DEB57B60ED8F2C2 /* SoulDocuments */; };
 		78A77150BC5E0C3CD4DF75EC /* LearnerImageSVGAnnotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634B9F0783F53E47F5F9193 /* LearnerImageSVGAnnotator.swift */; };
 		7915F966CDA33935A3372160 /* JournalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F69A5A36B4E335686F48C /* JournalPage.swift */; };
@@ -122,6 +124,7 @@
 		8F4045E95E73C80E4AAA70E1 /* SpeedPhysicsGymSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FADDF25DF64057CF17C2A3 /* SpeedPhysicsGymSection.swift */; };
 		93CECD73D943A14F95D59070 /* SubjectTipDetailSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D1D04C22F853ED9552271 /* SubjectTipDetailSections.swift */; };
 		950C9DC2FF47A2AA35C340DA /* SeedPackModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC42557990FAA8E1E38A7A0 /* SeedPackModels.swift */; };
+		96145E870075EBFECBBA042F /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA7B9808DFA08631671ECB5E /* KymBookKit */; };
 		96F5E3C1AEDC05FDC970945A /* SemanticStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C024BD2C71EF1F2CE4CF1 /* SemanticStyles.swift */; };
 		973BB833E8DEC4ADA5C20981 /* MovingWorldHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FF3CC134BA34EE0C15D19 /* MovingWorldHomeView.swift */; };
 		9D5464FB477708DE5114F597 /* MovingWorldBook in Resources */ = {isa = PBXBuildFile; fileRef = 8702D8B2E15BD1D03DF902F6 /* MovingWorldBook */; };
@@ -177,7 +180,7 @@
 		EEC5F5B959AAC36B2744763A /* KymPhysicsWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C188266C9597B1C5131F0F08 /* KymPhysicsWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EED6D8B4E149A2A4ABF35115 /* AtomBuilderVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF07D414C66B115C8D3AF40 /* AtomBuilderVisual.swift */; };
 		F0EED558ECA7F33ADC5E9246 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 41DBBA27116ABDADD820B4D8 /* GRDB */; };
-		F13294F92146C734C14F0100 /* KymBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = C8FD1522D5948CC247657830 /* KymBookKit */; };
+		F13294F92146C734C14F0100 /* KymLiveVoice in Frameworks */ = {isa = PBXBuildFile; productRef = 7AC78EF98FF2A3DA57341962 /* KymLiveVoice */; };
 		F42A9783DF8A842A899E9EE1 /* MovingWorldBridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB09AF4A6B3DAAEA86F304B /* MovingWorldBridgeController.swift */; };
 		F703466BBC57226721941CA4 /* ThinkingOutLoudField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2A4ABDBD4047554A45F19 /* ThinkingOutLoudField.swift */; };
 		F8CE7BF2C1A4A18F4205A5E3 /* PHScaleVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907EFCB6B41E9D4283922975 /* PHScaleVisual.swift */; };
@@ -232,6 +235,7 @@
 		006CBF06E05E1824252E063F /* RoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHeader.swift; sourceTree = "<group>"; };
 		00E95D4D719F673B245E66FE /* PhysicsSubjectTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSubjectTipsView.swift; sourceTree = "<group>"; };
 		0225C3D136A4D8F6C3ADBF6A /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
+		031674BB9E5C68D270C076DA /* LiveIOBridgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveIOBridgeTests.swift; sourceTree = "<group>"; };
 		08925A55112EFE9EF26CEB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0C9ECCEFF8551B00A5EF54BF /* SubjectTipVisualLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTipVisualLogic.swift; sourceTree = "<group>"; };
 		0EDE8A77976A440AD4E0B08D /* PhysicsHardwareSensorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsHardwareSensorManager.swift; sourceTree = "<group>"; };
@@ -345,7 +349,8 @@
 				66A3470283932F305FB95186 /* KymDesign in Frameworks */,
 				ECE425D9668CFF83747A8B0B /* KymLearning in Frameworks */,
 				16D986282F1C2909352AA194 /* KymTutorAI in Frameworks */,
-				F13294F92146C734C14F0100 /* KymBookKit in Frameworks */,
+				F13294F92146C734C14F0100 /* KymLiveVoice in Frameworks */,
+				2898E956DB563268C6C509B7 /* KymBookKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +370,8 @@
 				FA407B2F0E088B7B0748EB88 /* KymDesign in Frameworks */,
 				33EC363E2458D2C4F9680DC3 /* KymLearning in Frameworks */,
 				0D485C7440E4B30A1F89189B /* KymTutorAI in Frameworks */,
-				783D1B59722866FCCC1A1F90 /* KymBookKit in Frameworks */,
+				783D1B59722866FCCC1A1F90 /* KymLiveVoice in Frameworks */,
+				96145E870075EBFECBBA042F /* KymBookKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				911DA9E621A26010267384EF /* LearningEngineCharacterizationTests.swift */,
+				031674BB9E5C68D270C076DA /* LiveIOBridgeTests.swift */,
 				A4FE799E64D3DB3D86CE47FE /* ThemeCharacterizationTests.swift */,
 				1FFAEAAB849FA18BD2CDC6FF /* ThemeTests.swift */,
 				BF3009D9D0E43575906AAF1C /* TutorProfileRegistrationTests.swift */,
@@ -768,6 +775,7 @@
 				E48420D089CBF2A2DF82BC63 /* KymDesign */,
 				FABBF38B2A3DB81CC8722725 /* KymLearning */,
 				DD0ED04532D6732C6601C15A /* KymTutorAI */,
+				28CDED2F1F3496C643A60697 /* KymLiveVoice */,
 				CA7B9808DFA08631671ECB5E /* KymBookKit */,
 			);
 			productName = KymPhysics;
@@ -812,6 +820,7 @@
 				BD5889889CB5CE850FA8DBF6 /* KymDesign */,
 				0C67A5024666CB9A94F30D1C /* KymLearning */,
 				83B4D3D293EC6357B1F9A1EC /* KymTutorAI */,
+				7AC78EF98FF2A3DA57341962 /* KymLiveVoice */,
 				C8FD1522D5948CC247657830 /* KymBookKit */,
 			);
 			productName = "KymPhysics-iPad";
@@ -1040,6 +1049,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B4D125B4B20E1CB555AAF9F /* LearningEngineCharacterizationTests.swift in Sources */,
+				04AE942038F8E93096DE4D1C /* LiveIOBridgeTests.swift in Sources */,
 				FD65487F2E7645595C447A48 /* ThemeCharacterizationTests.swift in Sources */,
 				7446442B4CFCA87DDDDE5F95 /* ThemeTests.swift in Sources */,
 				CD0831637227A5304759A9DC /* TutorProfileRegistrationTests.swift in Sources */,
@@ -1596,10 +1606,18 @@
 			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
+		28CDED2F1F3496C643A60697 /* KymLiveVoice */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymLiveVoice;
+		};
 		41DBBA27116ABDADD820B4D8 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 840925AA60DB5F8AFEBA9DD0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
+		};
+		7AC78EF98FF2A3DA57341962 /* KymLiveVoice */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KymLiveVoice;
 		};
 		83B4D3D293EC6357B1F9A1EC /* KymTutorAI */ = {
 			isa = XCSwiftPackageProductDependency;

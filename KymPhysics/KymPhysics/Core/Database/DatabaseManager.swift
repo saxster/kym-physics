@@ -106,6 +106,7 @@ struct LabJournalEntryRecord: Codable, FetchableRecord, PersistableRecord, Ident
     var snapshotPNGData: Data?
     var createdAt: Date
     var updatedAt: Date
+    var widgetStateJSON: String? = nil
 }
 
 struct ScratchpadRecord: Codable, FetchableRecord, PersistableRecord, Identifiable, Equatable, Sendable {
@@ -421,6 +422,12 @@ final class DatabaseManager: Sendable {
                 t.column("drawingData", .blob)
                 t.column("selfScore", .integer).notNull()
                 t.column("completedAt", .datetime).notNull()
+            }
+        }
+
+        migrator.registerMigration("v2_mnemosyne_widget_state") { db in
+            try db.alter(table: LabJournalEntryRecord.databaseTableName) { t in
+                t.add(column: "widgetStateJSON", .text)
             }
         }
         try migrator.migrate(writer)

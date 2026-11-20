@@ -6947,7 +6947,7 @@
       "title": "240 fps Video Motion Tracker",
       "chapter": 1,
       "is3D": false,
-      "challengePrompt": "Choose \"Mark every 0.1 s\" and set the tile scale to 10 cm; compare the equal-time gaps.",
+      "challengePrompt": "Calibrate the wall tiles to a real wall scale and mark the tossed ball frame-by-frame—how do equal-time height gaps reveal whether speed is changing?",
       "cutaway": "A clip supplies image samples and timestamps. Exposure duration and actual frame timing depend on the camera; selected fps must match the clip. The demo uses fixed 0.100 s marks.",
       "idealised": "The demo toss ignores air drag and lens barrel distortion, which curves straight tile lines near the edges of a real phone camera.",
       "watchSteps": [
@@ -6971,6 +6971,36 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Change the tile scale or load your own clip to measure speed."
         }
+      ],
+      "presets": [
+        {
+          "id": "videotrack_p0",
+          "name": "10 cm Wall Tiles",
+          "prompt": "Standard bathroom/school tile scale.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Tile scale\":10}}"
+        },
+        {
+          "id": "videotrack_p1",
+          "name": "0.10 s Strobe Marks",
+          "prompt": "Inspect shrinking upward gaps between ticks.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Tile scale\":10}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym whether the ball slows down smoothly or loses speed in sudden jumps.",
+        "misconception": "Thinking equal distances in video frames mean constant acceleration instead of constant speed.",
+        "dinnerQuestion": "If you photograph a falling coin under a blinking lamp at Chowpatty, why do successive shadows pull farther apart?",
+        "cambridgeUnit": "Unit 1 · Motion & Video Kinematics"
+      },
+      "capabilities": [
+        "Sensor"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "graphwalk",
+        "atlas_ch01"
       ]
     },
     {
@@ -6978,7 +7008,7 @@
       "title": "Corridor Position-Time Walk",
       "chapter": 1,
       "is3D": false,
-      "challengePrompt": "Switch to \"Walk it yourself\" and walk to the 6.5 m mark in the corridor.",
+      "challengePrompt": "Walk forward, pause, and turn back toward the far wall of the corridor—how does the position–time slope distinguish moving from standing still?",
       "cutaway": "A real ultrasonic rangefinder can infer distance from an echo delay: x = sound speed × delay / 2. This widget uses a position slider, not a connected sensor.",
       "idealised": "Your position is treated as a single point; a real walker sways slightly with every step.",
       "watchSteps": [
@@ -7002,12 +7032,40 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Drag the corridor slider to match or invent a walk."
         }
+      ],
+      "presets": [
+        {
+          "id": "graphwalk_p0",
+          "name": "Replay Reference Walk",
+          "prompt": "Inspect slope changes in Fig 1.2.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Corridor position\":0}}"
+        },
+        {
+          "id": "graphwalk_p1",
+          "name": "Mid-Corridor Pause",
+          "prompt": "Stand near 4.0 m and watch time run flat.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Corridor position\":4}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Cover the corridor graphic and guess Kym’s motion purely from the graph slope first.",
+        "misconception": "Reading a position–time graph as if it showed the hill shape or speed-vs-time directly.",
+        "dinnerQuestion": "On the Marine Drive promenade, what does a flat horizontal stretch on your distance–time graph mean?",
+        "cambridgeUnit": "Unit 1 · Position–Time Graphs"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "videotrack",
+        "atlas_ch01"
       ]
     },
     {
       "id": "freefall",
       "title": "Freefall",
-      "chapter": 1,
+      "chapter": 5,
       "is3D": false,
       "challengePrompt": "Replay the simulated accelerometer trace: identify held (~9.8 m/s²), freely falling (~0), and caught (a short peak).",
       "cutaway": "Inside the phone MEMS accelerometer: a microscopic silicon proof-mass on springs relaxes to zero deflection during free fall.",
@@ -7033,14 +7091,38 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Replay the simulated trace; the motion sensor is a separate optional measurement."
         }
+      ],
+      "presets": [
+        {
+          "id": "freefall_p0",
+          "name": "Simulated Drop Trace",
+          "prompt": "Compare supported weight vs weightless free fall.",
+          "stateJSON": "{\"tabs\":[]}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym why the reading drops to ZERO while falling instead of jumping up.",
+        "misconception": "Thinking a free-fall accelerometer measures velocity downward rather than contact support force.",
+        "dinnerQuestion": "Why does an astronaut inside the International Space Station float if Earth’s gravity up there is still ~90% as strong as in Mumbai?",
+        "cambridgeUnit": "Unit 1 · Free Fall & Weightlessness"
+      },
+      "capabilities": [
+        "Sensor"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "cannon3d",
+        "atlas_ch05"
       ]
     },
     {
       "id": "airfall",
       "title": "Galileo Vacuum Feather & Coin Drop",
-      "chapter": 2,
+      "chapter": 4,
       "is3D": false,
-      "challengePrompt": "Remove all the air (set Air to 0) and drop the feather and coin together so they land at the exact same instant.",
+      "challengePrompt": "Make the feather and coin hit the bottom at the exact same instant—discover which condition makes mass stop mattering.",
       "cutaway": "Inside the tube: at full air, ~2.5 × 10²⁵ N₂ and O₂ molecules per m³ collide with the feather’s barbs; pumping them out leaves only gravity.",
       "idealised": "Drag is modelled as quadratic vertical resistance without the fluttering vortices a real feather sheds in air.",
       "watchSteps": [
@@ -7064,14 +7146,43 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Compare pairs of objects at any air density."
         }
+      ],
+      "presets": [
+        {
+          "id": "airfall_p0",
+          "name": "Room Air",
+          "prompt": "Compare heavy coin vs light feather in 100% air.",
+          "stateJSON": "{\"sliders\":{\"Air\":1}}"
+        },
+        {
+          "id": "airfall_p1",
+          "name": "Vacuum Tube",
+          "prompt": "Pump out all air so only gravity acts.",
+          "stateJSON": "{\"sliders\":{\"Air\":0}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Let her drop the feather and coin in full air, then slowly pump air out step by step.",
+        "misconception": "Believing heavier objects inherently fall faster because gravity pulls harder (forgetting larger mass also resists acceleration).",
+        "dinnerQuestion": "On the Moon, if you dropped a hammer and a tissue side by side, which lands first and why?",
+        "cambridgeUnit": "Unit 3 · Forces & Gravity"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "freefall",
+        "projectile",
+        "cannon3d"
       ]
     },
     {
       "id": "projectile",
       "title": "Projectile",
-      "chapter": 2,
+      "chapter": 4,
       "is3D": false,
-      "challengePrompt": "Keep Launch angle at 0° (horizontal) and find the launch speed that lands the flicked coin about 1.17 m away (v₀ = 3.0 m/s).",
+      "challengePrompt": "Fire horizontally (0°) and discover what launch speed lands the flicked coin at about 1.17 m away.",
       "cutaway": "Inside the two-component split: the horizontal velocity arrow v_x stays the exact same length all the way across while v_y grows by 9.8 m/s every second.",
       "idealised": "Air resistance and coin spin (Magnus lift) are omitted, so horizontal velocity remains strictly constant.",
       "watchSteps": [
@@ -7095,6 +7206,35 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Aim the coin to hit your target distance."
         }
+      ],
+      "presets": [
+        {
+          "id": "projectile_p0",
+          "name": "Drop vs Flick",
+          "prompt": "Zero angle compare: horizontal flick vs vertical drop.",
+          "stateJSON": "{\"sliders\":{\"Launch angle\":0,\"Sideways\":2}}"
+        },
+        {
+          "id": "projectile_p1",
+          "name": "45° Range",
+          "prompt": "Launch upward at 45° to compare flight time.",
+          "stateJSON": "{\"sliders\":{\"Launch angle\":45,\"Sideways\":3}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask her to watch only the vertical heights of the two coins, ignoring sideways motion.",
+        "misconception": "Thinking a fast sideways throw stays in the air longer before hitting the floor.",
+        "dinnerQuestion": "Why does a bullet fired horizontally from shoulder height hit flat ground at the exact same moment as one dropped from your hand?",
+        "cambridgeUnit": "Unit 3 · Independent Components"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "airfall",
+        "cannon3d",
+        "vectors"
       ]
     },
     {
@@ -7102,7 +7242,7 @@
       "title": "Ramp",
       "chapter": 2,
       "is3D": false,
-      "challengePrompt": "With Friction at 0 (none), make the second ramp shallow (10°) so the sliding puck travels about 2.9 times as far along the slope as on the 30° first ramp to regain 1.0 m height.",
+      "challengePrompt": "Set friction to zero and make the second ramp gentle (10°)—compare how far along the slope the puck slides to regain its 1.0 m starting height.",
       "cutaway": "The widget is an ideal sliding puck, with no rotation. Friction opposes sliding on each slope and transfers mechanical energy into warmth.",
       "idealised": "The corner between the two ramps is smoothed so no kinetic energy is lost to a bounce at the bottom transition.",
       "watchSteps": [
@@ -7126,14 +7266,43 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Test any ramp angle with or without friction."
         }
+      ],
+      "presets": [
+        {
+          "id": "ramp_p0",
+          "name": "Symmetric 30°",
+          "prompt": "Frictionless equal-angle recovery.",
+          "stateJSON": "{\"sliders\":{\"Friction\":0,\"Second ramp angle\":30}}"
+        },
+        {
+          "id": "ramp_p1",
+          "name": "Galileo Flat (0°)",
+          "prompt": "Flatten the second ramp completely.",
+          "stateJSON": "{\"sliders\":{\"Friction\":0,\"Second ramp angle\":0}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask how high the puck climbs on the far side before touching the friction slider.",
+        "misconception": "Assuming an object needs an ongoing push just to keep sliding on a level frictionless floor.",
+        "dinnerQuestion": "If you flattened Galileo’s second ramp all the way to horizontal with zero friction, when would the marble ever stop?",
+        "cambridgeUnit": "Unit 3 · Balanced Forces & Inertia"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "atlas_ch02",
+        "vectors",
+        "mechanicslab"
       ]
     },
     {
       "id": "forces",
-      "title": "Forces",
-      "chapter": 2,
+      "title": "Balanced & Unbalanced Forces Cart",
+      "chapter": 3,
       "is3D": false,
-      "challengePrompt": "Switch to \"Rough floor (100 N)\" and set the two pulls so the net force to the right is exactly 150 N.",
+      "challengePrompt": "On the rough floor (100 N friction), balance or unbalance the two rope pulls until the net force to the right is exactly 150 N.",
       "cutaway": "Inside the floor contact: microscopic bumps (asperities) on the crate interlock with the floorboards up to the 100 N friction limit.",
       "idealised": "Static and kinetic friction are set equal at 100 N here; in real wood-on-wood contact, static friction is slightly higher than sliding friction.",
       "watchSteps": [
@@ -7157,14 +7326,52 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Combine pulls and friction to hit the target net force."
         }
+      ],
+      "presets": [
+        {
+          "id": "forces_p0",
+          "name": "Tug-of-War Tie",
+          "prompt": "Equal 250 N pulls from rest on smooth floor.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Pull to the left\":250,\"Pull to the right\":250},\"custom\":{\"v\":0,\"x\":0}}"
+        },
+        {
+          "id": "forces_p1",
+          "name": "Cruising at Zero Net Force",
+          "prompt": "Moving at 4.0 m/s with equal 200 N pulls—watch the water level!",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Pull to the left\":200,\"Pull to the right\":200},\"custom\":{\"v\":4,\"x\":0,\"loadIdx\":0}}"
+        },
+        {
+          "id": "forces_p2",
+          "name": "Mystery Box Weighing",
+          "prompt": "Pull the unknown ? kg crate and compute m = F_net / a.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Pull to the left\":0,\"Pull to the right\":240},\"custom\":{\"v\":0,\"x\":0,\"loadIdx\":2,\"mysteryRevealed\":false}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Let Kym get the cart moving, then set both pulls equal to 200 N—watch the water glass stay dead flat!",
+        "misconception": "Thinking zero net force means the cart must stop (confusing net force with velocity instead of acceleration).",
+        "dinnerQuestion": "On a smooth Mumbai local train cruising steadily between stations, does a glass of water tilt forward, backward, or stay flat?",
+        "cambridgeUnit": "Unit 3 · Forces, Friction & Acceleration"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "ramp",
+        "atwood",
+        "vectors"
       ]
     },
     {
       "id": "momentum_carts",
       "title": "Momentum Carts",
-      "chapter": 2,
+      "chapter": 3,
       "is3D": false,
-      "challengePrompt": "Switch to \"Stick (inelastic)\" and set Cart 1 to 0.60 kg and Cart 2 to 0.30 kg so the joined carts move at about +1.17 m/s (initial velocities +2.00 and −0.50 m/s).",
+      "challengePrompt": "Choose a sticky inelastic collision and pick unequal cart masses so the joined pair finishes rolling faster than +1.1 m/s.",
       "cutaway": "Inside the bumper: spring steel stores ½kx² during an elastic bounce and returns it, whereas Velcro hooks trap the carts together and turn part of KE into warmth.",
       "idealised": "Track wheel friction and air drag are set to zero so total horizontal momentum is strictly conserved.",
       "watchSteps": [
@@ -7188,6 +7395,35 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Adjust both cart masses and compare elastic vs sticky collisions."
         }
+      ],
+      "presets": [
+        {
+          "id": "momentum_carts_p0",
+          "name": "Equal Elastic Swap",
+          "prompt": "Equal 0.50 kg carts bounce cleanly.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Mass of cart 1\":0.5,\"Mass of cart 2\":0.5}}"
+        },
+        {
+          "id": "momentum_carts_p1",
+          "name": "Heavy Meets Light (Stick)",
+          "prompt": "Watch a massive cart capture a light cart.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Mass of cart 1\":0.8,\"Mass of cart 2\":0.2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Try equal masses first, then make Cart 1 much heavier than Cart 2 in both Bounce and Stick modes.",
+        "misconception": "Assuming kinetic energy must stay conserved in sticky collisions just because total momentum does.",
+        "dinnerQuestion": "When two railway coaches couple and stick together, what disappears (KE) and what refuses to vanish (momentum)?",
+        "cambridgeUnit": "Unit 3 · Momentum & Collisions"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "forces",
+        "atlas_ch03",
+        "atwood"
       ]
     },
     {
@@ -7195,7 +7431,7 @@
       "title": "Whirl",
       "chapter": 4,
       "is3D": false,
-      "challengePrompt": "Set Speed to 3.5 m/s and switch to \"From the ball’s seat\" before releasing the string.",
+      "challengePrompt": "Raise the whirling speed, then compare the floor view and the ball’s-seat frame right before and after releasing the string—which way does the released ball actually travel?",
       "cutaway": "Inside the taut string: fibres transmit the inward tension force T = mv²/r; the instant the clip opens, T drops to 0 N.",
       "idealised": "The ball whirls on a frictionless horizontal table so gravity does not tilt the string downward into a cone.",
       "watchSteps": [
@@ -7219,14 +7455,43 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Release the ball at any point and compare both frames of reference."
         }
+      ],
+      "presets": [
+        {
+          "id": "whirl_p0",
+          "name": "Floor Reference Frame",
+          "prompt": "Watch real inward tension perpendicular to tangent velocity.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Speed\":2}}"
+        },
+        {
+          "id": "whirl_p1",
+          "name": "Rotating Seat View",
+          "prompt": "See why a turning observer feels an apparent outward throw.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Speed\":3.5}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Let Kym predict which straight direction the ball takes if snipped at top-dead-centre.",
+        "misconception": "Thinking a released object spirals outward due to \"centrifugal force\" instead of moving straight along the tangent.",
+        "dinnerQuestion": "On a rainy Dadar Flyover turn, do groceries slide \"outward\" or keep trying to go straight while the car curves underneath them?",
+        "cambridgeUnit": "Unit 4 · Circular Motion & Reference Frames"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "airfall",
+        "projectile",
+        "atlas_ch04"
       ]
     },
     {
       "id": "cannon3d",
       "title": "Cannon 3D",
-      "chapter": 4,
+      "chapter": 5,
       "is3D": true,
-      "challengePrompt": "Find the circular orbital speed (7.9 km/s) and fire the cannonball so it orbits the Earth without crashing or escaping.",
+      "challengePrompt": "Discover the horizontal launch speed that puts Newton’s cannonball into a steady circular orbit around Earth—neither crashing nor escaping.",
       "cutaway": "Inside Newton’s gravitational field: gravity pulls toward Earth’s centre at every point; at 7.9 km/s the ground curves away by 4.9 m every second—matching the fall.",
       "idealised": "Air is omitted even at the 10 km launch altitude. Reaching the 4.2 Earth-radius drawing horizon is a display limit; the sign of orbital energy decides bound motion or escape.",
       "watchSteps": [
@@ -7250,6 +7515,36 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Drag the 3D globe and test any launch speed."
         }
+      ],
+      "presets": [
+        {
+          "id": "cannon3d_p0",
+          "name": "Sub-orbital Arc",
+          "prompt": "Slow throw falls back to Earth at 4.0 km/s.",
+          "stateJSON": "{\"sliders\":{\"Launch speed\":4}}"
+        },
+        {
+          "id": "cannon3d_p1",
+          "name": "Elliptical Orbit",
+          "prompt": "Launch at 9.5 km/s to stretch the orbit.",
+          "stateJSON": "{\"sliders\":{\"Launch speed\":9.5}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Fire once at low speed, once slightly faster, and ask why Earth’s curved surface changes the landing spot.",
+        "misconception": "Believing astronauts float in orbit because Earth’s gravity suddenly switches off above the atmosphere.",
+        "dinnerQuestion": "If gravity still pulls nearly 90% as strongly at ISS altitude as here in Mumbai, why doesn’t the space station crash into Earth?",
+        "cambridgeUnit": "Unit 3 · Gravity & Orbital Free Fall"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "freefall",
+        "atlas_ch05"
       ]
     },
     {
@@ -7257,7 +7552,7 @@
       "title": "Tides",
       "chapter": 14,
       "is3D": false,
-      "challengePrompt": "Advance the lunar month to a neap tide (Day 7.4 or Day 22.1) when the Moon and Sun pull at right angles.",
+      "challengePrompt": "Advance the lunar month until the Moon and Sun pull at right angles, creating the smallest tidal range (a neap tide).",
       "cutaway": "Inside the tidal differential: the Moon pulls the near-side ocean ~3% harder than Earth’s rigid core, and the core ~3% harder than the far-side ocean, stretching water both ways.",
       "idealised": "The Earth is drawn covered by a uniform deep ocean without continents or shallow coastal bays that amplify real tides.",
       "watchSteps": [
@@ -7281,6 +7576,35 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Scrub through the month or toggle the Sun’s 46% bulge."
         }
+      ],
+      "presets": [
+        {
+          "id": "tides_p0",
+          "name": "Spring Tide Alignment",
+          "prompt": "New Moon alignment gives maximum combined bulge.",
+          "stateJSON": "{\"sliders\":{\"Time in lunar month\":0}}"
+        },
+        {
+          "id": "tides_p1",
+          "name": "Full Month Cycle",
+          "prompt": "Check the Moon 14.8 days into the cycle.",
+          "stateJSON": "{\"sliders\":{\"Time in lunar month\":355}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Notice there are TWO water bulges on opposite sides of Earth before advancing time.",
+        "misconception": "Thinking tides only happen on the side facing the Moon, ignoring the far-side differential bulge.",
+        "dinnerQuestion": "Why does Mumbai get high tide twice every ~25 hours instead of only once when the Moon passes overhead?",
+        "cambridgeUnit": "Unit 3 · Differential Gravity"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "seasons",
+        "phases",
+        "atlas_ch14"
       ]
     },
     {
@@ -7288,7 +7612,7 @@
       "title": "Kinetic Gas & Liquid Pressure Tank",
       "chapter": 6,
       "is3D": false,
-      "challengePrompt": "Switch the liquid to Mercury (index 2) and fill the tank to 0.8 m: its gauge pressure is about 107 kPa, slightly above standard atmospheric pressure (101.3 kPa).",
+      "challengePrompt": "Switch to the densest liquid in the tray and fill the tank until gauge pressure slightly exceeds standard atmospheric pressure (101.3 kPa).",
       "cutaway": "Inside the fluid column: every horizontal layer supports the weight of all the liquid and air stacked above it, pushing equally in all directions at that depth.",
       "idealised": "The liquid is treated as strictly incompressible (constant density ρ at all depths).",
       "watchSteps": [
@@ -7312,6 +7636,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Compare liquids and toggle atmospheric pressure."
         }
+      ],
+      "presets": [
+        {
+          "id": "pressuretank_p0",
+          "name": "Deep Fresh Water",
+          "prompt": "2.0 m water column to test Δp = ρgh.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Depth of liquid\":2}}"
+        },
+        {
+          "id": "pressuretank_p1",
+          "name": "Sea Water Column",
+          "prompt": "Compare slightly denser salty sea water at 1.5 m.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Depth of liquid\":1.5}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Compare water depth at 1.0 m vs 2.0 m first, then switch liquids.",
+        "misconception": "Thinking wider tanks create higher pressure at the bottom than narrow columns of the same depth.",
+        "dinnerQuestion": "Why did Torricelli only need a 76 cm column of mercury to balance 10 metres of water and the entire sky above Mumbai?",
+        "cambridgeUnit": "Unit 3 · Pressure in Liquids & Gases"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "buoyancy",
+        "expansion",
+        "forces"
       ]
     },
     {
@@ -7319,7 +7674,7 @@
       "title": "Buoyancy",
       "chapter": 6,
       "is3D": false,
-      "challengePrompt": "Set Block density to 7,800 kg/m³ (steel) in water, then click \"Hollow it out\" so the steel hull floats!",
+      "challengePrompt": "Test solid steel (7,800 kg/m³) in water so it sinks, then discover how reshaping the exact same mass into a hollow hull makes it float.",
       "cutaway": "Inside the pressure difference: water is deeper at the bottom face of the block than at the top face, so upward pressure force exceeds downward pressure force by ρ_liq V g.",
       "idealised": "Surface tension at the waterline and viscous water drag are simplified for clarity.",
       "watchSteps": [
@@ -7343,14 +7698,52 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Test any block density across fresh water, sea water, and mercury."
         }
+      ],
+      "presets": [
+        {
+          "id": "buoyancy_p0",
+          "name": "Floating Wood (600)",
+          "prompt": "Notice how submerged percentage matches density ratio.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Block density\":600}}"
+        },
+        {
+          "id": "buoyancy_p1",
+          "name": "Sink Solid Iron",
+          "prompt": "Drop solid steel into fresh water and inspect upthrust vs weight.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Block density\":7800}}"
+        },
+        {
+          "id": "buoyancy_p2",
+          "name": "Mystery ? Block",
+          "prompt": "Measure displaced waterline and submerged fraction to deduce ? density.",
+          "stateJSON": "{\"tabs\":[0],\"custom\":{\"mysteryMode\":true,\"mysteryRevealed\":false,\"liqIdx\":0,\"hollow\":false}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym to predict what fraction of a 600 kg/m³ wood block sits underwater before running it.",
+        "misconception": "Confusing material density with total mass when deciding why huge steel cargo ships float near Nhava Sheva.",
+        "dinnerQuestion": "A steel nail sinks instantly in a bucket, yet a 50,000-ton steel ship floats effortlessly—what changed?",
+        "cambridgeUnit": "Unit 3 · Density, Upthrust & Floating"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "pressuretank",
+        "energytrack",
+        "forces"
       ]
     },
     {
       "id": "energystores",
       "title": "Sankey & Energy Stores Ledger",
-      "chapter": 5,
+      "chapter": 7,
       "is3D": false,
-      "challengePrompt": "Select \"Bouncing tennis ball\" and scrub Transfer progress to the bottom of the bounce (≈ 50%) where elastic store peaks.",
+      "challengePrompt": "Inspect the bouncing tennis ball and pause right at maximum compression at the bottom of the bounce where the elastic store peaks.",
       "cutaway": "Inside the pathway tubes: mechanical work is an ordered force push, electrical work is drift of electrons, heating is random molecular jiggling, and radiation is electromagnetic waves.",
       "idealised": "Each jar groups microscopic kinetic and potential energies into a single macroscopic store label.",
       "watchSteps": [
@@ -7374,14 +7767,42 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Scrub through all 4 scenarios or view all 8 hatched stores."
         }
+      ],
+      "presets": [
+        {
+          "id": "energystores_p0",
+          "name": "Bounce Compression",
+          "prompt": "Watch gravitational → kinetic → elastic store transfer.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Transfer progress\":1.5}}"
+        },
+        {
+          "id": "energystores_p1",
+          "name": "Solar Hydrogen Fusion",
+          "prompt": "Contrast huge cosmic energy scales against daily mechanical stores.",
+          "stateJSON": "{\"tabs\":[3],\"sliders\":{\"Transfer progress\":2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Track whether the SUM of all glowing jars ever drops when transferring between stores.",
+        "misconception": "Thinking energy \"changes into work\" as if work were a fifth jar rather than a pathway tube.",
+        "dinnerQuestion": "At Sivaji Park cricket net practice, what happens to the bat’s energy a millisecond after hitting a six—where does every last joule end up?",
+        "cambridgeUnit": "Unit 3 · Energy Stores & Pathways"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "energytrack",
+        "atlas_ch07"
       ]
     },
     {
       "id": "energytrack",
-      "title": "Skate & Roller-Coaster Energy Track",
-      "chapter": 5,
+      "title": "Skate & Bead Energy Track",
+      "chapter": 7,
       "is3D": false,
-      "challengePrompt": "With Friction at 0.10, find the lowest Release height that still lets the marble clear the 0.80 m bump (1.1 m).",
+      "challengePrompt": "With friction set to 0.10, discover the lowest release height that still carries the marble cleanly over the 0.80 m bump.",
       "cutaway": "Inside the sliding bead and track: friction converts ordered motion into random lattice vibrations (thermal store) without changing the total joules.",
       "idealised": "The marble slides without rotational inertia (½Iω²), so all its motion energy is translational ½mv².",
       "watchSteps": [
@@ -7405,6 +7826,45 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Solve the 0.80 m bump challenge with friction at 0.10."
         }
+      ],
+      "presets": [
+        {
+          "id": "energytrack_p0",
+          "name": "Frictionless Conservation",
+          "prompt": "Zero friction at 1.0 m: watch PE and KE trade cleanly.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Friction\":0,\"Release height\":1},\"custom\":{\"hRef\":0,\"gIdx\":0}}"
+        },
+        {
+          "id": "energytrack_p1",
+          "name": "Barely Clears the Bump",
+          "prompt": "With μ = 0.10, test whether 1.0 m is enough or needs higher.",
+          "stateJSON": "{\"tabs\":[0,2],\"sliders\":{\"Friction\":0.1,\"Release height\":1},\"custom\":{\"hRef\":0,\"gIdx\":0}}"
+        },
+        {
+          "id": "energytrack_p2",
+          "name": "Moon Gravity Drop",
+          "prompt": "Compare speeds and total joules on the Moon (g = 1.6 m/s²).",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Friction\":0,\"Release height\":1.2},\"custom\":{\"hRef\":0,\"gIdx\":1}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Drag the marble directly on the track and turn on \"Pie on bead\" before adjusting friction.",
+        "misconception": "Thinking a heavier steel marble rolls faster down the track than a lighter glass marble, or believing energy is \"used up\" by friction.",
+        "dinnerQuestion": "If a roller coaster starts at 30 m high without an engine, can any later hill ever be 32 m high? What happens when friction warms the rails?",
+        "cambridgeUnit": "Unit 3 · Conservation of Energy"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag",
+        "Probe"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "energystores",
+        "ramp",
+        "buoyancy"
       ]
     },
     {
@@ -7436,6 +7896,33 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Switch materials and adjust hand temperature."
         }
+      ],
+      "presets": [
+        {
+          "id": "conduction_p0",
+          "name": "Steel Spoon",
+          "prompt": "Steady metallic heat drain from fingertips.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Hand temperature\":37}}"
+        },
+        {
+          "id": "conduction_p1",
+          "name": "Teak Wood Bench",
+          "prompt": "Surface heats rapidly and halts heat flow.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Hand temperature\":37}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym whether metal spoons in the kitchen are actually colder than wooden ladles on a 30 °C Mumbai counter.",
+        "misconception": "Believing metals have an inherently lower temperature than insulators in the same room.",
+        "dinnerQuestion": "Why does brass railing on the Bandra–Worli promenade feel cooler at dawn than a painted wooden bench right beside it?",
+        "cambridgeUnit": "Unit 5 · Thermal Conduction & Rate"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "atlas_ch08"
       ]
     },
     {
@@ -7443,7 +7930,7 @@
       "title": "Ripple",
       "chapter": 9,
       "is3D": false,
-      "challengePrompt": "Switch to \"Two fingers\" and set Rhythm to 2.0 Hz to create a crisp two-source interference pattern.",
+      "challengePrompt": "Move from one dipping finger to two synchronised fingers dipping briskly—where do calm nodal corridors appear between oscillating crests?",
       "cutaway": "Inside the water surface: water parcels move in tiny vertical circles as the crest passes—the wave travels across the tank while the water stays in place.",
       "idealised": "The tank walls are non-reflecting so outgoing ripples are not muddied by echoes from the edges.",
       "watchSteps": [
@@ -7467,6 +7954,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Tap anywhere on the water tank or change the rhythm."
         }
+      ],
+      "presets": [
+        {
+          "id": "ripple_p0",
+          "name": "Single Circular Ripples",
+          "prompt": "Measure λ spacing from one steady source.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Rhythm\":1.5}}"
+        },
+        {
+          "id": "ripple_p1",
+          "name": "Two-Finger Interference",
+          "prompt": "Locate calm cancellation rays between two sources.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Rhythm\":2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Watch one bright float dot carefully—does it swim across the tank or bob up and down in place?",
+        "misconception": "Assuming water moves outward across the tank together with the expanding wave crests.",
+        "dinnerQuestion": "When two speedboats pass near Gateway of India, why do calm flat streaks cut diagonally across the choppy wake?",
+        "cambridgeUnit": "Unit 6 · Wave Superposition & Ripples"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "scope",
+        "harmonics",
+        "doppler"
       ]
     },
     {
@@ -7474,7 +7992,7 @@
       "title": "Scope",
       "chapter": 9,
       "is3D": false,
-      "challengePrompt": "Switch to \"Both\" (waveform + frequency spectrum) to see time-domain oscillations and harmonic peaks side by side.",
+      "challengePrompt": "View waveform and frequency spectrum together, then hum a steady vowel or pluck a note—how does changing pitch move the frequency peaks?",
       "cutaway": "In a capacitive microphone, sound bends a flexible diaphragm and changes its capacitance; the electronics turn that change into a signal. The plot is an uncalibrated signal, not pressure in pascals.",
       "idealised": "Without the microphone active, the scope displays a clean synthetic reference tone free of room background noise.",
       "watchSteps": [
@@ -7498,6 +8016,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Freeze the trace or test your own voice with the microphone button."
         }
+      ],
+      "presets": [
+        {
+          "id": "scope_p0",
+          "name": "Waveform Trace",
+          "prompt": "Inspect cycle period T in milliseconds.",
+          "stateJSON": "{\"tabs\":[0]}"
+        },
+        {
+          "id": "scope_p1",
+          "name": "Waveform + FFT Spectrum",
+          "prompt": "Separate pure tone peaks from rich overtones.",
+          "stateJSON": "{\"tabs\":[1]}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Hum softly then loudly at the same pitch—check what changes on the trace (height vs spacing).",
+        "misconception": "Confusing louder volume (amplitude) with higher pitch (frequency) on a scope trace.",
+        "dinnerQuestion": "Why does a tanpura string and a flute playing the exact same Sa (240 Hz) produce completely different shapes on an oscilloscope?",
+        "cambridgeUnit": "Unit 6 · Sound Waveforms & Spectra"
+      },
+      "capabilities": [
+        "Sensor"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "ripple",
+        "harmonics",
+        "doppler"
       ]
     },
     {
@@ -7505,7 +8054,7 @@
       "title": "Harmonics",
       "chapter": 9,
       "is3D": false,
-      "challengePrompt": "Switch to \"Tabla\" and set Upper overtones to 60% to compare its near-harmonic frequency ladder with the plain drum.",
+      "challengePrompt": "Enrich upper overtones and compare the plain circular drumhead with the loaded Tabla—why does the tabla’s note sing at a crisp musical pitch?",
       "cutaway": "Inside the tabla head: C. V. Raman showed that the iron-paste syahi mass-loads the centre of the membrane so its modes shift into integer harmonic ratios 1 : 2 : 3 : 4 : 5.",
       "idealised": "Six partials are summed. The small drum views illustrate mode families; a real loaded tabla needs a full membrane model and has many higher modes.",
       "watchSteps": [
@@ -7529,6 +8078,38 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Compare String, Plain drum, and Tabla and tap Play to hear them."
         }
+      ],
+      "presets": [
+        {
+          "id": "harmonics_p0",
+          "name": "Plain Circular Drum",
+          "prompt": "Listen to non-integer membrane modes (1 : 1.59 : 2.14).",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Upper overtones\":0.5}}"
+        },
+        {
+          "id": "harmonics_p1",
+          "name": "Raman Tabla (Syahi)",
+          "prompt": "Centre patch aligns modes into integer harmonics.",
+          "stateJSON": "{\"tabs\":[2],\"sliders\":{\"Upper overtones\":0.6}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Compare the frequency ladder bars for Plain drum vs Tabla before turning up upper overtones.",
+        "misconception": "Thinking any stretched drum automatically produces neat integer multiples like a violin string.",
+        "dinnerQuestion": "Why does a tabla with its black central syahi spot sound pitched like a note, whereas a bass drum sounds like a thud?",
+        "cambridgeUnit": "Unit 6 · Sound, Pitch & Harmonics"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "scope",
+        "doppler",
+        "ripple"
       ]
     },
     {
@@ -7536,7 +8117,7 @@
       "title": "Doppler",
       "chapter": 9,
       "is3D": false,
-      "challengePrompt": "Set Train speed to 90 km/h (25 m/s) and Horn note to 400 Hz to hear and measure the ~60 Hz pitch drop as the train passes.",
+      "challengePrompt": "Drive a fast express train past a station listener blowing a high brass horn—what changes between approach and recession, wave speed or wavefront spacing?",
       "cutaway": "Inside the wavefront bunching: each sound crest leaves the horn and expands at 348.7 m/s in 30 °C air, but the moving horn emits the next crest closer to the previous one.",
       "idealised": "The listener stands close to the track so the cosine angle factor approaches ±1 except right at the moment of passing.",
       "watchSteps": [
@@ -7560,6 +8141,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Adjust speed and horn frequency, or press Sound the horn."
         }
+      ],
+      "presets": [
+        {
+          "id": "doppler_p0",
+          "name": "Stationary Horn",
+          "prompt": "At 0 km/h wavefront circles stay symmetric.",
+          "stateJSON": "{\"sliders\":{\"Train speed\":0,\"Horn note\":330}}"
+        },
+        {
+          "id": "doppler_p1",
+          "name": "Mumbai Express 90 km/h",
+          "prompt": "Observe bunched crests ahead and stretched crests behind.",
+          "stateJSON": "{\"sliders\":{\"Train speed\":90,\"Horn note\":400}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Watch the wavefront spacing ahead vs behind the engine as speed rises from 0.",
+        "misconception": "Thinking the air pushes sound faster ahead of a train (actually wave speed c stays constant; wavelength λ bunches up).",
+        "dinnerQuestion": "As a Western Line fast local races past Bandra platform blowing its horn, does the driver inside the cab hear the pitch drop too?",
+        "cambridgeUnit": "Unit 6 · Sound Waves & Frequency"
+      },
+      "capabilities": [
+        "Sonify"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "ripple",
+        "harmonics",
+        "scope"
       ]
     },
     {
@@ -7567,7 +8179,7 @@
       "title": "Mirror",
       "chapter": 10,
       "is3D": false,
-      "challengePrompt": "Switch to \"Whole body\" and move to 120 cm from the mirror to confirm that a half-height mirror still shows you head to toe!",
+      "challengePrompt": "Examine full-body reflection as you step farther back from the mirror—does stepping back reveal more of your body, or does a half-height mirror always work?",
       "cutaway": "Inside the silvered glass: incoming photons reflect off the thin aluminium/silver backing at θ_i = θ_r; your visual cortex projects diverging rays straight backward to a virtual image.",
       "idealised": "The mirror is treated as a front-surface reflector, ignoring the weak second reflection from the front face of household glass.",
       "watchSteps": [
@@ -7591,6 +8203,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Walk closer or farther and toggle the traced-back rays."
         }
+      ],
+      "presets": [
+        {
+          "id": "mirror_p0",
+          "name": "Point Ray Diagram",
+          "prompt": "See equal angles θ_i = θ_r from one object point.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Distance from mirror\":70}}"
+        },
+        {
+          "id": "mirror_p1",
+          "name": "Whole Body Half-Mirror",
+          "prompt": "Compare standing close vs 120 cm back.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Distance from mirror\":120}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Guess first whether walking back from the wardrobe mirror shows more or the exact same fraction of your body.",
+        "misconception": "Believing stepping farther back from a flat wall mirror lets you see down to your shoes.",
+        "dinnerQuestion": "How tall must a corridor wall mirror at home be for a 1.6 m person to see both hair and slippers at once?",
+        "cambridgeUnit": "Unit 7 · Reflection & Plane Mirrors"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "refraction",
+        "eye3d",
+        "atlas_ch10"
       ]
     },
     {
@@ -7598,7 +8241,7 @@
       "title": "Refraction",
       "chapter": 10,
       "is3D": false,
-      "challengePrompt": "Switch to \"Diamond (2.419)\", flip direction to \"material → air\", and increase the angle above 25° to trigger Total Internal Reflection!",
+      "challengePrompt": "Choose the highest-index material, send light from material into air, and discover the steep angle where 100% of light traps inside (Total Internal Reflection).",
       "cutaway": "Inside the wavefront boundary: light slows down to c/n inside glass or diamond, so the edge of each wavefront that enters first falls behind and pivots the beam.",
       "idealised": "The beam is monochromatic; real white light splits into a rainbow (dispersion) because n varies slightly with wavelength.",
       "watchSteps": [
@@ -7622,6 +8265,35 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Explore angles, materials, and critical angles."
         }
+      ],
+      "presets": [
+        {
+          "id": "refraction_p0",
+          "name": "Air into Water",
+          "prompt": "Ray slows down and bends toward the normal.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Arriving angle\":45}}"
+        },
+        {
+          "id": "refraction_p1",
+          "name": "Glass Critical Threshold",
+          "prompt": "Compare glass-to-air around 40–45°.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Arriving angle\":42}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Always ask whether the ray bends toward or away from the 90° normal first.",
+        "misconception": "Measuring angles from the flat surface instead of the normal line, or expecting TIR when entering from air into glass.",
+        "dinnerQuestion": "Why does a diamond sparkle intensely while a piece of plain glass of the same cut looks dull?",
+        "cambridgeUnit": "Unit 6 · Refraction & Critical Angle"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "mirror",
+        "eye3d",
+        "colourmix"
       ]
     },
     {
@@ -7629,7 +8301,7 @@
       "title": "Eye 3D",
       "chapter": 10,
       "is3D": true,
-      "challengePrompt": "Select \"Short-sighted\", move Object distance to far (> 80), and switch on \"Glasses on\" to bring the focal point back onto the retina.",
+      "challengePrompt": "Examine a short-sighted eye focused on a far object, then test how spectacles restore a crisp focus on the retina.",
       "cutaway": "The cornea provides most of the bending. Ciliary muscles change the crystalline lens shape to adjust focus; this drawing combines both into one effective thin lens.",
       "idealised": "The cornea and crystalline lens are combined into a single thin adjustable lens for ray-tracing clarity.",
       "watchSteps": [
@@ -7653,6 +8325,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Try \"Cover half pupil\" to see why the whole image stays complete but dimmer."
         }
+      ],
+      "presets": [
+        {
+          "id": "eye3d_p0",
+          "name": "Short-Sighted Bare Eye",
+          "prompt": "Distant focus lands cleanly in front of the retina.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Object distance\":90}}"
+        },
+        {
+          "id": "eye3d_p1",
+          "name": "Concave Spectacles Fix",
+          "prompt": "Diverging lens shifts focal spot onto the retina.",
+          "stateJSON": "{\"tabs\":[1,1],\"sliders\":{\"Object distance\":90}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Try \"Cover half pupil\" first—predict whether half the picture vanishes or just dims.",
+        "misconception": "Thinking covering half a lens blocks half the image instead of dimming the whole image uniformly.",
+        "dinnerQuestion": "Why does squinting slightly—or peeking through a tiny pinhole between fingers—sharpen a blurred bus route number across Dadar circle?",
+        "cambridgeUnit": "Unit 7 · Lenses & The Human Eye"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "mirror",
+        "refraction",
+        "atlas_ch10"
       ]
     },
     {
@@ -7660,7 +8363,7 @@
       "title": "Interference",
       "chapter": 11,
       "is3D": false,
-      "challengePrompt": "Switch to \"Stripes on a screen\", set Wavelength to 650 nm (red) and Source spacing to 0.25 mm to widen the bright fringes.",
+      "challengePrompt": "Switch to \"Stripes on a screen\" and find what wavelength and slit spacing produce the widest bright interference fringes.",
       "cutaway": "Inside path difference Δr = d sin θ: where crests from both slits arrive in step (Δr = mλ) amplitudes add; where a crest meets a trough (Δr = (m+½)λ) they cancel to darkness.",
       "idealised": "The slits are treated as infinitely narrow point sources, so the wide single-slit diffraction envelope does not dim the outer fringes.",
       "watchSteps": [
@@ -7684,14 +8387,45 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Sweep wavelength across the spectrum and watch fringe spacing respond."
         }
+      ],
+      "presets": [
+        {
+          "id": "interference_p0",
+          "name": "Green Narrow Fringes",
+          "prompt": "550 nm green light across 0.40 mm slits.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Wavelength\":550,\"Source spacing\":0.4}}"
+        },
+        {
+          "id": "interference_p1",
+          "name": "Red Wide Fringes",
+          "prompt": "Longer λ and tighter slit spacing stretch Δy.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Wavelength\":660,\"Source spacing\":0.25}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Move ONLY Wavelength first, then ONLY Source spacing, watching Δy response.",
+        "misconception": "Assuming bringing the two slits closer together makes the interference bands narrower rather than wider.",
+        "dinnerQuestion": "Look closely through thin silk curtain folds at a distant Bandra streetlamp—why do coloured fringes spread perpendicular to the threads?",
+        "cambridgeUnit": "Unit 7 · Double-Slit Interference"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "colourmix",
+        "skycolour",
+        "atlas_ch11"
       ]
     },
     {
       "id": "colourmix",
       "title": "RGB Light & Filter Mixer",
-      "chapter": 10,
+      "chapter": 11,
       "is3D": false,
-      "challengePrompt": "In \"Light on a white wall\", mix Red = 100%, Green = 100%, and Blue = 0% to make pure additive Yellow light!",
+      "challengePrompt": "In \"Light on a white wall\", discover which combination of the three spotlight beams creates pure additive Yellow light.",
       "cutaway": "The retina has three cone types with overlapping wavelength responses. Different spectra can produce similar response patterns and appear the same colour; this RGB display illustrates that principle rather than modelling cone sensitivities.",
       "idealised": "Screen sRGB primaries approximate monochromatic spectral lights and idealised block-filter pigments.",
       "watchSteps": [
@@ -7715,6 +8449,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Test lights, paints, and coloured objects under coloured lamps."
         }
+      ],
+      "presets": [
+        {
+          "id": "colourmix_p0",
+          "name": "Full White Overlap",
+          "prompt": "100% Red + Green + Blue light makes white.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Red\":100,\"Green\":100,\"Blue\":100}}"
+        },
+        {
+          "id": "colourmix_p1",
+          "name": "CMY Paint Filters",
+          "prompt": "Switch to subtractive pigment filters.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Red\":100,\"Green\":100,\"Blue\":0}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym to turn off just ONE spotlight from white light and predict the overlap colour.",
+        "misconception": "Assuming Red + Green light makes muddy brown because poster paints mix subtractively.",
+        "dinnerQuestion": "Under pure red LED street light with zero green or blue wavelengths, what colour does a bright green leaf look?",
+        "cambridgeUnit": "Unit 6 · Colour Addition & Filters"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "skycolour",
+        "refraction",
+        "interference"
       ]
     },
     {
@@ -7722,7 +8487,7 @@
       "title": "Skycolour",
       "chapter": 11,
       "is3D": false,
-      "challengePrompt": "Lower Sun height to 2° (sunset) on Earth to see why the low Sun turns deep orange-red while the overhead sky stays blue.",
+      "challengePrompt": "Lower the Sun close to the horizon on Earth and explain why the setting Sun turns orange-red while the overhead sky stays blue.",
       "cutaway": "Inside Rayleigh scattering: N₂ and O₂ molecules (0.3 nm wide) are much smaller than light wavelengths, oscillating like tiny dipole antennas that radiate strongly as 1/λ⁴.",
       "idealised": "Only Rayleigh molecular scattering (1/λ⁴) is calculated; larger dust and water droplets add whiter Mie scattering near the horizon.",
       "watchSteps": [
@@ -7746,14 +8511,45 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Sweep the Sun from noon to sunset across Earth, thin air, and the Moon."
         }
+      ],
+      "presets": [
+        {
+          "id": "skycolour_p0",
+          "name": "Midday Blue Zenith",
+          "prompt": "Short blue wavelengths scatter down to your eye.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Sun height\":60}}"
+        },
+        {
+          "id": "skycolour_p1",
+          "name": "Chowpatty Sunset (2°)",
+          "prompt": "Long air mass strips blue light out of the direct Sun.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Sun height\":2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Toggle \"The Moon (no air)\" at noon to see why air molecules create the blue vault.",
+        "misconception": "Thinking Earth’s oceans reflect blue upward into the sky or that air turns blue only when polluted.",
+        "dinnerQuestion": "At Worli Sea Face sunset, why is the western horizon glowing fiery amber while someone glancing straight overhead still sees slate-blue sky?",
+        "cambridgeUnit": "Unit 7 · Scattering & Atmospheric Light"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "interference",
+        "colourmix",
+        "atlas_ch11"
       ]
     },
     {
       "id": "circuit",
-      "title": "Circuit",
+      "title": "Current, Voltage & Rope Circuit Loop",
       "chapter": 12,
       "is3D": false,
-      "challengePrompt": "Set Battery to 9.0 V and choose \"3 LEDs\": find the current and the voltage left for the 330 Ω resistor.",
+      "challengePrompt": "Power 3 series LEDs from a 9.0 V battery and determine both the shared loop current and the voltage left across the 330 Ω resistor.",
       "cutaway": "The wire already contains mobile charge. A change in the electric field spreads around the circuit; carriers do not travel from the battery to fill an empty wire. When current flows, each coulomb transfers about 2 J at each LED and the remaining energy at the resistor.",
       "idealised": "Each conducting red LED is approximated by a 2 V drop and a 330 Ω resistor limits the current. Below the combined threshold the model gives zero current and does not resolve individual LED voltages; real LED curves are gradual.",
       "watchSteps": [
@@ -7777,6 +8573,46 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Lower the supply below the combined LED threshold and compare the whole-loop current."
         }
+      ],
+      "presets": [
+        {
+          "id": "circuit_p0",
+          "name": "Below LED Threshold",
+          "prompt": "6.0 V across four 2 V LEDs cannot turn them on.",
+          "stateJSON": "{\"tabs\":[3,0],\"sliders\":{\"Battery\":6}}"
+        },
+        {
+          "id": "circuit_p1",
+          "name": "Energy-per-Coulomb Steps",
+          "prompt": "Inspect potential height around a 9 V, 3-LED loop.",
+          "stateJSON": "{\"tabs\":[2,1],\"sliders\":{\"Battery\":9}}"
+        },
+        {
+          "id": "circuit_p2",
+          "name": "Rope Analogy",
+          "prompt": "Compare electrical loop to a continuous pulled rope.",
+          "stateJSON": "{\"tabs\":[1,2],\"sliders\":{\"Battery\":9}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym to compare the current counters at A, B, and C before touching any numbers.",
+        "misconception": "Thinking current gets \"used up\" as it passes through the resistor and LEDs (so C would read less than A).",
+        "dinnerQuestion": "When you switch on a bedroom lamp in Mumbai, why does it light instantly even though electrons drift slower than a snail?",
+        "cambridgeUnit": "Unit 9 · Electric Current & Voltage"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag",
+        "Probe",
+        "Schematic"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "seriesparallel",
+        "field3d",
+        "induction"
       ]
     },
     {
@@ -7784,7 +8620,7 @@
       "title": "Series & Parallel Circuit Bench",
       "chapter": 12,
       "is3D": false,
-      "challengePrompt": "Switch to \"Parallel\", set LEDs to 3, and click \"Unclip LED 1\" to see why the other two lamps stay at full brightness!",
+      "challengePrompt": "Wire 3 LEDs in parallel and unclip LED 1—discover why the remaining branches keep full brightness while total battery current drops.",
       "cutaway": "Inside the parallel junction node: Kirchhoff’s current law (I_in = I_1 + I_2 + I_3) splits the charge stream into independent lanes, each connected across the full battery voltage.",
       "idealised": "The battery has zero internal resistance, so adding parallel branches never makes the battery terminal voltage sag.",
       "watchSteps": [
@@ -7808,6 +8644,46 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Compare 1, 2, or 3 lamps in series and parallel."
         }
+      ],
+      "presets": [
+        {
+          "id": "seriesparallel_p0",
+          "name": "Dim Series Chain",
+          "prompt": "3 LEDs sharing one 9 V loop.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"LEDs\":3},\"custom\":{\"unclipped\":false}}"
+        },
+        {
+          "id": "seriesparallel_p1",
+          "name": "3 Parallel Branches",
+          "prompt": "Each branch gets the full 9 V across the battery.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"LEDs\":3},\"custom\":{\"unclipped\":false}}"
+        },
+        {
+          "id": "seriesparallel_p2",
+          "name": "Schematic Diagram",
+          "prompt": "Switch to Cambridge IEC circuit symbols.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"LEDs\":2},\"custom\":{\"schematic\":true,\"unclipped\":false}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Tap LED 1 directly on the canvas in both Series and Parallel modes to see what breaks.",
+        "misconception": "Thinking a battery always outputs a fixed current regardless of how many parallel branches are connected.",
+        "dinnerQuestion": "Why do all rooms in our apartment stay bright when one ceiling fan or bulb is switched off—are they wired in series or parallel?",
+        "cambridgeUnit": "Unit 9 · Series & Parallel Circuits"
+      },
+      "capabilities": [
+        "Sonify",
+        "DirectDrag",
+        "Probe",
+        "Schematic"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "circuit",
+        "field3d",
+        "induction"
       ]
     },
     {
@@ -7815,7 +8691,7 @@
       "title": "Field 3D",
       "chapter": 13,
       "is3D": true,
-      "challengePrompt": "Switch to \"Coil and magnet\", set Current to 2.5 A, and click \"Reverse current\" to flip the coil’s North and South poles.",
+      "challengePrompt": "Test a strong 2.5 A current in the coil-and-magnet view, then reverse the current to see how the electromagnet poles flip.",
       "cutaway": "Inside the solenoid coil: circular magnetic field loops around each turn add together down the central tunnel to form a uniform North–South bar-magnet field.",
       "idealised": "The wire calculation uses vacuum permeability μ₀. Its separate compass view includes Mumbai’s 38.4 μT horizontal background; the coil/magnet field shapes are schematic dipoles.",
       "watchSteps": [
@@ -7839,6 +8715,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Rotate the 3D field and test any current from 0 to 3.0 A."
         }
+      ],
+      "presets": [
+        {
+          "id": "field3d_p0",
+          "name": "Straight Wire Ørsted",
+          "prompt": "Circular magnetic field lines around a straight current.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Current\":2}}"
+        },
+        {
+          "id": "field3d_p1",
+          "name": "Strong Solenoid 2.5 A",
+          "prompt": "Wound coil dipole interacting with bar magnet.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Current\":2.5}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Orbit the 3D coil and watch the compass needle before flipping current direction.",
+        "misconception": "Thinking a copper wire needs iron inside it to create any magnetic field at all.",
+        "dinnerQuestion": "Why do junkyard crane electromagnets drop scrap steel the instant power turns off, instead of staying permanently magnetised?",
+        "cambridgeUnit": "Unit 9 · Electromagnets & Magnetic Fields"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "induction",
+        "magnetometer",
+        "fieldslab"
       ]
     },
     {
@@ -7870,6 +8777,31 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Use a device magnetometer or inspect the reference reading."
         }
+      ],
+      "presets": [
+        {
+          "id": "magnetometer_p0",
+          "name": "Earth Field Baseline",
+          "prompt": "Inspect geomagnetic B_x, B_y, B_z magnitude (~43 μT).",
+          "stateJSON": "{\"tabs\":[]}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Rotate the phone/sensor smoothly and notice |B| stays near ~43 μT even while components swap signs.",
+        "misconception": "Confusing the vertical/horizontal axis projection with a change in Earth’s actual magnetic strength.",
+        "dinnerQuestion": "Why does a navigation compass work inside an open Mumbai ferry deck yet spin unpredictably near iron train girders?",
+        "cambridgeUnit": "Unit 8 · Magnetic Fields & Sensors"
+      },
+      "capabilities": [
+        "Sensor"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "field3d",
+        "induction",
+        "atlas_ch13"
       ]
     },
     {
@@ -7877,7 +8809,7 @@
       "title": "Induction",
       "chapter": 13,
       "is3D": false,
-      "challengePrompt": "Set Turns to maximum (index 3) and click \"Nudge in / out\" (or drag the magnet fast) to generate a strong induced voltage spike!",
+      "challengePrompt": "Maximise the coil turns and move the magnet rapidly through the coil to discover what produces the largest induced voltage spike.",
       "cutaway": "Inside Faraday’s law: a changing magnetic flux Φ_B through the coil curls an electric field around the copper loops, pushing conduction electrons only while the magnet moves.",
       "idealised": "Self-inductance of the coil is neglected so current follows the induced EMF instantaneously.",
       "watchSteps": [
@@ -7901,14 +8833,45 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Drag the magnet fast or slow and flip N ↔ S."
         }
+      ],
+      "presets": [
+        {
+          "id": "induction_p0",
+          "name": "Stationary Magnet",
+          "prompt": "Strong magnet sitting still inside coil produces 0 V.",
+          "stateJSON": "{\"sliders\":{\"Turns\":2}}"
+        },
+        {
+          "id": "induction_p1",
+          "name": "200-Turn Dynamo Coil",
+          "prompt": "Maximum coil turns ready for rapid flux change.",
+          "stateJSON": "{\"sliders\":{\"Turns\":3}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Park the magnet completely inside the coil first—ask why the voltmeter drops right back to zero!",
+        "misconception": "Thinking a strong magnet sitting inside a coil generates continuous steady electricity.",
+        "dinnerQuestion": "What actually turns inside a wind turbine or hydroelectric generator at Koyna to keep electricity flowing?",
+        "cambridgeUnit": "Unit 9 · Electromagnetic Induction"
+      },
+      "capabilities": [
+        "DirectDrag"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "field3d",
+        "circuit",
+        "magnetometer"
       ]
     },
     {
       "id": "shadow",
       "title": "Shadow",
-      "chapter": 14,
+      "chapter": 0,
       "is3D": false,
-      "challengePrompt": "Set Distance between sticks to 5,000 stadia (~800 km) and Shadow angle to 7.2° to reproduce Eratosthenes’ circumference of the Earth!",
+      "challengePrompt": "Match Eratosthenes’ Syene–Alexandria solstice meridian separation and shallow shadow tilt to estimate Earth’s full circumference from parallel sunbeams!",
       "cutaway": "Inside the alternate-interior geometry: because the Sun is 150 million km away, its rays arrive parallel; the stick’s shadow angle at Alexandria equals the angle between the two cities at Earth’s centre.",
       "idealised": "Syene and Alexandria are treated as lying on the exact same north–south meridian (in reality they differ by ~3° of longitude).",
       "watchSteps": [
@@ -7932,6 +8895,34 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Adjust distance and shadow angle to measure the planet."
         }
+      ],
+      "presets": [
+        {
+          "id": "shadow_p0",
+          "name": "Eratosthenes 7.2° Setup",
+          "prompt": "1/50th of a circle × 5,000 stadia gives ~40,000 km.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Distance\":5000,\"Shadow angle\":7.2}}"
+        },
+        {
+          "id": "shadow_p1",
+          "name": "Steep Shadow Check",
+          "prompt": "Larger angle for the same road implies a tinier globe.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Distance\":5000,\"Shadow angle\":18}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Notice BOTH parallel Sun beams must stay parallel for the shadow angle to match the central Earth angle.",
+        "misconception": "Thinking a stick shadow only changes length if Earth were tiny and the Sun sat right above Egypt.",
+        "dinnerQuestion": "If Eratosthenes had lived between Mumbai and Ahmedabad (~450 km north–south), about what noon shadow difference would solstice sticks cast?",
+        "cambridgeUnit": "Unit 1 · Measuring Planet Earth"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3,
+        6
+      ],
+      "relatedWidgetIds": [
+        "atlas_ch00"
       ]
     },
     {
@@ -7939,7 +8930,7 @@
       "title": "Seasons",
       "chapter": 14,
       "is3D": true,
-      "challengePrompt": "Set Date to the June solstice (around day 172) and compare Mumbai (19.08° N), the Equator, the Tropic of Cancer and Paris (48.85° N).",
+      "challengePrompt": "Follow noon sunlight at the June solstice across Mumbai, the Equator, the Tropic of Cancer, and higher northern latitudes—what steers summer warmth, Sun altitude or distance?",
       "cutaway": "Inside the tilted beam: a 1 m² bundle of sunlight hitting the ground at 30° spreads over 1/sin(30°) = 2.0 m², halving the watts warming each square metre.",
       "idealised": "Atmospheric absorption and seasonal thermal lag of the oceans (which delays peak summer temperatures by ~4 weeks) are omitted.",
       "watchSteps": [
@@ -7963,6 +8954,37 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Scrub through the year or try the torch-on-graph-paper view."
         }
+      ],
+      "presets": [
+        {
+          "id": "seasons_p0",
+          "name": "Mumbai Solstice (19° N)",
+          "prompt": "Compare June overhead beam vs Dec angle.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Date\":172}}"
+        },
+        {
+          "id": "seasons_p1",
+          "name": "December Paris Tilt",
+          "prompt": "Low winter Sun spreads photons wider.",
+          "stateJSON": "{\"tabs\":[3],\"sliders\":{\"Date\":355}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym whether Earth is actually closest to the Sun in June or January (surprise: January!).",
+        "misconception": "Believing summer happens because Earth orbits closer to the Sun in June.",
+        "dinnerQuestion": "In late May before Mumbai clouds arrive, why does the Sun pass almost straight overhead near Gateway of India around noon?",
+        "cambridgeUnit": "Unit 2 · Earth’s Axial Tilt & Seasons"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "tides",
+        "phases",
+        "atlas_ch14"
       ]
     },
     {
@@ -7970,7 +8992,7 @@
       "title": "Phases",
       "chapter": 14,
       "is3D": true,
-      "challengePrompt": "Switch to \"From Mumbai\" and set Day of the month to Day 14.8 (Full Moon) to see the fully lit disc.",
+      "challengePrompt": "Switch to \"From Mumbai\" and advance the lunar cycle until the Moon’s near face appears completely illuminated (Full Moon).",
       "cutaway": "Inside the geometry of phases: the Sun always illuminates 50% of the lunar sphere; phases are simply how much of that sunlit hemisphere faces Earth as the Moon orbits.",
       "idealised": "The lunar orbit is circular and coplanar in this illustration. Orbital inclination, eclipse dates and libration are omitted.",
       "watchSteps": [
@@ -7994,6 +9016,38 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Scrub through all 29.5 days and toggle true scale."
         }
+      ],
+      "presets": [
+        {
+          "id": "phases_p0",
+          "name": "First Quarter Half-Moon",
+          "prompt": "Orbit at 90° gives a half-lit disc.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Day of the month\":7.4}}"
+        },
+        {
+          "id": "phases_p1",
+          "name": "Mumbai Crescent View",
+          "prompt": "See a waxing crescent from Earth’s surface.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Day of the month\":4}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Notice from above space that 50% of the Moon is ALWAYS sunlit—even at New Moon!",
+        "misconception": "Believing crescent or half moons are caused by Earth’s shadow blocking the Sun (eclipses vs phases).",
+        "dinnerQuestion": "On a First Quarter afternoon when you spot a crisp half-moon in the Mumbai sky, where is the Sun relative to the Moon?",
+        "cambridgeUnit": "Unit 3 · Earth, Moon & Space Geometry"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3,
+        6
+      ],
+      "relatedWidgetIds": [
+        "tides",
+        "seasons",
+        "atlas_ch14"
       ]
     },
     {
@@ -8001,7 +9055,7 @@
       "title": "Parallax",
       "chapter": 15,
       "is3D": false,
-      "challengePrompt": "Switch to \"Through the telescope\" and sweep Month from January (0) to July (6) to measure the star’s 6-month baseline shift!",
+      "challengePrompt": "Look through the telescope across a 6-month Earth baseline (January to July) to measure the star’s apparent annual wobble.",
       "cutaway": "Inside the 1 AU triangle: 1 parsec is the distance where Earth’s 150-million-km orbital radius subtends an angle of 1 arcsecond (1/3,600 of a degree, the width of a rupee coin at 5 km).",
       "idealised": "The overhead triangle exaggerates angles. The telescope view uses its labelled 1.0 arcsecond scale bar; the circular annual trace applies near an orbital pole.",
       "watchSteps": [
@@ -8025,14 +9079,42 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Switch telescope view and sweep between January and July."
         }
+      ],
+      "presets": [
+        {
+          "id": "parallax_p0",
+          "name": "Nearby Star (1.6 pc)",
+          "prompt": "Clear half-year shift p across Earth’s 2 AU orbit.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Star distance\":10,\"Month\":6}}"
+        },
+        {
+          "id": "parallax_p1",
+          "name": "Distant Star (10 pc)",
+          "prompt": "Smaller wobble means greater distance d = 1/p.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Star distance\":50,\"Month\":6}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Hold a thumb at arm’s length and wink left–right eyes before dragging Month from Jan to Jul.",
+        "misconception": "Thinking parallax happens because the star physically moves back and forth every six months.",
+        "dinnerQuestion": "Why did ancient Greek astronomers fail to see nearby stars wobble, even though Earth actually orbits 300 million km side to side?",
+        "cambridgeUnit": "Unit 9 · Stellar Distances & Parallax"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "expansion",
+        "atlas_ch15"
       ]
     },
     {
       "id": "expansion",
       "title": "Expansion",
-      "chapter": 7,
+      "chapter": 15,
       "is3D": false,
-      "challengePrompt": "Switch home galaxy to \"Me: ant at 12 cm\" and stretch the band to ×2.00 to verify that Hubble’s law looks identical from every galaxy!",
+      "challengePrompt": "Move your observer perch to an outer galaxy and stretch space significantly—does Hubble’s linear expansion law still look centred around you?",
       "cutaway": "Inside metric expansion: galaxies are not flying like shrapnel through pre-existing space; the metric grid between unbound galaxy clusters stretches uniformly everywhere.",
       "idealised": "Local gravitational pulls (such as Andromeda falling toward the Milky Way) are omitted to show pure cosmological Hubble flow.",
       "watchSteps": [
@@ -8056,37 +9138,1078 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Switch home galaxies and stretch the universe."
         }
+      ],
+      "presets": [
+        {
+          "id": "expansion_p0",
+          "name": "Central Galaxy View",
+          "prompt": "Twice as far recedes twice as fast from 7 cm.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Stretch factor\":2}}"
+        },
+        {
+          "id": "expansion_p1",
+          "name": "Outer Ant Frame",
+          "prompt": "Switch origin to 12 cm—identical Hubble slope.",
+          "stateJSON": "{\"tabs\":[2],\"sliders\":{\"Stretch factor\":2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Notice EVERY dot appears to flee the ant you pick, proving there is no centre of expansion.",
+        "misconception": "Imagining the Big Bang as an explosion flying from one spot inside empty space.",
+        "dinnerQuestion": "When raisin bread rises evenly in a Colaba bakery oven, which raisin sees its neighbours moving away slowest—central ones or every raisin equally?",
+        "cambridgeUnit": "Unit 9 · Expanding Universe & Redshift"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "parallax",
+        "atlas_ch15"
       ]
     },
     {
-      "id": "selftest",
-      "title": "Selftest",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Set Stiffness to 20 N/m to tune the test oscillator.",
-      "cutaway": "Inside Hooke’s law: restoring force is proportional to displacement from equilibrium.",
-      "idealised": "Damping is omitted so the oscillation amplitude stays constant.",
+      "id": "atlas_period",
+      "title": "3D Pendulum & Spring Period Lab",
+      "chapter": 9,
+      "is3D": true,
+      "challengePrompt": "Inspect the 3D pendulum and spring pair, or switch to X-ray / Section cutaway mode to see why 4× length gives 2× period.",
+      "cutaway": "Inside the small-angle restoring torque: F_restore ≈ −(mg/L) s, so longer L softens stiffness while increasing arc length.",
+      "idealised": "Small-angle approximation sin θ ≈ θ and zero air resistance keep period independent of amplitude.",
       "watchSteps": [
         {
           "title": "1. Wide view",
-          "caption": "1/5 Wide shot: The mass oscillates back and forth around equilibrium."
+          "caption": "1/5 Wide shot: Two springs and two pendulums side by side in 3D."
         },
         {
           "title": "2. Close-up",
-          "caption": "2/5 Close-up: Stiffer springs oscillate faster."
+          "caption": "2/5 Close-up: The 4× longer pendulum takes exactly twice as long per swing."
         },
         {
           "title": "3. Cut-away",
-          "caption": "3/5 Cut-away: Restoring force always points toward the centre."
+          "caption": "3/5 Cut-away: Restoring force scales as 1/L, giving T ∝ √L."
         },
         {
           "title": "4. Side-on trend",
-          "caption": "4/5 Trend: Period scales inversely with √k."
+          "caption": "4/5 Trend: A 4× heavier mass on an identical spring also doubles the period (T = 2π√(m/k))."
         },
         {
           "title": "5. Your turn",
-          "caption": "5/5 Your turn: Adjust stiffness or play a tone."
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
         }
+      ],
+      "presets": [
+        {
+          "id": "atlas_period_p0",
+          "name": "Side-by-Side Pair",
+          "prompt": "Count swings of the 4× length pendulum.",
+          "stateJSON": "{\"tabs\":[6,0]}"
+        },
+        {
+          "id": "atlas_period_p1",
+          "name": "X-Ray Internal View",
+          "prompt": "Reveal spring coils inside the frame.",
+          "stateJSON": "{\"tabs\":[6,1]}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Count how many times the short pendulum returns while the 4× long one finishes one swing.",
+        "misconception": "Thinking doubling pendulum bob mass or doubling length doubles the period.",
+        "dinnerQuestion": "If you lengthen a monsoon swing rope at Hanging Gardens fourfold, how much slower does each back-and-forth beat become?",
+        "cambridgeUnit": "Unit 6 · Pendulum & Spring Period"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "ripple",
+        "scope",
+        "harmonics"
+      ]
+    },
+    {
+      "id": "atlas_ch00",
+      "title": "3D Atlas · Chapter 0",
+      "chapter": 0,
+      "is3D": true,
+      "challengePrompt": "Move the ship farther out past the coastal curve or align the ruler straight overhead to eliminate parallax shift!",
+      "cutaway": "The horizon is where your line of sight grazes Earth’s 6,371 km sphere; in rain gauges, V = A × h cancels mouth area A.",
+      "idealised": "Atmospheric refraction over warm seawater is omitted.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: An outbound ship drops hull-first behind the curved sea."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Raising eye height h pushes the horizon kilometres farther out."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Geometry decides what is hidden behind Earth’s curve or shifted by parallax."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Looking straight down (θ = 0°) reduces parallax Δx = t tan θ to 0 mm."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch00_p0",
+          "name": "Hull-Down Cargo Ship",
+          "prompt": "Observe Earth curvature hiding the hull beyond the horizon.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Ship distance\":16}}"
+        },
+        {
+          "id": "atlas_ch00_p1",
+          "name": "Zero Parallax Look",
+          "prompt": "Read the scale vertically perpendicular.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Ruler viewing angle\":0}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Orbit to look flush across the ruler thickness and watch the parallax shift appear.",
+        "misconception": "Thinking binoculars bring an ocean-hidden ship hull back above the horizon.",
+        "dinnerQuestion": "From the Worli Sea Link parapet compared to the sandy shore, how many extra kilometres of Arabian Sea can you see?",
+        "cambridgeUnit": "Unit 1 · Measurement, Parallax & Scale"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "shadow"
+      ]
+    },
+    {
+      "id": "atlas_ch01",
+      "title": "3D Atlas · Chapter 1",
+      "chapter": 1,
+      "is3D": true,
+      "challengePrompt": "Steepen Galileo’s bronze-ball incline to accelerate fall, or compare two opposing trains in relative motion!",
+      "cutaway": "Tilting the groove dilutes gravity by sin θ (and rolling inertia by 5/7), slowing fall so bell gates verify Δx ∝ t².",
+      "idealised": "Rolling resistance and air drag on the bronze sphere are neglected.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Platform frame S and carriage frame S′ relate positions by x′ = x − v t."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: On Galileo’s ramp, bells at 1, 4, 9, and 16 units ring on a steady beat."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: At the peak of a vertical toss, v = 0 while acceleration stays −9.8 m/s²."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Opposite trains add their speeds in v_AB = v_A − v_B."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch01_p0",
+          "name": "Galileo Steep Ramp",
+          "prompt": "Trace 1 : 3 : 5 : 7 equal-time distances.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Galileo ramp angle\":18}}"
+        },
+        {
+          "id": "atlas_ch01_p1",
+          "name": "Opposing Local Trains",
+          "prompt": "Compare velocity addition across frames.",
+          "stateJSON": "{\"tabs\":[3,0],\"sliders\":{\"Train A ground velocity\":18}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Space the bells equally vs 1, 4, 9, 16 along the groove—which pattern sounds a steady beat?",
+        "misconception": "Believing acceleration becomes zero at the highest point of an upward toss.",
+        "dinnerQuestion": "On a Central Line fast train passing another train opposite at Bandra, why does it seem to blur by twice as fast?",
+        "cambridgeUnit": "Unit 1 · Relative Motion & Constant Acceleration"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "videotrack",
+        "graphwalk"
+      ]
+    },
+    {
+      "id": "atlas_ch02",
+      "title": "3D Atlas · Chapter 2",
+      "chapter": 2,
+      "is3D": true,
+      "challengePrompt": "Flatten Galileo’s second recovery ramp toward horizontal, or push the block hard enough to break static friction!",
+      "cutaway": "Polished surfaces touch at micron-scale asperity peaks whose cold-welded tips shear when F_push exceeds μ_s N.",
+      "idealised": "Amontons–Coulomb friction treats μ_s and μ_k as constant across sliding speeds.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: On Galileo’s double ramp, the ball climbs back to its starting height h."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Flattening the second slope toward 0° sends run distance L = h / sin θ₂ to infinity!"
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Inside microscopic surface asperities under normal load N."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Pushing above μ_s N breaks static welds onto the lower kinetic plateau μ_k N."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch02_p0",
+          "name": "Galileo Flat Limit",
+          "prompt": "Flatten second ramp toward perpetual motion.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Galileo recovery slope\":0}}"
+        },
+        {
+          "id": "atlas_ch02_p1",
+          "name": "Break Static Welds",
+          "prompt": "Exceed μ_s N threshold to trigger sliding.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Horizontal push\":32}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Switch to Section cutaway on the friction block to inspect the microscopic contact peaks.",
+        "misconception": "Assuming an object moving forward must always have a net forward force pushing it.",
+        "dinnerQuestion": "Why does pushing a heavy fridge across kitchen tiles take a hard initial shove yet slightly less force once moving?",
+        "cambridgeUnit": "Unit 2 · Inertia & Friction Peaks"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "ramp",
+        "vectors",
+        "mechanicslab"
+      ]
+    },
+    {
+      "id": "atlas_ch03",
+      "title": "3D Atlas · Chapter 3",
+      "chapter": 3,
+      "is3D": true,
+      "challengePrompt": "Increase the forward pull on the three-car train and discover how tension steps down from coupling to coupling!",
+      "cutaway": "Each coupling pulls only the mass trailing behind it; a rocket accelerates in vacuum by pushing its own exhaust gas.",
+      "idealised": "Coupling hooks and spring scale casings are treated as massless.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Doubling net force doubles acceleration; doubling mass halves it."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Along a 3-car train, tension drops 3ma → 2ma → 1ma from front to rear."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Inside two hooked spring scales, F_AB = −F_BA holds at every instant."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Faster rocket exhaust speed v_ex linearly boosts thrust F = v_ex dm/dt."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch03_p0",
+          "name": "Three-Car Tension Ladder",
+          "prompt": "Compare 3 : 2 : 1 tension ratio along couplings.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Applied pull force\":36}}"
+        },
+        {
+          "id": "atlas_ch03_p1",
+          "name": "Vacuum Rocket Exhaust",
+          "prompt": "Inspect recoil thrust without pushing air.",
+          "stateJSON": "{\"tabs\":[3,0],\"sliders\":{\"Rocket exhaust speed\":3400}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym whether the front coupling or rear coupling snaps first when pulling three identical bogies.",
+        "misconception": "Thinking action and reaction cancel each other out because they are equal and opposite.",
+        "dinnerQuestion": "How can an ISRO rocket steer and speed up in empty space if there is no air behind the nozzle to push against?",
+        "cambridgeUnit": "Unit 2 · Newton’s Second & Third Laws"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "forces",
+        "momentum_carts",
+        "atwood"
+      ]
+    },
+    {
+      "id": "atlas_ch04",
+      "title": "3D Atlas · Chapter 4",
+      "chapter": 4,
+      "is3D": true,
+      "challengePrompt": "Flick the twin coin faster horizontally—does extra sideways speed delay how soon both coins strike the table?",
+      "cutaway": "Gravity pulls only along vertical y while horizontal v_x stays constant; on a circle, Δv = v₂ − v₁ points straight inward.",
+      "idealised": "Air resistance is omitted so horizontal and vertical motions are strictly independent.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: One coin drops straight down while its twin shoots out horizontally at v_x."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Horizontal strobe bars prove both coins share the exact same height y(t) at every instant."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Why velocity change Δv in uniform circular motion points radially inward."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Doubling orbital speed v quadruples inward centripetal acceleration a_c = v²/r."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch04_p0",
+          "name": "High-Speed Twin Coins",
+          "prompt": "Check simultaneous table impact despite fast v_x.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Horizontal flick speed\":7.5}}"
+        },
+        {
+          "id": "atlas_ch04_p1",
+          "name": "Vector Δv Turning",
+          "prompt": "See inward acceleration at constant orbital speed.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Orbital tangent speed\":8}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Line the 3D camera edge-on to check the horizontal strobe planes through both coins.",
+        "misconception": "Thinking a fast horizontal projectile stays airborne longer because it fights gravity sideways.",
+        "dinnerQuestion": "Does a carrom striker flying horizontally off a table edge hit the Mumbai marble floor any later than one dropped beside it?",
+        "cambridgeUnit": "Unit 4 · 2D Projectiles & Circular Acceleration"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "airfall",
+        "projectile",
+        "whirl"
+      ]
+    },
+    {
+      "id": "atlas_ch05",
+      "title": "3D Atlas · Chapter 5",
+      "chapter": 5,
+      "is3D": true,
+      "challengePrompt": "Inspect gravity’s fall-off at lunar distance, then stretch a comet orbit’s eccentricity to compare perihelion and aphelion speeds!",
+      "cutaway": "Inside Cavendish’s box: a quartz torsion fibre twists under a 1.5 × 10⁻⁷ N pull between lead spheres, deflecting a mirror beam.",
+      "idealised": "Two-body Keplerian orbits neglect perturbations from neighbouring planets.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: At 60 R_E, gravity is diluted by 3,600× so the Moon falls 1.36 mm/s beneath its tangent."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: A taut loop of string around two focal pins traces an ellipse with r₁ + r₂ = 2a."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Inside Cavendish’s 1798 torsion balance and optical lever mirror."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Comets sweep equal areas in equal times, racing past perihelion."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch05_p0",
+          "name": "60 R_E Moon Fall",
+          "prompt": "Verify 1/r² gravity dilution at lunar orbit.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Orbit distance\":60}}"
+        },
+        {
+          "id": "atlas_ch05_p1",
+          "name": "High-Eccentricity Comet",
+          "prompt": "Contrast perihelion race against aphelion drift.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Orbital eccentricity\":0.8}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Inspect the Cavendish box in X-ray view to see how the optical lever amplifies micro-forces.",
+        "misconception": "Thinking astronauts float or comets orbit because Earth or space sits completely beyond gravity.",
+        "dinnerQuestion": "Why does Halley’s Comet whip past the inner Sun in a few months yet take decades to creep past Neptune?",
+        "cambridgeUnit": "Unit 4 · Inverse-Square Gravity & Orbits"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "freefall",
+        "cannon3d"
+      ]
+    },
+    {
+      "id": "atlas_ch06",
+      "title": "3D Atlas · Chapter 6",
+      "chapter": 6,
+      "is3D": true,
+      "challengePrompt": "Fill the slotted water bottle deeper to accelerate the bottom jet, or drop ambient air pressure to watch the mercury barometer react!",
+      "cutaway": "Fluid pressure P = P₀ + ρgh depends only on vertical depth h, while air molecules hammer upward on an inverted glass card with ~390 N.",
+      "idealised": "Viscous nozzle losses and orifice surface tension are omitted.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Deeper holes experience greater pressure ρgh and shoot faster jets v = √(2gh)."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Sea-level air pressure (101.3 kPa) holds up 760 mm of dense mercury."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: At high altitude, lower P_atm lets the mercury column sink."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Upward atmospheric force on a postcard exceeds the weight of 12 cm of water by 86×!"
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch06_p0",
+          "name": "High Bottle Head",
+          "prompt": "Compare top vs middle vs bottom jet arcs.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Bottle water column\":0.58}}"
+        },
+        {
+          "id": "atlas_ch06_p1",
+          "name": "Lonavala Hill Barometer",
+          "prompt": "Lower P_atm and track mercury height drop.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"External atmospheric pressure\":75}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym why the top hole shoots a weak steep arc while the bottom hole fires almost horizontally.",
+        "misconception": "Thinking a \"suction force\" pulls drinks up a straw rather than external atmospheric pressure pushing.",
+        "dinnerQuestion": "If you carry Torricelli’s mercury barometer up Sahyadri cliffs at Matheran, does the mercury rise or fall—and why?",
+        "cambridgeUnit": "Unit 3 · Fluid Jets & Air Pressure"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "pressuretank",
+        "buoyancy"
+      ]
+    },
+    {
+      "id": "atlas_ch07",
+      "title": "3D Atlas · Chapter 7",
+      "chapter": 7,
+      "is3D": true,
+      "challengePrompt": "Double a falling sphere’s impact speed into clay to test whether crater depth doubles or quadruples!",
+      "cutaway": "Stopping a sphere in clay requires work W = F_clay d = ½mv²; in an inelastic bounce, (1 − e²) of KE turns into heat.",
+      "idealised": "Clay resistance force F_clay is modelled as uniform with penetration depth.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: A sphere hitting clay at 2v carves a crater 4× deeper than at v."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Each bounce peaks at e² of the previous height while warming the floor."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Inside the kWh meter: disc speed measures Watts, total turns count kWh."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: City Sankey pipes split 100% fuel input into useful work and ambient heat."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch07_p0",
+          "name": "4× Clay Crater Test",
+          "prompt": "Check quadratic ½mv² scaling at double speed.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Clay test impact speed\":4}}"
+        },
+        {
+          "id": "atlas_ch07_p1",
+          "name": "Heavy Home kWh Load",
+          "prompt": "Compare spinning disc watts vs cumulative kWh.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Household appliance load\":2800}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Switch to Section cutaway on the household kWh meter to distinguish Power (W) from Energy (kWh).",
+        "misconception": "Thinking doubling car speed only doubles braking distance (actually 4× work!).",
+        "dinnerQuestion": "Why does a car screeching at 80 km/h on the Bandra–Worli Sea Link need four times the stopping distance of 40 km/h?",
+        "cambridgeUnit": "Unit 3 · Work, Quadratic KE & Power"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "energystores",
+        "energytrack"
+      ]
+    },
+    {
+      "id": "atlas_ch08",
+      "title": "3D Atlas · Chapter 8",
+      "chapter": 8,
+      "is3D": true,
+      "challengePrompt": "Push heat input into the water–steam phase transition plateau—why does the thermometer stall while you keep heating?",
+      "cutaway": "During boiling or matka evaporation, incoming energy breaks hydrogen bonds (L_v = 2,260 kJ/kg) instead of raising kinetic energy.",
+      "idealised": "Calorimeter walls are treated as adiabatic outside the modelled heat flux.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Joule’s falling weights churn water: 4,184 J warms 1 kg by 1 °C."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: A 40 °C bucket holds vastly more thermal energy Q = mcΔT than a 100 °C spoon."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: A wool sweater traps dead air, blocking room heat from melting ice."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Evaporating 1.8% of water through porous matka clay cools the pot by ~10 °C."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch08_p0",
+          "name": "Boiling Flat Plateau",
+          "prompt": "Add latent heat at constant 100 °C.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Added heat per kg\":1500}}"
+        },
+        {
+          "id": "atlas_ch08_p1",
+          "name": "Clay Matka Cooling",
+          "prompt": "Small sweat fraction cools water noticeably.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Matka water evaporated\":1.8}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Compare \"100 °C spoon vs 40 °C bucket\" to distinguish temperature from internal thermal energy.",
+        "misconception": "Assuming added heat MUST always raise temperature even during melting or boiling.",
+        "dinnerQuestion": "Why does drinking water stored in a Dharavi terracotta matka stay noticeably cooler in May humidity?",
+        "cambridgeUnit": "Unit 5 · Specific & Latent Heat"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "conduction"
+      ]
+    },
+    {
+      "id": "atlas_ch09",
+      "title": "3D Atlas · Chapter 9",
+      "chapter": 9,
+      "is3D": true,
+      "challengePrompt": "Sweep Barton’s driver frequency past the pendulum array—why does one hanging responder absorb a dramatic swing?",
+      "cutaway": "At resonance f_drive = f₀, pushes arrive in phase with velocity; in sound waves, air rings oscillate locally while compressions travel at 343 m/s.",
+      "idealised": "Sound propagation is modelled in dry air at 20 °C (343 m/s).",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: On Barton’s cord, only the responder matching the driver builds a huge swing."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Shifting f_drive to 2.0 Hz hands resonance to the next shorter pendulum."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Above 15 m/s crosswind, vortex shedding locks onto bridge deck twist."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Doubling acoustic frequency f halves wavelength λ = v/f."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch09_p0",
+          "name": "Barton Resonance Peak",
+          "prompt": "Match driver beat to a hanging pendulum.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Barton driver frequency\":2}}"
+        },
+        {
+          "id": "atlas_ch09_p1",
+          "name": "500 Hz Sound Wavelength",
+          "prompt": "Verify λ = 343 / f spacing in air rings.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Acoustic frequency\":500}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Look closely at how non-resonant responders barely twitch compared to the matched length.",
+        "misconception": "Thinking air molecules travel all the way across a hall from singer to ear.",
+        "dinnerQuestion": "Why can a low train horn rattle just one loose windowpane in your Dadar flat while leaving thicker panes calm?",
+        "cambridgeUnit": "Unit 6 · Resonance & Acoustic Waves"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "ripple",
+        "scope",
+        "harmonics"
+      ]
+    },
+    {
+      "id": "atlas_ch10",
+      "title": "3D Atlas · Chapter 10",
+      "chapter": 10,
+      "is3D": true,
+      "challengePrompt": "Stop down the pinhole aperture for a sharper inverted candle, or swing Earth behind the Sun to reveal Rømer’s light delay!",
+      "cutaway": "Straight rays from candle top and bottom cross at the pinhole to invert the image; across Earth’s 2 AU orbit, light takes 16.6 min to cross.",
+      "idealised": "Geometric ray optics omits wave diffraction below ~0.3 mm.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: We see non-luminous pages only when diffusely scattered rays enter our pupil."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: A 0.5 mm pinhole yields a crisp inverted image; a 4.5 mm hole blurs overlapping cones."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Deeper camera box d_i magnifies the inverted image linearly (M = d_i/d_o)."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: At conjunction (180°), Io’s eclipses arrive 16.6 minutes late across 2 AU."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch10_p0",
+          "name": "Sharp 0.5 mm Pinhole",
+          "prompt": "Tighten hole diameter for crisp inversion.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Pinhole aperture diameter\":0.5}}"
+        },
+        {
+          "id": "atlas_ch10_p1",
+          "name": "Rømer 180° Io Eclipse",
+          "prompt": "Compare light delay across Earth’s 2 AU orbit.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Earth orbital angle\":180}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Compare 0.5 mm vs 4.5 mm aperture on bright vs crispness trade-offs.",
+        "misconception": "Thinking a pinhole flips an image left-right only OR that human sight shoots rays out of the eye.",
+        "dinnerQuestion": "During a Mumbai solar eclipse under banyan leaves, why do hundreds of tiny gaps project crescent Suns on the pavement?",
+        "cambridgeUnit": "Unit 7 · Ray Geometry & Speed of Light"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "mirror",
+        "refraction",
+        "eye3d"
+      ]
+    },
+    {
+      "id": "atlas_ch11",
+      "title": "3D Atlas · Chapter 11",
+      "chapter": 11,
+      "is3D": true,
+      "challengePrompt": "Rotate the Polaroid filter to find which axis snuffs out pond surface glare completely!",
+      "cutaway": "Newton’s inverted second prism recombines the spectrum into white light; Raman inelastic scattering shifts photon energy by a vibrational quantum.",
+      "idealised": "Crown glass dispersion uses a two-term Cauchy relation.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Violet bends more than red in glass; Newton’s second prism recombines them into white."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Water glare at 53.1° is horizontally polarized; a 90° vertical Polaroid blocks it."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Rotating the Polaroid to 0° transmits 100% of the surface glare."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Higher bond vibration frequency Δν̃ pushes the Raman Stokes line farther into the green."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch11_p0",
+          "name": "Zero Glare 90° Filter",
+          "prompt": "Block horizontally polarised pond reflection.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Polaroid sunglass axis\":90}}"
+        },
+        {
+          "id": "atlas_ch11_p1",
+          "name": "Raman Vibrational Shift",
+          "prompt": "Tune molecular shift away from Rayleigh peak.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Molecular bond vibration\":1100}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Twist the Polaroid axis 90° across water glare first—prove light is a transverse wave!",
+        "misconception": "Thinking glass prisms manufacture new colours instead of separating wavelengths already in white light.",
+        "dinnerQuestion": "Why did C. V. Raman notice the deep sapphire Caribbean sea and then discover scattered sky photons shifting colour?",
+        "cambridgeUnit": "Unit 7 · Dispersion, Polarisation & Scattering"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "interference",
+        "colourmix",
+        "skycolour"
+      ]
+    },
+    {
+      "id": "atlas_ch12",
+      "title": "3D Atlas · Chapter 12",
+      "chapter": 12,
+      "is3D": true,
+      "challengePrompt": "Step up circuit voltage across ohmic vs filament loads, or inspect how the thicker Earth wire trips a household fuse during a live fault!",
+      "cutaway": "The top Earth pin is longer (connects first) and thicker (R_E ≈ 2 Ω) so a live-to-case fault triggers a 115 A surge that melts the fuse immediately.",
+      "idealised": "Mains voltage is 230 V RMS with a 15 A fuse threshold.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: A charged comb polarizes neutral paper bits, pulling closer +q upward."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: A battery pumps the wire’s existing conduction electrons around a closed loop."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Heating a tungsten filament scatters electrons and bends its I–V curve."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: A 2 Ω Earth wire diverts fault current and blows the 15 A fuse safely."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch12_p0",
+          "name": "Ohmic vs Filament I–V",
+          "prompt": "See hot filament bend away from Ohm’s line.",
+          "stateJSON": "{\"tabs\":[1,0],\"sliders\":{\"Applied circuit voltage\":4}}"
+        },
+        {
+          "id": "atlas_ch12_p1",
+          "name": "3-Pin Earth Fault Surge",
+          "prompt": "Low-R Earth path forces fault current past 15 A.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Earth fault loop resistance\":2}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Zoom into the Indian 3-pin plug in X-ray view—notice which pin enters the socket first.",
+        "misconception": "Thinking a battery creates brand-new electrons instead of pumping free electrons already inside copper wires.",
+        "dinnerQuestion": "Why is the top Earth pin on an Indian 3-pin AC plug BOTH thicker and longer than the Live and Neutral pins?",
+        "cambridgeUnit": "Unit 8 · Circuits, I–V & Earthing Safety"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "circuit",
+        "seriesparallel"
+      ]
+    },
+    {
+      "id": "atlas_ch13",
+      "title": "3D Atlas · Chapter 13",
+      "chapter": 13,
+      "is3D": true,
+      "challengePrompt": "Strengthen the external field to align iron domains, or crank armature current to boost motor torque!",
+      "cutaway": "Split-ring commutator halves swap brush polarity every 180° to keep torque one-way; in free space, E and B regenerate each other at speed c.",
+      "idealised": "Stator poles produce a uniform horizontal B-field across the rotor gap.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Microscopic magnetic domains inside soft iron align as B_ext rises."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Opposite currents on left and right coil branches create a continuous torque couple."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: The split-ring commutator reverses coil current every half-turn."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Perpendicular E and B waves oscillate in phase at speed c."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch13_p0",
+          "name": "Aligned Iron Domains",
+          "prompt": "Saturate soft-iron dipole arrows with B_ext.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"External magnetizing field\":0.85}}"
+        },
+        {
+          "id": "atlas_ch13_p1",
+          "name": "High-Torque DC Motor",
+          "prompt": "Inspect split-ring flip every half revolution.",
+          "stateJSON": "{\"tabs\":[1,2],\"sliders\":{\"DC motor armature current\":5}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Switch DC motor to Section cutaway to watch the split-ring commutator swap brush contact every 180°.",
+        "misconception": "Thinking DC motors keep spinning one way without flipping current inside the rotating loop.",
+        "dinnerQuestion": "Inside a ceiling fan motor running steadily in your study, what stops the armature from flipping back after half a turn?",
+        "cambridgeUnit": "Unit 8 · Domains, Motors & EM Waves"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "field3d",
+        "magnetometer",
+        "induction"
+      ]
+    },
+    {
+      "id": "atlas_ch14",
+      "title": "3D Atlas · Chapter 14",
+      "chapter": 14,
+      "is3D": true,
+      "challengePrompt": "Shift the Full Moon away from the orbital Line of Nodes to discover why most Full Moons miss Earth’s shadow!",
+      "cutaway": "At r = 60 R_E, the Moon’s 5.14° orbit tilt carries it up to 5.4 R_E above or below Earth’s shadow cone except near the Line of Nodes.",
+      "idealised": "3D orbital sizes are scaled for visibility while numerical readouts use exact 60 R_E geometry.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: As Earth spins West-to-East at 15°/h, our local horizon boat turns eastward into sunlight."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Earth’s 23.4° axis stays parallel in space all year, driving the seasons."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: In December (270°), the same parallel axis tilts the Northern Hemisphere away from the Sun."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Away from the nodes (60°), the 5.14° tilt lifts the Full Moon clear of Earth’s shadow."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch14_p0",
+          "name": "Node Lunar Eclipse",
+          "prompt": "Align 0° at the Line of Nodes into Earth’s shadow.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Full Moon angle\":0}}"
+        },
+        {
+          "id": "atlas_ch14_p1",
+          "name": "Clear Full Moon (60°)",
+          "prompt": "5.14° lunar tilt lifts Moon clear of umbra.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"Full Moon angle\":60}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Orbit edge-on to the ecliptic plane so you see why the 5.14° tilted orbit misses the umbra cone.",
+        "misconception": "Asking why we don’t see a lunar eclipse every single Full Moon month.",
+        "dinnerQuestion": "Since Earth always casts a long shadow opposite the Sun, why can Mumbai go months between visible lunar eclipses?",
+        "cambridgeUnit": "Unit 9 · Eclipses & Orbital Inclination"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "tides",
+        "seasons",
+        "phases"
+      ]
+    },
+    {
+      "id": "atlas_ch15",
+      "title": "3D Atlas · Chapter 15",
+      "chapter": 15,
+      "is3D": true,
+      "challengePrompt": "Shift light into ultraviolet to trigger photoemission, or push a white dwarf’s mass toward the Chandrasekhar limit!",
+      "cutaway": "Light exchanges energy in quanta E = hf; in a white dwarf, Pauli electron degeneracy supports the star until relativistic collapse at 1.44 M_☉.",
+      "idealised": "Work function φ = 2.30 eV; white dwarf radius uses the Chandrasekhar relativistic formula.",
+      "watchSteps": [
+        {
+          "title": "1. Wide view",
+          "caption": "1/5 Wide shot: Red light (1.91 eV < φ) cannot eject electrons; UV (4.13 eV) discharges the gold leaf."
+        },
+        {
+          "title": "2. Close-up",
+          "caption": "2/5 Close-up: Single photons land as discrete dots yet accumulate into wave interference fringes."
+        },
+        {
+          "title": "3. Cut-away",
+          "caption": "3/5 Cut-away: Inside solar p–p fusion, 0.7% of proton mass becomes 26.7 MeV via ΔE = Δmc²."
+        },
+        {
+          "title": "4. Side-on trend",
+          "caption": "4/5 Trend: Raising white-dwarf mass toward 1.44 M_☉ shrinks its radius dramatically."
+        },
+        {
+          "title": "5. Your turn",
+          "caption": "5/5 Your turn: Drag to orbit in 3D, switch stations, or explode the parts."
+        }
+      ],
+      "presets": [
+        {
+          "id": "atlas_ch15_p0",
+          "name": "UV Photoelectric Drop",
+          "prompt": "Short-wavelength photons exceed φ = 2.30 eV.",
+          "stateJSON": "{\"tabs\":[0,0],\"sliders\":{\"Incident light wavelength\":300}}"
+        },
+        {
+          "id": "atlas_ch15_p1",
+          "name": "Near Chandrasekhar 1.38 M_☉",
+          "prompt": "Watch relativistic degeneracy squeeze white dwarf.",
+          "stateJSON": "{\"tabs\":[2,0],\"sliders\":{\"White dwarf mass\":1.38}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Compare low-energy red beam vs UV photons—why doesn’t waiting longer help red light eject electrons?",
+        "misconception": "Thinking brighter red light eventually knocks electrons loose if you crank up intensity enough.",
+        "dinnerQuestion": "How did Subrahmanyan Chandrasekhar deduce on a boat from Madras to England that massive dying stars cannot stay white dwarfs?",
+        "cambridgeUnit": "Unit 9 · Quanta, Fusion & Stellar Fate"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "parallax",
+        "expansion"
       ]
     },
     {
@@ -8094,7 +10217,7 @@
       "title": "Vectors",
       "chapter": 2,
       "is3D": false,
-      "challengePrompt": "Switch to \"Parallelogram law\", set P = 60 N, Q = 80 N, and find the angle θ where the resultant R is exactly 100 N (Pythagoras!).",
+      "challengePrompt": "Switch to the Parallelogram law with P = 60 N and Q = 80 N, and discover the angle θ where the resultant R is exactly 100 N.",
       "cutaway": "Every 2D vector equation is two independent 1D equations at right angles: what happens along x has zero projection along y because cos 90° = 0.",
       "idealised": "Vectors here lie in a flat 2D plane; in 3D space a third perpendicular component R_z joins so R = √(R_x² + R_y² + R_z²).",
       "watchSteps": [
@@ -8118,14 +10241,43 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Sweep θ from 0° to 180° or test ramp components."
         }
+      ],
+      "presets": [
+        {
+          "id": "vectors_p0",
+          "name": "Perpendicular Components",
+          "prompt": "Split one 80 N force into horizontal & vertical shadows.",
+          "stateJSON": "{\"tabs\":[0],\"sliders\":{\"Angle θ\":37,\"Arrow P\":80}}"
+        },
+        {
+          "id": "vectors_p1",
+          "name": "Ramp Component Split",
+          "prompt": "See why steeper ramps increase down-slope pull.",
+          "stateJSON": "{\"tabs\":[2],\"sliders\":{\"Angle θ\":30,\"Arrow P\":100}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask what happens to R_x when θ reaches 90° and why two forces can cancel or add depending on angle.",
+        "misconception": "Simply adding 60 N + 80 N = 140 N regardless of direction.",
+        "dinnerQuestion": "If you and a friend pull a heavy box along two ropes 90° apart with 60 N and 80 N, why is the combined pull 100 N instead of 140 N?",
+        "cambridgeUnit": "Unit 3 · Force Vectors & Resultants"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "ramp",
+        "atlas_ch02",
+        "mechanicslab"
       ]
     },
     {
       "id": "atwood",
       "title": "Atwood",
-      "chapter": 2,
+      "chapter": 3,
       "is3D": false,
-      "challengePrompt": "Dilute gravity to exactly one-tenth of free fall (a = 0.98 m/s²): set m₁ = 0.55 kg and m₂ = 0.45 kg.",
+      "challengePrompt": "Choose two unequal pulley masses that dilute downward acceleration to roughly one-tenth of free fall (a ≈ 0.98 m/s²).",
       "cutaway": "Unfolding the rope reveals a 1D coupled train: internal tensions +T and −T cancel across the rope while the external weight difference (m₁ − m₂)g accelerates the combined inertia m₁ + m₂.",
       "idealised": "The rope is treated as massless and unstretchable, and the pulley wheel as frictionless and massless (a real pulley adds rotational inertia I/R² to the denominator).",
       "watchSteps": [
@@ -8149,397 +10301,211 @@
           "title": "5. Your turn",
           "caption": "5/5 Your turn: Adjust m₁ and m₂ to test any mass ratio on Atwood’s pulley."
         }
+      ],
+      "presets": [
+        {
+          "id": "atwood_p0",
+          "name": "Balanced Pulley (a = 0)",
+          "prompt": "Equal 0.50 kg masses hang in zero-acceleration tension.",
+          "stateJSON": "{\"sliders\":{\"Left mass m₁\":0.5,\"Right mass m₂\":0.5}}"
+        },
+        {
+          "id": "atwood_p1",
+          "name": "Steep Imbalance (0.8 vs 0.3)",
+          "prompt": "Compare rope tension T against both weights m₁g and m₂g.",
+          "stateJSON": "{\"tabs\":[1],\"sliders\":{\"Left mass m₁\":0.8,\"Right mass m₂\":0.3}}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask whether rope tension T equals m₁g, m₂g, or lies strictly between them while moving.",
+        "misconception": "Assuming the heavier falling mass pulls the rope with its full weight m₁g (ignoring that it is accelerating downward!).",
+        "dinnerQuestion": "In a lift accelerating downward, do you feel heavier, lighter, or unchanged on a bathroom scale?",
+        "cambridgeUnit": "Unit 3 · Coupled Masses & Tension"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "forces",
+        "momentum_carts",
+        "atlas_ch03"
       ]
     },
     {
-      "id": "atlas_period",
-      "title": "Atlas Period",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Inspect the 3D pendulum and spring pair, or switch to X-ray / Section cutaway mode to see why 4× length gives 2× period.",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
+      "id": "fieldslab",
+      "title": "Electromagnet & Magnetic Fields Bench",
+      "chapter": 13,
+      "is3D": true,
+      "challengePrompt": "Explore coil turns, current, and soft iron cores in 3D to compare permanent magnets and electromagnets.",
+      "cutaway": "Microscopic magnetic domains inside the soft iron core align while coil current flows and relax when current stops.",
+      "idealised": "Fringing end effects outside the solenoid core are simplified so field geometry reads clearly.",
       "watchSteps": [
         {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
+          "title": "1. Field Pattern",
+          "caption": "Trace closed magnetic field loops around the current-carrying solenoid."
         },
         {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
+          "title": "2. Soft Iron Core",
+          "caption": "Insert the core to magnetise domains and concentrate field strength."
         }
+      ],
+      "presets": [
+        {
+          "id": "fieldslab_p0",
+          "name": "Solenoid & Compass Grid",
+          "prompt": "Inspect magnetic field direction around coil turns.",
+          "stateJSON": "{}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Ask Kym why a scrapyard electromagnet needs soft iron instead of hard steel.",
+        "misconception": "Thinking current flows from battery straight out into iron domains to make magnets.",
+        "dinnerQuestion": "How can a port crane at Nhava Sheva lift tonnes of scrap steel and drop it cleanly on command?",
+        "cambridgeUnit": "Unit 9 · Magnetism & Electromagnets"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        9
+      ],
+      "relatedWidgetIds": [
+        "field3d",
+        "induction",
+        "circuit"
       ]
     },
     {
-      "id": "atlas_ch00",
-      "title": "Atlas Ch00",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Move Ship distance beyond 15 km or adjust Ruler viewing angle θ to 0° to eliminate parallax error!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
+      "id": "mechanicslab",
+      "title": "Mechanics 3D Concept & Vector Lab",
+      "chapter": 2,
+      "is3D": true,
+      "challengePrompt": "Explore balanced forces, friction peaks, moments, and momentum conservation in 3D guided stations.",
+      "cutaway": "Free-body vector arrows and contact asperities show every push and reaction simultaneously.",
+      "idealised": "Idealised rigid bodies isolate first-principles force and momentum laws.",
       "watchSteps": [
         {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
+          "title": "1. Free-Body Arrows",
+          "caption": "Compare forward thrust, normal support, weight, and drag vectors."
         },
         {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
+          "title": "2. Reference Frames",
+          "caption": "Track impulse and motion conservation from two frames."
         }
+      ],
+      "presets": [
+        {
+          "id": "mechanicslab_p0",
+          "name": "Balanced Thrust vs Drag",
+          "prompt": "Compare zero resultant force while moving.",
+          "stateJSON": "{}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Sketch a quick free-body arrow diagram before checking the 3D scene.",
+        "misconception": "Believing steady motion always requires a larger forward push than backward drag.",
+        "dinnerQuestion": "On a cruising Bandra–Dadar local train between stations, what is the NET horizontal force on your carriage?",
+        "cambridgeUnit": "Unit 3 · Forces, Moments & Motion"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        3
+      ],
+      "relatedWidgetIds": [
+        "forces",
+        "ramp",
+        "energytrack"
       ]
     },
     {
-      "id": "atlas_ch01",
-      "title": "Atlas Ch01",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Steepen the Galileo ramp angle θ above 18° or set opposite train velocities to watch relative speed v_AB = v_A − v_B!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
+      "id": "waveslab",
+      "title": "Waves & Light PhET-Style Investigation Bench",
+      "chapter": 9,
+      "is3D": true,
+      "challengePrompt": "Investigate superposition, Doppler compression, standing-wave harmonics, and wave diffraction in 3D.",
+      "cutaway": "Phasor summation and wavefront rings link single-cycle timing to full wave interference.",
+      "idealised": "Linear wave superposition ignores boundary dissipation at tank walls.",
       "watchSteps": [
         {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
+          "title": "1. Wavefront Geometry",
+          "caption": "Track path-length differences Δr across two coherent sources."
         },
         {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
+          "title": "2. Phasor Sum",
+          "caption": "Add component amplitudes end-to-end to predict bright and dark fringes."
         }
+      ],
+      "presets": [
+        {
+          "id": "waveslab_p0",
+          "name": "Two-Source Phasors",
+          "prompt": "Compare path difference and resulting intensity.",
+          "stateJSON": "{}"
+        }
+      ],
+      "mentorTips": {
+        "openPlay": "Check whether a bright nodal crest destroys energy elsewhere or redistributes it.",
+        "misconception": "Thinking light plus light turning dark violates energy conservation.",
+        "dinnerQuestion": "Where does missing light energy go when dark interference stripes form on a diffraction screen?",
+        "cambridgeUnit": "Unit 6 · Waves & Superposition"
+      },
+      "capabilities": [
+        "3D"
+      ],
+      "cambridgeUnits": [
+        6
+      ],
+      "relatedWidgetIds": [
+        "interference",
+        "ripple",
+        "harmonics"
       ]
     },
     {
-      "id": "atlas_ch02",
-      "title": "Atlas Ch02",
-      "chapter": 1,
+      "id": "investigations",
+      "title": "Controlled Physics Investigations Bench",
+      "chapter": 4,
       "is3D": false,
-      "challengePrompt": "Flatten the Galileo recovery slope θ₂ toward 0° or push the block past its static friction peak (F_push > 25 N)!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
+      "challengePrompt": "Design fair tests by changing one independent variable, controlling all others, and checking anomalous repeats.",
+      "cutaway": "Structured prediction–measurement–analysis cards isolate systematic vs random uncertainty.",
+      "idealised": "Controlled lab datasets model clean repeat trials before real-world lab work.",
       "watchSteps": [
         {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
+          "title": "1. Choose Variable",
+          "caption": "Identify independent, dependent, and held control variables."
         },
         {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
+          "title": "2. Spot Anomalies",
+          "caption": "Discard or repeat clear outlier readings before computing means."
         }
-      ]
-    },
-    {
-      "id": "atlas_ch03",
-      "title": "Atlas Ch03",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Increase Applied pull force F above 36 N and inspect how tension drops 3 : 2 : 1 along the three-car chain!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
+      ],
+      "presets": [
         {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
+          "id": "investigations_p0",
+          "name": "Fair Test Protocol",
+          "prompt": "Inspect variable controls across repeat trials.",
+          "stateJSON": "{}"
         }
-      ]
-    },
-    {
-      "id": "atlas_ch04",
-      "title": "Atlas Ch04",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Increase Horizontal flick speed v_x to 7.0 m/s and verify that both coins still land at the exact same millisecond!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch05",
-      "title": "Atlas Ch05",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Set Orbit distance to 60 R_E to verify Newton’s 1.36 mm Moon fall, or raise eccentricity e above 0.70!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch06",
-      "title": "Atlas Ch06",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Raise Bottle water column H to 0.60 m to boost the bottom jet, or lower external P_atm to watch the barometer drop!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch07",
-      "title": "Atlas Ch07",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Double Clay impact speed v from 2.0 to 4.0 m/s to see crater depth quadruple (4×), or raise Household load P to 3,000 W!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch08",
-      "title": "Atlas Ch08",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Sweep Added heat per kg into the 100 °C plateau (850–3,000 kJ/kg) to see temperature lock flat during boiling!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch09",
-      "title": "Atlas Ch09",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Tune Barton driver frequency f_drive to 1.5 Hz or 2.0 Hz to trigger a sharp resonance peak on the matching pendulum!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch10",
-      "title": "Atlas Ch10",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Narrow Pinhole diameter d to 0.5 mm for a sharp inverted image, or set Earth orbital angle to 180° for Rømer’s 16.6-min lag!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch11",
-      "title": "Atlas Ch11",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Rotate Polaroid axis φ to 90° (vertical) to block 100% of Brewster pond glare, or inspect Raman’s Stokes shift!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch12",
-      "title": "Atlas Ch12",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Raise Applied circuit voltage V above 3.5 V to compare I–V curves, or verify how a 2 Ω Earth wire trips the 15 A fuse!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch13",
-      "title": "Atlas Ch13",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Raise External field B_ext above 0.75 T to align iron domains, or crank DC motor current I to 5.0 A!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch14",
-      "title": "Atlas Ch14",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Set Full Moon angle from Line of Nodes to 0° for a lunar eclipse, then move to 45° to see why most Full Moons miss Earth’s shadow!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
-      ]
-    },
-    {
-      "id": "atlas_ch15",
-      "title": "Atlas Ch15",
-      "chapter": 1,
-      "is3D": false,
-      "challengePrompt": "Lower Incident wavelength λ below 400 nm (UV) to eject photoelectrons, or raise White dwarf mass M toward 1.40 M_☉!",
-      "cutaway": "Switch to Cut-away to inspect the internal forces, rays, or field vectors.",
-      "idealised": "Idealised physical model with controlled parameters.",
-      "watchSteps": [
-        {
-          "title": "1. Wide view",
-          "caption": "Observe the complete physical apparatus."
-        },
-        {
-          "title": "2. Close-up",
-          "caption": "Zoom into the active interaction region."
-        },
-        {
-          "title": "3. Cut-away",
-          "caption": "Reveal internal vectors, particles, or rays."
-        }
+      ],
+      "mentorTips": {
+        "openPlay": "Let Kym name two variables that MUST stay fixed before running a single trial.",
+        "misconception": "Averaging an obvious misread outlier instead of flagging and repeating it.",
+        "dinnerQuestion": "Why does calling 'one more battery' a fair electrical variable fail unless you read an ammeter?",
+        "cambridgeUnit": "Unit 3, 6 & 9 · Scientific Enquiry"
+      },
+      "capabilities": [],
+      "cambridgeUnits": [
+        3,
+        6,
+        9
+      ],
+      "relatedWidgetIds": [
+        "forces",
+        "refraction",
+        "circuit"
       ]
     }
   ],

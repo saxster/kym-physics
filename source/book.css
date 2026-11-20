@@ -55,6 +55,26 @@
   --green: #7cbf9c; --mark: #8a7424; --mark-soft: rgba(176, 148, 52, .45); --plate: #1b2522; --grid: #23302b;
   color-scheme: dark;
 }
+:root[data-sim-cb="1"] {
+  --proton: #b34500;
+  --electron: #005f99;
+  --green: #007a5a;
+  --neutron: #7a3e9d;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="sepia"])[data-sim-cb="1"] {
+    --proton: #f28e4b;
+    --electron: #6ec4f0;
+    --green: #69cfa6;
+    --neutron: #c79de6;
+  }
+}
+:root[data-theme="dark"][data-sim-cb="1"] {
+  --proton: #f28e4b;
+  --electron: #6ec4f0;
+  --green: #69cfa6;
+  --neutron: #c79de6;
+}
 
 /* ------------------------------------------------------------------ base */
 * { box-sizing: border-box; }

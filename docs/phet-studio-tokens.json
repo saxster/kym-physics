@@ -1,0 +1,90 @@
+{
+  "collection": "KymPhysics Sim Studio Palettes",
+  "modes": {
+    "kym-light": {
+      "page": "#f4f2ea",
+      "sheet": "#fbfaf5",
+      "ink": "#1a2824",
+      "text": "#35443f",
+      "muted": "#53635d",
+      "faint": "#d2d7d2",
+      "red": "#b83b28",
+      "redInk": "#9e2e1d",
+      "blue": "#275e8c",
+      "blueInk": "#1d4b73",
+      "green": "#226b48",
+      "greenInk": "#1a573a",
+      "ochre": "#8a5a10",
+      "ochreInk": "#744908"
+    },
+    "kym-sepia": {
+      "page": "#efe4cf",
+      "sheet": "#f8f0e0",
+      "ink": "#2f251b",
+      "text": "#47392b",
+      "muted": "#5e4e3e",
+      "faint": "#d6c8b2",
+      "red": "#a33d24",
+      "redInk": "#91321b",
+      "blue": "#2b5e7a",
+      "blueInk": "#204c66",
+      "green": "#2d5f42",
+      "greenInk": "#235237",
+      "ochre": "#7d4f12",
+      "ochreInk": "#6b420c"
+    },
+    "kym-dark": {
+      "page": "#121917",
+      "sheet": "#18211e",
+      "ink": "#ebe7da",
+      "text": "#d3cfc2",
+      "muted": "#9aa5a1",
+      "faint": "#2d3834",
+      "red": "#e38b72",
+      "redInk": "#eb9c86",
+      "blue": "#74b4d4",
+      "blueInk": "#88c2df",
+      "green": "#73bd96",
+      "greenInk": "#87caa6",
+      "ochre": "#d4a35f",
+      "ochreInk": "#dfb476"
+    },
+    "kym-colorblind": {
+      "page": "#f3efe2",
+      "sheet": "#faf7ef",
+      "ink": "#1c2226",
+      "text": "#353c42",
+      "muted": "#545d63",
+      "faint": "#d2d4d6",
+      "red": "#b34500",
+      "redInk": "#9a3b00",
+      "blue": "#005f99",
+      "blueInk": "#004d7d",
+      "green": "#007a5a",
+      "greenInk": "#006348",
+      "ochre": "#7a3e9d",
+      "ochreInk": "#683287"
+    },
+    "kym-colorblind-dark": {
+      "page": "#121917",
+      "sheet": "#18211e",
+      "ink": "#ebe7da",
+      "text": "#d3cfc2",
+      "muted": "#9aa5a1",
+      "faint": "#2d3834",
+      "red": "#f28e4b",
+      "redInk": "#f6a56f",
+      "blue": "#6ec4f0",
+      "blueInk": "#89d0f4",
+      "green": "#69cfa6",
+      "greenInk": "#85dab8",
+      "ochre": "#dfb476",
+      "ochreInk": "#e8c48f"
+    }
+  },
+  "typography": {
+    "serif": "Literata",
+    "sans": "Lexend",
+    "mono": "JetBrains Mono"
+  }
+}

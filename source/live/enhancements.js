@@ -5,8 +5,10 @@
 // 4. "What the model simplifies" 1-sentence honesty footnote (idealised)
 
 const G = 9.8;
-const A = (prompt, check, yourNumbers, cutaway, c1, a1, c2, a2, c3, c4, a4, idealised) => ({
+const A = (prompt, check, yourNumbers, cutaway, c1, a1, c2, a2, c3, c4, a4, idealised, presets, mentorTips) => ({
   challenge: { prompt, check },
+  ...(presets ? { presets } : {}),
+  ...(mentorTips ? { mentorTips } : {}),
   yourNumbers,
   cutaway,
   watch: [
@@ -22,8 +24,18 @@ const A = (prompt, check, yourNumbers, cutaway, c1, a1, c2, a2, c3, c4, a4, idea
 export const ENHANCEMENTS = {
   videotrack: {
     challenge: {
-      prompt: 'Choose "Mark every 0.1 s" and set the tile scale to 10 cm; compare the equal-time gaps.',
+      prompt: 'Calibrate the wall tiles to a real wall scale and mark the tossed ball frame-by-frame—how do equal-time height gaps reveal whether speed is changing?',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Tile scale', 10) - 10) < 0.5,
+    },
+    presets: [
+      { name: '10 cm Wall Tiles', prompt: 'Standard bathroom/school tile scale.', state: { tabs: [0], sliders: { 'Tile scale': 10 } } },
+      { name: '0.10 s Strobe Marks', prompt: 'Inspect shrinking upward gaps between ticks.', state: { tabs: [1], sliders: { 'Tile scale': 10 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym whether the ball slows down smoothly or loses speed in sudden jumps.',
+      misconception: 'Thinking equal distances in video frames mean constant acceleration instead of constant speed.',
+      dinnerQuestion: 'If you photograph a falling coin under a blinking lamp at Chowpatty, why do successive shadows pull farther apart?',
+      cambridgeUnit: 'Unit 1 · Motion & Video Kinematics',
     },
     yourNumbers: (s) => `Tile = ${s.num('Tile scale',10)} cm | Demo marks: Δt = 0.100 s. For a clip, choose 0.100 s, 0.050 s, or Δt = 1/fps using the clip’s selected fps. Calibrate before using centimetres.`,
     cutaway: 'A clip supplies image samples and timestamps. Exposure duration and actual frame timing depend on the camera; selected fps must match the clip. The demo uses fixed 0.100 s marks.',
@@ -39,8 +51,18 @@ export const ENHANCEMENTS = {
 
   graphwalk: {
     challenge: {
-      prompt: 'Switch to "Walk it yourself" and walk to the 6.5 m mark in the corridor.',
+      prompt: 'Walk forward, pause, and turn back toward the far wall of the corridor—how does the position–time slope distinguish moving from standing still?',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Corridor position', 0) - 6.5) <= 0.25,
+    },
+    presets: [
+      { name: 'Replay Reference Walk', prompt: 'Inspect slope changes in Fig 1.2.', state: { tabs: [0], sliders: { 'Corridor position': 0 } } },
+      { name: 'Mid-Corridor Pause', prompt: 'Stand near 4.0 m and watch time run flat.', state: { tabs: [1], sliders: { 'Corridor position': 4.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Cover the corridor graphic and guess Kym’s motion purely from the graph slope first.',
+      misconception: 'Reading a position–time graph as if it showed the hill shape or speed-vs-time directly.',
+      dinnerQuestion: 'On the Marine Drive promenade, what does a flat horizontal stretch on your distance–time graph mean?',
+      cambridgeUnit: 'Unit 1 · Position–Time Graphs',
     },
     yourNumbers: (s) => {
       const x = s.num('Corridor position', 0);
@@ -63,6 +85,15 @@ export const ENHANCEMENTS = {
       prompt: 'Replay the simulated accelerometer trace: identify held (~9.8 m/s²), freely falling (~0), and caught (a short peak).',
       check: (s) => s.interacted || s.watched,
     },
+    presets: [
+      { name: 'Simulated Drop Trace', prompt: 'Compare supported weight vs weightless free fall.', state: { tabs: [] } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym why the reading drops to ZERO while falling instead of jumping up.',
+      misconception: 'Thinking a free-fall accelerometer measures velocity downward rather than contact support force.',
+      dinnerQuestion: 'Why does an astronaut inside the International Space Station float if Earth’s gravity up there is still ~90% as strong as in Mumbai?',
+      cambridgeUnit: 'Unit 1 · Free Fall & Weightlessness',
+    },
     yourNumbers: () => 'Accelerometer signal: supported ≈ 9.8 m/s²; freely falling ≈ 0. This is a simulated sensor trace, not a velocity graph.',
     cutaway: 'Inside the phone MEMS accelerometer: a microscopic silicon proof-mass on springs relaxes to zero deflection during free fall.',
     watch: [
@@ -77,8 +108,18 @@ export const ENHANCEMENTS = {
 
   airfall: {
     challenge: {
-      prompt: 'Remove all the air (set Air to 0) and drop the feather and coin together so they land at the exact same instant.',
+      prompt: 'Make the feather and coin hit the bottom at the exact same instant—discover which condition makes mass stop mattering.',
       check: (s) => s.num('Air', 1) <= 0.02,
+    },
+    presets: [
+      { name: 'Room Air', prompt: 'Compare heavy coin vs light feather in 100% air.', state: { sliders: { Air: 1 } } },
+      { name: 'Vacuum Tube', prompt: 'Pump out all air so only gravity acts.', state: { sliders: { Air: 0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Let her drop the feather and coin in full air, then slowly pump air out step by step.',
+      misconception: 'Believing heavier objects inherently fall faster because gravity pulls harder (forgetting larger mass also resists acceleration).',
+      dinnerQuestion: 'On the Moon, if you dropped a hammer and a tissue side by side, which lands first and why?',
+      cambridgeUnit: 'Unit 3 · Forces & Gravity',
     },
     yourNumbers: (s) => `F_net = mg − ½ρC_DAv² | air density = ${Math.round(s.num('Air',1)*100)}% of the reference. At release v = 0, so drag = 0 and both initial accelerations are g = 9.8 m/s².`,
     cutaway: 'Inside the tube: at full air, ~2.5 × 10²⁵ N₂ and O₂ molecules per m³ collide with the feather’s barbs; pumping them out leaves only gravity.',
@@ -94,8 +135,18 @@ export const ENHANCEMENTS = {
 
   projectile: {
     challenge: {
-      prompt: 'Keep Launch angle at 0° (horizontal) and find the launch speed that lands the flicked coin about 1.17 m away (v₀ = 3.0 m/s).',
+      prompt: 'Fire horizontally (0°) and discover what launch speed lands the flicked coin at about 1.17 m away.',
       check: (s) => Math.abs(s.num('Launch angle', 0)) < 1 && Math.abs(s.num('Sideways', 2.0) - 3.0) < 0.1,
+    },
+    presets: [
+      { name: 'Drop vs Flick', prompt: 'Zero angle compare: horizontal flick vs vertical drop.', state: { sliders: { 'Launch angle': 0, Sideways: 2.0 } } },
+      { name: '45° Range', prompt: 'Launch upward at 45° to compare flight time.', state: { sliders: { 'Launch angle': 45, Sideways: 3.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask her to watch only the vertical heights of the two coins, ignoring sideways motion.',
+      misconception: 'Thinking a fast sideways throw stays in the air longer before hitting the floor.',
+      dinnerQuestion: 'Why does a bullet fired horizontally from shoulder height hit flat ground at the exact same moment as one dropped from your hand?',
+      cambridgeUnit: 'Unit 3 · Independent Components',
     },
     yourNumbers: (s) => {
       const v0 = s.num('Sideways', 2.0);
@@ -121,8 +172,18 @@ export const ENHANCEMENTS = {
 
   ramp: {
     challenge: {
-      prompt: 'With Friction at 0 (none), make the second ramp shallow (10°) so the sliding puck travels about 2.9 times as far along the slope as on the 30° first ramp to regain 1.0 m height.',
+      prompt: 'Set friction to zero and make the second ramp gentle (10°)—compare how far along the slope the puck slides to regain its 1.0 m starting height.',
       check: (s) => s.num('Friction', 0) <= 0.01 && Math.abs(s.num('Second ramp angle', 20) - 10) <= 1,
+    },
+    presets: [
+      { name: 'Symmetric 30°', prompt: 'Frictionless equal-angle recovery.', state: { sliders: { Friction: 0, 'Second ramp angle': 30 } } },
+      { name: 'Galileo Flat (0°)', prompt: 'Flatten the second ramp completely.', state: { sliders: { Friction: 0, 'Second ramp angle': 0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask how high the puck climbs on the far side before touching the friction slider.',
+      misconception: 'Assuming an object needs an ongoing push just to keep sliding on a level frictionless floor.',
+      dinnerQuestion: 'If you flattened Galileo’s second ramp all the way to horizontal with zero friction, when would the marble ever stop?',
+      cambridgeUnit: 'Unit 3 · Balanced Forces & Inertia',
     },
     yourNumbers: (s) => {
       const deg=s.num('Second ramp angle',30), mu=s.num('Friction',.1), a=deg*Math.PI/180;
@@ -143,13 +204,24 @@ export const ENHANCEMENTS = {
 
   forces: {
     challenge: {
-      prompt: 'Switch to "Rough floor (100 N)" and set the two pulls so the net force to the right is exactly 150 N.',
+      prompt: 'On the rough floor (100 N friction), balance or unbalance the two rope pulls until the net force to the right is exactly 150 N.',
       check: (s) => {
         if (s.tab(0) !== 1) return false;
         const r = s.num('Pull to the right', 0);
         const l = s.num('Pull to the left', 0);
         return r - l === 250 && /Net force 150 N to the right/.test(s.readout()); // 250 N pull difference minus 100 N friction = 150 N net
       },
+    },
+    presets: [
+      { name: 'Tug-of-War Tie', prompt: 'Equal 250 N pulls from rest on smooth floor.', state: { tabs: [0], sliders: { 'Pull to the left': 250, 'Pull to the right': 250 }, custom: { v: 0, x: 0 } } },
+      { name: 'Cruising at Zero Net Force', prompt: 'Moving at 4.0 m/s with equal 200 N pulls—watch the water level!', state: { tabs: [0], sliders: { 'Pull to the left': 200, 'Pull to the right': 200 }, custom: { v: 4.0, x: 0, loadIdx: 0 } } },
+      { name: 'Mystery Box Weighing', prompt: 'Pull the unknown ? kg crate and compute m = F_net / a.', state: { tabs: [0], sliders: { 'Pull to the left': 0, 'Pull to the right': 240 }, custom: { v: 0, x: 0, loadIdx: 2, mysteryRevealed: false } } },
+    ],
+    mentorTips: {
+      openPlay: 'Let Kym get the cart moving, then set both pulls equal to 200 N—watch the water glass stay dead flat!',
+      misconception: 'Thinking zero net force means the cart must stop (confusing net force with velocity instead of acceleration).',
+      dinnerQuestion: 'On a smooth Mumbai local train cruising steadily between stations, does a glass of water tilt forward, backward, or stay flat?',
+      cambridgeUnit: 'Unit 3 · Forces, Friction & Acceleration',
     },
     yourNumbers: (s) => {
       const l=s.num('Pull to the left',200),r=s.num('Pull to the right',200);
@@ -168,8 +240,24 @@ export const ENHANCEMENTS = {
 
   momentum_carts: {
     challenge: {
-      prompt: 'Switch to "Stick (inelastic)" and set Cart 1 to 0.60 kg and Cart 2 to 0.30 kg so the joined carts move at about +1.17 m/s (initial velocities +2.00 and −0.50 m/s).',
-      check: (s) => s.tab(0) === 1 && Math.abs(s.num('Mass of cart 1', 0.5) - 0.60) < 0.02 && Math.abs(s.num('Mass of cart 2', 0.5) - 0.30) < 0.02,
+      prompt: 'Choose a sticky inelastic collision and pick unequal cart masses so the joined pair finishes rolling faster than +1.1 m/s.',
+      check: (s) => {
+        if (s.tab(0) !== 1) return false;
+        const m1 = s.num('Mass of cart 1', 0.5);
+        const m2 = s.num('Mass of cart 2', 0.5);
+        const vJoined = (m1 * 2.0 + m2 * -0.5) / (m1 + m2);
+        return Math.abs(m1 - m2) >= 0.05 && vJoined > 1.1;
+      },
+    },
+    presets: [
+      { name: 'Equal Elastic Swap', prompt: 'Equal 0.50 kg carts bounce cleanly.', state: { tabs: [0], sliders: { 'Mass of cart 1': 0.5, 'Mass of cart 2': 0.5 } } },
+      { name: 'Heavy Meets Light (Stick)', prompt: 'Watch a massive cart capture a light cart.', state: { tabs: [1], sliders: { 'Mass of cart 1': 0.8, 'Mass of cart 2': 0.2 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Try equal masses first, then make Cart 1 much heavier than Cart 2 in both Bounce and Stick modes.',
+      misconception: 'Assuming kinetic energy must stay conserved in sticky collisions just because total momentum does.',
+      dinnerQuestion: 'When two railway coaches couple and stick together, what disappears (KE) and what refuses to vanish (momentum)?',
+      cambridgeUnit: 'Unit 3 · Momentum & Collisions',
     },
     yourNumbers: (s) => {
       const m1=s.num('Mass of cart 1',.35),m2=s.num('Mass of cart 2',.5),u1=2,u2=-.5;
@@ -191,8 +279,18 @@ export const ENHANCEMENTS = {
 
   whirl: {
     challenge: {
-      prompt: 'Set Speed to 3.5 m/s and switch to "From the ball’s seat" before releasing the string.',
+      prompt: 'Raise the whirling speed, then compare the floor view and the ball’s-seat frame right before and after releasing the string—which way does the released ball actually travel?',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Speed', 2.0) - 3.5) < 0.1,
+    },
+    presets: [
+      { name: 'Floor Reference Frame', prompt: 'Watch real inward tension perpendicular to tangent velocity.', state: { tabs: [0], sliders: { Speed: 2.0 } } },
+      { name: 'Rotating Seat View', prompt: 'See why a turning observer feels an apparent outward throw.', state: { tabs: [1], sliders: { Speed: 3.5 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Let Kym predict which straight direction the ball takes if snipped at top-dead-centre.',
+      misconception: 'Thinking a released object spirals outward due to "centrifugal force" instead of moving straight along the tangent.',
+      dinnerQuestion: 'On a rainy Dadar Flyover turn, do groceries slide "outward" or keep trying to go straight while the car curves underneath them?',
+      cambridgeUnit: 'Unit 4 · Circular Motion & Reference Frames',
     },
     yourNumbers: (s) => {
       if (/Released|No inward pull/.test(s.readout())) return 'After release: real string tension T = 0 N; inertial velocity remains constant.';
@@ -215,11 +313,21 @@ export const ENHANCEMENTS = {
 
   cannon3d: {
     challenge: {
-      prompt: 'Find the circular orbital speed (7.9 km/s) and fire the cannonball so it orbits the Earth without crashing or escaping.',
+      prompt: 'Discover the horizontal launch speed that puts Newton’s cannonball into a steady circular orbit around Earth—neither crashing nor escaping.',
       check: (s) => {
         const v = s.num('Launch speed', 4.0);
         return v >= 7.8 && v <= 8.1;
       },
+    },
+    presets: [
+      { name: 'Sub-orbital Arc', prompt: 'Slow throw falls back to Earth at 4.0 km/s.', state: { sliders: { 'Launch speed': 4.0 } } },
+      { name: 'Elliptical Orbit', prompt: 'Launch at 9.5 km/s to stretch the orbit.', state: { sliders: { 'Launch speed': 9.5 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Fire once at low speed, once slightly faster, and ask why Earth’s curved surface changes the landing spot.',
+      misconception: 'Believing astronauts float in orbit because Earth’s gravity suddenly switches off above the atmosphere.',
+      dinnerQuestion: 'If gravity still pulls nearly 90% as strongly at ISS altitude as here in Mumbai, why doesn’t the space station crash into Earth?',
+      cambridgeUnit: 'Unit 3 · Gravity & Orbital Free Fall',
     },
     yourNumbers: (s) => {
       const v = s.num('Launch speed', 4.0);
@@ -241,12 +349,22 @@ export const ENHANCEMENTS = {
 
   tides: {
     challenge: {
-      prompt: 'Advance the lunar month to a neap tide (Day 7.4 or Day 22.1) when the Moon and Sun pull at right angles.',
+      prompt: 'Advance the lunar month until the Moon and Sun pull at right angles, creating the smallest tidal range (a neap tide).',
       check: (s) => {
         const hrs = s.num('Time in lunar month', 0);
         const day = hrs / 24;
         return Math.abs(day - 7.4) <= 0.8 || Math.abs(day - 22.1) <= 0.8;
       },
+    },
+    presets: [
+      { name: 'Spring Tide Alignment', prompt: 'New Moon alignment gives maximum combined bulge.', state: { sliders: { 'Time in lunar month': 0 } } },
+      { name: 'Full Month Cycle', prompt: 'Check the Moon 14.8 days into the cycle.', state: { sliders: { 'Time in lunar month': 355 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Notice there are TWO water bulges on opposite sides of Earth before advancing time.',
+      misconception: 'Thinking tides only happen on the side facing the Moon, ignoring the far-side differential bulge.',
+      dinnerQuestion: 'Why does Mumbai get high tide twice every ~25 hours instead of only once when the Moon passes overhead?',
+      cambridgeUnit: 'Unit 3 · Differential Gravity',
     },
     yourNumbers: (s) => {
       const hrs = s.num('Time in lunar month', 0);
@@ -269,8 +387,18 @@ export const ENHANCEMENTS = {
 
   pressuretank: {
     challenge: {
-      prompt: 'Switch the liquid to Mercury (index 2) and fill the tank to 0.8 m: its gauge pressure is about 107 kPa, slightly above standard atmospheric pressure (101.3 kPa).',
-      check: (s) => s.tab(0) === 2 && Math.abs(s.num('Depth of liquid', 1.0) - 0.8) <= 0.01,
+      prompt: 'Switch to the densest liquid in the tray and fill the tank until gauge pressure slightly exceeds standard atmospheric pressure (101.3 kPa).',
+      check: (s) => s.tab(0) === 2 && s.num('Depth of liquid', 1.0) >= 0.76 && s.num('Depth of liquid', 1.0) <= 0.90,
+    },
+    presets: [
+      { name: 'Deep Fresh Water', prompt: '2.0 m water column to test Δp = ρgh.', state: { tabs: [0], sliders: { 'Depth of liquid': 2.0 } } },
+      { name: 'Sea Water Column', prompt: 'Compare slightly denser salty sea water at 1.5 m.', state: { tabs: [1], sliders: { 'Depth of liquid': 1.5 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Compare water depth at 1.0 m vs 2.0 m first, then switch liquids.',
+      misconception: 'Thinking wider tanks create higher pressure at the bottom than narrow columns of the same depth.',
+      dinnerQuestion: 'Why did Torricelli only need a 76 cm column of mercury to balance 10 metres of water and the entire sky above Mumbai?',
+      cambridgeUnit: 'Unit 3 · Pressure in Liquids & Gases',
     },
     yourNumbers: (s) => {
       const h = s.num('Depth of liquid', 1.0);
@@ -292,12 +420,27 @@ export const ENHANCEMENTS = {
 
   buoyancy: {
     challenge: {
-      prompt: 'Set Block density to 7,800 kg/m³ (steel) in water, then click "Hollow it out" so the steel hull floats!',
+      prompt: 'Test solid steel (7,800 kg/m³) in water so it sinks, then discover how reshaping the exact same mass into a hollow hull makes it float.',
       check: (s) => s.num('Block density', 600) >= 7000 && /floats/i.test(s.readout()),
     },
+    presets: [
+      { name: 'Floating Wood (600)', prompt: 'Notice how submerged percentage matches density ratio.', state: { tabs: [0], sliders: { 'Block density': 600 } } },
+      { name: 'Sink Solid Iron', prompt: 'Drop solid steel into fresh water and inspect upthrust vs weight.', state: { tabs: [0], sliders: { 'Block density': 7800 } } },
+      { name: 'Mystery ? Block', prompt: 'Measure displaced waterline and submerged fraction to deduce ? density.', state: { tabs: [0], custom: { mysteryMode: true, mysteryRevealed: false, liqIdx: 0, hollow: false } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym to predict what fraction of a 600 kg/m³ wood block sits underwater before running it.',
+      misconception: 'Confusing material density with total mass when deciding why huge steel cargo ships float near Nhava Sheva.',
+      dinnerQuestion: 'A steel nail sinks instantly in a bucket, yet a 50,000-ton steel ship floats effortlessly—what changed?',
+      cambridgeUnit: 'Unit 3 · Density, Upthrust & Floating',
+    },
     yourNumbers: (s) => {
-      const density=s.num('Block density',920),fluid=[1000,1025,13600][s.tab(0)]||1000;
-      const hollow=/Hollowed out:/.test(s.readout()),effective=hollow?density/10:density,V=hollow?1:.1,mass=density*.1;
+      const fluid=[1000,1025,13600][s.tab(0)]||1000,rd=s.readout();
+      if (/Mystery\s*\?\s*block/i.test(rd)) {
+        return `Mystery ? block in liquid ρ = ${fluid} kg/m³: at calm floating equilibrium, ρ_block = ρ_fluid × (submerged fraction). Check the submerged % gauge!`;
+      }
+      const density=/\b650\s*kg\/m³/.test(rd)?650:s.num('Block density',920);
+      const hollow=/Hollowed out:/.test(rd),effective=hollow?density/10:density,V=hollow?1:.1,mass=density*.1;
       const equilibrium=Math.min(100,100*effective/fluid);
       return `Same mass = ${mass.toFixed(1)} kg; W = ${(mass*9.8).toFixed(1)} N. Body volume = ${V.toFixed(1)} m³; ρ_avg = ${effective.toFixed(0)} kg/m³. ${effective>fluid?'Sinks; floor support supplies W − buoyancy.':`Floating equilibrium ≈ ${equilibrium.toFixed(1)}% submerged.`}`;
     },
@@ -314,8 +457,18 @@ export const ENHANCEMENTS = {
 
   energystores: {
     challenge: {
-      prompt: 'Select "Bouncing tennis ball" and scrub Transfer progress to the bottom of the bounce (≈ 50%) where elastic store peaks.',
+      prompt: 'Inspect the bouncing tennis ball and pause right at maximum compression at the bottom of the bounce where the elastic store peaks.',
       check: (s) => s.tab(0) === 0 && s.num('Transfer progress', 0) >= 1.35 && s.num('Transfer progress', 0) <= 1.65,
+    },
+    presets: [
+      { name: 'Bounce Compression', prompt: 'Watch gravitational → kinetic → elastic store transfer.', state: { tabs: [0], sliders: { 'Transfer progress': 1.5 } } },
+      { name: 'Solar Hydrogen Fusion', prompt: 'Contrast huge cosmic energy scales against daily mechanical stores.', state: { tabs: [3], sliders: { 'Transfer progress': 2.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Track whether the SUM of all glowing jars ever drops when transferring between stores.',
+      misconception: 'Thinking energy "changes into work" as if work were a fifth jar rather than a pathway tube.',
+      dinnerQuestion: 'At Sivaji Park cricket net practice, what happens to the bat’s energy a millisecond after hitting a six—where does every last joule end up?',
+      cambridgeUnit: 'Unit 3 · Energy Stores & Pathways',
     },
     yourNumbers: (s) => {
       const p = Math.round((s.num('Transfer progress', 0) / 3) * 100);
@@ -334,15 +487,27 @@ export const ENHANCEMENTS = {
 
   energytrack: {
     challenge: {
-      prompt: 'With Friction at 0.10, find the lowest Release height that still lets the marble clear the 0.80 m bump (1.1 m).',
+      prompt: 'With friction set to 0.10, discover the lowest release height that still carries the marble cleanly over the 0.80 m bump.',
       check: (s) => Math.abs(s.num('Friction', 0) - 0.10) < 0.015 && Math.abs(s.num('Release height', 1.0) - 1.1) < 0.05,
+    },
+    presets: [
+      { name: 'Frictionless Conservation', prompt: 'Zero friction at 1.0 m: watch PE and KE trade cleanly.', state: { tabs: [0, 0], sliders: { Friction: 0, 'Release height': 1.0 }, custom: { hRef: 0, gIdx: 0 } } },
+      { name: 'Barely Clears the Bump', prompt: 'With μ = 0.10, test whether 1.0 m is enough or needs higher.', state: { tabs: [0, 2], sliders: { Friction: 0.10, 'Release height': 1.0 }, custom: { hRef: 0, gIdx: 0 } } },
+      { name: 'Moon Gravity Drop', prompt: 'Compare speeds and total joules on the Moon (g = 1.6 m/s²).', state: { tabs: [0, 0], sliders: { Friction: 0, 'Release height': 1.2 }, custom: { hRef: 0, gIdx: 1 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Drag the marble directly on the track and turn on "Pie on bead" before adjusting friction.',
+      misconception: 'Thinking a heavier steel marble rolls faster down the track than a lighter glass marble, or believing energy is "used up" by friction.',
+      dinnerQuestion: 'If a roller coaster starts at 30 m high without an engine, can any later hill ever be 32 m high? What happens when friction warms the rails?',
+      cambridgeUnit: 'Unit 3 · Conservation of Energy',
     },
     yourNumbers: (s) => {
       const h0 = s.num('Release height', 1.0);
       const mu = s.num('Friction', 0);
       const m = s.tab(0) === 1 ? 0.060 : 0.020;
-      const eTot = m * G * h0;
-      return `E_total = m g h₀ = ${m.toFixed(3)} × 9.8 × ${h0.toFixed(1)} = ${eTot.toFixed(3)} J  |  E_p + E_k + E_therm = ${eTot.toFixed(3)} J (μ = ${mu.toFixed(2)})`;
+      const g = [9.8, 1.6, 24.8][s.tab(2)] ?? 9.8;
+      const eTot = m * g * h0;
+      return `E_total = m g h₀ = ${m.toFixed(3)} × ${g.toFixed(1)} × ${h0.toFixed(2)} = ${eTot.toFixed(3)} J  |  E_p + E_k + E_therm = ${eTot.toFixed(3)} J (μ = ${mu.toFixed(2)})`;
     },
     cutaway: 'Inside the sliding bead and track: friction converts ordered motion into random lattice vibrations (thermal store) without changing the total joules.',
     watch: [
@@ -359,6 +524,16 @@ export const ENHANCEMENTS = {
     challenge: {
       prompt: 'Compare steel, wood, and aluminium with a 37 °C hand; every surface starts at the same 30 °C room temperature.',
       check: (s) => Math.abs(s.num('Hand temperature', 35) - 37) < 0.5 && s.tab(0) > 0,
+    },
+    presets: [
+      { name: 'Steel Spoon', prompt: 'Steady metallic heat drain from fingertips.', state: { tabs: [0], sliders: { 'Hand temperature': 37 } } },
+      { name: 'Teak Wood Bench', prompt: 'Surface heats rapidly and halts heat flow.', state: { tabs: [1], sliders: { 'Hand temperature': 37 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym whether metal spoons in the kitchen are actually colder than wooden ladles on a 30 °C Mumbai counter.',
+      misconception: 'Believing metals have an inherently lower temperature than insulators in the same room.',
+      dinnerQuestion: 'Why does brass railing on the Bandra–Worli promenade feel cooler at dawn than a painted wooden bench right beside it?',
+      cambridgeUnit: 'Unit 5 · Thermal Conduction & Rate',
     },
     yourNumbers: (s) => {
       const hand=s.num('Hand temperature',35),index=s.tab(0),k=[14,.12,220][index],name=['Steel','Wood','Aluminium'][index];
@@ -377,8 +552,18 @@ export const ENHANCEMENTS = {
 
   ripple: {
     challenge: {
-      prompt: 'Switch to "Two fingers" and set Rhythm to 2.0 Hz to create a crisp two-source interference pattern.',
+      prompt: 'Move from one dipping finger to two synchronised fingers dipping briskly—where do calm nodal corridors appear between oscillating crests?',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Rhythm', 0) - 2.0) <= 0.1,
+    },
+    presets: [
+      { name: 'Single Circular Ripples', prompt: 'Measure λ spacing from one steady source.', state: { tabs: [0], sliders: { Rhythm: 1.5 } } },
+      { name: 'Two-Finger Interference', prompt: 'Locate calm cancellation rays between two sources.', state: { tabs: [1], sliders: { Rhythm: 2.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Watch one bright float dot carefully—does it swim across the tank or bob up and down in place?',
+      misconception: 'Assuming water moves outward across the tank together with the expanding wave crests.',
+      dinnerQuestion: 'When two speedboats pass near Gateway of India, why do calm flat streaks cut diagonally across the choppy wake?',
+      cambridgeUnit: 'Unit 6 · Wave Superposition & Ripples',
     },
     yourNumbers: (s) => {
       const f = s.num('Rhythm', 0);
@@ -401,8 +586,18 @@ export const ENHANCEMENTS = {
 
   scope: {
     challenge: {
-      prompt: 'Switch to "Both" (waveform + frequency spectrum) to see time-domain oscillations and harmonic peaks side by side.',
+      prompt: 'View waveform and frequency spectrum together, then hum a steady vowel or pluck a note—how does changing pitch move the frequency peaks?',
       check: (s) => s.tab(0) === 1,
+    },
+    presets: [
+      { name: 'Waveform Trace', prompt: 'Inspect cycle period T in milliseconds.', state: { tabs: [0] } },
+      { name: 'Waveform + FFT Spectrum', prompt: 'Separate pure tone peaks from rich overtones.', state: { tabs: [1] } },
+    ],
+    mentorTips: {
+      openPlay: 'Hum softly then loudly at the same pitch—check what changes on the trace (height vs spacing).',
+      misconception: 'Confusing louder volume (amplitude) with higher pitch (frequency) on a scope trace.',
+      dinnerQuestion: 'Why does a tanpura string and a flute playing the exact same Sa (240 Hz) produce completely different shapes on an oscilloscope?',
+      cambridgeUnit: 'Unit 6 · Sound Waveforms & Spectra',
     },
     yourNumbers: (s) => {
       const mode = s.tab(0) === 1 ? 'Time waveform + FFT spectrum' : 'Time waveform y(t)';
@@ -421,8 +616,18 @@ export const ENHANCEMENTS = {
 
   harmonics: {
     challenge: {
-      prompt: 'Switch to "Tabla" and set Upper overtones to 60% to compare its near-harmonic frequency ladder with the plain drum.',
+      prompt: 'Enrich upper overtones and compare the plain circular drumhead with the loaded Tabla—why does the tabla’s note sing at a crisp musical pitch?',
       check: (s) => s.tab(0) === 2 && Math.abs(s.num('Upper overtones', 0.5) - 0.6) <= 0.12,
+    },
+    presets: [
+      { name: 'Plain Circular Drum', prompt: 'Listen to non-integer membrane modes (1 : 1.59 : 2.14).', state: { tabs: [1], sliders: { 'Upper overtones': 0.5 } } },
+      { name: 'Raman Tabla (Syahi)', prompt: 'Centre patch aligns modes into integer harmonics.', state: { tabs: [2], sliders: { 'Upper overtones': 0.6 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Compare the frequency ladder bars for Plain drum vs Tabla before turning up upper overtones.',
+      misconception: 'Thinking any stretched drum automatically produces neat integer multiples like a violin string.',
+      dinnerQuestion: 'Why does a tabla with its black central syahi spot sound pitched like a note, whereas a bass drum sounds like a thud?',
+      cambridgeUnit: 'Unit 6 · Sound, Pitch & Harmonics',
     },
     yourNumbers: (s) => {
       const inst = ['String (1 : 2 : 3 : 4)', 'Plain drum (1 : 1.59 : 2.14)', 'Tabla with syahi (1 : 2 : 3)'][s.tab(0)] || 'String';
@@ -442,8 +647,18 @@ export const ENHANCEMENTS = {
 
   doppler: {
     challenge: {
-      prompt: 'Set Train speed to 90 km/h (25 m/s) and Horn note to 400 Hz to hear and measure the ~60 Hz pitch drop as the train passes.',
+      prompt: 'Drive a fast express train past a station listener blowing a high brass horn—what changes between approach and recession, wave speed or wavefront spacing?',
       check: (s) => Math.abs(s.num('Train speed', 60) - 90) <= 5 && Math.abs(s.num('Horn note', 330) - 400) <= 10,
+    },
+    presets: [
+      { name: 'Stationary Horn', prompt: 'At 0 km/h wavefront circles stay symmetric.', state: { sliders: { 'Train speed': 0, 'Horn note': 330 } } },
+      { name: 'Mumbai Express 90 km/h', prompt: 'Observe bunched crests ahead and stretched crests behind.', state: { sliders: { 'Train speed': 90, 'Horn note': 400 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Watch the wavefront spacing ahead vs behind the engine as speed rises from 0.',
+      misconception: 'Thinking the air pushes sound faster ahead of a train (actually wave speed c stays constant; wavelength λ bunches up).',
+      dinnerQuestion: 'As a Western Line fast local races past Bandra platform blowing its horn, does the driver inside the cab hear the pitch drop too?',
+      cambridgeUnit: 'Unit 6 · Sound Waves & Frequency',
     },
     yourNumbers: (s) => {
       const vKmh = s.num('Train speed', 60);
@@ -467,8 +682,18 @@ export const ENHANCEMENTS = {
 
   mirror: {
     challenge: {
-      prompt: 'Switch to "Whole body" and move to 120 cm from the mirror to confirm that a half-height mirror still shows you head to toe!',
+      prompt: 'Examine full-body reflection as you step farther back from the mirror—does stepping back reveal more of your body, or does a half-height mirror always work?',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Distance from mirror', 70) - 120) <= 5,
+    },
+    presets: [
+      { name: 'Point Ray Diagram', prompt: 'See equal angles θ_i = θ_r from one object point.', state: { tabs: [0], sliders: { 'Distance from mirror': 70 } } },
+      { name: 'Whole Body Half-Mirror', prompt: 'Compare standing close vs 120 cm back.', state: { tabs: [1], sliders: { 'Distance from mirror': 120 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Guess first whether walking back from the wardrobe mirror shows more or the exact same fraction of your body.',
+      misconception: 'Believing stepping farther back from a flat wall mirror lets you see down to your shoes.',
+      dinnerQuestion: 'How tall must a corridor wall mirror at home be for a 1.6 m person to see both hair and slippers at once?',
+      cambridgeUnit: 'Unit 7 · Reflection & Plane Mirrors',
     },
     yourNumbers: (s) => {
       const d = s.num('Distance from mirror', 70);
@@ -487,8 +712,18 @@ export const ENHANCEMENTS = {
 
   refraction: {
     challenge: {
-      prompt: 'Switch to "Diamond (2.419)", flip direction to "material → air", and increase the angle above 25° to trigger Total Internal Reflection!',
+      prompt: 'Choose the highest-index material, send light from material into air, and discover the steep angle where 100% of light traps inside (Total Internal Reflection).',
       check: (s) => s.tab(0) === 2 && s.num('Arriving angle', 35) >= 25 && /total internal reflection/i.test(s.readout()),
+    },
+    presets: [
+      { name: 'Air into Water', prompt: 'Ray slows down and bends toward the normal.', state: { tabs: [0], sliders: { 'Arriving angle': 45 } } },
+      { name: 'Glass Critical Threshold', prompt: 'Compare glass-to-air around 40–45°.', state: { tabs: [1], sliders: { 'Arriving angle': 42 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Always ask whether the ray bends toward or away from the 90° normal first.',
+      misconception: 'Measuring angles from the flat surface instead of the normal line, or expecting TIR when entering from air into glass.',
+      dinnerQuestion: 'Why does a diamond sparkle intensely while a piece of plain glass of the same cut looks dull?',
+      cambridgeUnit: 'Unit 6 · Refraction & Critical Angle',
     },
     yourNumbers: (s) => {
       const th1 = s.num('Arriving angle', 35);
@@ -518,8 +753,18 @@ export const ENHANCEMENTS = {
 
   eye3d: {
     challenge: {
-      prompt: 'Select "Short-sighted", move Object distance to far (> 80), and switch on "Glasses on" to bring the focal point back onto the retina.',
+      prompt: 'Examine a short-sighted eye focused on a far object, then test how spectacles restore a crisp focus on the retina.',
       check: (s) => s.tab(0) === 1 && s.tab(1) === 1 && s.num('Object distance', 50) >= 80,
+    },
+    presets: [
+      { name: 'Short-Sighted Bare Eye', prompt: 'Distant focus lands cleanly in front of the retina.', state: { tabs: [1, 0], sliders: { 'Object distance': 90 } } },
+      { name: 'Concave Spectacles Fix', prompt: 'Diverging lens shifts focal spot onto the retina.', state: { tabs: [1, 1], sliders: { 'Object distance': 90 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Try "Cover half pupil" first—predict whether half the picture vanishes or just dims.',
+      misconception: 'Thinking covering half a lens blocks half the image instead of dimming the whole image uniformly.',
+      dinnerQuestion: 'Why does squinting slightly—or peeking through a tiny pinhole between fingers—sharpen a blurred bus route number across Dadar circle?',
+      cambridgeUnit: 'Unit 7 · Lenses & The Human Eye',
     },
     yourNumbers: (s) => {
       const v = s.num('Object distance', 50);
@@ -540,8 +785,18 @@ export const ENHANCEMENTS = {
 
   interference: {
     challenge: {
-      prompt: 'Switch to "Stripes on a screen", set Wavelength to 650 nm (red) and Source spacing to 0.25 mm to widen the bright fringes.',
-      check: (s) => s.tab(0) === 1 && Math.abs(s.num('Wavelength', 550) - 650) <= 20 && Math.abs(s.num('Source spacing', 0.4) - 0.25) <= 0.06,
+      prompt: 'Switch to "Stripes on a screen" and find what wavelength and slit spacing produce the widest bright interference fringes.',
+      check: (s) => s.tab(0) === 1 && s.num('Wavelength', 550) >= 620 && s.num('Source spacing', 0.4) <= 0.30,
+    },
+    presets: [
+      { name: 'Green Narrow Fringes', prompt: '550 nm green light across 0.40 mm slits.', state: { tabs: [1], sliders: { Wavelength: 550, 'Source spacing': 0.4 } } },
+      { name: 'Red Wide Fringes', prompt: 'Longer λ and tighter slit spacing stretch Δy.', state: { tabs: [1], sliders: { Wavelength: 660, 'Source spacing': 0.25 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Move ONLY Wavelength first, then ONLY Source spacing, watching Δy response.',
+      misconception: 'Assuming bringing the two slits closer together makes the interference bands narrower rather than wider.',
+      dinnerQuestion: 'Look closely through thin silk curtain folds at a distant Bandra streetlamp—why do coloured fringes spread perpendicular to the threads?',
+      cambridgeUnit: 'Unit 7 · Double-Slit Interference',
     },
     yourNumbers: (s) => {
       const d = s.num('Source spacing', 0.4); // mm
@@ -563,8 +818,18 @@ export const ENHANCEMENTS = {
 
   colourmix: {
     challenge: {
-      prompt: 'In "Light on a white wall", mix Red = 100%, Green = 100%, and Blue = 0% to make pure additive Yellow light!',
+      prompt: 'In "Light on a white wall", discover which combination of the three spotlight beams creates pure additive Yellow light.',
       check: (s) => s.tab(0) === 0 && s.num('Red', 100) >= 95 && s.num('Green', 100) >= 95 && s.num('Blue', 100) <= 5,
+    },
+    presets: [
+      { name: 'Full White Overlap', prompt: '100% Red + Green + Blue light makes white.', state: { tabs: [0], sliders: { Red: 100, Green: 100, Blue: 100 } } },
+      { name: 'CMY Paint Filters', prompt: 'Switch to subtractive pigment filters.', state: { tabs: [1], sliders: { Red: 100, Green: 100, Blue: 0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym to turn off just ONE spotlight from white light and predict the overlap colour.',
+      misconception: 'Assuming Red + Green light makes muddy brown because poster paints mix subtractively.',
+      dinnerQuestion: 'Under pure red LED street light with zero green or blue wavelengths, what colour does a bright green leaf look?',
+      cambridgeUnit: 'Unit 6 · Colour Addition & Filters',
     },
     yourNumbers: (s) => {
       const r = s.num('Red', 100), g = s.num('Green', 100), b = s.num('Blue', 100);
@@ -584,8 +849,18 @@ export const ENHANCEMENTS = {
 
   skycolour: {
     challenge: {
-      prompt: 'Lower Sun height to 2° (sunset) on Earth to see why the low Sun turns deep orange-red while the overhead sky stays blue.',
+      prompt: 'Lower the Sun close to the horizon on Earth and explain why the setting Sun turns orange-red while the overhead sky stays blue.',
       check: (s) => s.tab(0) === 0 && s.num('Sun height', 45) <= 4,
+    },
+    presets: [
+      { name: 'Midday Blue Zenith', prompt: 'Short blue wavelengths scatter down to your eye.', state: { tabs: [0], sliders: { 'Sun height': 60 } } },
+      { name: 'Chowpatty Sunset (2°)', prompt: 'Long air mass strips blue light out of the direct Sun.', state: { tabs: [0], sliders: { 'Sun height': 2 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Toggle "The Moon (no air)" at noon to see why air molecules create the blue vault.',
+      misconception: 'Thinking Earth’s oceans reflect blue upward into the sky or that air turns blue only when polluted.',
+      dinnerQuestion: 'At Worli Sea Face sunset, why is the western horizon glowing fiery amber while someone glancing straight overhead still sees slate-blue sky?',
+      cambridgeUnit: 'Unit 7 · Scattering & Atmospheric Light',
     },
     yourNumbers: (s) => {
       const el = s.num('Sun height', 45);
@@ -607,8 +882,19 @@ export const ENHANCEMENTS = {
 
   circuit: {
     challenge: {
-      prompt: 'Set Battery to 9.0 V and choose "3 LEDs": find the current and the voltage left for the 330 Ω resistor.',
+      prompt: 'Power 3 series LEDs from a 9.0 V battery and determine both the shared loop current and the voltage left across the 330 Ω resistor.',
       check: (s) => Math.abs(s.num('Battery', 9) - 9) < 0.2 && s.tab(0) === 2,
+    },
+    presets: [
+      { name: 'Below LED Threshold', prompt: '6.0 V across four 2 V LEDs cannot turn them on.', state: { tabs: [3, 0], sliders: { Battery: 6.0 } } },
+      { name: 'Energy-per-Coulomb Steps', prompt: 'Inspect potential height around a 9 V, 3-LED loop.', state: { tabs: [2, 1], sliders: { Battery: 9.0 } } },
+      { name: 'Rope Analogy', prompt: 'Compare electrical loop to a continuous pulled rope.', state: { tabs: [1, 2], sliders: { Battery: 9.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym to compare the current counters at A, B, and C before touching any numbers.',
+      misconception: 'Thinking current gets "used up" as it passes through the resistor and LEDs (so C would read less than A).',
+      dinnerQuestion: 'When you switch on a bedroom lamp in Mumbai, why does it light instantly even though electrons drift slower than a snail?',
+      cambridgeUnit: 'Unit 9 · Electric Current & Voltage',
     },
     yourNumbers: (s) => {
       const vBat = s.num('Battery', 9), nLeds = s.tab(0) + 1;
@@ -630,8 +916,19 @@ export const ENHANCEMENTS = {
 
   seriesparallel: {
     challenge: {
-      prompt: 'Switch to "Parallel", set LEDs to 3, and click "Unclip LED 1" to see why the other two lamps stay at full brightness!',
+      prompt: 'Wire 3 LEDs in parallel and unclip LED 1—discover why the remaining branches keep full brightness while total battery current drops.',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('LEDs', 2) - 3) < 0.2 && /^Parallel with LED 1 unclipped:/i.test(s.readout()),
+    },
+    presets: [
+      { name: 'Dim Series Chain', prompt: '3 LEDs sharing one 9 V loop.', state: { tabs: [0], sliders: { LEDs: 3 }, custom: { unclipped: false } } },
+      { name: '3 Parallel Branches', prompt: 'Each branch gets the full 9 V across the battery.', state: { tabs: [1], sliders: { LEDs: 3 }, custom: { unclipped: false } } },
+      { name: 'Schematic Diagram', prompt: 'Switch to Cambridge IEC circuit symbols.', state: { tabs: [1], sliders: { LEDs: 2 }, custom: { schematic: true, unclipped: false } } },
+    ],
+    mentorTips: {
+      openPlay: 'Tap LED 1 directly on the canvas in both Series and Parallel modes to see what breaks.',
+      misconception: 'Thinking a battery always outputs a fixed current regardless of how many parallel branches are connected.',
+      dinnerQuestion: 'Why do all rooms in our apartment stay bright when one ceiling fan or bulb is switched off—are they wired in series or parallel?',
+      cambridgeUnit: 'Unit 9 · Series & Parallel Circuits',
     },
     yourNumbers: (s) => {
       const n = s.num('LEDs', 2);
@@ -657,8 +954,18 @@ export const ENHANCEMENTS = {
 
   field3d: {
     challenge: {
-      prompt: 'Switch to "Coil and magnet", set Current to 2.5 A, and click "Reverse current" to flip the coil’s North and South poles.',
+      prompt: 'Test a strong 2.5 A current in the coil-and-magnet view, then reverse the current to see how the electromagnet poles flip.',
       check: (s) => s.tab(0) === 1 && s.num('Current', 1.5) >= 2.4,
+    },
+    presets: [
+      { name: 'Straight Wire Ørsted', prompt: 'Circular magnetic field lines around a straight current.', state: { tabs: [0], sliders: { Current: 2.0 } } },
+      { name: 'Strong Solenoid 2.5 A', prompt: 'Wound coil dipole interacting with bar magnet.', state: { tabs: [1], sliders: { Current: 2.5 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Orbit the 3D coil and watch the compass needle before flipping current direction.',
+      misconception: 'Thinking a copper wire needs iron inside it to create any magnetic field at all.',
+      dinnerQuestion: 'Why do junkyard crane electromagnets drop scrap steel the instant power turns off, instead of staying permanently magnetised?',
+      cambridgeUnit: 'Unit 9 · Electromagnets & Magnetic Fields',
     },
     yourNumbers: (s) => {
       const I = s.num('Current', 1.5);
@@ -681,6 +988,15 @@ export const ENHANCEMENTS = {
       prompt: 'Explore the 3-axis magnetic readout or click "Hold" to freeze a reading in microteslas (μT).',
       check: (s) => s.interacted || s.watched,
     },
+    presets: [
+      { name: 'Earth Field Baseline', prompt: 'Inspect geomagnetic B_x, B_y, B_z magnitude (~43 μT).', state: { tabs: [] } },
+    ],
+    mentorTips: {
+      openPlay: 'Rotate the phone/sensor smoothly and notice |B| stays near ~43 μT even while components swap signs.',
+      misconception: 'Confusing the vertical/horizontal axis projection with a change in Earth’s actual magnetic strength.',
+      dinnerQuestion: 'Why does a navigation compass work inside an open Mumbai ferry deck yet spin unpredictably near iron train girders?',
+      cambridgeUnit: 'Unit 8 · Magnetic Fields & Sensors',
+    },
     yourNumbers: () => {
       return `|B| = √(B_x² + B_y² + B_z²)  |  Earth’s field ≈ 25–65 μT (≈ 43 μT in Mumbai)`;
     },
@@ -697,8 +1013,18 @@ export const ENHANCEMENTS = {
 
   induction: {
     challenge: {
-      prompt: 'Set Turns to maximum (index 3) and click "Nudge in / out" (or drag the magnet fast) to generate a strong induced voltage spike!',
+      prompt: 'Maximise the coil turns and move the magnet rapidly through the coil to discover what produces the largest induced voltage spike.',
       check: (s) => s.num('Turns', 1) >= 2 && (s.interacted || s.watched),
+    },
+    presets: [
+      { name: 'Stationary Magnet', prompt: 'Strong magnet sitting still inside coil produces 0 V.', state: { sliders: { Turns: 2 } } },
+      { name: '200-Turn Dynamo Coil', prompt: 'Maximum coil turns ready for rapid flux change.', state: { sliders: { Turns: 3 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Park the magnet completely inside the coil first—ask why the voltmeter drops right back to zero!',
+      misconception: 'Thinking a strong magnet sitting inside a coil generates continuous steady electricity.',
+      dinnerQuestion: 'What actually turns inside a wind turbine or hydroelectric generator at Koyna to keep electricity flowing?',
+      cambridgeUnit: 'Unit 9 · Electromagnetic Induction',
     },
     yourNumbers: (s) => {
       const idx = s.num('Turns', 1);
@@ -718,8 +1044,18 @@ export const ENHANCEMENTS = {
 
   shadow: {
     challenge: {
-      prompt: 'Set Distance between sticks to 5,000 stadia (~800 km) and Shadow angle to 7.2° to reproduce Eratosthenes’ circumference of the Earth!',
+      prompt: 'Match Eratosthenes’ Syene–Alexandria solstice meridian separation and shallow shadow tilt to estimate Earth’s full circumference from parallel sunbeams!',
       check: (s) => Math.abs(s.num('Distance', 5000) - 5000) <= 250 && Math.abs(s.num('Shadow angle', 7.2) - 7.2) <= 0.3,
+    },
+    presets: [
+      { name: 'Eratosthenes 7.2° Setup', prompt: '1/50th of a circle × 5,000 stadia gives ~40,000 km.', state: { tabs: [1], sliders: { Distance: 5000, 'Shadow angle': 7.2 } } },
+      { name: 'Steep Shadow Check', prompt: 'Larger angle for the same road implies a tinier globe.', state: { tabs: [1], sliders: { Distance: 5000, 'Shadow angle': 18 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Notice BOTH parallel Sun beams must stay parallel for the shadow angle to match the central Earth angle.',
+      misconception: 'Thinking a stick shadow only changes length if Earth were tiny and the Sun sat right above Egypt.',
+      dinnerQuestion: 'If Eratosthenes had lived between Mumbai and Ahmedabad (~450 km north–south), about what noon shadow difference would solstice sticks cast?',
+      cambridgeUnit: 'Unit 1 · Measuring Planet Earth',
     },
     yourNumbers: (s) => {
       const d = s.num('Distance', 5000);
@@ -744,8 +1080,18 @@ export const ENHANCEMENTS = {
 
   seasons: {
     challenge: {
-      prompt: 'Set Date to the June solstice (around day 172) and compare Mumbai (19.08° N), the Equator, the Tropic of Cancer and Paris (48.85° N).',
+      prompt: 'Follow noon sunlight at the June solstice across Mumbai, the Equator, the Tropic of Cancer, and higher northern latitudes—what steers summer warmth, Sun altitude or distance?',
       check: (s) => Math.abs(s.num('Date', 172) - 172) <= 15 && s.tab(0) > 0,
+    },
+    presets: [
+      { name: 'Mumbai Solstice (19° N)', prompt: 'Compare June overhead beam vs Dec angle.', state: { tabs: [0], sliders: { Date: 172 } } },
+      { name: 'December Paris Tilt', prompt: 'Low winter Sun spreads photons wider.', state: { tabs: [3], sliders: { Date: 355 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask Kym whether Earth is actually closest to the Sun in June or January (surprise: January!).',
+      misconception: 'Believing summer happens because Earth orbits closer to the Sun in June.',
+      dinnerQuestion: 'In late May before Mumbai clouds arrive, why does the Sun pass almost straight overhead near Gateway of India around noon?',
+      cambridgeUnit: 'Unit 2 · Earth’s Axial Tilt & Seasons',
     },
     yourNumbers: (s) => {
       const torch = /^Tilted (\d+)/.exec(s.readout());
@@ -772,8 +1118,18 @@ export const ENHANCEMENTS = {
 
   phases: {
     challenge: {
-      prompt: 'Switch to "From Mumbai" and set Day of the month to Day 14.8 (Full Moon) to see the fully lit disc.',
+      prompt: 'Switch to "From Mumbai" and advance the lunar cycle until the Moon’s near face appears completely illuminated (Full Moon).',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Day of the month', 4) - 14.8) <= 1.2,
+    },
+    presets: [
+      { name: 'First Quarter Half-Moon', prompt: 'Orbit at 90° gives a half-lit disc.', state: { tabs: [0], sliders: { 'Day of the month': 7.4 } } },
+      { name: 'Mumbai Crescent View', prompt: 'See a waxing crescent from Earth’s surface.', state: { tabs: [1], sliders: { 'Day of the month': 4.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Notice from above space that 50% of the Moon is ALWAYS sunlit—even at New Moon!',
+      misconception: 'Believing crescent or half moons are caused by Earth’s shadow blocking the Sun (eclipses vs phases).',
+      dinnerQuestion: 'On a First Quarter afternoon when you spot a crisp half-moon in the Mumbai sky, where is the Sun relative to the Moon?',
+      cambridgeUnit: 'Unit 3 · Earth, Moon & Space Geometry',
     },
     yourNumbers: (s) => {
       const day = s.num('Day of the month', 4);
@@ -794,8 +1150,18 @@ export const ENHANCEMENTS = {
 
   parallax: {
     challenge: {
-      prompt: 'Switch to "Through the telescope" and sweep Month from January (0) to July (6) to measure the star’s 6-month baseline shift!',
+      prompt: 'Look through the telescope across a 6-month Earth baseline (January to July) to measure the star’s apparent annual wobble.',
       check: (s) => s.tab(0) === 1 && s.num('Month', 0) >= 5.0 && s.num('Month', 0) <= 7.0,
+    },
+    presets: [
+      { name: 'Nearby Star (1.6 pc)', prompt: 'Clear half-year shift p across Earth’s 2 AU orbit.', state: { tabs: [1], sliders: { 'Star distance': 10, Month: 6.0 } } },
+      { name: 'Distant Star (10 pc)', prompt: 'Smaller wobble means greater distance d = 1/p.', state: { tabs: [1], sliders: { 'Star distance': 50, Month: 6.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Hold a thumb at arm’s length and wink left–right eyes before dragging Month from Jan to Jul.',
+      misconception: 'Thinking parallax happens because the star physically moves back and forth every six months.',
+      dinnerQuestion: 'Why did ancient Greek astronomers fail to see nearby stars wobble, even though Earth actually orbits 300 million km side to side?',
+      cambridgeUnit: 'Unit 9 · Stellar Distances & Parallax',
     },
     yourNumbers: (s) => {
       const v = s.num('Star distance', 20);
@@ -816,8 +1182,18 @@ export const ENHANCEMENTS = {
 
   expansion: {
     challenge: {
-      prompt: 'Switch home galaxy to "Me: ant at 12 cm" and stretch the band to ×2.00 to verify that Hubble’s law looks identical from every galaxy!',
+      prompt: 'Move your observer perch to an outer galaxy and stretch space significantly—does Hubble’s linear expansion law still look centred around you?',
       check: (s) => s.tab(0) === 2 && Math.abs(s.num('Stretch factor', 1.0) - 2.0) <= 0.08,
+    },
+    presets: [
+      { name: 'Central Galaxy View', prompt: 'Twice as far recedes twice as fast from 7 cm.', state: { tabs: [1], sliders: { 'Stretch factor': 2.0 } } },
+      { name: 'Outer Ant Frame', prompt: 'Switch origin to 12 cm—identical Hubble slope.', state: { tabs: [2], sliders: { 'Stretch factor': 2.0 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Notice EVERY dot appears to flee the ant you pick, proving there is no centre of expansion.',
+      misconception: 'Imagining the Big Bang as an explosion flying from one spot inside empty space.',
+      dinnerQuestion: 'When raisin bread rises evenly in a Colaba bakery oven, which raisin sees its neighbours moving away slowest—central ones or every raisin equally?',
+      cambridgeUnit: 'Unit 9 · Expanding Universe & Redshift',
     },
     yourNumbers: (s) => {
       const scale = s.num('Stretch factor', 1.0);
@@ -837,8 +1213,8 @@ export const ENHANCEMENTS = {
 
   selftest: {
     challenge: {
-      prompt: 'Set Stiffness to 20 N/m to tune the test oscillator.',
-      check: (s) => Math.abs(s.num('Stiffness', 10) - 20) <= 1,
+      prompt: 'Raise spring stiffness above 18 N/m and observe how oscillation frequency responds to stronger restoring force.',
+      check: (s) => s.num('Stiffness', 10) >= 18,
     },
     yourNumbers: (s) => {
       const k = s.num('Stiffness', 10);
@@ -865,11 +1241,21 @@ export const ENHANCEMENTS = {
     'The 4× longer pendulum takes exactly twice as long per swing.', undefined,
     'Restoring force scales as 1/L, giving T ∝ √L.',
     'A 4× heavier mass on an identical spring also doubles the period (T = 2π√(m/k)).', undefined,
-    'Small-angle approximation sin θ ≈ θ and zero air resistance keep period independent of amplitude.'
+    'Small-angle approximation sin θ ≈ θ and zero air resistance keep period independent of amplitude.',
+    [
+      { name: 'Side-by-Side Pair', prompt: 'Count swings of the 4× length pendulum.', state: { tabs: [6, 0] } },
+      { name: 'X-Ray Internal View', prompt: 'Reveal spring coils inside the frame.', state: { tabs: [6, 1] } },
+    ],
+    {
+      openPlay: 'Count how many times the short pendulum returns while the 4× long one finishes one swing.',
+      misconception: 'Thinking doubling pendulum bob mass or doubling length doubles the period.',
+      dinnerQuestion: 'If you lengthen a monsoon swing rope at Hanging Gardens fourfold, how much slower does each back-and-forth beat become?',
+      cambridgeUnit: 'Unit 6 · Pendulum & Spring Period',
+    }
   ),
 
   atlas_ch00: A(
-    'Move Ship distance beyond 15 km or adjust Ruler viewing angle θ to 0° to eliminate parallax error!',
+    'Move the ship farther out past the coastal curve or align the ruler straight overhead to eliminate parallax shift!',
     (s) => s.num('Ship distance', 13) >= 15 || Math.abs(s.num('Ruler viewing angle', 18)) <= 2 || s.interacted,
     (s) => {
       const h = s.num('Observer eye height', 2.0), d = s.num('Ship distance', 13);
@@ -880,11 +1266,21 @@ export const ENHANCEMENTS = {
     'Raising eye height h pushes the horizon kilometres farther out.', (s) => s.setSlider('Observer eye height', 15),
     'Geometry decides what is hidden behind Earth’s curve or shifted by parallax.',
     'Looking straight down (θ = 0°) reduces parallax Δx = t tan θ to 0 mm.', (s) => s.setSlider('Ruler viewing angle', 0),
-    'Atmospheric refraction over warm seawater is omitted.'
+    'Atmospheric refraction over warm seawater is omitted.',
+    [
+      { name: 'Hull-Down Cargo Ship', prompt: 'Observe Earth curvature hiding the hull beyond the horizon.', state: { tabs: [0, 0], sliders: { 'Ship distance': 16 } } },
+      { name: 'Zero Parallax Look', prompt: 'Read the scale vertically perpendicular.', state: { tabs: [2, 0], sliders: { 'Ruler viewing angle': 0 } } },
+    ],
+    {
+      openPlay: 'Orbit to look flush across the ruler thickness and watch the parallax shift appear.',
+      misconception: 'Thinking binoculars bring an ocean-hidden ship hull back above the horizon.',
+      dinnerQuestion: 'From the Worli Sea Link parapet compared to the sandy shore, how many extra kilometres of Arabian Sea can you see?',
+      cambridgeUnit: 'Unit 1 · Measurement, Parallax & Scale',
+    }
   ),
 
   atlas_ch01: A(
-    'Steepen the Galileo ramp angle θ above 18° or set opposite train velocities to watch relative speed v_AB = v_A − v_B!',
+    'Steepen Galileo’s bronze-ball incline to accelerate fall, or compare two opposing trains in relative motion!',
     (s) => s.num('Galileo ramp angle', 12) >= 18 || s.interacted,
     (s) => {
       const th = s.num('Galileo ramp angle', 12);
@@ -895,11 +1291,21 @@ export const ENHANCEMENTS = {
     'On Galileo’s ramp, bells at 1, 4, 9, and 16 units ring on a steady beat.', (s) => s.setSlider('Galileo ramp angle', 16),
     'At the peak of a vertical toss, v = 0 while acceleration stays −9.8 m/s².',
     'Opposite trains add their speeds in v_AB = v_A − v_B.', (s) => s.setSlider('Train A ground velocity', 18),
-    'Rolling resistance and air drag on the bronze sphere are neglected.'
+    'Rolling resistance and air drag on the bronze sphere are neglected.',
+    [
+      { name: 'Galileo Steep Ramp', prompt: 'Trace 1 : 3 : 5 : 7 equal-time distances.', state: { tabs: [1, 0], sliders: { 'Galileo ramp angle': 18 } } },
+      { name: 'Opposing Local Trains', prompt: 'Compare velocity addition across frames.', state: { tabs: [3, 0], sliders: { 'Train A ground velocity': 18 } } },
+    ],
+    {
+      openPlay: 'Space the bells equally vs 1, 4, 9, 16 along the groove—which pattern sounds a steady beat?',
+      misconception: 'Believing acceleration becomes zero at the highest point of an upward toss.',
+      dinnerQuestion: 'On a Central Line fast train passing another train opposite at Bandra, why does it seem to blur by twice as fast?',
+      cambridgeUnit: 'Unit 1 · Relative Motion & Constant Acceleration',
+    }
   ),
 
   atlas_ch02: A(
-    'Flatten the Galileo recovery slope θ₂ toward 0° or push the block past its static friction peak (F_push > 25 N)!',
+    'Flatten Galileo’s second recovery ramp toward horizontal, or push the block hard enough to break static friction!',
     (s) => s.num('Galileo recovery slope', 14) <= 2 || s.num('Horizontal push', 22) >= 26 || s.interacted,
     (s) => {
       const F = s.num('Horizontal push', 22), m = s.num('Block mass', 5.0), fs = 0.5 * m * 9.8, fk = 0.35 * m * 9.8;
@@ -910,11 +1316,21 @@ export const ENHANCEMENTS = {
     'Flattening the second slope toward 0° sends run distance L = h / sin θ₂ to infinity!', (s) => s.setSlider('Galileo recovery slope', 0),
     'Inside microscopic surface asperities under normal load N.',
     'Pushing above μ_s N breaks static welds onto the lower kinetic plateau μ_k N.', (s) => s.setSlider('Horizontal push', 32),
-    'Amontons–Coulomb friction treats μ_s and μ_k as constant across sliding speeds.'
+    'Amontons–Coulomb friction treats μ_s and μ_k as constant across sliding speeds.',
+    [
+      { name: 'Galileo Flat Limit', prompt: 'Flatten second ramp toward perpetual motion.', state: { tabs: [0, 0], sliders: { 'Galileo recovery slope': 0 } } },
+      { name: 'Break Static Welds', prompt: 'Exceed μ_s N threshold to trigger sliding.', state: { tabs: [2, 0], sliders: { 'Horizontal push': 32 } } },
+    ],
+    {
+      openPlay: 'Switch to Section cutaway on the friction block to inspect the microscopic contact peaks.',
+      misconception: 'Assuming an object moving forward must always have a net forward force pushing it.',
+      dinnerQuestion: 'Why does pushing a heavy fridge across kitchen tiles take a hard initial shove yet slightly less force once moving?',
+      cambridgeUnit: 'Unit 2 · Inertia & Friction Peaks',
+    }
   ),
 
   atlas_ch03: A(
-    'Increase Applied pull force F above 36 N and inspect how tension drops 3 : 2 : 1 along the three-car chain!',
+    'Increase the forward pull on the three-car train and discover how tension steps down from coupling to coupling!',
     (s) => s.num('Applied pull force', 24) >= 36 || s.interacted,
     (s) => {
       const F = s.num('Applied pull force', 24), m = s.num('Test cart mass', 3.0);
@@ -925,11 +1341,21 @@ export const ENHANCEMENTS = {
     'Along a 3-car train, tension drops 3ma → 2ma → 1ma from front to rear.', (s) => s.setSlider('Applied pull force', 36),
     'Inside two hooked spring scales, F_AB = −F_BA holds at every instant.',
     'Faster rocket exhaust speed v_ex linearly boosts thrust F = v_ex dm/dt.', (s) => s.setSlider('Rocket exhaust speed', 3400),
-    'Coupling hooks and spring scale casings are treated as massless.'
+    'Coupling hooks and spring scale casings are treated as massless.',
+    [
+      { name: 'Three-Car Tension Ladder', prompt: 'Compare 3 : 2 : 1 tension ratio along couplings.', state: { tabs: [1, 0], sliders: { 'Applied pull force': 36 } } },
+      { name: 'Vacuum Rocket Exhaust', prompt: 'Inspect recoil thrust without pushing air.', state: { tabs: [3, 0], sliders: { 'Rocket exhaust speed': 3400 } } },
+    ],
+    {
+      openPlay: 'Ask Kym whether the front coupling or rear coupling snaps first when pulling three identical bogies.',
+      misconception: 'Thinking action and reaction cancel each other out because they are equal and opposite.',
+      dinnerQuestion: 'How can an ISRO rocket steer and speed up in empty space if there is no air behind the nozzle to push against?',
+      cambridgeUnit: 'Unit 2 · Newton’s Second & Third Laws',
+    }
   ),
 
   atlas_ch04: A(
-    'Increase Horizontal flick speed v_x to 7.0 m/s and verify that both coins still land at the exact same millisecond!',
+    'Flick the twin coin faster horizontally—does extra sideways speed delay how soon both coins strike the table?',
     (s) => s.num('Horizontal flick speed', 4.5) >= 6.5 || s.interacted,
     (s) => {
       const h = s.num('Release table height', 1.25), vx = s.num('Horizontal flick speed', 4.5), t = Math.sqrt((2 * h) / 9.8);
@@ -940,11 +1366,21 @@ export const ENHANCEMENTS = {
     'Horizontal strobe bars prove both coins share the exact same height y(t) at every instant.', (s) => s.setSlider('Horizontal flick speed', 7.5),
     'Why velocity change Δv in uniform circular motion points radially inward.',
     'Doubling orbital speed v quadruples inward centripetal acceleration a_c = v²/r.', (s) => s.setSlider('Orbital tangent speed', 8.0),
-    'Air resistance is omitted so horizontal and vertical motions are strictly independent.'
+    'Air resistance is omitted so horizontal and vertical motions are strictly independent.',
+    [
+      { name: 'High-Speed Twin Coins', prompt: 'Check simultaneous table impact despite fast v_x.', state: { tabs: [0, 0], sliders: { 'Horizontal flick speed': 7.5 } } },
+      { name: 'Vector Δv Turning', prompt: 'See inward acceleration at constant orbital speed.', state: { tabs: [2, 0], sliders: { 'Orbital tangent speed': 8.0 } } },
+    ],
+    {
+      openPlay: 'Line the 3D camera edge-on to check the horizontal strobe planes through both coins.',
+      misconception: 'Thinking a fast horizontal projectile stays airborne longer because it fights gravity sideways.',
+      dinnerQuestion: 'Does a carrom striker flying horizontally off a table edge hit the Mumbai marble floor any later than one dropped beside it?',
+      cambridgeUnit: 'Unit 4 · 2D Projectiles & Circular Acceleration',
+    }
   ),
 
   atlas_ch05: A(
-    'Set Orbit distance to 60 R_E to verify Newton’s 1.36 mm Moon fall, or raise eccentricity e above 0.70!',
+    'Inspect gravity’s fall-off at lunar distance, then stretch a comet orbit’s eccentricity to compare perihelion and aphelion speeds!',
     (s) => s.num('Orbital eccentricity', 0.55) >= 0.7 || s.interacted,
     (s) => {
       const r = s.num('Orbit distance', 60), e = s.num('Orbital eccentricity', 0.55);
@@ -955,11 +1391,21 @@ export const ENHANCEMENTS = {
     'A taut loop of string around two focal pins traces an ellipse with r₁ + r₂ = 2a.', (s) => s.setSlider('Orbital eccentricity', 0.65),
     'Inside Cavendish’s 1798 torsion balance and optical lever mirror.',
     'Comets sweep equal areas in equal times, racing past perihelion.', (s) => s.setSlider('Orbital eccentricity', 0.8),
-    'Two-body Keplerian orbits neglect perturbations from neighbouring planets.'
+    'Two-body Keplerian orbits neglect perturbations from neighbouring planets.',
+    [
+      { name: '60 R_E Moon Fall', prompt: 'Verify 1/r² gravity dilution at lunar orbit.', state: { tabs: [0, 0], sliders: { 'Orbit distance': 60 } } },
+      { name: 'High-Eccentricity Comet', prompt: 'Contrast perihelion race against aphelion drift.', state: { tabs: [2, 0], sliders: { 'Orbital eccentricity': 0.8 } } },
+    ],
+    {
+      openPlay: 'Inspect the Cavendish box in X-ray view to see how the optical lever amplifies micro-forces.',
+      misconception: 'Thinking astronauts float or comets orbit because Earth or space sits completely beyond gravity.',
+      dinnerQuestion: 'Why does Halley’s Comet whip past the inner Sun in a few months yet take decades to creep past Neptune?',
+      cambridgeUnit: 'Unit 4 · Inverse-Square Gravity & Orbits',
+    }
   ),
 
   atlas_ch06: A(
-    'Raise Bottle water column H to 0.60 m to boost the bottom jet, or lower external P_atm to watch the barometer drop!',
+    'Fill the slotted water bottle deeper to accelerate the bottom jet, or drop ambient air pressure to watch the mercury barometer react!',
     (s) => s.num('Bottle water column', 0.45) >= 0.55 || s.num('External atmospheric pressure', 101.3) <= 75 || s.interacted,
     (s) => {
       const H = s.num('Bottle water column', 0.45), P = s.num('External atmospheric pressure', 101.3);
@@ -970,11 +1416,21 @@ export const ENHANCEMENTS = {
     'Sea-level air pressure (101.3 kPa) holds up 760 mm of dense mercury.', (s) => s.setSlider('External atmospheric pressure', 101.3),
     'At high altitude, lower P_atm lets the mercury column sink.',
     'Upward atmospheric force on a postcard exceeds the weight of 12 cm of water by 86×!', (s) => s.setSlider('External atmospheric pressure', 65),
-    'Viscous nozzle losses and orifice surface tension are omitted.'
+    'Viscous nozzle losses and orifice surface tension are omitted.',
+    [
+      { name: 'High Bottle Head', prompt: 'Compare top vs middle vs bottom jet arcs.', state: { tabs: [0, 0], sliders: { 'Bottle water column': 0.58 } } },
+      { name: 'Lonavala Hill Barometer', prompt: 'Lower P_atm and track mercury height drop.', state: { tabs: [1, 0], sliders: { 'External atmospheric pressure': 75 } } },
+    ],
+    {
+      openPlay: 'Ask Kym why the top hole shoots a weak steep arc while the bottom hole fires almost horizontally.',
+      misconception: 'Thinking a "suction force" pulls drinks up a straw rather than external atmospheric pressure pushing.',
+      dinnerQuestion: 'If you carry Torricelli’s mercury barometer up Sahyadri cliffs at Matheran, does the mercury rise or fall—and why?',
+      cambridgeUnit: 'Unit 3 · Fluid Jets & Air Pressure',
+    }
   ),
 
   atlas_ch07: A(
-    'Double Clay impact speed v from 2.0 to 4.0 m/s to see crater depth quadruple (4×), or raise Household load P to 3,000 W!',
+    'Double a falling sphere’s impact speed into clay to test whether crater depth doubles or quadruples!',
     (s) => Math.abs(s.num('Clay test impact speed', 4.0) - 4.0) <= 0.6 && s.interacted,
     (s) => {
       const v = s.num('Clay test impact speed', 4.0), P = s.num('Household appliance load', 1500), ke = 0.5 * v * v;
@@ -985,11 +1441,21 @@ export const ENHANCEMENTS = {
     'Each bounce peaks at e² of the previous height while warming the floor.', (s) => s.setSlider('Bounce restitution', 0.7),
     'Inside the kWh meter: disc speed measures Watts, total turns count kWh.',
     'City Sankey pipes split 100% fuel input into useful work and ambient heat.', (s) => s.setSlider('Household appliance load', 2800),
-    'Clay resistance force F_clay is modelled as uniform with penetration depth.'
+    'Clay resistance force F_clay is modelled as uniform with penetration depth.',
+    [
+      { name: '4× Clay Crater Test', prompt: 'Check quadratic ½mv² scaling at double speed.', state: { tabs: [0, 0], sliders: { 'Clay test impact speed': 4.0 } } },
+      { name: 'Heavy Home kWh Load', prompt: 'Compare spinning disc watts vs cumulative kWh.', state: { tabs: [2, 0], sliders: { 'Household appliance load': 2800 } } },
+    ],
+    {
+      openPlay: 'Switch to Section cutaway on the household kWh meter to distinguish Power (W) from Energy (kWh).',
+      misconception: 'Thinking doubling car speed only doubles braking distance (actually 4× work!).',
+      dinnerQuestion: 'Why does a car screeching at 80 km/h on the Bandra–Worli Sea Link need four times the stopping distance of 40 km/h?',
+      cambridgeUnit: 'Unit 3 · Work, Quadratic KE & Power',
+    }
   ),
 
   atlas_ch08: A(
-    'Sweep Added heat per kg into the 100 °C plateau (850–3,000 kJ/kg) to see temperature lock flat during boiling!',
+    'Push heat input into the water–steam phase transition plateau—why does the thermometer stall while you keep heating?',
     (s) => (s.num('Added heat per kg', 550) >= 850 && s.num('Added heat per kg', 550) <= 3000) || s.interacted,
     (s) => {
       const ev = s.num('Matka water evaporated', 1.5), dT = ((ev / 100) * 2260000) / ((1 - ev / 100) * 4184);
@@ -1000,11 +1466,21 @@ export const ENHANCEMENTS = {
     'A 40 °C bucket holds vastly more thermal energy Q = mcΔT than a 100 °C spoon.', undefined,
     'A wool sweater traps dead air, blocking room heat from melting ice.',
     'Evaporating 1.8% of water through porous matka clay cools the pot by ~10 °C.', (s) => s.setSlider('Matka water evaporated', 1.8),
-    'Calorimeter walls are treated as adiabatic outside the modelled heat flux.'
+    'Calorimeter walls are treated as adiabatic outside the modelled heat flux.',
+    [
+      { name: 'Boiling Flat Plateau', prompt: 'Add latent heat at constant 100 °C.', state: { tabs: [1, 0], sliders: { 'Added heat per kg': 1500 } } },
+      { name: 'Clay Matka Cooling', prompt: 'Small sweat fraction cools water noticeably.', state: { tabs: [2, 0], sliders: { 'Matka water evaporated': 1.8 } } },
+    ],
+    {
+      openPlay: 'Compare "100 °C spoon vs 40 °C bucket" to distinguish temperature from internal thermal energy.',
+      misconception: 'Assuming added heat MUST always raise temperature even during melting or boiling.',
+      dinnerQuestion: 'Why does drinking water stored in a Dharavi terracotta matka stay noticeably cooler in May humidity?',
+      cambridgeUnit: 'Unit 5 · Specific & Latent Heat',
+    }
   ),
 
   atlas_ch09: A(
-    'Tune Barton driver frequency f_drive to 1.5 Hz or 2.0 Hz to trigger a sharp resonance peak on the matching pendulum!',
+    'Sweep Barton’s driver frequency past the pendulum array—why does one hanging responder absorb a dramatic swing?',
     (s) => Math.abs(s.num('Barton driver frequency', 1.5) - 2.0) <= 0.15 || s.interacted,
     (s) => {
       const f = s.num('Acoustic frequency', 343);
@@ -1015,11 +1491,21 @@ export const ENHANCEMENTS = {
     'Shifting f_drive to 2.0 Hz hands resonance to the next shorter pendulum.', (s) => s.setSlider('Barton driver frequency', 2.0),
     'Above 15 m/s crosswind, vortex shedding locks onto bridge deck twist.',
     'Doubling acoustic frequency f halves wavelength λ = v/f.', (s) => s.setSlider('Acoustic frequency', 500),
-    'Sound propagation is modelled in dry air at 20 °C (343 m/s).'
+    'Sound propagation is modelled in dry air at 20 °C (343 m/s).',
+    [
+      { name: 'Barton Resonance Peak', prompt: 'Match driver beat to a hanging pendulum.', state: { tabs: [0, 0], sliders: { 'Barton driver frequency': 2.0 } } },
+      { name: '500 Hz Sound Wavelength', prompt: 'Verify λ = 343 / f spacing in air rings.', state: { tabs: [2, 0], sliders: { 'Acoustic frequency': 500 } } },
+    ],
+    {
+      openPlay: 'Look closely at how non-resonant responders barely twitch compared to the matched length.',
+      misconception: 'Thinking air molecules travel all the way across a hall from singer to ear.',
+      dinnerQuestion: 'Why can a low train horn rattle just one loose windowpane in your Dadar flat while leaving thicker panes calm?',
+      cambridgeUnit: 'Unit 6 · Resonance & Acoustic Waves',
+    }
   ),
 
   atlas_ch10: A(
-    'Narrow Pinhole diameter d to 0.5 mm for a sharp inverted image, or set Earth orbital angle to 180° for Rømer’s 16.6-min lag!',
+    'Stop down the pinhole aperture for a sharper inverted candle, or swing Earth behind the Sun to reveal Rømer’s light delay!',
     (s) => s.num('Pinhole aperture diameter', 1.5) <= 0.6 || s.num('Earth orbital angle', 180) >= 160 || s.interacted,
     (s) => {
       const d = s.num('Pinhole aperture diameter', 1.5), di = s.num('Camera box depth', 180), M = di / 360;
@@ -1030,11 +1516,21 @@ export const ENHANCEMENTS = {
     'A 0.5 mm pinhole yields a crisp inverted image; a 4.5 mm hole blurs overlapping cones.', (s) => s.setSlider('Pinhole aperture diameter', 0.5),
     'Deeper camera box d_i magnifies the inverted image linearly (M = d_i/d_o).',
     'At conjunction (180°), Io’s eclipses arrive 16.6 minutes late across 2 AU.', (s) => s.setSlider('Earth orbital angle', 180),
-    'Geometric ray optics omits wave diffraction below ~0.3 mm.'
+    'Geometric ray optics omits wave diffraction below ~0.3 mm.',
+    [
+      { name: 'Sharp 0.5 mm Pinhole', prompt: 'Tighten hole diameter for crisp inversion.', state: { tabs: [0, 0], sliders: { 'Pinhole aperture diameter': 0.5 } } },
+      { name: 'Rømer 180° Io Eclipse', prompt: 'Compare light delay across Earth’s 2 AU orbit.', state: { tabs: [2, 0], sliders: { 'Earth orbital angle': 180 } } },
+    ],
+    {
+      openPlay: 'Compare 0.5 mm vs 4.5 mm aperture on bright vs crispness trade-offs.',
+      misconception: 'Thinking a pinhole flips an image left-right only OR that human sight shoots rays out of the eye.',
+      dinnerQuestion: 'During a Mumbai solar eclipse under banyan leaves, why do hundreds of tiny gaps project crescent Suns on the pavement?',
+      cambridgeUnit: 'Unit 7 · Ray Geometry & Speed of Light',
+    }
   ),
 
   atlas_ch11: A(
-    'Rotate Polaroid axis φ to 90° (vertical) to block 100% of Brewster pond glare, or inspect Raman’s Stokes shift!',
+    'Rotate the Polaroid filter to find which axis snuffs out pond surface glare completely!',
     (s) => Math.abs(s.num('Polaroid sunglass axis', 90) - 90) <= 5 || s.interacted,
     (s) => {
       const phi = s.num('Polaroid sunglass axis', 90), tr = Math.round(Math.pow(Math.cos((phi * Math.PI) / 180), 2) * 100);
@@ -1045,11 +1541,21 @@ export const ENHANCEMENTS = {
     'Water glare at 53.1° is horizontally polarized; a 90° vertical Polaroid blocks it.', (s) => s.setSlider('Polaroid sunglass axis', 90),
     'Rotating the Polaroid to 0° transmits 100% of the surface glare.',
     'Higher bond vibration frequency Δν̃ pushes the Raman Stokes line farther into the green.', (s) => s.setSlider('Molecular bond vibration', 1100),
-    'Crown glass dispersion uses a two-term Cauchy relation.'
+    'Crown glass dispersion uses a two-term Cauchy relation.',
+    [
+      { name: 'Zero Glare 90° Filter', prompt: 'Block horizontally polarised pond reflection.', state: { tabs: [1, 0], sliders: { 'Polaroid sunglass axis': 90 } } },
+      { name: 'Raman Vibrational Shift', prompt: 'Tune molecular shift away from Rayleigh peak.', state: { tabs: [2, 0], sliders: { 'Molecular bond vibration': 1100 } } },
+    ],
+    {
+      openPlay: 'Twist the Polaroid axis 90° across water glare first—prove light is a transverse wave!',
+      misconception: 'Thinking glass prisms manufacture new colours instead of separating wavelengths already in white light.',
+      dinnerQuestion: 'Why did C. V. Raman notice the deep sapphire Caribbean sea and then discover scattered sky photons shifting colour?',
+      cambridgeUnit: 'Unit 7 · Dispersion, Polarisation & Scattering',
+    }
   ),
 
   atlas_ch12: A(
-    'Raise Applied circuit voltage V above 3.5 V to compare I–V curves, or verify how a 2 Ω Earth wire trips the 15 A fuse!',
+    'Step up circuit voltage across ohmic vs filament loads, or inspect how the thicker Earth wire trips a household fuse during a live fault!',
     (s) => s.num('Applied circuit voltage', 3.5) >= 3.5 || s.interacted,
     (s) => {
       const V = s.num('Applied circuit voltage', 3.5), Re = s.num('Earth fault loop resistance', 2.0);
@@ -1060,11 +1566,21 @@ export const ENHANCEMENTS = {
     'A battery pumps the wire’s existing conduction electrons around a closed loop.', undefined,
     'Heating a tungsten filament scatters electrons and bends its I–V curve.',
     'A 2 Ω Earth wire diverts fault current and blows the 15 A fuse safely.', (s) => s.setSlider('Earth fault loop resistance', 2.0),
-    'Mains voltage is 230 V RMS with a 15 A fuse threshold.'
+    'Mains voltage is 230 V RMS with a 15 A fuse threshold.',
+    [
+      { name: 'Ohmic vs Filament I–V', prompt: 'See hot filament bend away from Ohm’s line.', state: { tabs: [1, 0], sliders: { 'Applied circuit voltage': 4.0 } } },
+      { name: '3-Pin Earth Fault Surge', prompt: 'Low-R Earth path forces fault current past 15 A.', state: { tabs: [2, 0], sliders: { 'Earth fault loop resistance': 2.0 } } },
+    ],
+    {
+      openPlay: 'Zoom into the Indian 3-pin plug in X-ray view—notice which pin enters the socket first.',
+      misconception: 'Thinking a battery creates brand-new electrons instead of pumping free electrons already inside copper wires.',
+      dinnerQuestion: 'Why is the top Earth pin on an Indian 3-pin AC plug BOTH thicker and longer than the Live and Neutral pins?',
+      cambridgeUnit: 'Unit 8 · Circuits, I–V & Earthing Safety',
+    }
   ),
 
   atlas_ch13: A(
-    'Raise External field B_ext above 0.75 T to align iron domains, or crank DC motor current I to 5.0 A!',
+    'Strengthen the external field to align iron domains, or crank armature current to boost motor torque!',
     (s) => s.num('External magnetizing field', 0.45) >= 0.75 || s.num('DC motor armature current', 3.5) >= 5.0 || s.interacted,
     (s) => {
       const I = s.num('DC motor armature current', 3.5);
@@ -1075,11 +1591,21 @@ export const ENHANCEMENTS = {
     'Opposite currents on left and right coil branches create a continuous torque couple.', (s) => s.setSlider('DC motor armature current', 5.0),
     'The split-ring commutator reverses coil current every half-turn.',
     'Perpendicular E and B waves oscillate in phase at speed c.', (s) => s.setSlider('EM wave frequency', 2.25),
-    'Stator poles produce a uniform horizontal B-field across the rotor gap.'
+    'Stator poles produce a uniform horizontal B-field across the rotor gap.',
+    [
+      { name: 'Aligned Iron Domains', prompt: 'Saturate soft-iron dipole arrows with B_ext.', state: { tabs: [0, 0], sliders: { 'External magnetizing field': 0.85 } } },
+      { name: 'High-Torque DC Motor', prompt: 'Inspect split-ring flip every half revolution.', state: { tabs: [1, 2], sliders: { 'DC motor armature current': 5.0 } } },
+    ],
+    {
+      openPlay: 'Switch DC motor to Section cutaway to watch the split-ring commutator swap brush contact every 180°.',
+      misconception: 'Thinking DC motors keep spinning one way without flipping current inside the rotating loop.',
+      dinnerQuestion: 'Inside a ceiling fan motor running steadily in your study, what stops the armature from flipping back after half a turn?',
+      cambridgeUnit: 'Unit 8 · Domains, Motors & EM Waves',
+    }
   ),
 
   atlas_ch14: A(
-    'Set Full Moon angle from Line of Nodes to 0° for a lunar eclipse, then move to 45° to see why most Full Moons miss Earth’s shadow!',
+    'Shift the Full Moon away from the orbital Line of Nodes to discover why most Full Moons miss Earth’s shadow!',
     (s) => s.num('Full Moon angle', 0) >= 30 || s.interacted,
     (s) => {
       const tilt = s.num('Earth axial tilt', 23.4), node = s.num('Full Moon angle', 0);
@@ -1091,11 +1617,21 @@ export const ENHANCEMENTS = {
     'Earth’s 23.4° axis stays parallel in space all year, driving the seasons.', (s) => s.setSlider('Orbital longitude', 90),
     'In December (270°), the same parallel axis tilts the Northern Hemisphere away from the Sun.',
     'Away from the nodes (60°), the 5.14° tilt lifts the Full Moon clear of Earth’s shadow.', (s) => s.setSlider('Full Moon angle', 60),
-    '3D orbital sizes are scaled for visibility while numerical readouts use exact 60 R_E geometry.'
+    '3D orbital sizes are scaled for visibility while numerical readouts use exact 60 R_E geometry.',
+    [
+      { name: 'Node Lunar Eclipse', prompt: 'Align 0° at the Line of Nodes into Earth’s shadow.', state: { tabs: [2, 0], sliders: { 'Full Moon angle': 0 } } },
+      { name: 'Clear Full Moon (60°)', prompt: '5.14° lunar tilt lifts Moon clear of umbra.', state: { tabs: [2, 0], sliders: { 'Full Moon angle': 60 } } },
+    ],
+    {
+      openPlay: 'Orbit edge-on to the ecliptic plane so you see why the 5.14° tilted orbit misses the umbra cone.',
+      misconception: 'Asking why we don’t see a lunar eclipse every single Full Moon month.',
+      dinnerQuestion: 'Since Earth always casts a long shadow opposite the Sun, why can Mumbai go months between visible lunar eclipses?',
+      cambridgeUnit: 'Unit 9 · Eclipses & Orbital Inclination',
+    }
   ),
 
   atlas_ch15: A(
-    'Lower Incident wavelength λ below 400 nm (UV) to eject photoelectrons, or raise White dwarf mass M toward 1.40 M_☉!',
+    'Shift light into ultraviolet to trigger photoemission, or push a white dwarf’s mass toward the Chandrasekhar limit!',
     (s) => s.num('Incident light wavelength', 340) <= 380 || s.num('White dwarf mass', 0.85) >= 1.3 || s.interacted,
     (s) => {
       const lam = s.num('Incident light wavelength', 340), hf = 1239.84 / lam, mWd = s.num('White dwarf mass', 0.85);
@@ -1106,13 +1642,33 @@ export const ENHANCEMENTS = {
     'Single photons land as discrete dots yet accumulate into wave interference fringes.', (s) => s.setSlider('Single-photon exposure', 195),
     'Inside solar p–p fusion, 0.7% of proton mass becomes 26.7 MeV via ΔE = Δmc².',
     'Raising white-dwarf mass toward 1.44 M_☉ shrinks its radius dramatically.', (s) => s.setSlider('White dwarf mass', 1.38),
-    'Work function φ = 2.30 eV; white dwarf radius uses the Chandrasekhar relativistic formula.'
+    'Work function φ = 2.30 eV; white dwarf radius uses the Chandrasekhar relativistic formula.',
+    [
+      { name: 'UV Photoelectric Drop', prompt: 'Short-wavelength photons exceed φ = 2.30 eV.', state: { tabs: [0, 0], sliders: { 'Incident light wavelength': 300 } } },
+      { name: 'Near Chandrasekhar 1.38 M_☉', prompt: 'Watch relativistic degeneracy squeeze white dwarf.', state: { tabs: [2, 0], sliders: { 'White dwarf mass': 1.38 } } },
+    ],
+    {
+      openPlay: 'Compare low-energy red beam vs UV photons—why doesn’t waiting longer help red light eject electrons?',
+      misconception: 'Thinking brighter red light eventually knocks electrons loose if you crank up intensity enough.',
+      dinnerQuestion: 'How did Subrahmanyan Chandrasekhar deduce on a boat from Madras to England that massive dying stars cannot stay white dwarfs?',
+      cambridgeUnit: 'Unit 9 · Quanta, Fusion & Stellar Fate',
+    }
   ),
 
   vectors: {
     challenge: {
-      prompt: 'Switch to "Parallelogram law", set P = 60 N, Q = 80 N, and find the angle θ where the resultant R is exactly 100 N (Pythagoras!).',
+      prompt: 'Switch to the Parallelogram law with P = 60 N and Q = 80 N, and discover the angle θ where the resultant R is exactly 100 N.',
       check: (s) => s.tab(0) === 1 && Math.abs(s.num('Angle θ', 50) - 90) <= 5 && Math.abs(s.num('Arrow P', 80) - 60) <= 5 && Math.abs(s.num('Arrow Q', 60) - 80) <= 5,
+    },
+    presets: [
+      { name: 'Perpendicular Components', prompt: 'Split one 80 N force into horizontal & vertical shadows.', state: { tabs: [0], sliders: { 'Angle θ': 37, 'Arrow P': 80 } } },
+      { name: 'Ramp Component Split', prompt: 'See why steeper ramps increase down-slope pull.', state: { tabs: [2], sliders: { 'Angle θ': 30, 'Arrow P': 100 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask what happens to R_x when θ reaches 90° and why two forces can cancel or add depending on angle.',
+      misconception: 'Simply adding 60 N + 80 N = 140 N regardless of direction.',
+      dinnerQuestion: 'If you and a friend pull a heavy box along two ropes 90° apart with 60 N and 80 N, why is the combined pull 100 N instead of 140 N?',
+      cambridgeUnit: 'Unit 3 · Force Vectors & Resultants',
     },
     yourNumbers: (s) => {
       const deg = s.num('Angle θ', 50), rad = (deg * Math.PI) / 180;
@@ -1138,8 +1694,22 @@ export const ENHANCEMENTS = {
 
   atwood: {
     challenge: {
-      prompt: 'Dilute gravity to exactly one-tenth of free fall (a = 0.98 m/s²): set m₁ = 0.55 kg and m₂ = 0.45 kg.',
-      check: (s) => Math.abs(s.num('Left mass m₁', 0.55) - 0.55) < 0.02 && Math.abs(s.num('Right mass m₂', 0.45) - 0.45) < 0.02 && s.interacted,
+      prompt: 'Choose two unequal pulley masses that dilute downward acceleration to roughly one-tenth of free fall (a ≈ 0.98 m/s²).',
+      check: (s) => {
+        const m1 = s.num('Left mass m₁', 0.55), m2 = s.num('Right mass m₂', 0.45);
+        const a = Math.abs((m1 - m2) * G / (m1 + m2));
+        return Math.abs(a - 0.98) <= 0.12 && s.interacted;
+      },
+    },
+    presets: [
+      { name: 'Balanced Pulley (a = 0)', prompt: 'Equal 0.50 kg masses hang in zero-acceleration tension.', state: { sliders: { 'Left mass m₁': 0.50, 'Right mass m₂': 0.50 } } },
+      { name: 'Steep Imbalance (0.8 vs 0.3)', prompt: 'Compare rope tension T against both weights m₁g and m₂g.', state: { tabs: [1], sliders: { 'Left mass m₁': 0.80, 'Right mass m₂': 0.30 } } },
+    ],
+    mentorTips: {
+      openPlay: 'Ask whether rope tension T equals m₁g, m₂g, or lies strictly between them while moving.',
+      misconception: 'Assuming the heavier falling mass pulls the rope with its full weight m₁g (ignoring that it is accelerating downward!).',
+      dinnerQuestion: 'In a lift accelerating downward, do you feel heavier, lighter, or unchanged on a bathroom scale?',
+      cambridgeUnit: 'Unit 3 · Coupled Masses & Tension',
     },
     yourNumbers: (s) => {
       const m1 = s.num('Left mass m₁', 0.55), m2 = s.num('Right mass m₂', 0.45);

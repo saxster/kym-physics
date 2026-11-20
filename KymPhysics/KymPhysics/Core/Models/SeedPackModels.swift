@@ -120,6 +120,20 @@ struct PhysicsInvestigation: Codable, Identifiable, Equatable, Sendable {
     let stories: [String]
 }
 
+struct WidgetInquiryPreset: Codable, Identifiable, Equatable, Sendable {
+    let id: String
+    let name: String
+    let prompt: String
+    let stateJSON: String
+}
+
+struct WidgetMentorTips: Codable, Equatable, Sendable {
+    let openPlay: String
+    let misconception: String
+    let dinnerQuestion: String
+    let cambridgeUnit: String
+}
+
 struct InteractiveWidgetSpec: Codable, Identifiable, Equatable, Sendable {
     let id: String
     let title: String
@@ -129,6 +143,58 @@ struct InteractiveWidgetSpec: Codable, Identifiable, Equatable, Sendable {
     let cutaway: String
     let idealised: String
     let watchSteps: [WidgetWatchStep]
+    let presets: [WidgetInquiryPreset]
+    let mentorTips: WidgetMentorTips?
+    let capabilities: [String]
+    let cambridgeUnits: [Int]
+    let relatedWidgetIds: [String]
+
+    init(
+        id: String,
+        title: String,
+        chapter: Int,
+        is3D: Bool,
+        challengePrompt: String,
+        cutaway: String,
+        idealised: String,
+        watchSteps: [WidgetWatchStep],
+        presets: [WidgetInquiryPreset] = [],
+        mentorTips: WidgetMentorTips? = nil,
+        capabilities: [String] = [],
+        cambridgeUnits: [Int] = [],
+        relatedWidgetIds: [String] = []
+    ) {
+        self.id = id
+        self.title = title
+        self.chapter = chapter
+        self.is3D = is3D
+        self.challengePrompt = challengePrompt
+        self.cutaway = cutaway
+        self.idealised = idealised
+        self.watchSteps = watchSteps
+        self.presets = presets
+        self.mentorTips = mentorTips
+        self.capabilities = capabilities
+        self.cambridgeUnits = cambridgeUnits
+        self.relatedWidgetIds = relatedWidgetIds
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        title = try c.decode(String.self, forKey: .title)
+        chapter = try c.decode(Int.self, forKey: .chapter)
+        is3D = try c.decode(Bool.self, forKey: .is3D)
+        challengePrompt = try c.decode(String.self, forKey: .challengePrompt)
+        cutaway = try c.decode(String.self, forKey: .cutaway)
+        idealised = try c.decode(String.self, forKey: .idealised)
+        watchSteps = try c.decodeIfPresent([WidgetWatchStep].self, forKey: .watchSteps) ?? []
+        presets = try c.decodeIfPresent([WidgetInquiryPreset].self, forKey: .presets) ?? []
+        mentorTips = try c.decodeIfPresent(WidgetMentorTips.self, forKey: .mentorTips)
+        capabilities = try c.decodeIfPresent([String].self, forKey: .capabilities) ?? []
+        cambridgeUnits = try c.decodeIfPresent([Int].self, forKey: .cambridgeUnits) ?? []
+        relatedWidgetIds = try c.decodeIfPresent([String].self, forKey: .relatedWidgetIds) ?? []
+    }
 }
 
 struct WidgetWatchStep: Codable, Equatable, Sendable {

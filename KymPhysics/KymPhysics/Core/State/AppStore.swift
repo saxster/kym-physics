@@ -73,6 +73,7 @@ final class AppStore: ObservableObject {
     @Published var selectedTopicCode: String? = "9.1"
     @Published var activeMovingWorldChapter: Int = 13
     @Published var activeWidgetId: String? = nil
+    @Published var pendingWidgetStateJSON: String? = nil
     @Published var activeExplorerId: String? = nil
     @Published var activeDiagramPlateId: String? = nil
     @Published var activePracticeQuestion: SchoolScienceQuestion? = nil
@@ -481,9 +482,11 @@ final class AppStore: ObservableObject {
     func freezeWidgetIntoLabLog(
         widget: InteractiveWidgetSpec,
         readout: String,
-        snapshotPNGData: Data? = nil
+        snapshotPNGData: Data? = nil,
+        stateJSON: String? = nil
     ) -> LabJournalEntryRecord {
         let now = Date()
+        let persistedStateJSON = (stateJSON?.isEmpty == false) ? stateJSON : nil
         let entry = LabJournalEntryRecord(
             id: "lablog-\(widget.id)-\(Int(now.timeIntervalSince1970))",
             title: "Physics Lab Log: \(widget.title) (Ch \(widget.chapter))",
@@ -502,7 +505,8 @@ final class AppStore: ObservableObject {
             drawingData: nil,
             snapshotPNGData: snapshotPNGData,
             createdAt: now,
-            updatedAt: now
+            updatedAt: now,
+            widgetStateJSON: persistedStateJSON
         )
         saveJournalEntry(entry)
         activeJournalEntry = entry

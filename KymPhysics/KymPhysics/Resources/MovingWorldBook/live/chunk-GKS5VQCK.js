@@ -1,0 +1,1 @@
+function x({timeS:o,sourceStartXM:S,sourceSpeedMs:a,frequencyHz:r,maxRadiusM:c=220}){let n=12/r,E=c/348.7,M=Math.max(0,Math.ceil((o-E)/n-1e-10)),D=Math.floor(o/n+1e-10),s=[];for(let t=M;t<=D;t++){let e=t*n,_=Math.max(0,o-e);s.push({index:t,emittedAtS:e,centreXM:S+a*e,radiusM:348.7*_})}return s}export{x as a};
