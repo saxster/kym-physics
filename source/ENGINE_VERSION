@@ -1,4 +1,4 @@
-Book engine from teaching_kit (web/book-engine) at 076dc05+dirty, vendored by web/vendor.mjs.
+Book engine from teaching_kit (web/book-engine) at aa20113, vendored by web/vendor.mjs.
 Do not edit these files here: change teaching_kit/web/book-engine, then run
   node web/vendor.mjs <this directory>
 in teaching_kit. Check before publishing with --check.
@@ -24,12 +24,16 @@ Files:
   app/m_map.js
   app/m_mastery.js
   app/m_progress.js
+  app/m_progress_rail.js
+  app/m_readaloud.js
   app/m_scale.js
+  app/m_settings.js
   app/mastery_model.mjs
   app/o_labs.css
   app/orbit_model.mjs
   app/p_comic.css
   app/r_coach.css
+  app/s_progress_rail.css
   app/scale_earth.js
   app/scale_model.mjs
   assets/scale/coast.webp
@@ -67,4 +71,5 @@ Files:
   live/w_selftest3d.js
   live/w_selftestapi.js
   livetest.py
+  md_export.py
   shoot.py

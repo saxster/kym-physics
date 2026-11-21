@@ -294,6 +294,35 @@ class Fig:
             self.circle(wx, y + h + 3, 6, 'fill-ink')
         return self
 
+    def registration_frame(self, pad=6, arm=6, dashed=True):
+        """Printer's single-ink registration crosshairs at four corners with an optional dashed perimeter."""
+        x0, y0 = pad, pad
+        x1, y1 = max(pad + 1, self.w - pad), max(pad + 1, self.h - pad)
+        if dashed:
+            self.add(
+                f'<rect x="{r_(x0)}" y="{r_(y0)}" width="{r_(x1 - x0)}" height="{r_(y1 - y0)}" '
+                f'class="fig-reg-border" fill="none" stroke-dasharray="3 3"/>'
+            )
+        segs = []
+        for cx, cy in ((x0, y0), (x1, y0), (x0, y1), (x1, y1)):
+            segs.append(f'M{r_(cx - arm)} {r_(cy)}H{r_(cx + arm)}M{r_(cx)} {r_(cy - arm)}V{r_(cy + arm)}')
+        return self.path(''.join(segs), 'fig-reg-mark')
+
+    def stipple_band(self, x, y, w, h, label='', size=12):
+        """Monochrome dot-stipple architectural layer band with optional readable label (>= 12 px)."""
+        self.add(f'<rect x="{r_(x)}" y="{r_(y)}" width="{r_(w)}" height="{r_(h)}" class="fig-stipple" fill="url(#pat-stipple)"/>')
+        if label:
+            self.text(x + w / 2, y + h / 2 + size * 0.35, label, 'fig-callout-text', 'middle', max(12, size))
+        return self
+
+    def callout_box(self, x, y, w, h, text, cls='fig-callout', size=12):
+        """Crisp single-ink technical callout box with >= 12 px monospace label."""
+        s = max(12, size)
+        self.add(f'<rect x="{r_(x)}" y="{r_(y)}" width="{r_(w)}" height="{r_(h)}" rx="3" class="{cls}"/>')
+        if text:
+            self.text(x + w / 2, y + h / 2 + s * 0.35, text, f'{cls}-text', 'middle', s)
+        return self
+
 
 ATOM_R = {'H': 10, 'C': 15, 'N': 15, 'O': 15.5, 'Cl': 18, 'Na': 17, 'S': 17}
 
@@ -371,6 +400,7 @@ DEFS = '''<svg width="0" height="0" style="position:absolute" aria-hidden="true"
     f'<path d="M0,0.6 L9.4,5 L0,9.4 L2.4,5 Z" class="ah ah-{k}"/></marker>'
     for k in ('ink', 'muted', 'proton', 'electron', 'neutron', 'green', 'force', 'vector')) + '''
 <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0 L0 0 0 16" class="gridln"/></pattern>
+<pattern id="pat-stipple" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="0.8" class="fig-stipple-dot"/></pattern>
 </defs></svg>'''
 
 

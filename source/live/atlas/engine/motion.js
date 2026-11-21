@@ -561,6 +561,45 @@ export function settledFlowPhase(t, period = 4, { cycles = 1, settleAt = 1 } = {
   return fract(t / p);
 }
 
+export const MOTION_FEELS = Object.freeze(['spring', 'smooth', 'instant']);
+
+export const MOTION_PRESETS = Object.freeze({
+  spring: Object.freeze({
+    label: 'Spring',
+    durationScale: 1,
+    cssEase: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+    durationMs: 360,
+  }),
+  smooth: Object.freeze({
+    label: 'Smooth',
+    durationScale: 0.85,
+    cssEase: 'cubic-bezier(0.2, 0, 0, 1)',
+    durationMs: 240,
+  }),
+  instant: Object.freeze({
+    label: 'Instant',
+    durationScale: 0,
+    cssEase: 'linear',
+    durationMs: 0,
+  }),
+});
+
+export function normalizeMotionFeel(feel = 'spring') {
+  const k = String(feel || '').trim().toLowerCase();
+  return MOTION_FEELS.includes(k) ? k : 'spring';
+}
+
+export function applyMotionFeel(el, feel = 'spring') {
+  const resolved = normalizeMotionFeel(feel);
+  const preset = MOTION_PRESETS[resolved];
+  if (el?.dataset) el.dataset.motion = resolved;
+  if (el?.style?.setProperty) {
+    el.style.setProperty('--atlas-ease', preset.cssEase);
+    el.style.setProperty('--atlas-dur', `${preset.durationMs}ms`);
+  }
+  return { feel: resolved, ...preset };
+}
+
 const GOVERNOR_PRIORITY = Object.freeze({
   ambient: 10,
   hover: 20,
@@ -573,11 +612,12 @@ const GOVERNOR_PRIORITY = Object.freeze({
 });
 
 // Single-Owner Motion Governor: tokenized priority-lease arbiter so ambient loops, hover previews,
-// step/tour playback, scrubbing, Still mode, and reduced-motion never race or leave stale callbacks.
-export function createMotionGovernor({ reduced = false, still = false, hidden = false } = {}) {
+// step/tour playback, scrubbing, Still mode, reduced-motion, and motion feel never race or leave stale callbacks.
+export function createMotionGovernor({ reduced = false, still = false, hidden = false, feel = 'spring' } = {}) {
   let isReduced = !!reduced;
   let isStill = !!still;
   let isHidden = !!hidden;
+  let motionFeel = normalizeMotionFeel(feel);
   let nextToken = 1;
   let activeOwner = null;
   let activeKind = null;
@@ -628,12 +668,26 @@ export function createMotionGovernor({ reduced = false, still = false, hidden = 
       if (isReduced) clearActive();
       return this.state();
     },
+    setFeel(nextFeel) {
+      motionFeel = normalizeMotionFeel(nextFeel);
+      return this.state();
+    },
+    transition(u, { zeta = 0.35, freq = 3.2 } = {}) {
+      const t = clamp01(u);
+      if (isReduced || motionFeel === 'instant') return t <= 0 ? 0 : 1;
+      if (motionFeel === 'smooth') return eases.outCubic(t);
+      return spring(t, zeta, freq);
+    },
     state() {
+      const effectiveFeel = isReduced ? 'instant' : motionFeel;
       return {
         mode: mode(),
         activeOwner,
         activeKind,
         token: activeToken,
+        feel: motionFeel,
+        effectiveFeel,
+        durationScale: MOTION_PRESETS[effectiveFeel].durationScale,
       };
     },
   };
@@ -670,6 +724,82 @@ export function sharedAnchorDelta(prevIds = [], nextIds = []) {
     counts: { stay: stay.length, enter: enter.length, leave: leave.length },
     summary: `=${stay.length} +${enter.length} −${leave.length}`,
   };
+}
+
+// 7-segment jerk-limited S-curve indexing motion (symmetric cubic accel ramp-in/out, constant cruise,
+// symmetric cubic brake ramp-in/out). Exact C2 position/velocity/acceleration continuity and pinned endpoints.
+export function sCurveIndex(t, { start = 0, travel = 1, accel = 0.2, brake = accel, distance = 1, origin = 0 } = {}) {
+  if (!(travel > 0) || !Number.isFinite(travel)) throw new RangeError('sCurveIndex: travel must be positive');
+  if (accel < 0 || !Number.isFinite(accel)) throw new RangeError('sCurveIndex: accel must be non-negative');
+  if (brake < 0 || !Number.isFinite(brake)) throw new RangeError('sCurveIndex: brake must be non-negative');
+  const tau = t - start;
+  if (tau <= 0) return origin;
+  if (tau >= travel) return origin + distance;
+
+  let a = accel;
+  let b = brake;
+  if (a + b > travel) {
+    const scale = travel / (a + b);
+    a *= scale;
+    b *= scale;
+  }
+  const cruiseDenom = travel - 0.5 * (a + b);
+  const v = cruiseDenom > 1e-12 ? distance / cruiseDenom : 0;
+
+  const rampDisp = (u, T) => {
+    if (T <= 0 || u <= 0) return 0;
+    if (u >= T) return 0.5 * v * T;
+    const half = 0.5 * T;
+    const k = (2 * v) / (3 * T * T);
+    if (u <= half) return k * u * u * u;
+    const w = T - u;
+    return 0.5 * v * T - v * w + k * w * w * w;
+  };
+
+  if (tau < a) return origin + rampDisp(tau, a);
+  if (tau <= travel - b) return origin + 0.5 * v * a + v * (tau - a);
+  return origin + distance - rampDisp(travel - tau, b);
+}
+
+// Logarithmic nearest-stop snapping for optical f-stops, musical ratios, or calibrated engineering detents.
+export function snapLogStop(value, stops) {
+  if (!(value > 0) || !Number.isFinite(value)) throw new RangeError('snapLogStop: value must be positive');
+  if (!Array.isArray(stops) || !stops.length) throw new TypeError('snapLogStop: stops must be a non-empty array');
+  let best = null;
+  let bestErr = Infinity;
+  for (const cand of stops) {
+    if (!(cand > 0) || !Number.isFinite(cand)) throw new RangeError('snapLogStop: every stop must be positive');
+    const err = Math.abs(Math.log(cand / value));
+    if (err < bestErr) {
+      bestErr = err;
+      best = cand;
+    }
+  }
+  return best;
+}
+
+// Sorted, deduplicated timeline timestamps combining uniform 1/fps samples with exact analytical event timestamps
+// (e.g. contact, wall-crossing, apex) so discrete transitions never suffer 1-frame overshoot.
+export function eventKeyframes(t0, t1, { fps = 60, events = [] } = {}) {
+  if (!Number.isFinite(t0) || !Number.isFinite(t1) || t0 >= t1) {
+    throw new RangeError('eventKeyframes: require finite t0 < t1');
+  }
+  if (!(fps > 0) || !Number.isFinite(fps)) throw new RangeError('eventKeyframes: fps must be positive');
+  const raw = [t0, t1];
+  const steps = Math.max(1, Math.round((t1 - t0) * fps));
+  for (let i = 1; i < steps; i++) raw.push(t0 + (i / steps) * (t1 - t0));
+  for (const ev of events || []) {
+    if (typeof ev === 'number' && Number.isFinite(ev) && ev >= t0 - 1e-12 && ev <= t1 + 1e-12) {
+      raw.push(clamp(ev, t0, t1));
+    }
+  }
+  raw.sort((a, b) => a - b);
+  const out = [];
+  for (const v of raw) {
+    if (!out.length || Math.abs(v - out[out.length - 1]) > 1e-9) out.push(v);
+  }
+  if (out[out.length - 1] !== t1) out[out.length - 1] = t1;
+  return out;
 }
 
 

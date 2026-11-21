@@ -5,10 +5,11 @@
 import { createEngine, MEDIUMS, QUIRKS, DEFAULT_QUIRK, QUIRK_PRESETS, resolveQuirk } from './render.js';
 import { frameAssemblies, separateLabels } from './framing.js';
 import { themeScene, setLiveAccent } from './parts.js';
-import { ACCENT_SWATCHES, deriveAccentTokens, applyAccentTokens, mountSwatchBar } from './theme.js';
+import { ACCENT_SWATCHES, deriveAccentTokens, applyAccentTokens, mountSwatchBar, mountVoiceBar, applyVoice } from './theme.js';
+import { VOICES, VOICE_IDS, resolveVoice } from './voices.js';
 import { wireModeBar, ensureInkChromeDefs } from './diegetic.js';
 
-export { wireModeBar, ensureInkChromeDefs, mountSwatchBar };
+export { wireModeBar, ensureInkChromeDefs, mountSwatchBar, mountVoiceBar };
 import {
   TAU, clamp01, clamp, lerp, fract, mod, smooth, smoothstep, ease,
   phase, win, warpTime, spring, settleShake, squashStretch, eases,
@@ -17,6 +18,8 @@ import {
   cubicBezier, bez, rubberband, projectMomentum, stagger, dwell, pingPong, anticipate, followThrough, pulseBeat, posterizeTime,
   camDolly, camZoom, camOrbit, camCrane, camDollyZoom, camHandheld,
   settledFlowPhase, createMotionGovernor, sharedAnchorDelta,
+  sCurveIndex, snapLogStop, eventKeyframes,
+  MOTION_FEELS, MOTION_PRESETS, normalizeMotionFeel, applyMotionFeel,
 } from './motion.js';
 
 export {
@@ -28,7 +31,68 @@ export {
   cubicBezier, bez, rubberband, projectMomentum, stagger, dwell, pingPong, anticipate, followThrough, pulseBeat, posterizeTime,
   camDolly, camZoom, camOrbit, camCrane, camDollyZoom, camHandheld,
   settledFlowPhase, createMotionGovernor, sharedAnchorDelta,
+  sCurveIndex, snapLogStop, eventKeyframes,
+  MOTION_FEELS, MOTION_PRESETS, normalizeMotionFeel, applyMotionFeel,
 };
+
+// Live playback lifecycle tracker: responds dynamically to prefers-reduced-motion changes,
+// document.hidden tab visibility changes, and optional IntersectionObserver visibility on targetEl.
+export function bindPlaybackLifecycle({ targetEl = null, getReducedExtra = () => false, onChange = null } = {}) {
+  const mq = typeof matchMedia === 'function' ? matchMedia('(prefers-reduced-motion: reduce)') : null;
+  let hidden = typeof document !== 'undefined' ? !!document.hidden : false;
+  let visible = true;
+  let reduced = Boolean(mq?.matches || getReducedExtra?.());
+  let lastKey = `${reduced}|${hidden}|${visible}`;
+
+  const snapshot = () => ({
+    reduced,
+    hidden,
+    visible,
+    active: !reduced && !hidden && visible,
+  });
+
+  const sync = () => {
+    reduced = Boolean(mq?.matches || getReducedExtra?.());
+    hidden = typeof document !== 'undefined' ? !!document.hidden : false;
+    const key = `${reduced}|${hidden}|${visible}`;
+    if (key !== lastKey) {
+      lastKey = key;
+      onChange?.(snapshot());
+    }
+    return snapshot();
+  };
+
+  const onMq = () => sync();
+  if (mq?.addEventListener) mq.addEventListener('change', onMq);
+  else if (mq?.addListener) mq.addListener(onMq);
+
+  const onVis = () => sync();
+  if (typeof document !== 'undefined') document.addEventListener('visibilitychange', onVis);
+
+  let io = null;
+  if (targetEl && typeof IntersectionObserver !== 'undefined') {
+    io = new IntersectionObserver(([entry]) => {
+      if (!entry) return;
+      visible = entry.isIntersecting;
+      sync();
+    });
+    io.observe(targetEl);
+  }
+
+  return {
+    get reduced() { return Boolean(mq?.matches || getReducedExtra?.()); },
+    get hidden() { return typeof document !== 'undefined' ? !!document.hidden : false; },
+    get visible() { return visible; },
+    get active() { return !this.reduced && !this.hidden && visible; },
+    sync,
+    destroy() {
+      if (mq?.removeEventListener) mq.removeEventListener('change', onMq);
+      else if (mq?.removeListener) mq.removeListener(onMq);
+      if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVis);
+      io?.disconnect();
+    },
+  };
+}
 
 // Pure skew-line closest-point solver for camera-angle-invariant 1D rail/axis dragging.
 // Given camera ray (rayOrigin, rayDir) and axis (axisOrigin, axisVec), returns { s, sWorld, tRay }
@@ -286,21 +350,29 @@ export function draggable(target, opts = {}) {
   return spec;
 }
 
-// chapter: { PAGES, buildWorld(E), lookKeys, state(clock, reduced), medium?, quirk?, forceLook?(selected, look), clock0? }
-// opts: { reduced, touch, theme (see parts.js applyTheme), medium, quirk, dprCap }
+// chapter: { PAGES, buildWorld(E), lookKeys, state(clock, reduced), medium?, quirk?, voice?, forceLook?(selected, look), clock0? }
+// opts: { reduced, touch, theme (see parts.js applyTheme), medium, quirk, voice, dprCap }
 // hooks (assign after creating): onHover(key | null), onSelect(key | null), onPointerDown(), onDrag(spec, pt)
-export function createStage(canvas, labelsEl, chapter, { reduced = false, touch = false, theme = null, medium = null, quirk = null, transparent = false, dprCap, frameParts = false, labelTopInset = () => 24, retainContext = false } = {}) {
+export function createStage(canvas, labelsEl, chapter, { reduced = false, touch = false, theme = null, medium = null, quirk = null, voice = null, transparent = false, dprCap, frameParts = false, labelTopInset = () => 24, retainContext = false } = {}) {
   const { PAGES } = chapter;
   const N = PAGES.length;
   const urlParams = typeof location !== 'undefined' ? new URLSearchParams(location.search) : null;
+  const urlVoice = urlParams ? urlParams.get('voice') : null;
   const urlMedium = urlParams ? urlParams.get('medium') : null;
   const urlQuirk = urlParams ? urlParams.get('quirk') : null;
   const RENDER_MODE = typeof location !== 'undefined' && /[?&]render\b/.test(location.search);
-  let activeQuirk = resolveQuirk(urlQuirk || quirk || chapter.quirk || DEFAULT_QUIRK);
-  let activeMedium = (urlMedium && MEDIUMS.includes(urlMedium)) ? urlMedium : (medium || chapter.medium || activeQuirk.medium);
+  const SYNC_TAKES = urlParams?.get('sync') === 'takes';
+  let isReduced = !!reduced;
+  const resolvedVoice = (urlVoice || voice || chapter.voice) ? resolveVoice(urlVoice || voice || chapter.voice) : null;
+  let activeVoice = resolvedVoice ? resolvedVoice.id : null;
+  let activeQuirk = resolveQuirk(urlQuirk || quirk || chapter.quirk || resolvedVoice?.quirk || DEFAULT_QUIRK);
+  let activeMedium = (urlMedium && MEDIUMS.includes(urlMedium))
+    ? urlMedium
+    : (medium || chapter.medium || resolvedVoice?.medium || activeQuirk.medium);
   if (typeof document !== 'undefined') {
     document.documentElement.dataset.quirk = activeQuirk.id;
     document.documentElement.dataset.medium = activeMedium;
+    if (resolvedVoice) applyVoice(document.documentElement, resolvedVoice, { setSurfaces: false });
     ensureInkChromeDefs();
   }
   const E = createEngine(canvas, { fov: 18, near: 0.2, far: 300, transparent: Boolean(transparent || chapter.transparent), theme: theme || chapter.theme || null, medium: activeMedium, quirk: activeQuirk.id, retainContext });
@@ -630,7 +702,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
             const minS = drag.item.axis.min, maxS = drag.item.axis.max;
             if (minS !== undefined) sParam = Math.max(minS, sParam);
             if (maxS !== undefined) sParam = Math.min(maxS, sParam);
-            if (!RENDER_MODE && !reduced && drag.item.axis.rubberband !== false && rawS !== sParam) {
+            if (!RENDER_MODE && !isReduced && drag.item.axis.rubberband !== false && rawS !== sParam) {
               const span = (Number.isFinite(minS) && Number.isFinite(maxS) && maxS > minS) ? (maxS - minS) : 1;
               drag.item.rubberOffset = rubberband(rawS - sParam, span * 0.18, 0.55);
             } else {
@@ -651,7 +723,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
           }
         }
         if (pt !== null) {
-          if (drag.item.load && !RENDER_MODE && !reduced) {
+          if (drag.item.load && !RENDER_MODE && !isReduced) {
             drag.item.targetValue = pt;
             drag.item.lastWorldPt = worldPt;
             if (drag.item.value === null || drag.item.value === undefined) {
@@ -672,7 +744,15 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
         const cam = E.camera, k = 2 * Math.tan(E.THREE.MathUtils.degToRad(cam.fov / 2)) * cam.position.distanceTo(lookAt) / rect.height;
         const right = new E.THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), up = new E.THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
         orbit.pan.addScaledVector(right, -dx * k).addScaledVector(up, dy * k);
-      } else { orbit.az -= dx * 0.35; orbit.el += dy * 0.25; }
+        if (SYNC_TAKES && typeof window !== 'undefined' && window.parent !== window) {
+          window.parent.postMessage({ type: 'atlas:orbit', az: orbit.az, el: orbit.el, pan: orbit.pan.toArray() }, '*');
+        }
+      } else {
+        orbit.az -= dx * 0.35; orbit.el += dy * 0.25;
+        if (SYNC_TAKES && typeof window !== 'undefined' && window.parent !== window) {
+          window.parent.postMessage({ type: 'atlas:orbit', az: orbit.az, el: orbit.el, pan: orbit.pan.toArray() }, '*');
+        }
+      }
       return;
     }
     pointer = { x: e.clientX, y: e.clientY };
@@ -697,6 +777,8 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
   // s: the page position; litPage: whose lit thing is lit (the page whose text shows); running: time may advance
   // (false while paused or still); clockAt: set the clock outright (a recorded tour) instead of advancing it.
   let clock = chapter.clock0 || 0, scrubbed = null, lastClockAt, focusAmt = 0, lastFocus = null, orbitPage = 0, orbitHome = false, cutOverride = null, lastLook = {};
+  let camAdjust = null;
+  let lastCamPose = { target: [0, 0, 0], az: 0, el: 18, dist: 10, fov: 18 };
   // blend: 'turn' eases each page's camera and look in over the second part of the scroll (a book's page turn);
   // 'linear' follows s as it is, for a caller that already eases s (a machine's step).
   function step({ now, dt, s, litPage = Math.round(s), running = true, narrow = false, narrowZoom = 1, clockAt, blend = 'turn' }) {
@@ -720,7 +802,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     const fa = k => PAGES[k].frameAspect ?? chapter.frameAspect ?? 1.25;
     cam.dist *= Math.max(1, lerp(fa(i), fa(j), u) / E.camera.aspect);
     if (narrow) cam.dist *= narrowZoom;
-    if (!reduced && !drag && running) cam.az += Math.sin(now / 5200) * 1.2;
+    if (!isReduced && !drag && running) cam.az += Math.sin(now / 5200) * 1.2;
     const page = Math.round(s);
     if (page !== orbitPage) { orbitPage = page; orbitHome = true; }
     if (drag && drag.moved) orbitHome = false;
@@ -731,10 +813,21 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
       const F = lastFocus;
       cam = { ...cam, target: cam.target.map((v, k) => lerp(v, F.target[k], focusAmt)), az: cam.az, el: lerp(cam.el, Math.max(cam.el, 6), focusAmt), dist: lerp(cam.dist, F.dist, focusAmt) };
     }
-    cam.az += orbit.az;
+    cam.az += orbit.az + (camAdjust?.dAz || 0);
     const maxEl = (A.el > 85 || B.el > 85) ? 89.6 : 85;
-    cam.el = Math.min(Math.max(cam.el + orbit.el, -4), maxEl);
+    cam.el = Math.min(Math.max(cam.el + orbit.el + (camAdjust?.dEl || 0), -4), maxEl);
+    if (camAdjust?.dDist) cam.dist = Math.max(0.4, cam.dist + camAdjust.dDist);
+    if (camAdjust?.fov !== null && camAdjust?.fov !== undefined && Number.isFinite(+camAdjust.fov)) {
+      cam.fov = Math.max(2, Math.min(95, +camAdjust.fov));
+    }
     cam.target = cam.target.map((v, k) => v + orbit.pan.getComponent(k));
+    lastCamPose = {
+      target: cam.target.map(n => +n.toFixed(3)),
+      az: +cam.az.toFixed(2),
+      el: +cam.el.toFixed(2),
+      dist: +cam.dist.toFixed(3),
+      fov: +(cam.fov ?? E.camera.fov).toFixed(2),
+    };
     lookAt.fromArray(cam.target);
     E.placeCamera(cam);
 
@@ -743,10 +836,10 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     if (clockAt !== undefined) {
       if (clockAt !== lastClockAt) { lastClockAt = clockAt; if (!drag?.scrub) scrubbed = null; }
       clock = scrubbed ?? clockAt;
-    } else if (!reduced) clock += dt * timeRate;
+    } else if (!isReduced) clock += dt * timeRate;
 
     // Advance any spring/Lenz load-coupled draggables smoothly during live interaction
-    if (!RENDER_MODE && !reduced && dt > 0) {
+    if (!RENDER_MODE && !isReduced && dt > 0) {
       for (const d of liveDraggables()) {
         const nextPt = stepDraggableLoad(d, dt);
         if (nextPt !== null) {
@@ -756,7 +849,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
       }
     }
 
-    const state = chapter.state(clock, reduced);
+    const state = chapter.state(clock, isReduced);
     const LA = PAGES[i].look || {}, LB = PAGES[j].look || {}, look = {};
     for (const key of chapter.lookKeys || []) {
       if (key === 'isolate') continue;
@@ -787,7 +880,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     lastLook = look;
     E.resetExplode?.();
     W.update(state, look);
-    if (!RENDER_MODE && !reduced) {
+    if (!RENDER_MODE && !isReduced) {
       for (const d of liveDraggables()) {
         if (!d.axis || !d.autoMove || d.obj.userData?.arrow || typeof d.value !== 'number' || !d.obj.position) continue;
         if (!d.active && Math.abs(d.rubberOffset) > 1e-5 && dt > 0) {
@@ -806,7 +899,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     E.stepExplode(dt);
 
     const boilRate = activeQuirk.boilRate ?? (activeMedium === 'pencil-wash' ? 6 : 0);
-    const boil = (!RENDER_MODE && !reduced && boilRate > 0) ? (Math.floor(((now || 0) / 1000) * boilRate) % 8) : 0;
+    const boil = (!RENDER_MODE && !isReduced && boilRate > 0) ? (Math.floor(((now || 0) / 1000) * boilRate) % 8) : 0;
     E.setMedium(activeMedium, { boil });
 
     if (frameParts) {
@@ -1005,7 +1098,7 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     return activeQuirk;
   }
 
-  let activeAccent = urlParams?.get('accent') || chapter.accent || null;
+  let activeAccent = urlParams?.get('accent') || chapter.accent || resolvedVoice?.accent || null;
   function setAccent(hex, surfaces = {}) {
     activeAccent = hex;
     const sheetHex = E.theme?.sheet || surfaces.page || '#f2efe7';
@@ -1016,13 +1109,72 @@ export function createStage(canvas, labelsEl, chapter, { reduced = false, touch 
     E.render();
     return tokens;
   }
-  if (activeAccent) setAccent(activeAccent);
+  if (activeAccent) setAccent(activeAccent, resolvedVoice ? { page: resolvedVoice.paper, card: resolvedVoice.card, ink: resolvedVoice.ink } : {});
+
+  function setVoice(id, { targetEl = null, setSurfaces = false } = {}) {
+    const v = resolveVoice(id);
+    activeVoice = v.id;
+    setQuirk(v.quirk, { syncMedium: false });
+    setMedium(v.medium);
+    setAccent(v.accent, { page: v.paper, card: v.card, ink: v.ink });
+    if (typeof document !== 'undefined') {
+      applyVoice(targetEl || document.documentElement, v, { stage: null, setSurfaces });
+    }
+    return v;
+  }
+
+  function setCameraAdjust(adj = null) {
+    const rawFov = adj && adj.fov !== undefined && adj.fov !== null && adj.fov !== '' ? Number(adj.fov) : null;
+    camAdjust = adj ? {
+      dAz: Number(adj.dAz) || 0,
+      dEl: Number(adj.dEl) || 0,
+      dDist: Number(adj.dDist) || 0,
+      fov: Number.isFinite(rawFov) && rawFov > 0 ? rawFov : null,
+    } : null;
+  }
+
+  if (SYNC_TAKES && typeof window !== 'undefined') {
+    on(window, 'message', e => {
+      const msg = e?.data;
+      if (!msg || typeof msg !== 'object' || !String(msg.type || '').startsWith('atlas:')) return;
+      if (msg.type === 'atlas:orbit') {
+        orbitHome = false;
+        if (typeof msg.az === 'number') orbit.az = msg.az;
+        if (typeof msg.el === 'number') orbit.el = msg.el;
+        if (Array.isArray(msg.pan) && msg.pan.length === 3) orbit.pan.fromArray(msg.pan);
+      } else if (msg.type === 'atlas:seek' && typeof msg.t === 'number') {
+        if (typeof window.seek === 'function') window.seek(msg.t);
+        else { clock = msg.t; scrubbed = msg.t; }
+      } else if (msg.type === 'atlas:voice' && msg.voice) {
+        setVoice(msg.voice, { setSurfaces: true });
+      } else if (msg.type === 'atlas:audit') {
+        const sr = sceneReport();
+        const lr = labelReport();
+        window.parent?.postMessage({
+          type: 'atlas:audit-result',
+          id: msg.id || null,
+          framing: sr.framing,
+          occlusion: sr.occlusion,
+          labelHidden: lr.filter(x => x.hiddenBy).length,
+          labelCount: lr.length,
+          voice: activeVoice,
+          medium: activeMedium,
+          quirk: activeQuirk.id,
+        }, '*');
+      }
+    });
+  }
 
   return {
-    E, W, N, hooks, step, select, relight, hoverExtern, setMedium, setQuirk, setAccent, labelReport, sceneReport, destroy, fit, draggable,
+    E, W, N, hooks, step, select, relight, hoverExtern, setMedium, setQuirk, setAccent, setVoice,
+    setCameraAdjust, getCameraPose: () => ({ ...lastCamPose, target: [...lastCamPose.target] }),
+    resetOrbit() { orbit.az = 0; orbit.el = 0; orbit.pan.set(0, 0, 0); camAdjust = null; },
+    setReduced(flag) { isReduced = !!flag; }, labelReport, sceneReport, destroy, fit, draggable,
+    get reduced() { return isReduced; },
     get medium() { return activeMedium; },
     get quirk() { return activeQuirk.id; },
     get quirkPreset() { return activeQuirk; },
+    get voice() { return activeVoice; },
     get accent() { return activeAccent; },
     get pickIntercept() { return pickIntercept; }, set pickIntercept(fn) { pickIntercept = fn; },
     get cutOverride() { return cutOverride; }, set cutOverride(v) { cutOverride = v; },

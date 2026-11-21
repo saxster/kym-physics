@@ -16,3 +16,41 @@ figure.live-on .figure-enlarge {display:none;}
 .figure-detail :focus-visible,.figure-enlarge:focus-visible {outline:3px solid var(--vol);outline-offset:3px;}
 @media(max-width:520px){.figure-detail-bar{flex-wrap:wrap;padding:.6rem}.figure-detail-bar h2{flex-basis:100%}.figure-detail-bar .figure-close{margin-left:auto}.figure-detail-scroll{padding:10px}.figure-detail-caption{font-size:.8rem}}
 @media print {.figure-enlarge,.figure-detail{display:none!important}}
+
+/* Printer's corner registration plates, stipple layer bands, section payoffs & cover polish (all theme tokens) */
+.fig .fig-reg-border { fill: none; stroke: var(--rule); stroke-width: 0.9; opacity: 0.85; }
+.fig .fig-reg-mark { fill: none; stroke: var(--ink); stroke-width: 1.05; stroke-linecap: square; opacity: 0.55; }
+.fig .fig-stipple { stroke: var(--rule); stroke-width: 0.9; }
+.fig-stipple-dot { fill: var(--ink); opacity: 0.24; }
+.fig .fig-callout { fill: var(--sheet); stroke: var(--ink); stroke-width: 1; }
+.fig .fig-callout-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); font-weight: 500; }
+
+.kym-cover-plate {
+  position: relative;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+}
+
+.kym-btn-lift {
+  transition: transform .16s cubic-bezier(.22,1,.36,1), box-shadow .16s ease, border-color .16s ease;
+  box-shadow: 0 1px 0 var(--rule);
+}
+.kym-btn-lift:hover, .kym-btn-lift:focus-visible {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 3px 3px 0 var(--vol);
+  border-color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .kym-btn-lift { transition: none; transform: none !important; }
+}
+
+.chapter-toc .sec-payoff {
+  grid-column: 2;
+  display: block;
+  font-size: .84rem;
+  line-height: 1.42;
+  color: var(--muted);
+  margin-top: .16rem;
+}

@@ -23,6 +23,7 @@ from pathlib import Path
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 from figs_core import FIGS, DEFS  # noqa: E402
+import md_export  # noqa: E402
 import stories as ST  # noqa: E402
 from lesson_catalog import load_catalog, lesson_attributes, widgets_from_html
 from exam_prep import load_exam, render_exam, runtime_exam, validate_exam
@@ -526,9 +527,38 @@ class Builder:
         raise SystemExit(f'Unknown block :::{kind} in chapter {ch.n}')
 
     # ------------------------------------------------------------- pieces
+    @staticmethod
+    def _section_payoff(body: str, limit: int = 115) -> str:
+        in_fence = False
+        for raw_line in str(body or '').splitlines():
+            s = raw_line.strip()
+            if s.startswith(':::'):
+                if s == ':::' and in_fence:
+                    in_fence = False
+                elif s != ':::':
+                    in_fence = True
+                continue
+            if in_fence or not s or s.startswith('#') or s.startswith('!') or s.startswith('>') or s.startswith('|'):
+                continue
+            clean = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', s)
+            clean = re.sub(r'==([^=]+)==', r'\1', clean)
+            clean = re.sub(r'[*_`]', '', clean).strip()
+            if not clean:
+                continue
+            m = re.match(r'^(.+?[.!?])(?:\s|$)', clean)
+            sent = m.group(1) if m else clean
+            if len(sent) > limit:
+                sent = sent[:limit - 1].rstrip(' ,;:-') + '…'
+            return html.escape(sent)
+        return ''
+
     def chapter_html(self, ch: Chapter, ledger: Ledger) -> str:
-        toc = ''.join(f'<li><span class="n">{n}</span><a href="#s{sid(n)}">{md_inline(t)}</a></li>'
-                      for n, t, _ in ch.sections if n)
+        toc = ''.join(
+            f'<li><span class="n">{n}</span><a href="#s{sid(n)}">{md_inline(t)}</a>'
+            + (f'<span class="sec-payoff">{pay}</span>' if (pay := self._section_payoff(body)) else '')
+            + '</li>'
+            for n, t, body in ch.sections if n
+        )
         seen = set()  # each story is linked once per chapter: at its first mention
         intro = self.linker.link(self.render_blocks(ch.intro_src, ch, None), seen=seen)
         intro = re.sub(r'<p>', '<p class="lede">', intro, count=1)
@@ -1087,6 +1117,8 @@ FAVICON = ("%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
            "%3Ccircle cx='16' cy='12' r='4.2' fill='%23b8432f'/%3E%3Cpath d='M3 27.5 H29' stroke='%232f6d8f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
 SITE_HEAD = (
     '<link rel="canonical" href="{url}">\n'
+    '<link rel="describedby" href="llms.txt" type="text/plain">\n'
+    '<link rel="alternate" type="text/markdown" href="book/overview.md" title="Markdown book overview">\n'
     '<link rel="manifest" href="manifest.webmanifest">\n'
     '<link rel="apple-touch-icon" href="icon-192.png">\n'
     '<meta property="og:type" content="book">\n'
@@ -1188,6 +1220,11 @@ def make_site(site_dir, only=None):
         if os.path.exists(src):
             shutil.copy(src, os.path.join(site_dir, f))
     make_images(index, site_dir)
+    md_chapters = [Chapter(p) for p in sorted(glob.glob(os.path.join(SRC, 'ch*.md')))]
+    md_chapters.sort(key=lambda c: c.n)
+    if only is not None:
+        md_chapters = [c for c in md_chapters if c.n in only]
+    md_export.export_markdown_tree(site_dir, TITLE, SUBTITLE, SITE_URL, DESCRIPTION, md_chapters)
     # the cache version is a hash of everything the service worker precaches, so any change ships a new cache
     files = [f for f in ['index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'] + [s[0] for s in sizes]
              if os.path.exists(os.path.join(site_dir, f))]

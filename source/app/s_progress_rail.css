@@ -1,0 +1,150 @@
+/* 3-level progress-trail spine enhancements + mobile 16px native section jump overlay.
+   Uses only theme CSS variables so dark/light themes stay aligned. */
+
+.spine ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px dashed var(--rule);
+}
+
+.spine li {
+  position: relative;
+}
+
+.spine li[data-passed="true"]::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: var(--ink);
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+.spine li[data-passed="true"] > a::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: .68rem;
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  opacity: 0.65;
+  border-radius: 1px;
+}
+
+.spine li[data-active="true"] > a,
+.spine li a[aria-current] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.spine li[data-active="true"] > a::before,
+.spine li a[aria-current]::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: .65rem;
+  width: 7px;
+  height: 7px;
+  margin-top: 0;
+  border-radius: 1.5px;
+  background: var(--vol);
+}
+
+.spine .sp-sub {
+  display: none;
+  list-style: none;
+  margin: .1rem 0 .35rem .9rem;
+  padding: 0 0 0 .65rem;
+  border-left: 1px solid var(--rule);
+}
+
+.spine li[data-active="true"] .sp-sub {
+  display: block;
+}
+
+.spine .sp-sub li a {
+  display: block;
+  padding: .18rem 0;
+  font-size: .72rem;
+  line-height: 1.28;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spine .sp-sub li a[aria-current="location"],
+.spine .sp-sub li a:hover {
+  color: var(--ink);
+}
+
+/* Mobile / compact floating 16px native section switcher (prevents iOS Safari input zoom) */
+.pr-mobile-wrap {
+  position: fixed;
+  right: max(.85rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  max-width: min(82vw, 21rem);
+  min-height: 44px;
+  padding: .45rem .8rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--sheet);
+  color: var(--ink);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 12%, transparent);
+  font: 500 .8rem/1.2 var(--sans);
+}
+
+.pr-mobile-wrap[hidden] {
+  display: none;
+}
+
+.pr-mobile-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pr-mobile-caret {
+  flex: none;
+  color: var(--vol);
+  font-size: .78rem;
+}
+
+.pr-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (min-width: 1280px) {
+  .pr-mobile-wrap {
+    display: none !important;
+  }
+}
+
+@media print {
+  .pr-mobile-wrap,
+  .spine {
+    display: none !important;
+  }
+}
+
+html.kymbio-widget-mode .pr-mobile-wrap,
+body.kymbio-active-widget .pr-mobile-wrap,
+html.kymbio-widget-mode .spine,
+body.kymbio-active-widget .spine {
+  display: none !important;
+}
